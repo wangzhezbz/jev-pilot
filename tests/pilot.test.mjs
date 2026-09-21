@@ -54,6 +54,10 @@ test('source reader rejects traversal, secret paths and symlink escape', async t
 test('search returns exact source lines and excludes private paths', async t => {
   const f = fixture(t); writeFileSync(join(f.root, 'source.txt'), 'first\nneedle\nlast');
   const r = await f.call('search', { goal: 'needle', query: 'needle' }); assert.equal(r.items[0].source, 'source.txt'); assert.match(r.items[0].text, /needle/);
+  writeFileSync(join(f.root, 'exact.txt'), 'use array[0]');
+  writeFileSync(join(f.root, '.env.local'), 'array[0] private');
+  const exact = await f.call('search', { goal: 'array access', query: 'array[0]', paths: ['exact.txt', '.env.local'] });
+  assert.deepEqual(exact.items.map(x => x.source), ['exact.txt']); assert.equal(exact.excludedPathCount, 1);
 });
 test('search detects overflow within a single file instead of claiming complete coverage', async t => {
   const f=fixture(t);writeFileSync(join(f.root,'many.txt'),'needle\n'.repeat(5));
@@ -80,6 +84,11 @@ test('real subprocess receipts fail after source mutation', async t => {
 test('failed subprocess receipt cannot support completion', async t => {
   const f = fixture(t); const r = await f.call('run_checks', { checks: [{ id: 'bad', command: process.execPath, args: ['-e', 'process.exit(7)'] }] });
   assert.equal(r.results[0].exitCode, 7); assert.equal(r.results[0].status, 'failed');
+  const previous = process.env.TYPESAFE_API_KEY; process.env.TYPESAFE_API_KEY = 'fixture-private';
+  try {
+    const privateCheck = await f.call('run_checks', { checks: [{ id: 'private', command: process.execPath, args: ['-e', 'process.exit(process.env.TYPESAFE_API_KEY ? 8 : 0)'] }] });
+    assert.equal(privateCheck.results[0].status, 'passed');
+  } finally { if (previous === undefined) delete process.env.TYPESAFE_API_KEY; else process.env.TYPESAFE_API_KEY = previous; }
 });
 test('memory opt-in, conflict handling, source invalidation and scoped forgetting', async t => {
   const f = fixture(t); await assert.rejects(f.call('memory', { action: 'retrieve', goal: 'task' }), /MEMORY_DISABLED/);

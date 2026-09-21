@@ -25,6 +25,8 @@ All fourteen agreed feature modules are implemented behind one MCP tool and one 
 9. Updating preserves activation metadata and backs up the native launcher. Real macOS activation/update/rollback restored the prior launch agent and override byte-for-byte.
 10. Five READMEs now show all 14 modules and consistent platform/acceptance boundaries.
 
+11. Literal search escapes regex metacharacters through ripgrep fixed-string mode; check subprocesses do not inherit the TypeSafe key. Both paths have regression assertions.
+
 ## Verification and open release gates
 
 See [ACCEPTANCE.md](reports/ACCEPTANCE.md) for machine-readable evidence and limitations. Portable OS CI is separate from real desktop acceptance. Remaining release gates: Windows/Linux real desktop sessions; a responsive Chrome extension control channel; signed consumer installers; matched real GPT workload performance measurements. Native context-history replacement is not part of the implemented handoff interface.

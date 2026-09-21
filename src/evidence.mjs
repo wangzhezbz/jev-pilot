@@ -47,7 +47,7 @@ export async function search(ctx, { goal, query, maxMatches = 100, budget, paths
   text(query, 1000); requireValue(query.length > 0); requireValue(Number.isInteger(maxMatches) && maxMatches > 0 && maxMatches <= 400);
   for (const path of array(paths, 20)) { text(path, 1000); requireValue(!path.startsWith('-') && !relative(ctx.root, resolve(ctx.root, path)).startsWith('..'), 'OUTSIDE_WORKSPACE'); }
   let stdout = '', truncated = false;
-  try { ({ stdout } = await exec('rg', ['--json', '--max-count', String(maxMatches + 1), '--max-filesize', '1M', '--', query, ...paths], { cwd: ctx.root, maxBuffer: 8 * 1024 * 1024, timeout: 10000 })); }
+  try { ({ stdout } = await exec('rg', ['--json', '--fixed-strings', '--max-count', String(maxMatches + 1), '--max-filesize', '1M', '--', query, ...paths], { cwd: ctx.root, maxBuffer: 8 * 1024 * 1024, timeout: 10000 })); }
   catch (e) { if (e.code === 1) return { items: [], reason: 'no_literal_matches', completeCoverage: true }; throw Object.assign(new Error('SEARCH_FAILED'), { code: 'SEARCH_FAILED' }); }
   const matches = stdout.split('\n').filter(Boolean).map(x => JSON.parse(x)).filter(x => x.type === 'match');
   truncated = matches.length > maxMatches; const items = [], skippedPaths = new Set();
@@ -94,12 +94,13 @@ export async function compactContext(ctx, { goal, blocks, session = 'default', p
 
 export async function runChecks(ctx, { checks, files = [] }) {
   array(checks, 20); array(files, 100); const results = [];
+  const env = { ...process.env }; delete env.TYPESAFE_API_KEY;
   const snapshot = () => Object.fromEntries(files.map(p => { try { return [p, readSource(ctx.root, p).hash]; } catch { return [p, null]; } }));
   for (const check of checks) {
     text(check.id, 128); text(check.command, 1000); array(check.args || [], 100).forEach(x => text(x, 10000));
     requireValue(check.timeoutMs === undefined || Number.isInteger(check.timeoutMs) && check.timeoutMs >= 100 && check.timeoutMs <= 120000, 'INVALID_TIMEOUT');
     const before = snapshot(); const start = performance.now(); let output = '', exitCode = null, status = 'failed';
-    try { const r = await exec(check.command, check.args || [], { cwd: ctx.root, timeout: Math.min(check.timeoutMs || 30000, 120000), maxBuffer: 2000000, windowsHide: true }); output = r.stdout + r.stderr; exitCode = 0; status = 'passed'; }
+    try { const r = await exec(check.command, check.args || [], { cwd: ctx.root, env, timeout: Math.min(check.timeoutMs || 30000, 120000), maxBuffer: 2000000, windowsHide: true }); output = r.stdout + r.stderr; exitCode = 0; status = 'passed'; }
     catch (e) { output = (e.stdout || '') + (e.stderr || ''); exitCode = typeof e.code === 'number' ? e.code : null; status = e.killed ? 'timeout' : 'failed'; }
     const after = snapshot(); if (JSON.stringify(before) !== JSON.stringify(after) || Object.values(after).includes(null)) status = 'stale';
     const artifactId = ctx.store.put(ctx.project, 'artifact', { items: [{ id: 'output', text: output }], command: check.command, args: check.args });
