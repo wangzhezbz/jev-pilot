@@ -45,13 +45,16 @@ export function readSource(root, path, maxBytes = 1000000) {
   return { path: relative(realpathSync(root), file), text: content, hash: hash(content), modifiedAt: stat.mtimeMs };
 }
 
-export class Store {
-  constructor({ home = process.env.JEV_PILOT_HOME || join(homedir(), '.codex', 'jev-pilot') } = {}) {
-    this.home = home; const fresh = !existsSync(home); mkdirSync(home, { recursive: true, mode: 0o700 });
+export function privateDirectory(home) {
+    const fresh = !existsSync(home); mkdirSync(home, { recursive: true, mode: 0o700 });
     if (process.platform === 'win32' && fresh) {
       const owner = execFileSync('whoami.exe', [], { encoding: 'utf8', windowsHide: true }).trim();
       execFileSync('icacls.exe', [home, '/inheritance:r', '/grant:r', owner + ':(OI)(CI)F', '*S-1-5-18:(OI)(CI)F'], { stdio: 'ignore', windowsHide: true });
     } else if (process.platform !== 'win32') chmodSync(home, 0o700);
+}
+export class Store {
+  constructor({ home = process.env.JEV_PILOT_HOME || join(homedir(), '.codex', 'jev-pilot') } = {}) {
+    this.home = home; privateDirectory(home);
     this.db = new DatabaseSync(join(home, 'state.sqlite'));
     try { chmodSync(join(home, 'state.sqlite'), 0o600); } catch {}
     this.db.exec(`PRAGMA journal_mode=WAL; PRAGMA busy_timeout=5000;
@@ -122,6 +125,7 @@ export class Judge {
     Object.assign(this, { store, project, config, key, send, signal }); this.calls = 0; this.inflight = new Map();
   }
   async ask(state, questions, purpose = 'decision') {
+    requireValue(!this.signal?.aborted, 'CANCELLED');
     requireValue(this.config.enabled, 'DISABLED'); requireValue(this.key, 'MISSING_KEY');
     const ids = Object.keys(questions); requireValue(ids.length > 0 && ids.length <= 32, 'QUESTION_LIMIT');
     for (const q of Object.values(questions)) {

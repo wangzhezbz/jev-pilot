@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { execFileSync, spawn } from 'node:child_process';
 import { createInterface } from 'node:readline';
 import { mkdtempSync } from 'node:fs';
-import { hash, loadKey, requireValue } from './core.mjs';
+import { hash, loadKey, requireValue, privateDirectory } from './core.mjs';
 import { hookOverrides } from '../runtime/desktop/bridge.mjs';
 import { summarize } from '../runtime/desktop/report.mjs';
 export const packageRoot = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -54,7 +54,7 @@ export async function probeHooks(realBin, hookPath) {
 export async function setup(options = {}) {
   const home=installHome(),file=join(home,'runtime/desktop/install.json');
   let backup=null,old=null;
-  const components=['src','runtime','vendor','scripts','skills','web','locales','launcher','bin'];
+  const components=['src','runtime','vendor','scripts','skills','web','locales','launcher','bin',process.platform==='win32'?'jev-pilot.exe':'jev-pilot'];
   if(existsSync(file)) {
     old=JSON.parse(readFileSync(file));backup=join(home,'backups',String(Date.now()));mkdirSync(backup,{recursive:true,mode:0o700});
     for(const name of components)if(existsSync(join(home,name)))cpSync(join(home,name),join(backup,name),{recursive:true});
@@ -72,7 +72,7 @@ async function prepareSetup({ activate = false, source = packageRoot } = {}) {
   const version = commandVersion(realBin);
   // First release targets the actually verified wire protocol. Unknown upgrades pass through.
   requireValue(version === 'codex-cli 0.155.0-alpha.9.2', 'UNVERIFIED_CODEX_VERSION');
-  const home = installHome(); mkdirSync(home, { recursive: true, mode: 0o700 });
+  const home = installHome(); privateDirectory(home);
   const configPath = join(home, 'runtime/desktop/install.json'); let previous = null;
   if (existsSync(configPath)) { previous = JSON.parse(readFileSync(configPath)); cpSync(configPath, configPath + '.backup-' + Date.now()); }
   for (const name of ['src', 'runtime', 'vendor', 'scripts', 'skills', 'web', 'locales','launcher','bin']) if (resolve(source) !== resolve(home) && existsSync(join(source,name))) cpSync(join(source, name), join(home, name), { recursive: true });
@@ -86,11 +86,11 @@ async function prepareSetup({ activate = false, source = packageRoot } = {}) {
   chmodSync(launcher, 0o700);
   let previousOverride = previous?.previousOverride ?? process.env.CODEX_CLI_PATH ?? '';
   if (process.platform === 'darwin' && !previous) try { previousOverride = execFileSync('/bin/launchctl', ['getenv', 'CODEX_CLI_PATH'], { encoding: 'utf8' }).trim(); } catch {}
-  const config = { version: 2, realBin, verifiedVersion: version, node: process.execPath, trust, sha256, previousOverride, previousLaunchAgent:previous?.previousLaunchAgent, keyPath: join(home, '.env.local'), automation: true, activated: false, installedAt: new Date().toISOString() };
+  const config = { version: 2, realBin, verifiedVersion: version, node: process.execPath, trust, sha256, previousOverride, previousLaunchAgent:previous?.previousLaunchAgent, launchAgent:previous?.launchAgent, keyPath: join(home, '.env.local'), automation: true, activated: previous?.activated === true, installedAt: new Date().toISOString() };
   writeFileSync(configPath, JSON.stringify(config, null, 2), { mode: 0o600 });
   const key = loadKey(home); if (key && !existsSync(config.keyPath)) writeFileSync(config.keyPath, 'TYPESAFE_API_KEY=' + key + '\n', { mode: 0o600 });
   if (activate) activateDesktop(config, home, launcher);
-  return { installed: home, launcher, configuredForNextLaunch: activate, restartRequired: activate, currentTaskChanged: false, credentialsConfigured: Boolean(key) };
+  return { installed: home, launcher, configuredForNextLaunch: config.activated, restartRequired: config.activated, currentTaskChanged: false, credentialsConfigured: Boolean(key) };
 }
 function setOverride(value) {
   if (process.platform === 'darwin') execFileSync('/bin/launchctl', value ? ['setenv', 'CODEX_CLI_PATH', value] : ['unsetenv', 'CODEX_CLI_PATH']);

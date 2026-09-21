@@ -55,6 +55,10 @@ test('search returns exact source lines and excludes private paths', async t => 
   const f = fixture(t); writeFileSync(join(f.root, 'source.txt'), 'first\nneedle\nlast');
   const r = await f.call('search', { goal: 'needle', query: 'needle' }); assert.equal(r.items[0].source, 'source.txt'); assert.match(r.items[0].text, /needle/);
 });
+test('search detects overflow within a single file instead of claiming complete coverage', async t => {
+  const f=fixture(t);writeFileSync(join(f.root,'many.txt'),'needle\n'.repeat(5));
+  const r=await f.call('search',{goal:'needle',query:'needle',maxMatches:2});assert.equal(r.candidateLimitReached,true);assert.equal(r.completeCoverage,false);
+});
 test('required tools survive all-skip decision', async t => {
   const f = fixture(t, () => 'skip'); const r = await f.call('select_tools', { goal: 'goal', tools: [{ id: 'a', text: 'tool' }, { id: 'b', text: 'other' }], required: ['a'] });
   assert.deepEqual(r.selected.map(x => x.id), ['a']); assert.equal(r.nativeToolsRemoved, false);

@@ -1,0 +1,28 @@
+{
+  "kind": "real_headless_chrome_with_real_jev",
+  "hostPluginUsed": false,
+  "result": {
+    "status": "verified",
+    "evidence": {
+      "selector": "#status",
+      "text": "Details opened"
+    },
+    "steps": 1
+  },
+  "metrics": {
+    "events": 1,
+    "windowLimit": 10000,
+    "jev": {
+      "calls": 1,
+      "failures": 0,
+      "inputTokens": 598,
+      "outputTokens": 75,
+      "totalElapsedMs": 640,
+      "missingUsage": 0
+    },
+    "cacheHits": 0,
+    "savings": null,
+    "savingsReason": "Requires matched baseline tasks with quality acceptance and provider usage. No counterfactual savings inferred."
+  },
+  "passed": true
+}

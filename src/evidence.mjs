@@ -47,7 +47,7 @@ export async function search(ctx, { goal, query, maxMatches = 100, budget, paths
   text(query, 1000); requireValue(query.length > 0); requireValue(Number.isInteger(maxMatches) && maxMatches > 0 && maxMatches <= 400);
   for (const path of array(paths, 20)) { text(path, 1000); requireValue(!path.startsWith('-') && !relative(ctx.root, resolve(ctx.root, path)).startsWith('..'), 'OUTSIDE_WORKSPACE'); }
   let stdout = '', truncated = false;
-  try { ({ stdout } = await exec('rg', ['--json', '--max-count', String(maxMatches), '--max-filesize', '1M', '--', query, ...paths], { cwd: ctx.root, maxBuffer: 8 * 1024 * 1024, timeout: 10000 })); }
+  try { ({ stdout } = await exec('rg', ['--json', '--max-count', String(maxMatches + 1), '--max-filesize', '1M', '--', query, ...paths], { cwd: ctx.root, maxBuffer: 8 * 1024 * 1024, timeout: 10000 })); }
   catch (e) { if (e.code === 1) return { items: [], reason: 'no_literal_matches', completeCoverage: true }; throw Object.assign(new Error('SEARCH_FAILED'), { code: 'SEARCH_FAILED' }); }
   const matches = stdout.split('\n').filter(Boolean).map(x => JSON.parse(x)).filter(x => x.type === 'match');
   truncated = matches.length > maxMatches; const items = [], skippedPaths = new Set();
@@ -74,6 +74,7 @@ export function recall(ctx, { artifactId, ids }) {
 }
 // Keep complete exchanges and protected instructions. This prepares a handoff, not an API history rewrite.
 export async function compactContext(ctx, { goal, blocks, session = 'default', preserveRecent = 6 }) {
+  text(goal, 10000); text(session, 256);
   array(blocks, 512); requireValue(Number.isInteger(preserveRecent) && preserveRecent >= 1 && preserveRecent <= 50);
   const ids = new Set(); for (const b of blocks) { text(b.id, 128); text(b.content); requireValue(!ids.has(b.id), 'DUPLICATE_ID'); ids.add(b.id); }
   const originalId = ctx.store.put(ctx.project, 'artifact', { items: blocks.map(b => ({ ...b, text: b.content })), goal });
@@ -110,7 +111,8 @@ export async function verifyCompletion(ctx, { requirements, receiptIds = [], cla
   records(requirements, 64); array(receiptIds, 100);
   const receipts = receiptIds.map(id => ctx.store.get(ctx.project, 'receipt', id)).filter(Boolean);
   const checked = receipts.map(r => ({ ...r, current: Object.entries(r.sourceHashes || {}).every(([p, h]) => { try { return readSource(ctx.root, p).hash === h; } catch { return false; } }) }));
-  const results = await ctx.judge.classify(requirements, `Do provided receipts and claims support this requirement? Receipts: ${JSON.stringify(checked)}. Claims (not proof): ${text(claims, 10000)}.`, { supported: 'Direct current passing evidence covers this requirement.', missing: 'No direct evidence or requirement not met.', review: 'Ambiguous; Codex must inspect.' }, 'completion');
+  const evidence = checked.map(r => { const artifact = ctx.store.get(ctx.project, 'artifact', r.artifactId); return { ...r, command: artifact?.command, args: artifact?.args, outputExcerpt: artifact?.items?.[0]?.text?.slice(0, 3000) }; });
+  const results = await ctx.judge.classify(requirements, `Do provided receipts and claims support this requirement? Receipts: ${JSON.stringify(evidence)}. Claims (not proof): ${text(claims, 10000)}.`, { supported: 'Direct current passing evidence covers this requirement.', missing: 'No direct evidence or requirement not met.', review: 'Ambiguous; Codex must inspect.' }, 'completion');
   const allCurrent = checked.length > 0 && checked.every(r => r.current && r.status === 'passed') && checked.length === receiptIds.length;
   return { requirements: results, receipts: checked, verdict: allCurrent && results.length > 0 && results.every(r => r.choice === 'supported' && r.source === 'jev') ? 'evidence_supported' : 'needs_review', finalAcceptanceOwner: 'Codex', missingReceiptIds: receiptIds.filter(id => !receipts.some(r => r.id === id)) };
 }

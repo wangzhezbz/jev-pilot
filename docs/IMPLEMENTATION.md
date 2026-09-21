@@ -1,12 +1,30 @@
-# JevPilot implementation ledger
+# Implementation ledger — 0.2 development preview
 
-Scope: all 14 agreed capabilities. One plugin, automatic ordinary-conversation use, macOS/Windows/Linux targets, GPT-6/5.6 effort routing, Chrome and Computer Use collaboration, five languages.
+All fourteen agreed feature modules are implemented behind one MCP tool and one implicit skill. See [FEATURES.md](FEATURES.md) for the feature-by-feature acceptance boundary. This is a runnable developer preview, not a completed three-platform desktop release.
 
-## Work sequence
-1. Migrate verified effort runtime and tests; vendor pinned MIT extraction implementation.
-2. Shared client, private project storage, operation API, all 14 capability modules.
-3. MCP, implicit skill, lifecycle hooks, driver adapters, setup/doctor/dashboard.
-4. Contract, fault, protocol, integration and live synthetic acceptance; fix failures.
-5. Package and document verified boundaries and remaining real-device acceptance.
+## Architecture delivered
 
-Implementation does not itself certify desktop activation, native context replacement, cross-platform operation or savings. Each requires distinct evidence. No user-facing completion claim until reviewed.
+- Shared TypeSafe transport with bounded batches, deadlines, cancellation, schema checks, caching and fail-open behavior.
+- Private project-scoped SQLite state for recoverable evidence, receipts, checkpoints and opt-in memory.
+- Original desktop v4 routing migrated with all 28 regression tests; actual first-request parameters and native acknowledged updates.
+- Native Go launchers for macOS/Windows/Linux, x64/arm64; Node backend; Unix sockets or Windows named pipes.
+- MCP stdio server, ordinary-work implicit skill, native tool-boundary output filtering and checkpoints.
+- Localhost dashboard with English, Chinese, Russian, Japanese and Korean.
+- Pinned MIT source reuse and design references documented in [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md).
+
+## Review corrections made
+
+1. Windows checkout line endings changed pinned vendor hashes: enforce LF and mark vendored bytes immutable.
+2. Legacy plugin MCP fields were not enough for the native host: add portable `plugin.json` and `mcp.json`, verify with the actual Codex app-server.
+3. Native output replacement uses the host's supported `continue:false` feedback path; do not pretend an unsupported field changes context.
+4. Checkpoints and test receipts become stale when their sources change; revalidate hashes before resume/completion/memory retrieval.
+5. Search overflow inside one file is now visible; original evidence remains retrievable.
+6. Disabled project settings apply to the desktop hook and first-step router; cancellation prevents new API work.
+7. Browser decisions lock each session, reject stale states and consume tickets only once.
+8. Native launcher corruption falls back to the original runtime without leaking the TypeSafe credential.
+9. Updating preserves activation metadata and backs up the native launcher. Real macOS activation/update/rollback restored the prior launch agent and override byte-for-byte.
+10. Five READMEs now show all 14 modules and consistent platform/acceptance boundaries.
+
+## Verification and open release gates
+
+See [ACCEPTANCE.md](reports/ACCEPTANCE.md) for machine-readable evidence and limitations. Portable OS CI is separate from real desktop acceptance. Remaining release gates: Windows/Linux real desktop sessions; a responsive Chrome extension control channel; signed consumer installers; matched real GPT workload performance measurements. Native context-history replacement is not part of the implemented handoff interface.

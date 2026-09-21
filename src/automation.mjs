@@ -5,6 +5,7 @@ import { filterOutput } from './evidence.mjs';
 export function createAutomation({ store = new Store(), key, send } = {}) {
   return {
     store,
+    enabled(root) { try { return loadConfig(store, store.project(root)).enabled === true; } catch { return false; } },
     async hook(payload) {
       if (!payload.cwd || !payload.session_id) return {};
       const project = store.project(payload.cwd), config = loadConfig(store, project);

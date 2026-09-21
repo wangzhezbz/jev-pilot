@@ -1,0 +1,9 @@
+{
+  "kind": "real_macos_activation_update_rollback",
+  "currentDesktopRestarted": false,
+  "activation": true,
+  "updatePreservesActivation": true,
+  "previousOverrideRestored": true,
+  "previousLaunchAgentRestored": true,
+  "passed": true
+}

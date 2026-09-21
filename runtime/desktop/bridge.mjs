@@ -59,7 +59,7 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
       data+=chunk;if(Buffer.byteLength(data)>2_000_000) return socket.destroy();
       if(!data.includes('\n')) return;
       socket.pause();
-      Promise.resolve().then(()=>router.hook(JSON.parse(data.slice(0,data.indexOf('\n')))))
+      Promise.resolve().then(()=>{const payload=JSON.parse(data.slice(0,data.indexOf('\n')));if(assistant&&payload.cwd&&!assistant.enabled(payload.cwd)){router.stop(payload.session_id);return {};}return router.hook(payload);})
         .then(async r=>{let extra={};try{extra=await assistant?.hook(JSON.parse(data.slice(0,data.indexOf('\n'))))??{};}catch{}socket.end(JSON.stringify({...r,...extra})+'\n');},()=>socket.end('{}\n'));
     });
   });
@@ -77,7 +77,7 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
     // recommendations immediately. Other threads and backend RPC replies flow.
     if(starting || (threadId && threadQueues.has(threadId))) {
       const job=(threadQueues.get(threadId)??Promise.resolve()).then(async()=>{
-        if(starting){await metadataReady;msg.params=await router.routeStart(msg.params,starting);}
+        if(starting){await metadataReady;const cwd=msg.params.cwd??router.threads.get(threadId)?.cwd;if(!assistant||!cwd||assistant.enabled(cwd))msg.params=await router.routeStart(msg.params,starting);else router.stop(threadId);}
         send(msg);
       }).catch(()=>{log({kind:'start_routing_fallback',threadId});send(msg);});
       threadQueues.set(threadId,job);
@@ -100,7 +100,7 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
         }).catch(()=>log({kind:'metadata_unavailable'}));
       }
       if(['thread/start','thread/resume'].includes(p?.method) && msg.result?.thread) {
-        const r=msg.result;router.threads.set(r.thread.id,{model:r.model,effort:r.reasoningEffort});
+        const r=msg.result;router.threads.set(r.thread.id,{model:r.model,effort:r.reasoningEffort,cwd:r.thread.cwd??p.params?.cwd});
       }
       if(p?.method==='turn/start' && msg.error){
         router.stop(p.params.threadId);log({kind:'start_rejected',threadId:p.params.threadId});

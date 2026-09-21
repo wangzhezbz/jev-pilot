@@ -1,0 +1,35 @@
+{
+  "kind": "real_codex_computer_use_plugin",
+  "driver": "mcp__cua_repl",
+  "fixture": "macOS Calculator, entering digit 7",
+  "jevSelected": {
+    "id": "seven",
+    "target": 10
+  },
+  "freshnessChecked": true,
+  "ticketConsumedOnce": true,
+  "observedAfterAction": {
+    "accessibilityValue": "7"
+  },
+  "passed": true,
+  "verification": "Codex inspected fresh CUA AX result after app.click(10)",
+  "metrics": {
+    "events": 13,
+    "windowLimit": 10000,
+    "jev": {
+      "calls": 1,
+      "failures": 0,
+      "inputTokens": 630,
+      "outputTokens": 75,
+      "totalElapsedMs": 549,
+      "missingUsage": 0
+    },
+    "cacheHits": 0,
+    "savings": null,
+    "savingsReason": "Requires matched baseline tasks with quality acceptance and provider usage. No counterfactual savings inferred."
+  },
+  "chromeExtension": {
+    "status": "blocked",
+    "detail": "Browser discovery succeeds; Chrome session/tab commands repeatedly time out. Native app control and separate headless Chrome tests pass. No Chrome extension success claimed."
+  }
+}

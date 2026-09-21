@@ -47,7 +47,13 @@ export async function memory(ctx, input) {
   if (input.action === 'forget') { const m = ctx.store.get(ctx.project, 'memory', input.id); requireValue(m, 'MEMORY_NOT_FOUND'); ctx.store.put(ctx.project, 'memory', { ...m, revoked: true }, input.id); return { revoked: input.id }; }
   requireValue(input.action === 'retrieve'); text(input.goal, 10000);
   const all = ctx.store.list(ctx.project, 'memory');
-  const active = all.filter(m => !m.revoked && m.expiresAt > Date.now() && (!m.source.path || (() => { try { return readSource(ctx.root, m.source.path).hash === m.source.hash; } catch { return false; } })()));
+  const active = all.filter(m => !m.revoked && m.expiresAt > Date.now() && (() => {
+    try {
+      if (m.source.path) return readSource(ctx.root, m.source.path).hash === m.source.hash;
+      const receipt = ctx.store.get(ctx.project, 'receipt', m.source.receiptId);
+      return receipt?.status === 'passed' && Object.entries(receipt.sourceHashes || {}).every(([p, h]) => readSource(ctx.root, p).hash === h);
+    } catch { return false; }
+  })());
   const judgments = await ctx.judge.classify(active.slice(0, 100).map((m, i) => ({ id: 'm' + i, text: m.content })), `Relevance to task: ${input.goal}`, { use: 'Relevant project experience.', review: 'Uncertain relevance.', skip: 'Unrelated.' }, 'memory');
   return { memories: active.slice(0, 100).filter((m, i) => judgments[i].choice !== 'skip'), skippedStaleOrRevoked: all.length - active.length, truncated: active.length > 100, judgments, conflictsRequireReview: true };
 }

@@ -1,0 +1,51 @@
+{
+  "status": "candidate_selected",
+  "ticket": "5fd6ca1d-b64a-45bb-b81e-32d04a9937d5",
+  "action": {
+    "id": "seven",
+    "text": "Click button labelled 7",
+    "target": 10,
+    "judgment": {
+      "id": "seven",
+      "type": "choice",
+      "choice": "use",
+      "confidence": 0.75,
+      "probabilities": {
+        "review": 0.08,
+        "skip": 0.09,
+        "use": 0.83
+      },
+      "source": "jev"
+    }
+  },
+  "observationHash": "4abc064728ae524258d333466a1620e91a33c3108f6ec0d7aef2a4c9eb2540a6",
+  "expiresAt": 1790009622997,
+  "executionOwner": "computer-use",
+  "steps": 1,
+  "judgments": [
+    {
+      "id": "seven",
+      "type": "choice",
+      "choice": "use",
+      "confidence": 0.75,
+      "probabilities": {
+        "review": 0.08,
+        "skip": 0.09,
+        "use": 0.83
+      },
+      "source": "jev"
+    },
+    {
+      "id": "two",
+      "type": "choice",
+      "choice": "use",
+      "confidence": 0.36,
+      "probabilities": {
+        "review": 0.08,
+        "skip": 0.35,
+        "use": 0.57
+      },
+      "source": "jev"
+    }
+  ]
+}

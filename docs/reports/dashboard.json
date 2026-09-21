@@ -1,0 +1,33 @@
+{
+  "kind": "real_headless_chrome_dashboard",
+  "languages": [
+    {
+      "language": "en",
+      "headline": "When Codex meets Jev\nFeel the speed",
+      "overflow": false
+    },
+    {
+      "language": "zh-CN",
+      "headline": "当 Codex 遇到 Jev\n体验飞一般的感觉",
+      "overflow": false
+    },
+    {
+      "language": "ru",
+      "headline": "Когда Codex встречает Jev\nПочувствуйте скорость",
+      "overflow": false
+    },
+    {
+      "language": "ja",
+      "headline": "Codex と Jev が出会う\n飛ぶような速さを体験",
+      "overflow": false
+    },
+    {
+      "language": "ko",
+      "headline": "Codex와 Jev의 만남\n날아가는 듯한 속도",
+      "overflow": false
+    }
+  ],
+  "mobileOverflow": false,
+  "errors": [],
+  "passed": true
+}

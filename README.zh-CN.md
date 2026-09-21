@@ -1,75 +1,48 @@
-<p align="center">
-  <img src="assets/hero.zh-CN.e322cba4a04b.svg" width="100%" alt="JevPilot — 当 Codex 遇到 Jev 体验飞一般的感觉" />
-</p>
+<p align="center"><img src="assets/hero.zh-CN.e322cba4a04b.svg" width="100%" alt="JevPilot" /></p>
 
 <p align="center">
-  <a href="#平台与下载"><img src="assets/windows.zh-CN.svg" width="32%" alt="Windows：规划中，暂无安装包" /></a>
-  <a href="#平台与下载"><img src="assets/macos.zh-CN.svg" width="32%" alt="macOS：规划中，暂无安装包" /></a>
-  <a href="#平台与下载"><img src="assets/linux.zh-CN.svg" width="32%" alt="Linux：规划中，暂无安装包" /></a>
+  <a href="#availability"><img src="assets/windows.zh-CN.svg" width="32%" alt="Windows — 开发预览 · 查看状态" /></a>
+  <a href="#availability"><img src="assets/macos.zh-CN.svg" width="32%" alt="macOS — 开发预览 · 查看状态" /></a>
+  <a href="#availability"><img src="assets/linux.zh-CN.svg" width="32%" alt="Linux — 开发预览 · 查看状态" /></a>
 </p>
 
 <p align="center"><a href="README.md">English</a> · <strong>简体中文</strong> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a></p>
-<p align="center"><a href="#怎么协作">协作方式</a> · <a href="#计划整合的能力">产品能力</a> · <a href="docs/ROADMAP.md">开发路线</a> · <a href="https://github.com/wangzhezbz/jev-pilot/releases">版本发布</a> · <a href="LICENSE">MIT 许可证</a></p>
 
 # JevPilot
 
-**一个 Jev 插件，保持你习惯的 Codex 使用方式。**
+**一个插件，保持你习惯的 Codex 使用方式。**
 
-JevPilot 正在将推理强度调度、上下文筛选和失败恢复整合进一个 Codex 插件。我们的目标是：安装一次、连接 TypeSafe 账户，之后照常对话，Jev 在内部完成适合它的小判断。
+当前是可运行的开发预览版。14 项模块共用一个 MCP 入口、一个自动调用的 Skill 和桌面适配层。Codex 负责计划、实施和验收，Jev 负责有明确范围的小判断。
 
-**当前为开发预览版：** 14 项能力已有代码、统一插件入口与自动测试，正在进行跨系统桌面验收。完整功能、实现边界和验证方式见 [14 项功能清单](docs/FEATURES.md)。
+## 全部 14 项功能
 
-## 怎么协作
-
-你描述任务，Codex 负责计划、实现和最终验收，Jev 在过程中处理有边界的判断。
-
-<p align="center"><img src="assets/workflow.zh-CN.svg" width="100%" alt="计划中的协作：用户正常向 Codex 提问；Codex 计划、实现、验收；JevPilot 协助判档、筛上下文和判断失败原因。" /></p>
-
-例如，你说“帮我修这个报错”：我们希望 JevPilot 在内部筛出相关搜索结果和日志片段，区分临时网络故障与代码错误；Codex 继续核对证据、修改代码并检查结果。
-
-## 计划整合的能力
-
-| 能力 | 解决什么问题 |
-| :--- | :--- |
-| **自动推理强度调度** | 为当前步骤选择合适强度，并区分判档建议与实际应用结果。 |
-| **搜索与文件筛选** | 先筛相关候选，再深入阅读，减少无关材料。 |
-| **可恢复的输出过滤** | 长日志和工具输出先保留重点，原文仍可补读。 |
-| **失败识别与恢复** | 区分失败原因，减少无效重复操作。 |
-| **完成证据检查** | 对照任务需要的检查及真实结果，核对完成声明。 |
-| **浏览器小步骤代办** | 执行有边界的页面操作，再交回 Codex 验收。 |
-| **真实效果统计** | 展示实际调用、已应用的变化、耗时与可获取的 token 用量。 |
-
-这些模块将逐步通过一个安装入口交付。用户无需维护一组 Skill，也无需每次输入专门的触发语。
-
-## 平台与下载
-
-| 目标平台 | 公开安装包 | 适配状态 |
+| # | 能力 | 作用 |
 | :--- | :--- | :--- |
-| Windows | 尚未发布 | 规划中，待验证 |
-| macOS | 尚未发布 | 规划中，待验证 |
-| Linux | 尚未发布 | 规划中，待验证 |
+| 1 | **自动判断** | 批量处理有明确候选的小判断，缓存重复请求，失败交回 Codex。 |
+| 2 | **自动调整推理强度** | 改变实际请求中的强度，保持模型不变，记录原生应用回执。 |
+| 3 | **搜索与文件筛选** | 按相关性筛选候选，保留原文位置，并说明遗漏范围。 |
+| 4 | **可恢复的输出过滤** | 长日志先保留重点，原文完整保存，需要时可以补读。 |
+| 5 | **工具与 Skill 选择** | 筛出适用工具，保留必需和不确定的候选。 |
+| 6 | **失败识别与恢复** | 根据实际错误判断原因，避免原地反复重试。 |
+| 7 | **完成证据与内容质量** | 核对真实执行结果、当前文件、内容规则和翻译一致性。 |
+| 8 | **Chrome 与 Computer Use 协作** | 接现有插件，核对最新界面，每张操作票据只执行一次，再验收结果。 |
+| 9 | **项目记忆** | 用户启用后按项目保存，附来源、有效期，处理冲突并支持撤销。 |
+| 10 | **真实用量与效果统计** | 分别记录 Jev 开销、原生用量与真正应用的强度变化。 |
+| 11 | **上下文压缩与交接** | 生成可恢复的精简交接，保留约束、错误和未完成工作。 |
+| 12 | **改动审查与测试选择** | 定位应重点检查的改动，保留必测项与不确定项。 |
+| 13 | **检查点与任务续接** | 保存阶段进度，续接前核对文件变化，避免盲目重放。 |
+| 14 | **原文精确提取** | 返回原文片段和位置，不存在或含糊的字段明确标记。 |
 
-三平台是共同目标。实际兼容情况会按操作系统、Codex 客户端和版本分别验证后公布，不代表这些平台当前都有相同的桌面客户端或接入能力。顶部平台卡片目前链接到本节。
+<a id="availability"></a>
 
-安装包准备好后，将在 [Releases](https://github.com/wangzhezbz/jev-pilot/releases) 发布，并附上已测试的兼容范围。开发安装与普通用户的插件使用方式见 [功能与使用说明](docs/FEATURES.md)。
+## 平台与使用
 
-## 怎么证明好用
+此预览版需要 Node 24+、curl 和 rg。一次安装插件并在本地配置自己的 TypeSafe Key，由 Codex 完成适配设置。日常照常提需求，不用另外建任务文件、运行独立入口或反复念触发词。详见[使用说明](docs/FEATURES.md)。
 
-- **耗时：** 记录整个任务用时，包含 Jev 判断与失败重试。
-- **用量：** 分别记录能够获取的输入、缓存输入、输出和推理 token，Jev 用量单独列出。
-- **质量：** 记录任务验收、证据遗漏、补读与返工。
-- **是否生效：** 判档建议和真实切档回执分别统计。
+macOS、Windows、Linux 的核心自动检查已通过。macOS 原版引擎切档与 Computer Use 已实测；Windows/Linux 桌面会话仍需设备验收。当前环境的 Chrome 扩展控制超时，独立无头 Chrome 测试不能替代扩展验收。尚未发布公开签名安装器。
 
-降低档位、缩短工具输出，都不直接等于整项任务更快或账户额度更省。我们会公开任务条件与测试方法，不承诺适用于所有任务的节省比例。
+## 验证与边界
 
-## 开发计划
+上下文功能提供可恢复的精简交接，不会改写原生历史或回收已经消耗的 token。不承诺固定的提速、省 token 或省额度比例。详见[整体验收报告](docs/reports/ACCEPTANCE.md)、[功能边界](docs/FEATURES.md)和[后续路线](docs/ROADMAP.md)。
 
-第一阶段先完成共享核心、三平台适配框架、统一配置、诊断与正常 Codex 回退。之后接入检索筛选、失败恢复，再扩展浏览器协作。
-
-完整里程碑见 [开发路线](docs/ROADMAP.md)。欢迎在 [Issues](https://github.com/wangzhezbz/jev-pilot/issues/new) 提供希望测试的具体任务、系统和 Codex 版本；请勿附带 API Key 或私人日志。
-
-## 许可证与归属
-
-本项目原创代码与视觉素材采用 [MIT 许可证](LICENSE)。已复用的第三方代码保留原始许可证与署名，详见 [第三方声明](THIRD_PARTY_NOTICES.md)。
-
-JevPilot 是独立社区项目，并非 OpenAI 或 TypeSafe 官方产品。Jev 由 [TypeSafe](https://typesafe.ai/) 提供。
+原创代码和素材采用 MIT，复用部分保留原许可证及作者署名，详见[第三方声明](THIRD_PARTY_NOTICES.md)。这是独立社区项目，并非 OpenAI 或 TypeSafe 官方产品。

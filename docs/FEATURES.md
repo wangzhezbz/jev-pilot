@@ -7,11 +7,11 @@ Runnable development preview. Code and automated tests exist for all areas; host
 | 1 | Automatic judgments | One implicit skill and MCP tool; batched choices, caching, limits and fallback | Codex invokes eligible semantic work; deterministic work stays local |
 | 2 | Actual effort routing | First-request parameters and acknowledged native updates; adaptive leases; model preserved | Real macOS engine tested with synthetic inference; new installation needs a new app process |
 | 3 | Search/file screening | rg candidates, exact source lines/hashes, relevance/diversity | Candidate limits and omitted evidence reported |
-| 4 | Recoverable output filtering | Saved logs; automatic large-text filtering at tool boundaries; original recall | Structured data and exact-output tasks bypass filtering; native hook verification required |
+| 4 | Recoverable output filtering | Saved logs; automatic large-text filtering at tool boundaries; original recall | Structured data and exact-output tasks bypass filtering; native hook replacement verified on the original macOS engine |
 | 5 | Tool/skill selection | Required and uncertain candidates remain available | Does not rewrite the native tool registry |
 | 6 | Failure recovery | Fingerprinted failures, bounded suggestions, unchanged-retry guard | No execution of unchecked recovery actions |
 | 7 | Evidence/content quality | Subprocess receipts, source freshness, requirement/rule/translation checks | Codex performs final acceptance |
-| 8 | Chrome/Computer Use | Existing-driver coordination, fresh snapshots, single-use tickets, loop bounds | Real host acceptance separate from simulated drivers |
+| 8 | Chrome/Computer Use | Existing-driver coordination, fresh snapshots, single-use tickets, loop bounds | Actual Computer Use passes; Chrome extension control channel timed out; see acceptance report |
 | 9 | Project memory | Opt-in, sources, expiry, conflicts and revocation | No unauthorized persistent memory writes |
 | 10 | Usage and results | Real Jev usage/latency, native receipts/usage, local dashboard | No invented time or quota savings |
 | 11 | Context compaction | Recoverable handoffs, protected exchanges, stable decisions, early output filtering | Handoff does not rewrite native history or reclaim existing tokens |
@@ -35,4 +35,4 @@ Windows/Linux runtime code and launchers are implemented. Compilation is not OS 
 
 `npm run check`: syntax, JSON and credential-pattern scan. `npm test`: modules, MCP, privacy, recovery, failures, router and dashboard. `scripts/verify-desktop.mjs`: actual Codex engine with synthetic model endpoint. `npm run smoke:live`: small **paid TypeSafe** synthetic sample, no GPT calls. CI: macOS, Windows and Linux portable tests.
 
-See [live API results](reports/live-smoke.json), [upstream reuse](../THIRD_PARTY_NOTICES.md), and [implementation ledger](IMPLEMENTATION.md). Reports distinguish these evidence layers.
+See [full acceptance report](reports/ACCEPTANCE.md), [live API results](reports/live-smoke.json), [upstream reuse](../THIRD_PARTY_NOTICES.md), and [implementation ledger](IMPLEMENTATION.md). Reports distinguish these evidence layers.

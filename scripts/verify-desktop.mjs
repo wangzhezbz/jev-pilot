@@ -10,6 +10,7 @@ import {spawn} from 'node:child_process';
 import {runBridge,hookOverrides,toml} from '../runtime/desktop/bridge.mjs';
 import {effortQuestion,horizonQuestion,makeJudge} from '../runtime/desktop/router.mjs';
 import {Store} from '../src/core.mjs';
+import {installHome} from '../src/setup.mjs';
 
 const root=join(dirname(fileURLToPath(import.meta.url)),'../runtime/desktop');
 const targetModel=process.argv.find(x=>x.startsWith('--model='))?.slice(8)??'gpt-6-astra';
@@ -87,7 +88,7 @@ try{
   let judgeCalls=0;
   const mockedJudge=async()=>{const choice=reassess&&judgeCalls++>0?'medium':'low';return{answer:{type:'choice',choice,confidence:.4,probabilities:Object.fromEntries(Object.keys(effortQuestion.criteria).map(k=>[k,k===choice?.5:.1]))},horizon:{type:'choice',choice:'5',confidence:1,probabilities:Object.fromEntries(Object.keys(horizonQuestion.criteria).map(k=>[k,k==='5'?1:0]))},model:'offline-fixture',inputTokens:0};};
   const judge=process.argv.includes('--unavailable-jev')?async()=>{throw new Error('TIMEOUT');}:
-    process.argv.includes('--real-jev')?await makeJudge(join(root,'../.env.local')):mockedJudge;
+    process.argv.includes('--real-jev')?await makeJudge(join(installHome(),'.env.local')):mockedJudge;
   report.realJev=process.argv.includes('--real-jev');
   if(process.argv.includes('--incompatible')) {
     const isolated=join(work,'adapter/runtime/desktop');await mkdir(isolated,{recursive:true});await cp(join(root,'../../src'),join(work,'adapter/src'),{recursive:true});
@@ -96,7 +97,7 @@ try{
     installed=spawn(process.execPath,[join(isolated,'bridge.mjs'),...args],{env,stdio:['pipe','pipe','pipe']});installed.stderr.pipe(process.stderr);
     input=installed.stdin;output=installed.stdout;auditOverride=join(isolated,'logs/events.jsonl');
   } else if(process.argv.includes('--installed')) {
-    installed=spawn('/Users/wangzhe/.codex/jev-desktop/codex-jev',args,{env,stdio:['pipe','pipe','pipe']});installed.stderr.pipe(process.stderr);
+    installed=spawn(join(installHome(),process.platform==='win32'?'jev-pilot.exe':'jev-pilot'),args,{env,stdio:['pipe','pipe','pipe']});installed.stderr.pipe(process.stderr);
     input=installed.stdin;output=installed.stdout;report.realJev=true;
   } else {
     if(filtering)autoStore=new Store({home:join(work,'pilot')});
@@ -119,7 +120,7 @@ try{
   let timer;await Promise.race([finished,new Promise((_,no)=>{timer=setTimeout(()=>no(new Error('TURN_TIMEOUT')),40_000);})]).finally(()=>clearTimeout(timer));
   report.threadId=started.thread.id;report.turnId=turn.turn.id;
   report.syntheticToolEvidence=bridge?.router.turns.get(started.thread.id)?.recent;
-  const auditFile=auditOverride??(installed?'/Users/wangzhe/.codex/jev-desktop/logs/events.jsonl':join(work,'audit.jsonl'));
+  const auditFile=auditOverride??(installed?join(installHome(),'runtime/desktop/logs/events.jsonl'):join(work,'audit.jsonl'));
   await bridge?.flushLog();
   if(installed&&!auditOverride)for(let i=0;i<20;i++){
     const lines=(await readFile(auditFile,'utf8')).trim().split('\n');

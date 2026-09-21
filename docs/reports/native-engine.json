@@ -1,0 +1,244 @@
+{
+  "runtime": "codex-cli 0.155.0-alpha.9.2",
+  "inferenceEndpoint": "synthetic local fixture; no real GPT task or savings benchmark",
+  "scenarios": [
+    {
+      "scenario": "installed-real-jev",
+      "passed": true,
+      "actualRequestEfforts": [
+        {
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-6-astra",
+          "effort": "low"
+        }
+      ],
+      "realJev": true,
+      "gptPaidCalls": 0,
+      "decisions": [
+        {
+          "kind": "decision",
+          "from": "high",
+          "recommended": "low",
+          "published": "low",
+          "status": "start_forwarded",
+          "model": "jev-1.13.0",
+          "targetModel": "gpt-6-astra",
+          "inputTokens": 859,
+          "outputTokens": 106,
+          "elapsedMs": 544
+        }
+      ]
+    },
+    {
+      "scenario": "native-output-filter",
+      "passed": true,
+      "actualRequestEfforts": [
+        {
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-6-astra",
+          "effort": "low"
+        }
+      ],
+      "realJev": false,
+      "gptPaidCalls": 0,
+      "decisions": [
+        {
+          "kind": "decision",
+          "from": "high",
+          "recommended": "low",
+          "published": "low",
+          "status": "start_forwarded",
+          "model": "offline-fixture",
+          "targetModel": "gpt-6-astra",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 0
+        }
+      ]
+    },
+    {
+      "scenario": "native-reassessment",
+      "passed": true,
+      "actualRequestEfforts": [
+        {
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-6-astra",
+          "effort": "medium"
+        }
+      ],
+      "realJev": false,
+      "gptPaidCalls": 0,
+      "decisions": [
+        {
+          "kind": "decision",
+          "from": "high",
+          "recommended": "low",
+          "published": "low",
+          "status": "start_forwarded",
+          "model": "offline-fixture",
+          "targetModel": "gpt-6-astra",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 0
+        },
+        {
+          "kind": "decision",
+          "from": "low",
+          "recommended": "medium",
+          "published": "medium",
+          "status": "applied",
+          "model": "offline-fixture",
+          "targetModel": "gpt-6-astra",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 1
+        }
+      ]
+    },
+    {
+      "scenario": "gpt-5.6-sol",
+      "passed": true,
+      "actualRequestEfforts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        }
+      ],
+      "realJev": false,
+      "gptPaidCalls": 0,
+      "decisions": [
+        {
+          "kind": "decision",
+          "from": "high",
+          "recommended": "low",
+          "published": "low",
+          "status": "start_forwarded",
+          "model": "offline-fixture",
+          "targetModel": "gpt-5.6-sol",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 0
+        }
+      ]
+    },
+    {
+      "scenario": "gpt-5.6-terra",
+      "passed": true,
+      "actualRequestEfforts": [
+        {
+          "model": "gpt-5.6-terra",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-5.6-terra",
+          "effort": "low"
+        }
+      ],
+      "realJev": false,
+      "gptPaidCalls": 0,
+      "decisions": [
+        {
+          "kind": "decision",
+          "from": "high",
+          "recommended": "low",
+          "published": "low",
+          "status": "start_forwarded",
+          "model": "offline-fixture",
+          "targetModel": "gpt-5.6-terra",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 0
+        }
+      ]
+    },
+    {
+      "scenario": "gpt-5.6-luna",
+      "passed": true,
+      "actualRequestEfforts": [
+        {
+          "model": "gpt-5.6-luna",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-5.6-luna",
+          "effort": "low"
+        }
+      ],
+      "realJev": false,
+      "gptPaidCalls": 0,
+      "decisions": [
+        {
+          "kind": "decision",
+          "from": "high",
+          "recommended": "low",
+          "published": "low",
+          "status": "start_forwarded",
+          "model": "offline-fixture",
+          "targetModel": "gpt-5.6-luna",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 0
+        }
+      ]
+    },
+    {
+      "scenario": "jev-unavailable",
+      "passed": true,
+      "actualRequestEfforts": [
+        {
+          "model": "gpt-6-astra",
+          "effort": "high"
+        },
+        {
+          "model": "gpt-6-astra",
+          "effort": "high"
+        }
+      ],
+      "realJev": false,
+      "gptPaidCalls": 0,
+      "decisions": []
+    },
+    {
+      "scenario": "unknown-runtime",
+      "passed": true,
+      "actualRequestEfforts": [
+        {
+          "model": "gpt-6-astra",
+          "effort": "high"
+        },
+        {
+          "model": "gpt-6-astra",
+          "effort": "high"
+        }
+      ],
+      "realJev": false,
+      "gptPaidCalls": 0,
+      "decisions": []
+    }
+  ]
+}
