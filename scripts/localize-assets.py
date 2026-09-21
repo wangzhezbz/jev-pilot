@@ -14,7 +14,7 @@ LOCALES = {
     "zh-CN": {
         "font": 'Arial,"PingFang SC","Microsoft YaHei",sans-serif',
         "hero_size": 72,
-        "hero": ["JevPilot", "早期开发阶段", "CODEX 的 JEV 智能副驾", "当 Codex 遇到 Jev，", "体验飞一般的感觉。", "一个插件，接手任务中的细小判断。", "安装一次，照常工作。", "开源 · MIT"],
+        "hero": ["JevPilot", "早期开发阶段", "CODEX 的 JEV 智能副驾", "当 Codex 遇到 Jev", "体验飞一般的感觉。", "一个插件，接手任务中的细小判断。", "安装一次，照常工作。", "开源 · MIT"],
         "hero_desc": "JevPilot 正在开发中，目标平台为 macOS、Windows 和 Linux。",
         "status": "规划中 · 暂无安装包",
         "workflow": ["计划中的协作方式", "你的需求", "像平时一样提问。", "Codex", "计划、实现、验收。", "从开始到结束，负责整个任务。", "JevPilot", "判档、筛上下文、识别失败原因。", "在同一个工作流中，处理细小判断。", "不用记专门的提示词，也不用切换工作方式。"],
