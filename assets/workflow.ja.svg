@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="300" viewBox="0 0 1280 300" role="img" aria-labelledby="title desc" lang="ja">
+  <title id="title">予定している作業の流れ</title>
+  <desc id="desc">予定している流れ：ユーザーが依頼し、Codex が計画・実装・検証を担当。JevPilot は範囲を限定した判断を支援します。</desc>
+  <rect x="1" y="1" width="1278" height="298" rx="20" fill="#12161c" stroke="#343a43" />
+  <text x="40" y="43" fill="#8e9baa" font-family="Arial,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;Yu Gothic&quot;,sans-serif" font-size="12" letter-spacing="0">予定している作業の流れ</text>
+  <g font-family="Arial,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;Yu Gothic&quot;,sans-serif">
+    <rect x="40" y="102" width="220" height="102" rx="14" fill="#1d232c" stroke="#39424e" />
+    <text x="64" y="145" fill="#e9edf2" font-size="24" font-weight="700" letter-spacing="0">あなたの依頼</text>
+    <text x="64" y="177" fill="#98a6b7" font-size="16" letter-spacing="0">いつもどおりに質問。</text>
+    <rect x="324" y="80" width="354" height="146" rx="14" fill="#edf1f5" />
+    <text x="350" y="122" fill="#19232f" font-size="26" font-weight="700" letter-spacing="0">Codex</text>
+    <text x="350" y="154" fill="#526176" font-size="16" letter-spacing="0">計画、実装、検証。</text>
+    <text x="350" y="200" fill="#526176" font-size="14" letter-spacing="0">最初から最後までタスクを担当。</text>
+    <rect x="764" y="80" width="476" height="146" rx="14" fill="#202b2d" stroke="#49605e" />
+    <text x="790" y="122" fill="#d3e5df" font-size="26" font-weight="700" letter-spacing="0">JevPilot</text>
+    <text x="790" y="154" fill="#adbfbb" font-size="16" letter-spacing="0">推論強度の選択・情報の選別・失敗の分類。</text>
+    <text x="790" y="200" fill="#adbfbb" font-size="14" letter-spacing="0">同じ作業の流れで、細かな判断を支援。</text>
+  </g>
+  <g fill="none" stroke="#8d9cae" stroke-width="2">
+    <path d="M271 153h40m-8-7 8 7-8 7M690 136h59m-8-7 8 7-8 7M749 173h-59m8-7-8 7 8 7" />
+  </g>
+  <text x="640" y="270" text-anchor="middle" fill="#8e9baa" font-family="Arial,&quot;Hiragino Kaku Gothic ProN&quot;,&quot;Yu Gothic&quot;,sans-serif" font-size="14" letter-spacing="0">特別な呼び出し文句も、別の作業手順も不要。</text>
+</svg>

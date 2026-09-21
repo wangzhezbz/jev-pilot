@@ -1,14 +1,14 @@
 <p align="center">
-  <img src="assets/hero.svg" width="100%" alt="JevPilot：继续使用 Codex，让 Jev 在后台协作。项目处于早期开发阶段。" />
+  <img src="assets/hero.zh-CN.svg" width="100%" alt="JevPilot：继续使用 Codex，让 Jev 在后台协作。项目处于早期开发阶段。" />
 </p>
 
 <p align="center">
-  <a href="#平台与下载"><img src="assets/windows.svg" width="32%" alt="Windows：规划中，暂无安装包" /></a>
-  <a href="#平台与下载"><img src="assets/macos.svg" width="32%" alt="macOS：规划中，暂无安装包" /></a>
-  <a href="#平台与下载"><img src="assets/linux.svg" width="32%" alt="Linux：规划中，暂无安装包" /></a>
+  <a href="#平台与下载"><img src="assets/windows.zh-CN.svg" width="32%" alt="Windows：规划中，暂无安装包" /></a>
+  <a href="#平台与下载"><img src="assets/macos.zh-CN.svg" width="32%" alt="macOS：规划中，暂无安装包" /></a>
+  <a href="#平台与下载"><img src="assets/linux.zh-CN.svg" width="32%" alt="Linux：规划中，暂无安装包" /></a>
 </p>
 
-<p align="center"><a href="README.md">English</a> · <strong>简体中文</strong></p>
+<p align="center"><a href="README.md">English</a> · <strong>简体中文</strong> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a></p>
 <p align="center"><a href="#怎么协作">协作方式</a> · <a href="#计划整合的能力">产品能力</a> · <a href="docs/ROADMAP.md">开发路线</a> · <a href="https://github.com/wangzhezbz/jev-pilot/releases">版本发布</a> · <a href="LICENSE">MIT 许可证</a></p>
 
 # JevPilot
@@ -23,7 +23,7 @@ JevPilot 正在将推理强度调度、上下文筛选和失败恢复整合进�
 
 你描述任务，Codex 负责计划、实现和最终验收，Jev 在过程中处理有边界的判断。
 
-<p align="center"><img src="assets/workflow.svg" width="100%" alt="计划中的协作：用户正常向 Codex 提问；Codex 计划、实现、验收；JevPilot 协助判档、筛上下文和判断失败原因。" /></p>
+<p align="center"><img src="assets/workflow.zh-CN.svg" width="100%" alt="计划中的协作：用户正常向 Codex 提问；Codex 计划、实现、验收；JevPilot 协助判档、筛上下文和判断失败原因。" /></p>
 
 例如，你说“帮我修这个报错”：我们希望 JevPilot 在内部筛出相关搜索结果和日志片段，区分临时网络故障与代码错误；Codex 继续核对证据、修改代码并检查结果。
 

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="300" viewBox="0 0 1280 300" role="img" aria-labelledby="title desc" lang="ko">
+  <title id="title">예정된 작업 흐름</title>
+  <desc id="desc">예정된 흐름: 사용자가 요청하면 Codex가 계획, 구현, 검증을 담당하고 JevPilot이 범위가 정해진 작은 판단을 돕습니다.</desc>
+  <rect x="1" y="1" width="1278" height="298" rx="20" fill="#12161c" stroke="#343a43" />
+  <text x="40" y="43" fill="#8e9baa" font-family="Arial,&quot;Apple SD Gothic Neo&quot;,&quot;Malgun Gothic&quot;,sans-serif" font-size="12" letter-spacing="0">예정된 작업 흐름</text>
+  <g font-family="Arial,&quot;Apple SD Gothic Neo&quot;,&quot;Malgun Gothic&quot;,sans-serif">
+    <rect x="40" y="102" width="220" height="102" rx="14" fill="#1d232c" stroke="#39424e" />
+    <text x="64" y="145" fill="#e9edf2" font-size="24" font-weight="700" letter-spacing="0">사용자의 요청</text>
+    <text x="64" y="177" fill="#98a6b7" font-size="16" letter-spacing="0">평소처럼 질문하세요.</text>
+    <rect x="324" y="80" width="354" height="146" rx="14" fill="#edf1f5" />
+    <text x="350" y="122" fill="#19232f" font-size="26" font-weight="700" letter-spacing="0">Codex</text>
+    <text x="350" y="154" fill="#526176" font-size="16" letter-spacing="0">계획, 구현, 검증.</text>
+    <text x="350" y="200" fill="#526176" font-size="14" letter-spacing="0">처음부터 끝까지 작업을 담당합니다.</text>
+    <rect x="764" y="80" width="476" height="146" rx="14" fill="#202b2d" stroke="#49605e" />
+    <text x="790" y="122" fill="#d3e5df" font-size="26" font-weight="700" letter-spacing="0">JevPilot</text>
+    <text x="790" y="154" fill="#adbfbb" font-size="16" letter-spacing="0">추론 강도 선택 · 컨텍스트 선별 · 실패 분류</text>
+    <text x="790" y="200" fill="#adbfbb" font-size="14" letter-spacing="0">같은 작업 흐름에서 작은 판단을 돕습니다.</text>
+  </g>
+  <g fill="none" stroke="#8d9cae" stroke-width="2">
+    <path d="M271 153h40m-8-7 8 7-8 7M690 136h59m-8-7 8 7-8 7M749 173h-59m8-7-8 7 8 7" />
+  </g>
+  <text x="640" y="270" text-anchor="middle" fill="#8e9baa" font-family="Arial,&quot;Apple SD Gothic Neo&quot;,&quot;Malgun Gothic&quot;,sans-serif" font-size="14" letter-spacing="0">특별한 호출 문구나 별도의 작업 방식이 필요하지 않습니다.</text>
+</svg>

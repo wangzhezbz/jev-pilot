@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="520" viewBox="0 0 1280 520" role="img" aria-labelledby="title desc" lang="ru">
+  <title id="title">JevPilot — Работайте в Codex. Малые решения — Jev.</title>
+  <desc id="desc">JevPilot находится на ранней стадии разработки. Целевые платформы: macOS, Windows и Linux.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1">
+      <stop stop-color="#101216" />
+      <stop offset="1" stop-color="#191d23" />
+    </linearGradient>
+    <linearGradient id="silver" x2="0.9" y2="1">
+      <stop stop-color="#fff" />
+      <stop offset="1" stop-color="#aab3be" />
+    </linearGradient>
+    <linearGradient id="line">
+      <stop stop-color="#637389" stop-opacity="0" />
+      <stop offset=".6" stop-color="#637389" stop-opacity=".7" />
+      <stop offset="1" stop-color="#b9dacf" stop-opacity=".8" />
+    </linearGradient>
+  </defs>
+  <rect x="1" y="1" width="1278" height="518" rx="24" fill="url(#bg)" stroke="#343a43" />
+  <g fill="none" stroke="#a4b3c8" stroke-opacity=".07">
+    <circle cx="1100" cy="258" r="200" />
+    <circle cx="1100" cy="258" r="260" />
+    <circle cx="1100" cy="258" r="320" />
+  </g>
+  <path d="M772 389h168q40 0 40-40v-51q0-40 40-40h165" fill="none" stroke="url(#line)" stroke-width="2" />
+  <circle cx="1185" cy="258" r="5" fill="#b9dacf" />
+  <g transform="translate(56 42)">
+    <rect width="38" height="38" rx="11" fill="#edf1f5" />
+    <path d="m10 27 8-18 10 18-10-6z" fill="#191d23" />
+    <text x="52" y="27" fill="#edf1f5" font-family="Arial,Helvetica,sans-serif" font-size="26" font-weight="700" letter-spacing="-.6">JevPilot</text>
+  </g>
+  <rect x="1030" y="48" width="194" height="28" rx="14" fill="#242b30" stroke="#3a4749" />
+  <circle cx="1046" cy="62" r="3" fill="#b9dacf" />
+  <text x="1060" y="66" fill="#c6d7d3" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" letter-spacing="0">В РАЗРАБОТКЕ</text>
+  <text x="640" y="142" text-anchor="middle" fill="#9faab8" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" letter-spacing="0">JEV — ВАШ ПОМОЩНИК В CODEX</text>
+  <text x="640" y="236" text-anchor="middle" fill="#f5f6f7" font-family="Arial,Helvetica,sans-serif" font-size="68" font-weight="700" letter-spacing="0">Работайте в Codex.</text>
+  <text x="640" y="326" text-anchor="middle" fill="url(#silver)" font-family="Arial,Helvetica,sans-serif" font-size="68" font-weight="700" letter-spacing="0">Малые решения — Jev.</text>
+  <text x="640" y="383" text-anchor="middle" fill="#adb6c2" font-family="Arial,Helvetica,sans-serif" font-size="21" letter-spacing="0">Один плагин для небольших решений в больших задачах.</text>
+  <path d="M56 434h1168" stroke="#303640" />
+  <text x="56" y="476" fill="#7e8a9b" font-family="Arial,Helvetica,sans-serif" font-size="12" letter-spacing="0">ОДНА УСТАНОВКА. ПРИВЫЧНАЯ РАБОТА.</text>
+  <text x="1224" y="476" text-anchor="end" fill="#b5beca" font-family="Arial,Helvetica,sans-serif" font-size="12" letter-spacing="0">ОТКРЫТЫЙ КОД · MIT</text>
+</svg>
