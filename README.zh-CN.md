@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/hero.zh-CN.038038154ad0.svg" width="100%" alt="JevPilot — 当 Codex 遇到 Jev 体验飞一般的感觉。" />
+  <img src="assets/hero.zh-CN.e322cba4a04b.svg" width="100%" alt="JevPilot — 当 Codex 遇到 Jev 体验飞一般的感觉" />
 </p>
 
 <p align="center">
