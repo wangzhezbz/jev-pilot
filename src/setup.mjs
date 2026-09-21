@@ -16,7 +16,7 @@ export function discoverCodex() {
     join(process.env.LOCALAPPDATA || homedir(), 'Programs', 'Codex', 'resources', 'codex.exe'),
     '/opt/Codex/resources/codex', '/opt/codex/resources/codex'];
   for (const p of candidates) if (p && existsSync(p)) return resolve(p);
-  try { const command = process.platform === 'win32' ? 'where.exe' : 'which'; const p = execFileSync(command, ['codex'], { encoding: 'utf8' }).trim().split(/\r?\n/)[0]; if (p && !p.includes('jev-pilot') && !p.includes('jev-desktop')) return p; } catch {}
+  try { const command = process.platform === 'win32' ? 'where.exe' : 'which'; const p = execFileSync(command, ['codex'], { encoding: 'utf8', stdio: ['ignore','pipe','ignore'] }).trim().split(/\r?\n/)[0]; if (p && !p.includes('jev-pilot') && !p.includes('jev-desktop')) return p; } catch {}
   return null;
 }
 const commandVersion = (command, args = ['--version']) => { try { return execFileSync(command, args, { encoding: 'utf8', timeout: 5000, stdio: ['ignore', 'pipe', 'ignore'] }).trim().split(/\r?\n/)[0]; } catch { return null; } };
@@ -51,7 +51,22 @@ export async function probeHooks(realBin, hookPath) {
     requireValue(Object.keys(trust).length === 2, 'HOOK_COMPATIBILITY_FAILED'); return trust;
   } finally { lines.close(); child.kill(); for (const p of pending.values()) clearTimeout(p.timer); }
 }
-export async function setup({ activate = false, source = packageRoot } = {}) {
+export async function setup(options = {}) {
+  const home=installHome(),file=join(home,'runtime/desktop/install.json');
+  let backup=null,old=null;
+  const components=['src','runtime','vendor','scripts','skills','web','locales','launcher','bin'];
+  if(existsSync(file)) {
+    old=JSON.parse(readFileSync(file));backup=join(home,'backups',String(Date.now()));mkdirSync(backup,{recursive:true,mode:0o700});
+    for(const name of components)if(existsSync(join(home,name)))cpSync(join(home,name),join(backup,name),{recursive:true});
+  }
+  try{return await prepareSetup(options);}
+  catch(error){
+    if(backup)for(const name of components)if(existsSync(join(backup,name)))cpSync(join(backup,name),join(home,name),{recursive:true});
+    if(old&&options.activate)try{setOverride(old.activated?join(home,process.platform==='win32'?'jev-pilot.exe':'jev-pilot'):old.previousOverride||'');}catch{}
+    throw error;
+  }
+}
+async function prepareSetup({ activate = false, source = packageRoot } = {}) {
   requireValue(+process.versions.node.split('.')[0] >= 24, 'NODE_24_REQUIRED');
   const realBin = discoverCodex(); requireValue(realBin, 'CODEX_NOT_FOUND');
   const version = commandVersion(realBin);
@@ -60,7 +75,7 @@ export async function setup({ activate = false, source = packageRoot } = {}) {
   const home = installHome(); mkdirSync(home, { recursive: true, mode: 0o700 });
   const configPath = join(home, 'runtime/desktop/install.json'); let previous = null;
   if (existsSync(configPath)) { previous = JSON.parse(readFileSync(configPath)); cpSync(configPath, configPath + '.backup-' + Date.now()); }
-  for (const name of ['src', 'runtime', 'vendor', 'scripts', 'skills', 'web', 'locales']) if (resolve(source) !== resolve(home)) cpSync(join(source, name), join(home, name), { recursive: true });
+  for (const name of ['src', 'runtime', 'vendor', 'scripts', 'skills', 'web', 'locales','launcher','bin']) if (resolve(source) !== resolve(home) && existsSync(join(source,name))) cpSync(join(source, name), join(home, name), { recursive: true });
   const desktop = join(home, 'runtime/desktop'), trust = await probeHooks(realBin, join(desktop, 'hook.mjs'));
   const sha256 = {};
   for (const name of ['bridge.mjs', 'router.mjs', 'hook.mjs', 'bootstrap.mjs', 'transport.mjs', 'report.mjs', '../../src/automation.mjs', '../../src/core.mjs', '../../src/evidence.mjs']) sha256[name] = hash(readFileSync(join(desktop, name), 'utf8'));
@@ -71,7 +86,7 @@ export async function setup({ activate = false, source = packageRoot } = {}) {
   chmodSync(launcher, 0o700);
   let previousOverride = previous?.previousOverride ?? process.env.CODEX_CLI_PATH ?? '';
   if (process.platform === 'darwin' && !previous) try { previousOverride = execFileSync('/bin/launchctl', ['getenv', 'CODEX_CLI_PATH'], { encoding: 'utf8' }).trim(); } catch {}
-  const config = { version: 2, realBin, verifiedVersion: version, node: process.execPath, trust, sha256, previousOverride, keyPath: join(home, '.env.local'), automation: true, activated: false, installedAt: new Date().toISOString() };
+  const config = { version: 2, realBin, verifiedVersion: version, node: process.execPath, trust, sha256, previousOverride, previousLaunchAgent:previous?.previousLaunchAgent, keyPath: join(home, '.env.local'), automation: true, activated: false, installedAt: new Date().toISOString() };
   writeFileSync(configPath, JSON.stringify(config, null, 2), { mode: 0o600 });
   const key = loadKey(home); if (key && !existsSync(config.keyPath)) writeFileSync(config.keyPath, 'TYPESAFE_API_KEY=' + key + '\n', { mode: 0o600 });
   if (activate) activateDesktop(config, home, launcher);
@@ -91,11 +106,28 @@ function setOverride(value) {
 export function activateDesktop(config, home = installHome(), launcher = join(home, process.platform === 'win32' ? 'jev-pilot.exe' : 'jev-pilot')) {
   const file = join(home, 'runtime/desktop/install.json'); config ||= JSON.parse(readFileSync(file));
   const disabled = join(home, 'runtime/desktop/disabled'); if (existsSync(disabled)) unlinkSync(disabled);
+  if(process.platform==='darwin') {
+    const agents=join(homedir(),'Library/LaunchAgents');mkdirSync(agents,{recursive:true});
+    // Reuse the prototype's label to avoid two login jobs racing to set the same override.
+    const plist=join(agents,'local.jev.codex-routing.plist');
+    if(existsSync(plist)&&!config.previousLaunchAgent){const backup=join(home,'previous-launch-agent.plist');cpSync(plist,backup);config.previousLaunchAgent=backup;}
+    const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+    writeFileSync(plist,`<?xml version="1.0" encoding="UTF-8"?><plist version="1.0"><dict><key>Label</key><string>local.jev.codex-routing</string><key>ProgramArguments</key><array><string>/bin/launchctl</string><string>setenv</string><string>CODEX_CLI_PATH</string><string>${escape(launcher)}</string></array><key>RunAtLoad</key><true/></dict></plist>`,{mode:0o600});
+    execFileSync('/usr/bin/plutil',['-lint',plist],{stdio:'ignore'});
+    const domain=`gui/${process.getuid()}`;try{execFileSync('/bin/launchctl',['bootout',domain+'/local.jev.codex-routing'],{stdio:'ignore'});}catch{}
+    execFileSync('/bin/launchctl',['bootstrap',domain,plist]);config.launchAgent=plist;
+  }
   setOverride(launcher); config.activated = true; writeFileSync(file, JSON.stringify(config, null, 2), { mode: 0o600 });
   return { configuredForNextLaunch: true, desktopRestarted: false };
 }
 export function disableDesktop() {
   const home = installHome(), file = join(home, 'runtime/desktop/install.json'), config = JSON.parse(readFileSync(file));
-  writeFileSync(join(home, 'runtime/desktop/disabled'), 'disabled\n', { mode: 0o600 }); setOverride(config.previousOverride || ''); config.activated = false;
+  writeFileSync(join(home, 'runtime/desktop/disabled'), 'disabled\n', { mode: 0o600 });
+  if(process.platform==='darwin'&&config.launchAgent){
+    const domain=`gui/${process.getuid()}`;try{execFileSync('/bin/launchctl',['bootout',domain+'/local.jev.codex-routing'],{stdio:'ignore'});}catch{}
+    if(config.previousLaunchAgent&&existsSync(config.previousLaunchAgent)){cpSync(config.previousLaunchAgent,config.launchAgent);execFileSync('/bin/launchctl',['bootstrap',domain,config.launchAgent]);}
+    else if(existsSync(config.launchAgent))unlinkSync(config.launchAgent);
+  }
+  setOverride(config.previousOverride || ''); config.activated = false;
   writeFileSync(file, JSON.stringify(config, null, 2), { mode: 0o600 }); return { disabled: true, previousOverrideRestored: true, filesPreserved: true, restartRequired: true };
 }

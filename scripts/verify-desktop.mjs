@@ -9,10 +9,12 @@ import {createInterface} from 'node:readline';
 import {spawn} from 'node:child_process';
 import {runBridge,hookOverrides,toml} from '../runtime/desktop/bridge.mjs';
 import {effortQuestion,horizonQuestion,makeJudge} from '../runtime/desktop/router.mjs';
+import {Store} from '../src/core.mjs';
 
 const root=join(dirname(fileURLToPath(import.meta.url)),'../runtime/desktop');
 const targetModel=process.argv.find(x=>x.startsWith('--model='))?.slice(8)??'gpt-6-astra';
 const reassess=process.argv.includes('--reassess');
+const filtering=process.argv.includes('--filter-output');
 const steps=reassess?4:1;
 const realBin=process.env.JEV_PILOT_CODEX??'/Applications/ChatGPT.app/Contents/Resources/codex';
 const work=await mkdtemp(join(tmpdir(),'jev-desktop-verification-'));
@@ -26,14 +28,14 @@ const server=createServer(async(req,res)=>{
   let raw='';for await(const chunk of req)raw+=chunk;
   if(!req.url.endsWith('/responses')){res.writeHead(404);res.end();return;}
   const body=JSON.parse(raw);apiCount++;
-  report.requests.push({number:apiCount,model:body.model,effort:body.reasoning?.effort,keys:Object.keys(body),toolNames:body.tools?.map(t=>t.name??t.type),configuration:body.configuration});
+  report.requests.push({number:apiCount,model:body.model,effort:body.reasoning?.effort,keys:Object.keys(body),toolNames:body.tools?.map(t=>t.name??t.type),configuration:body.configuration,inputText:filtering?JSON.stringify(body.input):undefined});
   const tools=body.tools??body.configuration?.tools??[];
   const tool=tools.find(x=>['exec_command','shell_command','shell'].includes(x.name))??{name:'exec_command'};
   const responseId='resp_'+apiCount;
   let item;
   if(apiCount<=steps && tool) {
-    const command=reassess&&apiCount===4?'exit 7':'printf fixture_ok';
-    const args=tool.name==='exec_command'?{cmd:command,max_output_tokens:50}:
+    const command=filtering?`printf 'NEEDLE target\\n'; printf 'noise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\n%.0s' {1..350}`:reassess&&apiCount===4?'exit 7':'printf fixture_ok';
+    const args=tool.name==='exec_command'?{cmd:command,max_output_tokens:filtering?15000:50}:
       tool.name==='shell_command'?{command}:{command:['/bin/sh','-c',command]};
     item={id:'fc_fixture_'+apiCount,type:'function_call',call_id:'call_fixture_'+apiCount,name:tool.name,arguments:JSON.stringify(args),status:'completed'};
   }else item={id:'msg_fixture',type:'message',role:'assistant',status:'completed',content:[{type:'output_text',text:'fixture_ok'}]};
@@ -63,7 +65,7 @@ function client(input,output){
     const n=++id,timer=setTimeout(()=>{pending.delete(n);no(new Error('TIMEOUT '+method));},20_000);pending.set(n,{yes,no,timer});input.write(JSON.stringify({id:n,method,params})+'\n');
   }),listeners,notify:(method)=>input.write(JSON.stringify({method})+'\n'),close:()=>{lines.close();for(const p of pending.values()){clearTimeout(p.timer);p.no(new Error('CLOSED'));}pending.clear();}};
 }
-let bridge,c,probe,pc,installed,auditOverride;
+let bridge,c,probe,pc,installed,auditOverride,autoStore;
 try{
   // Exact hook hashes are obtained before any inference; only our reviewed commands are trusted.
   probe=spawn(realBin,[...args,...hookOverrides(process.execPath,join(root,'hook.mjs'))],{env,stdio:['pipe','pipe','pipe']});probe.stderr.resume();
@@ -96,7 +98,11 @@ try{
   } else if(process.argv.includes('--installed')) {
     installed=spawn('/Users/wangzhe/.codex/jev-desktop/codex-jev',args,{env,stdio:['pipe','pipe','pipe']});installed.stderr.pipe(process.stderr);
     input=installed.stdin;output=installed.stdout;report.realJev=true;
-  } else bridge=await runBridge({realBin,args,trust,env,input,output,judge,logPath:join(work,'audit.jsonl')});
+  } else {
+    if(filtering)autoStore=new Store({home:join(work,'pilot')});
+    const automation=filtering?{store:autoStore,key:'fixture',send:async p=>({model:'fixture',usage:{input_tokens:1,output_tokens:1},answers:Object.fromEntries(Object.entries(p.questions).map(([id,q])=>{const item=p.state.items[Number(id.slice(1))];const choice=item.text.includes('NEEDLE')?'keep':'exclude';return[id,{type:'choice',choice,probabilities:{keep:choice==='keep'?1:0,review:0,exclude:choice==='exclude'?1:0}}]}))})}:false;
+    bridge=await runBridge({realBin,args,trust,env,input,output,judge,automation,logPath:join(work,'audit.jsonl')});
+  }
   c=client(input,output);
   c.listeners.push(m=>{if(['hook/started','hook/completed','turn/started','turn/completed','item/completed','error'].includes(m.method))report.events.push(m);});
   await c.request('initialize',{clientInfo:{name:'jev_desktop_protocol_fixture',version:'0.1'},capabilities:{experimentalApi:true}});c.notify('initialized');
@@ -109,7 +115,7 @@ try{
   c.listeners.push(m=>{if(m.method==='turn/completed')finish(m.params);});
   const turn=await c.request('turn/start',{threadId:started.thread.id,model:targetModel,effort:'high',
     ...(process.argv.includes('--mode')?{collaborationMode:{mode:'default',settings:{model:targetModel,reasoning_effort:'high',developer_instructions:null}}}:{}),
-    input:[{type:'text',text:'Execute the exact shell command printf fixture_ok, then reply only with its output. The command and expected answer are fully specified. No design, diagnosis or extra steps are needed.'}]});
+    input:[{type:'text',text:filtering?'Find the NEEDLE target evidence in the log; unrelated noise can be omitted.':'Execute the exact shell command printf fixture_ok, then reply only with its output. The command and expected answer are fully specified. No design, diagnosis or extra steps are needed.'}]});
   let timer;await Promise.race([finished,new Promise((_,no)=>{timer=setTimeout(()=>no(new Error('TURN_TIMEOUT')),40_000);})]).finally(()=>clearTimeout(timer));
   report.threadId=started.thread.id;report.turnId=turn.turn.id;
   report.syntheticToolEvidence=bridge?.router.turns.get(started.thread.id)?.recent;
@@ -129,6 +135,7 @@ try{
       && report.audit.some(x=>x.status==='start_forwarded')
       && (!reassess||report.audit.some(x=>x.status==='applied'&&x.published==='medium'))
       && report.audit.some(x=>x.kind==='turn_usage'&&x.usage?.inputTokens===50*(steps+1));
+  if(filtering){report.automaticEvents=autoStore.events(autoStore.project(work));report.passed=report.passed&&report.automaticEvents.some(e=>e.kind==='automatic_output_filter')&&report.requests.slice(1).some(r=>r.inputText?.includes('JevPilot retained task evidence'));}
   report.status=report.passed?'passed':'failed';
   if(!report.passed)process.exitCode=1;
 }catch(error){report.status='failed';report.error=String(error.message);process.exitCode=1;}

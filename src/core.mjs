@@ -1,5 +1,5 @@
 import { DatabaseSync } from 'node:sqlite';
-import { mkdirSync, chmodSync, readFileSync, realpathSync, statSync } from 'node:fs';
+import { mkdirSync, chmodSync, readFileSync, realpathSync, statSync, existsSync } from 'node:fs';
 import { join, resolve, relative, isAbsolute, basename } from 'node:path';
 import { homedir } from 'node:os';
 import { createHash, randomUUID } from 'node:crypto';
@@ -47,7 +47,11 @@ export function readSource(root, path, maxBytes = 1000000) {
 
 export class Store {
   constructor({ home = process.env.JEV_PILOT_HOME || join(homedir(), '.codex', 'jev-pilot') } = {}) {
-    this.home = home; mkdirSync(home, { recursive: true, mode: 0o700 });
+    this.home = home; const fresh = !existsSync(home); mkdirSync(home, { recursive: true, mode: 0o700 });
+    if (process.platform === 'win32' && fresh) {
+      const owner = execFileSync('whoami.exe', [], { encoding: 'utf8', windowsHide: true }).trim();
+      execFileSync('icacls.exe', [home, '/inheritance:r', '/grant:r', owner + ':(OI)(CI)F', '*S-1-5-18:(OI)(CI)F'], { stdio: 'ignore', windowsHide: true });
+    } else if (process.platform !== 'win32') chmodSync(home, 0o700);
     this.db = new DatabaseSync(join(home, 'state.sqlite'));
     try { chmodSync(join(home, 'state.sqlite'), 0o600); } catch {}
     this.db.exec(`PRAGMA journal_mode=WAL; PRAGMA busy_timeout=5000;
