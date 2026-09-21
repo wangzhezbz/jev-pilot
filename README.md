@@ -45,4 +45,4 @@ Portable tests pass on macOS, Windows and Linux. Native macOS engine routing and
 
 Recoverable context handoff does not replace native conversation history or reclaim existing tokens. No universal speed, token or quota savings are claimed. See the [acceptance report](docs/reports/ACCEPTANCE.md), [feature boundaries](docs/FEATURES.md) and [roadmap](docs/ROADMAP.md).
 
-Original work is MIT; reused components retain their licenses and attribution. See [third-party notices](THIRD_PARTY_NOTICES.md). Independent community project, not an official OpenAI or TypeSafe product.
+JevPilot is licensed under [MIT](LICENSE). Independent community project, not an official OpenAI or TypeSafe product.

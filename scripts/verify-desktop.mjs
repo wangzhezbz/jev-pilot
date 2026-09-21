@@ -21,7 +21,7 @@ const realBin=process.env.JEV_PILOT_CODEX??'/Applications/ChatGPT.app/Contents/R
 const work=await mkdtemp(join(tmpdir(),'jev-desktop-verification-'));
 const codexHome=join(work,'home');await mkdir(codexHome);
 const report={kind:'bundled_runtime_with_synthetic_model',work,openaiPaidCalls:0,requests:[],events:[],status:'running'};
-const env={...process.env,CODEX_HOME:codexHome};
+const env={...process.env,CODEX_HOME:codexHome,JEV_PILOT_MEASUREMENT:'synthetic'};
 if(process.argv.includes('--gui-network'))for(const key of ['HTTP_PROXY','HTTPS_PROXY','ALL_PROXY','http_proxy','https_proxy','all_proxy','NO_PROXY','no_proxy'])delete env[key];
 delete env.TYPESAFE_API_KEY;delete env.CODEX_THREAD_ID;delete env.CODEX_SESSION_ID;
 let apiCount=0;

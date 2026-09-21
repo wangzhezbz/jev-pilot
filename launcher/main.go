@@ -37,6 +37,9 @@ func main() {
 		}
 	}
 	valid := true
+	if _, err := exec.LookPath(config.Node); err != nil {
+		valid = false
+	}
 	for name, expected := range config.SHA256 {
 		data, err := os.ReadFile(filepath.Join(root, "runtime", "desktop", name))
 		if err != nil {

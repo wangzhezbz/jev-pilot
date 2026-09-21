@@ -31,7 +31,11 @@ export async function dashboard(workspace, { port = 0, pilot = new Pilot() } = {
       return respond(404, { error: 'NOT_FOUND' });
     } catch { respond(400, { error: 'INVALID_REQUEST' }); }
   });
-  await new Promise(resolve => server.listen(port, '127.0.0.1', resolve));
   server.on('close', () => pilot.close());
+  await new Promise((resolve, reject) => {
+    const onError = error => { pilot.close(); reject(error); };
+    server.once('error', onError);
+    server.listen(port, '127.0.0.1', () => { server.removeListener('error', onError); resolve(); });
+  });
   return { url: `http://127.0.0.1:${server.address().port}/#${token}`, close: () => server.close(), server };
 }

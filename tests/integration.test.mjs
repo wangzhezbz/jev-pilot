@@ -10,6 +10,8 @@ import { Store, hash } from '../src/core.mjs';
 import { Pilot } from '../src/pilot.mjs';
 import { dashboard } from '../src/dashboard.mjs';
 import { createAutomation } from '../src/automation.mjs';
+import { desktopStatus, desktopMetrics } from '../src/setup.mjs';
+import { writeFileSync } from 'node:fs';
 
 test('vendored source hashes match pinned originals', () => {
   for (const source of JSON.parse(readFileSync(new URL('../vendor/sources.json', import.meta.url)))) assert.equal(hash(readFileSync(new URL('../' + source.path, import.meta.url), 'utf8')), source.sha256);
@@ -60,4 +62,37 @@ test('automatic output filtering skips exact-output tasks, preserves structured 
     await auto.hook({...base,hook_event_name:'UserPromptSubmit',prompt:'show exact output'});
     assert.deepEqual(await auto.hook({...base,hook_event_name:'PostToolUse',tool_name:'Bash',tool_use_id:'3',tool_response:original}),{});
   } finally {auto.close();}
+});
+test('occupied dashboard port rejects cleanly instead of an unhandled server error', async () => {
+  const home=mkdtempSync(join(tmpdir(),'jev-port-'));
+  const first=await dashboard(home,{pilot:new Pilot({store:new Store({home:join(home,'one')}),key:null})});
+  try {
+    await assert.rejects(dashboard(home,{port:+new URL(first.url).port,pilot:new Pilot({store:new Store({home:join(home,'two')}),key:null})}),{code:'EADDRINUSE'});
+  } finally {first.close();}
+});
+test('doctor reports incomplete installation hashes without crashing', () => {
+  const home=mkdtempSync(join(tmpdir(),'jev-doctor-')),previous=process.env.JEV_PILOT_HOME;
+  mkdirSync(join(home,'runtime/desktop'),{recursive:true});
+  writeFileSync(join(home,'runtime/desktop/install.json'),JSON.stringify({realBin:process.execPath,verifiedVersion:process.version}));
+  process.env.JEV_PILOT_HOME=home;
+  try {assert.equal(desktopStatus().compatible,false);}finally {if(previous===undefined)delete process.env.JEV_PILOT_HOME;else process.env.JEV_PILOT_HOME=previous;}
+});
+test('doctor finds a live bridge behind a newer exited probe and malformed log line', () => {
+  const home=mkdtempSync(join(tmpdir(),'jev-live-status-')),previous=process.env.JEV_PILOT_HOME;
+  mkdirSync(join(home,'runtime/desktop/logs'),{recursive:true});
+  const live={kind:'bridge_started',pid:process.pid,backendPid:process.pid};
+  writeFileSync(join(home,'runtime/desktop/logs/events.jsonl'),[JSON.stringify(live),'broken',JSON.stringify({...live,pid:2147483647}),JSON.stringify({...live,measurementSource:'synthetic'})].join('\n'));
+  process.env.JEV_PILOT_HOME=home;
+  try {const status=desktopStatus();assert.equal(status.bridgeProcessAlive,true);assert.deepEqual(status.activeBridges,[live]);assert.deepEqual(status.latestBridge,live);}
+  finally {if(previous===undefined)delete process.env.JEV_PILOT_HOME;else process.env.JEV_PILOT_HOME=previous;}
+});
+test('runtime metrics exclude marked fixtures and explicitly identified legacy fixture threads', () => {
+  const home=mkdtempSync(join(tmpdir(),'jev-metric-source-')),previous=process.env.JEV_PILOT_HOME;
+  mkdirSync(join(home,'runtime/desktop/logs'),{recursive:true});
+  const event={kind:'turn_usage',threadId:'real',turnId:'turn',targetModel:'model',usage:{inputTokens:42}};
+  writeFileSync(join(home,'runtime/desktop/logs/events.jsonl'),[event,{...event,threadId:'fixture',measurementSource:'synthetic'},{...event,threadId:'legacy'}].map(JSON.stringify).join('\n'));
+  writeFileSync(join(home,'runtime/desktop/logs/synthetic-threads.json'),JSON.stringify(['legacy']));
+  process.env.JEV_PILOT_HOME=home;
+  try {const report=desktopMetrics();assert.equal(report.turns,1);assert.equal(report.models.model.usage.inputTokens,42);assert.equal(report.excludedSyntheticEvents,2);assert.equal(report.savings.quota,null);}
+  finally {if(previous===undefined)delete process.env.JEV_PILOT_HOME;else process.env.JEV_PILOT_HOME=previous;}
 });

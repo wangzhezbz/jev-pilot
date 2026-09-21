@@ -8,6 +8,7 @@ import { mkdtempSync } from 'node:fs';
 import { hash, loadKey, requireValue, privateDirectory } from './core.mjs';
 import { hookOverrides } from '../runtime/desktop/bridge.mjs';
 import { summarize } from '../runtime/desktop/report.mjs';
+import { withLaunchAgent } from './launch-agent.mjs';
 export const packageRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 export const installHome = () => process.env.JEV_PILOT_HOME || join(homedir(), '.codex', 'jev-pilot');
 export function discoverCodex() {
@@ -24,16 +25,18 @@ export function desktopStatus() {
   const home = installHome(), configPath = join(home, 'runtime/desktop/install.json');
   let config = null; try { config = JSON.parse(readFileSync(configPath)); } catch {}
   const realBin = config?.realBin || discoverCodex(), version = realBin ? commandVersion(realBin) : null;
-  const compatible = Boolean(config && version === config.verifiedVersion && Object.entries(config.sha256).every(([p, h]) => { try { return hash(readFileSync(join(home, 'runtime/desktop', p), 'utf8')) === h; } catch { return false; } }));
-  let latest = null;
-  try { const events = readFileSync(join(home, 'runtime/desktop/logs/events.jsonl'), 'utf8').split('\n').filter(Boolean).map(JSON.parse); latest = events.findLast(e => e.kind === 'bridge_started') || null; } catch {}
-  let running = false; if (latest?.pid) try { process.kill(latest.pid, 0); running = true; } catch {}
-  return { platform: process.platform, arch: process.arch, node: process.version, nodeSupported: +process.versions.node.split('.')[0] >= 24, curl: commandVersion(process.platform === 'win32' ? 'curl.exe' : 'curl'), rg: commandVersion('rg'), credentialsConfigured: Boolean(loadKey(home)), realBin, runtimeVersion: version, installed: Boolean(config), compatible, disabled: existsSync(join(home, 'runtime/desktop/disabled')), configuredForNextLaunch: config?.activated === true, bridgeProcessAlive: running, latestBridge: latest, desktopVerifiedPlatforms: ['darwin'], crossPlatformRuntimeNeedsAcceptance: ['win32', 'linux'] };
+  const compatible = Boolean(config && config.sha256 && typeof config.sha256 === 'object' && !Array.isArray(config.sha256) && Object.keys(config.sha256).length && version === config.verifiedVersion && Object.entries(config.sha256).every(([p, h]) => { try { return hash(readFileSync(join(home, 'runtime/desktop', p), 'utf8')) === h; } catch { return false; } }));
+  const bridges=[];
+  try { for(const line of readFileSync(join(home,'runtime/desktop/logs/events.jsonl'),'utf8').split('\n'))try{const e=JSON.parse(line);if(e.kind==='bridge_started'&&e.measurementSource!=='synthetic')bridges.push(e);}catch{} } catch {}
+  const activeBridges=bridges.filter(e=>{try{if(!Number.isInteger(e.pid)||e.pid<=0||!Number.isInteger(e.backendPid)||e.backendPid<=0)return false;process.kill(e.pid,0);process.kill(e.backendPid,0);return true;}catch{return false;}});
+  return { platform: process.platform, arch: process.arch, node: process.version, nodeSupported: +process.versions.node.split('.')[0] >= 24, curl: commandVersion(process.platform === 'win32' ? 'curl.exe' : 'curl'), rg: commandVersion('rg'), credentialsConfigured: Boolean(loadKey(home)), realBin, runtimeVersion: version, installed: Boolean(config), compatible, disabled: existsSync(join(home, 'runtime/desktop/disabled')), configuredForNextLaunch: config?.activated === true, bridgeProcessAlive: activeBridges.length>0, activeBridges, latestBridge: activeBridges.at(-1)??bridges.at(-1)??null, desktopVerifiedPlatforms: ['darwin'], crossPlatformRuntimeNeedsAcceptance: ['win32', 'linux'] };
 }
 export function desktopMetrics() {
   const file = join(installHome(), 'runtime/desktop/logs/events.jsonl'); let events = [], malformed = 0;
   if (existsSync(file)) for (const line of readFileSync(file, 'utf8').split('\n')) if (line.trim()) try { events.push(JSON.parse(line)); } catch { malformed++; }
-  return { ...summarize(events), malformedLines: malformed, path: file };
+  let excluded=[];try{excluded=JSON.parse(readFileSync(join(installHome(),'runtime/desktop/logs/synthetic-threads.json'),'utf8'));}catch{}
+  const legacyExcluded=new Set(Array.isArray(excluded)?excluded:[]);
+  return { ...summarize(events.map(e=>legacyExcluded.has(e.threadId)?{...e,measurementSource:'synthetic'}:e)), malformedLines: malformed, path: file };
 }
 export async function probeHooks(realBin, hookPath) {
   const scratch = mkdtempSync(join(tmpdir(), 'jev-pilot-probe-'));
@@ -89,7 +92,7 @@ async function prepareSetup({ activate = false, source = packageRoot } = {}) {
   const config = { version: 2, realBin, verifiedVersion: version, node: process.execPath, trust, sha256, previousOverride, previousLaunchAgent:previous?.previousLaunchAgent, launchAgent:previous?.launchAgent, keyPath: join(home, '.env.local'), automation: true, activated: previous?.activated === true, installedAt: new Date().toISOString() };
   writeFileSync(configPath, JSON.stringify(config, null, 2), { mode: 0o600 });
   const key = loadKey(home); if (key && !existsSync(config.keyPath)) writeFileSync(config.keyPath, 'TYPESAFE_API_KEY=' + key + '\n', { mode: 0o600 });
-  if (activate) activateDesktop(config, home, launcher);
+  if (activate) {activateDesktop(config, home, launcher);config.activated=true;}
   return { installed: home, launcher, configuredForNextLaunch: config.activated, restartRequired: config.activated, currentTaskChanged: false, credentialsConfigured: Boolean(key) };
 }
 function setOverride(value) {
@@ -104,20 +107,19 @@ function setOverride(value) {
   }
 }
 export function activateDesktop(config, home = installHome(), launcher = join(home, process.platform === 'win32' ? 'jev-pilot.exe' : 'jev-pilot')) {
-  const file = join(home, 'runtime/desktop/install.json'); config ||= JSON.parse(readFileSync(file));
-  const disabled = join(home, 'runtime/desktop/disabled'); if (existsSync(disabled)) unlinkSync(disabled);
+  const file = join(home, 'runtime/desktop/install.json'); config = {...(config || JSON.parse(readFileSync(file)))};
+  const disabled = join(home, 'runtime/desktop/disabled');
+  const commit=()=>{setOverride(launcher);config.activated=true;writeFileSync(file,JSON.stringify(config,null,2),{mode:0o600});if(existsSync(disabled))unlinkSync(disabled);};
   if(process.platform==='darwin') {
     const agents=join(homedir(),'Library/LaunchAgents');mkdirSync(agents,{recursive:true});
     // Reuse the prototype's label to avoid two login jobs racing to set the same override.
     const plist=join(agents,'local.jev.codex-routing.plist');
     if(existsSync(plist)&&!config.previousLaunchAgent){const backup=join(home,'previous-launch-agent.plist');cpSync(plist,backup);config.previousLaunchAgent=backup;}
-    const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
-    writeFileSync(plist,`<?xml version="1.0" encoding="UTF-8"?><plist version="1.0"><dict><key>Label</key><string>local.jev.codex-routing</string><key>ProgramArguments</key><array><string>/bin/launchctl</string><string>setenv</string><string>CODEX_CLI_PATH</string><string>${escape(launcher)}</string></array><key>RunAtLoad</key><true/></dict></plist>`,{mode:0o600});
-    execFileSync('/usr/bin/plutil',['-lint',plist],{stdio:'ignore'});
-    const domain=`gui/${process.getuid()}`;try{execFileSync('/bin/launchctl',['bootout',domain+'/local.jev.codex-routing'],{stdio:'ignore'});}catch{}
-    execFileSync('/bin/launchctl',['bootstrap',domain,plist]);config.launchAgent=plist;
-  }
-  setOverride(launcher); config.activated = true; writeFileSync(file, JSON.stringify(config, null, 2), { mode: 0o600 });
+    let override='';try{override=execFileSync('/bin/launchctl',['getenv','CODEX_CLI_PATH'],{encoding:'utf8'}).trim();}catch{}
+    const priorConfig=readFileSync(file);config.launchAgent=plist;
+    try {withLaunchAgent({plist,launcher,domain:`gui/${process.getuid()}`},commit);}
+    catch(error){writeFileSync(file,priorConfig,{mode:0o600});try{setOverride(override);}catch(rollback){throw new AggregateError([error,rollback],'ACTIVATION_ROLLBACK_FAILED');}throw error;}
+  } else commit();
   return { configuredForNextLaunch: true, desktopRestarted: false };
 }
 export function disableDesktop() {

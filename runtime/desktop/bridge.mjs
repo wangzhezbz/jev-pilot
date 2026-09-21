@@ -33,7 +33,7 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
   const prefix=`jev:${randomUUID()}:`;
   const pending=new Map(),clientRequests=new Map();let counter=0,closed=false;
   let logPending=Promise.resolve();
-  const log=record=>{if(logPath){const line=JSON.stringify({at:new Date().toISOString(),...record})+'\n';
+  const log=record=>{if(logPath){const line=JSON.stringify({at:new Date().toISOString(),measurementSource:env.JEV_PILOT_MEASUREMENT==='synthetic'?'synthetic':'runtime',...record})+'\n';
     logPending=logPending.then(()=>appendFile(logPath,line,{mode:0o600})).catch(()=>{});}};
   const childEnv={...env,JEV_BRIDGE_SOCKET:socketPath};
   try {for(const key of JSON.parse(env.JEV_PROXY_ADDED??'[]'))if(['HTTP_PROXY','HTTPS_PROXY','NO_PROXY'].includes(key))delete childEnv[key];}catch{}

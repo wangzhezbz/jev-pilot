@@ -21,4 +21,7 @@ test('native launcher handles spaced paths, forwards args and uses original runt
   const fallback=JSON.parse(execFileSync(binary,['-e','console.log(JSON.stringify({native:true,keyPresent:Boolean(process.env.TYPESAFE_API_KEY),recursive:Boolean(process.env.CODEX_CLI_PATH)}))'],{env,encoding:'utf8'}));
   assert.equal(fallback.native,true);assert.equal(fallback.keyPresent,false);assert.equal(fallback.recursive,false);
   assert.equal(JSON.parse(execFileSync(binary,['doctor'],{env,encoding:'utf8'})).cli,'doctor');
+  writeFileSync(configPath,JSON.stringify({...config,node:join(root,'removed-node'),sha256:{}}));
+  const missingNode=JSON.parse(execFileSync(binary,['-e','console.log(JSON.stringify({native:true,keyPresent:Boolean(process.env.TYPESAFE_API_KEY)}))'],{env,encoding:'utf8'}));
+  assert.equal(missingNode.native,true);assert.equal(missingNode.keyPresent,false);
 });

@@ -45,4 +45,4 @@
 
 컨텍스트 인계는 원래 대화 기록을 바꾸거나 이미 사용한 토큰을 회수하지 않습니다. 일정한 속도·토큰·사용 한도 절약률을 보장하지 않습니다. [검증 보고서](docs/reports/ACCEPTANCE.md), [기능 범위](docs/FEATURES.md), [로드맵](docs/ROADMAP.md)을 참고하세요.
 
-독자 개발 부분은 MIT이며 재사용 부분은 원래 라이선스와 저작자 표시를 유지합니다. [외부 구성 요소 고지](THIRD_PARTY_NOTICES.md)를 참고하세요. OpenAI 또는 TypeSafe의 공식 제품이 아닌 독립 커뮤니티 프로젝트입니다.
+JevPilot은 [MIT 라이선스](LICENSE)로 배포됩니다. OpenAI 또는 TypeSafe의 공식 제품이 아닌 독립 커뮤니티 프로젝트입니다.

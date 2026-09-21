@@ -17,7 +17,7 @@ Runnable development preview. Code and automated tests exist for all areas; host
 | 11 | Context compaction | Recoverable handoffs, protected exchanges, stable decisions, early output filtering | Handoff does not rewrite native history or reclaim existing tokens |
 | 12 | Change review | Diff triage, relevant tests, required/changed/uncertain tests retained | Mandatory checks and final review still required |
 | 13 | Checkpoints/resume | Milestones, source hash validation, automatic tool-boundary checkpoints | No blind replay; automatic checkpoints require reinspection |
-| 14 | Exact-source extraction | Pinned jeveryword, original offsets, missing/ambiguous states | Source occurrence is not proof of correct entity or factual truth |
+| 14 | Exact-source extraction | Verified original offsets, missing/ambiguous states | Source occurrence is not proof of correct entity or factual truth |
 
 One shared private SQLite store and TypeSafe client serve these modules. The desktop bridge reaches the actual runtime; semantic recommendations alone do not change effort.
 
@@ -37,4 +37,4 @@ Windows/Linux runtime code and launchers are implemented. Compilation is not OS 
 
 `npm run check`: syntax, JSON and credential-pattern scan. `npm test`: modules, MCP, privacy, recovery, failures, router and dashboard. `scripts/verify-desktop.mjs`: actual Codex engine with synthetic model endpoint. `npm run smoke:live`: small **paid TypeSafe** synthetic sample, no GPT calls. CI: macOS, Windows and Linux portable tests.
 
-See [full acceptance report](reports/ACCEPTANCE.md), [live API results](reports/live-smoke.json), [upstream reuse](../THIRD_PARTY_NOTICES.md), and [implementation ledger](IMPLEMENTATION.md). Reports distinguish these evidence layers.
+See [full acceptance report](reports/ACCEPTANCE.md), [live API results](reports/live-smoke.json), and [implementation ledger](IMPLEMENTATION.md). Reports distinguish these evidence layers.

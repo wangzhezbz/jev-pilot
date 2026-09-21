@@ -1,5 +1,5 @@
 import { hash, records, requireValue, text, now } from './core.mjs';
-// Inspired by JevBrowserExt: observation identity, candidate bounds and independent verification.
+// Observation identity, candidate bounds and independent verification.
 export async function browserStep(ctx, input) {
   const locks = ctx.store.browserLocks ||= new Set(), key = hash({ project: ctx.project, session: input.session });
   requireValue(!locks.has(key), 'BROWSER_SESSION_BUSY'); locks.add(key);

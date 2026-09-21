@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, mkdirSync, writeFileSync, symlinkSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, symlinkSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { Pilot } from '../src/pilot.mjs';
@@ -133,4 +133,22 @@ test('browser driver loop verifies final observed state, not action success', as
 });
 test('configuration is bounded and unknown settings fail closed', async t => {
   const f = fixture(t); await assert.rejects(f.call('configure', { timeoutMs: -1 })); await assert.rejects(f.call('configure', { apiKey: 'bad' }));
+});
+test('cancelled check stops its process and never starts the next command', {timeout:4000}, async t => {
+  const f=fixture(t), controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),80);t.after(()=>clearTimeout(timer));
+  const result=await f.pilot.call({workspace:f.root,operation:'run_checks',input:{checks:[
+    {id:'slow',command:process.execPath,args:['-e','setTimeout(()=>{},10000)']},
+    {id:'forbidden',command:process.execPath,args:['-e',"require('fs').writeFileSync('should-not-run','bad')"]}
+  ]}},{signal:controller.signal});
+  assert.equal(result.results.length,1);assert.equal(result.results[0].status,'cancelled');assert.equal(existsSync(join(f.root,'should-not-run')),false);
+  await assert.rejects(f.pilot.call({workspace:f.root,operation:'run_checks',input:{checks:[{id:'x',command:process.execPath}]}},{signal:controller.signal}),/CANCELLED/);
+});
+test('compaction preserves non-English failures and unfinished status', async t => {
+  const f=fixture(t,()=> 'exclude');
+  for(const status of ['failed','cancelled','in_progress','unknown']) {
+    const blocks=[{id:'a',role:'tool_call',callId:'x',content:'读取',verified:true,readOnly:true},{id:'b',role:'tool_result',callId:'x',content:'没有找到数据',status},{id:'u',role:'user',content:'继续'}];
+    const result=await f.call('compact',{goal:'继续',blocks,preserveRecent:1,session:status});
+    assert.deepEqual(result.blocks,blocks);assert.deepEqual(result.omittedCallIds,[]);
+  }
 });

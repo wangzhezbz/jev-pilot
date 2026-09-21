@@ -1,6 +1,6 @@
 # Install the development preview
 
-This is one Codex plugin. It bundles its own skill, MCP server and removable desktop adapter; users do not need to download the upstream projects separately.
+This is one Codex plugin. It bundles its own skill, MCP server and removable desktop adapter; users do not need to download additional component projects separately.
 
 ## Ordinary Codex users
 

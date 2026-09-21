@@ -10,7 +10,6 @@ All fourteen agreed feature modules are implemented behind one MCP tool and one 
 - Native Go launchers for macOS/Windows/Linux, x64/arm64; Node backend; Unix sockets or Windows named pipes.
 - MCP stdio server, ordinary-work implicit skill, native tool-boundary output filtering and checkpoints.
 - Localhost dashboard with English, Chinese, Russian, Japanese and Korean.
-- Pinned MIT source reuse and design references documented in [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md).
 
 ## Review corrections made
 

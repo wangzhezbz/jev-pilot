@@ -45,4 +45,4 @@
 
 コンテキストの引き継ぎはネイティブ履歴を書き換えず、消費済みトークンを回収しません。速度・トークン・利用枠の一律の節約率は約束しません。[検証報告](docs/reports/ACCEPTANCE.md)、[機能の境界](docs/FEATURES.md)、[今後の計画](docs/ROADMAP.md)をご覧ください。
 
-独自部分は MIT、再利用部分は元のライセンスと著作者表示を保持します。[第三者表記](THIRD_PARTY_NOTICES.md)を参照。OpenAI や TypeSafe の公式製品ではない独立したコミュニティプロジェクトです。
+JevPilot は [MIT ライセンス](LICENSE)で公開しています。OpenAI や TypeSafe の公式製品ではない独立したコミュニティプロジェクトです。

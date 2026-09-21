@@ -5,6 +5,8 @@ import {fileURLToPath} from 'node:url';
 
 const median=xs=>{const a=xs.filter(Number.isFinite).sort((a,b)=>a-b);return a.length?(a[Math.floor((a.length-1)/2)]+a[Math.floor(a.length/2)])/2:null;};
 export function summarize(events) {
+  const excludedSyntheticEvents=events.filter(e=>e.measurementSource==='synthetic').length;
+  events=events.filter(e=>e.measurementSource!=='synthetic');
   const latest=new Map();
   for(const e of events)if(e.kind==='turn_usage')latest.set(`${e.threadId}:${e.turnId}`,e);
   const turns=[...latest.values()],decisions=events.filter(e=>e.kind==='decision'),fallbacks=events.filter(e=>e.kind==='fallback');
@@ -19,7 +21,7 @@ export function summarize(events) {
   }
   const inputKnown=decisions.filter(e=>Number.isFinite(e.inputTokens));
   return {scope:'Observed runtime tokens and routing overhead; not a savings or account-debit measurement',
-    turns:turns.length,completedTurns:turns.filter(t=>t.status==='completed').length,models,
+    turns:turns.length,completedTurns:turns.filter(t=>t.status==='completed').length,models,excludedSyntheticEvents,
     routing:{decisions:decisions.length,fallbacks:fallbacks.length,
       firstStepForwarded:decisions.filter(e=>e.status==='start_forwarded').length,
       nativeUpdatesApplied:decisions.filter(e=>e.status==='applied').length,

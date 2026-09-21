@@ -2,11 +2,13 @@
 
 **Status: all 14 shared modules implemented; runnable development preview. Full cross-platform desktop release acceptance is not complete.**
 
+Latest follow-up: [2026-09-22 hardening and Chrome diagnosis](HARDENING.md) — 64 local tests pass after eight reliability fixes. The earlier live-call counts below describe the original acceptance batch, not cumulative usage.
+
 ## What was exercised
 
 | Layer | Result | Evidence |
 |---|---|---|
-| Local automated tests | 55 passed, 0 failed | `npm test`; router, privacy, recovery, MCP, dashboard, launcher and feature tests |
+| Local automated tests | 64 passed, 0 failed in the latest hardening pass | `npm test`; router, privacy, recovery, MCP, dashboard, launcher and feature tests |
 | Native plugin host | Plugin installs and exposes `jev_pilot` in actual Codex app-server; zero GPT calls | [plugin-host.json](plugin-host.json) |
 | Actual Codex engine | Eight fixture scenarios pass; model preserved for Astra/Sol/Terra/Luna; real requests show selected effort; native reassessment has `applied` receipt | [native-engine.json](native-engine.json) |
 | Installed adapter + real Jev | One real judgment high → low; both subsequent original-engine requests carry low | [native-engine.json](native-engine.json) |

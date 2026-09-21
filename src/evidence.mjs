@@ -13,7 +13,7 @@ export function chunks(source, linesPerChunk = 30) {
   for (let i = 0; i < lines.length; i += linesPerChunk) out.push({ id: 's' + i, text: lines.slice(i, i + linesPerChunk).join('\n'), source: source.path, startLine: i + 1, endLine: Math.min(i + linesPerChunk, lines.length), sourceHash: source.hash });
   return out;
 }
-// jselect-inspired relevance/diversity selection; uncertain evidence is never discarded.
+// Relevance/diversity selection; uncertain evidence is never discarded.
 export async function selectEvidence(ctx, { goal, items, budget = 16000, against = [] }) {
   text(goal, 10000); records(items); array(against); requireValue(Number.isInteger(budget) && budget >= 128 && budget <= 500000, 'INVALID_BUDGET');
   const artifactId = ctx.store.put(ctx.project, 'artifact', { goal, items, createdAt: now() });
@@ -80,7 +80,7 @@ export async function compactContext(ctx, { goal, blocks, session = 'default', p
   const originalId = ctx.store.put(ctx.project, 'artifact', { items: blocks.map(b => ({ ...b, text: b.content })), goal });
   const pairs = new Map(); blocks.forEach((b, i) => { if (b.callId) { const group = pairs.get(b.callId) || []; group.push({ ...b, index: i }); pairs.set(b.callId, group); } });
   const eligible = [...pairs].filter(([, group]) => group.length === 2 && group.some(b => b.role === 'tool_call' && b.readOnly === true && b.verified === true)
-    && group.some(b => b.role === 'tool_result') && group.every(b => !b.pin && b.status !== 'open' && b.verified !== false && b.index < blocks.length - preserveRecent && !/\b(error|failed|exception)\b/i.test(b.content)));
+    && group.some(b => b.role === 'tool_result') && group.every(b => !b.pin && !b.error && !b.failed && (!b.status || ['completed', 'success', 'succeeded', 'passed'].includes(b.status)) && b.verified !== false && b.index < blocks.length - preserveRecent && !/\b(error|failed|exception)\b/i.test(b.content)));
   const cacheId = hash({ session, goal, policy: 'protected-handoff-v1' }), previous = ctx.store.get(ctx.project, 'compaction', cacheId) || { decisions: {} };
   const pending = eligible.filter(([id, group]) => previous.decisions[id]?.hash !== hash(group));
   const decisions = await ctx.judge.classify(pending.map(([id, group], i) => ({ id: 'p' + i, text: JSON.stringify(group) })), `Goal: ${goal}. Is this completed read-only tool exchange still useful?`, relevant, 'context');
@@ -94,18 +94,21 @@ export async function compactContext(ctx, { goal, blocks, session = 'default', p
 
 export async function runChecks(ctx, { checks, files = [] }) {
   array(checks, 20); array(files, 100); const results = [];
+  const signal = ctx.judge.signal;
   const env = { ...process.env }; delete env.TYPESAFE_API_KEY;
   const snapshot = () => Object.fromEntries(files.map(p => { try { return [p, readSource(ctx.root, p).hash]; } catch { return [p, null]; } }));
   for (const check of checks) {
+    requireValue(!signal?.aborted, 'CANCELLED');
     text(check.id, 128); text(check.command, 1000); array(check.args || [], 100).forEach(x => text(x, 10000));
     requireValue(check.timeoutMs === undefined || Number.isInteger(check.timeoutMs) && check.timeoutMs >= 100 && check.timeoutMs <= 120000, 'INVALID_TIMEOUT');
     const before = snapshot(); const start = performance.now(); let output = '', exitCode = null, status = 'failed';
-    try { const r = await exec(check.command, check.args || [], { cwd: ctx.root, env, timeout: Math.min(check.timeoutMs || 30000, 120000), maxBuffer: 2000000, windowsHide: true }); output = r.stdout + r.stderr; exitCode = 0; status = 'passed'; }
-    catch (e) { output = (e.stdout || '') + (e.stderr || ''); exitCode = typeof e.code === 'number' ? e.code : null; status = e.killed ? 'timeout' : 'failed'; }
+    try { const r = await exec(check.command, check.args || [], { cwd: ctx.root, env, signal, timeout: Math.min(check.timeoutMs || 30000, 120000), maxBuffer: 2000000, windowsHide: true }); output = r.stdout + r.stderr; exitCode = 0; status = 'passed'; }
+    catch (e) { output = (e.stdout || '') + (e.stderr || ''); exitCode = typeof e.code === 'number' ? e.code : null; status = signal?.aborted ? 'cancelled' : e.killed ? 'timeout' : 'failed'; }
     const after = snapshot(); if (JSON.stringify(before) !== JSON.stringify(after) || Object.values(after).includes(null)) status = 'stale';
     const artifactId = ctx.store.put(ctx.project, 'artifact', { items: [{ id: 'output', text: output }], command: check.command, args: check.args });
     const receipt = { id: randomUUID(), checkId: check.id, status, exitCode, artifactId, sourceHashes: after, at: now(), elapsedMs: Math.round(performance.now() - start), issuer: 'jev-pilot-check-runner' };
     ctx.store.put(ctx.project, 'receipt', receipt, receipt.id); ctx.store.event(ctx.project, 'check', { checkId: check.id, status, elapsedMs: receipt.elapsedMs }); results.push(receipt);
+    if (signal?.aborted) break;
   } return { results };
 }
 export async function verifyCompletion(ctx, { requirements, receiptIds = [], claims = '' }) {

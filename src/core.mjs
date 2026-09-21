@@ -86,7 +86,7 @@ export function loadKey(home) {
     try { const k = parseEnv(readFileSync(p, 'utf8')).TYPESAFE_API_KEY; if (k) return k; } catch {}
   } return null;
 }
-// Adapted from Jev desktop v4 transport: never put credentials in argv or logs.
+// Never put credentials in argv or logs.
 export function transport(payload, key, { timeoutMs = 5000, signal } = {}) {
   requireValue(key && !/[\r\n]/.test(key), 'MISSING_KEY');
   const quote = v => '"' + String(v).replaceAll('\\', '\\\\').replaceAll('"', '\\"').replaceAll('\r', '\\r').replaceAll('\n', '\\n') + '"';
