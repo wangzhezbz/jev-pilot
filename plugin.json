@@ -1,0 +1,27 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "jev-pilot",
+  "version": "0.2.0",
+  "description": "Automatic Jev assistance and reasoning-effort routing for ordinary Codex workflows",
+  "author": {
+    "name": "wangzhezbz",
+    "url": "https://github.com/wangzhezbz"
+  },
+  "license": "MIT",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "JevPilot",
+        "shortDescription": "Jev assistance inside your usual Codex workflow",
+        "longDescription": "Bounded decisions, recoverable evidence, desktop effort routing and verified task progress in one plugin.",
+        "developerName": "wangzhezbz",
+        "category": "Productivity",
+        "capabilities": [],
+        "defaultPrompt": [
+          "Set up JevPilot for my normal Codex workflow",
+          "Show JevPilot status and measured usage"
+        ]
+      }
+    }
+  }
+}

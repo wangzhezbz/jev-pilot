@@ -1,0 +1,407 @@
+{
+  "at": "2026-09-21T16:35:50.667Z",
+  "kind": "paid_typeSafe_synthetic_acceptance",
+  "gptCalls": 0,
+  "checks": [
+    {
+      "name": "classification",
+      "passed": true,
+      "elapsedMs": 540,
+      "detail": {
+        "passed": true,
+        "result": {
+          "decisions": [
+            {
+              "id": "a",
+              "type": "choice",
+              "choice": "fruit",
+              "confidence": 1,
+              "probabilities": {
+                "fruit": 1,
+                "tool": 0
+              },
+              "source": "jev"
+            },
+            {
+              "id": "b",
+              "type": "choice",
+              "choice": "tool",
+              "confidence": 1,
+              "probabilities": {
+                "fruit": 0,
+                "tool": 1
+              },
+              "source": "jev"
+            },
+            {
+              "id": "c",
+              "type": "choice",
+              "choice": "fruit",
+              "confidence": 1,
+              "probabilities": {
+                "fruit": 1,
+                "tool": 0
+              },
+              "source": "jev"
+            }
+          ],
+          "fallbackOwner": "Codex"
+        }
+      }
+    },
+    {
+      "name": "evidence_and_recall",
+      "passed": true,
+      "elapsedMs": 749,
+      "detail": {
+        "passed": true,
+        "retained": [
+          "a",
+          "c"
+        ],
+        "excluded": [
+          "b"
+        ]
+      }
+    },
+    {
+      "name": "tool_selection",
+      "passed": true,
+      "elapsedMs": 532,
+      "detail": {
+        "passed": true,
+        "result": {
+          "selected": [
+            {
+              "id": "read",
+              "text": "Read a local text file"
+            }
+          ],
+          "judgments": [
+            {
+              "id": "read",
+              "type": "choice",
+              "choice": "use",
+              "confidence": 0.73,
+              "probabilities": {
+                "use": 0.8099999999999999,
+                "review": 0.12,
+                "skip": 0.07
+              },
+              "source": "jev"
+            },
+            {
+              "id": "mail",
+              "type": "choice",
+              "choice": "skip",
+              "confidence": 0.98,
+              "probabilities": {
+                "use": 0.01,
+                "review": 0.01,
+                "skip": 0.98
+              },
+              "source": "jev"
+            }
+          ],
+          "nativeToolsRemoved": false,
+          "recoverableCandidates": [
+            "read",
+            "mail"
+          ]
+        }
+      }
+    },
+    {
+      "name": "failure_recovery",
+      "passed": true,
+      "elapsedMs": 587,
+      "detail": {
+        "passed": true,
+        "result": {
+          "fingerprint": "c18620720f30f4fcd5250b71506452f1f5ee93457661a377c6aeb41f74db7c9a",
+          "attempts": 1,
+          "stopUnchangedRetry": true,
+          "selected": [
+            {
+              "id": "wait",
+              "text": "Respect Retry-After and retry once after 2 seconds"
+            }
+          ],
+          "judgments": [
+            {
+              "id": "wait",
+              "type": "choice",
+              "choice": "use",
+              "confidence": 0.96,
+              "probabilities": {
+                "review": 0.01,
+                "use": 0.97,
+                "skip": 0.02
+              },
+              "source": "jev"
+            },
+            {
+              "id": "erase",
+              "type": "choice",
+              "choice": "skip",
+              "confidence": 0.68,
+              "probabilities": {
+                "review": 0.04,
+                "use": 0.17,
+                "skip": 0.79
+              },
+              "source": "jev"
+            }
+          ],
+          "automaticExecution": false,
+          "escalationRequired": false
+        }
+      }
+    },
+    {
+      "name": "multilingual_quality",
+      "passed": true,
+      "elapsedMs": 1136,
+      "detail": {
+        "passed": true,
+        "result": {
+          "checks": [
+            {
+              "id": "claim",
+              "type": "choice",
+              "choice": "pass",
+              "confidence": 0.89,
+              "probabilities": {
+                "review": 0.02,
+                "fail": 0.05,
+                "pass": 0.93
+              },
+              "source": "jev"
+            }
+          ],
+          "translations": [
+            {
+              "id": "zh",
+              "type": "choice",
+              "choice": "pass",
+              "confidence": 0.98,
+              "probabilities": {
+                "review": 0,
+                "fail": 0.01,
+                "pass": 0.99
+              },
+              "source": "jev"
+            },
+            {
+              "id": "ru",
+              "type": "choice",
+              "choice": "pass",
+              "confidence": 1,
+              "probabilities": {
+                "review": 0,
+                "fail": 0,
+                "pass": 1
+              },
+              "source": "jev"
+            },
+            {
+              "id": "ja",
+              "type": "choice",
+              "choice": "pass",
+              "confidence": 0.98,
+              "probabilities": {
+                "review": 0,
+                "fail": 0.01,
+                "pass": 0.99
+              },
+              "source": "jev"
+            },
+            {
+              "id": "ko",
+              "type": "choice",
+              "choice": "pass",
+              "confidence": 1,
+              "probabilities": {
+                "review": 0,
+                "fail": 0,
+                "pass": 1
+              },
+              "source": "jev"
+            }
+          ],
+          "verdict": "passed"
+        }
+      }
+    },
+    {
+      "name": "exact_extraction",
+      "passed": true,
+      "elapsedMs": 555,
+      "detail": {
+        "passed": true,
+        "result": {
+          "fields": {
+            "owner": {
+              "status": "extracted",
+              "value": "Alice",
+              "start": 23,
+              "end": 28,
+              "tokenStart": 6,
+              "tokenEnd": 6,
+              "probability": 0.86
+            },
+            "deadline": {
+              "status": "extracted",
+              "value": "Friday",
+              "start": 40,
+              "end": 46,
+              "tokenStart": 10,
+              "tokenEnd": 10,
+              "probability": 0.99
+            }
+          },
+          "sourceHash": "0bb5e1a5a32c7476ffa17d9260995b1b3f2a789dc0b50fda4654a8b477fe24bd",
+          "artifactId": "6d2dd2bc-d320-4ee1-94e4-a11a18c1db29",
+          "source": "provided",
+          "sourceOffsets": "UTF-16 code units, end exclusive",
+          "calls": 1,
+          "elapsedMs": 549
+        }
+      }
+    },
+    {
+      "name": "test_priority",
+      "passed": true,
+      "elapsedMs": 1080,
+      "detail": {
+        "passed": true,
+        "result": {
+          "risks": [
+            {
+              "id": "c",
+              "type": "choice",
+              "choice": "review",
+              "confidence": 0.43,
+              "probabilities": {
+                "inspect": 0.19,
+                "routine": 0.19,
+                "review": 0.62
+              },
+              "source": "jev"
+            }
+          ],
+          "run": [
+            "required",
+            "invoice"
+          ],
+          "deferred": [
+            "theme"
+          ],
+          "judgments": [
+            {
+              "id": "required",
+              "type": "choice",
+              "choice": "run",
+              "confidence": 0.2,
+              "probabilities": {
+                "defer": 0.1,
+                "review": 0.44,
+                "run": 0.45999999999999996
+              },
+              "source": "jev"
+            },
+            {
+              "id": "invoice",
+              "type": "choice",
+              "choice": "run",
+              "confidence": 0.87,
+              "probabilities": {
+                "defer": 0.03,
+                "review": 0.06,
+                "run": 0.91
+              },
+              "source": "jev"
+            },
+            {
+              "id": "theme",
+              "type": "choice",
+              "choice": "defer",
+              "confidence": 0.9,
+              "probabilities": {
+                "defer": 0.93,
+                "review": 0.06,
+                "run": 0.01
+              },
+              "source": "jev"
+            }
+          ],
+          "finalReviewOwner": "Codex"
+        }
+      }
+    },
+    {
+      "name": "browser_decision",
+      "passed": true,
+      "elapsedMs": 754,
+      "detail": {
+        "passed": true,
+        "status": "candidate_selected",
+        "action": "docs",
+        "actualBrowserUsed": false
+      }
+    },
+    {
+      "name": "context_handoff",
+      "passed": true,
+      "elapsedMs": 593,
+      "detail": {
+        "passed": true,
+        "result": {
+          "mode": "recoverable_handoff",
+          "originalId": "6357c949-b8ec-490f-b3eb-35c7d330d8d6",
+          "blocks": [
+            {
+              "id": "constraint",
+              "role": "system",
+              "content": "Keep required checks."
+            },
+            {
+              "id": "new",
+              "role": "user",
+              "content": "Fix invoice rounding"
+            }
+          ],
+          "omittedCallIds": [
+            "x"
+          ],
+          "reusedJudgments": 0,
+          "inputBytes": 335,
+          "outputBytes": 131,
+          "nativeHistoryChanged": false,
+          "context": "[system constraint]\nKeep required checks.\n\n[user new]\nFix invoice rounding",
+          "recovery": {
+            "operation": "recall",
+            "artifactId": "6357c949-b8ec-490f-b3eb-35c7d330d8d6"
+          }
+        }
+      }
+    }
+  ],
+  "metrics": {
+    "events": 22,
+    "windowLimit": 10000,
+    "jev": {
+      "calls": 11,
+      "failures": 0,
+      "inputTokens": 6781,
+      "outputTokens": 1278,
+      "totalElapsedMs": 6503,
+      "missingUsage": 0
+    },
+    "cacheHits": 0,
+    "savings": null,
+    "savingsReason": "Requires matched baseline tasks with quality acceptance and provider usage. No counterfactual savings inferred."
+  },
+  "passed": true,
+  "scope": "Small synthetic API checks. Does not establish production quality, desktop driver acceptance or savings."
+}

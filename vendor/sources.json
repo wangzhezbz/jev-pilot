@@ -1,0 +1,17 @@
+[
+  {
+    "path": "vendor/jeveryword/core.mjs",
+    "upstream": "https://raw.githubusercontent.com/jkrup/jeveryword/6fed1518bbb84cc4865401630f37c01dc3decc10/src/core.mjs",
+    "sha256": "6037e184f6da626637ca0d3845b7f5d2771b38d7557a91ec1260acd47571ae77"
+  },
+  {
+    "path": "vendor/jeveryword/extract.mjs",
+    "upstream": "https://raw.githubusercontent.com/jkrup/jeveryword/6fed1518bbb84cc4865401630f37c01dc3decc10/src/extract.mjs",
+    "sha256": "be9abeae236bf5066b7ac69ae5fdb0e36447b60dc5ff787568226e36e4ae7817"
+  },
+  {
+    "path": "vendor/jeveryword/LICENSE",
+    "upstream": "https://raw.githubusercontent.com/jkrup/jeveryword/6fed1518bbb84cc4865401630f37c01dc3decc10/LICENSE",
+    "sha256": "daeec6852464facf5f090d348a32b180b5f75493649154af0dbf821ade08e56d"
+  }
+]

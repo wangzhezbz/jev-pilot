@@ -1,0 +1,6 @@
+interface:
+  display_name: "JevPilot"
+  short_description: "Automatic Jev assistance in your usual Codex workflow"
+  default_prompt: "Use $jev-pilot to assist my current Codex task automatically."
+policy:
+  allow_implicit_invocation: true

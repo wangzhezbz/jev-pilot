@@ -15,3 +15,15 @@ __pycache__/
 
 # Local design previews and measurements
 .preview/
+
+node_modules/
+.env*
+!.env.example
+.jev-pilot/
+dist/
+*.tgz
+coverage/
+
+bin/
+runtime/desktop/install.json
+runtime/desktop/logs/

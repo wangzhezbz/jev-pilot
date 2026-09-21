@@ -21,7 +21,7 @@
 
 JevPilot is building a single home for Jev-powered assistance in Codex: choosing reasoning effort, filtering relevant context, and helping recover from failed steps. The goal is to install once, connect your TypeSafe account, and keep working in the same conversation.
 
-**Early development:** this repository currently contains the project overview and roadmap. No public installer or runnable plugin is available yet. The capabilities below describe the product we are building.
+**Development preview:** runnable code, a unified plugin and tests for all 14 feature areas are now present. Cross-platform desktop acceptance is still in progress. See the [full feature matrix and verification boundaries](docs/FEATURES.md).
 
 ## The idea
 
@@ -57,7 +57,7 @@ These modules will be delivered incrementally through one installation. There sh
 
 The cross-platform goal is shared. Actual support will be documented per operating system, Codex client, and version after testing; the platform cards are not a claim of current desktop-client availability. They lead here until tested packages exist.
 
-When a build is ready, its download and tested compatibility will appear in [Releases](https://github.com/wangzhezbz/jev-pilot/releases). There is no install command to run yet.
+When a build is ready, its download and tested compatibility will appear in [Releases](https://github.com/wangzhezbz/jev-pilot/releases). Developer setup and the ordinary-user plugin flow are described in the [feature guide](docs/FEATURES.md).
 
 ## What we will measure
 
@@ -76,6 +76,6 @@ See the [milestones and acceptance criteria](docs/ROADMAP.md). Have a concrete w
 
 ## License and attribution
 
-JevPilot's original code and artwork are licensed under [MIT](LICENSE). Third-party code, when incorporated, will retain its applicable license and attribution; see [third-party notices](docs/THIRD_PARTY_NOTICES.md).
+JevPilot's original code and artwork are licensed under [MIT](LICENSE). Vendored code retains its original license and attribution; see [third-party notices](THIRD_PARTY_NOTICES.md).
 
 JevPilot is an independent community project. It is not an official OpenAI or TypeSafe product. Jev is provided by [TypeSafe](https://typesafe.ai/).

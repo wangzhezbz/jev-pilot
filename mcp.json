@@ -1,0 +1,14 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "jev-pilot": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "--use-env-proxy",
+        "${PLUGIN_ROOT}/src/server.mjs"
+      ],
+      "cwd": "${PLUGIN_ROOT}"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "name": "jev-pilot",
+  "version": "0.2.0",
+  "description": "Jev companion for ordinary Codex workflows",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "bin": {
+    "jev-pilot": "scripts/cli.mjs"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "check": "node scripts/check.mjs",
+    "smoke:live": "node --use-env-proxy scripts/live-smoke.mjs",
+    "start": "node --use-env-proxy src/server.mjs",
+    "build": "node scripts/build.mjs"
+  },
+  "files": [
+    ".codex-plugin",
+    ".mcp.json",
+    "skills",
+    "src",
+    "runtime",
+    "vendor",
+    "adapters",
+    "scripts",
+    "web",
+    "locales",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md",
+    "plugin.json",
+    "mcp.json",
+    "bin",
+    "launcher",
+    "docs"
+  ]
+}

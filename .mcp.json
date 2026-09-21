@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "jev-pilot": {
+      "command": "node",
+      "args": [
+        "--use-env-proxy",
+        "${PLUGIN_ROOT}/src/server.mjs"
+      ]
+    }
+  }
+}
