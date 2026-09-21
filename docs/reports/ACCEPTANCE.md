@@ -16,7 +16,7 @@
 | Actual Computer Use plugin | Real Jev selected digit 7; fresh observation, one-use ticket, native plugin click; calculator AX value became 7 | [host-drivers.json](host-drivers.json) |
 | Five-language dashboard | All languages render, no desktop/mobile overflow, no browser JS errors | [dashboard.json](dashboard.json), [screenshot](dashboard-zh-CN.png) |
 | macOS lifecycle | Activate → update preserving activation → disable; prior launch override and launch agent restored | [installer-macos.json](installer-macos.json) |
-| Portable OS CI | macOS, Windows and Linux tests/build/package pass on the implementation branch; inspect the latest run for the exact revision | [Actions](https://github.com/wangzhezbz/jev-pilot/actions) |
+| Portable OS CI | 55 tests per OS pass on macOS, Windows and Linux; native build and package pass at revision `423ff171` | [CI record](ci.json), [run](https://github.com/wangzhezbz/jev-pilot/actions/runs/35630157460) |
 
 The four live sets above total **14 TypeSafe calls**, **8,868 input tokens**, **1,534 output tokens**, and **8,236 ms summed API request latency**. Calls were synthetic or on our own test UI. No real GPT performance A/B was run in this implementation pass. Native engine fixtures use a synthetic inference endpoint: their usage counters are fixture data, not billable GPT consumption. Summed API latency is not total development time or a savings measurement.
 

@@ -1,0 +1,32 @@
+{
+  "commit": "423ff171c82411bda82727dbd5c1608c4b0aa606",
+  "runId": 35630157460,
+  "url": "https://github.com/wangzhezbz/jev-pilot/actions/runs/35630157460",
+  "platforms": [
+    {
+      "runner": "macos-latest",
+      "tests": 55,
+      "testResult": "passed",
+      "syntaxAndSecretScan": "passed",
+      "nativeLauncherBuild": "passed",
+      "npmPackage": "passed"
+    },
+    {
+      "runner": "windows-latest",
+      "tests": 55,
+      "testResult": "passed",
+      "syntaxAndSecretScan": "passed",
+      "nativeLauncherBuild": "passed",
+      "npmPackage": "passed"
+    },
+    {
+      "runner": "ubuntu-latest",
+      "tests": 55,
+      "testResult": "passed",
+      "syntaxAndSecretScan": "passed",
+      "nativeLauncherBuild": "passed",
+      "npmPackage": "passed"
+    }
+  ],
+  "realDesktopSessionTested": false
+}

@@ -25,6 +25,8 @@ Models: `gpt-6-astra`, `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna`. Unknown m
 
 ## Use
 
+See the [one-plugin installation procedure](INSTALL.md).
+
 Install one plugin, configure a personal TypeSafe key once, then work normally. The bundled skill handles eligible calls and setup; no task files or separate runner per request. The local dashboard supports English, Chinese, Russian, Japanese and Korean. Credentials stay in local `.env.local` or process environment and are never returned by the dashboard API.
 
 Development requirements: Node 24+, curl and rg. `node scripts/cli.mjs setup` prepares the removable adapter; `setup --activate` configures the next launch. `doctor`, `report`, `dashboard`, `enable` and `disable` share the same CLI. The agent handles these for ordinary users. `node scripts/build.mjs` builds the native launcher; distribution packages contain it so consumers do not need Go. Source builders need Go.
