@@ -1,0 +1,17 @@
+# Local credentials and machine-specific data
+.env
+.env.*
+!.env.example
+*.local
+.DS_Store
+Thumbs.db
+
+# Dependencies and generated output
+node_modules/
+dist/
+coverage/
+.venv/
+__pycache__/
+
+# Local design previews and measurements
+.preview/
