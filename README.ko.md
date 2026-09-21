@@ -1,4 +1,4 @@
-<p align="center"><img src="assets/hero.ko.svg" width="100%" alt="JevPilot — 익숙한 Codex에서 작은 판단은 Jev에게 맡기세요. 현재 초기 개발 단계입니다." /></p>
+<p align="center"><img src="assets/hero.ko.583ac211cddb.svg" width="100%" alt="JevPilot — Codex와 Jev가 만나면, 날아가는 듯한 경험." /></p>
 
 <p align="center">
   <a href="#availability"><img src="assets/windows.ko.svg" width="32%" alt="Windows — 지원 예정, 설치 파일 미공개" /></a>

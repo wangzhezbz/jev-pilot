@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/hero.svg" width="100%" alt="JevPilot — Stay in Codex. Put Jev to work. An all-in-one Jev companion for Codex. Early development." />
+  <img src="assets/hero.en.2f6ccfcbe0bf.svg" width="100%" alt="JevPilot — When Codex meets Jev. Feel like flying." />
 </p>
 
 <p align="center">

@@ -1,4 +1,4 @@
-<p align="center"><img src="assets/hero.ru.svg" width="100%" alt="JevPilot — работайте в Codex, а небольшие решения доверьте Jev. Ранняя стадия разработки." /></p>
+<p align="center"><img src="assets/hero.ru.48e57830a937.svg" width="100%" alt="JevPilot — Codex встречает Jev. Почувствуйте полёт." /></p>
 
 <p align="center">
   <a href="#availability"><img src="assets/windows.ru.svg" width="32%" alt="Windows — в планах, установщика пока нет" /></a>

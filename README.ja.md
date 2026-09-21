@@ -1,4 +1,4 @@
-<p align="center"><img src="assets/hero.ja.svg" width="100%" alt="JevPilot — いつもの Codex で、細かな判断を Jev に。現在は開発初期段階です。" /></p>
+<p align="center"><img src="assets/hero.ja.31dd4496d610.svg" width="100%" alt="JevPilot — Codex と Jev が出会う。 飛ぶような感覚を、その手に。" /></p>
 
 <p align="center">
   <a href="#availability"><img src="assets/windows.ja.svg" width="32%" alt="Windows — 対応予定、インストーラー未公開" /></a>
