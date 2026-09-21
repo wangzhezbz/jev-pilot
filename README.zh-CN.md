@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/hero.zh-CN.svg" width="100%" alt="JevPilot：复杂任务，交给 Codex。重复判断，交给 Jev。一个插件，自动调档、筛选上下文、辅助失败恢复。项目处于早期开发阶段。" />
+  <img src="assets/hero.zh-CN.svg" width="100%" alt="JevPilot：复杂任务，交给 Codex。重复判断，交给 Jev。一个插件，接手任务中的细小判断。项目处于早期开发阶段。" />
 </p>
 
 <p align="center">
