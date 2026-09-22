@@ -9,7 +9,7 @@
 | macOS lifecycle / macOS 安装生命周期 | Activation, update, rollback exercised / 已实测启用、升级与回滚 | [Installer report](reports/installer-macos.json) |
 | Windows/Linux / Windows、Linux | Portable CI passes; real desktop acceptance pending / 核心 CI 通过，桌面待实测 | GitHub Actions |
 | Computer Use / 电脑操作 | Existing host plugin exercised / 现有插件实际操作通过 | [Host drivers](reports/host-drivers.json) |
-| Chrome extension / Chrome 扩展 | Control channel timeout in available environment / 当前环境控制通道超时 | [Host drivers](reports/host-drivers.json) |
+| Chrome extension / Chrome 扩展 | Real Jev selection and extension execution pass, TUN off / 关闭 TUN 的真实联动通过 | [Chrome acceptance](reports/CHROME-ACCEPTANCE.md) |
 | Five languages / 五种语言 | Dashboard checked at desktop/mobile sizes / 已检查桌面和手机宽度 | [Dashboard report](reports/dashboard.json) |
 | Public consumer release / 普通用户公开版 | Release gate pending / 发布验收未完成 | Signed packages and platform acceptance needed |
 | Stable savings / 稳定节省 | Not established / 尚未证实 | Matched real GPT A/B still required |

@@ -39,7 +39,7 @@
 
 이 미리보기에는 Node 24+, curl, rg가 필요합니다. 플러그인을 한 번 설치하고 개인 TypeSafe Key를 로컬에서 설정한 뒤 Codex가 설정을 처리하게 하면 됩니다. 일상 작업에는 별도 실행이나 호출 문구가 필요 없습니다. [사용 안내](docs/FEATURES.md)를 참고하세요.
 
-공통 테스트는 macOS, Windows, Linux에서 통과했습니다. macOS의 실제 Codex 엔진과 Computer Use를 검증했습니다. Windows/Linux 데스크톱 세션은 실기기 검증이 남아 있습니다. 현재 환경에서는 Chrome 확장 제어가 시간 초과되었으며 별도 headless 테스트로 확장 검증을 대신하지 않습니다. 공개 서명 설치 프로그램은 아직 없습니다.
+공통 테스트는 macOS, Windows, Linux에서 통과했습니다. macOS의 실제 Codex 엔진과 Computer Use를 검증했습니다. Windows/Linux 데스크톱 세션은 실기기 검증이 남아 있습니다. 실제 Chrome 확장에서 TUN을 끈 상태로 Jev 판단, 단일 실행, 페이지 확인을 통과했습니다. 프록시 상속은 플러그인 설정만 수정하며 Codex 본체는 변경하지 않습니다. 공개 서명 설치 프로그램은 아직 없습니다.
 
 ## 검증 및 한계
 

@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 import { Pilot } from '../src/pilot.mjs';
 import { desktopStatus, desktopMetrics, setup, activateDesktop, disableDesktop } from '../src/setup.mjs';
+import { browserNetwork } from '../src/browser-network.mjs';
 let result;
 try {
   const command = process.argv[2] || 'doctor';
   if (command === 'doctor') result = desktopStatus();
+  else if (command === 'browser-network') result = browserNetwork({ repair: process.argv.includes('--repair') });
   else if (command === 'report') result = desktopMetrics();
   else if (command === 'setup') result = await setup({ activate: process.argv.includes('--activate') });
   else if (command === 'enable') result = activateDesktop();

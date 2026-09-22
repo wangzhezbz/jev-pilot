@@ -39,7 +39,7 @@
 
 このプレビューには Node 24+、curl、rg が必要です。プラグインを一度導入し、自分の TypeSafe Key をローカルで設定して、セットアップを Codex に任せます。普段の作業に専用の起動や合言葉は不要です。[利用ガイド](docs/FEATURES.md)を参照してください。
 
-共通テストは macOS・Windows・Linux で成功しました。macOS の実際の Codex エンジンと Computer Use を検証済みです。Windows/Linux のデスクトップは実機検証が残っています。Chrome 拡張の操作は環境内でタイムアウトしました。別の headless テストは拡張の検証を代替しません。署名済みの公開インストーラーは未公開です。
+共通テストは macOS・Windows・Linux で成功しました。macOS の実際の Codex エンジンと Computer Use を検証済みです。Windows/Linux のデスクトップは実機検証が残っています。実際の Chrome 拡張で、TUN を無効にした状態で Jev の判断、1 回の操作、ページの確認に成功しました。プロキシ継承はプラグイン設定のみで修復し、Codex 本体は変更しません。署名済みの公開インストーラーは未公開です。
 
 ## 検証と制約
 

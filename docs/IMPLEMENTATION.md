@@ -28,4 +28,4 @@ All fourteen agreed feature modules are implemented behind one MCP tool and one 
 
 ## Verification and open release gates
 
-See [ACCEPTANCE.md](reports/ACCEPTANCE.md) for machine-readable evidence and limitations. Portable OS CI is separate from real desktop acceptance. Remaining release gates: Windows/Linux real desktop sessions; a responsive Chrome extension control channel; signed consumer installers; matched real GPT workload performance measurements. Native context-history replacement is not part of the implemented handoff interface.
+See [ACCEPTANCE.md](reports/ACCEPTANCE.md) for machine-readable evidence and limitations. Portable OS CI is separate from real desktop acceptance. Remaining release gates: Windows/Linux real desktop sessions; signed consumer installers; matched real GPT workload performance measurements. The real Chrome extension path now passes with TUN off; see [Chrome acceptance](reports/CHROME-ACCEPTANCE.md). Native context-history replacement is not part of the implemented handoff interface.

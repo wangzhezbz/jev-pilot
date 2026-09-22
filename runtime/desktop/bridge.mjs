@@ -36,7 +36,8 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
   const log=record=>{if(logPath){const line=JSON.stringify({at:new Date().toISOString(),measurementSource:env.JEV_PILOT_MEASUREMENT==='synthetic'?'synthetic':'runtime',...record})+'\n';
     logPending=logPending.then(()=>appendFile(logPath,line,{mode:0o600})).catch(()=>{});}};
   const childEnv={...env,JEV_BRIDGE_SOCKET:socketPath};
-  try {for(const key of JSON.parse(env.JEV_PROXY_ADDED??'[]'))if(['HTTP_PROXY','HTTPS_PROXY','NO_PROXY'].includes(key))delete childEnv[key];}catch{}
+  // Keep the user's proxy on the backend too. MCP servers still require their
+  // own explicit env_vars allowlist; stripping these here breaks that forwarding.
   delete childEnv.JEV_PROXY_ADDED;delete childEnv.JEV_NETWORK_MODE;
   delete childEnv.TYPESAFE_API_KEY;
   // Do not let shell tools recursively start this adapter through the override.

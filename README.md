@@ -39,7 +39,7 @@ Runnable development preview. All 14 modules share one MCP entry point, one impl
 
 Node 24+, curl and rg are required for this preview. Install the plugin once, configure your own TypeSafe key locally, and let Codex handle setup. Ordinary tasks need no extra trigger or separate runner. See the [setup guide](docs/FEATURES.md).
 
-Portable tests pass on macOS, Windows and Linux. Native macOS engine routing and Computer Use were exercised. Windows/Linux desktop sessions still need device acceptance. Chrome extension control timed out in the available environment; separate headless Chrome success is not extension acceptance. Public signed installers are not released.
+Portable tests pass on macOS, Windows and Linux. Native macOS engine routing and Computer Use were exercised. Windows/Linux desktop sessions still need device acceptance. The real Chrome extension now passes Jev selection, a single click and independent page verification with TUN off. Plugin proxy inheritance is repaired without modifying Codex binaries. Public signed installers are not released.
 
 ## Evidence and limits
 

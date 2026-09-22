@@ -4,9 +4,11 @@ import * as evidence from './evidence.mjs';
 import * as workflow from './workflows.mjs';
 import { browserStep, consumeBrowserTicket } from './browser.mjs';
 import { desktopStatus, desktopMetrics } from './setup.mjs';
+import { browserNetwork } from './browser-network.mjs';
 
 export const operations = {
   desktop_status: desktopStatus, desktop_metrics: desktopMetrics,
+  browser_network: (ctx, input) => browserNetwork({ repair: input.repair === true }),
   decide: workflow.decide, select: evidence.selectEvidence, search: evidence.search,
   filter_output: evidence.filterOutput, recall: evidence.recall, select_tools: workflow.selectTools,
   recover: workflow.recoverFailure, quality: workflow.quality, run_checks: evidence.runChecks,

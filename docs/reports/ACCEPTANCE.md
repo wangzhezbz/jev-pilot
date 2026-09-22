@@ -4,13 +4,15 @@
 
 Latest follow-up: [2026-09-22 hardening and Chrome diagnosis](HARDENING.md) — 64 local tests pass after eight reliability fixes. The earlier live-call counts below describe the original acceptance batch, not cumulative usage.
 
-Further follow-up: [credential, startup and Chrome fallback acceptance](FOLLOWUP.md) — 67 tests pass; Computer Use successfully operates the user's Chrome on a synthetic local page while the Chrome extension command path remains blocked.
+Further follow-up: [credential, startup and Chrome fallback acceptance](FOLLOWUP.md) — 67 tests pass; Computer Use successfully operates the user's Chrome on a synthetic local page while the Chrome extension command path remained blocked at that time. The newer [real Chrome acceptance](CHROME-ACCEPTANCE.md) resolves that gate.
+
+Latest Chrome follow-up: [real extension acceptance](CHROME-ACCEPTANCE.md) — 75 local tests pass; the original engine reassessment fixture again shows low on requests 1–4 and medium on request 5. All six native launchers build and the development archive packs successfully.
 
 ## What was exercised
 
 | Layer | Result | Evidence |
 |---|---|---|
-| Local automated tests | 67 passed, 0 failed in the latest follow-up | `npm test`; router, privacy, recovery, MCP, dashboard, launcher and feature tests |
+| Local automated tests | 75 passed, 0 failed in the latest follow-up | `npm test`; router, privacy, recovery, MCP, dashboard, launcher and feature tests |
 | Native plugin host | Plugin installs and exposes `jev_pilot` in actual Codex app-server; zero GPT calls | [plugin-host.json](plugin-host.json) |
 | Actual Codex engine | Eight fixture scenarios pass; model preserved for Astra/Sol/Terra/Luna; real requests show selected effort; native reassessment has `applied` receipt | [native-engine.json](native-engine.json) |
 | Installed adapter + real Jev | One real judgment high → low; both subsequent original-engine requests carry low | [native-engine.json](native-engine.json) |
@@ -26,7 +28,7 @@ The four live sets above total **14 TypeSafe calls**, **8,868 input tokens**, **
 
 ## Release gates still open
 
-- **Chrome extension:** discovery works but session/tab control repeatedly times out in the available host. A working headless browser and working Computer Use do not certify that extension connection. The coordinator code exists; extension acceptance is blocked on this external channel.
+- **Chrome extension — closed locally:** real extension + Jev + independent page verification passes with TUN off. Plugin manifest proxy inheritance is repaired on setup, MCP startup and subsequent status/browser-step calls. Existing child processes still need normal plugin reload if their environment was already filtered; no forced restart. Unknown future manifest layouts are skipped. See [Chrome acceptance](CHROME-ACCEPTANCE.md).
 - **Windows/Linux desktop:** portable tests, native launcher execution and package builds are covered by CI. Actual Codex desktop launch, environment adoption, effort update and rollback need those clients/devices. No macOS result substitutes for that.
 - **Consumer distribution:** development packages include a native launcher; Node 24+, curl and rg are prerequisites. Public signed one-click installers are not released.
 - **Native context:** handoff is reversible selection, not replacement of existing Codex conversation history. Automatic eligible tool-output filtering is separately verified.

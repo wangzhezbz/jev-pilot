@@ -33,3 +33,9 @@ Updates preserve installation metadata and keep backups. Unknown runtime version
 Setup checks Node, curl and ripgrep before modifying the adapter. Once the updated bridge has loaded, adding or replacing a key in the private setup page is picked up at the next Jev routing decision without another restart. An explicitly supplied process environment key takes precedence over the private file.
 
 Public signed consumer installers are not yet released. Windows/Linux portable CI is complete; real desktop acceptance remains a release gate. Existing Chrome and Computer Use plugins provide their own runtime permissions and connections; JevPilot does not install a second browser extension.
+
+## Browser proxy compatibility
+
+For the existing official Chrome/Computer Use plugin, JevPilot checks proxy-variable inheritance during setup, MCP startup and `status`/`browser_step`. Only the eight standard proxy variable names are added to the known plugin manifest allowlist. Values, permissions, identity checks and official application files remain unchanged. The existing parent must already have working proxy settings; this does not install or configure a VPN.
+
+`browser_network` (or `node scripts/cli.mjs browser-network`) reports readiness; `{"repair":true}` (CLI `--repair`) requests the same bounded repair. Original manifest bytes are kept in the private `browser-network-backups` directory. Generated manifests can be repaired again after updates; unsupported layouts are reported and left intact. Set `JEV_PILOT_BROWSER_PROXY_REPAIR=0` to disable automatic repair. If a Chrome child was already running without the proxy, a normal plugin reload is still necessary. Never terminate an active user workflow to apply it.

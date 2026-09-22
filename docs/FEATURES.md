@@ -11,7 +11,7 @@ Runnable development preview. Code and automated tests exist for all areas; host
 | 5 | Tool/skill selection | Required and uncertain candidates remain available | Does not rewrite the native tool registry |
 | 6 | Failure recovery | Fingerprinted failures, bounded suggestions, unchanged-retry guard | No execution of unchecked recovery actions |
 | 7 | Evidence/content quality | Subprocess receipts, source freshness, requirement/rule/translation checks | Codex performs final acceptance |
-| 8 | Chrome/Computer Use | Existing-driver coordination, fresh snapshots, single-use tickets, loop bounds | Actual Computer Use passes; Chrome extension control channel timed out; see acceptance report |
+| 8 | Chrome/Computer Use | Existing-driver coordination, fresh snapshots, single-use tickets, loop bounds | Actual Computer Use and real Chrome extension pass; stale observations and reused tickets rejected; see acceptance report |
 | 9 | Project memory | Opt-in, sources, expiry, conflicts and revocation | No unauthorized persistent memory writes |
 | 10 | Usage and results | Real Jev usage/latency, native receipts/usage, local dashboard | No invented time or quota savings |
 | 11 | Context compaction | Recoverable handoffs, protected exchanges, stable decisions, early output filtering | Handoff does not rewrite native history or reclaim existing tokens |

@@ -1,0 +1,16 @@
+{
+  "paidModelCalls": 0,
+  "backendPid": 6076,
+  "proxyNamesInFreshCua": [
+    "ALL_PROXY",
+    "HTTPS_PROXY",
+    "HTTP_PROXY",
+    "NO_PROXY",
+    "all_proxy",
+    "http_proxy",
+    "https_proxy",
+    "no_proxy"
+  ],
+  "cuaPid": 6130,
+  "passed": true
+}

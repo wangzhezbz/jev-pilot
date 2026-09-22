@@ -39,7 +39,7 @@
 
 此预览版需要 Node 24+、curl 和 rg。一次安装插件并在本地配置自己的 TypeSafe Key，由 Codex 完成适配设置。日常照常提需求，不用另外建任务文件、运行独立入口或反复念触发词。详见[使用说明](docs/FEATURES.md)。
 
-macOS、Windows、Linux 的核心自动检查已通过。macOS 原版引擎切档与 Computer Use 已实测；Windows/Linux 桌面会话仍需设备验收。当前环境的 Chrome 扩展控制超时，独立无头 Chrome 测试不能替代扩展验收。尚未发布公开签名安装器。
+macOS、Windows、Linux 的核心自动检查已通过。macOS 原版引擎切档与 Computer Use 已实测；Windows/Linux 桌面会话仍需设备验收。真实 Chrome 扩展已在关闭 TUN 时通过 Jev 判断、单次执行和页面核验；代理继承修复只调整插件配置，不修改 Codex 本体。尚未发布公开签名安装器。
 
 ## 验证与边界
 

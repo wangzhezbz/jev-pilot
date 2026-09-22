@@ -23,7 +23,7 @@ test('five locale dictionaries have identical keys and translated hero content',
 });
 test('MCP stdio initialize, list, call, malformed request and EOF lifecycle', async () => {
   const home = mkdtempSync(join(tmpdir(), 'jev-mcp-'));
-  const p = spawn(process.execPath, [fileURLToPath(new URL('../src/server.mjs', import.meta.url))], { env: { ...process.env, JEV_PILOT_HOME: home, TYPESAFE_API_KEY: '' }, stdio: ['pipe','pipe','pipe'] }); p.stderr.resume();
+  const p = spawn(process.execPath, [fileURLToPath(new URL('../src/server.mjs', import.meta.url))], { env: { ...process.env, JEV_PILOT_HOME: home, CODEX_HOME: home, TYPESAFE_API_KEY: '' }, stdio: ['pipe','pipe','pipe'] }); p.stderr.resume();
   let output = ''; p.stdout.on('data', b => output += b);
   p.stdin.end([
     JSON.stringify({ jsonrpc:'2.0',id:1,method:'initialize',params:{protocolVersion:'2025-03-26'} }),
@@ -95,4 +95,11 @@ test('runtime metrics exclude marked fixtures and explicitly identified legacy f
   process.env.JEV_PILOT_HOME=home;
   try {const report=desktopMetrics();assert.equal(report.turns,1);assert.equal(report.models.model.usage.inputTokens,42);assert.equal(report.excludedSyntheticEvents,2);assert.equal(report.savings.quota,null);}
   finally {if(previous===undefined)delete process.env.JEV_PILOT_HOME;else process.env.JEV_PILOT_HOME=previous;}
+});
+
+test('portable plugin MCP uses only fields accepted by the native plugin loader', () => {
+  const manifest=JSON.parse(readFileSync(new URL('../mcp.json',import.meta.url)));
+  const server=manifest.mcpServers['jev-pilot'];
+  assert.equal(server.type,'stdio');
+  assert.equal(Object.keys(server).every(k=>['type','command','args','env','cwd'].includes(k)),true);
 });
