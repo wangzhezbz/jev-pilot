@@ -5,12 +5,14 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 test('native launcher handles spaced paths, forwards args and uses original runtime on corrupt adapter', {timeout:120000}, () => {
   const root=mkdtempSync(join(tmpdir(),'jev launcher '));mkdirSync(join(root,'runtime/desktop'),{recursive:true});mkdirSync(join(root,'scripts'));
   const binary=join(root,process.platform==='win32'?'jev-pilot.exe':'jev-pilot');
   execFileSync('go',['build','-o',binary,fileURLToPath(new URL('../launcher/main.go',import.meta.url))],{timeout:100000});
   const configPath=join(root,'runtime/desktop/install.json');
-  const config={node:process.execPath,realBin:process.execPath,sha256:{}};
+  const config={node:process.execPath,realBin:process.execPath,sha256:{'verified.txt':createHash('sha256').update('fixture').digest('hex')}};
+  writeFileSync(join(root,'runtime/desktop/verified.txt'),'fixture');
   writeFileSync(configPath,JSON.stringify(config));
   writeFileSync(join(root,'runtime/desktop/bootstrap.mjs'),'console.log(JSON.stringify({args:process.argv.slice(2),keyPresent:Boolean(process.env.TYPESAFE_API_KEY)}))');
   writeFileSync(join(root,'scripts/cli.mjs'),'console.log(JSON.stringify({cli:process.argv[2]}))');
@@ -24,4 +26,9 @@ test('native launcher handles spaced paths, forwards args and uses original runt
   writeFileSync(configPath,JSON.stringify({...config,node:join(root,'removed-node'),sha256:{}}));
   const missingNode=JSON.parse(execFileSync(binary,['-e','console.log(JSON.stringify({native:true,keyPresent:Boolean(process.env.TYPESAFE_API_KEY)}))'],{env,encoding:'utf8'}));
   assert.equal(missingNode.native,true);assert.equal(missingNode.keyPresent,false);
+  for(const broken of [{...config,node:''},{...config,sha256:{}},{...config,sha256:null}]){
+    writeFileSync(configPath,JSON.stringify(broken));
+    const result=JSON.parse(execFileSync(binary,['-e','console.log(JSON.stringify({native:true,keyPresent:Boolean(process.env.TYPESAFE_API_KEY)}))'],{env,encoding:'utf8'}));
+    assert.equal(result.native,true);assert.equal(result.keyPresent,false);
+  }
 });

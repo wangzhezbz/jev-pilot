@@ -24,7 +24,7 @@ func main() {
 		SHA256  map[string]string `json:"sha256"`
 	}
 	data, err := os.ReadFile(filepath.Join(root, "runtime", "desktop", "install.json"))
-	if err != nil || json.Unmarshal(data, &config) != nil || config.Node == "" {
+	if err != nil || json.Unmarshal(data, &config) != nil {
 		fmt.Fprintln(os.Stderr, "JevPilot installation is incomplete. Run setup from the plugin.")
 		os.Exit(1)
 	}
@@ -36,7 +36,7 @@ func main() {
 			script = filepath.Join(root, "scripts", "cli.mjs")
 		}
 	}
-	valid := true
+	valid := len(config.SHA256) > 0
 	if _, err := exec.LookPath(config.Node); err != nil {
 		valid = false
 	}

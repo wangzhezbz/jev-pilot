@@ -21,6 +21,11 @@ export function discoverCodex() {
   return null;
 }
 const commandVersion = (command, args = ['--version']) => { try { return execFileSync(command, args, { encoding: 'utf8', timeout: 5000, stdio: ['ignore', 'pipe', 'ignore'] }).trim().split(/\r?\n/)[0]; } catch { return null; } };
+export function checkPrerequisites({node=process.versions.node,command=commandVersion}={}) {
+  requireValue(+node.split('.')[0]>=24,'NODE_24_REQUIRED');
+  requireValue(command(process.platform==='win32'?'curl.exe':'curl'),'CURL_REQUIRED');
+  requireValue(command('rg'),'RIPGREP_REQUIRED');
+}
 export function desktopStatus() {
   const home = installHome(), configPath = join(home, 'runtime/desktop/install.json');
   let config = null; try { config = JSON.parse(readFileSync(configPath)); } catch {}
@@ -55,6 +60,7 @@ export async function probeHooks(realBin, hookPath) {
   } finally { lines.close(); child.kill(); for (const p of pending.values()) clearTimeout(p.timer); }
 }
 export async function setup(options = {}) {
+  checkPrerequisites();
   const home=installHome(),file=join(home,'runtime/desktop/install.json');
   let backup=null,old=null;
   const components=['src','runtime','vendor','scripts','skills','web','locales','launcher','bin',process.platform==='win32'?'jev-pilot.exe':'jev-pilot'];

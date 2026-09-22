@@ -63,12 +63,13 @@ export function select(answer, current, supported) {
   // Apply valid choices directly; keep and unsupported responses still preserve current.
   return answer.choice;
 }
-export async function makeJudge(keyPath) {
-  let key = process.env.TYPESAFE_API_KEY;
-  if (!key) try { key = parseEnv(await readFile(keyPath, 'utf8')).TYPESAFE_API_KEY; } catch {}
+export async function makeJudge(keyPath, {env=process.env,send=postTypeSafe} = {}) {
   return async state => {
+    // Read at decision time so private setup/key rotation does not require a restart.
+    let key = env.TYPESAFE_API_KEY;
+    if (!key) try { key = parseEnv(await readFile(keyPath, 'utf8')).TYPESAFE_API_KEY; } catch {}
     if (!key) throw new Error('MISSING_KEY');
-    const body = await postTypeSafe({model:'jev-1.13.0',state:JSON.parse(redact(state,key)),questions:{effort:effortQuestion,horizon:horizonQuestion}},key);
+    const body = await send({model:'jev-1.13.0',state:JSON.parse(redact(state,key)),questions:{effort:effortQuestion,horizon:horizonQuestion}},key);
     return { answer: body.answers?.effort, horizon: body.answers?.horizon, outputTokens: body.usage?.output_tokens ?? null, model: body.model, inputTokens: body.usage?.input_tokens ?? null };
   };
 }

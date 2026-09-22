@@ -4,11 +4,13 @@
 
 Latest follow-up: [2026-09-22 hardening and Chrome diagnosis](HARDENING.md) — 64 local tests pass after eight reliability fixes. The earlier live-call counts below describe the original acceptance batch, not cumulative usage.
 
+Further follow-up: [credential, startup and Chrome fallback acceptance](FOLLOWUP.md) — 67 tests pass; Computer Use successfully operates the user's Chrome on a synthetic local page while the Chrome extension command path remains blocked.
+
 ## What was exercised
 
 | Layer | Result | Evidence |
 |---|---|---|
-| Local automated tests | 64 passed, 0 failed in the latest hardening pass | `npm test`; router, privacy, recovery, MCP, dashboard, launcher and feature tests |
+| Local automated tests | 67 passed, 0 failed in the latest follow-up | `npm test`; router, privacy, recovery, MCP, dashboard, launcher and feature tests |
 | Native plugin host | Plugin installs and exposes `jev_pilot` in actual Codex app-server; zero GPT calls | [plugin-host.json](plugin-host.json) |
 | Actual Codex engine | Eight fixture scenarios pass; model preserved for Astra/Sol/Terra/Luna; real requests show selected effort; native reassessment has `applied` receipt | [native-engine.json](native-engine.json) |
 | Installed adapter + real Jev | One real judgment high → low; both subsequent original-engine requests carry low | [native-engine.json](native-engine.json) |
