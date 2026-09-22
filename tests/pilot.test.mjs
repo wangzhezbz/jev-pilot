@@ -152,3 +152,21 @@ test('compaction preserves non-English failures and unfinished status', async t 
     assert.deepEqual(result.blocks,blocks);assert.deepEqual(result.omittedCallIds,[]);
   }
 });
+
+test('browser decisions expire from observation time and supersede old tickets', async t => {
+  const f=fixture(t), input={driver:'chrome',session:'s',goal:'open',snapshot:'page',observedAt:Date.now()-10000,candidates:[{id:'a',text:'open'}]};
+  const first=await f.call('browser_step',input);
+  assert.equal(first.expiresAt,input.observedAt+30000);
+  const second=await f.call('browser_step',{...input,goal:'new goal'});
+  await assert.rejects(f.call('browser_consume',{ticket:first.ticket,snapshot:'page',driver:'chrome'}),/SUPERSEDED_BROWSER_TICKET/);
+  const saved=f.store.get(f.project,'browser_ticket',second.ticket);saved.expiresAt=Date.now()-1;f.store.put(f.project,'browser_ticket',saved,second.ticket);
+  await assert.rejects(f.call('browser_consume',{ticket:second.ticket,snapshot:'page',driver:'chrome'}),/STALE_OBSERVATION/);
+  assert.equal(f.store.get(f.project,'browser_ticket',second.ticket).consumed,false);
+});
+test('observation expiring during a judgment does not create an executable ticket', async t => {
+  const f=fixture(t), start=Date.now();let clock=start;
+  t.mock.method(Date,'now',()=>clock);
+  f.pilot.send=async payload=>{clock+=31000;return {model:'fixture',answers:Object.fromEntries(Object.keys(payload.questions).map(id=>[id,{type:'choice',choice:'use',probabilities:{use:1,review:0,skip:0}}]))};};
+  await assert.rejects(f.call('browser_step',{driver:'chrome',session:'s',goal:'open',snapshot:'page',observedAt:start,candidates:[{id:'a',text:'open'}]}),/STALE_OBSERVATION/);
+  assert.equal(f.store.list(f.project,'browser_ticket').length,0);
+});

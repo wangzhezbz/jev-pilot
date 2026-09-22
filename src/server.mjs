@@ -21,7 +21,7 @@ async function handle(msg) {
       try {
         if (['status', 'browser_step'].includes(msg.params.arguments?.operation)) {
           const network = maintainBrowserNetwork();
-          if (network.changed || !browserNetworkRepair.changed) browserNetworkRepair = network;
+          browserNetworkRepair = { ...network, repairedEarlierInProcess: browserNetworkRepair.changed === true || browserNetworkRepair.repairedEarlierInProcess === true };
         }
         const data = await pilot.call(msg.params.arguments, { signal: controller.signal });
         if (['status', 'browser_step'].includes(msg.params.arguments?.operation)) data.browserNetwork = browserNetworkRepair;

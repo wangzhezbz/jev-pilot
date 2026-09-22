@@ -103,3 +103,21 @@ test('portable plugin MCP uses only fields accepted by the native plugin loader'
   assert.equal(server.type,'stdio');
   assert.equal(Object.keys(server).every(k=>['type','command','args','env','cwd'].includes(k)),true);
 });
+
+test('MCP reports current proxy failure separately from an earlier successful repair', async () => {
+  const home=mkdtempSync(join(tmpdir(),'jev-proxy-state-'));
+  const dir=join(home,'plugins/cache/openai-bundled/unified-computer-use/fixture');mkdirSync(dir,{recursive:true});
+  const manifest=join(dir,'.mcp.json');writeFileSync(manifest,JSON.stringify({mcpServers:{cua_repl:{args:['/fixture/@oai/cua-repl/bin/cua-repl.mjs'],env_vars:[]}}}));
+  const p=spawn(process.execPath,[fileURLToPath(new URL('../src/server.mjs',import.meta.url))],{env:{...process.env,CODEX_HOME:home,JEV_PILOT_HOME:join(home,'pilot'),JEV_PILOT_BROWSER_PROXY_REPAIR:'1',TYPESAFE_API_KEY:''},stdio:['pipe','pipe','pipe']});p.stderr.resume();
+  const lines=createInterface({input:p.stdout});const pending=new Map();let id=0;
+  lines.on('line',line=>{const message=JSON.parse(line);pending.get(message.id)?.(message);});
+  const request=(method,params)=>new Promise(resolve=>{const n=++id;pending.set(n,resolve);p.stdin.write(JSON.stringify({jsonrpc:'2.0',id:n,method,params})+'\n');});
+  try {
+    await request('initialize',{protocolVersion:'2025-03-26'});
+    assert.equal(JSON.parse(readFileSync(manifest)).mcpServers.cua_repl.env_vars.length,8);
+    writeFileSync(manifest,'{');
+    const reply=await request('tools/call',{name:'jev_pilot',arguments:{workspace:home,operation:'status'}});
+    const network=reply.result.structuredContent.browserNetwork;
+    assert.equal(network.status,'attention_needed');assert.equal(network.changed,false);assert.equal(network.repairedEarlierInProcess,true);
+  } finally {p.stdin.end();lines.close();p.kill();}
+});

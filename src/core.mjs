@@ -74,6 +74,11 @@ export class Store {
   cacheGet(key) { const r = this.db.prepare('SELECT body FROM cache WHERE key=? AND expires>?').get(key, Date.now()); return r ? JSON.parse(r.body) : null; }
   cachePut(key, body, ttl = 600000) { this.db.prepare('INSERT OR REPLACE INTO cache VALUES(?,?,?)').run(key, JSON.stringify(body), Date.now() + ttl); }
   close() { this.db.close(); }
+  transaction(work) {
+    this.db.exec('BEGIN IMMEDIATE');
+    try { const result = work(); this.db.exec('COMMIT'); return result; }
+    catch (error) { this.db.exec('ROLLBACK'); throw error; }
+  }
 }
 
 export function loadConfig(store, project) {

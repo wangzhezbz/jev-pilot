@@ -8,11 +8,13 @@ Further follow-up: [credential, startup and Chrome fallback acceptance](FOLLOWUP
 
 Latest Chrome follow-up: [real extension acceptance](CHROME-ACCEPTANCE.md) — 75 local tests pass; the original engine reassessment fixture again shows low on requests 1–4 and medium on request 5. All six native launchers build and the development archive packs successfully.
 
+Further boundary review: [ticket expiry, concurrency, proxy status and CLI dispatch](BOUNDARY-AUDIT.md) — 78 tests pass.
+
 ## What was exercised
 
 | Layer | Result | Evidence |
 |---|---|---|
-| Local automated tests | 75 passed, 0 failed in the latest follow-up | `npm test`; router, privacy, recovery, MCP, dashboard, launcher and feature tests |
+| Local automated tests | 78 passed, 0 failed in the latest follow-up | `npm test`; router, privacy, recovery, MCP, dashboard, launcher and feature tests |
 | Native plugin host | Plugin installs and exposes `jev_pilot` in actual Codex app-server; zero GPT calls | [plugin-host.json](plugin-host.json) |
 | Actual Codex engine | Eight fixture scenarios pass; model preserved for Astra/Sol/Terra/Luna; real requests show selected effort; native reassessment has `applied` receipt | [native-engine.json](native-engine.json) |
 | Installed adapter + real Jev | One real judgment high → low; both subsequent original-engine requests carry low | [native-engine.json](native-engine.json) |

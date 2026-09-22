@@ -32,7 +32,7 @@ func main() {
 	script := filepath.Join(root, "runtime", "desktop", "bootstrap.mjs")
 	if len(args) > 0 {
 		switch args[0] {
-		case "doctor", "setup", "enable", "disable", "report", "call", "dashboard":
+		case "doctor", "setup", "enable", "disable", "report", "call", "dashboard", "browser-network":
 			script = filepath.Join(root, "scripts", "cli.mjs")
 		}
 	}
