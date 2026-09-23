@@ -1,0 +1,46 @@
+{
+  "attempted": 8,
+  "planned": 8,
+  "passed": 8,
+  "matchedPairs": 4,
+  "metrics": {
+    "wallMs": {
+      "fixed": 304299,
+      "auto": 230053,
+      "autoIncreasePercent": -24.399028587014747
+    },
+    "totalTokens": {
+      "fixed": 833013,
+      "auto": 661283,
+      "autoIncreasePercent": -20.615524607659186
+    },
+    "uncachedInputTokens": {
+      "fixed": 126624,
+      "auto": 119022,
+      "autoIncreasePercent": -6.003601213040177
+    },
+    "outputTokens": {
+      "fixed": 8533,
+      "auto": 6709,
+      "autoIncreasePercent": -21.37583499355443
+    },
+    "reasoningOutputTokens": {
+      "fixed": 2294,
+      "auto": 1319,
+      "autoIncreasePercent": -42.502179598953795
+    }
+  },
+  "jev": {
+    "jevCalls": 17,
+    "jevFailures": 3,
+    "jevUnknownUsage": 3,
+    "jevInputTokens": 35666,
+    "jevOutputTokens": 1710,
+    "jevWaitMs": 14360,
+    "knownInputUsdEstimate": 0.001497972
+  },
+  "actualChanges": 0,
+  "ceilingBlocked": 6,
+  "filtersApplied": 0,
+  "deferredItems": 0
+}

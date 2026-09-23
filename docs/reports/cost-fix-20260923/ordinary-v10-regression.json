@@ -1,0 +1,78 @@
+{
+  "source": "current_desktop_thread_decision_receipts",
+  "capturedAt": "2026-09-23T10:03:21.208Z",
+  "events": [
+    {
+      "at": "2026-09-23T09:49:21.767Z",
+      "kind": "decision",
+      "policyVersion": "effort-v10-bounded-recovery",
+      "event": "BeforeTurnStart",
+      "from": "medium",
+      "recommended": "high",
+      "published": "high",
+      "status": "start_forwarded",
+      "inputTokens": 1908,
+      "elapsedMs": 478
+    },
+    {
+      "at": "2026-09-23T09:49:33.989Z",
+      "kind": "decision",
+      "policyVersion": "effort-v10-bounded-recovery",
+      "event": "PostToolUse",
+      "from": "high",
+      "recommended": "high",
+      "published": "high",
+      "status": "unchanged",
+      "inputTokens": 3778,
+      "elapsedMs": 684
+    },
+    {
+      "at": "2026-09-23T09:49:47.264Z",
+      "kind": "decision",
+      "policyVersion": "effort-v10-bounded-recovery",
+      "event": "PostToolUse",
+      "from": "high",
+      "recommended": "high",
+      "published": "high",
+      "status": "unchanged",
+      "inputTokens": 4756,
+      "elapsedMs": 594
+    },
+    {
+      "at": "2026-09-23T09:49:48.378Z",
+      "kind": "decision",
+      "policyVersion": "effort-v10-bounded-recovery",
+      "event": "PostToolUse",
+      "from": "high",
+      "recommended": "high",
+      "published": "high",
+      "status": "unchanged",
+      "inputTokens": 4005,
+      "elapsedMs": 579
+    },
+    {
+      "at": "2026-09-23T09:51:41.881Z",
+      "kind": "decision",
+      "policyVersion": "effort-v10-bounded-recovery",
+      "event": "PostToolUse",
+      "from": "high",
+      "recommended": "high",
+      "published": "high",
+      "status": "unchanged",
+      "inputTokens": 3926,
+      "elapsedMs": 640
+    },
+    {
+      "at": "2026-09-23T09:55:01.136Z",
+      "kind": "decision",
+      "policyVersion": "effort-v10-bounded-recovery",
+      "event": "PostToolUse",
+      "from": "high",
+      "recommended": "high",
+      "published": "high",
+      "status": "unchanged",
+      "inputTokens": 4115,
+      "elapsedMs": 661
+    }
+  ]
+}

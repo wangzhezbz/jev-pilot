@@ -80,3 +80,20 @@ test('a slow filter from an older turn cannot replace new-turn output or set its
  await auto.hook({...base,turn_id:'b',hook_event_name:'UserPromptSubmit',prompt:'New task'});release();assert.deepEqual(await job,{});
  const events=store.events(store.project(root));assert(events.some(e=>e.kind==='automatic_output_result'&&e.reason==='stale_turn'));assert.equal(store.list(store.project(root),'automatic_filter_cooldown').length,0);
 });
+
+test('automatic filtering never hides relevant unique evidence to meet a length budget',async t=>{
+ const f=autoFixture(t);await f.start();const input=Array.from({length:540},(_,i)=>'fact '+i+' '+('unique evidence '.repeat(7))).join('\n');
+ assert.deepEqual(await f.hook('all-keep',{tool_response:input}),{});
+ const e=f.events().find(e=>e.kind==='automatic_output_result');assert.equal(e.deferredItems,0);assert.equal(e.excludedItems,0);assert.equal(e.applied,false);
+});
+test('rereading filtered output returns full evidence without another judgment; changed content remains eligible',async t=>{
+ const f=autoFixture(t,{exclude:true});await f.start();const input=Array.from({length:350},(_,i)=>'sample '+i+' '+('x'.repeat(80))).join('\n');
+ assert.equal((await f.hook('first',{tool_response:input})).continue,false);const count=f.calls();
+ assert.deepEqual(await f.hook('reread',{tool_response:input}),{});assert.equal(f.calls(),count);
+ assert(f.events().some(e=>e.reason==='repeat_read_full_evidence'));
+ assert.equal((await f.hook('changed',{tool_response:input+'\nnew relevant observation'})).continue,false);assert(f.calls()>count);
+});
+test('changed source is not suppressed by another output no-benefit cooldown',async t=>{
+ const f=autoFixture(t);await f.start();await f.hook('first');const count=f.calls();
+ await f.hook('changed',{tool_response:Array.from({length:200},(_,i)=>'different '+i+' '+('y'.repeat(80))).join('\n')});assert(f.calls()>count);
+});

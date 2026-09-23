@@ -412,13 +412,13 @@ test('the final routine judgment cannot introduce a downgrade with no routine ca
  assert.equal(n,4);assert.equal(s.calls.length,0);assert.equal(s.logs.at(-1).status,'budget_held');
  await s.router.hook({...s.p,tool_use_id:'next'});assert.equal(s.calls.length,0);
 });
-test('reserved judgments still raise effort after baseline restoration',async()=>{
+test('reserved judgments respect the user ceiling after baseline restoration',async()=>{
  let n=0;const s=setup({judge:async()=>({answer:answer(++n<5?'low':'xhigh')})});
  await s.router.routeStart({threadId:'thread'});
  for(let i=0;i<4;i++)await s.router.hook({...s.p,tool_use_id:String(i)});
  assert.equal(s.router.turns.get('thread').current,'high');
  await s.router.hook({...s.p,tool_use_id:'failure',tool_response:{exit_code:1}});
- assert.equal(s.router.turns.get('thread').current,'xhigh');assert.equal(n,5);
+ assert.equal(s.router.turns.get('thread').current,'high');assert.equal(n,5);
 });
 test('baseline keep honors a valid stability recommendation with a two-boundary cap',async()=>{
  let n=0;const s=setup({judge:async()=>{n++;return{answer:answer('keep'),horizon:horizon(5)};}});
@@ -438,11 +438,35 @@ test('routine shared-budget exhaustion leaves reserved failure reassessment avai
  await s.router.routeStart({threadId:'thread'});
  assert.equal((await s.router.hook(s.p)).status,'urgent_reserve_held');
  await s.router.hook({...s.p,tool_use_id:'failed',tool_response:{exit_code:2}});
- assert.deepEqual(priorities,['routine','urgent']);assert.equal(s.router.turns.get('thread').current,'xhigh');
+ assert.deepEqual(priorities,['routine','urgent']);assert.equal(s.router.turns.get('thread').current,'high');
 });
 test('new published progress can use the reserve after an early shared-budget block',async()=>{
  const priorities=[];const s=setup({judge:async(state,ctx)=>{priorities.push(ctx.priority);if(ctx.priority!=='urgent')throw Error('TASK_URGENT_RESERVE');return{answer:answer('high'),horizon:horizon(2)};}});
  await s.router.routeStart({threadId:'thread'});
  s.router.note(s.router.turns.get('thread'),'public_progress','A new unresolved dependency needs inspection');
  await s.router.hook({...s.p,tool_use_id:'progress'});assert.deepEqual(priorities,['routine','urgent']);
+});
+
+test('medium user ceiling prevents first-step and later automatic upgrades, with honest receipts',async()=>{
+ const s=setup({judge:async()=>({answer:answer('high'),horizon:horizon(1)})});
+ const params={threadId:'thread',model:'gpt-6-astra',effort:'medium',input:[{type:'text',text:'Investigate concurrency'}]};
+ const t=s.router.start('thread',params);assert.equal((await s.router.routeStart(params)).effort,'medium');
+ s.router.observe({method:'turn/started',params:{threadId:'thread',turn:{id:'turn'}}});
+ await s.router.hook(s.p);assert.equal(t.current,'medium');assert.equal(s.calls.length,0);
+ assert(s.logs.some(e=>e.kind==='decision'&&e.recommended==='high'&&e.published==='medium'&&e.ceilingApplied));
+ const control=s.router.beginSettingsUpdate({threadId:'thread',turnId:'turn',effort:'high'});
+ s.router.finishSettingsUpdate(control,{status:'applied'});assert.equal(t.baseline,'high');
+});
+test('late budget can return an older automatic upgrade to baseline',async()=>{
+ const s=setup({judge:async()=>({answer:answer('medium')})});const t=s.router.turns.get('thread');
+ t.baseline='medium';t.current='high';t.calls=s.router.routineLimit-1;
+ await s.router.hook(s.p);assert.equal(t.current,'medium');assert.equal(s.calls.at(-1).params.effort,'medium');
+});
+test('two denied upgrades stop further evaluator spend at baseline until new input',async()=>{
+ let n=0;const s=setup({judge:async()=>{n++;return {answer:answer('xhigh'),horizon:horizon(1)};}});
+ await s.router.routeStart({threadId:'thread'});await s.router.hook(s.p);
+ for(let i=0;i<5;i++)await s.router.hook({...s.p,tool_use_id:'skip'+i,tool_response:{exit_code:1}});
+ assert.equal(n,2);assert.equal(s.router.turns.get('thread').current,'high');
+ s.router.invalidate('thread',[{type:'text',text:'Now format the verified output'}]);
+ await s.router.hook({...s.p,tool_use_id:'new'});assert.equal(n,3);
 });

@@ -1,0 +1,17 @@
+{
+  "platform": "darwin",
+  "arch": "arm64",
+  "runtimeVersion": "codex-cli 0.155.0-alpha.9.2",
+  "compatible": true,
+  "configuredForNextLaunch": true,
+  "loadedRevisionMatches": false,
+  "installedFingerprint": "69dda1150f5ab8eb823352ec58c74181a055f28246d527fcb1b903944fbd4061",
+  "pluginVersion": "0.2.0+codex.20260923100531",
+  "loadedPolicies": [
+    "effort-v10-bounded-recovery",
+    "effort-v10-bounded-recovery"
+  ],
+  "installedPolicy": "effort-v11-cost-ceiling",
+  "restartRequired": true,
+  "currentDesktopFixed": false
+}

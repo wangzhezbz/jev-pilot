@@ -48,3 +48,5 @@ Recoverable context handoff does not replace native conversation history or recl
 Latest measurements: the [2026-09-23 functional and performance report](docs/reports/validation-20260923/README.md) includes real calls, failures, per-run tokens, timing and reproducible fixtures. Smaller tool output does not necessarily reduce whole-task usage.
 
 JevPilot is licensed under [MIT](LICENSE). Independent community project, not an official OpenAI or TypeSafe product.
+
+Cost regression follow-up: [v11 investigation and real-model pilot (Chinese)](docs/reports/cost-fix-20260923/README.zh-CN.md). Automatic effort is capped at the user setting, and automatic filtering cannot defer relevant evidence to meet a size budget. Stable efficiency gains remain unproven.

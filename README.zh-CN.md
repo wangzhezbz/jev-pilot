@@ -48,3 +48,5 @@ macOS、Windows、Linux 的核心自动检查已通过。macOS 原版引擎切�
 最新实测：[2026-09-23 功能与性能报告](docs/reports/validation-20260923/README.zh-CN.md)公开真实调用、失败、逐次 token、耗时和可复现用例。局部压缩不等于完整任务节省。
 
 JevPilot 采用 [MIT 许可证](LICENSE)。这是独立社区项目，并非 OpenAI 或 TypeSafe 官方产品。
+
+成本回归修复：[v11 排查与真实复测](docs/reports/cost-fix-20260923/README.zh-CN.md)。自动档位以用户选择为上限；相关证据不因长度预算被扣留，暂不宣称稳定效率收益。

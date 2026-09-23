@@ -1,0 +1,968 @@
+[
+  {
+    "id": "gpt-6-sol-bug_fix-0-fixed",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "unchanged:repro.mjs",
+          "pass": true
+        },
+        {
+          "name": "independent_oracle",
+          "pass": true,
+          "stdout": "independent validation passed\n",
+          "stderr": "",
+          "exitCode": 0
+        }
+      ]
+    },
+    "errors": [],
+    "routing": [
+      {
+        "kind": "bridge_started"
+      },
+      {
+        "kind": "metadata_loaded"
+      },
+      {
+        "kind": "decision",
+        "event": "BeforeTurnStart",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "baselineEffort": "medium",
+        "ceilingApplied": false,
+        "confirmation": null,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "elapsedMs": 0,
+        "horizon": 1,
+        "horizonReason": "invalid_horizon"
+      },
+      {
+        "kind": "decision",
+        "event": "PostToolUse",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "baselineEffort": "medium",
+        "ceilingApplied": false,
+        "confirmation": null,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "elapsedMs": 51,
+        "horizon": 1,
+        "horizonReason": "invalid_horizon"
+      },
+      {
+        "kind": "decision",
+        "event": "PostToolUse",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "baselineEffort": "medium",
+        "ceilingApplied": false,
+        "confirmation": null,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "elapsedMs": 51,
+        "horizon": 1,
+        "horizonReason": "invalid_horizon"
+      },
+      {
+        "kind": "decision",
+        "event": "PostToolUse",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "baselineEffort": "medium",
+        "ceilingApplied": false,
+        "confirmation": null,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "elapsedMs": 51,
+        "horizon": 1,
+        "horizonReason": "invalid_horizon"
+      },
+      {
+        "kind": "turn_usage",
+        "status": "completed",
+        "elapsedMs": 72641
+      }
+    ],
+    "filterOutcomes": []
+  },
+  {
+    "id": "gpt-6-sol-bug_fix-0-auto",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "unchanged:repro.mjs",
+          "pass": true
+        },
+        {
+          "name": "independent_oracle",
+          "pass": true,
+          "stdout": "independent validation passed\n",
+          "stderr": "",
+          "exitCode": 0
+        }
+      ]
+    },
+    "errors": [],
+    "routing": [
+      {
+        "kind": "bridge_started"
+      },
+      {
+        "kind": "metadata_loaded"
+      },
+      {
+        "kind": "decision",
+        "event": "BeforeTurnStart",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "high",
+        "baselineEffort": "medium",
+        "ceilingApplied": true,
+        "confirmation": null,
+        "inputTokens": 1068,
+        "outputTokens": 106,
+        "elapsedMs": 615,
+        "horizon": 1,
+        "horizonReason": "jev_selected"
+      },
+      {
+        "kind": "decision",
+        "event": "PostToolUse",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "medium",
+        "baselineEffort": "medium",
+        "ceilingApplied": false,
+        "confirmation": null,
+        "inputTokens": 1386,
+        "outputTokens": 106,
+        "elapsedMs": 573,
+        "horizon": 1,
+        "horizonReason": "jev_selected"
+      },
+      {
+        "kind": "decision",
+        "event": "PostToolUse",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "medium",
+        "baselineEffort": "medium",
+        "ceilingApplied": false,
+        "confirmation": null,
+        "inputTokens": 1996,
+        "outputTokens": 106,
+        "elapsedMs": 574,
+        "horizon": 1,
+        "horizonReason": "jev_selected"
+      },
+      {
+        "kind": "decision",
+        "event": "PostToolUse",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "medium",
+        "baselineEffort": "medium",
+        "ceilingApplied": false,
+        "confirmation": null,
+        "inputTokens": 2225,
+        "outputTokens": 106,
+        "elapsedMs": 1095,
+        "horizon": 1,
+        "horizonReason": "jev_selected"
+      },
+      {
+        "kind": "decision",
+        "event": "PostToolUse",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "high",
+        "baselineEffort": "medium",
+        "ceilingApplied": true,
+        "confirmation": null,
+        "inputTokens": 1901,
+        "outputTokens": 106,
+        "elapsedMs": 608,
+        "horizon": 1,
+        "horizonReason": "jev_selected"
+      },
+      {
+        "kind": "turn_usage",
+        "status": "completed",
+        "elapsedMs": 86013
+      }
+    ],
+    "filterOutcomes": []
+  },
+  {
+    "id": "gpt-6-luna-bug_fix-0-auto",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "unchanged:repro.mjs",
+          "pass": true
+        },
+        {
+          "name": "independent_oracle",
+          "pass": true,
+          "stdout": "independent validation passed\n",
+          "stderr": "",
+          "exitCode": 0
+        }
+      ]
+    },
+    "errors": [],
+    "routing": [
+      {
+        "kind": "bridge_started"
+      },
+      {
+        "kind": "metadata_loaded"
+      },
+      {
+        "kind": "decision",
+        "event": "BeforeTurnStart",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "high",
+        "baselineEffort": "medium",
+        "ceilingApplied": true,
+        "confirmation": null,
+        "inputTokens": 1069,
+        "outputTokens": 106,
+        "elapsedMs": 513,
+        "horizon": 1,
+        "horizonReason": "jev_selected"
+      },
+      {
+        "kind": "decision",
+        "event": "PostToolUse",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "medium",
+        "baselineEffort": "medium",
+        "ceilingApplied": false,
+        "confirmation": null,
+        "inputTokens": 1380,
+        "outputTokens": 106,
+        "elapsedMs": 601,
+        "horizon": 1,
+        "horizonReason": "jev_selected"
+      },
+      {
+        "kind": "decision",
+        "event": "PostToolUse",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "medium",
+        "baselineEffort": "medium",
+        "ceilingApplied": false,
+        "confirmation": null,
+        "inputTokens": 1576,
+        "outputTokens": 106,
+        "elapsedMs": 560,
+        "horizon": 1,
+        "horizonReason": "jev_selected"
+      },
+      {
+        "kind": "decision",
+        "event": "PostToolUse",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "medium",
+        "baselineEffort": "medium",
+        "ceilingApplied": false,
+        "confirmation": null,
+        "inputTokens": 1606,
+        "outputTokens": 106,
+        "elapsedMs": 555,
+        "horizon": 1,
+        "horizonReason": "jev_selected"
+      },
+      {
+        "kind": "turn_usage",
+        "status": "completed",
+        "elapsedMs": 46918
+      }
+    ],
+    "filterOutcomes": []
+  },
+  {
+    "id": "gpt-6-luna-bug_fix-0-fixed",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "unchanged:repro.mjs",
+          "pass": true
+        },
+        {
+          "name": "independent_oracle",
+          "pass": true,
+          "stdout": "independent validation passed\n",
+          "stderr": "",
+          "exitCode": 0
+        }
+      ]
+    },
+    "errors": [],
+    "routing": [
+      {
+        "kind": "bridge_started"
+      },
+      {
+        "kind": "metadata_loaded"
+      },
+      {
+        "kind": "decision",
+        "event": "BeforeTurnStart",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "baselineEffort": "medium",
+        "ceilingApplied": false,
+        "confirmation": null,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "elapsedMs": 0,
+        "horizon": 1,
+        "horizonReason": "invalid_horizon"
+      },
+      {
+        "kind": "decision",
+        "event": "PostToolUse",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "baselineEffort": "medium",
+        "ceilingApplied": false,
+        "confirmation": null,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "elapsedMs": 52,
+        "horizon": 1,
+        "horizonReason": "invalid_horizon"
+      },
+      {
+        "kind": "decision",
+        "event": "PostToolUse",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "baselineEffort": "medium",
+        "ceilingApplied": false,
+        "confirmation": null,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "elapsedMs": 50,
+        "horizon": 1,
+        "horizonReason": "invalid_horizon"
+      },
+      {
+        "kind": "decision",
+        "event": "PostToolUse",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "baselineEffort": "medium",
+        "ceilingApplied": false,
+        "confirmation": null,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "elapsedMs": 51,
+        "horizon": 1,
+        "horizonReason": "invalid_horizon"
+      },
+      {
+        "kind": "decision",
+        "event": "PostToolUse",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "baselineEffort": "medium",
+        "ceilingApplied": false,
+        "confirmation": null,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "elapsedMs": 51,
+        "horizon": 1,
+        "horizonReason": "invalid_horizon"
+      },
+      {
+        "kind": "turn_usage",
+        "status": "completed",
+        "elapsedMs": 154226
+      }
+    ],
+    "filterOutcomes": []
+  },
+  {
+    "id": "gpt-6-sol-incident-0-auto",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "unchanged:incident.log",
+          "pass": true
+        },
+        {
+          "name": "rootCause",
+          "pass": true
+        },
+        {
+          "name": "failedRequests",
+          "pass": true
+        },
+        {
+          "name": "totalRequests",
+          "pass": true
+        },
+        {
+          "name": "failureRate",
+          "pass": true
+        },
+        {
+          "name": "mitigationPoolLimit",
+          "pass": true
+        },
+        {
+          "name": "postMitigationFailures",
+          "pass": true
+        },
+        {
+          "name": "settlementImpact",
+          "pass": true
+        },
+        {
+          "name": "rejectedHypothesis",
+          "pass": true
+        },
+        {
+          "name": "evidence_coverage",
+          "pass": true
+        },
+        {
+          "name": "no_invented_ids",
+          "pass": true
+        },
+        {
+          "name": "written_report_with_citations",
+          "pass": true
+        }
+      ]
+    },
+    "errors": [],
+    "routing": [
+      {
+        "kind": "bridge_started"
+      },
+      {
+        "kind": "metadata_loaded"
+      },
+      {
+        "kind": "decision",
+        "event": "BeforeTurnStart",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "high",
+        "baselineEffort": "medium",
+        "ceilingApplied": true,
+        "confirmation": null,
+        "inputTokens": 1164,
+        "outputTokens": 106,
+        "elapsedMs": 567,
+        "horizon": 1,
+        "horizonReason": "jev_selected"
+      },
+      {
+        "kind": "decision",
+        "event": "PostToolUse",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "high",
+        "baselineEffort": "medium",
+        "ceilingApplied": true,
+        "confirmation": null,
+        "inputTokens": 1675,
+        "outputTokens": 106,
+        "elapsedMs": 554,
+        "horizon": 1,
+        "horizonReason": "jev_selected"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "ceiling_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "ceiling_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "ceiling_no_benefit"
+      },
+      {
+        "kind": "turn_usage",
+        "status": "completed",
+        "elapsedMs": 32261
+      }
+    ],
+    "filterOutcomes": [
+      {
+        "at": "2026-09-23T10:03:48.138Z",
+        "kind": "automatic_output_result",
+        "boundaryId": "b5934720d1319cc37789d180a36bc7f574c33e85947ab05dcdaf023aae116eb8",
+        "applied": false,
+        "reason": "insufficient_reduction",
+        "originalBytes": 40108,
+        "sourceTextBytes": 40108,
+        "retainedBytes": 40488,
+        "retainedRatio": 1.009474419068515,
+        "artifactId": "5dd34c1d-2ab0-43b5-9b8c-6b88d06e396d",
+        "excludedItems": 0,
+        "deferredItems": 0,
+        "duplicateItems": 0,
+        "completeCoverage": true,
+        "elapsedMs": 1182,
+        "nativeTokenSavings": null
+      }
+    ]
+  },
+  {
+    "id": "gpt-6-sol-incident-0-fixed",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "unchanged:incident.log",
+          "pass": true
+        },
+        {
+          "name": "rootCause",
+          "pass": true
+        },
+        {
+          "name": "failedRequests",
+          "pass": true
+        },
+        {
+          "name": "totalRequests",
+          "pass": true
+        },
+        {
+          "name": "failureRate",
+          "pass": true
+        },
+        {
+          "name": "mitigationPoolLimit",
+          "pass": true
+        },
+        {
+          "name": "postMitigationFailures",
+          "pass": true
+        },
+        {
+          "name": "settlementImpact",
+          "pass": true
+        },
+        {
+          "name": "rejectedHypothesis",
+          "pass": true
+        },
+        {
+          "name": "evidence_coverage",
+          "pass": true
+        },
+        {
+          "name": "no_invented_ids",
+          "pass": true
+        },
+        {
+          "name": "written_report_with_citations",
+          "pass": true
+        }
+      ]
+    },
+    "errors": [],
+    "routing": [
+      {
+        "kind": "bridge_started"
+      },
+      {
+        "kind": "metadata_loaded"
+      },
+      {
+        "kind": "decision",
+        "event": "BeforeTurnStart",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "baselineEffort": "medium",
+        "ceilingApplied": false,
+        "confirmation": null,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "elapsedMs": 0,
+        "horizon": 1,
+        "horizonReason": "invalid_horizon"
+      },
+      {
+        "kind": "decision",
+        "event": "PostToolUse",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "baselineEffort": "medium",
+        "ceilingApplied": false,
+        "confirmation": null,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "elapsedMs": 51,
+        "horizon": 1,
+        "horizonReason": "invalid_horizon"
+      },
+      {
+        "kind": "decision",
+        "event": "PostToolUse",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "baselineEffort": "medium",
+        "ceilingApplied": false,
+        "confirmation": null,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "elapsedMs": 50,
+        "horizon": 1,
+        "horizonReason": "invalid_horizon"
+      },
+      {
+        "kind": "decision",
+        "event": "PostToolUse",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "baselineEffort": "medium",
+        "ceilingApplied": false,
+        "confirmation": null,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "elapsedMs": 51,
+        "horizon": 1,
+        "horizonReason": "invalid_horizon"
+      },
+      {
+        "kind": "turn_usage",
+        "status": "completed",
+        "elapsedMs": 39481
+      }
+    ],
+    "filterOutcomes": []
+  },
+  {
+    "id": "gpt-6-luna-incident-0-fixed",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "unchanged:incident.log",
+          "pass": true
+        },
+        {
+          "name": "rootCause",
+          "pass": true
+        },
+        {
+          "name": "failedRequests",
+          "pass": true
+        },
+        {
+          "name": "totalRequests",
+          "pass": true
+        },
+        {
+          "name": "failureRate",
+          "pass": true
+        },
+        {
+          "name": "mitigationPoolLimit",
+          "pass": true
+        },
+        {
+          "name": "postMitigationFailures",
+          "pass": true
+        },
+        {
+          "name": "settlementImpact",
+          "pass": true
+        },
+        {
+          "name": "rejectedHypothesis",
+          "pass": true
+        },
+        {
+          "name": "evidence_coverage",
+          "pass": true
+        },
+        {
+          "name": "no_invented_ids",
+          "pass": true
+        },
+        {
+          "name": "written_report_with_citations",
+          "pass": true
+        }
+      ]
+    },
+    "errors": [],
+    "routing": [
+      {
+        "kind": "bridge_started"
+      },
+      {
+        "kind": "metadata_loaded"
+      },
+      {
+        "kind": "decision",
+        "event": "BeforeTurnStart",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "baselineEffort": "medium",
+        "ceilingApplied": false,
+        "confirmation": null,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "elapsedMs": 0,
+        "horizon": 1,
+        "horizonReason": "invalid_horizon"
+      },
+      {
+        "kind": "decision",
+        "event": "PostToolUse",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "baselineEffort": "medium",
+        "ceilingApplied": false,
+        "confirmation": null,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "elapsedMs": 51,
+        "horizon": 1,
+        "horizonReason": "invalid_horizon"
+      },
+      {
+        "kind": "decision",
+        "event": "PostToolUse",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "baselineEffort": "medium",
+        "ceilingApplied": false,
+        "confirmation": null,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "elapsedMs": 51,
+        "horizon": 1,
+        "horizonReason": "invalid_horizon"
+      },
+      {
+        "kind": "decision",
+        "event": "PostToolUse",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "baselineEffort": "medium",
+        "ceilingApplied": false,
+        "confirmation": null,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "elapsedMs": 51,
+        "horizon": 1,
+        "horizonReason": "invalid_horizon"
+      },
+      {
+        "kind": "turn_usage",
+        "status": "completed",
+        "elapsedMs": 37949
+      }
+    ],
+    "filterOutcomes": []
+  },
+  {
+    "id": "gpt-6-luna-incident-0-auto",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "unchanged:incident.log",
+          "pass": true
+        },
+        {
+          "name": "rootCause",
+          "pass": true
+        },
+        {
+          "name": "failedRequests",
+          "pass": true
+        },
+        {
+          "name": "totalRequests",
+          "pass": true
+        },
+        {
+          "name": "failureRate",
+          "pass": true
+        },
+        {
+          "name": "mitigationPoolLimit",
+          "pass": true
+        },
+        {
+          "name": "postMitigationFailures",
+          "pass": true
+        },
+        {
+          "name": "settlementImpact",
+          "pass": true
+        },
+        {
+          "name": "rejectedHypothesis",
+          "pass": true
+        },
+        {
+          "name": "evidence_coverage",
+          "pass": true
+        },
+        {
+          "name": "no_invented_ids",
+          "pass": true
+        },
+        {
+          "name": "written_report_with_citations",
+          "pass": true
+        }
+      ]
+    },
+    "errors": [],
+    "routing": [
+      {
+        "kind": "bridge_started"
+      },
+      {
+        "kind": "metadata_loaded"
+      },
+      {
+        "kind": "decision",
+        "event": "BeforeTurnStart",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "high",
+        "baselineEffort": "medium",
+        "ceilingApplied": true,
+        "confirmation": null,
+        "inputTokens": 1165,
+        "outputTokens": 106,
+        "elapsedMs": 1196,
+        "horizon": 1,
+        "horizonReason": "jev_selected"
+      },
+      {
+        "kind": "fallback",
+        "elapsedMs": 2065,
+        "code": "JEV_TIMEOUT"
+      },
+      {
+        "kind": "routing_recovery",
+        "status": "admitted"
+      },
+      {
+        "kind": "fallback",
+        "elapsedMs": 51,
+        "code": "JEV_COOLDOWN"
+      },
+      {
+        "kind": "turn_usage",
+        "status": "completed",
+        "elapsedMs": 64853
+      }
+    ],
+    "filterOutcomes": [
+      {
+        "at": "2026-09-23T10:06:04.879Z",
+        "kind": "automatic_output_result",
+        "boundaryId": "fa74d541e5039e24491bf06da527b439045af0f44869232046549e94b87f5d8c",
+        "applied": false,
+        "reason": "degraded",
+        "originalBytes": 40108,
+        "sourceTextBytes": 40108,
+        "retainedBytes": 40488,
+        "retainedRatio": 1.009474419068515,
+        "artifactId": "41ccf7e7-3ca3-4ba9-ab4c-65e0a0dedfce",
+        "excludedItems": 0,
+        "deferredItems": 0,
+        "duplicateItems": 0,
+        "completeCoverage": true,
+        "elapsedMs": 2,
+        "nativeTokenSavings": null
+      },
+      {
+        "at": "2026-09-23T10:05:52.255Z",
+        "kind": "automatic_output_result",
+        "boundaryId": "36dade2b0ad80761e6f70a893e4a3b5198b57f328218491a88896b62ae4315e6",
+        "applied": false,
+        "reason": "degraded",
+        "originalBytes": 40108,
+        "sourceTextBytes": 40108,
+        "retainedBytes": 40488,
+        "retainedRatio": 1.009474419068515,
+        "artifactId": "3ad26696-6131-4dfb-a6b0-191d1f7b1764",
+        "excludedItems": 0,
+        "deferredItems": 0,
+        "duplicateItems": 0,
+        "completeCoverage": true,
+        "elapsedMs": 3629,
+        "nativeTokenSavings": null
+      }
+    ]
+  }
+]

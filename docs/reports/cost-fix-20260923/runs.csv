@@ -1,0 +1,9 @@
+id,model,task,arm,status,passed,wallMs,inputTokens,cachedInputTokens,outputTokens,reasoningOutputTokens,totalTokens,usageSnapshots,uncachedInputTokens,jevCalls,jevFailures,jevUnknownUsage,jevInputTokens,jevOutputTokens,jevWaitMs,actualChanges,ceilingBlocked,filtersApplied,deferredItems
+gpt-6-sol-bug_fix-0-fixed,gpt-6-sol,bug_fix,fixed,completed,True,72642,115611,98944,3064,714,118675,6,16667,0,0,0,0,0,0,0,0,0,0
+gpt-6-sol-bug_fix-0-auto,gpt-6-sol,bug_fix,auto,completed,True,86015,217677,200704,2674,607,220351,11,16973,5,0,0,8576,530,3255,0,2,0,0
+gpt-6-luna-bug_fix-0-auto,gpt-6-luna,bug_fix,auto,completed,True,46920,92503,75520,1854,174,94357,5,16983,4,0,0,5631,424,2073,0,1,0,0
+gpt-6-luna-bug_fix-0-fixed,gpt-6-luna,bug_fix,fixed,completed,True,154226,230058,204800,2757,794,232815,12,25258,0,0,0,0,0,0,0,0,0,0
+gpt-6-sol-incident-0-auto,gpt-6-sol,incident,auto,completed,True,32263,169043,126464,1067,208,170110,5,42579,4,0,0,20294,650,2198,0,2,0,0
+gpt-6-sol-incident-0-fixed,gpt-6-sol,incident,fixed,completed,True,39482,211444,174720,1324,321,212768,6,36724,0,0,0,0,0,0,0,0,0,0
+gpt-6-luna-incident-0-fixed,gpt-6-luna,incident,fixed,completed,True,37949,267367,219392,1388,465,268755,7,47975,0,0,0,0,0,0,0,0,0,0
+gpt-6-luna-incident-0-auto,gpt-6-luna,incident,auto,completed,True,64855,175351,132864,1114,330,176465,5,42487,4,3,3,1165,106,6834,0,1,0,0
