@@ -110,7 +110,7 @@
   "pluginDiscovery": {
     "kind": "real_codex_plugin_loading",
     "gptCalls": 0,
-    "installedVersion": "0.2.0+codex.20260922081157",
+    "installedVersion": "0.2.0+codex.20260923030550",
     "servers": [
       {
         "name": "jev-pilot",
@@ -141,5 +141,18 @@
     "shadowSettingSurvivesReload": true,
     "consoleErrors": 0,
     "nativeDesktopRestarted": false
+  },
+  "package": {
+    "archive": "jev-pilot-0.2.0.tgz",
+    "sha256": "1fbcca96341283f52b82d97a16e7e22879f66cdd78a392aa0871c5216586271c",
+    "bytes": 6482717,
+    "files": 94,
+    "privateFileScan": "passed",
+    "pathScan": "passed",
+    "packagedMacOSSetup": "passed",
+    "activated": false,
+    "platform": "darwin-arm64",
+    "pluginVersion": "0.2.0+codex.20260923030550",
+    "containsNativeLauncher": true
   }
 }

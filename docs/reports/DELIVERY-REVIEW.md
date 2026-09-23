@@ -25,6 +25,7 @@ Status: macOS delivery candidate. Core fixes and local/native-engine acceptance 
 | Native plugin loading | New version exposes `jev_pilot` | Host discovery, not just a manifest on disk |
 | Update rollback | Failed isolated update restored previous manifest and compatibility | Installation recovery without changing global launch settings |
 | Chrome | Five locales, shadow setting, refresh persistence, zero console errors | Rendered and interactive dashboard through the existing official extension |
+| Packaged macOS install | Archive scan and isolated install passed | The distributable contains its native launcher and installs from extracted files |
 | Real model benchmark | 12 of 24 attempts; 11 passed, one provider quota failure | Partial observed data only; no final savings claim |
 
 Machine-readable evidence is in [delivery-acceptance.json](delivery-acceptance.json), [live-smoke.json](live-smoke.json), [policy-regression.json](policy-regression.json), [benchmark-partial.json](benchmark-partial.json) and [benchmark-partial.csv](benchmark-partial.csv).
