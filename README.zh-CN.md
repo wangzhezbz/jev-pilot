@@ -45,4 +45,6 @@ macOS、Windows、Linux 的核心自动检查已通过。macOS 原版引擎切�
 
 上下文功能提供可恢复的精简交接，不会改写原生历史或回收已经消耗的 token。不承诺固定的提速、省 token 或省额度比例。详见[整体验收报告](docs/reports/ACCEPTANCE.md)、[功能边界](docs/FEATURES.md)和[后续路线](docs/ROADMAP.md)。
 
+最新实测：[2026-09-23 功能与性能报告](docs/reports/validation-20260923/README.zh-CN.md)公开真实调用、失败、逐次 token、耗时和可复现用例。局部压缩不等于完整任务节省。
+
 JevPilot 采用 [MIT 许可证](LICENSE)。这是独立社区项目，并非 OpenAI 或 TypeSafe 官方产品。

@@ -1,0 +1,89 @@
+{
+  "scope": "Live ordinary desktop task; routing receipts only; separate from controlled benchmark",
+  "events": [
+    {
+      "at": "2026-09-23T08:10:53.440Z",
+      "kind": "decision",
+      "status": "start_forwarded",
+      "targetModel": "gpt-6-astra",
+      "from": "medium",
+      "published": "high",
+      "recommended": "high",
+      "confirmation": "start_parameter_forwarded",
+      "elapsedMs": 589,
+      "inputTokens": 1320,
+      "outputTokens": 106,
+      "horizon": 1
+    },
+    {
+      "at": "2026-09-23T08:11:12.617Z",
+      "kind": "decision",
+      "status": "unchanged",
+      "targetModel": "gpt-6-astra",
+      "from": "high",
+      "published": "high",
+      "recommended": "high",
+      "confirmation": null,
+      "elapsedMs": 591,
+      "inputTokens": 2300,
+      "outputTokens": 106,
+      "horizon": 1
+    },
+    {
+      "at": "2026-09-23T08:11:26.821Z",
+      "kind": "decision",
+      "status": "unchanged",
+      "targetModel": "gpt-6-astra",
+      "from": "high",
+      "published": "high",
+      "recommended": "high",
+      "confirmation": null,
+      "elapsedMs": 1571,
+      "inputTokens": 2944,
+      "outputTokens": 106,
+      "horizon": 1
+    },
+    {
+      "at": "2026-09-23T08:11:30.679Z",
+      "kind": "decision",
+      "status": "unchanged",
+      "targetModel": "gpt-6-astra",
+      "from": "high",
+      "published": "high",
+      "recommended": "high",
+      "confirmation": null,
+      "elapsedMs": 1081,
+      "inputTokens": 3463,
+      "outputTokens": 106,
+      "horizon": 1
+    },
+    {
+      "at": "2026-09-23T08:11:45.428Z",
+      "kind": "decision",
+      "status": "unchanged",
+      "targetModel": "gpt-6-astra",
+      "from": "high",
+      "published": "high",
+      "recommended": "high",
+      "confirmation": null,
+      "elapsedMs": 597,
+      "inputTokens": 3576,
+      "outputTokens": 106,
+      "horizon": 1
+    },
+    {
+      "at": "2026-09-23T08:13:27.905Z",
+      "kind": "decision",
+      "status": "unchanged",
+      "targetModel": "gpt-6-astra",
+      "from": "high",
+      "published": "high",
+      "recommended": "high",
+      "confirmation": null,
+      "elapsedMs": 660,
+      "inputTokens": 3268,
+      "outputTokens": 106,
+      "horizon": 5
+    }
+  ]
+}

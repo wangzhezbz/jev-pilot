@@ -1,0 +1,90 @@
+{
+  "at": "2026-09-23T08:35:34.914Z",
+  "kind": "live_jev_unique_log_hook_fixture_not_real_GPT_benchmark",
+  "inputLines": 240,
+  "originalBytes": 25514,
+  "checks": [
+    {
+      "name": "replacement_applied",
+      "pass": false
+    },
+    {
+      "name": "cause_retained",
+      "pass": true
+    },
+    {
+      "name": "counterevidence_retained",
+      "pass": true
+    },
+    {
+      "name": "recovery_retained",
+      "pass": true
+    },
+    {
+      "name": "full_original_recoverable",
+      "pass": true
+    }
+  ],
+  "passed": false,
+  "outcome": {
+    "at": "2026-09-23T08:35:34.913Z",
+    "kind": "automatic_output_result",
+    "boundaryId": "ffcaefdc82d217511894043f62bc429029cd3c03d16f1b2261d83ad1aad9b681",
+    "applied": false,
+    "reason": "degraded",
+    "originalBytes": 25514,
+    "sourceTextBytes": 25514,
+    "retainedBytes": 25902,
+    "retainedRatio": 1.0152073371482324,
+    "artifactId": "470a7815-9929-4bfb-83b8-ffe85558bf99",
+    "excludedItems": 0,
+    "deferredItems": 0,
+    "elapsedMs": 1816,
+    "nativeTokenSavings": null
+  },
+  "events": [
+    {
+      "at": "2026-09-23T08:35:34.913Z",
+      "kind": "automatic_output_result",
+      "boundaryId": "ffcaefdc82d217511894043f62bc429029cd3c03d16f1b2261d83ad1aad9b681",
+      "applied": false,
+      "reason": "degraded",
+      "originalBytes": 25514,
+      "sourceTextBytes": 25514,
+      "retainedBytes": 25902,
+      "retainedRatio": 1.0152073371482324,
+      "artifactId": "470a7815-9929-4bfb-83b8-ffe85558bf99",
+      "excludedItems": 0,
+      "deferredItems": 0,
+      "elapsedMs": 1816,
+      "nativeTokenSavings": null
+    },
+    {
+      "at": "2026-09-23T08:35:34.913Z",
+      "kind": "evidence_selection",
+      "policy": "preserve-uncertainty-v2",
+      "candidates": 8,
+      "judged": 7,
+      "duplicates": 0,
+      "proposedExclusions": 0,
+      "appliedExclusions": 0,
+      "mode": "active"
+    },
+    {
+      "at": "2026-09-23T08:35:34.913Z",
+      "kind": "jev_call",
+      "purpose": "evidence",
+      "elapsedMs": 1814,
+      "status": "failed",
+      "code": "JEV_TIMEOUT"
+    },
+    {
+      "at": "2026-09-23T08:35:33.097Z",
+      "kind": "automatic_output_admission",
+      "reason": "eligible",
+      "adapter": "text",
+      "boundaryId": "ffcaefdc82d217511894043f62bc429029cd3c03d16f1b2261d83ad1aad9b681"
+    }
+  ],
+  "analysisCorrection": "Retention is checked against delivered text: hook returned no replacement, so all original evidence remained available. Initial diagnostic checked only the absent replacement string. No model request was repeated."
+}

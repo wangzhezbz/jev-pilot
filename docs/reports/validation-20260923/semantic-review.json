@@ -1,0 +1,60 @@
+{
+  "method": "Post-hoc Codex review of generated prose against the frozen synthetic source. This is an additional qualitative review, not the preregistered oracle and not an independent human audit. Original oracle pass/fail results are unchanged.",
+  "reviewedTask": "incident",
+  "reviewedRepeats": [
+    0,
+    1
+  ],
+  "findings": [
+    {
+      "run": "gpt-6-luna-incident-0-auto",
+      "severity": "wording_overclaim",
+      "quote": "all 200 observed checkouts succeeded (zero 503s)",
+      "sourceFact": "200 checkouts, 0 returned 503; latency p95 110 ms",
+      "assessment": "No 503 responses does not exclude every other failure type. The structured output remained correct, but this sentence overstates the observation."
+    },
+    {
+      "run": "gpt-5.6-sol-incident-0-auto",
+      "severity": "wording_overclaim",
+      "quote": "was followed by a failure-free observation window",
+      "sourceFact": "200 checkouts, 0 returned 503; latency p95 110 ms",
+      "assessment": "The source establishes absence of 503s in this sample, not all conceivable failures. Later report wording narrows the claim correctly."
+    },
+    {
+      "run": "gpt-6-luna-incident-1-auto",
+      "severity": "wording_overclaim",
+      "quote": "all 200 checkouts succeeded (zero 503s)",
+      "sourceFact": "200 checkouts, 0 returned 503; latency p95 110 ms",
+      "assessment": "This again broadens absence of 503s into all-success. The structured fields still pass the preregistered checks."
+    },
+    {
+      "run": "gpt-5.6-sol-incident-1-fixed",
+      "severity": "wording_ambiguity",
+      "quote": "a clean checkout observation window",
+      "sourceFact": "200 checkouts, 0 returned 503; latency p95 110 ms",
+      "assessment": "Clean is broader and less precise than the source. Later text correctly specifies zero 503s. This is recorded on the fixed arm as an ambiguity, distinct from the explicit all-success overclaims."
+    }
+  ],
+  "reviewedDeliveredRunIds": [
+    "gpt-6-astra-incident-0-auto",
+    "gpt-6-sol-incident-0-auto",
+    "gpt-6-sol-incident-0-fixed",
+    "gpt-6-luna-incident-0-fixed",
+    "gpt-6-luna-incident-0-auto",
+    "gpt-5.6-sol-incident-0-auto",
+    "gpt-5.6-sol-incident-0-fixed",
+    "gpt-6-astra-incident-1-auto",
+    "gpt-6-astra-incident-1-fixed",
+    "gpt-6-sol-incident-1-fixed",
+    "gpt-6-sol-incident-1-auto",
+    "gpt-6-luna-incident-1-auto",
+    "gpt-6-luna-incident-1-fixed",
+    "gpt-5.6-sol-incident-1-fixed",
+    "gpt-5.6-sol-incident-1-auto"
+  ],
+  "scopeNote": "Reviewed all 15 delivered incident reports against the frozen log. One fixed Astra attempt produced no report. This is qualitative Codex review, not exhaustive semantic proof or a change to the original oracle.",
+  "findingCounts": {
+    "wording_overclaim": 3,
+    "wording_ambiguity": 1
+  }
+}

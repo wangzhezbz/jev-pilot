@@ -1,0 +1,256 @@
+{
+  "at": "2026-09-23T08:14:06.584Z",
+  "jobs": [
+    {
+      "model": "gpt-6-astra",
+      "task": "bug_fix",
+      "repeat": 0,
+      "arms": [
+        "fixed",
+        "auto"
+      ]
+    },
+    {
+      "model": "gpt-6-sol",
+      "task": "bug_fix",
+      "repeat": 0,
+      "arms": [
+        "auto",
+        "fixed"
+      ]
+    },
+    {
+      "model": "gpt-6-luna",
+      "task": "bug_fix",
+      "repeat": 0,
+      "arms": [
+        "fixed",
+        "auto"
+      ]
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "task": "bug_fix",
+      "repeat": 0,
+      "arms": [
+        "auto",
+        "fixed"
+      ]
+    },
+    {
+      "model": "gpt-6-astra",
+      "task": "mixed",
+      "repeat": 0,
+      "arms": [
+        "auto",
+        "fixed"
+      ]
+    },
+    {
+      "model": "gpt-6-sol",
+      "task": "mixed",
+      "repeat": 0,
+      "arms": [
+        "fixed",
+        "auto"
+      ]
+    },
+    {
+      "model": "gpt-6-luna",
+      "task": "mixed",
+      "repeat": 0,
+      "arms": [
+        "auto",
+        "fixed"
+      ]
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "task": "mixed",
+      "repeat": 0,
+      "arms": [
+        "fixed",
+        "auto"
+      ]
+    },
+    {
+      "model": "gpt-6-astra",
+      "task": "incident",
+      "repeat": 0,
+      "arms": [
+        "fixed",
+        "auto"
+      ]
+    },
+    {
+      "model": "gpt-6-sol",
+      "task": "incident",
+      "repeat": 0,
+      "arms": [
+        "auto",
+        "fixed"
+      ]
+    },
+    {
+      "model": "gpt-6-luna",
+      "task": "incident",
+      "repeat": 0,
+      "arms": [
+        "fixed",
+        "auto"
+      ]
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "task": "incident",
+      "repeat": 0,
+      "arms": [
+        "auto",
+        "fixed"
+      ]
+    },
+    {
+      "model": "gpt-6-astra",
+      "task": "bug_fix",
+      "repeat": 1,
+      "arms": [
+        "auto",
+        "fixed"
+      ]
+    },
+    {
+      "model": "gpt-6-sol",
+      "task": "bug_fix",
+      "repeat": 1,
+      "arms": [
+        "fixed",
+        "auto"
+      ]
+    },
+    {
+      "model": "gpt-6-luna",
+      "task": "bug_fix",
+      "repeat": 1,
+      "arms": [
+        "auto",
+        "fixed"
+      ]
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "task": "bug_fix",
+      "repeat": 1,
+      "arms": [
+        "fixed",
+        "auto"
+      ]
+    },
+    {
+      "model": "gpt-6-astra",
+      "task": "mixed",
+      "repeat": 1,
+      "arms": [
+        "fixed",
+        "auto"
+      ]
+    },
+    {
+      "model": "gpt-6-sol",
+      "task": "mixed",
+      "repeat": 1,
+      "arms": [
+        "auto",
+        "fixed"
+      ]
+    },
+    {
+      "model": "gpt-6-luna",
+      "task": "mixed",
+      "repeat": 1,
+      "arms": [
+        "fixed",
+        "auto"
+      ]
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "task": "mixed",
+      "repeat": 1,
+      "arms": [
+        "auto",
+        "fixed"
+      ]
+    },
+    {
+      "model": "gpt-6-astra",
+      "task": "incident",
+      "repeat": 1,
+      "arms": [
+        "auto",
+        "fixed"
+      ]
+    },
+    {
+      "model": "gpt-6-sol",
+      "task": "incident",
+      "repeat": 1,
+      "arms": [
+        "fixed",
+        "auto"
+      ]
+    },
+    {
+      "model": "gpt-6-luna",
+      "task": "incident",
+      "repeat": 1,
+      "arms": [
+        "auto",
+        "fixed"
+      ]
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "task": "incident",
+      "repeat": 1,
+      "arms": [
+        "fixed",
+        "auto"
+      ]
+    }
+  ],
+  "runs": 48,
+  "models": [
+    "gpt-6-astra",
+    "gpt-6-sol",
+    "gpt-6-luna",
+    "gpt-5.6-sol"
+  ],
+  "initialEffort": "medium",
+  "concurrency": 1,
+  "hashes": {
+    "src/core.mjs": "a239b0176a75ba89a35c39ab60d13da103a8f60bf19bdcdf419b2ea2209d2015",
+    "src/request-guard.mjs": "ebe0a0f2262b2846de814a141e095add69b984b3a10e92a528a5ce02ce521f76",
+    "src/automation.mjs": "cefc76b6da03e1eccf56f850b6e04f2c811714e3129c4b4f4ff7944da900b454",
+    "src/evidence.mjs": "8d9ba2948d6c9799eefffc16c4b3ce64e03b981767df6b6b5cc59d96e6929d15",
+    "src/policy.mjs": "f833df40d3dddd6846cc67d0b8527d58a075272a1e15962fa5f433e58da8f73b",
+    "runtime/desktop/router.mjs": "6a9f0c3bff25cff9b83e5826b2a780f4d75a9899bb01ff09f265eb71d1fd7cbe",
+    "runtime/desktop/bridge.mjs": "cee9815512b5eee71d84c30611e689d6db4a9bd874f60a02137689b606376195",
+    "scripts/benchmark/tasks.mjs": "a205373e2b1f6bd9b7ced8eb8ed85093802d9f4f1babf0902ae2d1fbe6a60d29",
+    "scripts/acceptance/tasks.mjs": "ad1c528e00822d3d501ca001998d55493b854c56cc9167f480c4aa6faa6c1f52",
+    "scripts/acceptance/run.mjs": "a9721a3625902ef78115de4549488ff77ea23571347155390f1dc402c7e9a921"
+  },
+  "config": {
+    "features.apps": false,
+    "features.multi_agent": false,
+    "features.code_mode": false,
+    "features.code_mode_host": false,
+    "web_search": "disabled",
+    "hooks.Stop": []
+  },
+  "quality": "Frozen independent oracle after inference; unchanged protected fixtures; failures retained; no retries replacing failed runs.",
+  "stopRule": "Stop the whole benchmark on infrastructure or provider usage/rate limits; retain every attempted arm. No substitution, no selective retry.",
+  "timeLimitMs": 240000,
+  "baseline": "medium, matching the current ordinary desktop setting",
+  "sourceFreeze": "No product changes during this experiment",
+  "scope": "Real engine and current product bridge. Fixed arm uses identical hooks but no Jev and holds medium. Automatic arm enables actual product judge and automation. No GUI latency or account debit measurement; all existing model settings except effort preserved. Repeats exploratory, not statistically powered."
+}

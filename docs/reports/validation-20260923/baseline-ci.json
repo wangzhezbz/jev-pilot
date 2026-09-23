@@ -1,0 +1,227 @@
+{
+  "commit": "1977c39eb025351145b3f87a8e3df6ba4399dff3",
+  "run": 35833789320,
+  "url": "https://github.com/wangzhezbz/jev-pilot/actions/runs/35833789320",
+  "scope": "Existing CI at the frozen product baseline; not new paid-model or desktop acceptance.",
+  "jobs": [
+    {
+      "name": "verify (ubuntu-latest)",
+      "conclusion": "success",
+      "startedAt": "2026-09-23T07:50:00Z",
+      "completedAt": "2026-09-23T07:50:35Z",
+      "url": "https://github.com/wangzhezbz/jev-pilot/actions/runs/35833789320/job/107092326034",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-go@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install ripgrep (Linux)",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install ripgrep (macOS)",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Install ripgrep (Windows)",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Run npm run check",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm test",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run node scripts/build.mjs",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm pack",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-go@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "verify (windows-latest)",
+      "conclusion": "success",
+      "startedAt": "2026-09-23T07:49:59Z",
+      "completedAt": "2026-09-23T07:51:41Z",
+      "url": "https://github.com/wangzhezbz/jev-pilot/actions/runs/35833789320/job/107092326182",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-go@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install ripgrep (Linux)",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Install ripgrep (macOS)",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Install ripgrep (Windows)",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm run check",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm test",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run node scripts/build.mjs",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm pack",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-go@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "name": "verify (macos-latest)",
+      "conclusion": "success",
+      "startedAt": "2026-09-23T07:50:06Z",
+      "completedAt": "2026-09-23T07:50:49Z",
+      "url": "https://github.com/wangzhezbz/jev-pilot/actions/runs/35833789320/job/107092326201",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-go@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install ripgrep (Linux)",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Install ripgrep (macOS)",
+          "conclusion": "success"
+        },
+        {
+          "name": "Install ripgrep (Windows)",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Run npm run check",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm test",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run node scripts/build.mjs",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run npm pack",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-go@v5",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,276 @@
+{
+  "pluginVersion": "0.2.0+codex.20260923074707",
+  "matches": [
+    {
+      "file": "src/activity.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "src/activity.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "src/automation.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "src/automation.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "src/browser-network.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "src/browser-network.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "src/browser.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "src/browser.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "src/checkpoints.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "src/checkpoints.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "src/core.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "src/core.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "src/dashboard.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "src/dashboard.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "src/diagnostics.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "src/diagnostics.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "src/evaluation.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "src/evaluation.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "src/evidence.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "src/evidence.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "src/installation.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "src/installation.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "src/launch-agent.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "src/launch-agent.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "src/output-adapters.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "src/output-adapters.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "src/pilot.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "src/pilot.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "src/policy.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "src/policy.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "src/request-guard.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "src/request-guard.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "src/server.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "src/server.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "src/setup.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "src/setup.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "src/workflows.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "src/workflows.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "runtime/desktop/bootstrap.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "runtime/desktop/bootstrap.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "runtime/desktop/bridge.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "runtime/desktop/bridge.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "runtime/desktop/hook.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "runtime/desktop/hook.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "runtime/desktop/report.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "runtime/desktop/report.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "runtime/desktop/router.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "runtime/desktop/router.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "runtime/desktop/transport.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "runtime/desktop/transport.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "vendor/jeveryword/core.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "vendor/jeveryword/core.mjs",
+      "target": "installed_adapter",
+      "match": true
+    },
+    {
+      "file": "vendor/jeveryword/extract.mjs",
+      "target": "installed_plugin",
+      "match": true
+    },
+    {
+      "file": "vendor/jeveryword/extract.mjs",
+      "target": "installed_adapter",
+      "match": true
+    }
+  ],
+  "passed": true
+}

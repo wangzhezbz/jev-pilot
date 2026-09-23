@@ -1,0 +1,914 @@
+{
+  "at": "2026-09-23T08:22:48.389Z",
+  "kind": "diagnostic_and_remaining_coverage_not_replacement",
+  "rows": [
+    {
+      "id": "search-independent",
+      "pass": true,
+      "calls": [
+        {
+          "operation": "search",
+          "result": {
+            "artifactId": "fa75833a-6537-468b-aa30-7df11b7b079c",
+            "context": "[r0 incident.txt:1]\nCheckout pool limit changed from 32 to 4.\nCheckout returned 503.\n\n",
+            "items": [
+              {
+                "id": "r0",
+                "source": "incident.txt",
+                "startLine": 1,
+                "endLine": 5,
+                "sourceHash": "4058d54c3d123fb3dbe967e09c46b8c3230d349057f06d5dd56066fce5b1b377",
+                "text": "Checkout pool limit changed from 32 to 4.\nCheckout returned 503.\n",
+                "judgment": {
+                  "id": "r0",
+                  "type": "choice",
+                  "choice": "keep",
+                  "confidence": 0.99,
+                  "probabilities": {
+                    "keep": 0.99,
+                    "review": 0,
+                    "exclude": 0.01
+                  },
+                  "source": "jev"
+                },
+                "protected": false
+              }
+            ],
+            "excludedIds": [
+              "r2"
+            ],
+            "proposedExcludedIds": [
+              "r2"
+            ],
+            "policy": "preserve-uncertainty-v2",
+            "deferredIds": [],
+            "duplicateIds": [
+              "r1"
+            ],
+            "budget": 16000,
+            "usedBytes": 86,
+            "budgetUnit": "UTF-8 bytes; conservative token bound, not measured tokens",
+            "protectedOverflow": false,
+            "completeCoverage": true,
+            "recovery": {
+              "operation": "recall",
+              "artifactId": "fa75833a-6537-468b-aa30-7df11b7b079c"
+            },
+            "degraded": false,
+            "candidateLimitReached": false,
+            "excludedPathCount": 0,
+            "searchType": "literal rg candidates followed by semantic filtering"
+          }
+        },
+        {
+          "operation": "search",
+          "result": {
+            "artifactId": "f2b0fd90-9a73-48e1-b201-ada22e36fd41",
+            "context": "[r0 incident.txt:1]\nCheckout pool limit changed from 32 to 4.\nCheckout returned 503.\n\n",
+            "items": [
+              {
+                "id": "r0",
+                "source": "incident.txt",
+                "startLine": 1,
+                "endLine": 5,
+                "sourceHash": "4058d54c3d123fb3dbe967e09c46b8c3230d349057f06d5dd56066fce5b1b377",
+                "text": "Checkout pool limit changed from 32 to 4.\nCheckout returned 503.\n",
+                "judgment": {
+                  "id": "r0",
+                  "type": "choice",
+                  "choice": "keep",
+                  "confidence": 0.99,
+                  "probabilities": {
+                    "keep": 1,
+                    "review": 0,
+                    "exclude": 0
+                  },
+                  "source": "jev"
+                },
+                "protected": false
+              }
+            ],
+            "excludedIds": [],
+            "proposedExcludedIds": [],
+            "policy": "preserve-uncertainty-v2",
+            "deferredIds": [],
+            "duplicateIds": [],
+            "budget": 16000,
+            "usedBytes": 86,
+            "budgetUnit": "UTF-8 bytes; conservative token bound, not measured tokens",
+            "protectedOverflow": false,
+            "completeCoverage": false,
+            "recovery": {
+              "operation": "recall",
+              "artifactId": "f2b0fd90-9a73-48e1-b201-ada22e36fd41"
+            },
+            "degraded": false,
+            "candidateLimitReached": true,
+            "excludedPathCount": 0,
+            "searchType": "literal rg candidates followed by semantic filtering"
+          }
+        },
+        {
+          "operation": "search",
+          "result": {
+            "items": [],
+            "reason": "no_literal_matches",
+            "completeCoverage": true
+          }
+        },
+        {
+          "operation": "metrics",
+          "result": {
+            "events": 7,
+            "windowLimit": 10000,
+            "jev": {
+              "calls": 2,
+              "failures": 0,
+              "inputTokens": 1266,
+              "outputTokens": 114,
+              "totalElapsedMs": 1977,
+              "missingUsage": 0
+            },
+            "cacheHits": 0,
+            "savings": null,
+            "savingsReason": "Requires matched baseline tasks with quality acceptance and provider usage. No counterfactual savings inferred."
+          }
+        }
+      ],
+      "metrics": {
+        "events": 7,
+        "windowLimit": 10000,
+        "jev": {
+          "calls": 2,
+          "failures": 0,
+          "inputTokens": 1266,
+          "outputTokens": 114,
+          "totalElapsedMs": 1977,
+          "missingUsage": 0
+        },
+        "cacheHits": 0,
+        "savings": null,
+        "savingsReason": "Requires matched baseline tasks with quality acceptance and provider usage. No counterfactual savings inferred."
+      },
+      "events": [
+        {
+          "at": "2026-09-23T08:22:45.173Z",
+          "kind": "operation",
+          "operation": "metrics",
+          "elapsedMs": 0,
+          "calls": 0
+        },
+        {
+          "at": "2026-09-23T08:22:45.173Z",
+          "kind": "operation",
+          "operation": "search",
+          "elapsedMs": 6,
+          "calls": 0
+        },
+        {
+          "at": "2026-09-23T08:22:45.166Z",
+          "kind": "operation",
+          "operation": "search",
+          "elapsedMs": 626,
+          "calls": 1
+        },
+        {
+          "at": "2026-09-23T08:22:45.166Z",
+          "kind": "evidence_selection",
+          "policy": "preserve-uncertainty-v2",
+          "candidates": 1,
+          "judged": 1,
+          "duplicates": 0,
+          "proposedExclusions": 0,
+          "appliedExclusions": 0,
+          "mode": "active"
+        },
+        {
+          "at": "2026-09-23T08:22:45.166Z",
+          "kind": "jev_call",
+          "purpose": "evidence",
+          "model": "jev-1.13.0",
+          "elapsedMs": 618,
+          "inputTokens": 522,
+          "outputTokens": 39,
+          "questions": 1,
+          "status": "success"
+        },
+        {
+          "at": "2026-09-23T08:22:44.540Z",
+          "kind": "operation",
+          "operation": "search",
+          "elapsedMs": 1376,
+          "calls": 1
+        },
+        {
+          "at": "2026-09-23T08:22:44.540Z",
+          "kind": "evidence_selection",
+          "policy": "preserve-uncertainty-v2",
+          "candidates": 3,
+          "judged": 2,
+          "duplicates": 1,
+          "proposedExclusions": 1,
+          "appliedExclusions": 1,
+          "mode": "active"
+        },
+        {
+          "at": "2026-09-23T08:22:44.539Z",
+          "kind": "jev_call",
+          "purpose": "evidence",
+          "model": "jev-1.13.0",
+          "elapsedMs": 1359,
+          "inputTokens": 744,
+          "outputTokens": 75,
+          "questions": 2,
+          "status": "success"
+        }
+      ]
+    },
+    {
+      "id": "compaction-diagnostic",
+      "pass": true,
+      "calls": [
+        {
+          "operation": "compact",
+          "result": {
+            "mode": "recoverable_handoff",
+            "originalId": "69c9dceb-df03-4fbe-ac23-cac3dd540bec",
+            "blocks": [
+              {
+                "id": "rule",
+                "role": "system",
+                "content": "Retain acceptance checks."
+              },
+              {
+                "id": "write",
+                "role": "tool_call",
+                "callId": "write",
+                "readOnly": false,
+                "verified": true,
+                "content": "Write configuration"
+              },
+              {
+                "id": "written",
+                "role": "tool_result",
+                "callId": "write",
+                "content": "Configuration written."
+              },
+              {
+                "id": "latest",
+                "role": "user",
+                "content": "Diagnose checkout failure"
+              }
+            ],
+            "omittedCallIds": [
+              "museum"
+            ],
+            "proposedOmittedCallIds": [
+              "museum"
+            ],
+            "degraded": false,
+            "policy": "preserve-uncertainty-v2",
+            "reusedJudgments": 0,
+            "inputBytes": 571,
+            "outputBytes": 343,
+            "nativeHistoryChanged": false,
+            "context": "[system rule]\nRetain acceptance checks.\n\n[tool_call write]\nWrite configuration\n\n[tool_result written]\nConfiguration written.\n\n[user latest]\nDiagnose checkout failure",
+            "recovery": {
+              "operation": "recall",
+              "artifactId": "69c9dceb-df03-4fbe-ac23-cac3dd540bec"
+            }
+          }
+        },
+        {
+          "operation": "recall",
+          "result": {
+            "artifactId": "69c9dceb-df03-4fbe-ac23-cac3dd540bec",
+            "items": [
+              {
+                "id": "rule",
+                "role": "system",
+                "content": "Retain acceptance checks.",
+                "text": "Retain acceptance checks."
+              },
+              {
+                "id": "call",
+                "role": "tool_call",
+                "callId": "museum",
+                "readOnly": true,
+                "verified": true,
+                "content": "Read the museum opening hours",
+                "text": "Read the museum opening hours"
+              },
+              {
+                "id": "result",
+                "role": "tool_result",
+                "callId": "museum",
+                "content": "The museum opens from 9 AM to 5 PM.",
+                "text": "The museum opens from 9 AM to 5 PM."
+              },
+              {
+                "id": "write",
+                "role": "tool_call",
+                "callId": "write",
+                "readOnly": false,
+                "verified": true,
+                "content": "Write configuration",
+                "text": "Write configuration"
+              },
+              {
+                "id": "written",
+                "role": "tool_result",
+                "callId": "write",
+                "content": "Configuration written.",
+                "text": "Configuration written."
+              },
+              {
+                "id": "latest",
+                "role": "user",
+                "content": "Diagnose checkout failure",
+                "text": "Diagnose checkout failure"
+              }
+            ],
+            "original": true,
+            "missingIds": []
+          }
+        },
+        {
+          "operation": "compact",
+          "result": {
+            "mode": "recoverable_handoff",
+            "originalId": "04f28481-bec9-4abf-bd84-d74e8455e989",
+            "blocks": [
+              {
+                "id": "rule",
+                "role": "system",
+                "content": "Retain acceptance checks."
+              },
+              {
+                "id": "write",
+                "role": "tool_call",
+                "callId": "write",
+                "readOnly": false,
+                "verified": true,
+                "content": "Write configuration"
+              },
+              {
+                "id": "written",
+                "role": "tool_result",
+                "callId": "write",
+                "content": "Configuration written."
+              },
+              {
+                "id": "latest",
+                "role": "user",
+                "content": "Diagnose checkout failure"
+              }
+            ],
+            "omittedCallIds": [
+              "museum"
+            ],
+            "proposedOmittedCallIds": [
+              "museum"
+            ],
+            "degraded": false,
+            "policy": "preserve-uncertainty-v2",
+            "reusedJudgments": 1,
+            "inputBytes": 571,
+            "outputBytes": 343,
+            "nativeHistoryChanged": false,
+            "context": "[system rule]\nRetain acceptance checks.\n\n[tool_call write]\nWrite configuration\n\n[tool_result written]\nConfiguration written.\n\n[user latest]\nDiagnose checkout failure",
+            "recovery": {
+              "operation": "recall",
+              "artifactId": "04f28481-bec9-4abf-bd84-d74e8455e989"
+            }
+          }
+        },
+        {
+          "operation": "metrics",
+          "result": {
+            "events": 6,
+            "windowLimit": 10000,
+            "jev": {
+              "calls": 1,
+              "failures": 0,
+              "inputTokens": 480,
+              "outputTokens": 39,
+              "totalElapsedMs": 1161,
+              "missingUsage": 0
+            },
+            "cacheHits": 0,
+            "savings": null,
+            "savingsReason": "Requires matched baseline tasks with quality acceptance and provider usage. No counterfactual savings inferred."
+          }
+        }
+      ],
+      "metrics": {
+        "events": 6,
+        "windowLimit": 10000,
+        "jev": {
+          "calls": 1,
+          "failures": 0,
+          "inputTokens": 480,
+          "outputTokens": 39,
+          "totalElapsedMs": 1161,
+          "missingUsage": 0
+        },
+        "cacheHits": 0,
+        "savings": null,
+        "savingsReason": "Requires matched baseline tasks with quality acceptance and provider usage. No counterfactual savings inferred."
+      },
+      "events": [
+        {
+          "at": "2026-09-23T08:22:46.337Z",
+          "kind": "operation",
+          "operation": "metrics",
+          "elapsedMs": 0,
+          "calls": 0
+        },
+        {
+          "at": "2026-09-23T08:22:46.337Z",
+          "kind": "operation",
+          "operation": "compact",
+          "elapsedMs": 0,
+          "calls": 0
+        },
+        {
+          "at": "2026-09-23T08:22:46.337Z",
+          "kind": "context_compaction",
+          "candidates": 1,
+          "judged": 0,
+          "proposedExclusions": 1,
+          "appliedExclusions": 1,
+          "degraded": false,
+          "mode": "active",
+          "policy": "preserve-uncertainty-v2"
+        },
+        {
+          "at": "2026-09-23T08:22:46.336Z",
+          "kind": "operation",
+          "operation": "recall",
+          "elapsedMs": 0,
+          "calls": 0
+        },
+        {
+          "at": "2026-09-23T08:22:46.336Z",
+          "kind": "operation",
+          "operation": "compact",
+          "elapsedMs": 1162,
+          "calls": 1
+        },
+        {
+          "at": "2026-09-23T08:22:46.336Z",
+          "kind": "context_compaction",
+          "candidates": 1,
+          "judged": 1,
+          "proposedExclusions": 1,
+          "appliedExclusions": 1,
+          "degraded": false,
+          "mode": "active",
+          "policy": "preserve-uncertainty-v2"
+        },
+        {
+          "at": "2026-09-23T08:22:46.336Z",
+          "kind": "jev_call",
+          "purpose": "context",
+          "model": "jev-1.13.0",
+          "elapsedMs": 1161,
+          "inputTokens": 480,
+          "outputTokens": 39,
+          "questions": 1,
+          "status": "success"
+        }
+      ]
+    },
+    {
+      "id": "automatic-filter-negative-positive",
+      "pass": true,
+      "calls": [
+        {
+          "operation": "automatic-negative",
+          "result": {}
+        },
+        {
+          "operation": "automatic-negative-repeat",
+          "result": {}
+        },
+        {
+          "operation": "automatic-positive",
+          "result": {
+            "continue": false,
+            "stopReason": "JevPilot retained task evidence from exec_command. The original output is saved locally. This is partial evidence; use jev_pilot recall for omitted material. Artifact: 4b47660c-5153-40af-b684-a8d49d9c29aa\n[s0 exec_command:1]\nerror payment pool_limit changed to 4, returned to 32 and recovered\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\n"
+          }
+        },
+        {
+          "operation": "recall",
+          "result": {
+            "artifactId": "4b47660c-5153-40af-b684-a8d49d9c29aa",
+            "items": [
+              {
+                "id": "s0",
+                "text": "error payment pool_limit changed to 4, returned to 32 and recovered\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.",
+                "source": "exec_command",
+                "startLine": 1,
+                "endLine": 30,
+                "sourceHash": "9542127390b0114f15a6cd3cd4b7f6953c91a5f18a7c653be6ea3e9158d97bcd"
+              },
+              {
+                "id": "s30",
+                "text": "Museum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.",
+                "source": "exec_command",
+                "startLine": 31,
+                "endLine": 60,
+                "sourceHash": "9542127390b0114f15a6cd3cd4b7f6953c91a5f18a7c653be6ea3e9158d97bcd"
+              },
+              {
+                "id": "s60",
+                "text": "Museum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.",
+                "source": "exec_command",
+                "startLine": 61,
+                "endLine": 90,
+                "sourceHash": "9542127390b0114f15a6cd3cd4b7f6953c91a5f18a7c653be6ea3e9158d97bcd"
+              },
+              {
+                "id": "s90",
+                "text": "Museum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.",
+                "source": "exec_command",
+                "startLine": 91,
+                "endLine": 120,
+                "sourceHash": "9542127390b0114f15a6cd3cd4b7f6953c91a5f18a7c653be6ea3e9158d97bcd"
+              },
+              {
+                "id": "s120",
+                "text": "Museum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.",
+                "source": "exec_command",
+                "startLine": 121,
+                "endLine": 150,
+                "sourceHash": "9542127390b0114f15a6cd3cd4b7f6953c91a5f18a7c653be6ea3e9158d97bcd"
+              },
+              {
+                "id": "s150",
+                "text": "Museum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.",
+                "source": "exec_command",
+                "startLine": 151,
+                "endLine": 180,
+                "sourceHash": "9542127390b0114f15a6cd3cd4b7f6953c91a5f18a7c653be6ea3e9158d97bcd"
+              },
+              {
+                "id": "s180",
+                "text": "Museum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.",
+                "source": "exec_command",
+                "startLine": 181,
+                "endLine": 210,
+                "sourceHash": "9542127390b0114f15a6cd3cd4b7f6953c91a5f18a7c653be6ea3e9158d97bcd"
+              },
+              {
+                "id": "s210",
+                "text": "Museum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.",
+                "source": "exec_command",
+                "startLine": 211,
+                "endLine": 240,
+                "sourceHash": "9542127390b0114f15a6cd3cd4b7f6953c91a5f18a7c653be6ea3e9158d97bcd"
+              },
+              {
+                "id": "s240",
+                "text": "Museum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.",
+                "source": "exec_command",
+                "startLine": 241,
+                "endLine": 270,
+                "sourceHash": "9542127390b0114f15a6cd3cd4b7f6953c91a5f18a7c653be6ea3e9158d97bcd"
+              },
+              {
+                "id": "s270",
+                "text": "Museum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.",
+                "source": "exec_command",
+                "startLine": 271,
+                "endLine": 300,
+                "sourceHash": "9542127390b0114f15a6cd3cd4b7f6953c91a5f18a7c653be6ea3e9158d97bcd"
+              },
+              {
+                "id": "s300",
+                "text": "Museum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.",
+                "source": "exec_command",
+                "startLine": 301,
+                "endLine": 330,
+                "sourceHash": "9542127390b0114f15a6cd3cd4b7f6953c91a5f18a7c653be6ea3e9158d97bcd"
+              },
+              {
+                "id": "s330",
+                "text": "Museum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.",
+                "source": "exec_command",
+                "startLine": 331,
+                "endLine": 360,
+                "sourceHash": "9542127390b0114f15a6cd3cd4b7f6953c91a5f18a7c653be6ea3e9158d97bcd"
+              },
+              {
+                "id": "s360",
+                "text": "Museum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.",
+                "source": "exec_command",
+                "startLine": 361,
+                "endLine": 390,
+                "sourceHash": "9542127390b0114f15a6cd3cd4b7f6953c91a5f18a7c653be6ea3e9158d97bcd"
+              },
+              {
+                "id": "s390",
+                "text": "Museum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\nMuseum routine exhibit catalog and unrelated decorative pottery description.\n",
+                "source": "exec_command",
+                "startLine": 391,
+                "endLine": 402,
+                "sourceHash": "9542127390b0114f15a6cd3cd4b7f6953c91a5f18a7c653be6ea3e9158d97bcd"
+              }
+            ],
+            "original": true,
+            "missingIds": []
+          }
+        },
+        {
+          "operation": "metrics",
+          "result": {
+            "events": 10,
+            "windowLimit": 10000,
+            "jev": {
+              "calls": 1,
+              "failures": 0,
+              "inputTokens": 1178,
+              "outputTokens": 75,
+              "totalElapsedMs": 776,
+              "missingUsage": 0
+            },
+            "cacheHits": 0,
+            "savings": null,
+            "savingsReason": "Requires matched baseline tasks with quality acceptance and provider usage. No counterfactual savings inferred."
+          }
+        }
+      ],
+      "metrics": {
+        "events": 10,
+        "windowLimit": 10000,
+        "jev": {
+          "calls": 1,
+          "failures": 0,
+          "inputTokens": 1178,
+          "outputTokens": 75,
+          "totalElapsedMs": 776,
+          "missingUsage": 0
+        },
+        "cacheHits": 0,
+        "savings": null,
+        "savingsReason": "Requires matched baseline tasks with quality acceptance and provider usage. No counterfactual savings inferred."
+      },
+      "events": [
+        {
+          "at": "2026-09-23T08:22:47.118Z",
+          "kind": "operation",
+          "operation": "metrics",
+          "elapsedMs": 0,
+          "calls": 0
+        },
+        {
+          "at": "2026-09-23T08:22:47.118Z",
+          "kind": "operation",
+          "operation": "recall",
+          "elapsedMs": 0,
+          "calls": 0
+        },
+        {
+          "at": "2026-09-23T08:22:47.117Z",
+          "kind": "automatic_output_filter",
+          "boundaryId": "6a994259c5444298b1da504c729010d29290cba37a49931d4d69abc1e437fb91",
+          "originalBytes": 30868,
+          "sourceTextBytes": 30868,
+          "retainedBytes": 2526,
+          "artifactId": "4b47660c-5153-40af-b684-a8d49d9c29aa",
+          "nativeTokenSavings": null
+        },
+        {
+          "at": "2026-09-23T08:22:47.117Z",
+          "kind": "automatic_output_result",
+          "boundaryId": "6a994259c5444298b1da504c729010d29290cba37a49931d4d69abc1e437fb91",
+          "applied": true,
+          "reason": "applied",
+          "originalBytes": 30868,
+          "sourceTextBytes": 30868,
+          "retainedBytes": 2526,
+          "retainedRatio": 0.08183231825839056,
+          "artifactId": "4b47660c-5153-40af-b684-a8d49d9c29aa",
+          "excludedItems": 2,
+          "deferredItems": 0,
+          "elapsedMs": 776,
+          "nativeTokenSavings": null
+        },
+        {
+          "at": "2026-09-23T08:22:47.117Z",
+          "kind": "evidence_selection",
+          "policy": "preserve-uncertainty-v2",
+          "candidates": 14,
+          "judged": 2,
+          "duplicates": 11,
+          "proposedExclusions": 2,
+          "appliedExclusions": 2,
+          "mode": "active"
+        },
+        {
+          "at": "2026-09-23T08:22:47.117Z",
+          "kind": "jev_call",
+          "purpose": "evidence",
+          "model": "jev-1.13.0",
+          "elapsedMs": 776,
+          "inputTokens": 1178,
+          "outputTokens": 75,
+          "questions": 2,
+          "status": "success"
+        },
+        {
+          "at": "2026-09-23T08:22:46.341Z",
+          "kind": "automatic_output_admission",
+          "reason": "eligible",
+          "adapter": "text",
+          "boundaryId": "6a994259c5444298b1da504c729010d29290cba37a49931d4d69abc1e437fb91"
+        },
+        {
+          "at": "2026-09-23T08:22:46.340Z",
+          "kind": "automatic_output_admission",
+          "reason": "no_benefit_cooldown",
+          "adapter": "text",
+          "boundaryId": "42b3452994cc8cb01d4d31887193d4306e7a1f5530241618005607c7f3a58f54"
+        },
+        {
+          "at": "2026-09-23T08:22:46.340Z",
+          "kind": "automatic_output_result",
+          "boundaryId": "a920bc023ffc921b91b09c7a6b54236c4a7a039a7ddac7f398741501abeabb43",
+          "applied": false,
+          "reason": "insufficient_reduction",
+          "originalBytes": 16176,
+          "sourceTextBytes": 16176,
+          "retainedBytes": 16402,
+          "retainedRatio": 1.013971315529179,
+          "artifactId": "70c58f02-0e39-4702-b1c6-74a5e5ea9e91",
+          "excludedItems": 0,
+          "deferredItems": 0,
+          "elapsedMs": 0,
+          "nativeTokenSavings": null
+        },
+        {
+          "at": "2026-09-23T08:22:46.339Z",
+          "kind": "evidence_selection",
+          "policy": "preserve-uncertainty-v2",
+          "candidates": 1,
+          "judged": 0,
+          "duplicates": 0,
+          "proposedExclusions": 0,
+          "appliedExclusions": 0,
+          "mode": "active"
+        },
+        {
+          "at": "2026-09-23T08:22:46.339Z",
+          "kind": "automatic_output_admission",
+          "reason": "eligible",
+          "adapter": "text",
+          "boundaryId": "a920bc023ffc921b91b09c7a6b54236c4a7a039a7ddac7f398741501abeabb43"
+        }
+      ]
+    },
+    {
+      "id": "metrics-consistency",
+      "pass": true,
+      "calls": [
+        {
+          "operation": "decide",
+          "result": {
+            "decisions": [
+              {
+                "id": "x",
+                "type": "choice",
+                "choice": "service",
+                "confidence": 0.99,
+                "probabilities": {
+                  "other": 0,
+                  "service": 1
+                },
+                "source": "jev"
+              }
+            ],
+            "fallbackOwner": "Codex"
+          }
+        },
+        {
+          "operation": "decide",
+          "result": {
+            "decisions": [
+              {
+                "id": "x",
+                "type": "choice",
+                "choice": "service",
+                "confidence": 0.99,
+                "probabilities": {
+                  "other": 0,
+                  "service": 1
+                },
+                "source": "jev"
+              }
+            ],
+            "fallbackOwner": "Codex"
+          }
+        },
+        {
+          "operation": "metrics",
+          "result": {
+            "events": 4,
+            "windowLimit": 10000,
+            "jev": {
+              "calls": 1,
+              "failures": 0,
+              "inputTokens": 368,
+              "outputTokens": 32,
+              "totalElapsedMs": 1268,
+              "missingUsage": 0
+            },
+            "cacheHits": 1,
+            "savings": null,
+            "savingsReason": "Requires matched baseline tasks with quality acceptance and provider usage. No counterfactual savings inferred."
+          }
+        },
+        {
+          "operation": "metrics",
+          "result": {
+            "events": 5,
+            "windowLimit": 10000,
+            "jev": {
+              "calls": 1,
+              "failures": 0,
+              "inputTokens": 368,
+              "outputTokens": 32,
+              "totalElapsedMs": 1268,
+              "missingUsage": 0
+            },
+            "cacheHits": 1,
+            "savings": null,
+            "savingsReason": "Requires matched baseline tasks with quality acceptance and provider usage. No counterfactual savings inferred."
+          }
+        }
+      ],
+      "metrics": {
+        "events": 5,
+        "windowLimit": 10000,
+        "jev": {
+          "calls": 1,
+          "failures": 0,
+          "inputTokens": 368,
+          "outputTokens": 32,
+          "totalElapsedMs": 1268,
+          "missingUsage": 0
+        },
+        "cacheHits": 1,
+        "savings": null,
+        "savingsReason": "Requires matched baseline tasks with quality acceptance and provider usage. No counterfactual savings inferred."
+      },
+      "events": [
+        {
+          "at": "2026-09-23T08:22:48.388Z",
+          "kind": "operation",
+          "operation": "metrics",
+          "elapsedMs": 0,
+          "calls": 0
+        },
+        {
+          "at": "2026-09-23T08:22:48.388Z",
+          "kind": "operation",
+          "operation": "metrics",
+          "elapsedMs": 0,
+          "calls": 0
+        },
+        {
+          "at": "2026-09-23T08:22:48.388Z",
+          "kind": "operation",
+          "operation": "decide",
+          "elapsedMs": 0,
+          "calls": 0
+        },
+        {
+          "at": "2026-09-23T08:22:48.388Z",
+          "kind": "cache_hit",
+          "purpose": "classify"
+        },
+        {
+          "at": "2026-09-23T08:22:48.387Z",
+          "kind": "operation",
+          "operation": "decide",
+          "elapsedMs": 1269,
+          "calls": 1
+        },
+        {
+          "at": "2026-09-23T08:22:48.387Z",
+          "kind": "jev_call",
+          "purpose": "classify",
+          "model": "jev-1.13.0",
+          "elapsedMs": 1268,
+          "inputTokens": 368,
+          "outputTokens": 32,
+          "questions": 1,
+          "status": "success"
+        }
+      ]
+    }
+  ]
+}

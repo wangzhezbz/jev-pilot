@@ -1,0 +1,144 @@
+{
+  "checkedAt": "2026-09-23T08:04:43.397912+00:00",
+  "policyVersion": "effort-v10-bounded-recovery",
+  "bridgeId": "jev:700bc225-74e1-4a8f-bab1-9b935ad65ddb:",
+  "threadId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+  "runtimeVersion": "codex-cli 0.155.0-alpha.9.2",
+  "compatible": true,
+  "installedFingerprint": "0ac145b6e87ff9adcf9e6e419e01666255fe20bd2b283c1a577f9821e442ffeb",
+  "loadedRevisionMatches": true,
+  "processChain": [
+    {
+      "pid": 25256,
+      "ppid": 25252,
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/codex"
+    },
+    {
+      "pid": 25252,
+      "ppid": 25251,
+      "executable": "<user-home>/.nvm/versions/node/v24.18.0/bin/node"
+    },
+    {
+      "pid": 25251,
+      "ppid": 24621,
+      "executable": "<user-home>/.codex/jev-pilot/jev-pilot"
+    },
+    {
+      "pid": 24621,
+      "ppid": 1,
+      "executable": "/Applications/ChatGPT.app/Contents/MacOS/ChatGPT"
+    }
+  ],
+  "activationVerified": true,
+  "currentTaskRecoverySucceeded": true,
+  "currentTaskEffortChanged": false,
+  "events": [
+    {
+      "at": "2026-09-23T08:01:11.080Z",
+      "kind": "bridge_started",
+      "policyVersion": "effort-v10-bounded-recovery"
+    },
+    {
+      "at": "2026-09-23T08:01:11.109Z",
+      "kind": "metadata_loaded",
+      "attempt": 1
+    },
+    {
+      "at": "2026-09-23T08:01:27.020Z",
+      "kind": "resume_context",
+      "threadId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "sourceTurnId": "01a0cd33-d05d-75d1-ab32-c21c39fc3ae0",
+      "changedFilesCount": 0,
+      "requiresReview": true
+    },
+    {
+      "at": "2026-09-23T08:01:28.496Z",
+      "kind": "decision",
+      "threadId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "turnId": "01a0cd48-b13e-7850-958a-e00018bf7964",
+      "policyVersion": "effort-v10-bounded-recovery",
+      "status": "unchanged",
+      "from": "medium",
+      "recommended": "keep",
+      "published": "medium",
+      "confirmation": null,
+      "horizon": 1,
+      "elapsedMs": 1361,
+      "inputTokens": 1358,
+      "outputTokens": 106
+    },
+    {
+      "at": "2026-09-23T08:01:44.842Z",
+      "kind": "fallback",
+      "threadId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "turnId": "01a0cd48-b13e-7850-958a-e00018bf7964",
+      "code": "JEV_TIMEOUT",
+      "effort": "medium",
+      "elapsedMs": 2064,
+      "recoveryScheduled": true,
+      "retryAfterMs": 15000
+    },
+    {
+      "at": "2026-09-23T08:03:58.676Z",
+      "kind": "routing_recovery",
+      "threadId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "turnId": "01a0cd48-b13e-7850-958a-e00018bf7964",
+      "status": "admitted",
+      "attempt": 1
+    },
+    {
+      "at": "2026-09-23T08:03:59.225Z",
+      "kind": "decision",
+      "threadId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "turnId": "01a0cd48-b13e-7850-958a-e00018bf7964",
+      "policyVersion": "effort-v10-bounded-recovery",
+      "status": "unchanged",
+      "from": "medium",
+      "recommended": "medium",
+      "published": "medium",
+      "confirmation": null,
+      "horizon": 1,
+      "elapsedMs": 548,
+      "inputTokens": 3143,
+      "outputTokens": 106
+    },
+    {
+      "at": "2026-09-23T08:04:05.591Z",
+      "kind": "decision",
+      "threadId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "turnId": "01a0cd48-b13e-7850-958a-e00018bf7964",
+      "policyVersion": "effort-v10-bounded-recovery",
+      "status": "unchanged",
+      "from": "medium",
+      "recommended": "medium",
+      "published": "medium",
+      "confirmation": null,
+      "horizon": 1,
+      "elapsedMs": 562,
+      "inputTokens": 3482,
+      "outputTokens": 106
+    },
+    {
+      "at": "2026-09-23T08:04:17.831Z",
+      "kind": "decision",
+      "threadId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "turnId": "01a0cd48-b13e-7850-958a-e00018bf7964",
+      "policyVersion": "effort-v10-bounded-recovery",
+      "status": "unchanged",
+      "from": "medium",
+      "recommended": "medium",
+      "published": "medium",
+      "confirmation": null,
+      "horizon": 2,
+      "elapsedMs": 659,
+      "inputTokens": 4260,
+      "outputTokens": 106
+    }
+  ],
+  "limitations": [
+    "Recorded decisions retained medium; these are not effort-switch receipts.",
+    "Recovery admitted at a later tool boundary and returned a successful decision in 548 ms; it is not a timed background retry.",
+    "No claim of performance savings or Windows/Linux desktop acceptance.",
+    "No-benefit filter cooldown was not exercised by this activation check."
+  ]
+}

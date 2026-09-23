@@ -1,0 +1,52 @@
+{
+  "at": "2026-09-23T08:31:27.584Z",
+  "checks": [
+    {
+      "task": "bug_fix",
+      "case": "unchanged_defective_or_missing_deliverable",
+      "correctlyRejected": true
+    },
+    {
+      "task": "mixed",
+      "case": "unchanged_defective_or_missing_deliverable",
+      "correctlyRejected": true
+    },
+    {
+      "task": "incident",
+      "case": "unchanged_defective_or_missing_deliverable",
+      "correctlyRejected": true
+    },
+    {
+      "task": "incident",
+      "case": "complete_answer",
+      "expectedPass": true,
+      "actualPass": true
+    },
+    {
+      "task": "incident",
+      "case": "wrong_root_cause",
+      "expectedPass": false,
+      "actualPass": false
+    },
+    {
+      "task": "incident",
+      "case": "invented_safety",
+      "expectedPass": false,
+      "actualPass": false
+    },
+    {
+      "task": "incident",
+      "case": "wrong_failure_rate",
+      "expectedPass": false,
+      "actualPass": false
+    },
+    {
+      "task": "incident",
+      "case": "missing_contradiction",
+      "expectedPass": false,
+      "actualPass": false
+    }
+  ],
+  "passed": true,
+  "scope": "Sensitivity checks of frozen independent quality oracles; no paid inference."
+}

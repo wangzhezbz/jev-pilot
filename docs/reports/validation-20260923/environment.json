@@ -1,0 +1,29 @@
+{
+  "at": "2026-09-23T08:28:36.412967+00:00",
+  "gitCommit": "1977c39eb025351145b3f87a8e3df6ba4399dff3",
+  "platform": "Darwin",
+  "architecture": "arm64",
+  "osVersion": "27.0",
+  "node": "v24.18.0",
+  "runtime": "codex-cli 0.155.0-alpha.9.2",
+  "regressions": {
+    "total": 163,
+    "passed": 163,
+    "failed": 0
+  },
+  "sourceCheck": {
+    "files": 201,
+    "modules": 57,
+    "jsonAndSecretScan": "passed"
+  },
+  "sourceFrozenProduct": true,
+  "benchmarkConcurrency": 1,
+  "hostExclusive": false,
+  "description": "One macOS host. Existing apps and parent Codex conversation remained active. Source scripts and fixture generators are included for reproducibility.",
+  "sourceCheckAfterNewScripts": {
+    "at": "2026-09-23T09:33:54.581209+00:00",
+    "files": 232,
+    "modules": 61,
+    "jsonAndSecretScan": "passed"
+  }
+}

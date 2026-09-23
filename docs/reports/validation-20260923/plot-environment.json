@@ -1,0 +1,6 @@
+{
+  "matplotlib": "3.9.4",
+  "input": "pairs.csv",
+  "missingOrFailedPairs": "excluded visually, present in runs.csv and pairs.csv",
+  "jitter": false
+}

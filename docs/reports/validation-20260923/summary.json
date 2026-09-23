@@ -1,0 +1,816 @@
+{
+  "plannedRuns": 48,
+  "attemptedRuns": 48,
+  "successfulRuns": 44,
+  "finished": true,
+  "countsByStatus": {
+    "completed": 44,
+    "interrupted": 3,
+    "timeout": 1
+  },
+  "qualityByArm": {
+    "fixed": {
+      "attempted": 24,
+      "passed": 22
+    },
+    "auto": {
+      "attempted": 24,
+      "passed": 22
+    }
+  },
+  "matchedQualityAccepted": {
+    "pairs": 21,
+    "metrics": {
+      "wallMs": {
+        "fixedTotal": 1487169,
+        "autoTotal": 1897163,
+        "fixedMean": 70817.57142857143,
+        "autoMean": 90341.09523809524,
+        "fixedMedian": 66518,
+        "autoMedian": 87786,
+        "savingPct": -27.568756476231005,
+        "autoLowerPairs": 4
+      },
+      "totalTokens": {
+        "fixedTotal": 2996628,
+        "autoTotal": 3434490,
+        "fixedMean": 142696.57142857142,
+        "autoMean": 163547.14285714287,
+        "fixedMedian": 129717,
+        "autoMedian": 142635,
+        "savingPct": -14.611823689827364,
+        "autoLowerPairs": 4
+      },
+      "inputTokens": {
+        "fixedTotal": 2954175,
+        "autoTotal": 3378818,
+        "fixedMean": 140675.0,
+        "autoMean": 160896.09523809524,
+        "fixedMedian": 128025,
+        "autoMedian": 138687,
+        "savingPct": -14.374334628111063,
+        "autoLowerPairs": 4
+      },
+      "uncachedInputTokens": {
+        "fixedTotal": 589119,
+        "autoTotal": 693634,
+        "fixedMean": 28053.285714285714,
+        "autoMean": 33030.19047619047,
+        "fixedMedian": 23334,
+        "autoMedian": 30911,
+        "savingPct": -17.740897849161197,
+        "autoLowerPairs": 6
+      },
+      "cachedInputTokens": {
+        "fixedTotal": 2365056,
+        "autoTotal": 2685184,
+        "fixedMean": 112621.71428571429,
+        "autoMean": 127865.90476190476,
+        "fixedMedian": 101760,
+        "autoMedian": 107776,
+        "savingPct": -13.535747145099307,
+        "autoLowerPairs": 6
+      },
+      "outputTokens": {
+        "fixedTotal": 42453,
+        "autoTotal": 55672,
+        "fixedMean": 2021.5714285714287,
+        "autoMean": 2651.0476190476193,
+        "fixedMedian": 1818,
+        "autoMedian": 2744,
+        "savingPct": -31.137964337031534,
+        "autoLowerPairs": 1
+      },
+      "reasoningOutputTokens": {
+        "fixedTotal": 5466,
+        "autoTotal": 13510,
+        "fixedMean": 260.2857142857143,
+        "autoMean": 643.3333333333334,
+        "fixedMedian": 233,
+        "autoMedian": 655,
+        "savingPct": -147.16428832784487,
+        "autoLowerPairs": 2
+      },
+      "nativeUsageEvents": {
+        "fixedTotal": 119,
+        "autoTotal": 134,
+        "fixedMean": 5.666666666666667,
+        "autoMean": 6.380952380952381,
+        "fixedMedian": 6,
+        "autoMedian": 6,
+        "savingPct": -12.605042016806722,
+        "autoLowerPairs": 4
+      }
+    }
+  },
+  "byModel": {
+    "gpt-6-astra": {
+      "pairs": 5,
+      "metrics": {
+        "wallMs": {
+          "fixedTotal": 410254,
+          "autoTotal": 486426,
+          "fixedMean": 82050.8,
+          "autoMean": 97285.2,
+          "fixedMedian": 73865,
+          "autoMedian": 98975,
+          "savingPct": -18.56703408132523,
+          "autoLowerPairs": 0
+        },
+        "totalTokens": {
+          "fixedTotal": 511660,
+          "autoTotal": 606998,
+          "fixedMean": 102332.0,
+          "autoMean": 121399.6,
+          "fixedMedian": 79768,
+          "autoMedian": 109139,
+          "savingPct": -18.63307665246452,
+          "autoLowerPairs": 0
+        },
+        "inputTokens": {
+          "fixedTotal": 501829,
+          "autoTotal": 595472,
+          "fixedMean": 100365.8,
+          "autoMean": 119094.4,
+          "fixedMedian": 77146,
+          "autoMedian": 106028,
+          "savingPct": -18.660340474544125,
+          "autoLowerPairs": 0
+        },
+        "uncachedInputTokens": {
+          "fixedTotal": 121157,
+          "autoTotal": 157072,
+          "fixedMean": 24231.4,
+          "autoMean": 31414.4,
+          "fixedMedian": 21978,
+          "autoMedian": 25132,
+          "savingPct": -29.643355315829865,
+          "autoLowerPairs": 0
+        },
+        "cachedInputTokens": {
+          "fixedTotal": 380672,
+          "autoTotal": 438400,
+          "fixedMean": 76134.4,
+          "autoMean": 87680.0,
+          "fixedMedian": 57984,
+          "autoMedian": 80128,
+          "savingPct": -15.164761264290515,
+          "autoLowerPairs": 1
+        },
+        "outputTokens": {
+          "fixedTotal": 9831,
+          "autoTotal": 11526,
+          "fixedMean": 1966.2,
+          "autoMean": 2305.2,
+          "fixedMedian": 1818,
+          "autoMedian": 2544,
+          "savingPct": -17.24137931034482,
+          "autoLowerPairs": 0
+        },
+        "reasoningOutputTokens": {
+          "fixedTotal": 124,
+          "autoTotal": 283,
+          "fixedMean": 24.8,
+          "autoMean": 56.6,
+          "fixedMedian": 22,
+          "autoMedian": 30,
+          "savingPct": -128.2258064516129,
+          "autoLowerPairs": 1
+        },
+        "nativeUsageEvents": {
+          "fixedTotal": 22,
+          "autoTotal": 26,
+          "fixedMean": 4.4,
+          "autoMean": 5.2,
+          "fixedMedian": 4,
+          "autoMedian": 5,
+          "savingPct": -18.181818181818187,
+          "autoLowerPairs": 0
+        }
+      }
+    },
+    "gpt-6-sol": {
+      "pairs": 6,
+      "metrics": {
+        "wallMs": {
+          "fixedTotal": 341706,
+          "autoTotal": 444732,
+          "fixedMean": 56951.0,
+          "autoMean": 74122.0,
+          "fixedMedian": 52894.0,
+          "autoMedian": 76525.0,
+          "savingPct": -30.15048023739706,
+          "autoLowerPairs": 2
+        },
+        "totalTokens": {
+          "fixedTotal": 839568,
+          "autoTotal": 984158,
+          "fixedMean": 139928.0,
+          "autoMean": 164026.33333333334,
+          "fixedMedian": 136789.5,
+          "autoMedian": 152202.0,
+          "savingPct": -17.221952242105452,
+          "autoLowerPairs": 1
+        },
+        "inputTokens": {
+          "fixedTotal": 827164,
+          "autoTotal": 968218,
+          "fixedMean": 137860.66666666666,
+          "autoMean": 161369.66666666666,
+          "fixedMedian": 134818.0,
+          "autoMedian": 148464.5,
+          "savingPct": -17.05272473173398,
+          "autoLowerPairs": 1
+        },
+        "uncachedInputTokens": {
+          "fixedTotal": 167708,
+          "autoTotal": 209178,
+          "fixedMean": 27951.333333333332,
+          "autoMean": 34863.0,
+          "fixedMedian": 26146.0,
+          "autoMedian": 37395.5,
+          "savingPct": -24.72750256398024,
+          "autoLowerPairs": 2
+        },
+        "cachedInputTokens": {
+          "fixedTotal": 659456,
+          "autoTotal": 759040,
+          "fixedMean": 109909.33333333333,
+          "autoMean": 126506.66666666667,
+          "fixedMedian": 108672.0,
+          "autoMedian": 108864.0,
+          "savingPct": -15.100931677018625,
+          "autoLowerPairs": 2
+        },
+        "outputTokens": {
+          "fixedTotal": 12404,
+          "autoTotal": 15940,
+          "fixedMean": 2067.3333333333335,
+          "autoMean": 2656.6666666666665,
+          "fixedMedian": 2127.0,
+          "autoMedian": 2840.5,
+          "savingPct": -28.50693324733957,
+          "autoLowerPairs": 1
+        },
+        "reasoningOutputTokens": {
+          "fixedTotal": 1907,
+          "autoTotal": 4500,
+          "fixedMean": 317.8333333333333,
+          "autoMean": 750.0,
+          "fixedMedian": 338.0,
+          "autoMedian": 542.5,
+          "savingPct": -135.97273203985316,
+          "autoLowerPairs": 0
+        },
+        "nativeUsageEvents": {
+          "fixedTotal": 36,
+          "autoTotal": 38,
+          "fixedMean": 6.0,
+          "autoMean": 6.333333333333333,
+          "fixedMedian": 6.0,
+          "autoMedian": 6.5,
+          "savingPct": -5.555555555555558,
+          "autoLowerPairs": 1
+        }
+      }
+    },
+    "gpt-6-luna": {
+      "pairs": 6,
+      "metrics": {
+        "wallMs": {
+          "fixedTotal": 313926,
+          "autoTotal": 475211,
+          "fixedMean": 52321.0,
+          "autoMean": 79201.83333333333,
+          "fixedMedian": 47394.0,
+          "autoMedian": 72313.5,
+          "savingPct": -51.376757579811795,
+          "autoLowerPairs": 1
+        },
+        "totalTokens": {
+          "fixedTotal": 861510,
+          "autoTotal": 1091997,
+          "fixedMean": 143585.0,
+          "autoMean": 181999.5,
+          "fixedMedian": 130221.5,
+          "autoMedian": 200064.5,
+          "savingPct": -26.753839189330364,
+          "autoLowerPairs": 1
+        },
+        "inputTokens": {
+          "fixedTotal": 851606,
+          "autoTotal": 1076374,
+          "fixedMean": 141934.33333333334,
+          "autoMean": 179395.66666666666,
+          "fixedMedian": 128434.5,
+          "autoMedian": 197018.5,
+          "savingPct": -26.393426067923432,
+          "autoLowerPairs": 1
+        },
+        "uncachedInputTokens": {
+          "fixedTotal": 164758,
+          "autoTotal": 191894,
+          "fixedMean": 27459.666666666668,
+          "autoMean": 31982.333333333332,
+          "fixedMedian": 23986.5,
+          "autoMedian": 26394.5,
+          "savingPct": -16.470216924216132,
+          "autoLowerPairs": 2
+        },
+        "cachedInputTokens": {
+          "fixedTotal": 686848,
+          "autoTotal": 884480,
+          "fixedMean": 114474.66666666667,
+          "autoMean": 147413.33333333334,
+          "fixedMedian": 104448.0,
+          "autoMedian": 165632.0,
+          "savingPct": -28.773760715616838,
+          "autoLowerPairs": 1
+        },
+        "outputTokens": {
+          "fixedTotal": 9904,
+          "autoTotal": 15623,
+          "fixedMean": 1650.6666666666667,
+          "autoMean": 2603.8333333333335,
+          "fixedMedian": 1716.5,
+          "autoMedian": 2625.0,
+          "savingPct": -57.74434571890146,
+          "autoLowerPairs": 0
+        },
+        "reasoningOutputTokens": {
+          "fixedTotal": 1169,
+          "autoTotal": 5507,
+          "fixedMean": 194.83333333333334,
+          "autoMean": 917.8333333333334,
+          "fixedMedian": 161.5,
+          "autoMedian": 679.0,
+          "savingPct": -371.0863986313088,
+          "autoLowerPairs": 0
+        },
+        "nativeUsageEvents": {
+          "fixedTotal": 35,
+          "autoTotal": 44,
+          "fixedMean": 5.833333333333333,
+          "autoMean": 7.333333333333333,
+          "fixedMedian": 6.0,
+          "autoMedian": 6.5,
+          "savingPct": -25.71428571428571,
+          "autoLowerPairs": 1
+        }
+      }
+    },
+    "gpt-5.6-sol": {
+      "pairs": 4,
+      "metrics": {
+        "wallMs": {
+          "fixedTotal": 421283,
+          "autoTotal": 490794,
+          "fixedMean": 105320.75,
+          "autoMean": 122698.5,
+          "fixedMedian": 108965.5,
+          "autoMedian": 118587.5,
+          "savingPct": -16.499835027760447,
+          "autoLowerPairs": 1
+        },
+        "totalTokens": {
+          "fixedTotal": 783890,
+          "autoTotal": 751337,
+          "fixedMean": 195972.5,
+          "autoMean": 187834.25,
+          "fixedMedian": 170972.5,
+          "autoMedian": 198774.0,
+          "savingPct": 4.152751023740575,
+          "autoLowerPairs": 2
+        },
+        "inputTokens": {
+          "fixedTotal": 773576,
+          "autoTotal": 738754,
+          "fixedMean": 193394.0,
+          "autoMean": 184688.5,
+          "fixedMedian": 168491.0,
+          "autoMedian": 195540.0,
+          "savingPct": 4.501432309171949,
+          "autoLowerPairs": 2
+        },
+        "uncachedInputTokens": {
+          "fixedTotal": 135496,
+          "autoTotal": 135490,
+          "fixedMean": 33874.0,
+          "autoMean": 33872.5,
+          "fixedMedian": 33053.0,
+          "autoMedian": 37588.0,
+          "savingPct": 0.004428175001480739,
+          "autoLowerPairs": 2
+        },
+        "cachedInputTokens": {
+          "fixedTotal": 638080,
+          "autoTotal": 603264,
+          "fixedMean": 159520.0,
+          "autoMean": 150816.0,
+          "fixedMedian": 133696.0,
+          "autoMedian": 157952.0,
+          "savingPct": 5.456369107321968,
+          "autoLowerPairs": 2
+        },
+        "outputTokens": {
+          "fixedTotal": 10314,
+          "autoTotal": 12583,
+          "fixedMean": 2578.5,
+          "autoMean": 3145.75,
+          "fixedMedian": 2570.5,
+          "autoMedian": 3057.5,
+          "savingPct": -21.999224355245307,
+          "autoLowerPairs": 0
+        },
+        "reasoningOutputTokens": {
+          "fixedTotal": 2266,
+          "autoTotal": 3220,
+          "fixedMean": 566.5,
+          "autoMean": 805.0,
+          "fixedMedian": 542.5,
+          "autoMedian": 798.5,
+          "savingPct": -42.10061782877317,
+          "autoLowerPairs": 1
+        },
+        "nativeUsageEvents": {
+          "fixedTotal": 26,
+          "autoTotal": 26,
+          "fixedMean": 6.5,
+          "autoMean": 6.5,
+          "fixedMedian": 6.0,
+          "autoMedian": 7.0,
+          "savingPct": 0.0,
+          "autoLowerPairs": 2
+        }
+      }
+    }
+  },
+  "byTask": {
+    "bug_fix": {
+      "pairs": 7,
+      "metrics": {
+        "wallMs": {
+          "fixedTotal": 489469,
+          "autoTotal": 659347,
+          "fixedMean": 69924.14285714286,
+          "autoMean": 94192.42857142857,
+          "fixedMedian": 64161,
+          "autoMedian": 97875,
+          "savingPct": -34.706590202852475,
+          "autoLowerPairs": 1
+        },
+        "totalTokens": {
+          "fixedTotal": 719980,
+          "autoTotal": 798873,
+          "fixedMean": 102854.28571428571,
+          "autoMean": 114124.71428571429,
+          "fixedMedian": 112229,
+          "autoMedian": 117069,
+          "savingPct": -10.957665490708068,
+          "autoLowerPairs": 2
+        },
+        "inputTokens": {
+          "fixedTotal": 705180,
+          "autoTotal": 779303,
+          "fixedMean": 100740.0,
+          "autoMean": 111329.0,
+          "fixedMedian": 110288,
+          "autoMedian": 114525,
+          "savingPct": -10.5112169942426,
+          "autoLowerPairs": 2
+        },
+        "uncachedInputTokens": {
+          "fixedTotal": 136604,
+          "autoTotal": 184231,
+          "fixedMean": 19514.85714285714,
+          "autoMean": 26318.714285714286,
+          "fixedMedian": 20379,
+          "autoMedian": 23264,
+          "savingPct": -34.865011273461974,
+          "autoLowerPairs": 3
+        },
+        "cachedInputTokens": {
+          "fixedTotal": 568576,
+          "autoTotal": 595072,
+          "fixedMean": 81225.14285714286,
+          "autoMean": 85010.28571428571,
+          "fixedMedian": 93696,
+          "autoMedian": 77312,
+          "savingPct": -4.66006303466906,
+          "autoLowerPairs": 3
+        },
+        "outputTokens": {
+          "fixedTotal": 14800,
+          "autoTotal": 19570,
+          "fixedMean": 2114.285714285714,
+          "autoMean": 2795.714285714286,
+          "fixedMedian": 1882,
+          "autoMedian": 2544,
+          "savingPct": -32.229729729729726,
+          "autoLowerPairs": 0
+        },
+        "reasoningOutputTokens": {
+          "fixedTotal": 1853,
+          "autoTotal": 5003,
+          "fixedMean": 264.7142857142857,
+          "autoMean": 714.7142857142857,
+          "fixedMedian": 196,
+          "autoMedian": 699,
+          "savingPct": -169.9946033459255,
+          "autoLowerPairs": 1
+        },
+        "nativeUsageEvents": {
+          "fixedTotal": 38,
+          "autoTotal": 41,
+          "fixedMean": 5.428571428571429,
+          "autoMean": 5.857142857142857,
+          "fixedMedian": 6,
+          "autoMedian": 6,
+          "savingPct": -7.8947368421052655,
+          "autoLowerPairs": 2
+        }
+      }
+    },
+    "incident": {
+      "pairs": 7,
+      "metrics": {
+        "wallMs": {
+          "fixedTotal": 409919,
+          "autoTotal": 507001,
+          "fixedMean": 58559.857142857145,
+          "autoMean": 72428.71428571429,
+          "fixedMedian": 55463,
+          "autoMedian": 68591,
+          "savingPct": -23.683215464518593,
+          "autoLowerPairs": 2
+        },
+        "totalTokens": {
+          "fixedTotal": 1494875,
+          "autoTotal": 1634088,
+          "fixedMean": 213553.57142857142,
+          "autoMean": 233441.14285714287,
+          "fixedMedian": 211589,
+          "autoMedian": 232981,
+          "savingPct": -9.312685007107625,
+          "autoLowerPairs": 1
+        },
+        "inputTokens": {
+          "fixedTotal": 1485181,
+          "autoTotal": 1620288,
+          "fixedMean": 212168.7142857143,
+          "autoMean": 231469.7142857143,
+          "fixedMedian": 210503,
+          "autoMedian": 231000,
+          "savingPct": -9.097005684828986,
+          "autoLowerPairs": 1
+        },
+        "uncachedInputTokens": {
+          "fixedTotal": 285693,
+          "autoTotal": 312640,
+          "fixedMean": 40813.28571428572,
+          "autoMean": 44662.857142857145,
+          "fixedMedian": 42823,
+          "autoMedian": 44996,
+          "savingPct": -9.432152695375805,
+          "autoLowerPairs": 2
+        },
+        "cachedInputTokens": {
+          "fixedTotal": 1199488,
+          "autoTotal": 1307648,
+          "fixedMean": 171355.42857142858,
+          "autoMean": 186806.85714285713,
+          "fixedMedian": 167680,
+          "autoMedian": 183808,
+          "savingPct": -9.017180663749858,
+          "autoLowerPairs": 2
+        },
+        "outputTokens": {
+          "fixedTotal": 9694,
+          "autoTotal": 13800,
+          "fixedMean": 1384.857142857143,
+          "autoMean": 1971.4285714285713,
+          "fixedMedian": 1372,
+          "autoMedian": 1981,
+          "savingPct": -42.356096554569845,
+          "autoLowerPairs": 0
+        },
+        "reasoningOutputTokens": {
+          "fixedTotal": 2357,
+          "autoTotal": 5353,
+          "fixedMean": 336.7142857142857,
+          "autoMean": 764.7142857142857,
+          "fixedMedian": 375,
+          "autoMedian": 859,
+          "savingPct": -127.11073398387782,
+          "autoLowerPairs": 1
+        },
+        "nativeUsageEvents": {
+          "fixedTotal": 42,
+          "autoTotal": 44,
+          "fixedMean": 6.0,
+          "autoMean": 6.285714285714286,
+          "fixedMedian": 6,
+          "autoMedian": 6,
+          "savingPct": -4.761904761904767,
+          "autoLowerPairs": 1
+        }
+      }
+    },
+    "mixed": {
+      "pairs": 7,
+      "metrics": {
+        "wallMs": {
+          "fixedTotal": 587781,
+          "autoTotal": 730815,
+          "fixedMean": 83968.71428571429,
+          "autoMean": 104402.14285714286,
+          "fixedMedian": 75925,
+          "autoMedian": 111555,
+          "savingPct": -24.334573591184473,
+          "autoLowerPairs": 1
+        },
+        "totalTokens": {
+          "fixedTotal": 781773,
+          "autoTotal": 1001529,
+          "fixedMean": 111681.85714285714,
+          "autoMean": 143075.57142857142,
+          "fixedMedian": 103557,
+          "autoMedian": 142635,
+          "savingPct": -28.10995007502177,
+          "autoLowerPairs": 1
+        },
+        "inputTokens": {
+          "fixedTotal": 763814,
+          "autoTotal": 979227,
+          "fixedMean": 109116.28571428571,
+          "autoMean": 139889.57142857142,
+          "fixedMedian": 100902,
+          "autoMedian": 138687,
+          "savingPct": -28.202284849452887,
+          "autoLowerPairs": 1
+        },
+        "uncachedInputTokens": {
+          "fixedTotal": 166822,
+          "autoTotal": 196763,
+          "fixedMean": 23831.714285714286,
+          "autoMean": 28109.0,
+          "fixedMedian": 22378,
+          "autoMedian": 25132,
+          "savingPct": -17.94787258275288,
+          "autoLowerPairs": 1
+        },
+        "cachedInputTokens": {
+          "fixedTotal": 596992,
+          "autoTotal": 782464,
+          "fixedMean": 85284.57142857143,
+          "autoMean": 111780.57142857143,
+          "fixedMedian": 77568,
+          "autoMedian": 107776,
+          "savingPct": -31.06775300171527,
+          "autoLowerPairs": 1
+        },
+        "outputTokens": {
+          "fixedTotal": 17959,
+          "autoTotal": 22302,
+          "fixedMean": 2565.5714285714284,
+          "autoMean": 3186.0,
+          "fixedMedian": 2655,
+          "autoMedian": 3111,
+          "savingPct": -24.182860961078,
+          "autoLowerPairs": 1
+        },
+        "reasoningOutputTokens": {
+          "fixedTotal": 1256,
+          "autoTotal": 3154,
+          "fixedMean": 179.42857142857142,
+          "autoMean": 450.57142857142856,
+          "fixedMedian": 127,
+          "autoMedian": 619,
+          "savingPct": -151.11464968152868,
+          "autoLowerPairs": 0
+        },
+        "nativeUsageEvents": {
+          "fixedTotal": 39,
+          "autoTotal": 49,
+          "fixedMean": 5.571428571428571,
+          "autoMean": 7.0,
+          "fixedMedian": 5,
+          "autoMedian": 7,
+          "savingPct": -25.64102564102564,
+          "autoLowerPairs": 1
+        }
+      }
+    }
+  },
+  "allAttemptsTotals": {
+    "wallMs": 4519598,
+    "totalTokens": 7014634,
+    "inputTokens": 6903465,
+    "uncachedInputTokens": 1448489,
+    "cachedInputTokens": 5454976,
+    "outputTokens": 111169,
+    "reasoningOutputTokens": 21892,
+    "nativeUsageEvents": 280,
+    "jevAttempts": 105,
+    "jevFailures": 14,
+    "jevInputTokens": 258612,
+    "jevOutputTokens": 11305,
+    "jevElapsedMs": 107025,
+    "jevUsageUnknownCalls": 14,
+    "effortChanges": 20,
+    "firstParameterChanges": 20,
+    "nativeAppliedChanges": 0,
+    "outputFilters": 13,
+    "filteredBytes": 249665
+  },
+  "exploratoryClusterBootstrap95": {
+    "wallMs": [
+      -44.909723510448885,
+      -14.496948822116096
+    ],
+    "totalTokens": [
+      -36.94895140794407,
+      1.2272582272766064
+    ],
+    "uncachedInputTokens": [
+      -34.735823230348075,
+      -5.722811688850915
+    ],
+    "outputTokens": [
+      -46.098457573805284,
+      -17.538853812530352
+    ]
+  },
+  "bootstrapClusters": 12,
+  "allPairedAttempts": {
+    "fixed": {
+      "runs": 24,
+      "passed": 22,
+      "wallMs": 2085941,
+      "knownTotalTokens": 3281057,
+      "unknownUsageRuns": 0
+    },
+    "auto": {
+      "runs": 24,
+      "passed": 22,
+      "wallMs": 2433657,
+      "knownTotalTokens": 3733577,
+      "unknownUsageRuns": 1
+    }
+  },
+  "missingGPTUsageRuns": [
+    "gpt-5.6-sol-mixed-0-auto"
+  ],
+  "dataIntegrity": {
+    "preregisteredOrderMatches": true,
+    "duplicateOrExtraRuns": false,
+    "nativeUsageArithmeticChecked": true,
+    "cacheAndReasoningSubsetsChecked": true,
+    "routerAndClientTotalsCheckedWhereAvailable": true,
+    "completedAtOrBeyondDeadline": []
+  },
+  "jevInputOnlyEstimateUsd": 0.010861704,
+  "activation": {
+    "automaticRuns": 24,
+    "runsWithAppliedEffortChange": 20,
+    "effortTransitions": {
+      "medium -> high": 20
+    },
+    "upshifts": 20,
+    "downshifts": 0,
+    "routingFallbacksByCode": {
+      "JEV_TIMEOUT": 10,
+      "METADATA_TIMEOUT": 2
+    },
+    "metadataUnavailableByArm": {
+      "fixed": 2,
+      "auto": 2
+    },
+    "outputAdmissionsByReason": {
+      "small": 109,
+      "turn_limit": 5,
+      "eligible": 16
+    },
+    "filterResultsByReason": {
+      "applied": 13,
+      "degraded": 3
+    },
+    "filterResultsWithExclusion": 0,
+    "filterResultsWithDeferralOnly": 13,
+    "filterExcludedItems": 0,
+    "filterDeferredItems": 85
+  },
+  "pricingSource": "https://typesafe.ai/ (42 USD per billion input tokens, checked 2026-09-23); input-only estimate excludes unknown failed-call usage and is not account debit.",
+  "limitations": [
+    "Two repeats per model/task; synthetic author-built workloads, not a production corpus.",
+    "Matched quality-accepted subset excludes failed/incomplete pairs; all attempts and their costs remain in runs.csv.",
+    "No quota/account debit or graphical desktop wall-time measurement.",
+    "GPT cached input is a subset of input; reasoning output is a subset of output; never add either twice.",
+    "Jev and GPT tokenizers differ; adding their counts does not estimate equivalent work or money.",
+    "Current host continues running normal applications and this parent conversation; initial feature/native/browser checks overlapped some arms. Single concurrency applies to this benchmark only.",
+    "Absolute latency includes model waiting, tools and Jev work, but excludes app startup and independent offline acceptance.",
+    "No component ablation: combined auto results cannot causally separate effort routing from filtering.",
+    "The control uses the same bridge/hooks with a zero-network keep evaluator and disabled filtering; it is not an unmodified bare-Codex process.",
+    "No product code changes or selective retries during the paid benchmark."
+  ]
+}

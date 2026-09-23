@@ -1,0 +1,50 @@
+{
+  "at": "2026-09-23T08:25:45.040Z",
+  "kind": "real_local_dashboard_http_api",
+  "status": 200,
+  "unauthenticatedStatus": 403,
+  "languages": [
+    {
+      "lang": "en",
+      "status": 200,
+      "keys": 126
+    },
+    {
+      "lang": "zh-CN",
+      "status": 200,
+      "keys": 126
+    },
+    {
+      "lang": "ru",
+      "status": 200,
+      "keys": 126
+    },
+    {
+      "lang": "ja",
+      "status": 200,
+      "keys": 126
+    },
+    {
+      "lang": "ko",
+      "status": 200,
+      "keys": 126
+    }
+  ],
+  "metrics": {
+    "events": 65,
+    "windowLimit": 10000,
+    "jev": {
+      "calls": 16,
+      "failures": 2,
+      "inputTokens": 12117,
+      "outputTokens": 1525,
+      "totalElapsedMs": 13134,
+      "missingUsage": 0
+    },
+    "cacheHits": 0,
+    "savings": null,
+    "savingsReason": "Requires matched baseline tasks with quality acceptance and provider usage. No counterfactual savings inferred."
+  },
+  "loadedRevisionMatches": true,
+  "limitation": "Live HTTP/API check, not a new screenshot-based five-language visual acceptance."
+}
