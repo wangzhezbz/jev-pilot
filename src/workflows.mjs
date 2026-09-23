@@ -70,9 +70,12 @@ export function checkpoint(ctx, input) {
     const value = { task: input.task, completed: input.completed || [], pending: input.pending || [], sourceHashes: snapshot(ctx, input.files || []), createdAt: now(), receiptIds: input.receiptIds || [] };
     return { id: ctx.store.put(ctx.project, 'checkpoint', value) };
   }
-  requireValue(input.action === 'resume'); const saved = ctx.store.get(ctx.project, 'checkpoint', input.id); requireValue(saved, 'CHECKPOINT_NOT_FOUND');
-  const changes = Object.entries(saved.sourceHashes).filter(([p, h]) => { try { return readSource(ctx.root, p).hash !== h; } catch { return true; } }).map(([p]) => p);
-  return { ...saved, changedFiles: changes, state: changes.length ? 'revalidate' : 'ready_for_review', automaticReplay: false, instruction: 'Inspect current state and receipts; never replay completed side effects blindly.' };
+  requireValue(['resume','latest'].includes(input.action));
+  const id=input.action==='latest'&&ctx.taskId?'auto-'+hash(ctx.taskId):input.id;
+  requireValue(typeof id==='string','CHECKPOINT_ID_REQUIRED');
+  const saved=ctx.store.get(ctx.project,'checkpoint',id);requireValue(saved,'CHECKPOINT_NOT_FOUND');
+  const changes = Object.entries(saved.sourceHashes||{}).filter(([p, h]) => { try { return readSource(ctx.root, p).hash !== h; } catch { return true; } }).map(([p]) => p);
+  return { id,...saved, changedFiles: changes, state: changes.length||saved.auto ? 'revalidate' : 'ready_for_review', automaticReplay: false, instruction: 'Inspect current state and receipts; never replay completed side effects blindly.' };
 }
 export async function extract(ctx, { content, path, fields }) {
   const source = path ? readSource(ctx.root, path) : { text: text(content, 20000), path: 'provided' };

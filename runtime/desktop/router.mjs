@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { parseEnv } from 'node:util';
 import { postTypeSafe } from './transport.mjs';
 
-export const POLICY_VERSION = 'effort-v7-stable-budget';
+export const POLICY_VERSION = 'effort-v8-reserved-wait';
 const effortOrder=['none','minimal','low','medium','high','xhigh','max','ultra'];
 export const LEASE_UNIT = 'tool_completion_boundary';
 export const SUPPORTED_MODELS = ['gpt-6-astra','gpt-6-sol','gpt-6-luna','gpt-5.6-sol','gpt-5.6-terra','gpt-5.6-luna'];
@@ -28,6 +28,14 @@ export const horizonQuestion = {
     '10': 'A long mechanical sequence with explicit steps and no unresolved decisions; effort should remain stable across many tool results.',
   },
 };
+function validChoice(answer,question) {
+  const keys=Object.keys(question.criteria),ps=answer?.probabilities;
+  return answer?.type==='choice'&&keys.includes(answer.choice)&&Number.isFinite(answer.confidence)
+    &&answer.confidence>=0&&answer.confidence<=1&&ps&&Object.keys(ps).length===keys.length
+    &&keys.every(k=>Number.isFinite(ps[k])&&ps[k]>=0&&ps[k]<=1)
+    &&Math.abs(Object.values(ps).reduce((a,b)=>a+b,0)-1)<=.02
+    &&ps[answer.choice]>=Math.max(...Object.values(ps))-1e-6;
+}
 export function selectedHorizon(answer, fallback = 1) {
   const keys = Object.keys(horizonQuestion.criteria), ps = answer?.probabilities;
   if (answer?.type !== 'choice' || !keys.includes(answer.choice)
@@ -143,10 +151,17 @@ export class Router {
     // judgment without turning a long reuse lease into one call per generation.
     if(kind!=='reasoning_summary'){t.progressVersion++;t.urgentVersion++;}
   }
-  context(t) { return { taskId: t.threadId, cwd: t.cwd ?? this.threads.get(t.threadId)?.cwd }; }
+  context(t) { return { taskId: t.threadId, cwd: t.cwd ?? this.threads.get(t.threadId)?.cwd,
+    priority:t.forceRecheck || ((t.routineBudgetBlocked || t.calls>this.routineLimit) && t.urgentVersion!==t.judgedUrgent)?'urgent':'routine' }; }
   renew(t,result,applied=true,snapshot={progress:t.progressVersion,urgent:t.urgentVersion}) {
     const validEffort=result?.answer?.choice!=='keep' && select(result?.answer,'invalid',this.supported.get(t.model)??[])!=='invalid';
-    t.horizon=applied&&validEffort?selectedHorizon(result?.horizon,this.leaseSteps):1;
+    const requested=selectedHorizon(result?.horizon,null);
+    // An explicit stability judgment may briefly reuse keep only at or above
+    // the user's baseline. It must never prolong an uncertain auto-downgrade.
+    const baselineKeep=result?.answer?.choice==='keep' && validChoice(result.answer,effortQuestion)
+      && effortOrder.indexOf(t.current)>=effortOrder.indexOf(t.baseline) && effortOrder.includes(t.baseline);
+    t.horizonReason=!applied?'not_applied':requested===null?'invalid_horizon':validEffort?'jev_selected':baselineKeep?'keep_at_baseline':'uncertain_effort';
+    t.horizon=applied?(validEffort?(requested??this.leaseSteps):baselineKeep&&requested!==null?Math.min(requested,2):1):1;
     t.lease=t.horizon-1;t.leaseUntil=Date.now()+this.leaseMs;
     t.judgedProgress=snapshot.progress;t.judgedUrgent=snapshot.urgent;t.forceRecheck=false;
   }
@@ -183,6 +198,7 @@ export class Router {
       targetModel:t.model,from,recommended:result.answer?.choice,confidence:result.answer?.confidence,
       probability:result.answer?.probabilities?.[result.answer?.choice],published:t.current,status,
       model:result.model,inputTokens:result.inputTokens??null,outputTokens:result.outputTokens??null,horizon:t.horizon,leaseUnit:LEASE_UNIT,
+      recommendedHorizon:selectedHorizon(result.horizon,null),horizonReason:['applied','unchanged','start_forwarded','budget_held'].includes(status)?t.horizonReason:'not_applied',
       confirmation:status==='applied'?'native_settings_published':status==='start_forwarded'?'start_parameter_forwarded':null,
       estimatedJevUsd:Number.isFinite(result.inputTokens)?result.inputTokens*.042/1e6:null,
       elapsedMs:Math.round(performance.now()-started)};
@@ -203,7 +219,7 @@ export class Router {
       return {...params,effort,...(params.collaborationMode?.settings?{collaborationMode:{...params.collaborationMode,
         settings:{...params.collaborationMode.settings,reasoning_effort:effort}}}:{})};
     }catch(error){
-      t.unavailable=true;
+      t.routineBudgetBlocked=error.message==='TASK_URGENT_RESERVE';t.unavailable=!t.routineBudgetBlocked;
       t.startDecision={kind:'fallback',policyVersion:POLICY_VERSION,event:'BeforeTurnStart',threadId:t.threadId,
         effort:from,code:/^[A-Z][A-Z0-9_]+$/.test(error.message)?error.message:'UNAVAILABLE',elapsedMs:Math.round(performance.now()-started)};
       return params;
@@ -290,6 +306,7 @@ export class Router {
         if(t.unavailable)return {status:'disabled_for_turn'};
         const urgent=t.forceRecheck || t.progressVersion!==t.judgedProgress;
         if(!urgent && t.lease>0 && Date.now()<t.leaseUntil){t.lease--;t.leaseSkips++;return {status:'lease_held'};}
+        if(t.routineBudgetBlocked && this.context(t).priority!=='urgent')return {status:'urgent_reserve_held'};
         return null;
       };
       const skipped=admission();if(skipped)return skipped;
@@ -348,7 +365,7 @@ export class Router {
         const metrics=this.metrics(t,result,from,status,started,p.hook_event_name);
         this.log(metrics);return {status};
       } catch(error) {
-        t.unavailable=true;
+        t.routineBudgetBlocked=error.message==='TASK_URGENT_RESERVE';t.unavailable=!t.routineBudgetBlocked;
         this.log({kind:'fallback',threadId:t.threadId,turnId:t.turnId,effort:t.current,code:/^[A-Z][A-Z0-9_]+$/.test(error.message)?error.message:'UNAVAILABLE',elapsedMs:Math.round(performance.now()-started)});
         await this.restoreBaseline(t,'evaluator_unavailable');
         return {status:'unavailable'};

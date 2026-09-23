@@ -6,10 +6,12 @@ import { browserStep, consumeBrowserTicket } from './browser.mjs';
 import { desktopStatus, desktopMetrics } from './setup.mjs';
 import { browserNetwork } from './browser-network.mjs';
 import { evaluatePolicy } from './evaluation.mjs';
+import {installationPlan,compatibilityProbe} from './installation.mjs';
+import {activity} from './activity.mjs';
 import { diagnostics } from './diagnostics.mjs';
 
 export const operations = {
-  diagnostics, evaluate_policy: evaluatePolicy,
+  installation_plan:()=>installationPlan(),compatibility_probe:()=>compatibilityProbe(),activity, diagnostics, evaluate_policy: evaluatePolicy,
   desktop_status: desktopStatus, desktop_metrics: desktopMetrics,
   browser_network: (ctx, input) => browserNetwork({ repair: input.repair === true }),
   decide: workflow.decide, select: evidence.selectEvidence, search: evidence.search,
@@ -39,8 +41,8 @@ export class Pilot {
     const root = realpathSync(workspace), project = this.store.project(root), config = loadConfig(this.store, project);
     const taskId = input.taskId ?? process.env.CODEX_THREAD_ID;
     if (taskId !== undefined) requireValue(typeof taskId === 'string' && /^[\w.:-]{1,128}$/.test(taskId), 'INVALID_TASK_ID');
-    const judge = new Judge({ store: this.store, project, config, ...(this.key !== undefined ? { key: this.key } : {}), ...(this.send ? { send: this.send } : {}), signal, taskId });
-    const ctx = { root, project, config, judge, store: this.store };
+    const judge = new Judge({ store: this.store, project, config, ...(this.key !== undefined ? { key: this.key } : {}), ...(this.send ? { send: this.send } : {}), signal, taskId,priority:operation==='recover'?'urgent':'routine' });
+    const ctx = { root, project, taskId, config, judge, store: this.store };
     const start = performance.now();
     const result = await operations[operation](ctx, input);
     this.store.event(project, 'operation', { operation, elapsedMs: Math.round(performance.now() - start), calls: judge.calls });

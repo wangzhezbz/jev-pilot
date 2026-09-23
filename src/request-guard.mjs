@@ -10,7 +10,7 @@ export class RequestGuard {
     Object.assign(this, { store, project, taskId, clock });
     this.config = { ...GUARD_DEFAULTS, ...config };
   }
-  reserve({ bytes, timeoutMs, model }) {
+  reserve({ bytes, timeoutMs, model, priority='routine' }) {
     const now = this.clock(), cfg = this.config;
     const scope = this.taskId ? 'task' : 'workspace-window';
     const id = keyOf({ scope, task: this.taskId || this.project, window: Math.floor(now / cfg.budgetWindowMs) });
@@ -25,10 +25,16 @@ export class RequestGuard {
       const pendingMs = Object.values(state.reservations).reduce((sum, p) => sum + p.allowance, 0);
       if (state.calls >= cfg.taskMaxCalls) denied('TASK_CALL_BUDGET');
       if (state.bytes + bytes > cfg.taskMaxBytes) denied('TASK_INPUT_BUDGET');
-      const allowance = Math.min(timeoutMs, cfg.taskMaxWaitMs - state.elapsedMs - pendingMs);
+      const reserveCalls=Math.min(cfg.taskReservedCalls||0,Math.floor(cfg.taskMaxCalls*.2));
+      const reserveWait=Math.min(cfg.taskReservedWaitMs||0,Math.floor(cfg.taskMaxWaitMs*.2));
+      const reserveBytes=Math.min(cfg.taskReservedBytes||0,Math.floor(cfg.taskMaxBytes*.2));
+      const remaining=cfg.taskMaxWaitMs-state.elapsedMs-pendingMs;
+      if(priority!=='urgent' && ((reserveBytes>0&&state.bytes+bytes>cfg.taskMaxBytes-reserveBytes)||(reserveCalls>0&&state.calls>=cfg.taskMaxCalls-reserveCalls) || (reserveWait>0&&remaining-reserveWait<100)))denied('TASK_URGENT_RESERVE');
+      const allowance = Math.min(timeoutMs, remaining-(priority==='urgent'?0:reserveWait));
       if (allowance < 100) denied('TASK_WAIT_BUDGET');
       const token = randomUUID(), expiresAt = now + allowance + 1000;
       state.calls++; state.bytes += bytes; state.scope = scope; state.windowEndsAt = (Math.floor(now / cfg.budgetWindowMs) + 1) * cfg.budgetWindowMs;
+      state.reservedCalls=reserveCalls;state.reservedWaitMs=reserveWait;state.reservedBytes=reserveBytes;
       state.reservations[token] = { allowance, expiresAt };
       this.store.put(this.project, 'task_budget', state, id);
       if (circuit.failures >= cfg.failureThreshold) { circuit.probeToken = token; circuit.probeUntil = expiresAt; this.store.put(this.project, 'circuit', circuit, circuitId); }

@@ -92,7 +92,7 @@ export class Store {
 
 export function loadConfig(store, project) {
   return { enabled: true, model: 'jev-1.13.0', maxCalls: 12, timeoutMs: 5000, cacheMs: 600000, memory: false, locale: 'en', ...GUARD_DEFAULTS, evidenceMode: 'active', excludeProbability: 0.9,
-    ...store.get('global', 'config', 'settings'), ...store.get(project, 'config', 'settings') };
+    taskReservedCalls:2,taskReservedWaitMs:4000,taskReservedBytes:100000,...store.get('global', 'config', 'settings'), ...store.get(project, 'config', 'settings') };
 }
 export function loadKey(home) {
   if (process.env.TYPESAFE_API_KEY) return process.env.TYPESAFE_API_KEY;
@@ -135,8 +135,8 @@ export function validateAnswers(questions, response) {
   } return response;
 }
 export class Judge {
-  constructor({ store, project, config, key = loadKey(store.home), send = transport, signal, taskId }) {
-    Object.assign(this, { store, project, config, key, send, signal }); this.calls = 0; this.inflight = new Map();
+  constructor({ store, project, config, key = loadKey(store.home), send = transport, signal, taskId, priority='routine' }) {
+    Object.assign(this, { store, project, config, key, send, signal, priority }); this.calls = 0; this.inflight = new Map();
     this.guard = new RequestGuard({ store, project, taskId, config });
   }
   async ask(state, questions, purpose = 'decision') {
@@ -156,7 +156,7 @@ export class Judge {
     if (this.inflight.has(key)) return this.inflight.get(key);
     if (this.calls >= this.config.maxCalls) skip('CALL_BUDGET');
     let reservation;
-    try { reservation = this.guard.reserve({ bytes: byteBudget(JSON.stringify(payload)), timeoutMs: this.config.timeoutMs || 5000, model: payload.model }); }
+    try { reservation = this.guard.reserve({ bytes: byteBudget(JSON.stringify(payload)), timeoutMs: this.config.timeoutMs || 5000, model: payload.model,priority:this.priority }); }
     catch (error) { this.store.event(this.project, 'judgment_skipped', { purpose, reason: error.code, items: ids.length }); throw error; }
     this.calls++;
     const started = performance.now();

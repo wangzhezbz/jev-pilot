@@ -7,7 +7,7 @@ export function diagnostics(ctx) {
   const matchedApplied = filters.filter(e=>typeof e.boundaryId==='string'&&admittedIds.has(e.boundaryId)).length;
   const evidence = events.filter(e => e.kind === 'evidence_selection' || e.kind === 'context_compaction');
   const sum = key => evidence.reduce((n, e) => n + (e[key] || 0), 0);
-  const budgets = ctx.store.list(ctx.project, 'task_budget').filter(b => b.windowEndsAt > Date.now()).map(b => ({ scope: b.scope, calls: b.calls, bytes: b.bytes, elapsedMs: b.elapsedMs, pending: Object.keys(b.reservations).length, windowEndsAt: b.windowEndsAt }));
+  const budgets = ctx.store.list(ctx.project, 'task_budget').filter(b => b.windowEndsAt > Date.now()).map(b => ({ scope: b.scope, calls: b.calls, bytes: b.bytes, elapsedMs: b.elapsedMs, pending: Object.keys(b.reservations).length, windowEndsAt: b.windowEndsAt,reservedCalls:b.reservedCalls??0,reservedWaitMs:b.reservedWaitMs??0,reservedBytes:b.reservedBytes??0 }));
   return { eventWindow: { count: events.length, limit: 10000, oldest: events.at(-1)?.at ?? null },
     policy: { version: EVIDENCE_POLICY, mode: ctx.config.evidenceMode, excludeProbability: ctx.config.excludeProbability, thresholdCalibrated: false },
     skips: count(events.filter(e => e.kind === 'judgment_skipped').map(e => e.reason)),

@@ -19,7 +19,7 @@ Never paste a key into a public issue, repository or shell argument. The local d
 3. Use Codex's bundled **plugin-creator** skill to register this folder as `jev-pilot` in the user's personal marketplace. Follow that skill's helper-based registration and validation flow; do not replace the user's marketplace or other plugins. The repository has both portable and Codex compatibility manifests.
 4. Install `jev-pilot@personal` with Codex's plugin command. Check actual native MCP discovery: the `jev_pilot` tool must be present, not merely a manifest on disk.
 5. Run `node scripts/cli.mjs dashboard` from the plugin and open its returned localhost URL. Let the user enter their own key. The agent should not print the key or include it in commands.
-6. Run `node scripts/cli.mjs setup --activate` once. This installs the private adapter and configures the next launch. Do not patch the app bundle. Report any missing dependency or unknown client version rather than claiming installation succeeded.
+6. Use the dashboard's preparation/update button after its prerequisite checks pass, or run `node scripts/cli.mjs setup --activate` once. This installs the private adapter and configures the next launch. Do not patch the app bundle. Report any missing dependency or unknown client version rather than claiming installation succeeded.
 7. After a normal app restart, run `doctor` and inspect fresh `desktop_metrics`. Distinguish installed, configured for next launch, active bridge and actual per-task applied effort. A previous process's log is not proof of this task.
 
 The steps are agent-side setup, not commands the user must repeat per task. One-time plugin trust and credentials follow the host's normal controls.
@@ -33,6 +33,8 @@ Updates preserve installation metadata and keep backups. Unknown runtime version
 Setup checks Node, curl and ripgrep before modifying the adapter. Once the updated bridge has loaded, adding or replacing a key in the private setup page is picked up at the next Jev routing decision without another restart. An explicitly supplied process environment key takes precedence over the private file.
 
 Public signed consumer installers are not yet released. Windows/Linux portable CI is complete; real desktop acceptance remains a release gate. Existing Chrome and Computer Use plugins provide their own runtime permissions and connections; JevPilot does not install a second browser extension.
+
+`installation_plan` reports prerequisites without installing anything. `compatibility_probe` performs isolated native hook discovery after a Codex upgrade; a successful probe alone never enables an unknown version. The dashboard task timeline uses new project-scoped logs after v8 loads and excludes older unscoped records. Automatic checkpoints can be inspected with `checkpoint` / `action: latest` using the real task ID and always require current-state review.
 
 ## Browser proxy compatibility
 

@@ -1,0 +1,92 @@
+{
+  "checkedAt": "2026-09-23T05:47:15.973Z",
+  "policy": "effort-v7-stable-budget",
+  "installedFingerprint": "345ec99601b6c20811164326581f2a925fe4cc1cf0414dd8f3db74404b1d7967",
+  "loadedFingerprint": "345ec99601b6c20811164326581f2a925fe4cc1cf0414dd8f3db74404b1d7967",
+  "loadedRevisionMatches": true,
+  "processChain": [
+    "53692 53688 /Applications/ChatGPT.app/Contents/Resources/codex",
+    "53688 53687 /Users/wangzhe/.nvm/versions/node/v24.18.0/bin/node",
+    "53687 53057 /Users/wangzhe/.codex/jev-pilot/jev-pilot",
+    "53057     1 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT"
+  ],
+  "metadata": [
+    {
+      "at": "2026-09-23T05:45:51.810Z",
+      "bridgeId": "jev:a64db4e9-bb7c-43c4-8348-0ef8f2521a69:",
+      "pid": 53688,
+      "measurementSource": "runtime",
+      "kind": "metadata_loaded",
+      "attempt": 1,
+      "models": 9
+    }
+  ],
+  "currentThread": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+  "currentThreadEvents": [
+    {
+      "at": "2026-09-23T05:46:18.661Z",
+      "bridgeId": "jev:a64db4e9-bb7c-43c4-8348-0ef8f2521a69:",
+      "pid": 53688,
+      "measurementSource": "runtime",
+      "kind": "decision",
+      "policyVersion": "effort-v7-stable-budget",
+      "threadId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "turnId": "01a0cccc-f235-73d3-a5c3-22ccc392e755",
+      "event": "BeforeTurnStart",
+      "targetModel": "gpt-6-astra",
+      "from": "high",
+      "recommended": "keep",
+      "confidence": 0.95,
+      "probability": 0.96,
+      "published": "high",
+      "status": "unchanged",
+      "model": "jev-1.13.0",
+      "inputTokens": 837,
+      "outputTokens": 106,
+      "horizon": 1,
+      "leaseUnit": "tool_completion_boundary",
+      "confirmation": null,
+      "estimatedJevUsd": 0.000035154,
+      "elapsedMs": 1318
+    },
+    {
+      "at": "2026-09-23T05:46:36.380Z",
+      "bridgeId": "jev:a64db4e9-bb7c-43c4-8348-0ef8f2521a69:",
+      "pid": 53688,
+      "measurementSource": "runtime",
+      "kind": "decision",
+      "policyVersion": "effort-v7-stable-budget",
+      "threadId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "turnId": "01a0cccc-f235-73d3-a5c3-22ccc392e755",
+      "event": "PostToolUse",
+      "targetModel": "gpt-6-astra",
+      "from": "high",
+      "recommended": "high",
+      "confidence": 0.28,
+      "probability": 0.4,
+      "published": "high",
+      "status": "unchanged",
+      "model": "jev-1.13.0",
+      "inputTokens": 2056,
+      "outputTokens": 106,
+      "horizon": 1,
+      "leaseUnit": "tool_completion_boundary",
+      "confirmation": null,
+      "estimatedJevUsd": 0.000086352,
+      "elapsedMs": 644
+    },
+    {
+      "at": "2026-09-23T05:46:49.632Z",
+      "bridgeId": "jev:a64db4e9-bb7c-43c4-8348-0ef8f2521a69:",
+      "pid": 53688,
+      "measurementSource": "runtime",
+      "kind": "fallback",
+      "threadId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "turnId": "01a0cccc-f235-73d3-a5c3-22ccc392e755",
+      "effort": "high",
+      "code": "JEV_TIMEOUT",
+      "elapsedMs": 2064
+    }
+  ],
+  "scope": "Live ordinary desktop activation. Decisions, first-step forwarding and applied receipts are distinct; this is not a savings measurement."
+}

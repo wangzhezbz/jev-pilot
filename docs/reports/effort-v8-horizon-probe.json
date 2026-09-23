@@ -1,0 +1,58 @@
+{
+  "kind": "synthetic_state_real_jev",
+  "model": "jev-1.13.0",
+  "gptCalls": 0,
+  "at": "2026-09-23T05:56:45.271Z",
+  "results": [
+    {
+      "id": "settled",
+      "error": "JEV_TIMEOUT"
+    },
+    {
+      "id": "unresolved",
+      "error": "JEV_TIMEOUT"
+    }
+  ],
+  "proxyAwareResults": [
+    {
+      "id": "settled",
+      "effort": "low",
+      "horizon": {
+        "type": "choice",
+        "choice": "5",
+        "confidence": 0.73,
+        "probabilities": {
+          "1": 0.02,
+          "2": 0.05,
+          "5": 0.8,
+          "10": 0.13
+        }
+      },
+      "validHorizon": 5,
+      "model": "jev-1.13.0",
+      "inputTokens": 844,
+      "outputTokens": 106,
+      "elapsedMs": 999
+    },
+    {
+      "id": "unresolved",
+      "effort": "xhigh",
+      "horizon": {
+        "type": "choice",
+        "choice": "1",
+        "confidence": 0.99,
+        "probabilities": {
+          "1": 0.99,
+          "2": 0.01,
+          "5": 0,
+          "10": 0
+        }
+      },
+      "validHorizon": 1,
+      "model": "jev-1.13.0",
+      "inputTokens": 830,
+      "outputTokens": 107,
+      "elapsedMs": 550
+    }
+  ]
+}

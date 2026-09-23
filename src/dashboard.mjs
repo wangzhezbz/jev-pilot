@@ -3,9 +3,10 @@ import { randomBytes } from 'node:crypto';
 import { readFileSync, writeFileSync, chmodSync } from 'node:fs';
 import { join } from 'node:path';
 import { Pilot } from './pilot.mjs';
-import { packageRoot } from './setup.mjs';
-export async function dashboard(workspace, { port = 0, pilot = new Pilot() } = {}) {
+import { packageRoot,setup } from './setup.mjs';
+export async function dashboard(workspace, { port = 0, pilot = new Pilot(),prepare=setup } = {}) {
   const token = randomBytes(32).toString('hex');
+  let preparing=false;
   const server = createServer(async (req, res) => {
     const origin = `http://127.0.0.1:${server.address().port}`;
     const headers = { 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff', 'Content-Security-Policy': "default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'" };
@@ -18,7 +19,11 @@ export async function dashboard(workspace, { port = 0, pilot = new Pilot() } = {
     if (req.method === 'GET' && /^\/locales\/(en|zh-CN|ru|ja|ko)\.json$/.test(path)) return respond(200, JSON.parse(readFileSync(join(packageRoot, path.slice(1)), 'utf8')));
     if (req.headers.authorization !== 'Bearer ' + token || req.headers.origin && req.headers.origin !== origin) return respond(403, { error: 'AUTH' });
     try {
-      if (req.method === 'GET' && path === '/api/status') return respond(200, { diagnostics: await pilot.call({ workspace, operation: 'diagnostics' }), status: await pilot.call({ workspace, operation: 'status' }), metrics: await pilot.call({ workspace, operation: 'metrics' }), desktop: await pilot.call({ workspace, operation: 'desktop_status' }), routing: await pilot.call({ workspace, operation: 'desktop_metrics' }) });
+      if (req.method === 'GET' && path === '/api/status') return respond(200, { installation:await pilot.call({workspace,operation:'installation_plan'}),activity: await pilot.call({ workspace, operation: 'activity' }), diagnostics: await pilot.call({ workspace, operation: 'diagnostics' }), status: await pilot.call({ workspace, operation: 'status' }), metrics: await pilot.call({ workspace, operation: 'metrics' }), desktop: await pilot.call({ workspace, operation: 'desktop_status' }), routing: await pilot.call({ workspace, operation: 'desktop_metrics' }) });
+      if(req.method==='POST'&&path==='/api/setup'){
+        if(preparing)return respond(409,{error:'SETUP_IN_PROGRESS'});
+        preparing=true;try{return respond(200,await prepare({activate:true}));}finally{preparing=false;}
+      }
       if (req.method === 'POST' && ['/api/config', '/api/key'].includes(path)) {
         let raw = ''; for await (const chunk of req) { raw += chunk; if (raw.length > 4096) return respond(413, { error: 'LIMIT' }); }
         const data = JSON.parse(raw);

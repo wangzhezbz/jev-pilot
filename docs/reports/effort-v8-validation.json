@@ -1,0 +1,281 @@
+{
+  "checkedAt": "2026-09-23T06:22:39.768881+00:00",
+  "policy": "effort-v8-reserved-wait",
+  "runtime": "codex-cli 0.155.0-alpha.9.2",
+  "regressions": {
+    "passed": 139,
+    "failed": 0
+  },
+  "nativeFixtures": [
+    {
+      "scenario": "astra_budget",
+      "passed": true,
+      "sourceReportSha256": "d83ac1fab7504eaab934ee765d5ea0f88dcbc9db683077ba039fa4981ebd02b0",
+      "kind": "bundled_runtime_with_synthetic_model",
+      "openaiPaidCalls": 0,
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 3,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 4,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 5,
+          "model": "gpt-6-astra",
+          "effort": "high"
+        },
+        {
+          "number": 6,
+          "model": "gpt-6-astra",
+          "effort": "high"
+        },
+        {
+          "number": 7,
+          "model": "gpt-6-astra",
+          "effort": "high"
+        },
+        {
+          "number": 8,
+          "model": "gpt-6-astra",
+          "effort": "high"
+        }
+      ],
+      "outputFilters": []
+    },
+    {
+      "scenario": "shell_filter",
+      "passed": true,
+      "sourceReportSha256": "eb9d3466a0358869ee90ac42f8659b1bf52d950c9b6b04b40047e7ecff99ac1f",
+      "kind": "bundled_runtime_with_synthetic_model",
+      "openaiPaidCalls": 0,
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        }
+      ],
+      "outputFilters": [
+        {
+          "originalBytes": 24864,
+          "retainedBytes": 2282,
+          "nativeTokenSavings": null
+        }
+      ]
+    },
+    {
+      "scenario": "gpt56_manual",
+      "passed": true,
+      "sourceReportSha256": "eb7a5a056144ff03dde881cd7bbae3e84d5670f45d1c9a9784d4d5c6c969c3e3",
+      "kind": "bundled_runtime_with_synthetic_model",
+      "openaiPaidCalls": 0,
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-5.6-sol",
+          "effort": "medium"
+        }
+      ],
+      "manualSettings": {
+        "status": "applied"
+      },
+      "outputFilters": []
+    },
+    {
+      "scenario": "sol_budget",
+      "passed": true,
+      "sourceReportSha256": "42231a45b2338692240a372d4a76a98886e95de353c6c9757848ec47dad33ab1",
+      "kind": "bundled_runtime_with_synthetic_model",
+      "openaiPaidCalls": 0,
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-sol",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-sol",
+          "effort": "low"
+        },
+        {
+          "number": 3,
+          "model": "gpt-6-sol",
+          "effort": "low"
+        },
+        {
+          "number": 4,
+          "model": "gpt-6-sol",
+          "effort": "low"
+        },
+        {
+          "number": 5,
+          "model": "gpt-6-sol",
+          "effort": "high"
+        },
+        {
+          "number": 6,
+          "model": "gpt-6-sol",
+          "effort": "high"
+        },
+        {
+          "number": 7,
+          "model": "gpt-6-sol",
+          "effort": "high"
+        },
+        {
+          "number": 8,
+          "model": "gpt-6-sol",
+          "effort": "high"
+        }
+      ],
+      "outputFilters": []
+    },
+    {
+      "scenario": "luna_budget",
+      "passed": true,
+      "sourceReportSha256": "28f111e04bbda4eb35e3914d39ba09e421e5a0244ced1c35a9b33c565bcdb42f",
+      "kind": "bundled_runtime_with_synthetic_model",
+      "openaiPaidCalls": 0,
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-luna",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-luna",
+          "effort": "low"
+        },
+        {
+          "number": 3,
+          "model": "gpt-6-luna",
+          "effort": "low"
+        },
+        {
+          "number": 4,
+          "model": "gpt-6-luna",
+          "effort": "low"
+        },
+        {
+          "number": 5,
+          "model": "gpt-6-luna",
+          "effort": "high"
+        },
+        {
+          "number": 6,
+          "model": "gpt-6-luna",
+          "effort": "high"
+        },
+        {
+          "number": 7,
+          "model": "gpt-6-luna",
+          "effort": "high"
+        },
+        {
+          "number": 8,
+          "model": "gpt-6-luna",
+          "effort": "high"
+        }
+      ],
+      "outputFilters": []
+    },
+    {
+      "scenario": "mcp_filter",
+      "passed": true,
+      "sourceReportSha256": "7fa8b8377a959ef33afa113b28b0e2b5fbe61801f24c2d02810255bcf8e604ac",
+      "kind": "bundled_runtime_with_synthetic_model",
+      "openaiPaidCalls": 0,
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        }
+      ],
+      "mcpEnvelopePreserved": true,
+      "automaticCheckpoint": {
+        "observed": true,
+        "auto": true,
+        "requiresReview": true,
+        "turnStatus": "completed",
+        "coverage": "unavailable",
+        "verifiedCompletedCount": 0,
+        "publicProgressObserved": true
+      },
+      "outputFilters": [
+        {
+          "originalBytes": 25270,
+          "sourceTextBytes": 24864,
+          "retainedBytes": 2411,
+          "nativeTokenSavings": null
+        }
+      ]
+    }
+  ],
+  "compatibilityProbe": {
+    "status": "hooks_available",
+    "activated": false
+  },
+  "browser": {
+    "driver": "Chrome extension via CUA",
+    "locales": [
+      "en",
+      "zh-CN",
+      "ru",
+      "ja",
+      "ko"
+    ],
+    "isolatedTimeline": true,
+    "taskFilter": "passed",
+    "setupButton": "mock only; no activation",
+    "languageReload": "passed",
+    "consoleErrors": 0
+  },
+  "savings": null,
+  "paidGptCalls": 0,
+  "liveV8Activation": "pending normal desktop restart",
+  "installation": {
+    "installedPolicy": "effort-v8-reserved-wait",
+    "pluginVersion": "0.2.0+codex.20260923062248",
+    "installed": true,
+    "compatible": true,
+    "configuredForNextLaunch": true,
+    "installedFingerprint": "91d651b9876ae124582dec53963247c5a00c7db28c3a773691d87fc6fb152a5c",
+    "loadedRevisionMatches": false,
+    "loadedPolicy": "effort-v7-stable-budget",
+    "loadedFingerprint": "345ec99601b6c20811164326581f2a925fe4cc1cf0414dd8f3db74404b1d7967",
+    "forcedRestart": false
+  }
+}

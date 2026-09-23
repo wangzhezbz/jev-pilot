@@ -148,3 +148,28 @@ test('one failed compaction batch retains every exchange, including successful b
   const r=await f.call('compact',{goal:'current task',blocks,preserveRecent:1});
   assert.ok(calls>=2);assert.equal(r.degraded,true);assert.deepEqual(r.omittedCallIds,[]);assert.equal(r.blocks.length,blocks.length);assert.ok(r.proposedOmittedCallIds.length>0);
 });
+test('routine requests preserve shared urgent wait and call capacity without increasing totals',t=>{
+ const f=fixture(t,async()=>{});const g=new RequestGuard({store:f.store,project:f.project,taskId:'reserved',config:{taskMaxCalls:10,taskMaxWaitMs:1000,taskReservedCalls:2,taskReservedWaitMs:200}});
+ const ordinary=g.reserve({bytes:1,timeoutMs:1000,model:'fixture'});assert.equal(ordinary.allowance,800);g.finish(ordinary,{status:'success',elapsedMs:800});
+ assert.throws(()=>g.reserve({bytes:1,timeoutMs:200,model:'fixture'}),{code:'TASK_URGENT_RESERVE'});
+ const urgent=g.reserve({bytes:1,timeoutMs:500,model:'fixture',priority:'urgent'});assert.equal(urgent.allowance,200);g.finish(urgent,{status:'success',elapsedMs:200});
+ assert.throws(()=>g.reserve({bytes:1,timeoutMs:200,model:'fixture',priority:'urgent'}),{code:'TASK_WAIT_BUDGET'});
+ const calls=new RequestGuard({store:f.store,project:f.project,taskId:'calls',config:{taskMaxCalls:5,taskMaxWaitMs:10000,taskReservedCalls:2}});
+ for(let i=0;i<4;i++){const r=calls.reserve({bytes:1,timeoutMs:100,model:'fixture'});calls.finish(r,{status:'success',elapsedMs:1});}
+ assert.throws(()=>calls.reserve({bytes:1,timeoutMs:100,model:'fixture'}),{code:'TASK_URGENT_RESERVE'});
+ const last=calls.reserve({bytes:1,timeoutMs:100,model:'fixture',priority:'urgent'});calls.finish(last,{status:'success',elapsedMs:1});
+ assert.throws(()=>calls.reserve({bytes:1,timeoutMs:100,model:'fixture',priority:'urgent'}),{code:'TASK_CALL_BUDGET'});
+});
+test('separate callers share byte and in-flight wait reserves without borrowing urgent capacity',t=>{
+ const f=fixture(t,async()=>{}),config={taskMaxBytes:1000,taskReservedBytes:999,taskMaxWaitMs:1000,taskReservedWaitMs:200};
+ const create=taskId=>new RequestGuard({store:f.store,project:f.project,taskId,config});
+ const a=create('bytes'),b=create('bytes'),first=a.reserve({bytes:800,timeoutMs:100,model:'fixture'});
+ assert.throws(()=>b.reserve({bytes:1,timeoutMs:100,model:'fixture'}),{code:'TASK_URGENT_RESERVE'});
+ b.reserve({bytes:200,timeoutMs:100,model:'fixture',priority:'urgent'});
+ assert.throws(()=>a.reserve({bytes:1,timeoutMs:100,model:'fixture',priority:'urgent'}),{code:'TASK_INPUT_BUDGET'});
+ a.finish(first,{status:'success',elapsedMs:1});
+ const c=create('wait'),d=create('wait');c.reserve({bytes:1,timeoutMs:800,model:'fixture'});
+ assert.throws(()=>d.reserve({bytes:1,timeoutMs:100,model:'fixture'}),{code:'TASK_URGENT_RESERVE'});
+ assert.equal(d.reserve({bytes:1,timeoutMs:800,model:'fixture',priority:'urgent'}).allowance,200);
+ assert.throws(()=>c.reserve({bytes:1,timeoutMs:100,model:'fixture',priority:'urgent'}),{code:'TASK_WAIT_BUDGET'});
+});

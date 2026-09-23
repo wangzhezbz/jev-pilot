@@ -49,6 +49,19 @@ test('dashboard binds localhost, protects API, blocks cross-origin writes and ne
     assert.equal((await fetch(base+'/locales/ko.json')).status,200);
   } finally { running.close(); }
 });
+test('dashboard setup authenticates, rejects cross-origin and serializes concurrent updates',async()=>{
+ const home=mkdtempSync(join(tmpdir(),'jev-setup-api-'));let calls=0,release,started;
+ const began=new Promise(resolve=>started=resolve),gate=new Promise(resolve=>release=resolve);
+ const running=await dashboard(home,{pilot:new Pilot({store:new Store({home:join(home,'private')}),key:null}),prepare:async options=>{calls++;assert.equal(options.activate,true);started();await gate;return{restartRequired:true,currentTaskChanged:false};}});
+ const url=new URL(running.url),headers={Authorization:'Bearer '+url.hash.slice(1)};let first;
+ try{
+  assert.equal((await fetch(url.origin+'/api/setup',{method:'POST'})).status,403);
+  assert.equal((await fetch(url.origin+'/api/setup',{method:'POST',headers:{...headers,Origin:'https://attacker.invalid'}})).status,403);
+  assert.equal(calls,0);first=fetch(url.origin+'/api/setup',{method:'POST',headers});await began;
+  assert.equal((await fetch(url.origin+'/api/setup',{method:'POST',headers})).status,409);
+  release();assert.deepEqual(await(await first).json(),{restartRequired:true,currentTaskChanged:false});assert.equal(calls,1);
+ }finally{release();await first;running.close();}
+});
 test('automatic output filtering skips exact-output tasks, preserves structured data and saves raw text', async () => {
   const home=mkdtempSync(join(tmpdir(),'jev-auto-'));const store=new Store({home:join(home,'private')});
   const send=async payload=>({model:'fixture',usage:{input_tokens:1,output_tokens:1},answers:Object.fromEntries(Object.entries(payload.questions).map(([id,q])=>{const i=+id.slice(1),choice=i===0?'keep':'exclude';return[id,{type:'choice',choice,probabilities:{keep:choice==='keep'?1:0,review:0,exclude:choice==='exclude'?1:0}}]}))});
@@ -59,6 +72,8 @@ test('automatic output filtering skips exact-output tasks, preserves structured 
     const filtered=await auto.hook({...base,hook_event_name:'PostToolUse',tool_name:'Bash',tool_use_id:'1',tool_response:original});
     assert.equal(filtered.continue,false);assert.match(filtered.stopReason,/Artifact:/);
     assert.equal(store.list(store.project(home),'artifact')[0].items.map(x=>x.text).join('\n'),original);
+    const checkpoint=await new Pilot({store,key:'fixture'}).call({workspace:home,operation:'checkpoint',input:{action:'latest',taskId:'s'}});
+    assert.equal(checkpoint.state,'revalidate');assert.deepEqual(checkpoint.changedFiles,[]);
     assert.deepEqual(await auto.hook({...base,hook_event_name:'PostToolUse',tool_name:'Bash',tool_use_id:'2',tool_response:{output:original}}),{});
     await auto.hook({...base,hook_event_name:'UserPromptSubmit',prompt:'show exact output'});
     assert.deepEqual(await auto.hook({...base,hook_event_name:'PostToolUse',tool_name:'Bash',tool_use_id:'3',tool_response:original}),{});

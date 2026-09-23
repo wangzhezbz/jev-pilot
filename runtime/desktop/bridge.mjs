@@ -1,3 +1,4 @@
+import { realpathSync } from 'node:fs';
 import { spawn, execFileSync } from 'node:child_process';
 import { createServer } from 'node:net';
 import { createInterface } from 'node:readline';
@@ -61,7 +62,7 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
   const prefix=`jev:${randomUUID()}:`;
   const pending=new Map(),clientRequests=new Map();let counter=0,closed=false;
   let logPending=Promise.resolve();
-  const log=record=>{if(logPath){const line=JSON.stringify({at:new Date().toISOString(),bridgeId:prefix,pid:process.pid,measurementSource:env.JEV_PILOT_MEASUREMENT==='synthetic'?'synthetic':'runtime',...record})+'\n';
+  const log=record=>{if(logPath){let projectId;try{const cwd=router.turns.get(record.threadId)?.cwd??router.threads.get(record.threadId)?.cwd;if(cwd)projectId=createHash('sha256').update(realpathSync(cwd)).digest('hex');}catch{}const line=JSON.stringify({at:new Date().toISOString(),bridgeId:prefix,pid:process.pid,projectId,measurementSource:env.JEV_PILOT_MEASUREMENT==='synthetic'?'synthetic':'runtime',...record})+'\n';
     logPending=logPending.then(()=>appendFile(logPath,line,{mode:0o600})).catch(()=>{});}};
   const childEnv={...env,JEV_BRIDGE_SOCKET:socketPath};
   // Keep the user's proxy on the backend too. MCP servers still require their
@@ -81,7 +82,7 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
   const guardStore = judge ? null : assistant?.store ?? new Store();
   const judgeFactory = (context, key) => {
     const project = guardStore.project(context.cwd || process.cwd());
-    return new Judge({ store: guardStore, project, taskId: context.taskId, key,
+    return new Judge({ store: guardStore, project, taskId: context.taskId, priority:context.priority, key,
       config: { ...loadConfig(guardStore, project), timeoutMs: 2000, cacheMs: 0 } });
   };
   const router=new Router({request,judge:judge??await makeJudge(keyPath,{env,judgeFactory}),log});
@@ -146,7 +147,7 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
         router.stop(p.params.threadId);log({kind:'start_rejected',threadId:p.params.threadId});
       }
     }
-    if(msg.method)router.observe(msg);
+    if(msg.method){router.observe(msg);try{const t=router.turns.get(msg.params?.threadId);if(t&&assistant?.enabled(t.cwd))assistant.observe(msg,t);}catch{}}
     output.write(line+'\n');
   });
   // Forward stderr unchanged; never persist backend diagnostics or credentials in router logs.

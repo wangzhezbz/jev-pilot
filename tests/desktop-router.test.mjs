@@ -420,3 +420,29 @@ test('reserved judgments still raise effort after baseline restoration',async()=
  await s.router.hook({...s.p,tool_use_id:'failure',tool_response:{exit_code:1}});
  assert.equal(s.router.turns.get('thread').current,'xhigh');assert.equal(n,5);
 });
+test('baseline keep honors a valid stability recommendation with a two-boundary cap',async()=>{
+ let n=0;const s=setup({judge:async()=>{n++;return{answer:answer('keep'),horizon:horizon(5)};}});
+ await s.router.routeStart({threadId:'thread'});const t=s.router.turns.get('thread');
+ assert.equal(t.horizon,2);assert.equal(t.horizonReason,'keep_at_baseline');
+ assert.equal((await s.router.hook(s.p)).status,'lease_held');assert.equal(n,1);
+ await s.router.hook({...s.p,tool_use_id:'b',tool_response:{exit_code:1}});assert.equal(n,2);
+ assert.equal(s.logs.at(-1).recommendedHorizon,5);assert.equal(s.logs.at(-1).horizon,2);
+});
+test('keep never extends an uncertain automatic downgrade or malformed horizon',async()=>{
+ const s=setup(),t=s.router.turns.get('thread');t.current='low';
+ s.router.renew(t,{answer:answer('keep'),horizon:horizon(10)});assert.equal(t.lease,0);assert.equal(t.horizonReason,'uncertain_effort');
+ t.current='high';s.router.renew(t,{answer:answer('keep'),horizon:{...horizon(5),confidence:NaN}});assert.equal(t.lease,0);assert.equal(t.horizonReason,'invalid_horizon');
+});
+test('routine shared-budget exhaustion leaves reserved failure reassessment available',async()=>{
+ const priorities=[];const s=setup({judge:async(state,ctx)=>{priorities.push(ctx.priority);if(ctx.priority!=='urgent')throw Error('TASK_URGENT_RESERVE');return{answer:answer('xhigh'),horizon:horizon(2)};}});
+ await s.router.routeStart({threadId:'thread'});
+ assert.equal((await s.router.hook(s.p)).status,'urgent_reserve_held');
+ await s.router.hook({...s.p,tool_use_id:'failed',tool_response:{exit_code:2}});
+ assert.deepEqual(priorities,['routine','urgent']);assert.equal(s.router.turns.get('thread').current,'xhigh');
+});
+test('new published progress can use the reserve after an early shared-budget block',async()=>{
+ const priorities=[];const s=setup({judge:async(state,ctx)=>{priorities.push(ctx.priority);if(ctx.priority!=='urgent')throw Error('TASK_URGENT_RESERVE');return{answer:answer('high'),horizon:horizon(2)};}});
+ await s.router.routeStart({threadId:'thread'});
+ s.router.note(s.router.turns.get('thread'),'public_progress','A new unresolved dependency needs inspection');
+ await s.router.hook({...s.p,tool_use_id:'progress'});assert.deepEqual(priorities,['routine','urgent']);
+});

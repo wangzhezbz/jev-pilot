@@ -17,7 +17,8 @@ const root=join(dirname(fileURLToPath(import.meta.url)),'../runtime/desktop');
 const targetModel=process.argv.find(x=>x.startsWith('--model='))?.slice(8)??'gpt-6-astra';
 const reassess=process.argv.includes('--reassess');
 const routingBudget=process.argv.includes('--routing-budget');
-const filtering=process.argv.includes('--filter-output');
+const mcpFiltering=process.argv.includes('--filter-mcp');
+const filtering=process.argv.includes('--filter-output')||mcpFiltering;
 const manualSettings=process.argv.includes('--manual-settings');
 const inspectCacheContext=process.argv.includes('--inspect-cache-context');
 const inputSnapshots=[];
@@ -43,14 +44,14 @@ const server=createServer(async(req,res)=>{
     }catch(error){report.manualSettings={error:error.message};}
   }
   const tools=body.tools??body.configuration?.tools??[];
-  const tool=tools.find(x=>['exec_command','shell_command','shell'].includes(x.name))??{name:'exec_command'};
+  const tool=(mcpFiltering?(tools.find(x=>x.name?.includes('fixture_log'))??{name:'fixture_log'}):null)??tools.find(x=>['exec_command','shell_command','shell'].includes(x.name))??{name:'exec_command'};
   const responseId='resp_'+apiCount;
   let item;
   if(apiCount<=steps && tool) {
     const command=filtering?`printf 'NEEDLE target\\n'; printf 'noise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\n%.0s' {1..350}`:(reassess&&apiCount===4)||(routingBudget&&apiCount>=5)?'exit 7':'printf fixture_ok';
-    const args=tool.name==='exec_command'?{cmd:command,max_output_tokens:filtering?15000:50}:
+    const args=mcpFiltering?{}:tool.name==='exec_command'?{cmd:command,max_output_tokens:filtering?15000:50}:
       tool.name==='shell_command'?{command}:{command:['/bin/sh','-c',command]};
-    item={id:'fc_fixture_'+apiCount,type:'function_call',call_id:'call_fixture_'+apiCount,name:tool.name,arguments:JSON.stringify(args),status:'completed'};
+    item={id:'fc_fixture_'+apiCount,type:'function_call',call_id:'call_fixture_'+apiCount,name:tool.name,...(mcpFiltering?{namespace:'mcp__fixture'}:{}),arguments:JSON.stringify(args),status:'completed'};
   }else item={id:'msg_fixture',type:'message',role:'assistant',status:'completed',content:[{type:'output_text',text:'fixture_ok'}]};
   res.writeHead(200,{'Content-Type':'text/event-stream','Cache-Control':'no-cache'});
   const event=(type,data)=>res.write(`event: ${type}\ndata: ${JSON.stringify({type,...data})}\n\n`);
@@ -66,6 +67,11 @@ const address=`http://127.0.0.1:${server.address().port}/v1`;
 const args=['app-server','-c',`model=${JSON.stringify(targetModel)}`,'-c','model_provider="jev_fixture"',
   '-c',`model_providers.jev_fixture=${toml({name:'Local synthetic fixture',base_url:address,wire_api:'responses',requires_openai_auth:false,supports_websockets:false,request_max_retries:0,stream_max_retries:0})}`,
   '-c','features.code_mode=false','-c','features.code_mode_host=false'];
+if(mcpFiltering){
+ const script=join(work,'mcp-fixture.mjs');
+ await writeFile(script,`import{createInterface}from'node:readline';const lines=createInterface({input:process.stdin});lines.on('line',line=>{const m=JSON.parse(line);if(m.id===undefined)return;let result=m.method==='initialize'?{protocolVersion:'2025-06-18',capabilities:{tools:{}},serverInfo:{name:'fixture',version:'1'}}:m.method==='tools/list'?{tools:[{name:'fixture_log',description:'Read the synthetic test log',annotations:{readOnlyHint:true,destructiveHint:false,openWorldHint:false},inputSchema:{type:'object',properties:{}}}]}:m.method==='tools/call'?{content:[{type:'text',text:'NEEDLE target\\n'+('noise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\n').repeat(350)}],isError:false}:m.method==='resources/list'?{resources:[]}:m.method==='resources/templates/list'?{resourceTemplates:[]}:{};process.stdout.write(JSON.stringify({jsonrpc:'2.0',id:m.id,result})+'\\n');});`);
+ args.push('-c',`mcp_servers.fixture=${toml({command:process.execPath,args:[script]})}`);
+}
 if(process.argv.includes('--use-local-catalog')) {
   // New models can arrive in the desktop catalog before the binary's bundled
   // fallback list. Copy public model metadata only, never credentials/identity.
@@ -137,6 +143,13 @@ try{
   const loaded=await c.request('hooks/list',{cwds:[work]});report.trustedHooks=loaded;
   const started=await c.request('thread/start',{model:targetModel,cwd:work,ephemeral:true,sandbox:'read-only',approvalPolicy:'never',
     developerInstructions:'This is a synthetic protocol fixture. Follow the task; no extra tools or agents.'});
+  if(mcpFiltering){
+    for(let i=0;i<30;i++){
+      report.mcpStatus=await c.request('mcpServerStatus/list',{threadId:started.thread.id,limit:100});
+      if(report.mcpStatus.data?.some(s=>s.name==='fixture'&&Object.keys(s.tools??{}).length))break;
+      await new Promise(r=>setTimeout(r,100));
+    }
+  }
   let finish;const finished=new Promise(yes=>finish=yes);
   c.listeners.push(m=>{if(m.method==='turn/completed')finish(m.params);});
   const turn=await c.request('turn/start',{threadId:started.thread.id,model:targetModel,effort:'high',
@@ -170,7 +183,8 @@ try{
       perRequest:inputSnapshots.map((items,i)=>({request:i+1,initialPrefixPreserved:Array.isArray(initial)&&Array.isArray(items)&&JSON.stringify(items.slice(0,initial.length))===JSON.stringify(initial)}))};
     report.passed=report.passed&&report.cacheContext.perRequest.every(x=>x.initialPrefixPreserved);
   }
-  if(filtering){report.automaticEvents=autoStore.events(autoStore.project(work));report.passed=report.passed&&report.automaticEvents.some(e=>e.kind==='automatic_output_filter')&&report.requests.slice(1).some(r=>r.inputText?.includes('JevPilot retained task evidence'));}
+  if(mcpFiltering){const outputs=JSON.parse(report.requests[1]?.inputText||'[]').filter(x=>x.type==='function_call_output');report.mcpEnvelopePreserved=outputs.some(x=>{try{const r=JSON.parse(x.output);return r.content?.length===1&&r.content[0].type==='text'&&r.content[0].text.includes('NEEDLE target')&&r.isError!==true;}catch{return false;}});report.passed=report.passed&&report.mcpEnvelopePreserved;}
+  if(filtering){const saved=autoStore.list(autoStore.project(work),'checkpoint')[0];report.automaticCheckpoint={observed:Boolean(saved),auto:saved?.auto,requiresReview:saved?.requiresReview,turnStatus:saved?.turnStatus,coverage:saved?.coverage,verifiedCompletedCount:saved?.completed?.length??0,publicProgressObserved:Boolean(saved?.lastPublishedProgress)};report.passed=report.passed&&saved?.auto===true&&saved?.requiresReview===true&&saved?.turnStatus==='completed';report.automaticEvents=autoStore.events(autoStore.project(work));report.passed=report.passed&&report.automaticEvents.some(e=>e.kind==='automatic_output_filter')&&report.requests.slice(1).some(r=>r.inputText?.includes('JevPilot retained task evidence'));}
   report.status=report.passed?'passed':'failed';
   if(!report.passed)process.exitCode=1;
 }catch(error){report.status='failed';report.error=String(error.message);process.exitCode=1;}
