@@ -1,0 +1,25 @@
+{
+  "runtime": "codex-cli 0.155.0-alpha.16.3",
+  "version": "0.2.0+codex.20260923233124",
+  "unitTests": 210,
+  "unitPassed": 210,
+  "nativeTests": 20,
+  "nativePassed": 20,
+  "currentSessionEvidenceTool": {
+    "tool": "jev_evidence",
+    "operation": "prepare",
+    "selection": {
+      "status": "original",
+      "reason": "small"
+    },
+    "originalPreserved": true,
+    "paidJevCalls": 0
+  },
+  "initialRestart": {
+    "compatible": false,
+    "activeBridges": 0,
+    "fallbackAt": "2026-09-23T15:27:57.608Z"
+  },
+  "paidModelCalls": 0,
+  "limitation": "Native synthetic model protocol tests, not paid-model speed, quota or current-session switching evidence."
+}

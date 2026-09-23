@@ -17,7 +17,7 @@ function structuredText(body){
 }
 // The native runtime allocates these IDs for exec_command calls made inside
 // code-mode. Their PostToolUse replacement does not reach the outer result in
-// the tested 0.155.0-alpha.9.2 runtime. Never change execution or the raw result.
+// tested alpha.9.2 and alpha.16.3 runtimes. Never change execution or the raw result.
 export const nestedNativeOutput=payload=>payload.tool_name==='Bash'&&/^exec-[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i.test(payload.tool_use_id||'');
 
 export function presentationAdapter(value,source=''){

@@ -11,6 +11,7 @@ import { hookOverrides, runtimeFingerprint } from '../runtime/desktop/bridge.mjs
 import { summarize } from '../runtime/desktop/report.mjs';
 import { withLaunchAgent } from './launch-agent.mjs';
 import { maintainBrowserNetwork } from './browser-network.mjs';
+import {verifiedRuntime} from './runtime-compatibility.mjs';
 export const packageRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 export const installHome = () => process.env.JEV_PILOT_HOME || join(homedir(), '.codex', 'jev-pilot');
 export function discoverCodex() {
@@ -89,7 +90,7 @@ async function prepareSetup({ activate = false, source = packageRoot } = {}) {
   const realBin = discoverCodex(); requireValue(realBin, 'CODEX_NOT_FOUND');
   const version = commandVersion(realBin);
   // First release targets the actually verified wire protocol. Unknown upgrades pass through.
-  requireValue(version === 'codex-cli 0.155.0-alpha.9.2', 'UNVERIFIED_CODEX_VERSION');
+  requireValue(verifiedRuntime(version), 'UNVERIFIED_CODEX_VERSION');
   const home = installHome(); privateDirectory(home);
   const configPath = join(home, 'runtime/desktop/install.json'); let previous = null;
   if (existsSync(configPath)) { previous = JSON.parse(readFileSync(configPath)); cpSync(configPath, configPath + '.backup-' + Date.now()); }

@@ -5,6 +5,18 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { checkPrerequisites } from '../src/setup.mjs';
 import { makeJudge } from '../runtime/desktop/router.mjs';
+import {verifiedRuntime} from '../src/runtime-compatibility.mjs';
+import {installationPlan} from '../src/installation.mjs';
+
+test('installer accepts only exactly verified runtimes, including the desktop upgrade',()=>{
+ const state={nodeSupported:true,curl:'curl',rg:'rg',realBin:'/fixture',credentialsConfigured:true};
+ for(const version of ['codex-cli 0.155.0-alpha.9.2','codex-cli 0.155.0-alpha.16.3']){
+  assert.equal(verifiedRuntime(version),true);assert.equal(installationPlan({...state,runtimeVersion:version}).canSetup,true);
+ }
+ for(const version of ['codex-cli 0.155.0-alpha.16.4','codex-cli 0.156.0','0.155.0-alpha.16.3',undefined]){
+  assert.equal(verifiedRuntime(version),false);assert.equal(installationPlan({...state,runtimeVersion:version}).canSetup,false);
+ }
+});
 
 test('preflight identifies each missing prerequisite',()=>{
   assert.throws(()=>checkPrerequisites({node:'22.0',command:()=>assert.fail('must reject Node first')}),/NODE_24_REQUIRED/);
