@@ -1,0 +1,582 @@
+{
+  "date": "2026-09-23",
+  "policyVersion": "effort-v6-bounded-reassessment",
+  "regressionsPassed": 118,
+  "nativeChecks": [
+    {
+      "scenario": "astra_budget",
+      "passed": true,
+      "realJev": false,
+      "paidGptCalls": 0,
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 3,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 4,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 5,
+          "model": "gpt-6-astra",
+          "effort": "high"
+        },
+        {
+          "number": 6,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 7,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 8,
+          "model": "gpt-6-astra",
+          "effort": "high"
+        }
+      ],
+      "decisions": [
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "model": "offline-fixture",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 0,
+          "published": "low",
+          "from": "high",
+          "confirmation": "start_parameter_forwarded"
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "model": "offline-fixture",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 51,
+          "published": "low",
+          "from": "low",
+          "confirmation": null
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "model": "offline-fixture",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 51,
+          "published": "low",
+          "from": "low",
+          "confirmation": null
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "model": "offline-fixture",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 51,
+          "published": "low",
+          "from": "low",
+          "confirmation": null
+        },
+        {
+          "kind": "effort_restore",
+          "status": "applied",
+          "elapsedMs": 0,
+          "published": "high",
+          "from": "low",
+          "reason": "routing_budget",
+          "confirmation": "native_settings_published"
+        },
+        {
+          "kind": "decision",
+          "status": "applied",
+          "model": "offline-fixture",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 52,
+          "published": "low",
+          "from": "high",
+          "confirmation": "native_settings_published"
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "model": "offline-fixture",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 50,
+          "published": "low",
+          "from": "low",
+          "confirmation": null
+        },
+        {
+          "kind": "effort_restore",
+          "status": "applied",
+          "elapsedMs": 0,
+          "published": "high",
+          "from": "low",
+          "reason": "routing_budget",
+          "confirmation": "native_settings_published"
+        }
+      ],
+      "cacheContext": {
+        "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+        "initialItems": 7,
+        "perRequest": [
+          {
+            "request": 1,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 2,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 3,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 4,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 5,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 6,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 7,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 8,
+            "initialPrefixPreserved": true
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "sol_budget",
+      "passed": true,
+      "realJev": false,
+      "paidGptCalls": 0,
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-sol",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-sol",
+          "effort": "low"
+        },
+        {
+          "number": 3,
+          "model": "gpt-6-sol",
+          "effort": "low"
+        },
+        {
+          "number": 4,
+          "model": "gpt-6-sol",
+          "effort": "low"
+        },
+        {
+          "number": 5,
+          "model": "gpt-6-sol",
+          "effort": "high"
+        },
+        {
+          "number": 6,
+          "model": "gpt-6-sol",
+          "effort": "low"
+        },
+        {
+          "number": 7,
+          "model": "gpt-6-sol",
+          "effort": "low"
+        },
+        {
+          "number": 8,
+          "model": "gpt-6-sol",
+          "effort": "high"
+        }
+      ],
+      "decisions": [
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "model": "offline-fixture",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 0,
+          "published": "low",
+          "from": "high",
+          "confirmation": "start_parameter_forwarded"
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "model": "offline-fixture",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 0,
+          "published": "low",
+          "from": "low",
+          "confirmation": null
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "model": "offline-fixture",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 0,
+          "published": "low",
+          "from": "low",
+          "confirmation": null
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "model": "offline-fixture",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 0,
+          "published": "low",
+          "from": "low",
+          "confirmation": null
+        },
+        {
+          "kind": "effort_restore",
+          "status": "applied",
+          "published": "high",
+          "from": "low",
+          "reason": "routing_budget",
+          "confirmation": "native_settings_published"
+        },
+        {
+          "kind": "decision",
+          "status": "applied",
+          "model": "offline-fixture",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 1,
+          "published": "low",
+          "from": "high",
+          "confirmation": "native_settings_published"
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "model": "offline-fixture",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 0,
+          "published": "low",
+          "from": "low",
+          "confirmation": null
+        },
+        {
+          "kind": "effort_restore",
+          "status": "applied",
+          "published": "high",
+          "from": "low",
+          "reason": "routing_budget",
+          "confirmation": "native_settings_published"
+        }
+      ],
+      "cacheContext": null
+    },
+    {
+      "scenario": "luna_budget",
+      "passed": true,
+      "realJev": false,
+      "paidGptCalls": 0,
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-luna",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-luna",
+          "effort": "low"
+        },
+        {
+          "number": 3,
+          "model": "gpt-6-luna",
+          "effort": "low"
+        },
+        {
+          "number": 4,
+          "model": "gpt-6-luna",
+          "effort": "low"
+        },
+        {
+          "number": 5,
+          "model": "gpt-6-luna",
+          "effort": "high"
+        },
+        {
+          "number": 6,
+          "model": "gpt-6-luna",
+          "effort": "low"
+        },
+        {
+          "number": 7,
+          "model": "gpt-6-luna",
+          "effort": "low"
+        },
+        {
+          "number": 8,
+          "model": "gpt-6-luna",
+          "effort": "high"
+        }
+      ],
+      "decisions": [
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "model": "offline-fixture",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 0,
+          "published": "low",
+          "from": "high",
+          "confirmation": "start_parameter_forwarded"
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "model": "offline-fixture",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 0,
+          "published": "low",
+          "from": "low",
+          "confirmation": null
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "model": "offline-fixture",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 0,
+          "published": "low",
+          "from": "low",
+          "confirmation": null
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "model": "offline-fixture",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 0,
+          "published": "low",
+          "from": "low",
+          "confirmation": null
+        },
+        {
+          "kind": "effort_restore",
+          "status": "applied",
+          "published": "high",
+          "from": "low",
+          "reason": "routing_budget",
+          "confirmation": "native_settings_published"
+        },
+        {
+          "kind": "decision",
+          "status": "applied",
+          "model": "offline-fixture",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 1,
+          "published": "low",
+          "from": "high",
+          "confirmation": "native_settings_published"
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "model": "offline-fixture",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 0,
+          "published": "low",
+          "from": "low",
+          "confirmation": null
+        },
+        {
+          "kind": "effort_restore",
+          "status": "applied",
+          "published": "high",
+          "from": "low",
+          "reason": "routing_budget",
+          "confirmation": "native_settings_published"
+        }
+      ],
+      "cacheContext": null
+    },
+    {
+      "scenario": "5.6_sol_manual",
+      "passed": true,
+      "realJev": false,
+      "paidGptCalls": 0,
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-5.6-sol",
+          "effort": "medium"
+        }
+      ],
+      "decisions": [
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "model": "offline-fixture",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 0,
+          "published": "low",
+          "from": "high",
+          "confirmation": "start_parameter_forwarded"
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "model": "offline-fixture",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 0,
+          "published": "medium",
+          "from": "medium",
+          "confirmation": null
+        }
+      ],
+      "cacheContext": null
+    },
+    {
+      "scenario": "real_jev",
+      "passed": true,
+      "realJev": true,
+      "paidGptCalls": 0,
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        }
+      ],
+      "decisions": [
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "model": "jev-1.13.0",
+          "inputTokens": 868,
+          "outputTokens": 106,
+          "elapsedMs": 554,
+          "published": "low",
+          "from": "high",
+          "confirmation": "start_parameter_forwarded"
+        }
+      ],
+      "cacheContext": null
+    },
+    {
+      "scenario": "output_filter",
+      "passed": true,
+      "realJev": false,
+      "paidGptCalls": 0,
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        }
+      ],
+      "decisions": [
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "model": "offline-fixture",
+          "inputTokens": 0,
+          "outputTokens": null,
+          "elapsedMs": 0,
+          "published": "low",
+          "from": "high",
+          "confirmation": "start_parameter_forwarded"
+        }
+      ],
+      "cacheContext": null
+    }
+  ],
+  "controlledCoalescing": [
+    {
+      "coalesceMs": 0,
+      "syntheticJudgeCalls": 2,
+      "superseded": 1,
+      "finalEffort": "low"
+    },
+    {
+      "coalesceMs": 50,
+      "syntheticJudgeCalls": 1,
+      "superseded": 0,
+      "finalEffort": "low"
+    }
+  ],
+  "ordinaryDesktopActivation": "pending_normal_restart",
+  "limitations": [
+    "Synthetic GPT responses validate outgoing parameters, not real model quality or savings.",
+    "Only one live Jev request in this verification, separate from ordinary desktop activity.",
+    "Cross-platform CI is not real Windows/Linux desktop acceptance."
+  ],
+  "installation": {
+    "compatible": true,
+    "configuredForNextLaunch": true,
+    "installedFingerprint": "77103be7f97ce4532fa1d4a17188e1b240ec7d1c17aa5ca16f65cabea5766ae9",
+    "loadedRevisionMatches": false,
+    "pluginVersion": "0.2.0+codex.20260923045908",
+    "activePolicyVersions": [
+      "effort-v5-context-freshness"
+    ]
+  }
+}

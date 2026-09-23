@@ -9,7 +9,7 @@ export function summarize(events) {
   events=events.filter(e=>e.measurementSource!=='synthetic');
   const latest=new Map();
   for(const e of events)if(e.kind==='turn_usage')latest.set(`${e.threadId}:${e.turnId}`,e);
-  const turns=[...latest.values()],decisions=events.filter(e=>e.kind==='decision'),fallbacks=events.filter(e=>e.kind==='fallback');
+  const turns=[...latest.values()],decisions=events.filter(e=>e.kind==='decision'),fallbacks=events.filter(e=>e.kind==='fallback'),restores=events.filter(e=>e.kind==='effort_restore');
   const models={};
   for(const t of turns){
     const m=models[t.targetModel]??={turns:0,knownUsageTurns:0,unknownUsageTurns:0,incompleteUsageTurns:0,usage:{}};
@@ -27,11 +27,16 @@ export function summarize(events) {
       nativeUpdatesApplied:decisions.filter(e=>e.status==='applied').length,
       retained:decisions.filter(e=>e.status==='unchanged').length,
       superseded:decisions.filter(e=>e.status==='superseded').length,
+      staleEvidence:decisions.filter(e=>e.status==='stale_evidence').length,
+      baselineRestoresApplied:events.filter(e=>e.kind==='effort_restore'&&e.status==='applied').length,
+      baselineRestoresUnconfirmed:events.filter(e=>e.kind==='effort_restore'&&e.status!=='applied').length,
+      knownBudgetSkips:turns.reduce((sum,t)=>sum+(t.budgetSkips??0),0),
+      knownCoalescedBoundaries:turns.reduce((sum,t)=>sum+(t.coalescedBoundaries??0),0),
       knownLeaseSkips:turns.reduce((sum,t)=>sum+(t.leaseSkips??0),0),
       knownJevOutputTokens:decisions.reduce((sum,e)=>sum+(Number.isFinite(e.outputTokens)?e.outputTokens:0),0),
       unknownJevOutputCalls:decisions.filter(e=>!Number.isFinite(e.outputTokens)).length+fallbacks.length,
       medianDecisionMs:median(decisions.map(e=>e.elapsedMs)),
-      observedWaitMs:[...decisions,...fallbacks].reduce((sum,e)=>sum+(Number.isFinite(e.elapsedMs)?e.elapsedMs:0),0),
+      observedWaitMs:[...decisions,...fallbacks,...restores].reduce((sum,e)=>sum+(Number.isFinite(e.elapsedMs)?e.elapsedMs:0),0),
       knownJevInputTokens:inputKnown.reduce((sum,e)=>sum+e.inputTokens,0),
       unknownJevUsageCalls:decisions.length-inputKnown.length+fallbacks.length},
     medianTurnWallMs:median(turns.map(t=>t.elapsedMs)),

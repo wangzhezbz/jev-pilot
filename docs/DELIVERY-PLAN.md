@@ -17,7 +17,7 @@ Requirements and evidence to collect:
 
 No completion claim until requirement-specific evidence is recorded. Passing unit tests is not desktop or performance acceptance. No official Codex binary patch for browser networking. No API keys in artifacts. Existing upstream copyright notices are retained.
 
-Latest ordinary-workflow check: [report](reports/ORDINARY-WORKFLOW-ACCEPTANCE.md). 108 regressions passed; current-agent live Jev selection and recoverable filtering passed; dashboard activation/coverage distinctions passed in Chrome. Latest desktop activation, full performance and Windows/Linux real-device acceptance remain open.
+Earlier ordinary-workflow check: [report](reports/ORDINARY-WORKFLOW-ACCEPTANCE.md). 108 regressions passed; current-agent live Jev selection and recoverable filtering passed; dashboard activation/coverage distinctions passed in Chrome. v5 desktop activation was verified in [restart evidence](reports/restart-v5-activation.json): the loaded fingerprint matches the installed v5 adapter, and this ordinary conversation received a native high → medium settings-publication receipt. Full performance acceptance remains open. Windows/Linux real-device acceptance remains unverified and outside this macOS delivery scope.
 
 ## Current evidence
 
@@ -32,3 +32,5 @@ Latest ordinary-workflow check: [report](reports/ORDINARY-WORKFLOW-ACCEPTANCE.md
 This is a delivery candidate, not a claim that the entire delivery goal or performance acceptance has finished.
 
 Packaged macOS candidate: `dist/delivery-macos-20260923/jev-pilot-0.2.0.tgz`; 94 files, private-file/path scans passed, installation from the extracted archive passed in an isolated home. Exact checksum is in `reports/package-acceptance.json`.
+
+Latest routing update: [v6 validation](reports/EFFORT-V6-VALIDATION.md). 118 regressions passed; bounded coalescing, reserved reassessment capacity and receipt-backed baseline restoration are implemented. Installed v6 must be distinguished from the still-running v5 desktop process until a normal restart.

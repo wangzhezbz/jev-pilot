@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { parseEnv } from 'node:util';
 import { postTypeSafe } from './transport.mjs';
 
-export const POLICY_VERSION = 'effort-v5-context-freshness';
+export const POLICY_VERSION = 'effort-v6-bounded-reassessment';
 export const LEASE_UNIT = 'tool_completion_boundary';
 export const SUPPORTED_MODELS = ['gpt-6-astra','gpt-6-sol','gpt-6-luna','gpt-5.6-sol','gpt-5.6-terra','gpt-5.6-luna'];
 export const effortQuestion = {
@@ -77,8 +77,10 @@ export async function makeJudge(keyPath, {env=process.env,send=postTypeSafe,judg
 }
 
 export class Router {
-  constructor({ request, judge, log = () => {}, maxCalls = 6, leaseSteps = 1, leaseMs = 60000 }) {
+  constructor({ request, judge, log = () => {}, maxCalls = 6, reservedCalls = 2, coalesceMs = 50, leaseSteps = 1, leaseMs = 60000 }) {
     Object.assign(this, { request, judge, log, maxCalls, leaseSteps, leaseMs });
+    this.routineLimit=Math.max(1,maxCalls-Math.max(0,Math.min(reservedCalls,maxCalls-1)));
+    this.coalesceMs=Math.max(0,Math.min(coalesceMs,100));
     this.turns = new Map();
     this.supported = new Map();
     this.threads = new Map();
@@ -92,13 +94,14 @@ export class Router {
     this.turns.set(threadId, { threadId, cwd: params.cwd ?? meta.cwd, turnId: null, current, model, active: true, revision: 0,
       task: compact((params.input ?? []).filter(x=>x.type==='text').map(x=>x.text).join('\n'),4000),
       previousTurn: old?.completed ? {task:compact(old.task,1000),progress:old.progress.slice(-1).map(x=>compact(x,1000))} : undefined,
-      forceRecheck:false, evidenceVersion:0, progressVersion:0, noteVersion:0, judgedProgress:0, leaseSkips:0,
+      baseline:current,forceRecheck:false, evidenceVersion:0, progressVersion:0, noteVersion:0, judgedProgress:0, leaseSkips:0,
+      urgentVersion:0,judgedUrgent:0,budgetSkips:0,coalescedBoundaries:0,
       progress: [], publicNotes: [], recent: [], calls: 0, pending: Promise.resolve(), seen: new Set(), lastAt: 0, settingsPending: 0,
       opened:performance.now(),lease:0,leaseUntil:0,usage:null,usageSnapshots:new Set(),usageEvents:0,invalidUsageEvents:0,nativeFailures:new Map() });
     return this.turns.get(threadId);
   }
   invalidate(threadId,input=[]) { const t=this.turns.get(threadId); if(t) {
-    t.revision++; t.lastAt=0; t.lease=0; t.forceRecheck=true;
+    t.revision++; t.lastAt=0; t.lease=0; t.forceRecheck=true;t.urgentVersion++;
     const text=input.filter(x=>x.type==='text').map(x=>x.text).join('\n');
     if(text)t.task=compact(t.task+'\nLatest user input: '+redact(text),4000);
   } }
@@ -119,7 +122,7 @@ export class Router {
     if(this.turns.get(t.threadId)!==t || !t.active)return;
     if(!error && reply?.status==='applied') {
       if(typeof p.model==='string')t.model=p.model;
-      if(typeof p.effort==='string')t.current=p.effort;
+      if(typeof p.effort==='string'){t.current=p.effort;t.baseline=p.effort;}
       // Model-only publication may select a different native default effort.
       // Do not guess it or route while overlapping controls have ambiguous order.
       if(typeof p.model==='string' && typeof p.effort!=='string')t.settingsUncertain=true;
@@ -137,14 +140,42 @@ export class Router {
     t.publicNotes.push(note);t.publicNotes=t.publicNotes.slice(-4);t.noteVersion++;
     // Routine summaries arrive every generation. Retain them for the next
     // judgment without turning a long reuse lease into one call per generation.
-    if(kind!=='reasoning_summary')t.progressVersion++;
+    if(kind!=='reasoning_summary'){t.progressVersion++;t.urgentVersion++;}
   }
   context(t) { return { taskId: t.threadId, cwd: t.cwd ?? this.threads.get(t.threadId)?.cwd }; }
-  renew(t,result,applied=true) {
+  renew(t,result,applied=true,snapshot={progress:t.progressVersion,urgent:t.urgentVersion}) {
     const validEffort=result?.answer?.choice!=='keep' && select(result?.answer,'invalid',this.supported.get(t.model)??[])!=='invalid';
     t.horizon=applied&&validEffort?selectedHorizon(result?.horizon,this.leaseSteps):1;
     t.lease=t.horizon-1;t.leaseUntil=Date.now()+this.leaseMs;
-    t.judgedProgress=t.progressVersion;t.forceRecheck=false;
+    t.judgedProgress=snapshot.progress;t.judgedUrgent=snapshot.urgent;t.forceRecheck=false;
+  }
+  canJudge(t) { return t.calls<this.maxCalls && (t.calls<this.routineLimit || t.urgentVersion!==t.judgedUrgent); }
+  // No extra evaluator spend when the bounded budget is depleted. Never leave
+  // an expired automatic downgrade in force indefinitely, or lower a stronger
+  // current setting. Successful manual settings replace this turn's baseline.
+  async restoreBaseline(t,reason) {
+    const order=['none','minimal','low','medium','high','xhigh','max','ultra'];
+    if(!t.active || t.settingsPending || t.settingsUncertain || t.restoreBlocked || !this.supported.get(t.model)?.includes(t.baseline)
+      || order.indexOf(t.current)<0 || order.indexOf(t.baseline)<=order.indexOf(t.current))return {status:reason};
+    const revision=t.revision,from=t.current,effort=t.baseline,started=performance.now();
+    t.publicationPending=true;
+    try {
+      const reply=await this.request('turn/settings/update',{threadId:t.threadId,turnId:t.turnId,effort},2500);
+      const stale=!t.active || revision!==t.revision || this.turns.get(t.threadId)!==t;
+      if(!stale && reply.status==='applied')t.current=effort;
+      if(!stale && reply.status!=='applied')t.restoreBlocked=true;
+      this.log({kind:'effort_restore',policyVersion:POLICY_VERSION,threadId:t.threadId,turnId:t.turnId,
+        targetModel:t.model,from,published:t.current,requested:effort,reason,status:stale?'superseded':reply.status,
+        confirmation:!stale&&reply.status==='applied'?'native_settings_published':null,elapsedMs:Math.round(performance.now()-started)});
+      return {status:stale?'stale':reply.status};
+    }catch{
+      // A timed-out native publication has an unknown outcome; do not guess or
+      // publish another competing setting during the same turn.
+      t.settingsUncertain=true;
+      this.log({kind:'effort_restore',policyVersion:POLICY_VERSION,threadId:t.threadId,turnId:t.turnId,
+        targetModel:t.model,from,requested:effort,reason,status:'unconfirmed',confirmation:null,elapsedMs:Math.round(performance.now()-started)});
+      return {status:'unconfirmed'};
+    }finally{t.publicationPending=false;}
   }
   metrics(t,result,from,status,started,event) {
     return {kind:'decision',policyVersion:POLICY_VERSION,threadId:t.threadId,turnId:t.turnId,event,
@@ -210,14 +241,15 @@ export class Router {
     if (message.method==='turn/completed' && (!t.turnId || p.turn.id===t.turnId)) {
       this.log({kind:'turn_usage',policyVersion:POLICY_VERSION,threadId:t.threadId,turnId:p.turn.id,
         targetModel:t.model,finalEffort:t.current,status:p.turn.status,elapsedMs:Math.round(performance.now()-t.opened),
-        jevCalls:t.calls,leaseSkips:t.leaseSkips,usage:t.usage,usageEvents:t.usageEvents,invalidUsageEvents:t.invalidUsageEvents,
+        jevCalls:t.calls,leaseSkips:t.leaseSkips,budgetSkips:t.budgetSkips,coalescedBoundaries:t.coalescedBoundaries,
+        usage:t.usage,usageEvents:t.usageEvents,invalidUsageEvents:t.invalidUsageEvents,
         accounting:'runtime_reported_tokens_not_account_debits'});
       t.completed=true;
       this.stop(p.threadId);
     }
     if (message.method==='item/completed' && p.item?.type==='agentMessage') {
       const progress=compact(p.item.text,1200);
-      if(progress && progress!==t.progress.at(-1)){t.progress.push(progress);t.progress=t.progress.slice(-2);t.progressVersion++;}
+      if(progress && progress!==t.progress.at(-1)){t.progress.push(progress);t.progress=t.progress.slice(-2);t.progressVersion++;t.urgentVersion++;}
     }
     if(message.method==='turn/plan/updated' && Array.isArray(p.plan))
       this.note(t,'plan',JSON.stringify({explanation:p.explanation,steps:p.plan.map(x=>({step:x.step,status:x.status}))}));
@@ -247,28 +279,37 @@ export class Router {
       || /(?:exit code[^0-9]*[1-9]|\bTraceback\b|\bFAILED\b)/i.test(evidence?.output??'');
     // Parallel tool completions share one bounded decision and wait for the
     // same acknowledgment. Never queue several API waits behind one hook.
-    if(failed){t.forceRecheck=true;t.lease=0;}
-    if(t.inFlight) return t.pending;
+    if(failed){t.forceRecheck=true;t.lease=0;t.urgentVersion++;}
+    if(t.inFlight){t.coalescedBoundaries++;return t.pending;}
     t.inFlight=true;
     t.pending=t.pending.catch(()=>{}).then(async()=>{
-      if(!t.active || revision!==t.revision) return {status:'stale'};
-      if(t.settingsPending || t.settingsUncertain)return {status:'external_settings_pending_or_unknown'};
-      if(t.unavailable) return {status:'disabled_for_turn'};
-      if(t.calls>=this.maxCalls) return {status:'budget'};
-      const urgent=t.forceRecheck || t.progressVersion!==t.judgedProgress;
-      if(!urgent && t.lease>0 && Date.now()<t.leaseUntil){t.lease--;t.leaseSkips++;return {status:'lease_held'};}
+      const admission=()=>{
+        if(!t.active || revision!==t.revision)return {status:'stale'};
+        if(t.settingsPending || t.settingsUncertain)return {status:'external_settings_pending_or_unknown'};
+        if(t.unavailable)return {status:'disabled_for_turn'};
+        const urgent=t.forceRecheck || t.progressVersion!==t.judgedProgress;
+        if(!urgent && t.lease>0 && Date.now()<t.leaseUntil){t.lease--;t.leaseSkips++;return {status:'lease_held'};}
+        return null;
+      };
+      const skipped=admission();if(skipped)return skipped;
+      if(!this.canJudge(t)){t.budgetSkips++;return this.restoreBaseline(t,'routing_budget');}
+      // A fixed, bounded window captures closely spaced tool completions before
+      // paying for the first snapshot. It never extends under continuous traffic.
+      const boundaryStarted=performance.now();
+      if(this.coalesceMs)await new Promise(resolve=>setTimeout(resolve,this.coalesceMs));
+      const interrupted=admission();if(interrupted)return interrupted;
       // An expired decision must be refreshed before the next generation, even
       // when the previous tool took less than the old two-second cooldown.
       t.calls++;t.lastAt=Date.now();
-      let started=performance.now();
+      let started=boundaryStarted;
       try {
-        let version=t.evidenceVersion,progress=t.progressVersion,notes=t.noteVersion;
+        let version=t.evidenceVersion,progress=t.progressVersion,notes=t.noteVersion,urgent=t.urgentVersion;
         let result=await this.judge(this.state(t),this.context(t));
         // A result is valid only for the evidence it saw. Refresh at most once
         // for late tool results or public progress; otherwise keep current effort.
         const changed=()=>version!==t.evidenceVersion||progress!==t.progressVersion||notes!==t.noteVersion;
-        if(t.active && revision===t.revision && changed() && t.calls<this.maxCalls){
-          t.calls++;version=t.evidenceVersion;progress=t.progressVersion;notes=t.noteVersion;
+        if(t.active && revision===t.revision && changed() && this.canJudge(t)){
+          t.calls++;version=t.evidenceVersion;progress=t.progressVersion;notes=t.noteVersion;urgent=t.urgentVersion;
           this.log({...this.metrics(t,result,t.current,'superseded',started,p.hook_event_name),published:t.current});
           started=performance.now();
           result=await this.judge(this.state(t),this.context(t));
@@ -277,7 +318,7 @@ export class Router {
         if(changed()) {
           t.lease=0;t.forceRecheck=true;
           this.log(this.metrics(t,result,t.current,'stale_evidence',started,p.hook_event_name));
-          return {status:'stale_evidence'};
+          await this.restoreBaseline(t,'stale_evidence');return {status:'stale_evidence'};
         }
         const effort=select(result.answer,t.current,this.supported.get(t.model));
         const from=t.current;
@@ -286,6 +327,7 @@ export class Router {
           t.publicationPending=true;
           let reply;
           try {reply=await this.request('turn/settings/update',{threadId:t.threadId,turnId:t.turnId,effort},2500);}
+          catch(error){t.settingsUncertain=true;throw error;}
           finally {t.publicationPending=false;}
           status=reply.status;
           if(!t.active || revision!==t.revision) {
@@ -294,13 +336,14 @@ export class Router {
           }
           if(status==='applied') t.current=effort;
         }
-        this.renew(t,result,status==='unchanged'||status==='applied');
+        this.renew(t,result,status==='unchanged'||status==='applied',{progress,urgent});
         if(changed()){t.lease=0;t.forceRecheck=true;}
         const metrics=this.metrics(t,result,from,status,started,p.hook_event_name);
         this.log(metrics);return {status};
       } catch(error) {
         t.unavailable=true;
         this.log({kind:'fallback',threadId:t.threadId,turnId:t.turnId,effort:t.current,code:/^[A-Z][A-Z0-9_]+$/.test(error.message)?error.message:'UNAVAILABLE',elapsedMs:Math.round(performance.now()-started)});
+        await this.restoreBaseline(t,'evaluator_unavailable');
         return {status:'unavailable'};
       }
     }).finally(()=>{t.inFlight=false;});

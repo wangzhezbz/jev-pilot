@@ -6,7 +6,7 @@ import {summarize} from '../runtime/desktop/report.mjs';
 import {runtimeFingerprint} from '../runtime/desktop/bridge.mjs';
 const answer=(choice,confidence=1)=>({type:'choice',choice,confidence,probabilities:Object.fromEntries(Object.keys(effortQuestion.criteria).map(k=>[k,k===choice?1:0]))});
 function setup(options={}){
- const calls=[],logs=[];const router=new Router({judge:async()=>({answer:answer('low'),model:'fixture',inputTokens:10}),request:async(method,params)=>{calls.push({method,params});return{status:'applied'};},log:x=>logs.push(x),...options});
+ const calls=[],logs=[];const router=new Router({coalesceMs:0,judge:async()=>({answer:answer('low'),model:'fixture',inputTokens:10}),request:async(method,params)=>{calls.push({method,params});return{status:'applied'};},log:x=>logs.push(x),...options});
  router.supported.set('gpt-6-astra',['low','medium','high','xhigh']);
  router.start('thread',{model:'gpt-6-astra',effort:'high',input:[{type:'text',text:'Format verified results.'}]});
  router.observe({method:'turn/started',params:{threadId:'thread',turn:{id:'turn'}}});
@@ -51,7 +51,9 @@ test('first inference is not falsely routed through UserPromptSubmit',async()=>{
  let count=0;const s=setup({judge:async()=>count++});await s.router.hook({...s.p,hook_event_name:'UserPromptSubmit'});assert.equal(count,0);
 });
 test('bounded calls and duplicate hooks never add requests',async()=>{
- const s=setup({maxCalls:1});await s.router.hook(s.p);await s.router.hook(s.p);s.router.turns.get('thread').lastAt=0;await s.router.hook({...s.p,tool_use_id:'b'});assert.equal(s.calls.length,1);
+ let judgments=0;const s=setup({maxCalls:1,judge:async()=>{judgments++;return{answer:answer('low')};}});
+ await s.router.hook(s.p);await s.router.hook(s.p);await s.router.hook({...s.p,tool_use_id:'b'});
+ assert.equal(judgments,1);assert.deepEqual(s.calls.map(x=>x.params.effort),['low','high']);
 });
 test('credentials are removed before task state is shared',()=>{
  const text=redact('token=secretvalue apikey_not_a_real_secret_123 Bearer abc.def sk-notarealkey123456','secretvalue');assert(!text.includes('secretvalue'));assert(!text.includes('apikey_'));assert(!text.includes('abc.def'));assert(!text.includes('sk-notareal'));
@@ -133,6 +135,8 @@ test('report separates missing usage and never invents saved quota',()=>{
  assert.equal(report.turns,3);assert.equal(report.models['gpt-5.6-sol'].usage.outputTokens,5);
  assert.equal(report.models['gpt-5.6-sol'].unknownUsageTurns,1);assert.equal(report.models['gpt-5.6-sol'].incompleteUsageTurns,1);
  assert.equal(report.savings.quota,null);
+ const overhead=summarize([{kind:'effort_restore',status:'applied',elapsedMs:27},{kind:'decision',elapsedMs:81,inputTokens:10,outputTokens:2}]);
+ assert.equal(overhead.routing.observedWaitMs,108);assert.equal(overhead.routing.decisions,1);assert.equal(overhead.routing.knownJevInputTokens,10);
 });
 test('an interrupted turn still records final observed usage',()=>{
  const s=setup();s.router.stop('thread');
@@ -292,4 +296,98 @@ test('progress arriving during native publication prevents reuse of that decisio
 test('runtime identity is deterministic, detects changed sources and never invents old identities',()=>{
  assert.equal(runtimeFingerprint({a:'one',b:'two'}),runtimeFingerprint({b:'two',a:'one'}));
  assert.notEqual(runtimeFingerprint({a:'one'}),runtimeFingerprint({a:'two'}));assert.equal(runtimeFingerprint(undefined),null);assert.equal(runtimeFingerprint({}),null);
+});
+
+test('delayed parallel completions settle before one fresh judgment',async()=>{
+ let judgments=0;const s=setup({coalesceMs:50,judge:async state=>{
+  judgments++;assert.equal(state.recentTools.length,2);return{answer:answer('low')};
+ }});
+ const a=s.router.hook(s.p);await new Promise(r=>setImmediate(r));
+ assert.equal(judgments,0);
+ const b=s.router.hook({...s.p,tool_use_id:'b',tool_response:'second result'});
+ await Promise.all([a,b]);assert.equal(judgments,1);assert.equal(s.calls.length,1);
+ assert(s.logs.find(x=>x.kind==='decision').elapsedMs>=40);
+ assert.equal(s.router.turns.get('thread').coalescedBoundaries,1);
+});
+test('interruption during the bounded settling window spends no evaluator request',async()=>{
+ let judgments=0;const s=setup({coalesceMs:20,judge:async()=>{judgments++;return{answer:answer('low')};}});
+ const p=s.router.hook(s.p);await new Promise(r=>setImmediate(r));s.router.stop('thread');
+ assert.equal((await p).status,'stale');assert.equal(judgments,0);assert.equal(s.calls.length,0);
+});
+test('routine calls reserve two judgments for late failures and then restore baseline',async()=>{
+ let judgments=0;const s=setup({judge:async()=>{judgments++;return{answer:answer('low')};}});
+ await s.router.routeStart({threadId:'thread'});
+ for(let i=0;i<3;i++)await s.router.hook({...s.p,tool_use_id:'routine'+i});
+ assert.equal(judgments,4);
+ await s.router.hook({...s.p,tool_use_id:'no-reserve'});
+ assert.equal(judgments,4);assert.equal(s.router.turns.get('thread').current,'high');
+ for(let i=0;i<2;i++)await s.router.hook({...s.p,tool_use_id:'failure'+i,tool_response:{exit_code:1}});
+ assert.equal(judgments,6);assert.equal(s.router.turns.get('thread').current,'low');
+ await s.router.hook({...s.p,tool_use_id:'last-failure',tool_response:{exit_code:2}});
+ assert.equal(judgments,6);assert.equal(s.router.turns.get('thread').current,'high');
+ assert.equal(s.logs.filter(x=>x.kind==='effort_restore'&&x.status==='applied').length,2);
+ const report=summarize(s.logs);assert.equal(report.routing.baselineRestoresApplied,2);
+ assert.equal(report.routing.knownJevInputTokens,0);assert.equal(report.routing.decisions,5);
+});
+test('new input and public plan can use reserved judgments after routine exhaustion',async()=>{
+ for(const reason of ['input','plan']){
+  let judgments=0;const s=setup({judge:async()=>{judgments++;return{answer:answer('high')};}});
+  for(let i=0;i<4;i++)await s.router.hook({...s.p,tool_use_id:'routine'+i});
+  await s.router.hook({...s.p,tool_use_id:'skip'});assert.equal(judgments,4);
+  if(reason==='input')s.router.invalidate('thread',[{type:'text',text:'Investigate a new failure'}]);
+  else s.router.observe({method:'turn/plan/updated',params:{threadId:'thread',turnId:'turn',plan:[{step:'Diagnose failure',status:'inProgress'}]}});
+  await s.router.hook({...s.p,tool_use_id:'urgent'});assert.equal(judgments,5);
+ }
+});
+test('routine stale results cannot consume the reserved capacity',async()=>{
+ let release,count=0;const s=setup({judge:async()=>{
+  count++;return count===4?new Promise(r=>release=r):{answer:answer('low')};
+ }});
+ for(let i=0;i<3;i++)await s.router.hook({...s.p,tool_use_id:'early'+i});
+ const a=s.router.hook({...s.p,tool_use_id:'four'});await new Promise(r=>setImmediate(r));
+ const b=s.router.hook({...s.p,tool_use_id:'late'});release({answer:answer('low')});await Promise.all([a,b]);
+ assert.equal(count,4);assert.equal(s.router.turns.get('thread').current,'high');
+ assert(s.logs.some(x=>x.kind==='effort_restore'&&x.reason==='stale_evidence'));
+});
+test('budget restores respect manual baseline and never lower a stronger current effort',async()=>{
+ const s=setup({maxCalls:1});await s.router.hook(s.p);
+ const control=s.router.beginSettingsUpdate({threadId:'thread',turnId:'turn',effort:'medium'});
+ s.router.finishSettingsUpdate(control,{status:'applied'});
+ const t=s.router.turns.get('thread');t.current='low';
+ await s.router.hook({...s.p,tool_use_id:'restore'});assert.equal(t.current,'medium');
+ const count=s.calls.length;t.current='xhigh';
+ await s.router.hook({...s.p,tool_use_id:'stronger'});assert.equal(t.current,'xhigh');assert.equal(s.calls.length,count);
+});
+test('manual publication fences an in-flight budget restoration',async()=>{
+ let release;const s=setup({maxCalls:1});await s.router.hook(s.p);
+ s.router.request=async()=>new Promise(r=>release=r);
+ const p=s.router.hook({...s.p,tool_use_id:'restore'});await new Promise(r=>setImmediate(r));
+ const control=s.router.beginSettingsUpdate({threadId:'thread',turnId:'turn',effort:'medium'});
+ s.router.finishSettingsUpdate(control,{status:'applied'});release({status:'applied'});
+ assert.equal((await p).status,'stale');assert.equal(s.router.turns.get('thread').current,'medium');
+ assert(s.logs.some(x=>x.kind==='effort_restore'&&x.status==='superseded'&&x.confirmation===null));
+});
+test('unconfirmed or rejected restoration never fabricates applied or retries indefinitely',async()=>{
+ for(const outcome of ['timeout','targetUnavailable']){
+  const s=setup({maxCalls:1});await s.router.hook(s.p);let attempts=0;
+  s.router.request=async()=>{attempts++;if(outcome==='timeout')throw new Error('TIMEOUT');return{status:outcome};};
+  await s.router.hook({...s.p,tool_use_id:'restore'});await s.router.hook({...s.p,tool_use_id:'again'});
+  assert.equal(attempts,1);assert.equal(s.router.turns.get('thread').current,'low');
+  assert.equal(s.logs.at(-1).confirmation,null);assert.notEqual(s.logs.at(-1).status,'applied');
+ }
+});
+test('shared evaluator budget failure after downgrade restores baseline without another judgment',async()=>{
+ let judgments=0;const s=setup({judge:async()=>{if(++judgments>1)throw new Error('TASK_CALL_BUDGET');return{answer:answer('low')};}});
+ await s.router.hook(s.p);await s.router.hook({...s.p,tool_use_id:'unavailable'});
+ await s.router.hook({...s.p,tool_use_id:'later'});
+ assert.equal(judgments,2);assert.equal(s.router.turns.get('thread').current,'high');
+ assert(s.logs.some(x=>x.kind==='effort_restore'&&x.reason==='evaluator_unavailable'&&x.status==='applied'));
+});
+test('timed-out native routing publication never sends a competing baseline restore',async()=>{
+ let judgments=0;const s=setup({judge:async()=>({answer:answer(++judgments===1?'low':'medium')})});
+ await s.router.hook(s.p);let publications=0;
+ s.router.request=async()=>{publications++;throw new Error('TIMEOUT');};
+ await s.router.hook({...s.p,tool_use_id:'timeout'});await s.router.hook({...s.p,tool_use_id:'later'});
+ assert.equal(publications,1);assert.equal(judgments,2);assert.equal(s.router.turns.get('thread').settingsUncertain,true);
+ assert(!s.logs.some(x=>x.kind==='effort_restore'));
 });

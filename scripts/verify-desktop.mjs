@@ -16,11 +16,12 @@ import {installHome} from '../src/setup.mjs';
 const root=join(dirname(fileURLToPath(import.meta.url)),'../runtime/desktop');
 const targetModel=process.argv.find(x=>x.startsWith('--model='))?.slice(8)??'gpt-6-astra';
 const reassess=process.argv.includes('--reassess');
+const routingBudget=process.argv.includes('--routing-budget');
 const filtering=process.argv.includes('--filter-output');
 const manualSettings=process.argv.includes('--manual-settings');
 const inspectCacheContext=process.argv.includes('--inspect-cache-context');
 const inputSnapshots=[];
-const steps=reassess?4:1;
+const steps=routingBudget?7:reassess?4:1;
 const realBin=process.env.JEV_PILOT_CODEX??'/Applications/ChatGPT.app/Contents/Resources/codex';
 const work=await mkdtemp(join(tmpdir(),'jev-desktop-verification-'));
 const codexHome=join(work,'home');await mkdir(codexHome);
@@ -46,7 +47,7 @@ const server=createServer(async(req,res)=>{
   const responseId='resp_'+apiCount;
   let item;
   if(apiCount<=steps && tool) {
-    const command=filtering?`printf 'NEEDLE target\\n'; printf 'noise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\n%.0s' {1..350}`:reassess&&apiCount===4?'exit 7':'printf fixture_ok';
+    const command=filtering?`printf 'NEEDLE target\\n'; printf 'noise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\n%.0s' {1..350}`:(reassess&&apiCount===4)||(routingBudget&&apiCount>=5)?'exit 7':'printf fixture_ok';
     const args=tool.name==='exec_command'?{cmd:command,max_output_tokens:filtering?15000:50}:
       tool.name==='shell_command'?{command}:{command:['/bin/sh','-c',command]};
     item={id:'fc_fixture_'+apiCount,type:'function_call',call_id:'call_fixture_'+apiCount,name:tool.name,arguments:JSON.stringify(args),status:'completed'};
@@ -106,7 +107,7 @@ try{
   await writeFile(join(work,'trust.json'),JSON.stringify(trust,null,2));
   let input=new PassThrough(),output=new PassThrough();
   let judgeCalls=0;
-  const mockedJudge=async state=>{const choice=(reassess||manualSettings)&&judgeCalls++>0?'medium':'low';if(manualSettings && judgeCalls>1)report.manualJudgeEffort=state.currentEffort;return{answer:{type:'choice',choice,confidence:.4,probabilities:Object.fromEntries(Object.keys(effortQuestion.criteria).map(k=>[k,k===choice?.5:.1]))},horizon:{type:'choice',choice:'5',confidence:1,probabilities:Object.fromEntries(Object.keys(horizonQuestion.criteria).map(k=>[k,k==='5'?1:0]))},model:'offline-fixture',inputTokens:0};};
+  const mockedJudge=async state=>{const choice=(reassess||manualSettings)&&judgeCalls++>0?'medium':'low';if(manualSettings && judgeCalls>1)report.manualJudgeEffort=state.currentEffort;return{answer:{type:'choice',choice,confidence:.4,probabilities:Object.fromEntries(Object.keys(effortQuestion.criteria).map(k=>[k,k===choice?.5:.1]))},horizon:{type:'choice',choice:routingBudget?'1':'5',confidence:1,probabilities:Object.fromEntries(Object.keys(horizonQuestion.criteria).map(k=>[k,k===(routingBudget?'1':'5')?1:0]))},model:'offline-fixture',inputTokens:0};};
   const judge=process.argv.includes('--unavailable-jev')?async()=>{throw new Error('TIMEOUT');}:
     process.argv.includes('--real-jev')?await makeJudge(join(installHome(),'.env.local')):mockedJudge;
   report.realJev=process.argv.includes('--real-jev');
@@ -156,10 +157,11 @@ try{
     ? report.requests.length>=2 && report.requests.every(x=>x.effort==='high') && report.audit.some(x=>x.kind==='compatibility_fallback')
     : process.argv.includes('--unavailable-jev')
     ? report.requests.length>=2 && report.requests.every(x=>x.effort==='high') && report.audit.some(x=>x.kind==='fallback')
-    : report.requests.length>=2 && report.requests.every((x,i)=>x.effort===((reassess&&i>=4)||(manualSettings&&i>0)?'medium':'low')&&x.model===targetModel)
+    : report.requests.length>=2 && report.requests.every((x,i)=>x.effort===(routingBudget?([4,7].includes(i)?'high':'low'):((reassess&&i>=4)||(manualSettings&&i>0)?'medium':'low'))&&x.model===targetModel)
       && report.audit.some(x=>x.status==='start_forwarded')
       && (!reassess||report.audit.some(x=>x.status==='applied'&&x.published==='medium'))
       && report.audit.some(x=>x.kind==='turn_usage'&&x.usage?.inputTokens===50*(steps+1));
+  if(routingBudget)report.passed=report.passed&&report.requests.length===8&&report.audit.filter(x=>x.kind==='decision').length===6&&report.audit.filter(x=>x.kind==='effort_restore'&&x.status==='applied').length===2;
   if(manualSettings)report.passed=report.passed&&report.manualSettings?.status==='applied'&&report.manualJudgeEffort==='medium'&&report.audit.some(x=>x.kind==='external_settings'&&x.status==='applied');
   if(inspectCacheContext){
     const initial=inputSnapshots[0];

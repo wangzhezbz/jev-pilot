@@ -1,0 +1,122 @@
+{
+  "checkedAt": "2026-09-23T04:15:16.921772+00:00",
+  "sourceCommit": "143a86d78ae76fe563a9a7ba9ef40c53e4499e2a",
+  "platform": "darwin",
+  "runtimeVersion": "codex-cli 0.155.0-alpha.9.2",
+  "installedFingerprint": "da3a34f90dce2f6e0a61f0795e45d84819bf5a01f1a9b488ddcfbd9c549ff9ba",
+  "loadedRevisionMatches": true,
+  "activeBridges": [
+    {
+      "at": "2026-09-23T04:10:54.038Z",
+      "measurementSource": "runtime",
+      "kind": "bridge_started",
+      "policyVersion": "effort-v5-context-freshness",
+      "leaseUnit": "tool_completion_boundary",
+      "runtimeFingerprint": "da3a34f90dce2f6e0a61f0795e45d84819bf5a01f1a9b488ddcfbd9c549ff9ba",
+      "pid": 21552,
+      "backendPid": 21556,
+      "networkMode": "environment_proxy"
+    }
+  ],
+  "processChainVerified": true,
+  "processChain": [
+    20920,
+    21551,
+    21552,
+    21556
+  ],
+  "ordinaryCurrentTurnDecisions": [
+    {
+      "at": "2026-09-23T04:11:28.262Z",
+      "kind": "decision",
+      "policyVersion": "effort-v5-context-freshness",
+      "targetModel": "gpt-6-astra",
+      "from": "high",
+      "recommended": "keep",
+      "published": "high",
+      "status": "unchanged",
+      "event": "BeforeTurnStart",
+      "confirmation": null,
+      "elapsedMs": 1396,
+      "inputTokens": 838,
+      "outputTokens": 106
+    },
+    {
+      "at": "2026-09-23T04:11:48.022Z",
+      "kind": "decision",
+      "policyVersion": "effort-v5-context-freshness",
+      "targetModel": "gpt-6-astra",
+      "from": "high",
+      "recommended": "keep",
+      "published": "high",
+      "status": "superseded",
+      "event": "PostToolUse",
+      "confirmation": null,
+      "elapsedMs": 617,
+      "inputTokens": 941,
+      "outputTokens": 106
+    },
+    {
+      "at": "2026-09-23T04:11:48.570Z",
+      "kind": "decision",
+      "policyVersion": "effort-v5-context-freshness",
+      "targetModel": "gpt-6-astra",
+      "from": "high",
+      "recommended": "medium",
+      "published": "medium",
+      "status": "applied",
+      "event": "PostToolUse",
+      "confirmation": "native_settings_published",
+      "elapsedMs": 548,
+      "inputTokens": 2822,
+      "outputTokens": 106
+    },
+    {
+      "at": "2026-09-23T04:14:45.462Z",
+      "kind": "decision",
+      "policyVersion": "effort-v5-context-freshness",
+      "targetModel": "gpt-6-astra",
+      "from": "medium",
+      "recommended": "medium",
+      "published": "medium",
+      "status": "unchanged",
+      "event": "PostToolUse",
+      "confirmation": null,
+      "elapsedMs": 570,
+      "inputTokens": 3184,
+      "outputTokens": 106
+    },
+    {
+      "at": "2026-09-23T04:14:46.189Z",
+      "kind": "decision",
+      "policyVersion": "effort-v5-context-freshness",
+      "targetModel": "gpt-6-astra",
+      "from": "medium",
+      "recommended": "medium",
+      "published": "medium",
+      "status": "unchanged",
+      "event": "PostToolUse",
+      "confirmation": null,
+      "elapsedMs": 607,
+      "inputTokens": 3799,
+      "outputTokens": 106
+    },
+    {
+      "at": "2026-09-23T04:14:56.421Z",
+      "kind": "decision",
+      "policyVersion": "effort-v5-context-freshness",
+      "targetModel": "gpt-6-astra",
+      "from": "medium",
+      "recommended": "low",
+      "published": "low",
+      "status": "applied",
+      "event": "PostToolUse",
+      "confirmation": "native_settings_published",
+      "elapsedMs": 529,
+      "inputTokens": 3639,
+      "outputTokens": 106
+    }
+  ],
+  "interpretation": "Live ordinary desktop session received native settings publication high -> medium while retaining gpt-6-astra. This confirms applied settings, not a captured subsequent provider request or measured savings.",
+  "performanceBenchmarkRetried": false
+}
