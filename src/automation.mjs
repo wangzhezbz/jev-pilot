@@ -1,13 +1,15 @@
 import { Store, Judge, loadConfig, hash, now, redact } from './core.mjs';
-import {checkpointObserver} from './checkpoints.mjs';
+import {checkpointObserver,checkpointRelevant,checkpointForTurn,resumeContext} from './checkpoints.mjs';
 import {outputAdapter} from './output-adapters.mjs';
 import { filterOutput } from './evidence.mjs';
 // Runs inside the existing desktop bridge, before releasing a supported tool boundary.
 // Only text responses are eligible. Structured outputs retain their contract unchanged.
 export function createAutomation({ store = new Store(), key, send } = {}) {
+  const observe=checkpointObserver(store);
   return {
     store,
-    observe:checkpointObserver(store),
+    observe, checkpointRelevant, flush:observe.flush,
+    resumeContext:(root,threadId,task)=>resumeContext(store,root,threadId,task),
     enabled(root) { try { return loadConfig(store, store.project(root)).enabled === true; } catch { return false; } },
     async hook(payload) {
       if (!payload.cwd || !payload.session_id) return {};
@@ -23,7 +25,8 @@ export function createAutomation({ store = new Store(), key, send } = {}) {
       if (state.recent.includes(fingerprint)) return {};
       state.recent = [...state.recent.slice(-99), fingerprint];
       const adapter=outputAdapter(payload.tool_name,payload.tool_response),response=adapter?.text;
-      store.put(project, 'checkpoint', { sourceHashes:{},completed:[],pending:['Reinspect state before continuing'],...(store.get(project,'checkpoint','auto-'+id)||{}),task: state.goal, requiresReview:true, createdAt: now(), receiptIds: [], lastTool: payload.tool_name, auto: true }, 'auto-' + id);
+      const checkpoint=checkpointForTurn(store.get(project,'checkpoint','auto-'+id),{task:state.goal,threadId:payload.session_id,turnId:payload.turn_id});
+      store.put(project,'checkpoint',{...checkpoint,task:state.goal,updatedAt:now(),lastTool:payload.tool_name},'auto-'+id);
       // Admission gate avoids API overhead on small, exact-output and structured results.
       const reason = !adapter ? 'structured'
         : response.length < 12000 ? 'small' : response.length > 100000 ? 'oversized'
@@ -41,6 +44,6 @@ export function createAutomation({ store = new Store(), key, send } = {}) {
       store.event(project, 'automatic_output_filter', { boundaryId: fingerprint, originalBytes: Buffer.byteLength(typeof payload.tool_response==='string'?payload.tool_response:JSON.stringify(payload.tool_response)),sourceTextBytes:Buffer.byteLength(response), retainedBytes: Buffer.byteLength(feedback), artifactId: result.artifactId, nativeTokenSavings: null });
       return { continue: false, stopReason: feedback };
     },
-    close() { store.close(); },
+    async close() { await observe.flush();store.close(); },
   };
 }

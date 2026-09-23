@@ -1,0 +1,306 @@
+{
+  "policy": "effort-v9-context-batches",
+  "nativeRuntime": "codex-cli 0.155.0-alpha.9.2",
+  "platform": "macOS arm64",
+  "regressions": {
+    "passed": 151,
+    "failed": 0
+  },
+  "paidGptCalls": 0,
+  "nativeScenarios": [
+    {
+      "scenario": "parallel-after",
+      "passed": true,
+      "model": "gpt-6-astra",
+      "requests": [
+        {
+          "effort": "low"
+        },
+        {
+          "effort": "low"
+        }
+      ],
+      "jevFixtureDecisions": 1,
+      "usage": [
+        {
+          "jevCalls": 1,
+          "batchLeaseSkips": 4,
+          "leaseSkips": 1,
+          "tokens": {
+            "inputTokens": 100,
+            "cachedInputTokens": 0,
+            "outputTokens": 10,
+            "reasoningOutputTokens": 0,
+            "totalTokens": 110,
+            "cacheWriteInputTokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "resume-native",
+      "passed": true,
+      "model": "gpt-6-astra",
+      "requests": [
+        {
+          "effort": "low"
+        },
+        {
+          "effort": "low"
+        }
+      ],
+      "jevFixtureDecisions": 1,
+      "usage": [
+        {
+          "jevCalls": 1,
+          "batchLeaseSkips": 0,
+          "leaseSkips": 1,
+          "tokens": {
+            "inputTokens": 100,
+            "cachedInputTokens": 0,
+            "outputTokens": 10,
+            "reasoningOutputTokens": 0,
+            "totalTokens": 110,
+            "cacheWriteInputTokens": 0
+          }
+        }
+      ],
+      "resumeState": {
+        "source": "checkpoint",
+        "requiresReview": true,
+        "historicalTaskPresent": true,
+        "currentTask": "\u7ee7\u7eed"
+      }
+    },
+    {
+      "scenario": "budget-astra",
+      "passed": true,
+      "model": "gpt-6-astra",
+      "requests": [
+        {
+          "effort": "low"
+        },
+        {
+          "effort": "low"
+        },
+        {
+          "effort": "low"
+        },
+        {
+          "effort": "low"
+        },
+        {
+          "effort": "high"
+        },
+        {
+          "effort": "high"
+        },
+        {
+          "effort": "high"
+        },
+        {
+          "effort": "high"
+        }
+      ],
+      "jevFixtureDecisions": 6,
+      "usage": [
+        {
+          "jevCalls": 6,
+          "batchLeaseSkips": 0,
+          "leaseSkips": 0,
+          "tokens": {
+            "inputTokens": 400,
+            "cachedInputTokens": 0,
+            "outputTokens": 40,
+            "reasoningOutputTokens": 0,
+            "totalTokens": 440,
+            "cacheWriteInputTokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "budget-sol",
+      "passed": true,
+      "model": "gpt-6-sol",
+      "requests": [
+        {
+          "effort": "low"
+        },
+        {
+          "effort": "low"
+        },
+        {
+          "effort": "low"
+        },
+        {
+          "effort": "low"
+        },
+        {
+          "effort": "high"
+        },
+        {
+          "effort": "high"
+        },
+        {
+          "effort": "high"
+        },
+        {
+          "effort": "high"
+        }
+      ],
+      "jevFixtureDecisions": 6,
+      "usage": [
+        {
+          "jevCalls": 6,
+          "batchLeaseSkips": 0,
+          "leaseSkips": 0,
+          "tokens": {
+            "inputTokens": 400,
+            "cachedInputTokens": 0,
+            "outputTokens": 40,
+            "reasoningOutputTokens": 0,
+            "totalTokens": 440,
+            "cacheWriteInputTokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "budget-luna",
+      "passed": true,
+      "model": "gpt-6-luna",
+      "requests": [
+        {
+          "effort": "low"
+        },
+        {
+          "effort": "low"
+        },
+        {
+          "effort": "low"
+        },
+        {
+          "effort": "low"
+        },
+        {
+          "effort": "high"
+        },
+        {
+          "effort": "high"
+        },
+        {
+          "effort": "high"
+        },
+        {
+          "effort": "high"
+        }
+      ],
+      "jevFixtureDecisions": 6,
+      "usage": [
+        {
+          "jevCalls": 6,
+          "batchLeaseSkips": 0,
+          "leaseSkips": 0,
+          "tokens": {
+            "inputTokens": 400,
+            "cachedInputTokens": 0,
+            "outputTokens": 40,
+            "reasoningOutputTokens": 0,
+            "totalTokens": 440,
+            "cacheWriteInputTokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "manual",
+      "passed": true,
+      "model": "gpt-5.6-sol",
+      "requests": [
+        {
+          "effort": "low"
+        },
+        {
+          "effort": "medium"
+        }
+      ],
+      "jevFixtureDecisions": 2,
+      "usage": [
+        {
+          "jevCalls": 2,
+          "batchLeaseSkips": 0,
+          "leaseSkips": 0,
+          "tokens": {
+            "inputTokens": 100,
+            "cachedInputTokens": 0,
+            "outputTokens": 10,
+            "reasoningOutputTokens": 0,
+            "totalTokens": 110,
+            "cacheWriteInputTokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "mcp",
+      "passed": true,
+      "model": "gpt-6-astra",
+      "requests": [
+        {
+          "effort": "low"
+        },
+        {
+          "effort": "low"
+        }
+      ],
+      "jevFixtureDecisions": 1,
+      "usage": [
+        {
+          "jevCalls": 1,
+          "batchLeaseSkips": 0,
+          "leaseSkips": 1,
+          "tokens": {
+            "inputTokens": 100,
+            "cachedInputTokens": 0,
+            "outputTokens": 10,
+            "reasoningOutputTokens": 0,
+            "totalTokens": 110,
+            "cacheWriteInputTokens": 0
+          }
+        }
+      ],
+      "automaticCheckpoint": {
+        "observed": true,
+        "auto": true,
+        "requiresReview": true,
+        "turnStatus": "completed",
+        "coverage": "unavailable",
+        "verifiedCompletedCount": 0,
+        "publicProgressObserved": true
+      },
+      "mcpEnvelopePreserved": true
+    }
+  ],
+  "controlledComparison": {
+    "sameResponseTools": 5,
+    "beforeFixtureJudgments": 2,
+    "afterFixtureJudgments": 1,
+    "notSavingsBenchmark": true
+  },
+  "checkpointDeltaReproduction": {
+    "irrelevantEvents": 10000,
+    "beforeProjectLookups": 10000,
+    "beforeCheckpointReads": 10000,
+    "afterProjectLookups": 0,
+    "afterCheckpointReads": 0
+  },
+  "installation": {
+    "compatible": true,
+    "installedFingerprint": "25dc35d9bc6f064dc525b9573b5aabc5418037af243af4e119cf741d5fa9dead",
+    "loadedRevisionMatches": false,
+    "configuredForNextLaunch": true
+  },
+  "loadedPolicy": "effort-v8-reserved-wait",
+  "performanceSavingsVerified": false
+}

@@ -306,7 +306,7 @@ test('progress arriving during native publication prevents reuse of that decisio
  const pending=s.router.hook(s.p);await new Promise(r=>setImmediate(r));
  s.router.observe({method:'item/completed',params:{threadId:'thread',turnId:'turn',item:{type:'plan',text:'Investigate unresolved failure'}}});
  release({status:'applied'});await pending;assert.equal(s.router.turns.get('thread').lease,0);assert.equal(s.router.turns.get('thread').forceRecheck,true);
- assert.equal(s.logs.at(-1).confirmation,'native_settings_published');assert.equal(s.logs.at(-1).leaseUnit,'tool_completion_boundary');
+ assert.equal(s.logs.at(-1).confirmation,'native_settings_published');assert.equal(s.logs.at(-1).leaseUnit,'observed_tool_batch_or_boundary');
 });
 test('runtime identity is deterministic, detects changed sources and never invents old identities',()=>{
  assert.equal(runtimeFingerprint({a:'one',b:'two'}),runtimeFingerprint({b:'two',a:'one'}));

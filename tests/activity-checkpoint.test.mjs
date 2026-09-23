@@ -11,7 +11,7 @@ test('automatic checkpoint records observed progress and changed files without a
  writeFileSync(join(f.root,'file.txt'),'changed');const observe=checkpointObserver(f.store),turn={threadId:'thread',turnId:'turn',cwd:f.root,task:'finish fix'};
  observe({method:'turn/plan/updated',params:{threadId:'thread',turnId:'turn',plan:[{step:'implement',status:'completed'},{step:'verify',status:'pending'}]}},turn);
  observe({method:'item/completed',params:{threadId:'thread',turnId:'turn',item:{type:'commandExecution',id:'tool',status:'completed',exitCode:0}}},turn);
- observe({method:'turn/completed',params:{threadId:'thread',turn:{id:'turn',status:'interrupted'}}},turn);
+ await observe({method:'turn/completed',params:{threadId:'thread',turn:{id:'turn',status:'interrupted'}}},turn);
  const saved=f.store.get(f.project,'checkpoint','auto-'+hash('thread'));assert.deepEqual(saved.completed,[]);assert.deepEqual(saved.pending,['verify']);assert.equal(saved.toolReceipts[0].exitCode,0);assert.equal(saved.sourceHashes['file.txt'],hash('changed'));assert.equal(saved.coverage,'worktree_changes');
  writeFileSync(join(f.root,'file.txt'),'changed again');const pilot=new Pilot({store:f.store,key:'fixture'});const r=await pilot.call({workspace:f.root,operation:'checkpoint',input:{action:'latest',taskId:'thread'}});assert.equal(r.state,'revalidate');assert.deepEqual(r.changedFiles,['file.txt']);assert.equal(r.automaticReplay,false);
 });

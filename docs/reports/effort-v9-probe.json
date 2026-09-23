@@ -1,0 +1,32 @@
+{
+  "at": "2026-09-23T06:54:17.348Z",
+  "syntheticStates": true,
+  "paidGptCalls": 0,
+  "attempts": [
+    {
+      "case": "stable_batch",
+      "status": "success",
+      "model": "jev-1.13.0",
+      "effort": "low",
+      "horizon": "5",
+      "inputTokens": 910,
+      "outputTokens": 106,
+      "elapsedMs": 502
+    },
+    {
+      "case": "resume_unresolved",
+      "status": "success",
+      "model": "jev-1.13.0",
+      "effort": "xhigh",
+      "horizon": "1",
+      "inputTokens": 1005,
+      "outputTokens": 107,
+      "elapsedMs": 920
+    }
+  ],
+  "estimatedInputCostUsd": 8.043e-05,
+  "outputCostUsd": null,
+  "priceSource": "https://typesafe.ai/",
+  "priceCheckedAt": "2026-09-23",
+  "costNote": "Official homepage lists $42 per billion input tokens. Input-only estimate; output rate and actual account debits not verified."
+}

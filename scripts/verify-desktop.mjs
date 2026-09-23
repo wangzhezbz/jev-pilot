@@ -10,12 +10,14 @@ import {spawn,execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {runBridge,hookOverrides,toml} from '../runtime/desktop/bridge.mjs';
 import {effortQuestion,horizonQuestion,makeJudge} from '../runtime/desktop/router.mjs';
-import {Store} from '../src/core.mjs';
+import {Store,hash} from '../src/core.mjs';
 import {installHome} from '../src/setup.mjs';
 
 const root=join(dirname(fileURLToPath(import.meta.url)),'../runtime/desktop');
 const targetModel=process.argv.find(x=>x.startsWith('--model='))?.slice(8)??'gpt-6-astra';
 const reassess=process.argv.includes('--reassess');
+const parallelTools=process.argv.includes('--parallel-tools');
+const resumeFixture=process.argv.includes('--resume-context');
 const routingBudget=process.argv.includes('--routing-budget');
 const mcpFiltering=process.argv.includes('--filter-mcp');
 const filtering=process.argv.includes('--filter-output')||mcpFiltering;
@@ -56,9 +58,9 @@ const server=createServer(async(req,res)=>{
   res.writeHead(200,{'Content-Type':'text/event-stream','Cache-Control':'no-cache'});
   const event=(type,data)=>res.write(`event: ${type}\ndata: ${JSON.stringify({type,...data})}\n\n`);
   event('response.created',{response:{id:responseId,object:'response',status:'in_progress',output:[]}});
-  event('response.output_item.added',{output_index:0,item:{...item,status:'in_progress'}});
-  event('response.output_item.done',{output_index:0,item});
-  event('response.completed',{response:{id:responseId,object:'response',status:'completed',output:[item],
+  const outputs=parallelTools&&apiCount===1?Array.from({length:5},(_,i)=>({...item,id:'fc_parallel_'+i,call_id:'call_parallel_'+i,arguments:JSON.stringify({cmd:'sleep '+(i*.04)+'; printf fixture_ok',max_output_tokens:50})})):[item];
+  for(const [index,entry]of outputs.entries()){event('response.output_item.added',{output_index:index,item:{...entry,status:'in_progress'}});event('response.output_item.done',{output_index:index,item:entry});}
+  event('response.completed',{response:{id:responseId,object:'response',status:'completed',output:outputs,
     usage:{input_tokens:50,output_tokens:5,total_tokens:55,input_tokens_details:{cached_tokens:0},output_tokens_details:{reasoning_tokens:0}}}});
   res.end();
 });
@@ -113,7 +115,7 @@ try{
   await writeFile(join(work,'trust.json'),JSON.stringify(trust,null,2));
   let input=new PassThrough(),output=new PassThrough();
   let judgeCalls=0;
-  const mockedJudge=async state=>{const choice=(reassess||manualSettings)&&judgeCalls++>0?'medium':'low';if(manualSettings && judgeCalls>1)report.manualJudgeEffort=state.currentEffort;return{answer:{type:'choice',choice,confidence:.4,probabilities:Object.fromEntries(Object.keys(effortQuestion.criteria).map(k=>[k,k===choice?.5:.1]))},horizon:{type:'choice',choice:routingBudget?'1':'5',confidence:1,probabilities:Object.fromEntries(Object.keys(horizonQuestion.criteria).map(k=>[k,k===(routingBudget?'1':'5')?1:0]))},model:'offline-fixture',inputTokens:0};};
+  const mockedJudge=async state=>{if(resumeFixture)report.resumeState={source:state.previousTurn?.source,requiresReview:state.previousTurn?.requiresReview,historicalTaskPresent:state.previousTurn?.task==='Verify the prepared parser patch',currentTask:state.task};const choice=(reassess||manualSettings)&&judgeCalls++>0?'medium':'low';if(manualSettings && judgeCalls>1)report.manualJudgeEffort=state.currentEffort;return{answer:{type:'choice',choice,confidence:.4,probabilities:Object.fromEntries(Object.keys(effortQuestion.criteria).map(k=>[k,k===choice?.5:.1]))},horizon:{type:'choice',choice:routingBudget?'1':'5',confidence:1,probabilities:Object.fromEntries(Object.keys(horizonQuestion.criteria).map(k=>[k,k===(routingBudget?'1':'5')?1:0]))},model:'offline-fixture',inputTokens:0};};
   const judge=process.argv.includes('--unavailable-jev')?async()=>{throw new Error('TIMEOUT');}:
     process.argv.includes('--real-jev')?await makeJudge(join(installHome(),'.env.local')):mockedJudge;
   report.realJev=process.argv.includes('--real-jev');
@@ -130,12 +132,12 @@ try{
     installed=spawn(join(installHome(),process.platform==='win32'?'jev-pilot.exe':'jev-pilot'),args,{env,stdio:['pipe','pipe','pipe']});installed.stderr.pipe(process.stderr);
     input=installed.stdin;output=installed.stdout;report.realJev=true;
   } else {
-    if(filtering)autoStore=new Store({home:join(work,'pilot')});
-    const automation=filtering?{store:autoStore,key:'fixture',send:async p=>({model:'fixture',usage:{input_tokens:1,output_tokens:1},answers:Object.fromEntries(Object.entries(p.questions).map(([id,q])=>{const item=p.state.items[Number(id.slice(1))];const choice=item.text.includes('NEEDLE')?'keep':'exclude';return[id,{type:'choice',choice,probabilities:{keep:choice==='keep'?1:0,review:0,exclude:choice==='exclude'?1:0}}]}))})}:false;
+    if(filtering||resumeFixture)autoStore=new Store({home:join(work,'pilot')});
+    const automation=(filtering||resumeFixture)?{store:autoStore,key:'fixture',send:async p=>({model:'fixture',usage:{input_tokens:1,output_tokens:1},answers:Object.fromEntries(Object.entries(p.questions).map(([id,q])=>{const item=p.state.items[Number(id.slice(1))];const choice=item.text.includes('NEEDLE')?'keep':'exclude';return[id,{type:'choice',choice,probabilities:{keep:choice==='keep'?1:0,review:0,exclude:choice==='exclude'?1:0}}]}))})}:false;
     bridge=await runBridge({realBin,args,trust,env,input,output,judge,automation,logPath:join(work,'audit.jsonl')});
   }
   c=client(input,output);
-  c.listeners.push(m=>{if(['hook/started','hook/completed','turn/started','turn/completed','item/completed','error'].includes(m.method))report.events.push(m);});
+  c.listeners.push(m=>{if(['hook/started','hook/completed','turn/started','turn/completed','thread/tokenUsage/updated','item/started','item/completed','error'].includes(m.method))report.events.push(m);});
   await c.request('initialize',{clientInfo:{name:'jev_desktop_protocol_fixture',version:'0.1'},capabilities:{experimentalApi:true}});c.notify('initialized');
   const models=await c.request('model/list',{includeHidden:true,limit:100});
   report.supportedEfforts=models.data?.find(m=>m.model===targetModel)?.supportedReasoningEfforts?.map(x=>x.reasoningEffort)??[];
@@ -143,6 +145,7 @@ try{
   const loaded=await c.request('hooks/list',{cwds:[work]});report.trustedHooks=loaded;
   const started=await c.request('thread/start',{model:targetModel,cwd:work,ephemeral:true,sandbox:'read-only',approvalPolicy:'never',
     developerInstructions:'This is a synthetic protocol fixture. Follow the task; no extra tools or agents.'});
+  if(resumeFixture)autoStore.put(autoStore.project(work),'checkpoint',{task:'Verify the prepared parser patch',threadId:started.thread.id,turnId:'previous-fixture-turn',updatedAt:new Date().toISOString(),lastPublishedProgress:'Parser patch prepared; tests remain',pending:['Run parser tests'],sourceHashes:{},coverage:'unavailable',auto:true,requiresReview:true},'auto-'+hash(started.thread.id));
   if(mcpFiltering){
     for(let i=0;i<30;i++){
       report.mcpStatus=await c.request('mcpServerStatus/list',{threadId:started.thread.id,limit:100});
@@ -154,12 +157,12 @@ try{
   c.listeners.push(m=>{if(m.method==='turn/completed')finish(m.params);});
   const turn=await c.request('turn/start',{threadId:started.thread.id,model:targetModel,effort:'high',
     ...(process.argv.includes('--mode')?{collaborationMode:{mode:'default',settings:{model:targetModel,reasoning_effort:'high',developer_instructions:null}}}:{}),
-    input:[{type:'text',text:filtering?'Find the NEEDLE target evidence in the log; unrelated noise can be omitted.':'Execute the exact shell command printf fixture_ok, then reply only with its output. The command and expected answer are fully specified. No design, diagnosis or extra steps are needed.'}]});
+    input:[{type:'text',text:resumeFixture?'继续':filtering?'Find the NEEDLE target evidence in the log; unrelated noise can be omitted.':'Execute the exact shell command printf fixture_ok, then reply only with its output. The command and expected answer are fully specified. No design, diagnosis or extra steps are needed.'}]});
   let timer;await Promise.race([finished,new Promise((_,no)=>{timer=setTimeout(()=>no(new Error('TURN_TIMEOUT')),40_000);})]).finally(()=>clearTimeout(timer));
   report.threadId=started.thread.id;report.turnId=turn.turn.id;
   report.syntheticToolEvidence=bridge?.router.turns.get(started.thread.id)?.recent;
   const auditFile=auditOverride??(installed?join(installHome(),'runtime/desktop/logs/events.jsonl'):join(work,'audit.jsonl'));
-  await bridge?.flushLog();
+  await bridge?.flushAutomation();await bridge?.flushLog();
   if(installed&&!auditOverride)for(let i=0;i<20;i++){
     const lines=(await readFile(auditFile,'utf8')).trim().split('\n');
     if(lines.some(line=>{try{const e=JSON.parse(line);return e.kind==='turn_usage'&&e.turnId===turn.turn.id;}catch{return false;}}))break;
@@ -174,6 +177,8 @@ try{
       && report.audit.some(x=>x.status==='start_forwarded')
       && (!reassess||report.audit.some(x=>x.status==='applied'&&x.published==='medium'))
       && report.audit.some(x=>x.kind==='turn_usage'&&x.usage?.inputTokens===50*(steps+1));
+  if(resumeFixture)report.passed=report.passed&&report.resumeState?.source==='checkpoint'&&report.resumeState?.requiresReview===true&&report.resumeState?.historicalTaskPresent===true&&report.resumeState?.currentTask==='继续'&&report.audit.some(x=>x.kind==='resume_context');
+  if(parallelTools)report.passed=report.passed&&report.requests.length===2&&report.audit.filter(x=>x.kind==='decision').length===1&&report.audit.some(x=>x.kind==='turn_usage'&&x.batchLeaseSkips===4)&&report.events.filter(x=>x.method==='item/completed'&&x.params.item?.type==='commandExecution').length===5;
   if(routingBudget)report.passed=report.passed&&report.requests.length===8&&report.audit.filter(x=>x.kind==='decision').length===6&&report.audit.filter(x=>x.kind==='effort_restore'&&x.status==='applied').length===1&&report.audit.filter(x=>x.status==='budget_held').length===2;
   if(manualSettings)report.passed=report.passed&&report.manualSettings?.status==='applied'&&report.manualJudgeEffort==='medium'&&report.audit.some(x=>x.kind==='external_settings'&&x.status==='applied');
   if(inspectCacheContext){

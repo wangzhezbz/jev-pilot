@@ -85,7 +85,7 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
     return new Judge({ store: guardStore, project, taskId: context.taskId, priority:context.priority, key,
       config: { ...loadConfig(guardStore, project), timeoutMs: 2000, cacheMs: 0 } });
   };
-  const router=new Router({request,judge:judge??await makeJudge(keyPath,{env,judgeFactory}),log});
+  const router=new Router({request,judge:judge??await makeJudge(keyPath,{env,judgeFactory}),log,groupToolBatches:true});
   const ensureMetadata=metadataLoader({request,log,accept:models=>{
     for(const m of models)router.supported.set(m.model,(m.supportedReasoningEfforts??[]).map(x=>x.reasoningEffort));
   }});
@@ -119,7 +119,20 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
     // recommendations immediately. Other threads and backend RPC replies flow.
     if(starting || (threadId && threadQueues.has(threadId))) {
       const job=(threadQueues.get(threadId)??Promise.resolve()).then(async()=>{
-        if(starting){await ensureMetadata();const cwd=msg.params.cwd??router.threads.get(threadId)?.cwd;if(!assistant||!cwd||assistant.enabled(cwd))msg.params=await router.routeStart(msg.params,starting);else router.stop(threadId);}
+        if(starting){
+          await ensureMetadata();const cwd=msg.params.cwd??router.threads.get(threadId)?.cwd;
+          if(!assistant||!cwd||assistant.enabled(cwd)){
+            if(assistant&&cwd&&!starting.previousTurn){
+              const revision=starting.revision;let timer;
+              const previous=await Promise.race([assistant.resumeContext(cwd,threadId,starting.task).catch(()=>undefined),new Promise(resolve=>{timer=setTimeout(()=>resolve(undefined),150);})]).finally(()=>clearTimeout(timer));
+              if(previous&&starting.active&&starting.revision===revision&&router.turns.get(threadId)===starting){
+                starting.previousTurn=previous;
+                log({kind:'resume_context',threadId,sourceTurnId:previous.sourceTurnId,changedFilesCount:previous.validation.changedFilesCount,requiresReview:true});
+              }
+            }
+            msg.params=await router.routeStart(msg.params,starting);
+          }else router.stop(threadId);
+        }
         send(msg);
       }).catch(()=>{log({kind:'start_routing_fallback',threadId});send(msg);});
       threadQueues.set(threadId,job);
@@ -147,7 +160,7 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
         router.stop(p.params.threadId);log({kind:'start_rejected',threadId:p.params.threadId});
       }
     }
-    if(msg.method){router.observe(msg);try{const t=router.turns.get(msg.params?.threadId);if(t&&assistant?.enabled(t.cwd))assistant.observe(msg,t);}catch{}}
+    if(msg.method){router.observe(msg);try{if(assistant?.checkpointRelevant(msg)){const t=router.turns.get(msg.params?.threadId);if(t&&assistant.enabled(t.cwd))Promise.resolve(assistant.observe(msg,t)).catch(()=>{});}}catch{}}
     output.write(line+'\n');
   });
   // Forward stderr unchanged; never persist backend diagnostics or credentials in router logs.
@@ -155,7 +168,7 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
   const cleanup=async()=>{
     if(closed)return;closed=true;toBackend.close();fromBackend.close();
     for(const p of pending.values()){clearTimeout(p.timer);p.reject(new Error('CLOSED'));}pending.clear();
-    server.close();assistant?.close();if(guardStore && guardStore !== assistant?.store)guardStore.close();for(const t of router.turns.values())t.active=false;
+    server.close();await assistant?.close();if(guardStore && guardStore !== assistant?.store)guardStore.close();for(const t of router.turns.values())t.active=false;
     try{await unlink(socketPath);}catch{}try{await rmdir(dir);}catch{}
   };
   input.on('end',()=>Promise.allSettled([...threadQueues.values()]).then(()=>child.stdin.end()));child.stdin.on('error',()=>{});
@@ -163,7 +176,7 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
   child.on('exit',()=>cleanup());
   for(const signal of ['SIGTERM','SIGINT'])process.once(signal,()=>{child.kill(signal);cleanup();});
   log({kind:'bridge_started',policyVersion:POLICY_VERSION,leaseUnit:LEASE_UNIT,runtimeFingerprint:runtimeIdentity,pid:process.pid,backendPid:child.pid,networkMode:env.JEV_NETWORK_MODE??'inherited'});
-  return {child,router,request,cleanup,socketPath,flushLog:()=>logPending};
+  return {child,router,request,cleanup,socketPath,flushLog:()=>logPending,flushAutomation:()=>assistant?.flush()};
 }
 
 async function main() {
