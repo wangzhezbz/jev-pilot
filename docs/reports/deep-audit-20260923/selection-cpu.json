@@ -1,0 +1,21 @@
+{
+  "kind": "local_cpu_only_mock_judgments",
+  "paidApiCalls": 0,
+  "rows": [
+    {
+      "n": 40,
+      "elapsedMs": 2,
+      "retained": 40
+    },
+    {
+      "n": 80,
+      "elapsedMs": 3,
+      "retained": 80
+    },
+    {
+      "n": 160,
+      "elapsedMs": 3,
+      "retained": 160
+    }
+  ]
+}

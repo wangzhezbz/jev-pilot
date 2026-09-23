@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "passed": true,
+  "requests": [
+    {
+      "number": 1,
+      "effort": "low"
+    },
+    {
+      "number": 2,
+      "effort": "low"
+    }
+  ],
+  "kind": "real_native_engine_with_synthetic_model_endpoint",
+  "paidApiCalls": 0
+}

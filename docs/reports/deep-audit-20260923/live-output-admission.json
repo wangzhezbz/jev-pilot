@@ -1,0 +1,43 @@
+{
+  "scope": "two live project databases, shared across threads; not current turn-only",
+  "rows": [
+    {
+      "project": "jev",
+      "day": "2026-09-23",
+      "admissions": [
+        {
+          "reason": "eligible",
+          "count": 28
+        },
+        {
+          "reason": "no_benefit_cooldown",
+          "count": 3
+        },
+        {
+          "reason": "small",
+          "count": 676
+        },
+        {
+          "reason": "structured",
+          "count": 123
+        },
+        {
+          "reason": "turn_limit",
+          "count": 121
+        }
+      ],
+      "results": [
+        {
+          "reason": "insufficient_reduction",
+          "count": 6
+        }
+      ]
+    },
+    {
+      "project": "jev-pilot",
+      "day": "2026-09-23",
+      "admissions": [],
+      "results": []
+    }
+  ]
+}

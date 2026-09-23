@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { createInterface } from 'node:readline';
 import { Pilot, operations } from './pilot.mjs';
+import { modelResult } from './model-result.mjs';
 import { VERSION } from './core.mjs';
 import { maintainBrowserNetwork } from './browser-network.mjs';
 let browserNetworkRepair = maintainBrowserNetwork();
@@ -23,7 +24,7 @@ async function handle(msg) {
           const network = maintainBrowserNetwork();
           browserNetworkRepair = { ...network, repairedEarlierInProcess: browserNetworkRepair.changed === true || browserNetworkRepair.repairedEarlierInProcess === true };
         }
-        const data = await pilot.call(msg.params.arguments, { signal: controller.signal });
+        const data = modelResult(msg.params.arguments.operation, await pilot.call(msg.params.arguments, { signal: controller.signal }));
         if (['status', 'browser_step'].includes(msg.params.arguments?.operation)) data.browserNetwork = browserNetworkRepair;
         result = { content: [{ type: 'text', text: JSON.stringify(data) }], structuredContent: data };
       }

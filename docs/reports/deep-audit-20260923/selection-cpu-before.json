@@ -1,0 +1,23 @@
+{
+  "kind": "local_cpu_only_mock_judgments",
+  "paidApiCalls": 0,
+  "sourceRevision": "84fcd49cfcffb6fa778c9864a381436e96a9ca3d",
+  "recordedFrom": "completed pre-patch probe output",
+  "rows": [
+    {
+      "n": 40,
+      "elapsedMs": 53,
+      "retained": 40
+    },
+    {
+      "n": 80,
+      "elapsedMs": 350,
+      "retained": 80
+    },
+    {
+      "n": 160,
+      "elapsedMs": 2847,
+      "retained": 160
+    }
+  ]
+}

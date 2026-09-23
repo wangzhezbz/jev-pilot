@@ -50,3 +50,5 @@ macOS、Windows、Linux 的核心自动检查已通过。macOS 原版引擎切�
 JevPilot 采用 [MIT 许可证](LICENSE)。这是独立社区项目，并非 OpenAI 或 TypeSafe 官方产品。
 
 成本回归修复：[v11 排查与真实复测](docs/reports/cost-fix-20260923/README.zh-CN.md)。自动档位以用户选择为上限；相关证据不因长度预算被扣留，暂不宣称稳定效率收益。
+
+进一步排查：[深层成本审计与局部修复](docs/reports/deep-audit-20260923/README.zh-CN.md)，包含重复正文、无效复查、输入上限和正常桌面测试缺口。

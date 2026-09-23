@@ -1,0 +1,62 @@
+{
+  "workingTreeAmended": true,
+  "at": "2026-09-23T10:21:34.302Z",
+  "sourceRevision": "84fcd49cfcffb6fa778c9864a381436e96a9ca3d",
+  "kind": "local_synthetic_reproductions",
+  "paidApiCalls": 0,
+  "wire": {
+    "filter": {
+      "inputBytes": 11649,
+      "retainedContextBytes": 11732,
+      "resultJsonBytes": 25297,
+      "firstRecordOccurrences": 2,
+      "modelResultJsonBytes": 13520
+    },
+    "compact": {
+      "inputBytes": 4229,
+      "reportedOutputBytes": 4229,
+      "actualResultJsonBytes": 8542,
+      "nativeHistoryChanged": false,
+      "modelResultJsonBytes": 4653
+    }
+  },
+  "largeQuality": {
+    "calls": 0,
+    "verdict": "needs_review",
+    "checks": [
+      {
+        "source": "fallback",
+        "reason": "REQUEST_LIMIT"
+      },
+      {
+        "source": "fallback",
+        "reason": "REQUEST_LIMIT"
+      }
+    ]
+  },
+  "routing": {
+    "requestedHorizon": 10,
+    "calls": 6,
+    "actualChanges": 0,
+    "ordinaryProgressClassifiedRoutine": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "finalEffort": "medium"
+  },
+  "chunking": {
+    "total": 19,
+    "protected": 0,
+    "mixedRelevantAndNoise": 8,
+    "pureBackground": 10
+  },
+  "adapter": {
+    "plainText": true,
+    "mcpText": true,
+    "mcpWithStructuredContent": false,
+    "codeModeBypassPresent": true
+  }
+}

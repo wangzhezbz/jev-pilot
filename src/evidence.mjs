@@ -39,6 +39,11 @@ export async function selectEvidence(ctx, { goal, items, budget = 16000, against
   let used = 0;
   const render = x => `[${x.id} ${x.source || 'provided'}${x.startLine ? ':' + x.startLine : ''}]\n${x.text}\n`;
   const add = x => { const rendered = render(x); selected.push(x); used += byteBudget(rendered); };
+  // Full coverage needs no relevance ranking. Keep the source sequence and
+  // avoid repeated tokenization/comparison of every surviving candidate.
+  if(candidates.reduce((sum,c)=>sum+byteBudget(render(c)),0)<=budget){
+    for(const c of candidates)add(c);
+  }else{
   for (const c of candidates.filter(x => x.protected)) add(c);
   let pool = candidates.filter(x => !x.protected);
   while (pool.length) {
@@ -47,6 +52,7 @@ export async function selectEvidence(ctx, { goal, items, budget = 16000, against
       return score(b) - score(a);
     });
     const c = pool.shift(); if (used + byteBudget(render(c)) <= budget) add(c); else deferred.push(c.id);
+  }
   }
   ctx.store.event(ctx.project, 'evidence_selection', { policy: EVIDENCE_POLICY, candidates: items.length, judged: judged.length, duplicates: duplicates.length, proposedExclusions: proposals.length, appliedExclusions: excluded.length, mode: ctx.config?.evidenceMode || 'active' });
   return { artifactId, context: selected.map(render).join(''), items: selected, excludedIds: excluded, proposedExcludedIds: proposals, policy: EVIDENCE_POLICY, deferredIds: deferred, duplicateIds: duplicates,
