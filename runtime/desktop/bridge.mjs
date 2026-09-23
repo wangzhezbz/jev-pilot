@@ -53,7 +53,13 @@ export function metadataLoader({request,accept,log,clock=Date.now}) {
     return pending;
   };
 }
-export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,automation=false,runtimeIdentity=null,input=process.stdin,output=process.stdout,env=process.env}={}) {
+// Enable only on the exact engine whose transport and compaction were tested.
+// Native Codex still decides provider/model support and owns history updates.
+export function effortTransportFlags(version,args=[]) {
+  const explicit=args.some(x=>typeof x==='string' && /(?:^|[=,\s])(?:features\.)?reasoning_effort_override(?:[=,\s]|$)/.test(x));
+  return version==='codex-cli 0.155.0-alpha.16.3'&&!explicit?['--enable','reasoning_effort_override']:[];
+}
+export async function runBridge({realBin,args,nativeVersion=null,trust={},keyPath,logPath,judge,automation=false,runtimeIdentity=null,input=process.stdin,output=process.stdout,env=process.env}={}) {
   const home=dirname(fileURLToPath(import.meta.url));
   const dir=await mkdtemp(join(tmpdir(),'jev-bridge-'));await chmod(dir,0o700);
   const socketPath=process.platform==='win32'?`\\\\.\\pipe\\jev-pilot-${randomUUID()}`:join(dir,'hook.sock');
@@ -71,7 +77,8 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
   delete childEnv.TYPESAFE_API_KEY;
   // Do not let shell tools recursively start this adapter through the override.
   delete childEnv.CODEX_CLI_PATH;
-  const child=spawn(realBin,[...args,'--enable','step_model_switching',...hookOverrides(process.execPath,join(home,'hook.mjs'),trust)],
+  const effortFlags=effortTransportFlags(nativeVersion,args);
+  const child=spawn(realBin,[...args,...effortFlags,'--enable','step_model_switching',...hookOverrides(process.execPath,join(home,'hook.mjs'),trust)],
     {env:childEnv,stdio:['pipe','pipe','pipe']});
   const send=x=>{if(!closed) child.stdin.write(JSON.stringify(x)+'\n');};
   const request=(method,params,timeout=10_000)=>new Promise((resolve,reject)=>{
@@ -176,7 +183,7 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
   child.on('error',()=>{log({kind:'backend_start_failed'});cleanup();});
   child.on('exit',()=>cleanup());
   for(const signal of ['SIGTERM','SIGINT'])process.once(signal,()=>{child.kill(signal);cleanup();});
-  log({kind:'bridge_started',policyVersion:POLICY_VERSION,leaseUnit:LEASE_UNIT,runtimeFingerprint:runtimeIdentity,pid:process.pid,backendPid:child.pid,networkMode:env.JEV_NETWORK_MODE??'inherited'});
+  log({kind:'bridge_started',nativeEffortOverrideRequested:effortFlags.length>0,policyVersion:POLICY_VERSION,leaseUnit:LEASE_UNIT,runtimeFingerprint:runtimeIdentity,pid:process.pid,backendPid:child.pid,networkMode:env.JEV_NETWORK_MODE??'inherited'});
   return {child,router,request,cleanup,socketPath,flushLog:()=>logPending,flushAutomation:()=>assistant?.flush()};
 }
 
@@ -208,7 +215,7 @@ async function main() {
     await appendFile(join(home,'logs/events.jsonl'),JSON.stringify({at:new Date().toISOString(),kind:'compatibility_fallback'})+'\n',{mode:0o600});
     return passthrough();
   }
-  await runBridge({realBin:config.realBin,args,trust:config.trust,
+  await runBridge({realBin:config.realBin,args,nativeVersion:config.verifiedVersion,trust:config.trust,
     runtimeIdentity:runtimeFingerprint(config.sha256),automation:config.automation===true,keyPath:config.keyPath??join(homedir(),'.codex/skills/jev-assistant/.env.local'),logPath:join(home,'logs/events.jsonl')});
 }
 if(process.argv[1] && await realpath(resolve(process.argv[1])).catch(()=>null)===fileURLToPath(import.meta.url))main().catch(()=>{process.stderr.write('Jev adapter failed to start. Disable the override to use stock Codex.\n');process.exitCode=1;});

@@ -25,6 +25,12 @@ lines.on('line',async line=>{
     else if(m.method==='tools/list')result={tools:[evidenceTool]};
     else if(m.method==='tools/call'){
       const a=evidenceArguments(m.params.arguments),data=await pilot.call(a);
+      if(a.operation==='select'){
+       const recalled=await pilot.call({workspace:a.workspace,operation:'recall',input:{artifactId:data.artifactId}});
+       writeFileSync(join(work,'chain-evidence.json'),JSON.stringify({operation:'select',recallExact:JSON.stringify(recalled.items)===JSON.stringify(a.input.items),keptIds:data.items.map(x=>x.id),calls:pilot.store.events(pilot.store.project(a.workspace)).filter(e=>e.kind==='jev_call').length}));
+       result={content:[{type:'text',text:JSON.stringify(data)}],structuredContent:data};
+       process.stdout.write(JSON.stringify({jsonrpc:'2.0',id:m.id,result})+'\n');return;
+      }
       const artifactId=data.selection.artifactId;
       const recalled=artifactId?await pilot.call({workspace:a.workspace,operation:'recall_output',input:{artifactId}}):null;
       writeFileSync(join(work,'chain-evidence.json'),JSON.stringify({

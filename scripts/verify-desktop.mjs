@@ -23,13 +23,17 @@ const routingBudget=process.argv.includes('--routing-budget');
 const phaseReevaluation=process.argv.includes('--phase-reevaluation');
 const noBenefitFiltering=process.argv.includes('--no-benefit-filter');
 const mcpFiltering=process.argv.includes('--filter-mcp');
+const codeModeSelect=process.argv.includes('--code-mode-select');
 const codeModeChainFailure=process.argv.includes('--code-mode-chain-failure');
-const codeModeChain=process.argv.includes('--code-mode-chain')||codeModeChainFailure;
+const codeModeChain=process.argv.includes('--code-mode-chain')||codeModeChainFailure||codeModeSelect;
 const codeModeOutput=process.argv.includes('--code-mode-output')||codeModeChain;
 const filtering=process.argv.includes('--filter-output')||mcpFiltering||noBenefitFiltering||process.argv.includes('--steer-context')||codeModeOutput;
 const steerContext=process.argv.includes('--steer-context');
 const manualSettings=process.argv.includes('--manual-settings');
 const inspectCacheContext=process.argv.includes('--inspect-cache-context');
+const adapterCacheDefault=process.argv.includes('--adapter-cache-default');
+const cachePreservingEffort=process.argv.includes('--cache-preserving-effort')||adapterCacheDefault;
+const openaiFixture=process.argv.includes('--openai-provider-fixture');
 const inputSnapshots=[];
 const steps=routingBudget?7:phaseReevaluation?3:steerContext?2:reassess?4:noBenefitFiltering?2:1;
 const realBin=process.env.JEV_PILOT_CODEX??'/Applications/ChatGPT.app/Contents/Resources/codex';
@@ -45,7 +49,10 @@ const server=createServer(async(req,res)=>{
   if(!req.url.endsWith('/responses')){res.writeHead(404);res.end();return;}
   const body=JSON.parse(raw);apiCount++;
   if(inspectCacheContext)inputSnapshots.push(body.input);
-  report.requests.push({number:apiCount,model:body.model,effort:body.reasoning?.effort,keys:Object.keys(body),toolNames:body.tools?.map(t=>t.name??t.type),configuration:body.configuration,inputText:filtering?JSON.stringify(body.input):undefined});
+  const configurationUpdates=(body.input??[]).filter(x=>x.type==='configuration_update');
+  report.requests.push({number:apiCount,model:body.model,effort:configurationUpdates.at(-1)?.reasoning?.effort??body.reasoning?.effort,requestEffort:body.reasoning?.effort,configurationUpdates,
+    cacheIdentity:inspectCacheContext?{instructionsHash:(body.instructions??body.configuration?.instructions)===undefined?null:hash(body.instructions??body.configuration?.instructions),toolsHash:(body.tools??body.configuration?.tools)===undefined?null:hash(body.tools??body.configuration?.tools),promptCacheKey:body.prompt_cache_key,reasoning:body.reasoning}:undefined,
+    keys:Object.keys(body),toolNames:body.tools?.map(t=>t.name??t.type),configuration:body.configuration,inputText:filtering?JSON.stringify(body.input):undefined});
   if(steerContext && apiCount===1) {
     const t=[...bridge.router.turns.values()].find(t=>t.active);
     try {report.steer=await c.request('turn/steer',{threadId:t.threadId,expectedTurnId:t.turnId,input:[{type:'text',text:'Continue the evidence search, focusing on NEEDLE target and omit unrelated noise.'}]});}
@@ -59,6 +66,10 @@ const server=createServer(async(req,res)=>{
   }
   const tools=body.tools??body.configuration?.tools??[];
   const tool=(mcpFiltering?(tools.find(x=>x.name?.includes('fixture_log'))??{name:'fixture_log'}):null)??tools.find(x=>['exec_command','shell_command','shell'].includes(x.name))??{name:'exec_command'};
+  if(phaseReevaluation && apiCount===2 && bridge){
+    const t=[...bridge.router.turns.values()].find(t=>t.active);
+    bridge.router.note(t,'agent_message','Investigation is complete; next verify the prepared result.');
+  }
   const responseId='resp_'+apiCount;
   let item;
   if(apiCount<=steps && tool) {
@@ -68,7 +79,7 @@ const server=createServer(async(req,res)=>{
     item={id:'fc_fixture_'+apiCount,type:'function_call',call_id:'call_fixture_'+apiCount,name:tool.name,...(mcpFiltering?{namespace:'mcp__fixture'}:{}),arguments:JSON.stringify(args),status:'completed'};
     if(codeModeOutput){
       const rawCheck="if(result.exit_code!==0||(result.output.match(/noise x{64}/g)||[]).length!==350)throw Error('RAW_RESULT_CHANGED');";
-      const emit=codeModeChain?'let display=result;try{const entry=ALL_TOOLS.find(t=>/__jev_evidence$/.test(t.name));const reply=await tools[entry.name]({workspace:'+JSON.stringify(work)+',operation:"prepare",input:{goal:"Find NEEDLE target evidence",value:result,source:"exec_command"}});if(!reply.isError){const prepared=reply.structuredContent??JSON.parse(reply.content[0].text);if(Object.hasOwn(prepared,"value"))display=prepared.value;}}catch{}text(display);':'text(result.output);';
+      const emit=codeModeSelect?'const entry=ALL_TOOLS.find(t=>/__jev_evidence$/.test(t.name));const reply=await tools[entry.name]({workspace:'+JSON.stringify(work)+',operation:"select",input:{goal:"Find NEEDLE evidence",items:result.output.split("\\n").filter(Boolean).slice(0,30).map((text,i)=>({id:"line"+i,text}))}});if(reply.isError)throw Error("SELECTION_FAILED");text((reply.structuredContent??JSON.parse(reply.content[0].text)).context);':codeModeChain?'let display=result;try{const entry=ALL_TOOLS.find(t=>/__jev_evidence$/.test(t.name));const reply=await tools[entry.name]({workspace:'+JSON.stringify(work)+',operation:"prepare",input:{goal:"Find NEEDLE target evidence",value:result,source:"exec_command"}});if(!reply.isError){const prepared=reply.structuredContent??JSON.parse(reply.content[0].text);if(Object.hasOwn(prepared,"value"))display=prepared.value;}}catch{}text(display);':'text(result.output);';
       item={id:'ct_fixture_'+apiCount,type:'custom_tool_call',call_id:'call_fixture_'+apiCount,namespace:'functions',name:'exec',input:'const result=await tools.exec_command('+JSON.stringify(args)+');'+rawCheck+emit,status:'completed'};
     }
   }else item={id:'msg_fixture',type:'message',role:'assistant',status:'completed',content:[{type:'output_text',text:'fixture_ok'}]};
@@ -83,9 +94,11 @@ const server=createServer(async(req,res)=>{
 });
 await new Promise(yes=>server.listen(0,'127.0.0.1',yes));
 const address=`http://127.0.0.1:${server.address().port}/v1`;
-const args=['app-server','-c',`model=${JSON.stringify(targetModel)}`,'-c','model_provider="jev_fixture"',
-  '-c',`model_providers.jev_fixture=${toml({name:'Local synthetic fixture',base_url:address,wire_api:'responses',requires_openai_auth:false,supports_websockets:false,request_max_retries:0,stream_max_retries:0})}`,
+const providerId='jev_fixture';
+const args=['app-server','-c',`model=${JSON.stringify(targetModel)}`,'-c',`model_provider=${JSON.stringify(providerId)}`,
+  '-c',`model_providers.${providerId}=${toml({name:openaiFixture?'OpenAI':'Local synthetic fixture',base_url:address,wire_api:'responses',requires_openai_auth:false,supports_websockets:false,request_max_retries:0,stream_max_retries:0})}`,
   '-c',`features.code_mode=${codeModeOutput}`,'-c',`features.code_mode_host=${codeModeOutput}`];
+if(cachePreservingEffort&&!adapterCacheDefault)args.push('--enable','reasoning_effort_override');
 if(codeModeChain)args.push('-c',`mcp_servers.fixture=${toml({command:process.execPath,args:[join(root,'../../scripts/acceptance/code-mode-evidence-fixture.mjs'),work,...(codeModeChainFailure?['--fail']:[])]})}`);
 if(mcpFiltering){
  const script=join(work,'mcp-fixture.mjs');
@@ -116,7 +129,7 @@ function client(input,output){
 let bridge,c,probe,pc,installed,auditOverride,autoStore;
 try{
   // Exact hook hashes are obtained before any inference; only our reviewed commands are trusted.
-  probe=spawn(realBin,[...args,...hookOverrides(process.execPath,join(root,'hook.mjs'))],{env,stdio:['pipe','pipe','pipe']});probe.stderr.resume();
+  probe=spawn(realBin,[...args,...hookOverrides(process.execPath,join(root,'hook.mjs'))],{env,stdio:['pipe','pipe','pipe']});probe.stderr.on('data',chunk=>{report.probeErrors=(report.probeErrors??'')+chunk.toString();});
   pc=client(probe.stdin,probe.stdout);
   await pc.request('initialize',{clientInfo:{name:'jev_hook_probe',version:'0.1'},capabilities:{experimentalApi:true}});pc.notify('initialized');
   const hooks=await pc.request('hooks/list',{cwds:[work]});
@@ -153,7 +166,7 @@ try{
   } else {
     if(filtering||resumeFixture)autoStore=new Store({home:join(work,'pilot')});
     const automation=(filtering||resumeFixture)?{store:autoStore,key:'fixture',send:async p=>({model:'fixture',usage:{input_tokens:1,output_tokens:1},answers:Object.fromEntries(Object.entries(p.questions).map(([id,q])=>{const item=p.state.items[Number(id.slice(1))];const choice=item.text.includes('NEEDLE')?'keep':'exclude';return[id,{type:'choice',choice,probabilities:{keep:choice==='keep'?1:0,review:0,exclude:choice==='exclude'?1:0}}]}))})}:false;
-    bridge=await runBridge({realBin,args,trust,env,input,output,judge,automation,logPath:join(work,'audit.jsonl')});
+    bridge=await runBridge({realBin,args,nativeVersion:adapterCacheDefault?execFileSync(realBin,['--version'],{encoding:'utf8'}).trim():null,trust,env,input,output,judge,automation,logPath:join(work,'audit.jsonl')});
   }
   c=client(input,output);
   c.listeners.push(m=>{if(['hook/started','hook/completed','turn/started','turn/completed','thread/tokenUsage/updated','item/started','item/completed','error'].includes(m.method))report.events.push(m);});
@@ -208,10 +221,18 @@ try{
   if(inspectCacheContext){
     const initial=inputSnapshots[0];
     report.cacheContext={measurement:'serialized_initial_input_prefix_not_cache_hit_rate',
+      cachePreservingEffort,
+      topLevelEffortStable:report.requests.every(x=>x.requestEffort===report.requests[0].requestEffort),
+      toolsStable:report.requests[0].cacheIdentity.toolsHash===null?null:report.requests.every(x=>x.cacheIdentity.toolsHash===report.requests[0].cacheIdentity.toolsHash),
+      instructionsStable:report.requests[0].cacheIdentity.instructionsHash===null?null:report.requests.every(x=>x.cacheIdentity.instructionsHash===report.requests[0].cacheIdentity.instructionsHash),
+      promptCacheKeyStable:report.requests.every(x=>x.cacheIdentity.promptCacheKey===report.requests[0].cacheIdentity.promptCacheKey),
+      appendOnly:inputSnapshots.every((items,i)=>!i||JSON.stringify(items.slice(0,inputSnapshots[i-1].length))===JSON.stringify(inputSnapshots[i-1])),
       initialItems:Array.isArray(initial)?initial.length:null,
       perRequest:inputSnapshots.map((items,i)=>({request:i+1,initialPrefixPreserved:Array.isArray(initial)&&Array.isArray(items)&&JSON.stringify(items.slice(0,initial.length))===JSON.stringify(initial)}))};
     report.passed=report.passed&&report.cacheContext.perRequest.every(x=>x.initialPrefixPreserved);
   }
+  if(cachePreservingEffort && openaiFixture)report.passed=report.passed&&report.cacheContext?.topLevelEffortStable&&report.cacheContext?.appendOnly
+    && report.requests.some(x=>x.configurationUpdates.length>1 && x.effort!==x.requestEffort);
   if(mcpFiltering){const outputs=JSON.parse(report.requests[1]?.inputText||'[]').filter(x=>x.type==='function_call_output');report.mcpEnvelopePreserved=outputs.some(x=>{try{const r=JSON.parse(x.output);return r.content?.length===1&&r.content[0].type==='text'&&r.content[0].text.includes('NEEDLE target')&&r.isError!==true;}catch{return false;}});report.passed=report.passed&&report.mcpEnvelopePreserved;}
   if(filtering){const saved=autoStore.list(autoStore.project(work),'checkpoint')[0];report.automaticCheckpoint={observed:Boolean(saved),auto:saved?.auto,requiresReview:saved?.requiresReview,turnStatus:saved?.turnStatus,coverage:saved?.coverage,verifiedCompletedCount:saved?.completed?.length??0,publicProgressObserved:Boolean(saved?.lastPublishedProgress)};report.passed=report.passed&&saved?.auto===true&&saved?.requiresReview===true&&saved?.turnStatus==='completed';report.automaticEvents=autoStore.events(autoStore.project(work));report.passed=report.passed&&(noBenefitFiltering ? report.automaticEvents.some(e=>e.kind==='automatic_output_result'&&e.reason==='insufficient_reduction')&&report.automaticEvents.some(e=>e.kind==='automatic_output_admission'&&e.reason==='no_benefit_cooldown')&&!report.automaticEvents.some(e=>e.kind==='automatic_output_filter')&&report.requests.length===3 : report.automaticEvents.some(e=>e.kind==='automatic_output_filter')&&report.requests.slice(1).some(r=>r.inputText?.includes('JevPilot retained task evidence')));}
   if(codeModeOutput){
@@ -220,7 +241,7 @@ try{
     if(codeModeChain)report.chainEvidence=JSON.parse(await readFile(join(work,'chain-evidence.json'),'utf8'));
     const nativeCompleted=report.events.some(e=>e.method==='turn/completed'&&e.params.turn.status==='completed');
     report.passed=nativeCompleted&&report.requests.length===2&&report.codeModeBoundary.containsTarget&&report.codeModeBoundary.hookJudgments===0&&report.codeModeBoundary.hookSubmissions===0&&(codeModeChain
-      ?report.chainEvidence.calls===1&&(codeModeChainFailure
+      ?codeModeSelect?report.chainEvidence.calls===1&&report.chainEvidence.recallExact&&report.codeModeBoundary.noiseLines===0&&JSON.stringify(report.chainEvidence.keptIds)==='["line0"]':report.chainEvidence.calls===1&&(codeModeChainFailure
         ?report.codeModeBoundary.noiseLines===350&&report.chainEvidence.fallbackExact&&report.chainEvidence.selection.status==='original'
         :report.codeModeBoundary.noiseLines===29&&report.chainEvidence.recallExact&&report.chainEvidence.selection.status==='prepared')
       :report.codeModeBoundary.noiseLines===350);

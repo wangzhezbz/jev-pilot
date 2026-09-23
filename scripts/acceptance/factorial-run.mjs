@@ -5,11 +5,12 @@ import {join,resolve,dirname} from 'node:path';
 import {spawn,spawnSync} from 'node:child_process';
 import {PassThrough} from 'node:stream';
 import {createInterface} from 'node:readline';
-import {runBridge,hookOverrides} from '../../runtime/desktop/bridge.mjs';
+import {runBridge,hookOverrides,toml} from '../../runtime/desktop/bridge.mjs';
 import {effortQuestion} from '../../runtime/desktop/router.mjs';
 import {Store,hash,loadKey} from '../../src/core.mjs';
 import {installHome,discoverCodex} from '../../src/setup.mjs';
 import {tasks,validate} from './factorial-tasks.mjs';
+import {semanticTask,validateSemantic} from './semantic-task.mjs';
 import {homedir} from 'node:os';
 import {timelineEntry} from './timeline.mjs';
 if(!process.argv.includes('--run'))throw Error('Explicit --run required: real model usage');
@@ -17,17 +18,19 @@ const out=resolve(process.argv.find(x=>x.startsWith('--out='))?.slice(6)||'dist/
 await mkdir(out,{recursive:true});
 const bin=discoverCodex(),key=loadKey(installHome());if(!key)throw Error('MISSING_KEY');
 const models=['gpt-6-sol'],jobs=[];
-const selectedTasks=tasks;
+const semantic=process.argv.includes('--semantic-local');
+const selectedTasks=semantic?[semanticTask]:tasks;
 const orders=[['bare','routing','evidence','combined'],['evidence','bare','combined','routing'],['combined','evidence','routing','bare']];
-for(const task of selectedTasks)jobs.push({model:models[0],task:task.id,repeat:0,arms:orders[jobs.length]});
-const runCount=jobs.length*4;
+for(const task of selectedTasks)jobs.push({model:models[0],task:task.id,repeat:0,arms:semantic?(process.argv.includes('--candidate-only')?['evidence']:['bare','evidence']):orders[jobs.length]});
+const runCount=jobs.reduce((n,j)=>n+j.arms.length,0);
 const evidenceArm=arm=>['evidence','combined'].includes(arm);
 const config={'features.apps':false,'features.multi_agent':false,web_search:'disabled','hooks.Stop':[]};
 const common='Complete the task inside the current working directory only. Use local file and shell tools as needed. No unrelated projects, credentials, browsing, subagents, deletion, or changes to existing tests. The supplied Jev tool may contact its service. Do not ask questions. Write the requested deliverables and run relevant local checks. Final response: concise factual summary with verification results.';
 const skill=await readFile('skills/jev-pilot/SKILL.md','utf8'),reference=await readFile('skills/jev-pilot/references/operations.md','utf8');
 const disableArgs=[];
 const hashes={};for(const path of ['src/core.mjs','src/request-guard.mjs','src/automation.mjs','src/evidence.mjs','src/policy.mjs','runtime/desktop/router.mjs','runtime/desktop/bridge.mjs','skills/jev-pilot/SKILL.md','skills/jev-pilot/references/operations.md','scripts/benchmark/tasks.mjs','scripts/acceptance/tasks.mjs','scripts/acceptance/factorial-run.mjs','scripts/acceptance/factorial-tasks.mjs','src/prepare-output.mjs','src/evidence-tool.mjs','src/server.mjs','src/runtime-compatibility.mjs','skills/jev-pilot/references/evidence.md','scripts/acceptance/timeline.mjs','src/distribution.mjs'])hashes[path]=hash(await readFile(path,'utf8'));
-const protocol={at:new Date().toISOString(),jobs,runs:runCount,models,initialEffort:'high',concurrency:1,hashes,config,quality:'Frozen independent oracle after inference; protected fixtures unchanged; failed attempts retained.',stopRule:'Stop on infrastructure or provider rate/quota error, no substitution or retries.',timeLimitMs:240000,nativeVersion:spawnSync(bin,['--version'],{encoding:'utf8'}).stdout.trim(),revision:spawnSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).stdout.trim(),expectedPluginVersion:'0.2.0+codex.20260923233124',scope:'12 single-replicate diagnostic runs, synthetic workspaces, GPT-6 Sol initially high (desktop user baseline). Bare: native engine. Routing: real router without plugin or automation. Evidence: plugin and automatic evidence hook, fixed keep router control with no routing API calls. Combined: real router, plugin and automation. All use clean private CODEX_HOME, same prompt and native code mode; independent oracle; no forced Jev calls or full reads. Orders predefined, not completely balanced with three tasks. Startup separately measured. Native app-server backend timing, not desktop UI latency or account billing. No statistical or guaranteed savings claim. Main session background routing excluded. Failures retained. No post-result policy changes.' ,tasks:selectedTasks.map(t=>({id:t.id,prompt:t.prompt,files:Object.fromEntries(Object.entries(t.files).map(([k,v])=>[k,hash(v)]))}))};
+const protocol={at:new Date().toISOString(),jobs,runs:runCount,models,initialEffort:'high',concurrency:1,hashes,config,quality:'Frozen independent oracle after inference; protected fixtures unchanged; failed attempts retained.',stopRule:'Stop on infrastructure or provider rate/quota error, no substitution or retries.',timeLimitMs:240000,nativeVersion:spawnSync(bin,['--version'],{encoding:'utf8'}).stdout.trim(),revision:spawnSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).stdout.trim(),expectedPluginVersion:semantic?'workspace-candidate':'0.2.0+codex.20260923233124',scope:'12 single-replicate diagnostic runs, synthetic workspaces, GPT-6 Sol initially high (desktop user baseline). Bare: native engine. Routing: real router without plugin or automation. Evidence: plugin and automatic evidence hook, fixed keep router control with no routing API calls. Combined: real router, plugin and automation. All use clean private CODEX_HOME, same prompt and native code mode; independent oracle; no forced Jev calls or full reads. Orders predefined, not completely balanced with three tasks. Startup separately measured. Native app-server backend timing, not desktop UI latency or account billing. No statistical or guaranteed savings claim. Main session background routing excluded. Failures retained. No post-result policy changes.' ,tasks:selectedTasks.map(t=>({id:t.id,prompt:t.prompt,files:Object.fromEntries(Object.entries(t.files).map(([k,v])=>[k,hash(v)]))}))};
+if(semantic)protocol.scope='Exploratory natural semantic tasks (arms listed in jobs): native bare vs local candidate skill and MCP with fixed high routing control. No mandated Jev calls or full reads; no performance significance or billing claim.';
 await writeFile(join(out,'protocol.json'),JSON.stringify(protocol,null,2),{flag:'wx'});
 function client(input,output){
  let id=0;const pending=new Map(),listeners=[];const lines=createInterface({input:output});
@@ -59,11 +62,17 @@ runs: for(const job of jobs)for(const arm of job.arms){
   const args=[...nativeArgs,...disableArgs];env.JEV_PILOT_HOME=store.home;
   if(evidenceArm(arm)){
    await writeFile(join(store.home,'.env.local'),'TYPESAFE_API_KEY='+key+'\n',{mode:0o600});
+   if(semantic){
+    await mkdir(join(cleanHome,'skills'),{recursive:true});await symlink(resolve('skills/jev-pilot'),join(cleanHome,'skills/jev-pilot'));
+    args.push('-c',`mcp_servers.jev-pilot=${toml({command:process.execPath,args:['--use-env-proxy',resolve('src/server.mjs')],env_vars:['JEV_PILOT_HOME','HTTPS_PROXY','HTTP_PROXY','ALL_PROXY','NO_PROXY']})}`);
+    record.pluginVersion='workspace-candidate';
+   }else{
    const install=spawnSync(bin,['plugin','add','jev-pilot@personal','--json'],{env,encoding:'utf8',timeout:30000});if(install.status!==0)throw Error('PLUGIN_INSTALL_FAILED');record.pluginVersion=JSON.parse(install.stdout).version;if(record.pluginVersion!==protocol.expectedPluginVersion)throw Error('PLUGIN_VERSION_DRIFT');
+   }
   }
   if(arm==='bare'){native=spawn(bin,args,{env,stdio:['pipe','pipe','pipe']});native.stderr.resume();c=client(native.stdin,native.stdout);}
   else {
-  bridge=await runBridge({realBin:bin,args,trust,input,output,env:{...env,TYPESAFE_API_KEY:key},keyPath:join(installHome(),'.env.local'),logPath:join(dir,'routing.jsonl'),automation:evidenceArm(arm)?{store,key}:false,
+  bridge=await runBridge({realBin:bin,args,nativeVersion:protocol.nativeVersion,trust,input,output,env:{...env,TYPESAFE_API_KEY:key},keyPath:join(installHome(),'.env.local'),logPath:join(dir,'routing.jsonl'),automation:evidenceArm(arm)?{store,key}:false,
     ...(arm==='evidence'?{judge:async()=>({answer:{type:'choice',choice:'keep',confidence:1,probabilities:Object.fromEntries(Object.keys(effortQuestion.criteria).map(k=>[k,k==='keep'?1:0]))},model:'fixed-control-no-api',inputTokens:0,outputTokens:0})}:{})});
   bridge.child.stderr.unpipe(process.stderr);bridge.child.stderr.resume();c=client(input,output);}
   await init(c);
@@ -83,7 +92,7 @@ runs: for(const job of jobs)for(const arm of job.arms){
   let complete;const done=new Promise(r=>complete=r);c.listeners.push(m=>{const p=m.params;if(p?.threadId!==record.threadId)return;const stamp=timelineEntry(m,performance.now()-t0);if(stamp)record.timeline.push(stamp);if(m.method==='item/completed')record.completedItems.push(p.item);if(m.method==='turn/started')record.turnId=p.turn.id;if(m.method==='thread/tokenUsage/updated')record.usage.push(p.tokenUsage);if(m.method==='error')record.errors.push(p.error?.message||'runtime error');if(m.method==='thread/tokenUsage/updated')void writeFile(join(dir,'usage-latest.json'),JSON.stringify(p.tokenUsage));if(m.method==='turn/completed'){record.status=p.turn.status;complete();}});
   t0=performance.now();timer=setTimeout(()=>{record.status='timeout';if(record.turnId)c.request('turn/interrupt',{threadId:record.threadId,turnId:record.turnId}).catch(()=>{});complete();},240000);
   record.timeline.push({method:'turn/start:sent',elapsedMs:0});await c.request('turn/start',{threadId:record.threadId,model:job.model,effort:'high',input:[{type:'text',text:task.prompt}]});record.timeline.push({method:'turn/start:acknowledged',elapsedMs:performance.now()-t0});await done;clearTimeout(timer);
-  record.wallMs=Math.round(performance.now()-t0);record.tokens=record.usage.at(-1)?.total??null;record.quality=await validate(task,cwd);record.passed=record.status==='completed'&&record.quality.pass;
+  record.wallMs=Math.round(performance.now()-t0);record.tokens=record.usage.at(-1)?.total??null;record.quality=await (semantic?validateSemantic:validate)(task,cwd);record.passed=record.status==='completed'&&record.quality.pass;
   await bridge?.flushLog(); await bridge?.flushAutomation?.();
   record.jevEvents=store.events(store.project(cwd),10000);record.totalMs=record.startupMs+record.wallMs;
   record.artifacts={};const modified=spawnSync('git',['diff','--name-only'],{cwd,encoding:'utf8'}).stdout.trim().split('\n').filter(Boolean);const added=spawnSync('git',['ls-files','--others','--exclude-standard'],{cwd,encoding:'utf8'}).stdout.trim().split('\n').filter(Boolean);record.changedPaths={modified,added};for(const name of [...new Set([...modified,...added])])try{record.artifacts[name]=await readFile(join(cwd,name),'utf8');}catch{}

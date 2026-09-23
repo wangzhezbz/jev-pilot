@@ -1,0 +1,22 @@
+{
+  "recordedPrimaryTasks": 17,
+  "additionalPostCompactionTurns": 1,
+  "knownNativeTokens": {
+    "inputTokens": 1706667,
+    "cachedInputTokens": 1383424,
+    "uncachedInputTokens": 323243,
+    "outputTokens": 12203,
+    "totalTokens": 1718870
+  },
+  "jevApiCallsInExperiments": 6,
+  "compactionProviderUsage": "unknown; native cumulative counters did not increase for standalone compaction; not zero cost",
+  "mainConversationUsage": "excluded; these are spawned synthetic task measurements only",
+  "billedQuotaSavings": null,
+  "timingClaims": "not eligible; invalid pilot overlapped part of diagnostic work; later tasks are single observations, not balanced repeated performance trials",
+  "jevUsage": {
+    "inputTokens": 28193,
+    "outputTokens": 4879
+  },
+  "jevComponentWallMs": 4119,
+  "jevComponentIsGptSavingsBenchmark": false
+}

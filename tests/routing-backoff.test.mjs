@@ -9,3 +9,21 @@ test('a new phase after two no-change decisions can actually downshift',async()=
 test('an observed failure after two no-change decisions is reassessed within the existing ceiling',async()=>{const f=fixture();await start(f);await hook(f,'read');f.select('high');await hook(f,'failed',{exit_code:1,output:'New failure contradicts the previous assumption'});assert.equal(f.calls,3);assert.equal(f.r.turns.get('t').current,'medium');});
 test('a transient outage following an unchanged decision still has one bounded recovery',async()=>{const f=fixture();const t=await start(f);f.fail(true);await hook(f,'offline');assert.notEqual(t.retryAt,null);const before=f.calls;await hook(f,'too-soon');assert.equal(f.calls,before);f.advance(15000);f.fail(false);f.select('low');await hook(f,'service-restored');assert.equal(f.calls,before+1);assert.equal(t.current,'low');assert.equal(t.recoveryAttempts,1);});
 test('restoring reevaluation keeps the hard call cap and never leaves an expired downgrade',async()=>{const f=fixture();await start(f);await hook(f,'read');f.select('low');await hook(f,'phase');for(let i=0;i<15;i++)await hook(f,'f'+i,{exit_code:1});assert(f.calls<=6);assert.equal(f.r.turns.get('t').current,'medium');});
+
+test('unchanged baseline spaces just one routine boundary and leaves a later downgrade eligible',async()=>{
+ const f=fixture(),t=await start(f);await hook(f,'first');assert.equal(t.horizonReason,'baseline_budget_spacing');
+ f.select('low');await hook(f,'spaced');assert.equal(f.calls,2);assert.equal(t.current,'medium');
+ await hook(f,'eligible');assert.equal(f.calls,3);assert.equal(t.current,'low');assert.equal(t.horizon,1);
+});
+test('baseline spacing never hides elapsed leases or new user input',async()=>{
+ for(const kind of ['expiry','input']){const f=fixture(),t=await start(f);await hook(f,'first');
+ if(kind==='expiry')t.leaseUntil=Date.now()-1;else f.r.invalidate('t',[{type:'text',text:'A new failure needs investigation'}]);
+ f.select('low');await hook(f,'urgent');assert.equal(f.calls,3);assert.equal(t.current,'low');}
+});
+
+import{effortTransportFlags}from'../runtime/desktop/bridge.mjs';
+test('native cache transport is version bounded and respects explicit feature configuration',()=>{
+ assert.deepEqual(effortTransportFlags('codex-cli 0.155.0-alpha.16.3'),['--enable','reasoning_effort_override']);
+ for(const v of [null,'codex-cli 0.155.0-alpha.9.2','codex-cli 0.156.0'])assert.deepEqual(effortTransportFlags(v),[]);
+ for(const args of [['--disable','reasoning_effort_override'],['-c','features.reasoning_effort_override=false'],['--enable','reasoning_effort_override'],['--disable=reasoning_effort_override'],['-c','features.reasoning_effort_override = false'],['--disable','code_mode,reasoning_effort_override']])assert.deepEqual(effortTransportFlags('codex-cli 0.155.0-alpha.16.3',args),[]);
+});

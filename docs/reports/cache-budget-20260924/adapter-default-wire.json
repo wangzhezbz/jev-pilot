@@ -1,0 +1,1154 @@
+[
+  {
+    "kind": "bundled_runtime_with_synthetic_model",
+    "status": "passed",
+    "passed": true,
+    "openaiPaidCalls": 0,
+    "requests": [
+      {
+        "number": 1,
+        "model": "gpt-6-sol",
+        "effort": "high",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf39-5e78-70b0-b51c-d4e7a911dca7",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      },
+      {
+        "number": 2,
+        "model": "gpt-6-sol",
+        "effort": "high",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf39-5e78-70b0-b51c-d4e7a911dca7",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      },
+      {
+        "number": 3,
+        "model": "gpt-6-sol",
+        "effort": "medium",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "medium"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf39-5e78-70b0-b51c-d4e7a911dca7",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      },
+      {
+        "number": 4,
+        "model": "gpt-6-sol",
+        "effort": "medium",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "medium"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf39-5e78-70b0-b51c-d4e7a911dca7",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      }
+    ],
+    "cacheContext": {
+      "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+      "cachePreservingEffort": true,
+      "topLevelEffortStable": true,
+      "toolsStable": null,
+      "instructionsStable": null,
+      "promptCacheKeyStable": true,
+      "appendOnly": true,
+      "initialItems": 8,
+      "perRequest": [
+        {
+          "request": 1,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 2,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 3,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 4,
+          "initialPrefixPreserved": true
+        }
+      ]
+    }
+  },
+  {
+    "kind": "bundled_runtime_with_synthetic_model",
+    "status": "passed",
+    "passed": true,
+    "openaiPaidCalls": 0,
+    "requests": [
+      {
+        "number": 1,
+        "model": "gpt-6-astra",
+        "effort": "high",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf3a-8e27-73e0-b94c-0a1813e02493",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      },
+      {
+        "number": 2,
+        "model": "gpt-6-astra",
+        "effort": "high",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf3a-8e27-73e0-b94c-0a1813e02493",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      },
+      {
+        "number": 3,
+        "model": "gpt-6-astra",
+        "effort": "medium",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "medium"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf3a-8e27-73e0-b94c-0a1813e02493",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      },
+      {
+        "number": 4,
+        "model": "gpt-6-astra",
+        "effort": "medium",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "medium"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf3a-8e27-73e0-b94c-0a1813e02493",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      }
+    ],
+    "cacheContext": {
+      "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+      "cachePreservingEffort": true,
+      "topLevelEffortStable": true,
+      "toolsStable": null,
+      "instructionsStable": null,
+      "promptCacheKeyStable": true,
+      "appendOnly": true,
+      "initialItems": 8,
+      "perRequest": [
+        {
+          "request": 1,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 2,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 3,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 4,
+          "initialPrefixPreserved": true
+        }
+      ]
+    }
+  },
+  {
+    "kind": "bundled_runtime_with_synthetic_model",
+    "status": "passed",
+    "passed": true,
+    "openaiPaidCalls": 0,
+    "requests": [
+      {
+        "number": 1,
+        "model": "gpt-6-luna",
+        "effort": "high",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf3a-9083-7a10-b1ed-09cadca2972e",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      },
+      {
+        "number": 2,
+        "model": "gpt-6-luna",
+        "effort": "high",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf3a-9083-7a10-b1ed-09cadca2972e",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      },
+      {
+        "number": 3,
+        "model": "gpt-6-luna",
+        "effort": "medium",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "medium"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf3a-9083-7a10-b1ed-09cadca2972e",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      },
+      {
+        "number": 4,
+        "model": "gpt-6-luna",
+        "effort": "medium",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "medium"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf3a-9083-7a10-b1ed-09cadca2972e",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      }
+    ],
+    "cacheContext": {
+      "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+      "cachePreservingEffort": true,
+      "topLevelEffortStable": true,
+      "toolsStable": null,
+      "instructionsStable": null,
+      "promptCacheKeyStable": true,
+      "appendOnly": true,
+      "initialItems": 8,
+      "perRequest": [
+        {
+          "request": 1,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 2,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 3,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 4,
+          "initialPrefixPreserved": true
+        }
+      ]
+    }
+  },
+  {
+    "kind": "bundled_runtime_with_synthetic_model",
+    "status": "passed",
+    "passed": true,
+    "openaiPaidCalls": 0,
+    "requests": [
+      {
+        "number": 1,
+        "model": "gpt-5.6-sol",
+        "effort": "high",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf3a-92da-7bd3-b9be-30308080e025",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      },
+      {
+        "number": 2,
+        "model": "gpt-5.6-sol",
+        "effort": "high",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf3a-92da-7bd3-b9be-30308080e025",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      },
+      {
+        "number": 3,
+        "model": "gpt-5.6-sol",
+        "effort": "medium",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "medium"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf3a-92da-7bd3-b9be-30308080e025",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      },
+      {
+        "number": 4,
+        "model": "gpt-5.6-sol",
+        "effort": "medium",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "medium"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf3a-92da-7bd3-b9be-30308080e025",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      }
+    ],
+    "cacheContext": {
+      "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+      "cachePreservingEffort": true,
+      "topLevelEffortStable": true,
+      "toolsStable": null,
+      "instructionsStable": null,
+      "promptCacheKeyStable": true,
+      "appendOnly": true,
+      "initialItems": 8,
+      "perRequest": [
+        {
+          "request": 1,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 2,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 3,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 4,
+          "initialPrefixPreserved": true
+        }
+      ]
+    }
+  },
+  {
+    "kind": "bundled_runtime_with_synthetic_model",
+    "status": "passed",
+    "passed": true,
+    "openaiPaidCalls": 0,
+    "requests": [
+      {
+        "number": 1,
+        "model": "gpt-5.6-terra",
+        "effort": "high",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf3a-9534-7f03-b960-84df30ad3103",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      },
+      {
+        "number": 2,
+        "model": "gpt-5.6-terra",
+        "effort": "high",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf3a-9534-7f03-b960-84df30ad3103",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      },
+      {
+        "number": 3,
+        "model": "gpt-5.6-terra",
+        "effort": "medium",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "medium"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf3a-9534-7f03-b960-84df30ad3103",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      },
+      {
+        "number": 4,
+        "model": "gpt-5.6-terra",
+        "effort": "medium",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "medium"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf3a-9534-7f03-b960-84df30ad3103",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      }
+    ],
+    "cacheContext": {
+      "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+      "cachePreservingEffort": true,
+      "topLevelEffortStable": true,
+      "toolsStable": null,
+      "instructionsStable": null,
+      "promptCacheKeyStable": true,
+      "appendOnly": true,
+      "initialItems": 8,
+      "perRequest": [
+        {
+          "request": 1,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 2,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 3,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 4,
+          "initialPrefixPreserved": true
+        }
+      ]
+    }
+  },
+  {
+    "kind": "bundled_runtime_with_synthetic_model",
+    "status": "passed",
+    "passed": true,
+    "openaiPaidCalls": 0,
+    "requests": [
+      {
+        "number": 1,
+        "model": "gpt-5.6-luna",
+        "effort": "high",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf3a-978a-72e0-9ed0-a61991f319fe",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      },
+      {
+        "number": 2,
+        "model": "gpt-5.6-luna",
+        "effort": "high",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf3a-978a-72e0-9ed0-a61991f319fe",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      },
+      {
+        "number": 3,
+        "model": "gpt-5.6-luna",
+        "effort": "medium",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "medium"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf3a-978a-72e0-9ed0-a61991f319fe",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      },
+      {
+        "number": 4,
+        "model": "gpt-5.6-luna",
+        "effort": "medium",
+        "requestEffort": "high",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "medium"
+            }
+          }
+        ],
+        "cacheIdentity": {
+          "instructionsHash": null,
+          "toolsHash": null,
+          "promptCacheKey": "01a0cf3a-978a-72e0-9ed0-a61991f319fe",
+          "reasoning": {
+            "effort": "high",
+            "context": "all_turns"
+          }
+        },
+        "keys": [
+          "model",
+          "input",
+          "tool_choice",
+          "parallel_tool_calls",
+          "reasoning",
+          "store",
+          "stream",
+          "include",
+          "prompt_cache_key",
+          "text",
+          "client_metadata"
+        ]
+      }
+    ],
+    "cacheContext": {
+      "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+      "cachePreservingEffort": true,
+      "topLevelEffortStable": true,
+      "toolsStable": null,
+      "instructionsStable": null,
+      "promptCacheKeyStable": true,
+      "appendOnly": true,
+      "initialItems": 6,
+      "perRequest": [
+        {
+          "request": 1,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 2,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 3,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 4,
+          "initialPrefixPreserved": true
+        }
+      ]
+    }
+  }
+]

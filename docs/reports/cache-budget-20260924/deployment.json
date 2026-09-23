@@ -1,0 +1,17 @@
+{
+  "at": "2026-09-23T17:15:50.155Z",
+  "pluginVersion": "0.2.0+codex.20260924011258",
+  "nativeVersion": "codex-cli 0.155.0-alpha.16.3",
+  "compatible": true,
+  "sourceMatches": true,
+  "installedFingerprint": "17ac9f87db147f0f4d002bb526087b5808121ebba2a6fb4f316353985ba9c346",
+  "isolatedBridgeStarted": true,
+  "isolatedFingerprintMatches": true,
+  "hookCount": 2,
+  "currentDesktopLoadedRevisionMatches": false,
+  "normalRestartRequired": true,
+  "paidModelCalls": 0,
+  "isolatedOverrideRequested": true,
+  "policyVersion": "effort-v16-cache-budget",
+  "isolatedAncestryVerified": true
+}

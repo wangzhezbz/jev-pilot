@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { parseEnv } from 'node:util';
 import { postTypeSafe } from './transport.mjs';
 
-export const POLICY_VERSION = 'effort-v15-functional-reevaluation';
+export const POLICY_VERSION = 'effort-v16-cache-budget';
 const effortOrder=['none','minimal','low','medium','high','xhigh','max','ultra'];
 export const LEASE_UNIT = 'observed_tool_batch_or_boundary';
 export const SUPPORTED_MODELS = ['gpt-6-astra','gpt-6-sol','gpt-6-luna','gpt-5.6-sol','gpt-5.6-terra','gpt-5.6-luna'];
@@ -187,6 +187,11 @@ export class Router {
       && effortOrder.indexOf(t.current)>=effortOrder.indexOf(t.baseline) && effortOrder.includes(t.baseline);
     t.horizonReason=!applied?'not_applied':requested===null?'invalid_horizon':validEffort?'jev_selected':baselineKeep?'keep_at_baseline':'uncertain_effort';
     t.horizon=applied?(validEffort?(requested??this.leaseSteps):baselineKeep&&requested!==null?Math.min(requested,2):1):1;
+    // Save routine budget while retaining the user's chosen baseline. This
+    // never extends an automatic downgrade or overrides urgent invalidation.
+    if(applied && validEffort && requested===1 && t.current===t.baseline && t.noBenefitHits>=2){
+      t.horizon=2;t.horizonReason='baseline_budget_spacing';
+    }
     t.reusedBatch=null;t.lease=t.horizon-1;t.leaseUntil=Date.now()+this.leaseMs;
     t.judgedProgress=snapshot.progress;t.judgedUrgent=snapshot.urgent;t.forceRecheck=false;
   }
