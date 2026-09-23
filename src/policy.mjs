@@ -1,5 +1,5 @@
 // Conservative initial policy, not a claim of calibrated task accuracy.
-export const EVIDENCE_POLICY = 'preserve-uncertainty-v2';
+export const EVIDENCE_POLICY = 'preserve-uncertainty-v3';
 export const DEFAULT_EXCLUDE_PROBABILITY = 0.9;
 export function mayOmit(judgment, choice, config = {}) {
   return config.evidenceMode !== 'shadow' && judgment?.source === 'jev' && judgment.choice === choice
@@ -7,7 +7,11 @@ export function mayOmit(judgment, choice, config = {}) {
 }
 export function protectedEvidence(item, { paths = false } = {}) {
   const content = item.text ?? item.content ?? '';
-  return Boolean(item.pin || item.error || item.failed ||
+  // Status is evidence even when the body contains no failure/pending keyword.
+  // Unknown nonempty states remain for review, never silently treated as done.
+  const status = typeof item.status === 'string' ? item.status.trim().toLowerCase() : item.status;
+  const openStatus = status != null && status !== '' && !['completed','success','succeeded','passed'].includes(status);
+  return Boolean(openStatus || item.pin || item.error || item.failed ||
     /\b(error|failed|exception|traceback|TODO|FIXME|pending|unresolved)\b|未完成|待验证|待办|失败|异常|错误|未解决/i.test(content) ||
     paths && /(?:^|[\s"'`(])(?:\.?\.?\/|[A-Za-z]:\\|~\/)[^\s]+|\b[\w.-]+\.(?:mjs|js|ts|tsx|py|go|rs|json|toml|yaml|yml|md|sh|txt)\b/.test(content));
 }

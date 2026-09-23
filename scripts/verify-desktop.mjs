@@ -23,11 +23,12 @@ const routingBudget=process.argv.includes('--routing-budget');
 const phaseReevaluation=process.argv.includes('--phase-reevaluation');
 const noBenefitFiltering=process.argv.includes('--no-benefit-filter');
 const mcpFiltering=process.argv.includes('--filter-mcp');
-const filtering=process.argv.includes('--filter-output')||mcpFiltering||noBenefitFiltering;
+const filtering=process.argv.includes('--filter-output')||mcpFiltering||noBenefitFiltering||process.argv.includes('--steer-context');
+const steerContext=process.argv.includes('--steer-context');
 const manualSettings=process.argv.includes('--manual-settings');
 const inspectCacheContext=process.argv.includes('--inspect-cache-context');
 const inputSnapshots=[];
-const steps=routingBudget?7:phaseReevaluation?3:reassess?4:noBenefitFiltering?2:1;
+const steps=routingBudget?7:phaseReevaluation?3:steerContext?2:reassess?4:noBenefitFiltering?2:1;
 const realBin=process.env.JEV_PILOT_CODEX??'/Applications/ChatGPT.app/Contents/Resources/codex';
 const work=await mkdtemp(join(tmpdir(),'jev-desktop-verification-'));
 const codexHome=join(work,'home');await mkdir(codexHome);
@@ -42,6 +43,11 @@ const server=createServer(async(req,res)=>{
   const body=JSON.parse(raw);apiCount++;
   if(inspectCacheContext)inputSnapshots.push(body.input);
   report.requests.push({number:apiCount,model:body.model,effort:body.reasoning?.effort,keys:Object.keys(body),toolNames:body.tools?.map(t=>t.name??t.type),configuration:body.configuration,inputText:filtering?JSON.stringify(body.input):undefined});
+  if(steerContext && apiCount===1) {
+    const t=[...bridge.router.turns.values()].find(t=>t.active);
+    try {report.steer=await c.request('turn/steer',{threadId:t.threadId,expectedTurnId:t.turnId,input:[{type:'text',text:'Continue the evidence search, focusing on NEEDLE target and omit unrelated noise.'}]});}
+    catch(error){report.steer={error:error.message};}
+  }
   if(manualSettings && apiCount===1) {
     try {
       const t=[...bridge.router.turns.values()].find(t=>t.active);
@@ -185,6 +191,7 @@ try{
       && report.audit.some(x=>x.status==='start_forwarded')
       && (!reassess||report.audit.some(x=>x.status==='applied'&&x.published==='medium'))
       && report.audit.some(x=>x.kind==='turn_usage'&&x.usage?.inputTokens===50*(steps+1));
+  if(steerContext)report.passed=report.passed&&Boolean(report.steer?.turnId)&&!report.steer?.error&&report.requests.length===3&&!report.requests[1].inputText.includes('JevPilot retained task evidence')&&report.requests[2].inputText.includes('JevPilot retained task evidence');
   if(resumeFixture)report.passed=report.passed&&report.resumeState?.source==='checkpoint'&&report.resumeState?.requiresReview===true&&report.resumeState?.historicalTaskPresent===true&&report.resumeState?.currentTask==='继续'&&report.audit.some(x=>x.kind==='resume_context');
   if(parallelTools)report.passed=report.passed&&report.requests.length===2&&report.audit.filter(x=>x.kind==='decision').length===1&&report.audit.some(x=>x.kind==='turn_usage'&&x.batchLeaseSkips===4)&&report.events.filter(x=>x.method==='item/completed'&&x.params.item?.type==='commandExecution').length===5;
   if(routingBudget)report.passed=report.passed&&report.requests.length===8&&report.audit.filter(x=>x.kind==='decision').length===6&&report.audit.filter(x=>x.kind==='effort_restore'&&x.status==='applied').length===1&&report.audit.filter(x=>x.status==='budget_held').length===2;

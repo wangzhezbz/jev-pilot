@@ -1,0 +1,15 @@
+{
+  "kind": "bundled_runtime_with_synthetic_model",
+  "passed": true,
+  "realJev": false,
+  "paidModelCalls": 0,
+  "steeringAccepted": true,
+  "requestEfforts": [
+    "low",
+    "low",
+    "low"
+  ],
+  "oldOutputNotFiltered": true,
+  "newOutputFiltered": true,
+  "promptHooks": 2
+}

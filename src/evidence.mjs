@@ -17,11 +17,15 @@ export function chunks(source, linesPerChunk = 30) {
 export async function selectEvidence(ctx, { goal, items, budget = 16000, against = [], requireCompleteJudgment = false }) {
   text(goal, 10000); records(items); array(against); requireValue(Number.isInteger(budget) && budget >= 128 && budget <= 500000, 'INVALID_BUDGET');
   const artifactId = ctx.store.put(ctx.project, 'artifact', { goal, items, createdAt: now() });
-  const selected = [], excluded = [], deferred = [], duplicates = [], seen = new Set(against.map(hash));
+  const selected = [], excluded = [], deferred = [], duplicates = [], seen = new Set(), previouslyRead = new Set(against.map(hash));
   const unique = [];
   for (const item of items) {
-    if (seen.has(hash(item.text)) && !protectedEvidence(item)) { duplicates.push(item.id); continue; }
-    seen.add(hash(item.text)); unique.push(item);
+    // Same body at a different source, line, time or status is a distinct
+    // observation. A text-only `against` entry cannot establish its identity.
+    const {id: candidateId, ...identity} = item;
+    const key = hash(identity), plainText = Object.keys(identity).every(k => k === 'text');
+    if ((seen.has(key) || plainText && previouslyRead.has(hash(item.text))) && !protectedEvidence(item)) { duplicates.push(item.id); continue; }
+    seen.add(key); unique.push(item);
   }
   const judged = unique.filter(item => !protectedEvidence(item));
   const instructions=`Task: ${goal}. Should this item be included as task evidence?`;

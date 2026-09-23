@@ -1,0 +1,23 @@
+e2cf969 feat: integrate fourteen JevPilot modules and cross-platform verification
+eb75b4d fix: preserve vendor bytes on Windows and verify native plugin integration
+423ff17 Verify native routing and recovery; finish fourteen-feature preview and acceptance ledger
+d317e8c Fix literal source searches and isolate TypeSafe credentials from project checks
+f53a1f3 Harden cancellation, activation rollback and runtime reporting; diagnose Chrome control timeout
+e757868 Refresh routing credentials, reject incomplete launcher checks and validate setup prerequisites
+035101a Harden browser ticket lifetime and proxy diagnostics
+2c18cf8 Harden shared Jev decisions and add budgets, shadow evaluation and diagnostics
+d9296c1 Protect effort routing from stale context and external settings changes
+b05e993 Preserve effort lease across routine reasoning summaries
+b76fc75 Support GPT-6 Sol and Luna desktop effort routing
+143a86d Verify ordinary workflows and distinguish loaded revisions and filter coverage
+7323eb1 Reserve late reassessments and restore baseline after routing budget exhaustion
+3e4ed42 Stabilize late-turn effort routing and recover metadata with typed diagnostics
+ddc021b Reserve urgent Jev capacity and add scoped activity, MCP text filtering and checkpoints
+d1e4945 Reuse observed tool batches and restore bounded checkpoint context
+1977c39 Recover transient routing failures and suppress repeated unhelpful filtering
+84fcd49 Cap automatic effort, preserve relevant output, and publish cost regression investigation
+5422ad8 Audit deeper workflow costs and remove duplicate evidence bodies and unnecessary full-coverage ranking
+a44a5d4 Stop unproductive Jev judgments and preflight filtering work
+f413220 Bound parallel screening, cancel stale work, and stop unproductive recovery
+40419bb Bound recurring no-change routing and stage clean plugin distributions
+9a9960e Restore bounded routing reevaluation and audit workflow token and latency costs

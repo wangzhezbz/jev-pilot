@@ -1,0 +1,51 @@
+{
+  "baseCommit": "9a9960e1258a260dabf8e07c87e031d2079bbd32",
+  "newPaidTestCalls": 0,
+  "evidenceCounterexamples": {
+    "before": {
+      "passed": 1,
+      "failed": 2
+    },
+    "after": {
+      "passed": 3,
+      "failed": 0
+    },
+    "cases": [
+      "unfinished status metadata retained",
+      "source and observation identity retained",
+      "true duplicate still deduplicated"
+    ]
+  },
+  "portableTests": {
+    "passed": 201,
+    "failed": 0
+  },
+  "nativeSuite": {
+    "passed": 16,
+    "failed": 0
+  },
+  "additionalSteeringCheck": {
+    "kind": "bundled_runtime_with_synthetic_model",
+    "passed": true,
+    "realJev": false,
+    "paidModelCalls": 0,
+    "steeringAccepted": true,
+    "requestEfforts": [
+      "low",
+      "low",
+      "low"
+    ],
+    "oldOutputNotFiltered": true,
+    "newOutputFiltered": true,
+    "promptHooks": 2
+  },
+  "localProtocolInspection": {
+    "runtime": "codex-cli 0.155.0-alpha.9.2",
+    "method": "thread/compact/start",
+    "requiredParams": [
+      "threadId"
+    ],
+    "action": "schema inspection only; no real conversation compacted"
+  },
+  "scope": "Core optimization history and functional boundaries, not a proof of all semantic accuracy or universal savings."
+}
