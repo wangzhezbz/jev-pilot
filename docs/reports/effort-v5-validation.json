@@ -7,7 +7,7 @@
     "mode": "source review; no installer or patched Codex executed; original implementation of compatible improvements"
   },
   "regressions": {
-    "passed": 106,
+    "passed": 107,
     "failed": 0
   },
   "nativeFixtures": [
@@ -145,7 +145,7 @@
     "paidCalls": 0,
     "passed": true,
     "policyVersion": "effort-v5-context-freshness",
-    "runtimeFingerprint": "954d90a9f55806df365069ac02db7d167ebff9868820227b0f3cade883bf69ae",
+    "runtimeFingerprint": "f5a9a858d7f8b68cf880711cda5bd34d5ae3d5f863fd7ddfeb7a3f25cd8248db",
     "currentDesktopReloaded": false
   },
   "desktopActivation": {
@@ -158,11 +158,11 @@
     "loadedRevisionMatches": null
   },
   "sourceHashes": {
-    "runtime/desktop/router.mjs": "8dbfcf559dea3990ca83bb9b75d54da593750c8db5d1169560e206b719a84cda",
+    "runtime/desktop/router.mjs": "617a79136b547cd8c3c49bc2423926d4f99e3cffebbcc16d0b3626be19420a7c",
     "runtime/desktop/bridge.mjs": "b0214c2319d7fbab43a3eeebe11d48dad9e5bac5df78482dbad3e25fb2f45a34",
     "src/setup.mjs": "895223cca5bce1e46cbf66d02608a6dfb53b55af25c12f95a9d2d46d5b64c9f0",
     "scripts/verify-desktop.mjs": "a818611fc4257abba3da2ca38f46bc1bff68029026948e53b2fdadc2a26056d1",
-    "tests/desktop-router.test.mjs": "8b55b9c34db56e181b961f1159ea6ba4cd5bd0beccd0580ff5e184ed9ca09630",
+    "tests/desktop-router.test.mjs": "8bd869c20a2b0fd106c8e4d9d8e12d9c65269afcbb4981254aaae85855005efd",
     "tests/integration.test.mjs": "3dbe865a3e514300f1ae61894c0a8f45f594b3ac88281a9b6d825e0b18e9a682"
   },
   "performance": {
@@ -173,7 +173,7 @@
   "nativePluginDiscovery": {
     "kind": "real_codex_plugin_loading",
     "gptCalls": 0,
-    "installedVersion": "0.2.0+codex.20260923032822",
+    "installedVersion": "0.2.0+codex.20260923033429",
     "servers": [
       {
         "name": "jev-pilot",

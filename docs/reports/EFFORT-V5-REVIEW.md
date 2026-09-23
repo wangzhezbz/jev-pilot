@@ -10,7 +10,7 @@ Reviewed [Astra-Ares](https://github.com/miuuyy/Astra-Ares/tree/a1dbc976103e3004
 |---|---|
 | Invalidate a decision on manual effort/model changes | Client `turn/settings/update` invalidates pending recommendations immediately. Only a successful native receipt updates observed settings. Failed or obsolete-turn changes are not treated as applied. |
 | Preserve original model selection | Explicit model changes are respected. A model-only change with an unknown native effort, or overlapping publications with ambiguous ordering, suspends automatic routing for the rest of that turn. Codex continues normally; the next turn starts afresh. |
-| Inspect the latest context before deciding | Completed plans and public reasoning summaries join bounded state. Raw reasoning content and encrypted fields are excluded. Plans, messages and summaries invalidate reuse. |
+| Inspect the latest context before deciding | Completed plans and public reasoning summaries join bounded state. Raw reasoning content and encrypted fields are excluded. Plans and progress messages invalidate reuse; routine summaries enrich the next judgment without forcing another call every generation. |
 | Account for newly completed tools | A judgment uses an immutable snapshot. Late successful results, failures or public progress cause at most one fresh judgment. If context changes again or the call budget is exhausted, keep current effort rather than apply stale advice. New evidence arriving during native publication prevents reuse. |
 | Count leases in model generations | Not adopted: the stock desktop hook exposes tool completion boundaries. Logs now explicitly record `leaseUnit=tool_completion_boundary`. Coalesced hooks are not an exact model-generation counter. |
 | Confirm the next generation's captured effort | Not claimed: the stock `applied` response confirms publication for subsequent captures, not a guaranteed later inference. Logs distinguish `native_settings_published` from `start_parameter_forwarded`. Synthetic endpoint tests separately inspect actual outgoing requests. |
@@ -20,7 +20,7 @@ Reviewed [Astra-Ares](https://github.com/miuuyy/Astra-Ares/tree/a1dbc976103e3004
 
 ## Verification
 
-- 106 regression tests passed, including 13 additional race, context, receipt and revision-diagnostic cases. Syntax/JSON/credential checks passed.
+- 107 regression tests passed, including 14 additional race, context, receipt, reuse and revision-diagnostic cases. Syntax/JSON/credential checks passed.
 - Original bundled macOS Codex `0.155.0-alpha.9.2`: manual settings on GPT-6 Astra and GPT-5.6 Sol produced low → medium outgoing requests and a matching native receipt. No paid model backend was used.
 - The same engine passed failure-triggered automatic reassessment, unavailable-Jev fallback, disabled-adapter and incompatible-version pass-through. All fixture Jev decisions were synthetic.
 - Installed adapter startup passed an isolated no-inference probe and recorded the expected runtime fingerprint. The probe is marked synthetic and excluded from normal task metrics.

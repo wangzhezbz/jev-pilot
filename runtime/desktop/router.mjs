@@ -92,7 +92,7 @@ export class Router {
     this.turns.set(threadId, { threadId, cwd: params.cwd ?? meta.cwd, turnId: null, current, model, active: true, revision: 0,
       task: compact((params.input ?? []).filter(x=>x.type==='text').map(x=>x.text).join('\n'),4000),
       previousTurn: old?.completed ? {task:compact(old.task,1000),progress:old.progress.slice(-1).map(x=>compact(x,1000))} : undefined,
-      forceRecheck:false, evidenceVersion:0, progressVersion:0, judgedProgress:0, leaseSkips:0,
+      forceRecheck:false, evidenceVersion:0, progressVersion:0, noteVersion:0, judgedProgress:0, leaseSkips:0,
       progress: [], publicNotes: [], recent: [], calls: 0, pending: Promise.resolve(), seen: new Set(), lastAt: 0, settingsPending: 0,
       opened:performance.now(),lease:0,leaseUntil:0,usage:null,usageSnapshots:new Set(),usageEvents:0,invalidUsageEvents:0,nativeFailures:new Map() });
     return this.turns.get(threadId);
@@ -134,7 +134,10 @@ export class Router {
     if(typeof text!=='string'||!text.trim())return;
     const note={kind,text:compact(text,1200)};
     if(JSON.stringify(note)===JSON.stringify(t.publicNotes.at(-1)))return;
-    t.publicNotes.push(note);t.publicNotes=t.publicNotes.slice(-4);t.progressVersion++;
+    t.publicNotes.push(note);t.publicNotes=t.publicNotes.slice(-4);t.noteVersion++;
+    // Routine summaries arrive every generation. Retain them for the next
+    // judgment without turning a long reuse lease into one call per generation.
+    if(kind!=='reasoning_summary')t.progressVersion++;
   }
   context(t) { return { taskId: t.threadId, cwd: t.cwd ?? this.threads.get(t.threadId)?.cwd }; }
   renew(t,result,applied=true) {
@@ -259,13 +262,13 @@ export class Router {
       t.calls++;t.lastAt=Date.now();
       let started=performance.now();
       try {
-        let version=t.evidenceVersion,progress=t.progressVersion;
+        let version=t.evidenceVersion,progress=t.progressVersion,notes=t.noteVersion;
         let result=await this.judge(this.state(t),this.context(t));
         // A result is valid only for the evidence it saw. Refresh at most once
         // for late tool results or public progress; otherwise keep current effort.
-        const changed=()=>version!==t.evidenceVersion||progress!==t.progressVersion;
+        const changed=()=>version!==t.evidenceVersion||progress!==t.progressVersion||notes!==t.noteVersion;
         if(t.active && revision===t.revision && changed() && t.calls<this.maxCalls){
-          t.calls++;version=t.evidenceVersion;progress=t.progressVersion;
+          t.calls++;version=t.evidenceVersion;progress=t.progressVersion;notes=t.noteVersion;
           this.log({...this.metrics(t,result,t.current,'superseded',started,p.hook_event_name),published:t.current});
           started=performance.now();
           result=await this.judge(this.state(t),this.context(t));

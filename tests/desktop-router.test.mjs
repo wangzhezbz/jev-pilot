@@ -256,6 +256,15 @@ test('a public update during judgment causes a bounded refresh with the latest s
  s.router.observe({method:'item/completed',params:{threadId:'thread',turnId:'turn',item:{type:'agentMessage',text:'New conflict changes the investigation'}}});
  release({answer:answer('low')});await pending;assert.equal(count,2);assert.equal(s.calls.length,0);
 });
+test('routine reasoning summaries enrich context without spending the long reuse lease on new calls',async()=>{
+ let count=0;const s=setup({judge:async()=>{count++;return{answer:answer('low'),horizon:horizon(10)};}});
+ await s.router.routeStart({threadId:'thread'});
+ for(let i=0;i<3;i++){
+  s.router.observe({method:'item/completed',params:{threadId:'thread',turnId:'turn',item:{type:'reasoning',summary:['Routine verification '+i]}}});
+  assert.equal((await s.router.hook({...s.p,tool_use_id:'summary-'+i})).status,'lease_held');
+ }
+ assert.equal(count,1);assert.equal(s.router.state(s.router.turns.get('thread')).publicNotes.length,3);
+});
 test('a late successful tool result also supersedes the earlier snapshot',async()=>{
  let release,count=0;const states=[];const s=setup({judge:async state=>{
   states.push(state);return ++count===1?new Promise(r=>release=r):{answer:answer('high')};

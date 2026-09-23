@@ -17,7 +17,7 @@ Status: macOS delivery candidate. Core fixes and local/native-engine acceptance 
 
 | Layer | Result | What it establishes |
 |---|---|---|
-| Local regressions | 106 passed after v5 follow-up | Deterministic contracts, failure behavior, concurrency budgets, evidence retention and stale-routing protection |
+| Local regressions | 107 passed after v5 follow-up | Deterministic contracts, failure behavior, concurrency budgets, evidence retention and stale-routing protection |
 | Paid TypeSafe smoke | 11 calls, nine scenarios passed | Current API integration, usage and bounded semantic examples |
 | Policy regression | 3 calls; 32 labeled cases; 24 long-instruction candidates | No observed false exclusions in this small synthetic set; not production calibration |
 | Original macOS engine | Routing, native applied receipt, output filtering, outage/version/disabled fallback passed | Actual request parameters and native hooks, using synthetic inference |
