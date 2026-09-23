@@ -1,0 +1,20 @@
+{
+  "installedVersion": "0.2.0+codex.20260923105510",
+  "policyVersion": "effort-v12-benefit-admission",
+  "compatible": true,
+  "configuredForNextLaunch": true,
+  "currentLoadedRevisionMatches": false,
+  "activePolicyVersions": [
+    "effort-v11-cost-ceiling"
+  ],
+  "filesMatch": {
+    "runtime/desktop/router.mjs": true,
+    "src/core.mjs": true,
+    "src/evidence.mjs": true,
+    "src/automation.mjs": true,
+    "src/workflows.mjs": true,
+    "skills/jev-pilot/SKILL.md": true
+  },
+  "browserNetworkChanged": false,
+  "currentTaskChanged": false
+}

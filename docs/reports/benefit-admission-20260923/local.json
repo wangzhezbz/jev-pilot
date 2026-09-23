@@ -1,0 +1,80 @@
+{
+  "kind": "local_synthetic_before_after",
+  "baseline": "5422ad87fa27a99d24558f54f355fc6c2d678042",
+  "at": "2026-09-23T10:54:34.747Z",
+  "paidApiCalls": 0,
+  "gptCalls": 0,
+  "traces": [
+    {
+      "case": "mechanical_progress",
+      "before": {
+        "calls": 6,
+        "finalEffort": "medium"
+      },
+      "after": {
+        "calls": 1,
+        "finalEffort": "medium"
+      }
+    },
+    {
+      "case": "new_published_progress",
+      "before": {
+        "calls": 6,
+        "finalEffort": "medium"
+      },
+      "after": {
+        "calls": 2,
+        "finalEffort": "medium"
+      }
+    }
+  ],
+  "partialSelectionEquivalence": {
+    "cases": 40,
+    "passed": true
+  },
+  "partialSelectionCpu": [
+    {
+      "n": 40,
+      "budget": 4000,
+      "beforeMs": [
+        32.99,
+        32.32,
+        33.24
+      ],
+      "afterMs": [
+        0.42,
+        0.34,
+        0.56
+      ]
+    },
+    {
+      "n": 80,
+      "budget": 8000,
+      "beforeMs": [
+        269.81,
+        261.83,
+        269.65
+      ],
+      "afterMs": [
+        0.78,
+        0.66,
+        0.76
+      ]
+    },
+    {
+      "n": 160,
+      "budget": 16000,
+      "beforeMs": [
+        2192.31,
+        2228.67,
+        2156.96
+      ],
+      "afterMs": [
+        1.97,
+        2.28,
+        1.92
+      ]
+    }
+  ],
+  "limitations": "Mocked decisions; CPU timing and avoided call counts are not end-to-end model speed or token savings."
+}

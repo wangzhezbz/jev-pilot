@@ -5,8 +5,10 @@ import {proxyEnvironment} from '../runtime/desktop/bootstrap.mjs';
 import {summarize} from '../runtime/desktop/report.mjs';
 import {runtimeFingerprint} from '../runtime/desktop/bridge.mjs';
 const answer=(choice,confidence=1)=>({type:'choice',choice,confidence,probabilities:Object.fromEntries(Object.keys(effortQuestion.criteria).map(k=>[k,k===choice?1:0]))});
+// These fixtures exercise budgets and leases independently; production admission is
+// covered with its default limit in benefit-admission.test.mjs.
 function setup(options={}){
- const calls=[],logs=[];const router=new Router({coalesceMs:0,judge:async()=>({answer:answer('low'),model:'fixture',inputTokens:10}),request:async(method,params)=>{calls.push({method,params});return{status:'applied'};},log:x=>logs.push(x),...options});
+ const calls=[],logs=[];const router=new Router({coalesceMs:0,noBenefitLimit:Infinity,judge:async()=>({answer:answer('low'),model:'fixture',inputTokens:10}),request:async(method,params)=>{calls.push({method,params});return{status:'applied'};},log:x=>logs.push(x),...options});
  router.supported.set('gpt-6-astra',['low','medium','high','xhigh']);
  router.start('thread',{model:'gpt-6-astra',effort:'high',input:[{type:'text',text:'Format verified results.'}]});
  router.observe({method:'turn/started',params:{threadId:'thread',turn:{id:'turn'}}});

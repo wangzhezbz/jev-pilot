@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { parseEnv } from 'node:util';
 import { postTypeSafe } from './transport.mjs';
 
-export const POLICY_VERSION = 'effort-v11-cost-ceiling';
+export const POLICY_VERSION = 'effort-v12-benefit-admission';
 const effortOrder=['none','minimal','low','medium','high','xhigh','max','ultra'];
 export const LEASE_UNIT = 'observed_tool_batch_or_boundary';
 export const SUPPORTED_MODELS = ['gpt-6-astra','gpt-6-sol','gpt-6-luna','gpt-5.6-sol','gpt-5.6-terra','gpt-5.6-luna'];
@@ -88,15 +88,15 @@ export async function makeJudge(keyPath, {env=process.env,send=postTypeSafe,judg
 // Only exact, short mechanical acknowledgments avoid invalidating a lease.
 // Unknown wording, new plans and conflicts remain immediate recheck signals.
 export function routineProgress(text) {
-  return typeof text==='string' && text.length<=160 && (/^(?:(?:检查|测试|验证)(?:已)?通过[，,。;； ]*)?继续(?:执行)?(?:原计划|下一项|下一步)(?:检查|测试|验证)?[。.!！ ]*$/.test(text.trim()) || /^(?:(?:The (?:first|next) )?(?:check|test|verification) passed[.;, ]+)?continuing (?:the same plan|the next check)[.! ]*$/i.test(text.trim()));
+  return typeof text==='string' && text.length<=240 && (/^Verification check \d+ passed; continuing the agreed verification plan\.$/i.test(text.trim()) || /^第[一二三四五六七八九十\d]+项(?:检查|测试|验证)(?:已)?通过[，,；; ]*(?:继续|按)(?:执行)?原(?:定)?计划[。.!！ ]*$/.test(text.trim()) || /^(?:(?:检查|测试|验证)(?:已)?通过[，,。;； ]*)?继续(?:执行)?(?:原计划|下一项|下一步)(?:检查|测试|验证)?[。.!！ ]*$/.test(text.trim()) || /^(?:(?:The (?:first|next) )?(?:check|test|verification) passed[.;, ]+)?continuing (?:the same plan|the next check)[.! ]*$/i.test(text.trim()));
 }
 
 export const isContinuation=value=>/^(?:继续(?:吧)?|开始吧|重启(?:了|好了)|按你说的来|continue|go ahead|resumed|restarted)[。.!！\s]*$/i.test(String(value).trim());
 const transientErrors=new Set(['JEV_TIMEOUT','CURL_TIMEOUT','JEV_CONNECT','JEV_DNS','JEV_PROXY_DNS','JEV_SERVER']);
 
 export class Router {
-  constructor({ request, judge, log = () => {}, maxCalls = 6, reservedCalls = 2, coalesceMs = 50, leaseSteps = 1, leaseMs = 60000, groupToolBatches = false, recoveryCooldownMs = 15000, clock = Date.now }) {
-    Object.assign(this, { request, judge, log, maxCalls, leaseSteps, leaseMs, groupToolBatches, recoveryCooldownMs, clock });
+  constructor({ request, judge, log = () => {}, maxCalls = 6, noBenefitLimit = 2, reservedCalls = 2, coalesceMs = 50, leaseSteps = 1, leaseMs = 60000, groupToolBatches = false, recoveryCooldownMs = 15000, clock = Date.now }) {
+    Object.assign(this, { request, judge, log, maxCalls, noBenefitLimit, leaseSteps, leaseMs, groupToolBatches, recoveryCooldownMs, clock });
     this.routineLimit=Math.max(1,maxCalls-Math.max(0,Math.min(reservedCalls,maxCalls-1)));
     this.coalesceMs=Math.max(0,Math.min(coalesceMs,100));
     this.turns = new Map();
@@ -115,14 +115,14 @@ export class Router {
     this.turns.set(threadId, { threadId, cwd, turnId: null, current, model, active: true, revision: 0,
       task: compact((params.input ?? []).filter(x=>x.type==='text').map(x=>x.text).join('\n'),4000),
       previousTurn:historical,openedAt:stamp,recoveryAttempts:0,retryAt:null,
-      baseline:current,ceilingHits:0,ceilingSkips:0,forceRecheck:false, evidenceVersion:0, progressVersion:0, noteVersion:0, judgedProgress:0, leaseSkips:0,
+      baseline:current,noBenefitHits:0,ceilingHits:0,ceilingSkips:0,forceRecheck:false, evidenceVersion:0, progressVersion:0, noteVersion:0, judgedProgress:0, leaseSkips:0,
       urgentVersion:0,judgedUrgent:0,budgetSkips:0,coalescedBoundaries:0,
       progress: [], publicNotes: [], recent: [], calls: 0, pending: Promise.resolve(), seen: new Set(), lastAt: 0, settingsPending: 0,
       toolBatches:new Map(),toolBatchSequence:0,reusedBatch:null,batchLeaseSkips:0,routineProgressNotes:0,opened:performance.now(),lease:0,leaseUntil:0,usage:null,usageSnapshots:new Set(),usageEvents:0,invalidUsageEvents:0,nativeFailures:new Map() });
     return this.turns.get(threadId);
   }
   invalidate(threadId,input=[]) { const t=this.turns.get(threadId); if(t) {
-    t.revision++; t.ceilingHits=0;t.lastAt=0; t.lease=0; t.forceRecheck=true;t.urgentVersion++;
+    t.revision++; t.noBenefitHits=0;t.ceilingHits=0;t.lastAt=0; t.lease=0; t.forceRecheck=true;t.urgentVersion++;
     const text=input.filter(x=>x.type==='text').map(x=>x.text).join('\n');
     if(text)t.task=compact(t.task+'\nLatest user input: '+redact(text),4000);
   } }
@@ -174,6 +174,7 @@ export class Router {
   renew(t,result,applied=true,snapshot={progress:t.progressVersion,urgent:t.urgentVersion}) {
     const validEffort=result?.answer?.choice!=='keep' && select(result?.answer,'invalid',this.supported.get(t.model)??[])!=='invalid';
     const requested=selectedHorizon(result?.horizon,null);
+    if(applied && validChoice(result?.answer,effortQuestion))t.noBenefitHits=t.current===t.baseline?t.noBenefitHits+1:0;
     // An explicit stability judgment may briefly reuse keep only at or above
     // the user's baseline. It must never prolong an uncertain auto-downgrade.
     const baselineKeep=result?.answer?.choice==='keep' && validChoice(result.answer,effortQuestion)
@@ -335,11 +336,11 @@ export class Router {
       const admission=()=>{
         if(!t.active || revision!==t.revision)return {status:'stale'};
         if(t.settingsPending || t.settingsUncertain)return {status:'external_settings_pending_or_unknown'};
-        // Two recommendations above the permitted ceiling have no executable
-        // benefit. Stay at the user's setting until new input/manual controls.
-        if(t.ceilingHits>=2 && t.current===t.baseline){
-          t.ceilingSkips++;this.log({kind:'routing_admission',threadId:t.threadId,turnId:t.turnId,status:'ceiling_no_benefit',effort:t.current});
-          return {status:'ceiling_no_benefit'};
+        // Repeated recommendations that leave the baseline unchanged have no
+        // executable benefit. New input/manual controls reopen admission.
+        if((t.ceilingHits>=2 || t.noBenefitHits>=this.noBenefitLimit) && t.current===t.baseline){
+          t.ceilingSkips++;this.log({kind:'routing_admission',threadId:t.threadId,turnId:t.turnId,status:t.ceilingHits>=2?'ceiling_no_benefit':'baseline_no_benefit',effort:t.current});
+          return {status:t.ceilingHits>=2?'ceiling_no_benefit':'baseline_no_benefit'};
         }
         if(t.unavailable){
           if(t.retryAt===null||this.clock()<t.retryAt||t.recoveryAttempts>=1||!this.canJudge(t))return {status:'disabled_for_turn'};

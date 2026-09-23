@@ -84,7 +84,9 @@ test('a slow filter from an older turn cannot replace new-turn output or set its
 test('automatic filtering never hides relevant unique evidence to meet a length budget',async t=>{
  const f=autoFixture(t);await f.start();const input=Array.from({length:540},(_,i)=>'fact '+i+' '+('unique evidence '.repeat(7))).join('\n');
  assert.deepEqual(await f.hook('all-keep',{tool_response:input}),{});
- const e=f.events().find(e=>e.kind==='automatic_output_result');assert.equal(e.deferredItems,0);assert.equal(e.excludedItems,0);assert.equal(e.applied,false);
+ assert.equal(f.calls(),0);assert(f.events().some(e=>e.kind==='evidence_admission'&&e.reason==='CALL_BUDGET'));
+ await f.start(undefined,'b');assert.deepEqual(await f.hook('fits-two',{turn_id:'b',tool_response:input.split('\n').slice(0,300).join('\n')}),{});
+ const e=f.events().find(e=>e.kind==='automatic_output_result');assert.equal(e.deferredItems,0);assert.equal(e.excludedItems,0);assert.equal(e.applied,false);assert(f.calls()>0);
 });
 test('rereading filtered output returns full evidence without another judgment; changed content remains eligible',async t=>{
  const f=autoFixture(t,{exclude:true});await f.start();const input=Array.from({length:350},(_,i)=>'sample '+i+' '+('x'.repeat(80))).join('\n');

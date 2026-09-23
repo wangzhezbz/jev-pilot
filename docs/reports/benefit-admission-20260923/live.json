@@ -1,0 +1,163 @@
+{
+  "at": "2026-09-23T10:49:28.432Z",
+  "kind": "paid_jev_component_probe",
+  "gptCalls": 0,
+  "rows": [
+    {
+      "id": "chronological",
+      "applied": true,
+      "allFactsRetained": true,
+      "missing": [],
+      "originalBytes": 33338,
+      "deliveredBytes": 16945,
+      "elapsedMs": 1368,
+      "result": {
+        "at": "2026-09-23T10:49:26.697Z",
+        "kind": "automatic_output_result",
+        "boundaryId": "d565fc8493ec5e494f5fab5ca67f719016a7752dcc3361610cdb6f151518e76b",
+        "applied": true,
+        "reason": "applied",
+        "originalBytes": 33338,
+        "sourceTextBytes": 33338,
+        "retainedBytes": 16945,
+        "retainedRatio": 0.5082788409622653,
+        "artifactId": "e79d20d5-beb4-45b5-aa86-8c539a1409dd",
+        "excludedItems": 6,
+        "deferredItems": 0,
+        "duplicateItems": 0,
+        "completeCoverage": true,
+        "elapsedMs": 1367,
+        "nativeTokenSavings": null
+      },
+      "passed": true
+    },
+    {
+      "id": "block_reordered",
+      "applied": true,
+      "allFactsRetained": true,
+      "missing": [],
+      "originalBytes": 33338,
+      "deliveredBytes": 16947,
+      "elapsedMs": 1242,
+      "result": {
+        "at": "2026-09-23T10:49:27.939Z",
+        "kind": "automatic_output_result",
+        "boundaryId": "d565fc8493ec5e494f5fab5ca67f719016a7752dcc3361610cdb6f151518e76b",
+        "applied": true,
+        "reason": "applied",
+        "originalBytes": 33338,
+        "sourceTextBytes": 33338,
+        "retainedBytes": 16947,
+        "retainedRatio": 0.5083388325634411,
+        "artifactId": "b70db8ac-550f-4bfc-9be8-509bc0d9d1d5",
+        "excludedItems": 6,
+        "deferredItems": 0,
+        "duplicateItems": 0,
+        "completeCoverage": true,
+        "elapsedMs": 1241,
+        "nativeTokenSavings": null
+      },
+      "passed": true
+    }
+  ],
+  "quality": {
+    "checks": [
+      {
+        "id": "scope",
+        "type": "choice",
+        "choice": "pass",
+        "confidence": 0.98,
+        "probabilities": {
+          "pass": 0.99,
+          "review": 0,
+          "fail": 0.01
+        },
+        "source": "jev"
+      }
+    ],
+    "translations": [],
+    "evaluated": true,
+    "verdict": "passed"
+  },
+  "metrics": {
+    "events": 15,
+    "windowLimit": 10000,
+    "jev": {
+      "calls": 5,
+      "failures": 0,
+      "inputTokens": 24638,
+      "outputTokens": 915,
+      "totalElapsedMs": 3088,
+      "missingUsage": 0
+    },
+    "cacheHits": 0,
+    "savings": null,
+    "savingsReason": "Requires matched baseline tasks with quality acceptance and provider usage. No counterfactual savings inferred."
+  },
+  "sourceHashes": {
+    "src/core.mjs": "8825fd70ed4c694a4ccca65541a55885d9330978cf2b63c9f22fa1b3a4f1f0c0",
+    "src/evidence.mjs": "427451a2cefe5dc8fd1d3010350d9159dcbe2946a9c32c221d4385e6730a0d78",
+    "src/automation.mjs": "685660b3505e7bcfc978cc42e05c7c47e384eb2e53dd51194de8be68c7ccce85",
+    "src/workflows.mjs": "728ed4d25007d86745537d82b99d2a1d753c7f4fa2d242d5dfa725f201e6c23f",
+    "runtime/desktop/router.mjs": "76aec4c282981dbb5ce4c1da06867d25a9589a7e116d0ce87459d91b5de233de"
+  },
+  "passed": true,
+  "limits": "Synthetic log screening only. No end-to-end GPT comparison, no billing savings inference; failed observations retained, no retry.",
+  "calls": [
+    {
+      "at": "2026-09-23T10:49:25.947Z",
+      "kind": "jev_call",
+      "purpose": "evidence",
+      "model": "jev-1.13.0",
+      "elapsedMs": 612,
+      "inputTokens": 8887,
+      "outputTokens": 327,
+      "questions": 9,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-23T10:49:26.696Z",
+      "kind": "jev_call",
+      "purpose": "evidence",
+      "model": "jev-1.13.0",
+      "elapsedMs": 749,
+      "inputTokens": 3219,
+      "outputTokens": 111,
+      "questions": 3,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-23T10:49:27.247Z",
+      "kind": "jev_call",
+      "purpose": "evidence",
+      "model": "jev-1.13.0",
+      "elapsedMs": 546,
+      "inputTokens": 8992,
+      "outputTokens": 327,
+      "questions": 9,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-23T10:49:27.939Z",
+      "kind": "jev_call",
+      "purpose": "evidence",
+      "model": "jev-1.13.0",
+      "elapsedMs": 691,
+      "inputTokens": 3114,
+      "outputTokens": 111,
+      "questions": 3,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-23T10:49:28.430Z",
+      "kind": "jev_call",
+      "purpose": "quality",
+      "model": "jev-1.13.0",
+      "elapsedMs": 490,
+      "inputTokens": 426,
+      "outputTokens": 39,
+      "questions": 1,
+      "status": "success"
+    }
+  ]
+}

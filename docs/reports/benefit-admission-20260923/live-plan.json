@@ -1,0 +1,34 @@
+{
+  "kind": "predeclared_component_probe",
+  "maxJevHttpCalls": 5,
+  "gptCalls": 0,
+  "repetitions": 1,
+  "fixtures": [
+    {
+      "id": "chronological",
+      "sha256": "9e2ec6a51ff84a1e14b9844b8482a6aa67f57689f7be7f3e81bc17c96693fc76",
+      "bytes": 33338
+    },
+    {
+      "id": "block_reordered",
+      "sha256": "ac3fc67bc041779d69df3601767c08f6c5b567f6737b8890547ea0051eb01683",
+      "bytes": 33338
+    }
+  ],
+  "qualityGate": {
+    "requiredFacts": [
+      "10:04 checkout: p95 latency increased from 120ms to 900ms while request volume remained unchanged.",
+      "10:04 checkout: the increased latency began two minutes before the dashboard theme rollout.",
+      "10:05 ledger-pool: available connections reached zero and checkout waits increased.",
+      "10:06 checkout: application CPU remained at 25 percent; database query execution stayed at 8ms.",
+      "10:06 checkout: customers with both old and new dashboard themes showed identical latency.",
+      "10:07 ledger-pool: the max connection setting changed from 40 to 4 at 10:02.",
+      "10:09 ledger-pool: restoring the max connection setting to 40 restored available connections.",
+      "10:10 checkout: p95 returned to 125ms without reverting the dashboard theme."
+    ],
+    "allFactsRetained": true,
+    "automaticReplacementApplied": true,
+    "minimumWrappedByteReduction": 0.2
+  },
+  "limits": "Synthetic log screening only. No end-to-end GPT comparison, no billing savings inference; failed observations retained, no retry."
+}

@@ -48,7 +48,7 @@ export function createAutomation({ store = new Store(), key, send, clock=Date.no
       const judge = new Judge({ store, project, taskId: payload.session_id, config: { ...config, maxCalls: 2, timeoutMs: 1800 }, ...(key !== undefined ? { key } : {}), ...(send ? { send } : {}) });
       const started=performance.now(),originalBytes=Buffer.byteLength(typeof payload.tool_response==='string'?payload.tool_response:JSON.stringify(payload.tool_response)),sourceTextBytes=Buffer.byteLength(response);
       let result;
-      try {result=await filterOutput({store,project,config,judge,root:payload.cwd},{goal:state.goal,text:response,source:payload.tool_name,budget:500000});}
+      try {result=await filterOutput({store,project,config,judge,root:payload.cwd},{goal:state.goal,text:response,source:payload.tool_name,budget:500000,requireCompleteJudgment:true});}
       catch(error){store.event(project,'automatic_output_result',{boundaryId:fingerprint,applied:false,reason:'filter_error',code:/^[A-Z][A-Z0-9_]+$/.test(error.code??'')?error.code:'UNAVAILABLE',elapsedMs:Math.round(performance.now()-started)});return {};}
       const feedback=adapter.wrap(`JevPilot retained task evidence from ${payload.tool_name}. The original output is saved locally. This is partial evidence; use jev_pilot recall for omitted material. Artifact: ${result.artifactId}\n${result.context}`);
       const retainedBytes=Buffer.byteLength(feedback),retainedRatio=retainedBytes/Math.max(1,originalBytes);

@@ -3,19 +3,18 @@ import { execFile } from 'node:child_process';
 import { realpathSync } from 'node:fs';
 import { relative, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
-import { records, array, text, requireValue, readSource, byteBudget, hash, now } from './core.mjs';
+import { records, array, text, requireValue, readSource, byteBudget, hash, now, classificationPlan } from './core.mjs';
 import { protectedEvidence, exclusionDecision, EVIDENCE_POLICY } from './policy.mjs';
 const exec = promisify(execFile);
 const relevant = { keep: 'Relevant evidence including contradictions or unresolved errors.', review: 'Unclear; retain for Codex review.', exclude: 'Clearly unrelated or superseded evidence.' };
 const terms = s => new Set(s.toLowerCase().match(/[\p{L}\p{N}_]+/gu) || []);
-const similarity = (a, b) => { const x = terms(a), y = terms(b); return x.size && y.size ? [...x].filter(w => y.has(w)).length / new Set([...x, ...y]).size : 0; };
 export function chunks(source, linesPerChunk = 30) {
   const lines = source.text.split('\n'), out = [];
   for (let i = 0; i < lines.length; i += linesPerChunk) out.push({ id: 's' + i, text: lines.slice(i, i + linesPerChunk).join('\n'), source: source.path, startLine: i + 1, endLine: Math.min(i + linesPerChunk, lines.length), sourceHash: source.hash });
   return out;
 }
 // Relevance/diversity selection; uncertain evidence is never discarded.
-export async function selectEvidence(ctx, { goal, items, budget = 16000, against = [] }) {
+export async function selectEvidence(ctx, { goal, items, budget = 16000, against = [], requireCompleteJudgment = false }) {
   text(goal, 10000); records(items); array(against); requireValue(Number.isInteger(budget) && budget >= 128 && budget <= 500000, 'INVALID_BUDGET');
   const artifactId = ctx.store.put(ctx.project, 'artifact', { goal, items, createdAt: now() });
   const selected = [], excluded = [], deferred = [], duplicates = [], seen = new Set(against.map(hash));
@@ -25,7 +24,13 @@ export async function selectEvidence(ctx, { goal, items, budget = 16000, against
     seen.add(hash(item.text)); unique.push(item);
   }
   const judged = unique.filter(item => !protectedEvidence(item));
-  const answers = await ctx.judge.classify(judged, `Task: ${goal}. Should this item be included as task evidence?`, relevant, 'evidence');
+  const instructions=`Task: ${goal}. Should this item be included as task evidence?`;
+  if(requireCompleteJudgment){
+    const plan=classificationPlan(ctx.config.model,judged,instructions,relevant);
+    const reason=plan.oversized.length?'REQUEST_LIMIT':plan.batches.length>ctx.judge.config.maxCalls-ctx.judge.calls?'CALL_BUDGET':null;
+    if(reason){ctx.store.event(ctx.project,'evidence_admission',{reason,batches:plan.batches.length,oversizedItems:plan.oversized.length,calls:0});throw Object.assign(new Error(reason),{code:reason});}
+  }
+  const answers = await ctx.judge.classify(judged, instructions, relevant, 'evidence');
   const byId = new Map(answers.map(answer => [answer.id, answer]));
   const judgments = unique.map(item => byId.get(item.id) || { id: item.id, choice: 'keep', source: 'deterministic', reason: 'protected_evidence' });
   const candidates = [];
@@ -44,15 +49,18 @@ export async function selectEvidence(ctx, { goal, items, budget = 16000, against
   if(candidates.reduce((sum,c)=>sum+byteBudget(render(c)),0)<=budget){
     for(const c of candidates)add(c);
   }else{
-  for (const c of candidates.filter(x => x.protected)) add(c);
-  let pool = candidates.filter(x => !x.protected);
-  while (pool.length) {
-    pool.sort((a, b) => {
-      const score = c => (c.judgment.probabilities?.keep ?? .5) * (1 - .6 * Math.max(0, ...selected.map(s => similarity(c.text, s.text)))) / Math.sqrt(Math.max(1, byteBudget(render(c))));
-      return score(b) - score(a);
-    });
-    const c = pool.shift(); if (used + byteBudget(render(c)) <= budget) add(c); else deferred.push(c.id);
-  }
+    for(const c of candidates.filter(x=>x.protected))add(c);
+    const sets=new Map(candidates.map(c=>[c.id,terms(c.text)]));
+    const overlap=(a,b)=>{const x=sets.get(a.id),y=sets.get(b.id);if(!x.size||!y.size)return 0;let n=0;for(const w of x)if(y.has(w))n++;return n/(x.size+y.size-n);};
+    const pool=candidates.filter(x=>!x.protected);
+    const novelty=new Map(pool.map(c=>[c.id,Math.max(0,...selected.map(s=>overlap(c,s)))]));
+    const sizes=new Map(pool.map(c=>[c.id,Math.sqrt(Math.max(1,byteBudget(render(c))))]));
+    while(pool.length){
+      const score=c=>(c.judgment.probabilities?.keep??.5)*(1-.6*novelty.get(c.id))/sizes.get(c.id);
+      pool.sort((a,b)=>score(b)-score(a));const c=pool.shift();
+      if(used+byteBudget(render(c))<=budget){add(c);for(const next of pool)novelty.set(next.id,Math.max(novelty.get(next.id),overlap(next,c)));}
+      else deferred.push(c.id);
+    }
   }
   ctx.store.event(ctx.project, 'evidence_selection', { policy: EVIDENCE_POLICY, candidates: items.length, judged: judged.length, duplicates: duplicates.length, proposedExclusions: proposals.length, appliedExclusions: excluded.length, mode: ctx.config?.evidenceMode || 'active' });
   return { artifactId, context: selected.map(render).join(''), items: selected, excludedIds: excluded, proposedExcludedIds: proposals, policy: EVIDENCE_POLICY, deferredIds: deferred, duplicateIds: duplicates,
@@ -81,7 +89,7 @@ export async function filterOutput(ctx, input) {
   let source;
   if (input.path) source = readSource(ctx.root, input.path);
   else { text(input.text); source = { path: input.source || 'tool-output', text: input.text, hash: hash(input.text) }; }
-  return selectEvidence(ctx, { goal: input.goal, items: chunks(source), budget: input.budget, against: input.against });
+  return selectEvidence(ctx, { goal: input.goal, items: chunks(source), budget: input.budget, against: input.against, requireCompleteJudgment: input.requireCompleteJudgment });
 }
 export function recall(ctx, { artifactId, ids }) {
   const artifact = ctx.store.get(ctx.project, 'artifact', artifactId); requireValue(artifact, 'ARTIFACT_NOT_FOUND');
