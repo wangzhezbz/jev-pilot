@@ -19,7 +19,7 @@ try{
  do {
   const result=await request('mcpServerStatus/list',{threadId:thread.thread.id,limit:100});
   const servers=result.data??[];report.servers=servers.filter(x=>JSON.stringify(x).includes('jev-pilot')).map(x=>({name:x.name,status:x.status,tools:Object.keys(x.tools||{}),error:x.error}));
-  report.passed=report.servers.some(x=>x.tools.some(t=>t.includes('jev_pilot')));
+  report.passed=report.servers.some(x=>['jev_pilot','jev_evidence'].every(name=>x.tools.includes(name)));
   if(report.passed)break;
   await new Promise(resolve=>setTimeout(resolve,250));
  } while(Date.now()<deadline);

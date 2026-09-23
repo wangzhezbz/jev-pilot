@@ -33,7 +33,7 @@
   "shadow": "シャドーモード：証拠を保持し、除外提案のみ記録",
   "firstStep": "初回リクエストの変更 · 全プロジェクト",
   "observed": "観測したツール結果",
-  "filtered": "境界に紐づくフィルター",
+  "filtered": "モデルで使用を確認したフィルター",
   "proposed": "提案された証拠の除外",
   "removed": "適用された証拠の除外",
   "cooling": "冷却中のサービス",
@@ -124,5 +124,9 @@
   "event_unchanged": "現在の強度を保持",
   "event_applied": "強度変更を確認",
   "event_start_forwarded": "最初のステップの設定を転送",
-  "event_budget_held": "予算により強度低下を保留"
+  "event_budget_held": "予算により強度低下を保留",
+  "submitted": "提出済みの置換結果",
+  "preparedEvidence": "準備済みの証拠表示",
+  "unconfirmedFilters": "未確認の置換結果（旧記録を含む）",
+  "nested_native_result": "同じ呼び出し内で処理するため元の結果を保持"
 }

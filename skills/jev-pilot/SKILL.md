@@ -7,11 +7,15 @@ description: Use Jev automatically for large unresolved semantic candidate sets,
 
 Keep the normal conversation and the user's Codex model. Call the bundled `jev_pilot` tool yourself when its result replaces substantial work. Never require a special user prompt, task file or separate runner.
 
+If an older `jev-assistant` helper is also installed, use this plugin's tools for the same evidence; do not judge it again through both integrations.
+
 ## Admit useful work
 
 Use native tools for exact search, arithmetic, known errors, small candidate sets and evidence already read. Try a targeted search before delegating a whole log when the task supplies concrete terms. If that resolves the evidence, continue directly. Do not call Jev for reassurance, progress annotation or an extra checklist.
 
 For an unresolved semantic batch, use `select` with `{goal,items:[{id,text}],budget?}`, or `filter_output` with `{goal,path,budget?}` for a saved source. Use `recall` with `{artifactId,ids?}` for missing evidence. Read the relevant reference below only when more detail is needed. Call the needed operation directly; use `status` only to diagnose a failure or answer a status request. Every call has `{workspace, operation, input}`. Pass a real `input.taskId` when available; never invent IDs to reset budgets. Batch independent candidates.
+
+Before displaying large unresolved text, prefer the read-only `jev_evidence` tool: `{workspace,operation:"prepare",input:{goal,value:rawResult,source,taskId?}}`, or `{goal,path}` to read an allowed file directly. In `functions.exec`, chain the native tool and preparation in the **same cell** and emit only the returned `value`; keep `rawResult` untouched for parsing/calculation. Do not first print the full output and ask GPT to request filtering in another round. Skip preparation for exact output, code, structured/media results, failed or unfinished commands, and small or already-understood evidence. If the tool is missing, errors or returns invalid data, emit the original result and continue. Never rerun the original command to recover evidence; use `jev_evidence` with `operation:"recall"` and `{artifactId,ids?}`. See the evidence reference for the same-cell pattern. A prepared result is not proof of model receipt or token savings.
 
 | Need | Reference |
 |---|---|

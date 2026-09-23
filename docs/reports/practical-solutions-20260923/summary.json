@@ -1,0 +1,104 @@
+{
+  "date": "2026-09-23",
+  "runtime": "codex-cli 0.155.0-alpha.9.2",
+  "projectBaseRevision": "64a824be06e0a35fdcba5cb000a52d0d32ecb450",
+  "measurement": "synthetic transport and protocol, not paid inference or performance",
+  "paidGptCalls": 0,
+  "paidJevCalls": 0,
+  "modelVisibleOutputBytesBefore": 25452,
+  "modelVisibleOutputBytesAfter": 3428,
+  "modelVisibleOutputByteReductionPct": 86.53151029388653,
+  "cases": [
+    {
+      "case": "direct_hook_control",
+      "assertionsPassed": true,
+      "testMeaning": "Existing direct hook control",
+      "boundary": null,
+      "chainEvidence": null,
+      "modelRequests": 2,
+      "modelInputJsonBytes": [
+        69322,
+        72032
+      ],
+      "sourceReportSha256": "f95f5afd07c24c5e2505bd1011440b8cfa05ded90455eeb7aa078d7a55bd673d"
+    },
+    {
+      "case": "nested_hook_gap",
+      "assertionsPassed": true,
+      "testMeaning": "PASS means the known gap was reproduced: hook claims application but full output reaches the model. This is not feature acceptance.",
+      "boundary": {
+        "mode": "existing_hook_characterization",
+        "modelVisibleBytes": 25452,
+        "noiseLines": 350,
+        "containsTarget": true,
+        "hookClaimsApplied": true,
+        "modelRequests": 2,
+        "paidJevCalls": 0,
+        "paidGptCalls": 0
+      },
+      "chainEvidence": null,
+      "modelRequests": 2,
+      "modelInputJsonBytes": [
+        69322,
+        95260
+      ],
+      "sourceReportSha256": "b0771a3a217b2e20ca441f61f19db1fc4c0975012398cc572b1beb0a7800aa6e"
+    },
+    {
+      "case": "same_call_chain",
+      "assertionsPassed": true,
+      "testMeaning": "Chain works in a synthetic fixture; not a production rollout or performance measurement.",
+      "boundary": {
+        "mode": "chain_prototype",
+        "modelVisibleBytes": 3428,
+        "noiseLines": 29,
+        "containsTarget": true,
+        "hookClaimsApplied": false,
+        "modelRequests": 2,
+        "paidJevCalls": 0,
+        "paidGptCalls": 0
+      },
+      "chainEvidence": {
+        "recallExact": true,
+        "sourceBytes": 24864,
+        "resultBytes": 3022,
+        "calls": 1,
+        "completeCoverage": true,
+        "degraded": false
+      },
+      "modelRequests": 2,
+      "modelInputJsonBytes": [
+        72930,
+        77283
+      ],
+      "sourceReportSha256": "0b307dbf4ad8c94234f53ab458fae1fb3c82b2331ae4873184df8d4e478f149d"
+    }
+  ],
+  "upstreams": [
+    {
+      "repository": "https://github.com/miuuyy/Astra-Ares",
+      "revision": "b2011446d88202329dcdc5163500ca818aba9dbb"
+    },
+    {
+      "repository": "https://github.com/0xNatoshi/jev-codex-router",
+      "revision": "8701ef788aa8cb0948f299538747fb01029d32b8"
+    },
+    {
+      "repository": "https://github.com/rtk-ai/rtk",
+      "revision": "b748a5f75563f410103551689097650be7210d99"
+    },
+    {
+      "repository": "https://github.com/dizk/jev-lens",
+      "revision": "b022b83a656fd7c400fe474c629c6a28a3b4bd91"
+    },
+    {
+      "repository": "https://github.com/keltokhy/jselect",
+      "revision": "9aa8da5a85b578b4a783374ecf63a439ca4afb25"
+    },
+    {
+      "repository": "https://github.com/leonaaardob/fast-dev-compaction",
+      "revision": "7147a4bab4ff9caf64ae44a2db1ab1f907a20291"
+    }
+  ],
+  "productionModified": false
+}

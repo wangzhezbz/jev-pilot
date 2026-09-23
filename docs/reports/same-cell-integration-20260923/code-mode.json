@@ -1,0 +1,132 @@
+{
+  "kind": "native_synthetic_integration",
+  "paidCalls": 0,
+  "rows": [
+    {
+      "passed": true,
+      "boundary": {
+        "mode": "chain",
+        "modelVisibleBytes": 2641,
+        "noiseLines": 29,
+        "containsTarget": true,
+        "hookSubmissions": 0,
+        "hookJudgments": 0,
+        "modelRequests": 2,
+        "paidJevCalls": 0,
+        "paidGptCalls": 0
+      },
+      "chainEvidence": {
+        "recallExact": true,
+        "fallbackExact": false,
+        "sourceBytes": 25322,
+        "resultBytes": 2694,
+        "calls": 1,
+        "selection": {
+          "status": "prepared",
+          "reason": "reduced",
+          "artifactId": "36573ace-2680-43e3-8f4b-3ed26d350799",
+          "sourceHash": "823c0d75c7dbb91417650fc9a0786063633634a6c03809ffbe3f3a531f40f223",
+          "originalBytes": 25322,
+          "returnedBytes": 2358,
+          "completeCoverage": true,
+          "excludedItems": 11,
+          "modelReceipt": "unconfirmed",
+          "nativeTokenSavings": null
+        }
+      },
+      "hookEvents": [
+        {
+          "at": "2026-09-23T15:11:51.712Z",
+          "kind": "automatic_output_admission",
+          "reason": "structured",
+          "adapter": null,
+          "boundaryId": "7bf7160808690d77732520feed37731bb9c7b1e216a752bd7557eeab9eae4df2"
+        },
+        {
+          "at": "2026-09-23T15:11:51.662Z",
+          "kind": "automatic_output_admission",
+          "reason": "nested_native_result",
+          "adapter": "text",
+          "boundaryId": "83d35308fa03d79ee361f493a9e3476afa460887fdb9c1a6327ed011d72d7969"
+        }
+      ],
+      "inputBytes": [
+        72930,
+        76536
+      ]
+    },
+    {
+      "passed": true,
+      "boundary": {
+        "mode": "chain_failure",
+        "modelVisibleBytes": 25923,
+        "noiseLines": 350,
+        "containsTarget": true,
+        "hookSubmissions": 0,
+        "hookJudgments": 0,
+        "modelRequests": 2,
+        "paidJevCalls": 0,
+        "paidGptCalls": 0
+      },
+      "chainEvidence": {
+        "recallExact": null,
+        "fallbackExact": true,
+        "sourceBytes": 25321,
+        "resultBytes": 25385,
+        "calls": 1,
+        "selection": {
+          "status": "original",
+          "reason": "degraded"
+        }
+      },
+      "hookEvents": [
+        {
+          "at": "2026-09-23T15:11:51.734Z",
+          "kind": "automatic_output_admission",
+          "reason": "structured",
+          "adapter": null,
+          "boundaryId": "09ebeb0d836d08dcfab18bd7e1cafddf6717b623ac8cb8b922efa91dcc05abf7"
+        },
+        {
+          "at": "2026-09-23T15:11:51.688Z",
+          "kind": "automatic_output_admission",
+          "reason": "nested_native_result",
+          "adapter": "text",
+          "boundaryId": "bcfa9fe40eef548b4c936fdb51153638b688f7e4d5db65946d42ad49193f97e6"
+        }
+      ],
+      "inputBytes": [
+        72930,
+        99812
+      ]
+    },
+    {
+      "passed": true,
+      "boundary": {
+        "mode": "nested_hook_passthrough",
+        "modelVisibleBytes": 25452,
+        "noiseLines": 350,
+        "containsTarget": true,
+        "hookSubmissions": 0,
+        "hookJudgments": 0,
+        "modelRequests": 2,
+        "paidJevCalls": 0,
+        "paidGptCalls": 0
+      },
+      "chainEvidence": null,
+      "hookEvents": [
+        {
+          "at": "2026-09-23T15:11:51.629Z",
+          "kind": "automatic_output_admission",
+          "reason": "nested_native_result",
+          "adapter": "text",
+          "boundaryId": "c2bcc7fb17c25d87352bbee4ccc00ded060b491a136982a57e0db35bff6b5a53"
+        }
+      ],
+      "inputBytes": [
+        69322,
+        95260
+      ]
+    }
+  ]
+}

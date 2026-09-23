@@ -33,7 +33,7 @@
   "shadow": "影子模式：保留证据，只记录排除建议",
   "firstStep": "首步强度变更 · 全部项目",
   "observed": "已观察工具边界",
-  "filtered": "已关联边界的过滤",
+  "filtered": "模型确认使用的过滤",
   "proposed": "建议排除的证据",
   "removed": "实际排除的证据",
   "cooling": "冷却中的服务",
@@ -124,5 +124,9 @@
   "event_unchanged": "保持当前强度",
   "event_applied": "原生切档已确认",
   "event_start_forwarded": "首步参数已转发",
-  "event_budget_held": "预算临界，阻止降档"
+  "event_budget_held": "预算临界，阻止降档",
+  "submitted": "已提交精简结果",
+  "preparedEvidence": "已准备精简证据",
+  "unconfirmedFilters": "未确认使用的结果（含历史记录）",
+  "nested_native_result": "嵌套结果保留给同一次调用内筛选"
 }

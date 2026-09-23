@@ -1,0 +1,47 @@
+{
+  "case": "same_call_chain",
+  "assertionsPassed": true,
+  "testMeaning": "Chain works in a synthetic fixture; not a production rollout or performance measurement.",
+  "boundary": {
+    "mode": "chain_prototype",
+    "modelVisibleBytes": 3428,
+    "noiseLines": 29,
+    "containsTarget": true,
+    "hookClaimsApplied": false,
+    "modelRequests": 2,
+    "paidJevCalls": 0,
+    "paidGptCalls": 0
+  },
+  "chainEvidence": {
+    "recallExact": true,
+    "sourceBytes": 24864,
+    "resultBytes": 3022,
+    "calls": 1,
+    "completeCoverage": true,
+    "degraded": false
+  },
+  "modelRequests": 2,
+  "modelInputJsonBytes": [
+    72930,
+    77283
+  ],
+  "automaticEvents": [],
+  "outputs": [
+    {
+      "type": "custom_tool_call_output",
+      "id": "ctco_01a0cec5-2924-77c0-84be-1998207597a4",
+      "call_id": "call_fixture_1",
+      "output": [
+        {
+          "type": "input_text",
+          "text": "Script completed\nWall time 0.1 seconds\nOutput:\n"
+        },
+        {
+          "type": "input_text",
+          "text": "{\"artifactId\":\"af613cc7-b4c6-4589-a854-64c3b64561ac\",\"context\":\"[s0 fixture-log:1]\\nNEEDLE target\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\n\",\"items\":[{\"id\":\"s0\",\"source\":\"fixture-log\",\"startLine\":1,\"endLine\":30,\"sourceHash\":\"823c0d75c7dbb91417650fc9a0786063633634a6c03809ffbe3f3a531f40f223\",\"judgment\":{\"id\":\"s0\",\"type\":\"choice\",\"choice\":\"keep\",\"probabilities\":{\"keep\":1,\"review\":0,\"exclude\":0},\"source\":\"jev\"},\"protected\":false}],\"excludedIds\":[\"s30\",\"s60\",\"s90\",\"s120\",\"s150\",\"s180\",\"s210\",\"s240\",\"s270\",\"s300\",\"s330\"],\"proposedExcludedIds\":[\"s30\",\"s60\",\"s90\",\"s120\",\"s150\",\"s180\",\"s210\",\"s240\",\"s270\",\"s300\",\"s330\"],\"policy\":\"preserve-uncertainty-v3\",\"deferredIds\":[],\"duplicateIds\":[],\"budget\":500000,\"usedBytes\":2092,\"budgetUnit\":\"UTF-8 bytes; conservative token bound, not measured tokens\",\"protectedOverflow\":false,\"completeCoverage\":true,\"recovery\":{\"operation\":\"recall\",\"artifactId\":\"af613cc7-b4c6-4589-a854-64c3b64561ac\"},\"degraded\":false,\"textLocation\":\"context\"}"
+        }
+      ]
+    }
+  ],
+  "sourceReportSha256": "0b307dbf4ad8c94234f53ab458fae1fb3c82b2331ae4873184df8d4e478f149d"
+}

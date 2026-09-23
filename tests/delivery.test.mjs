@@ -23,8 +23,10 @@ test('diagnostics separate matched filters from legacy and window-truncated reco
   {kind:'automatic_output_filter',boundaryId:'matched'},
  ]){const {kind,...data}=event;f.store.event(f.project,kind,data);}
  const r=await f.call('diagnostics',{});
- assert.equal(r.outputAdmission.observed,2);assert.equal(r.outputAdmission.applied,3);
- assert.equal(r.outputAdmission.matchedApplied,1);assert.equal(r.outputAdmission.unmatchedApplied,2);
+ assert.equal(r.outputAdmission.observed,2);assert.equal(r.outputAdmission.applied,0);
+ assert.equal(r.outputAdmission.submitted,3);assert.equal(r.outputAdmission.unconfirmed,3);
+ assert.equal(r.outputAdmission.matchedSubmitted,1);assert.equal(r.outputAdmission.unmatchedSubmitted,2);
+ assert.equal(r.outputAdmission.matchedApplied,0);assert.equal(r.outputAdmission.unmatchedApplied,0);
  assert.equal(r.outputAdmission.coverageRate,null);
 });
 test('long shared Chinese task fits once instead of overflowing 24 repeated questions',async t=>{

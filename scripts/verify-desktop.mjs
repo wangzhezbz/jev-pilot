@@ -23,7 +23,10 @@ const routingBudget=process.argv.includes('--routing-budget');
 const phaseReevaluation=process.argv.includes('--phase-reevaluation');
 const noBenefitFiltering=process.argv.includes('--no-benefit-filter');
 const mcpFiltering=process.argv.includes('--filter-mcp');
-const filtering=process.argv.includes('--filter-output')||mcpFiltering||noBenefitFiltering||process.argv.includes('--steer-context');
+const codeModeChainFailure=process.argv.includes('--code-mode-chain-failure');
+const codeModeChain=process.argv.includes('--code-mode-chain')||codeModeChainFailure;
+const codeModeOutput=process.argv.includes('--code-mode-output')||codeModeChain;
+const filtering=process.argv.includes('--filter-output')||mcpFiltering||noBenefitFiltering||process.argv.includes('--steer-context')||codeModeOutput;
 const steerContext=process.argv.includes('--steer-context');
 const manualSettings=process.argv.includes('--manual-settings');
 const inspectCacheContext=process.argv.includes('--inspect-cache-context');
@@ -63,6 +66,11 @@ const server=createServer(async(req,res)=>{
     const args=mcpFiltering?{}:tool.name==='exec_command'?{cmd:command,max_output_tokens:filtering?15000:50,...(recoverTimeout?{yield_time_ms:20000}:{})}:
       tool.name==='shell_command'?{command}:{command:['/bin/sh','-c',command]};
     item={id:'fc_fixture_'+apiCount,type:'function_call',call_id:'call_fixture_'+apiCount,name:tool.name,...(mcpFiltering?{namespace:'mcp__fixture'}:{}),arguments:JSON.stringify(args),status:'completed'};
+    if(codeModeOutput){
+      const rawCheck="if(result.exit_code!==0||(result.output.match(/noise x{64}/g)||[]).length!==350)throw Error('RAW_RESULT_CHANGED');";
+      const emit=codeModeChain?'let display=result;try{const entry=ALL_TOOLS.find(t=>/__jev_evidence$/.test(t.name));const reply=await tools[entry.name]({workspace:'+JSON.stringify(work)+',operation:"prepare",input:{goal:"Find NEEDLE target evidence",value:result,source:"exec_command"}});if(!reply.isError){const prepared=reply.structuredContent??JSON.parse(reply.content[0].text);if(Object.hasOwn(prepared,"value"))display=prepared.value;}}catch{}text(display);':'text(result.output);';
+      item={id:'ct_fixture_'+apiCount,type:'custom_tool_call',call_id:'call_fixture_'+apiCount,namespace:'functions',name:'exec',input:'const result=await tools.exec_command('+JSON.stringify(args)+');'+rawCheck+emit,status:'completed'};
+    }
   }else item={id:'msg_fixture',type:'message',role:'assistant',status:'completed',content:[{type:'output_text',text:'fixture_ok'}]};
   res.writeHead(200,{'Content-Type':'text/event-stream','Cache-Control':'no-cache'});
   const event=(type,data)=>res.write(`event: ${type}\ndata: ${JSON.stringify({type,...data})}\n\n`);
@@ -77,7 +85,8 @@ await new Promise(yes=>server.listen(0,'127.0.0.1',yes));
 const address=`http://127.0.0.1:${server.address().port}/v1`;
 const args=['app-server','-c',`model=${JSON.stringify(targetModel)}`,'-c','model_provider="jev_fixture"',
   '-c',`model_providers.jev_fixture=${toml({name:'Local synthetic fixture',base_url:address,wire_api:'responses',requires_openai_auth:false,supports_websockets:false,request_max_retries:0,stream_max_retries:0})}`,
-  '-c','features.code_mode=false','-c','features.code_mode_host=false'];
+  '-c',`features.code_mode=${codeModeOutput}`,'-c',`features.code_mode_host=${codeModeOutput}`];
+if(codeModeChain)args.push('-c',`mcp_servers.fixture=${toml({command:process.execPath,args:[join(root,'../../scripts/acceptance/code-mode-evidence-fixture.mjs'),work,...(codeModeChainFailure?['--fail']:[])]})}`);
 if(mcpFiltering){
  const script=join(work,'mcp-fixture.mjs');
  await writeFile(script,`import{createInterface}from'node:readline';const lines=createInterface({input:process.stdin});lines.on('line',line=>{const m=JSON.parse(line);if(m.id===undefined)return;let result=m.method==='initialize'?{protocolVersion:'2025-06-18',capabilities:{tools:{}},serverInfo:{name:'fixture',version:'1'}}:m.method==='tools/list'?{tools:[{name:'fixture_log',description:'Read the synthetic test log',annotations:{readOnlyHint:true,destructiveHint:false,openWorldHint:false},inputSchema:{type:'object',properties:{}}}]}:m.method==='tools/call'?{content:[{type:'text',text:'NEEDLE target\\n'+('noise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\n').repeat(350)}],isError:false}:m.method==='resources/list'?{resources:[]}:m.method==='resources/templates/list'?{resourceTemplates:[]}:{};process.stdout.write(JSON.stringify({jsonrpc:'2.0',id:m.id,result})+'\\n');});`);
@@ -156,7 +165,7 @@ try{
   const started=await c.request('thread/start',{model:targetModel,cwd:work,ephemeral:true,sandbox:'read-only',approvalPolicy:'never',
     developerInstructions:'This is a synthetic protocol fixture. Follow the task; no extra tools or agents.'});
   if(resumeFixture)autoStore.put(autoStore.project(work),'checkpoint',{task:'Verify the prepared parser patch',threadId:started.thread.id,turnId:'previous-fixture-turn',updatedAt:new Date().toISOString(),lastPublishedProgress:'Parser patch prepared; tests remain',pending:['Run parser tests'],sourceHashes:{},coverage:'unavailable',auto:true,requiresReview:true},'auto-'+hash(started.thread.id));
-  if(mcpFiltering){
+  if(mcpFiltering||codeModeChain){
     for(let i=0;i<30;i++){
       report.mcpStatus=await c.request('mcpServerStatus/list',{threadId:started.thread.id,limit:100});
       if(report.mcpStatus.data?.some(s=>s.name==='fixture'&&Object.keys(s.tools??{}).length))break;
@@ -205,6 +214,18 @@ try{
   }
   if(mcpFiltering){const outputs=JSON.parse(report.requests[1]?.inputText||'[]').filter(x=>x.type==='function_call_output');report.mcpEnvelopePreserved=outputs.some(x=>{try{const r=JSON.parse(x.output);return r.content?.length===1&&r.content[0].type==='text'&&r.content[0].text.includes('NEEDLE target')&&r.isError!==true;}catch{return false;}});report.passed=report.passed&&report.mcpEnvelopePreserved;}
   if(filtering){const saved=autoStore.list(autoStore.project(work),'checkpoint')[0];report.automaticCheckpoint={observed:Boolean(saved),auto:saved?.auto,requiresReview:saved?.requiresReview,turnStatus:saved?.turnStatus,coverage:saved?.coverage,verifiedCompletedCount:saved?.completed?.length??0,publicProgressObserved:Boolean(saved?.lastPublishedProgress)};report.passed=report.passed&&saved?.auto===true&&saved?.requiresReview===true&&saved?.turnStatus==='completed';report.automaticEvents=autoStore.events(autoStore.project(work));report.passed=report.passed&&(noBenefitFiltering ? report.automaticEvents.some(e=>e.kind==='automatic_output_result'&&e.reason==='insufficient_reduction')&&report.automaticEvents.some(e=>e.kind==='automatic_output_admission'&&e.reason==='no_benefit_cooldown')&&!report.automaticEvents.some(e=>e.kind==='automatic_output_filter')&&report.requests.length===3 : report.automaticEvents.some(e=>e.kind==='automatic_output_filter')&&report.requests.slice(1).some(r=>r.inputText?.includes('JevPilot retained task evidence')));}
+  if(codeModeOutput){
+    const outputs=JSON.parse(report.requests[1]?.inputText||'[]').filter(x=>x.type==='custom_tool_call_output');
+    report.codeModeBoundary={mode:codeModeChain?(codeModeChainFailure?'chain_failure':'chain'):'nested_hook_passthrough',modelVisibleBytes:Buffer.byteLength(JSON.stringify(outputs)),noiseLines:(JSON.stringify(outputs).match(/noise x{64}/g)||[]).length,containsTarget:JSON.stringify(outputs).includes('NEEDLE target'),hookSubmissions:report.automaticEvents?.filter(e=>e.kind==='automatic_output_filter').length??0,hookJudgments:report.automaticEvents?.filter(e=>e.kind==='jev_call').length??0,modelRequests:report.requests.length,paidJevCalls:0,paidGptCalls:0};
+    if(codeModeChain)report.chainEvidence=JSON.parse(await readFile(join(work,'chain-evidence.json'),'utf8'));
+    const nativeCompleted=report.events.some(e=>e.method==='turn/completed'&&e.params.turn.status==='completed');
+    report.passed=nativeCompleted&&report.requests.length===2&&report.codeModeBoundary.containsTarget&&report.codeModeBoundary.hookJudgments===0&&report.codeModeBoundary.hookSubmissions===0&&(codeModeChain
+      ?report.chainEvidence.calls===1&&(codeModeChainFailure
+        ?report.codeModeBoundary.noiseLines===350&&report.chainEvidence.fallbackExact&&report.chainEvidence.selection.status==='original'
+        :report.codeModeBoundary.noiseLines===29&&report.chainEvidence.recallExact&&report.chainEvidence.selection.status==='prepared')
+      :report.codeModeBoundary.noiseLines===350);
+    report.testMeaning=codeModeChain?'Real evidence implementation and native runtime with synthetic judgments; not a paid-model performance measurement.':'Nested hook passes original result through without paying for a discarded replacement.';
+  }
   report.status=report.passed?'passed':'failed';
   if(!report.passed)process.exitCode=1;
 }catch(error){report.status='failed';report.error=String(error.message);process.exitCode=1;}

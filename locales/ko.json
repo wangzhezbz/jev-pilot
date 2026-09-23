@@ -33,7 +33,7 @@
   "shadow": "섀도 모드: 증거를 유지하고 제외 제안만 기록",
   "firstStep": "첫 요청 변경 · 전체 프로젝트",
   "observed": "관찰한 도구 결과",
-  "filtered": "경계와 연결된 필터링",
+  "filtered": "모델 사용이 확인된 필터",
   "proposed": "제안한 증거 제외",
   "removed": "적용한 증거 제외",
   "cooling": "대기 중인 서비스",
@@ -124,5 +124,9 @@
   "event_unchanged": "현재 강도 유지",
   "event_applied": "강도 변경 확인",
   "event_start_forwarded": "첫 단계 설정 전달",
-  "event_budget_held": "예산에 따라 강도 감소 보류"
+  "event_budget_held": "예산에 따라 강도 감소 보류",
+  "submitted": "제출한 대체 결과",
+  "preparedEvidence": "준비된 근거 보기",
+  "unconfirmedFilters": "미확인 대체 결과 (이전 기록 포함)",
+  "nested_native_result": "같은 호출 안에서 처리하도록 원본 결과 유지"
 }

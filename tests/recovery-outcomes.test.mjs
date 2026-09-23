@@ -70,7 +70,7 @@ test('failed filtering is recorded without pretending it had no benefit or setti
 });
 test('successful filtering records actual wrapped bytes and keeps original recoverable',async t=>{
  const f=autoFixture(t,{exclude:true});await f.start();const input=Array.from({length:350},(_,i)=>'sample '+i+' '+('x'.repeat(80))).join('\n');const result=await f.hook('1',{tool_response:input});assert.equal(result.continue,false);
- const e=f.events().find(x=>x.kind==='automatic_output_result');assert.equal(e.reason,'applied');assert.equal(e.retainedBytes,Buffer.byteLength(result.stopReason));assert(e.retainedRatio<.8);assert(f.store.get(f.store.project(f.root),'artifact',e.artifactId));
+ const e=f.events().find(x=>x.kind==='automatic_output_result');assert.equal(e.reason,'submitted');assert.equal(e.submitted,true);assert.equal(e.applied,false);assert.equal(e.modelReceipt,'unconfirmed');assert.equal(e.retainedBytes,Buffer.byteLength(result.stopReason));assert(e.retainedRatio<.8);assert(f.store.get(f.store.project(f.root),'artifact',e.artifactId));
 });
 test('a slow filter from an older turn cannot replace new-turn output or set its cooldown',async t=>{
  const root=mkdtempSync(join(tmpdir(),'jev-stale-filter-')),store=new Store({home:join(root,'private')});let release,enter;const entered=new Promise(r=>enter=r);

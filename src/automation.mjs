@@ -3,6 +3,7 @@ import {checkpointObserver,checkpointRelevant,checkpointForTurn,resumeContext} f
 import {outputAdapter} from './output-adapters.mjs';
 import { filterOutput } from './evidence.mjs';
 import {EVIDENCE_POLICY} from './policy.mjs';
+import {nestedNativeOutput,exactEvidenceRequest} from './prepare-output.mjs';
 // Runs inside the existing desktop bridge, before releasing a supported tool boundary.
 // Only text responses are eligible. Structured outputs retain their contract unchanged.
 export function createAutomation({ store = new Store(), key, send, clock=Date.now, batchConcurrency=2 } = {}) {
@@ -33,11 +34,11 @@ export function createAutomation({ store = new Store(), key, send, clock=Date.no
       const checkpoint=checkpointForTurn(store.get(project,'checkpoint','auto-'+id),{task:state.goal,threadId:payload.session_id,turnId:payload.turn_id});
       store.put(project,'checkpoint',{...checkpoint,task:state.goal,updatedAt:now(),lastTool:payload.tool_name},'auto-'+id);
       // Admission gate avoids API overhead on small, exact-output and structured results.
-      let reason = !adapter ? 'structured'
+      let reason = nestedNativeOutput(payload)?'nested_native_result':!adapter ? 'structured'
         : response.length < 12000 ? 'small' : response.length > 100000 ? 'oversized'
         : state.count >= 2 ? 'turn_limit'
-        : /\b(json|csv|verbatim|exact output)\b|原样|完整输出|不.*删减/i.test(state.goal) ? 'exact_output'
-        : /jev_pilot|code_mode|functions\.exec/i.test(payload.tool_name || '') ? 'nested_or_self' : 'eligible';
+        : exactEvidenceRequest(state.goal) ? 'exact_output'
+        : /jev_pilot|jev_evidence|code_mode|functions\.exec/i.test(payload.tool_name || '') ? 'nested_or_self' : 'eligible';
       let cooldownId;
       if(reason==='eligible'){
         cooldownId=hash({session:payload.session_id,goal:state.goal,tool:payload.tool_name,model:config.model,policy:EVIDENCE_POLICY,mode:config.evidenceMode,threshold:config.excludeProbability,sourceHash:hash(response)});
@@ -64,14 +65,14 @@ export function createAutomation({ store = new Store(), key, send, clock=Date.no
         : result.degraded ? 'degraded' : !result.items.length ? 'empty_selection'
         : result.deferredIds.length ? 'incomplete_coverage'
         : retainedRatio>=.8 || !(result.excludedIds.length || result.duplicateIds.length) ? 'insufficient_reduction' : 'applied';
-      store.event(project,'automatic_output_result',{boundaryId:fingerprint,applied:outcome==='applied',reason:outcome,originalBytes,sourceTextBytes,retainedBytes,retainedRatio,artifactId:result.artifactId,excludedItems:result.excludedIds.length,deferredItems:result.deferredIds.length,duplicateItems:result.duplicateIds.length,completeCoverage:result.completeCoverage,elapsedMs:Math.round(performance.now()-started),nativeTokenSavings:null});
+      store.event(project,'automatic_output_result',{boundaryId:fingerprint,submitted:outcome==='applied',applied:false,modelReceipt:'unconfirmed',reason:outcome==='applied'?'submitted':outcome,originalBytes,sourceTextBytes,retainedBytes,retainedRatio,artifactId:result.artifactId,excludedItems:result.excludedIds.length,deferredItems:result.deferredIds.length,duplicateItems:result.duplicateIds.length,completeCoverage:result.completeCoverage,elapsedMs:Math.round(performance.now()-started),nativeTokenSavings:null});
       if(['insufficient_reduction','empty_selection'].includes(outcome))
         store.put(project,'automatic_filter_cooldown',{until:clock()+60000,reason:outcome},cooldownId);
       if(outcome!=='applied')return {};
       current.filteredSources=[...(current.filteredSources||[]),cooldownId].slice(-2);
       store.put(project,'automatic_task',current,id);
       store.put(project,'automatic_filter_cooldown',{until:0,reason:'applied'},cooldownId);
-      store.event(project,'automatic_output_filter',{boundaryId:fingerprint,originalBytes,sourceTextBytes,retainedBytes,artifactId:result.artifactId,nativeTokenSavings:null});
+      store.event(project,'automatic_output_filter',{boundaryId:fingerprint,submissionOnly:true,modelReceipt:'unconfirmed',originalBytes,sourceTextBytes,retainedBytes,artifactId:result.artifactId,nativeTokenSavings:null});
       return { continue: false, stopReason: feedback };
     },
     async close() { closed=true;for(const job of active)job.controller.abort();await Promise.allSettled([...active].map(job=>job.settled));await observe.flush();store.close(); },

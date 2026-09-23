@@ -1,0 +1,87 @@
+{
+  "case": "direct_hook_control",
+  "assertionsPassed": true,
+  "testMeaning": "Existing direct hook control",
+  "boundary": null,
+  "chainEvidence": null,
+  "modelRequests": 2,
+  "modelInputJsonBytes": [
+    69322,
+    72032
+  ],
+  "automaticEvents": [
+    {
+      "at": "2026-09-23T14:57:15.841Z",
+      "kind": "automatic_output_filter",
+      "boundaryId": "de57feefd4dccf7cf1c9637a6a0898778b4f5eebcf739c2b914cf17930c62cf6",
+      "originalBytes": 24864,
+      "sourceTextBytes": 24864,
+      "retainedBytes": 2282,
+      "artifactId": "6372e072-af1d-45bf-aa00-24b245d9c3c6",
+      "nativeTokenSavings": null
+    },
+    {
+      "at": "2026-09-23T14:57:15.840Z",
+      "kind": "automatic_output_result",
+      "boundaryId": "de57feefd4dccf7cf1c9637a6a0898778b4f5eebcf739c2b914cf17930c62cf6",
+      "applied": true,
+      "reason": "applied",
+      "originalBytes": 24864,
+      "sourceTextBytes": 24864,
+      "retainedBytes": 2282,
+      "retainedRatio": 0.09177927927927929,
+      "artifactId": "6372e072-af1d-45bf-aa00-24b245d9c3c6",
+      "excludedItems": 11,
+      "deferredItems": 0,
+      "duplicateItems": 0,
+      "completeCoverage": true,
+      "elapsedMs": 4,
+      "nativeTokenSavings": null
+    },
+    {
+      "at": "2026-09-23T14:57:15.840Z",
+      "kind": "evidence_selection",
+      "policy": "preserve-uncertainty-v3",
+      "candidates": 12,
+      "judged": 12,
+      "duplicates": 0,
+      "proposedExclusions": 11,
+      "appliedExclusions": 11,
+      "mode": "active"
+    },
+    {
+      "at": "2026-09-23T14:57:15.840Z",
+      "kind": "jev_call",
+      "purpose": "evidence",
+      "model": "fixture",
+      "elapsedMs": 0,
+      "inputTokens": 1,
+      "outputTokens": 1,
+      "questions": 12,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-23T14:57:15.839Z",
+      "kind": "classification_batches",
+      "purpose": "evidence",
+      "batches": 1,
+      "concurrency": 1
+    },
+    {
+      "at": "2026-09-23T14:57:15.836Z",
+      "kind": "automatic_output_admission",
+      "reason": "eligible",
+      "adapter": "text",
+      "boundaryId": "de57feefd4dccf7cf1c9637a6a0898778b4f5eebcf739c2b914cf17930c62cf6"
+    }
+  ],
+  "outputs": [
+    {
+      "type": "function_call_output",
+      "id": "fco_01a0cec5-5c43-7e62-9214-dce4aff61575",
+      "call_id": "call_fixture_1",
+      "output": "JevPilot retained task evidence from Bash. The original output is saved locally. This is partial evidence; use jev_pilot recall for omitted material. Artifact: 6372e072-af1d-45bf-aa00-24b245d9c3c6\n[s0 Bash:1]\nNEEDLE target\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nnoise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+    }
+  ],
+  "sourceReportSha256": "f95f5afd07c24c5e2505bd1011440b8cfa05ded90455eeb7aa078d7a55bd673d"
+}

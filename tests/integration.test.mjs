@@ -30,10 +30,16 @@ test('MCP stdio initialize, list, call, malformed request and EOF lifecycle', as
     JSON.stringify({ jsonrpc:'2.0',id:1,method:'initialize',params:{protocolVersion:'2025-03-26'} }),
     JSON.stringify({ jsonrpc:'2.0',id:2,method:'tools/list' }),
     JSON.stringify({ jsonrpc:'2.0',id:3,method:'tools/call',params:{name:'jev_pilot',arguments:{workspace:home,operation:'metrics'}} }),
+    JSON.stringify({ jsonrpc:'2.0',id:4,method:'tools/call',params:{name:'jev_evidence',arguments:{workspace:home,operation:'prepare',input:{goal:'Inspect evidence',value:{output:'small',exit_code:0},source:'exec_command'}}} }),
+    JSON.stringify({ jsonrpc:'2.0',id:5,method:'tools/call',params:{name:'jev_evidence',arguments:{workspace:home,operation:'configure',input:{enabled:false}}} }),
+    JSON.stringify({ jsonrpc:'2.0',id:6,method:'tools/call',params:{name:'jev_pilot',arguments:{workspace:home,operation:'status'}} }),
     'bad json',
   ].join('\n')+'\n');
   const exit = await new Promise(resolve => p.on('exit', resolve)); assert.equal(exit, 0);
   const messages = output.trim().split('\n').map(JSON.parse); assert.equal(messages.find(m=>m.id===1).result.serverInfo.name,'jev-pilot'); assert.equal(messages.find(m=>m.id===2).result.tools[0].name,'jev_pilot'); assert.equal(messages.find(m=>m.id===3).result.structuredContent.savings,null); assert.equal(messages.some(m=>m.error?.code===-32700),true);
+  const tools=messages.find(m=>m.id===2).result.tools;assert.equal(tools.length,2);assert.equal(tools[1].name,'jev_evidence');assert.equal(tools[1].annotations.readOnlyHint,true);assert.equal(tools[0].annotations,undefined);
+  assert.deepEqual(messages.find(m=>m.id===4).result.structuredContent.value,{output:'small',exit_code:0});
+  assert.equal(messages.find(m=>m.id===5).result.isError,true);assert.equal(messages.find(m=>m.id===6).result.structuredContent.config.enabled,true);
 });
 test('dashboard binds localhost, protects API, blocks cross-origin writes and never returns key', async () => {
   const home = mkdtempSync(join(tmpdir(),'jev-dashboard-')), workspace=join(home,'project');mkdirSync(workspace);

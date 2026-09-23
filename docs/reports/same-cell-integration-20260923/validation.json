@@ -1,0 +1,11 @@
+{
+  "unitTests": 209,
+  "unitPassed": 209,
+  "nativeTests": 20,
+  "nativePassed": 20,
+  "routingImplementationUnchanged": true,
+  "normalRestartRequiredAfterInstall": true,
+  "paidJevCalls": 1,
+  "paidGptCalls": 0,
+  "scope": "Native protocol and unit regressions; no desktop-wide automatic selection coverage or end-to-end paid GPT benchmark."
+}

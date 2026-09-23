@@ -33,7 +33,7 @@
   "shadow": "Shadow mode: retain evidence and record exclusion proposals",
   "firstStep": "First-request changes · all projects",
   "observed": "Observed tool boundaries",
-  "filtered": "Filters with a matched boundary",
+  "filtered": "Model-confirmed filters",
   "proposed": "Proposed evidence exclusions",
   "removed": "Applied evidence exclusions",
   "cooling": "Services cooling down",
@@ -124,5 +124,9 @@
   "event_unchanged": "Kept current effort",
   "event_applied": "Native change applied",
   "event_start_forwarded": "First-step parameter forwarded",
-  "event_budget_held": "Downgrade held by budget"
+  "event_budget_held": "Downgrade held by budget",
+  "submitted": "Submitted replacements",
+  "preparedEvidence": "Prepared evidence views",
+  "unconfirmedFilters": "Unconfirmed replacements (includes legacy)",
+  "nested_native_result": "Nested result kept for same-cell preparation"
 }

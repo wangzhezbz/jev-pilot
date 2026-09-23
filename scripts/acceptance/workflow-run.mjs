@@ -77,7 +77,7 @@ runs: for(const job of jobs)for(const arm of job.arms){
    if(arm!=='auto'||active.length===1)break;
    await new Promise(r=>setTimeout(r,200));
   }while(Date.now()<readyUntil);
-  if(arm==='auto'&&!record.mcpServers.some(x=>x.name==='jev-pilot'&&x.tools.length===1&&x.tools[0]==='jev_pilot'))throw Error('MCP_NOT_READY');
+  if(arm==='auto'&&!record.mcpServers.some(x=>x.name==='jev-pilot'&&JSON.stringify([...x.tools].sort())===JSON.stringify(['jev_evidence','jev_pilot'])))throw Error('MCP_NOT_READY');
   record.startupMs=Math.round(performance.now()-initAt);record.completedItems=[];record.timeline=[];
   let complete;const done=new Promise(r=>complete=r);c.listeners.push(m=>{const p=m.params;if(p?.threadId!==record.threadId)return;const stamp=timelineEntry(m,performance.now()-t0);if(stamp)record.timeline.push(stamp);if(m.method==='item/completed')record.completedItems.push(p.item);if(m.method==='turn/started')record.turnId=p.turn.id;if(m.method==='thread/tokenUsage/updated')record.usage.push(p.tokenUsage);if(m.method==='error')record.errors.push(p.error?.message||'runtime error');if(m.method==='thread/tokenUsage/updated')void writeFile(join(dir,'usage-latest.json'),JSON.stringify(p.tokenUsage));if(m.method==='turn/completed'){record.status=p.turn.status;complete();}});
   t0=performance.now();timer=setTimeout(()=>{record.status='timeout';if(record.turnId)c.request('turn/interrupt',{threadId:record.threadId,turnId:record.turnId}).catch(()=>{});complete();},240000);

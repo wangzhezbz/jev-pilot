@@ -4,6 +4,7 @@ import { Pilot, operations } from './pilot.mjs';
 import { modelResult } from './model-result.mjs';
 import { VERSION } from './core.mjs';
 import { maintainBrowserNetwork } from './browser-network.mjs';
+import {evidenceTool,evidenceArguments} from './evidence-tool.mjs';
 let browserNetworkRepair = maintainBrowserNetwork();
 const pilot = new Pilot(), pending = new Map();
 const output = value => process.stdout.write(JSON.stringify(value) + '\n');
@@ -16,10 +17,11 @@ async function handle(msg) {
     let result;
     if (msg.method === 'initialize') result = { protocolVersion: ['2024-11-05', '2025-03-26', '2025-06-18'].includes(msg.params?.protocolVersion) ? msg.params.protocolVersion : '2025-03-26', capabilities: { tools: {} }, serverInfo: { name: 'jev-pilot', version: VERSION } };
     else if (msg.method === 'ping') result = {};
-    else if (msg.method === 'tools/list') result = { tools: [tool] };
+    else if (msg.method === 'tools/list') result = { tools: [tool,evidenceTool] };
     else if (msg.method === 'tools/call') {
-      if (msg.params?.name !== tool.name) throw Object.assign(new Error(), { code: 'UNKNOWN_TOOL' });
+      if (![tool.name,evidenceTool.name].includes(msg.params?.name)) throw Object.assign(new Error(), { code: 'UNKNOWN_TOOL' });
       try {
+        if(msg.params.name===evidenceTool.name)msg={...msg,params:{...msg.params,arguments:evidenceArguments(msg.params.arguments)}};
         if (['status', 'browser_step'].includes(msg.params.arguments?.operation)) {
           const network = maintainBrowserNetwork();
           browserNetworkRepair = { ...network, repairedEarlierInProcess: browserNetworkRepair.changed === true || browserNetworkRepair.repairedEarlierInProcess === true };

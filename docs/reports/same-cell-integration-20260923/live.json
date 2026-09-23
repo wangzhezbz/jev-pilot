@@ -1,0 +1,39 @@
+{
+  "at": "2026-09-23T15:15:53.590Z",
+  "kind": "paid_jev_component",
+  "gptCalls": 0,
+  "elapsedMs": 603,
+  "selection": {
+    "status": "prepared",
+    "reason": "reduced",
+    "artifactId": "3ba9d530-e788-48be-8a92-4c6b5aa78e15",
+    "sourceHash": "58ee71f762e118bccc2cdc0b944e23abed95a1b8d78b00e67ef608b2124eebf9",
+    "originalBytes": 23270,
+    "returnedBytes": 5544,
+    "completeCoverage": true,
+    "excludedItems": 5,
+    "modelReceipt": "unconfirmed",
+    "nativeTokenSavings": null
+  },
+  "sourceBytes": 23270,
+  "deliveredBytes": 5879,
+  "allTargetFactsRetained": true,
+  "rawCallerUnchanged": true,
+  "recallExact": true,
+  "originalFallbackExact": null,
+  "calls": [
+    {
+      "at": "2026-09-23T15:15:53.589Z",
+      "kind": "jev_call",
+      "purpose": "evidence",
+      "model": "jev-1.13.0",
+      "elapsedMs": 598,
+      "inputTokens": 6420,
+      "outputTokens": 219,
+      "questions": 6,
+      "status": "success"
+    }
+  ],
+  "scope": "Component only; no GPT token, desktop latency or subscription billing measurement. Excludes background task routing.",
+  "passed": true
+}

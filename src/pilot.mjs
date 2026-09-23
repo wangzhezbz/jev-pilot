@@ -9,6 +9,7 @@ import { evaluatePolicy } from './evaluation.mjs';
 import {installationPlan,compatibilityProbe} from './installation.mjs';
 import {activity} from './activity.mjs';
 import { diagnostics } from './diagnostics.mjs';
+import {prepareOutput,recallOutput} from './prepare-output.mjs';
 
 export const operations = {
   installation_plan:()=>installationPlan(),compatibility_probe:()=>compatibilityProbe(),activity, diagnostics, evaluate_policy: evaluatePolicy,
@@ -16,6 +17,7 @@ export const operations = {
   browser_network: (ctx, input) => browserNetwork({ repair: input.repair === true }),
   decide: workflow.decide, select: evidence.selectEvidence, search: evidence.search,
   filter_output: evidence.filterOutput, recall: evidence.recall, select_tools: workflow.selectTools,
+  prepare_output: prepareOutput, recall_output: recallOutput,
   recover: workflow.recoverFailure, quality: workflow.quality, run_checks: evidence.runChecks,
   verify_completion: evidence.verifyCompletion, browser_step: browserStep, browser_consume: consumeBrowserTicket,
   memory: workflow.memory, metrics: workflow.metrics, compact: evidence.compactContext,

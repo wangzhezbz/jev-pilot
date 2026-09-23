@@ -1,0 +1,74 @@
+{
+  "at": "2026-09-23T15:20:23.051Z",
+  "version": "0.2.0+codex.20260923231723",
+  "sourceChecks": [
+    {
+      "path": "src/prepare-output.mjs",
+      "sha256": "f60565e0bd504e795a72a108c629e25845b7bff74576f64e0e92c248dfcc3571",
+      "adapterMatches": true,
+      "pluginMatches": true
+    },
+    {
+      "path": "src/evidence-tool.mjs",
+      "sha256": "6c6b67f42737df6e74ba17d83186977093d32521eaf716c0f115d03804529d71",
+      "adapterMatches": true,
+      "pluginMatches": true
+    },
+    {
+      "path": "src/automation.mjs",
+      "sha256": "f2848f1b51f478911340fa02959914e1f6df797fd50c71146ebf886e5f5bcbd6",
+      "adapterMatches": true,
+      "pluginMatches": true
+    },
+    {
+      "path": "src/server.mjs",
+      "sha256": "cbaaa6ae29c6c6d260a2713898287e03fc65c66012899f3c1bda9d22b4dfb307",
+      "adapterMatches": true,
+      "pluginMatches": true
+    },
+    {
+      "path": "runtime/desktop/router.mjs",
+      "sha256": "f6cf1dd8191aae55c345063660ade7f5b6ff8e531743692444aea64750b91d5b",
+      "adapterMatches": true,
+      "pluginMatches": true
+    },
+    {
+      "path": "skills/jev-pilot/SKILL.md",
+      "sha256": "5f8ed775cdb4f24ef45068d64b447ec0100b4a7a39c26ccab5f0f6faa0920c9c",
+      "adapterMatches": true,
+      "pluginMatches": true
+    }
+  ],
+  "compatible": true,
+  "loadedRevisionMatches": false,
+  "installedFingerprint": "148aa89d732c7dd72c660e600d959297a94e5b65534177dfe9ca25f809ae7a00",
+  "activeBridges": [
+    {
+      "at": "2026-09-23T14:42:38.565Z",
+      "bridgeId": "jev:5a8685ff-6f6b-42b0-b890-9e8a0c0c723d:",
+      "pid": 19151,
+      "measurementSource": "runtime",
+      "kind": "bridge_started",
+      "policyVersion": "effort-v15-functional-reevaluation",
+      "leaseUnit": "observed_tool_batch_or_boundary",
+      "runtimeFingerprint": "8e96d75fa8a92c613ee57c8e6194ba74742ca5b14e59d9d1ae62f802671cf884",
+      "backendPid": 19155,
+      "networkMode": "environment_proxy"
+    },
+    {
+      "at": "2026-09-23T14:49:22.469Z",
+      "bridgeId": "jev:9da96eae-dd16-4873-b194-af12365ad51a:",
+      "pid": 24268,
+      "measurementSource": "runtime",
+      "kind": "bridge_started",
+      "policyVersion": "effort-v15-functional-reevaluation",
+      "leaseUnit": "observed_tool_batch_or_boundary",
+      "runtimeFingerprint": "8e96d75fa8a92c613ee57c8e6194ba74742ca5b14e59d9d1ae62f802671cf884",
+      "backendPid": 24272,
+      "networkMode": "environment_proxy"
+    }
+  ],
+  "normalRestartRequired": true,
+  "previousMarketplace": "/Users/wangzhe/.agents/plugins/releases/jev-pilot-20260923223612-history-audit",
+  "networkChanges": false
+}
