@@ -21,7 +21,7 @@ macOS delivery candidate; final evidence is tracked in [delivery ledger](DELIVER
 
 One shared private SQLite store and TypeSafe client serve these modules. The desktop bridge reaches the actual runtime; semantic recommendations alone do not change effort.
 
-Models: `gpt-6-astra`, `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna`. Unknown models preserve current settings. Initial verified Codex wire version: `0.155.0-alpha.9.2`. Unknown versions pass through until verified.
+Models: `gpt-6-astra`, `gpt-6-sol`, `gpt-6-luna`, `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna`. Effort choices are checked against each model's live runtime metadata; automatic routing does not select `ultra`. Unknown models preserve current settings. Initial verified Codex wire version: `0.155.0-alpha.9.2`. Unknown versions pass through until verified.
 
 ## Use
 

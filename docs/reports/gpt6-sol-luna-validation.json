@@ -1,0 +1,166 @@
+{
+  "date": "2026-09-23",
+  "kind": "bundled_native_engine_synthetic_model_and_judge",
+  "runtimeVersion": "codex-cli 0.155.0-alpha.9.2",
+  "paidModelCalls": 0,
+  "regressionTestsPassed": 107,
+  "cases": [
+    {
+      "model": "gpt-6-sol",
+      "supportedEfforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max",
+        "ultra"
+      ],
+      "outgoingEfforts": [
+        "low",
+        "low",
+        "low",
+        "low",
+        "medium"
+      ],
+      "nativeApplied": true,
+      "manualReceipt": null,
+      "cacheContext": {
+        "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+        "initialItems": 7,
+        "perRequest": [
+          {
+            "request": 1,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 2,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 3,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 4,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 5,
+            "initialPrefixPreserved": true
+          }
+        ]
+      },
+      "catalog": {
+        "source": "local_desktop_models_cache",
+        "sha256": "7b9dc17e857ae0fee3d84564ae9b2700c20a1f74df9b2c80068342660709875b"
+      },
+      "passed": true
+    },
+    {
+      "model": "gpt-6-sol",
+      "supportedEfforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max",
+        "ultra"
+      ],
+      "outgoingEfforts": [
+        "low",
+        "medium"
+      ],
+      "nativeApplied": true,
+      "manualReceipt": {
+        "status": "applied"
+      },
+      "cacheContext": null,
+      "catalog": {
+        "source": "local_desktop_models_cache",
+        "sha256": "7b9dc17e857ae0fee3d84564ae9b2700c20a1f74df9b2c80068342660709875b"
+      },
+      "passed": true
+    },
+    {
+      "model": "gpt-6-luna",
+      "supportedEfforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "outgoingEfforts": [
+        "low",
+        "low",
+        "low",
+        "low",
+        "medium"
+      ],
+      "nativeApplied": true,
+      "manualReceipt": null,
+      "cacheContext": {
+        "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+        "initialItems": 7,
+        "perRequest": [
+          {
+            "request": 1,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 2,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 3,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 4,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 5,
+            "initialPrefixPreserved": true
+          }
+        ]
+      },
+      "catalog": {
+        "source": "local_desktop_models_cache",
+        "sha256": "7b9dc17e857ae0fee3d84564ae9b2700c20a1f74df9b2c80068342660709875b"
+      },
+      "passed": true
+    },
+    {
+      "model": "gpt-6-luna",
+      "supportedEfforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "outgoingEfforts": [
+        "low",
+        "medium"
+      ],
+      "nativeApplied": true,
+      "manualReceipt": {
+        "status": "applied"
+      },
+      "cacheContext": null,
+      "catalog": {
+        "source": "local_desktop_models_cache",
+        "sha256": "7b9dc17e857ae0fee3d84564ae9b2700c20a1f74df9b2c80068342660709875b"
+      },
+      "passed": true
+    }
+  ],
+  "activation": "Installed for next desktop launch; current loaded revision requires restart verification",
+  "notes": [
+    "New models are provided by the actual desktop catalog, not fabricated test metadata.",
+    "Existing GPT-5.6 support is preserved.",
+    "No live provider quality or savings claim."
+  ],
+  "routerSha256": "3447a58cd471fd008bf9e985a2daff37e0ee2b9abf4fa81202793f8c78c19700"
+}

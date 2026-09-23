@@ -2,7 +2,7 @@
 import {createServer} from 'node:http';
 import {PassThrough} from 'node:stream';
 import {mkdtemp,writeFile,readFile,mkdir,copyFile,cp} from 'node:fs/promises';
-import {tmpdir} from 'node:os';
+import {tmpdir,homedir} from 'node:os';
 import {join,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createInterface} from 'node:readline';
@@ -65,6 +65,15 @@ const address=`http://127.0.0.1:${server.address().port}/v1`;
 const args=['app-server','-c',`model=${JSON.stringify(targetModel)}`,'-c','model_provider="jev_fixture"',
   '-c',`model_providers.jev_fixture=${toml({name:'Local synthetic fixture',base_url:address,wire_api:'responses',requires_openai_auth:false,supports_websockets:false,request_max_retries:0,stream_max_retries:0})}`,
   '-c','features.code_mode=false','-c','features.code_mode_host=false'];
+if(process.argv.includes('--use-local-catalog')) {
+  // New models can arrive in the desktop catalog before the binary's bundled
+  // fallback list. Copy public model metadata only, never credentials/identity.
+  const cached=JSON.parse(await readFile(join(process.env.CODEX_HOME||join(homedir(),'.codex'),'models_cache.json'),'utf8'));
+  if(!Array.isArray(cached.models)||!cached.models.some(m=>m.slug===targetModel))throw new Error('MODEL_NOT_IN_LOCAL_CATALOG');
+  const catalog=JSON.stringify({models:cached.models}),path=join(work,'models.json');
+  await writeFile(path,catalog,{mode:0o600});args.push('-c',`model_catalog_json=${JSON.stringify(path)}`);
+  report.catalog={source:'local_desktop_models_cache',sha256:createHash('sha256').update(catalog).digest('hex')};
+}
 
 function client(input,output){
   let id=0;const pending=new Map();const listeners=[];
@@ -122,6 +131,7 @@ try{
   c.listeners.push(m=>{if(['hook/started','hook/completed','turn/started','turn/completed','item/completed','error'].includes(m.method))report.events.push(m);});
   await c.request('initialize',{clientInfo:{name:'jev_desktop_protocol_fixture',version:'0.1'},capabilities:{experimentalApi:true}});c.notify('initialized');
   const models=await c.request('model/list',{includeHidden:true,limit:100});
+  report.supportedEfforts=models.data?.find(m=>m.model===targetModel)?.supportedReasoningEfforts?.map(x=>x.reasoningEffort)??[];
   for(const m of models.data??[])bridge?.router.supported.set(m.model,(m.supportedReasoningEfforts??[]).map(x=>x.reasoningEffort));
   const loaded=await c.request('hooks/list',{cwds:[work]});report.trustedHooks=loaded;
   const started=await c.request('thread/start',{model:targetModel,cwd:work,ephemeral:true,sandbox:'read-only',approvalPolicy:'never',
