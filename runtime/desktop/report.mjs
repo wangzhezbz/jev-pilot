@@ -20,6 +20,7 @@ export function summarize(events) {
     for(const [k,v] of Object.entries(t.usage))if(Number.isSafeInteger(v)&&v>=0)m.usage[k]=(m.usage[k]??0)+v;
   }
   const inputKnown=decisions.filter(e=>Number.isFinite(e.inputTokens));
+  const counts=rows=>rows.reduce((out,e)=>{const code=e.code??'UNKNOWN';out[code]=(out[code]??0)+1;return out;},{});
   return {scope:'Observed runtime tokens and routing overhead; not a savings or account-debit measurement',
     turns:turns.length,completedTurns:turns.filter(t=>t.status==='completed').length,models,excludedSyntheticEvents,
     routing:{decisions:decisions.length,fallbacks:fallbacks.length,
@@ -28,6 +29,10 @@ export function summarize(events) {
       retained:decisions.filter(e=>e.status==='unchanged').length,
       superseded:decisions.filter(e=>e.status==='superseded').length,
       staleEvidence:decisions.filter(e=>e.status==='stale_evidence').length,
+      budgetHeld:decisions.filter(e=>e.status==='budget_held').length,
+      failureReasons:counts(fallbacks),
+      metadataFailureReasons:counts(events.filter(e=>e.kind==='metadata_unavailable')),
+      metadataRecoveries:events.filter(e=>e.kind==='metadata_loaded'&&e.attempt>1).length,
       baselineRestoresApplied:events.filter(e=>e.kind==='effort_restore'&&e.status==='applied').length,
       baselineRestoresUnconfirmed:events.filter(e=>e.kind==='effort_restore'&&e.status!=='applied').length,
       knownBudgetSkips:turns.reduce((sum,t)=>sum+(t.budgetSkips??0),0),

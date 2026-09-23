@@ -1,0 +1,29 @@
+{
+  "at": "2026-09-23T05:34:49.973Z",
+  "gptCalls": 0,
+  "syntheticInputs": true,
+  "results": [
+    {
+      "transport": "shared",
+      "passed": true,
+      "model": "jev-1.13.0",
+      "choice": "fruit",
+      "usage": {
+        "input_tokens": 320,
+        "output_tokens": 31
+      },
+      "elapsedMs": 1302
+    },
+    {
+      "transport": "standalone",
+      "passed": true,
+      "model": "jev-1.13.0",
+      "choice": "tool",
+      "usage": {
+        "input_tokens": 320,
+        "output_tokens": 31
+      },
+      "elapsedMs": 580
+    }
+  ]
+}

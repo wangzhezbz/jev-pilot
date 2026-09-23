@@ -29,6 +29,29 @@ export function runtimeFingerprint(hashes) {
   if(!hashes || typeof hashes!=='object' || Array.isArray(hashes) || !Object.keys(hashes).length)return null;
   return createHash('sha256').update(JSON.stringify(Object.entries(hashes).sort(([a],[b])=>a<b?-1:a>b?1:0))).digest('hex');
 }
+export function metadataLoader({request,accept,log,clock=Date.now}) {
+  let ready=false,pending=null,attempt=0,nextAt=0,unsupported=false;
+  return async()=>{
+    if(ready||unsupported||clock()<nextAt)return;
+    if(pending)return pending;
+    pending=(async()=>{
+      attempt++;
+      try {
+        const result=await request('model/list',{includeHidden:true,limit:100},1500);
+        if(!Array.isArray(result?.data)||!result.data.length
+          ||result.data.some(m=>typeof m.model!=='string'||!Array.isArray(m.supportedReasoningEfforts)))throw new Error('INVALID_METADATA');
+        accept(result.data);ready=true;
+        log({kind:'metadata_loaded',attempt,models:result.data.length});
+      }catch(error){
+        unsupported=error.rpcCode===-32601||error.rpcCode===-32602;
+        const code=unsupported?'METADATA_UNSUPPORTED':error.message==='TIMEOUT'?'METADATA_TIMEOUT':error.message==='INVALID_METADATA'?'METADATA_INVALID':'METADATA_RPC_ERROR';
+        nextAt=clock()+Math.min(60000,5000*2**Math.min(attempt-1,4));
+        log({kind:'metadata_unavailable',code,attempt,retryOnNextTurn:!unsupported,retryAfterMs:unsupported?null:nextAt-clock()});
+      }
+    })().finally(()=>{pending=null;});
+    return pending;
+  };
+}
 export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,automation=false,runtimeIdentity=null,input=process.stdin,output=process.stdout,env=process.env}={}) {
   const home=dirname(fileURLToPath(import.meta.url));
   const dir=await mkdtemp(join(tmpdir(),'jev-bridge-'));await chmod(dir,0o700);
@@ -38,7 +61,7 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
   const prefix=`jev:${randomUUID()}:`;
   const pending=new Map(),clientRequests=new Map();let counter=0,closed=false;
   let logPending=Promise.resolve();
-  const log=record=>{if(logPath){const line=JSON.stringify({at:new Date().toISOString(),measurementSource:env.JEV_PILOT_MEASUREMENT==='synthetic'?'synthetic':'runtime',...record})+'\n';
+  const log=record=>{if(logPath){const line=JSON.stringify({at:new Date().toISOString(),bridgeId:prefix,pid:process.pid,measurementSource:env.JEV_PILOT_MEASUREMENT==='synthetic'?'synthetic':'runtime',...record})+'\n';
     logPending=logPending.then(()=>appendFile(logPath,line,{mode:0o600})).catch(()=>{});}};
   const childEnv={...env,JEV_BRIDGE_SOCKET:socketPath};
   // Keep the user's proxy on the backend too. MCP servers still require their
@@ -62,7 +85,9 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
       config: { ...loadConfig(guardStore, project), timeoutMs: 2000, cacheMs: 0 } });
   };
   const router=new Router({request,judge:judge??await makeJudge(keyPath,{env,judgeFactory}),log});
-  let metadataReady=Promise.resolve();
+  const ensureMetadata=metadataLoader({request,log,accept:models=>{
+    for(const m of models)router.supported.set(m.model,(m.supportedReasoningEfforts??[]).map(x=>x.reasoningEffort));
+  }});
   const threadQueues=new Map();
   const server=createServer(socket=>{
     let data='';socket.setTimeout(11_000,()=>socket.destroy());
@@ -93,7 +118,7 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
     // recommendations immediately. Other threads and backend RPC replies flow.
     if(starting || (threadId && threadQueues.has(threadId))) {
       const job=(threadQueues.get(threadId)??Promise.resolve()).then(async()=>{
-        if(starting){await metadataReady;const cwd=msg.params.cwd??router.threads.get(threadId)?.cwd;if(!assistant||!cwd||assistant.enabled(cwd))msg.params=await router.routeStart(msg.params,starting);else router.stop(threadId);}
+        if(starting){await ensureMetadata();const cwd=msg.params.cwd??router.threads.get(threadId)?.cwd;if(!assistant||!cwd||assistant.enabled(cwd))msg.params=await router.routeStart(msg.params,starting);else router.stop(threadId);}
         send(msg);
       }).catch(()=>{log({kind:'start_routing_fallback',threadId});send(msg);});
       threadQueues.set(threadId,job);
@@ -106,15 +131,13 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
   fromBackend.on('line',line=>{
     let msg;try{msg=JSON.parse(line);}catch{output.write(line+'\n');return;}
     if(typeof msg.id==='string' && msg.id.startsWith(prefix) && !msg.method){
-      const p=pending.get(msg.id);if(p){pending.delete(msg.id);clearTimeout(p.timer);msg.error?p.reject(new Error('RPC_FAILED')):p.resolve(msg.result);}return;
+      const p=pending.get(msg.id);if(p){pending.delete(msg.id);clearTimeout(p.timer);msg.error?p.reject(Object.assign(new Error('RPC_FAILED'),{rpcCode:Number.isInteger(msg.error.code)?msg.error.code:null})):p.resolve(msg.result);}return;
     }
     if(!msg.method && msg.id!==undefined){
       const p=clientRequests.get(JSON.stringify(msg.id));clientRequests.delete(JSON.stringify(msg.id));
       if(p?.control)router.finishSettingsUpdate(p.control,msg.result,msg.error);
       if(p?.method==='initialize' && !msg.error) {
-        metadataReady=request('model/list',{includeHidden:true,limit:100}).then(result=>{
-          for(const m of result.data??[]) router.supported.set(m.model,(m.supportedReasoningEfforts??[]).map(x=>x.reasoningEffort));
-        }).catch(()=>log({kind:'metadata_unavailable'}));
+        void ensureMetadata();
       }
       if(['thread/start','thread/resume'].includes(p?.method) && msg.result?.thread) {
         const r=msg.result;router.threads.set(r.thread.id,{model:r.model,effort:r.reasoningEffort,cwd:r.thread.cwd??p.params?.cwd});

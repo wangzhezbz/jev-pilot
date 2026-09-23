@@ -2,7 +2,8 @@ import { readFile } from 'node:fs/promises';
 import { parseEnv } from 'node:util';
 import { postTypeSafe } from './transport.mjs';
 
-export const POLICY_VERSION = 'effort-v6-bounded-reassessment';
+export const POLICY_VERSION = 'effort-v7-stable-budget';
+const effortOrder=['none','minimal','low','medium','high','xhigh','max','ultra'];
 export const LEASE_UNIT = 'tool_completion_boundary';
 export const SUPPORTED_MODELS = ['gpt-6-astra','gpt-6-sol','gpt-6-luna','gpt-5.6-sol','gpt-5.6-terra','gpt-5.6-luna'];
 export const effortQuestion = {
@@ -154,7 +155,7 @@ export class Router {
   // an expired automatic downgrade in force indefinitely, or lower a stronger
   // current setting. Successful manual settings replace this turn's baseline.
   async restoreBaseline(t,reason) {
-    const order=['none','minimal','low','medium','high','xhigh','max','ultra'];
+    const order=effortOrder;
     if(!t.active || t.settingsPending || t.settingsUncertain || t.restoreBlocked || !this.supported.get(t.model)?.includes(t.baseline)
       || order.indexOf(t.current)<0 || order.indexOf(t.baseline)<=order.indexOf(t.current))return {status:reason};
     const revision=t.revision,from=t.current,effort=t.baseline,started=performance.now();
@@ -320,9 +321,15 @@ export class Router {
           this.log(this.metrics(t,result,t.current,'stale_evidence',started,p.hook_event_name));
           await this.restoreBaseline(t,'stale_evidence');return {status:'stale_evidence'};
         }
-        const effort=select(result.answer,t.current,this.supported.get(t.model));
+        let effort=select(result.answer,t.current,this.supported.get(t.model));
         const from=t.current;
         let status='unchanged';
+        // The final routine call and reserved calls cannot open another
+        // downgrade that the exhausted budget would immediately undo. Existing
+        // valid leases survive; reserved judgments can still raise effort.
+        if(t.calls>=this.routineLimit && effortOrder.indexOf(effort)<effortOrder.indexOf(from)){
+          effort=from;status='budget_held';
+        }
         if(effort!==from) {
           t.publicationPending=true;
           let reply;

@@ -157,11 +157,11 @@ try{
     ? report.requests.length>=2 && report.requests.every(x=>x.effort==='high') && report.audit.some(x=>x.kind==='compatibility_fallback')
     : process.argv.includes('--unavailable-jev')
     ? report.requests.length>=2 && report.requests.every(x=>x.effort==='high') && report.audit.some(x=>x.kind==='fallback')
-    : report.requests.length>=2 && report.requests.every((x,i)=>x.effort===(routingBudget?([4,7].includes(i)?'high':'low'):((reassess&&i>=4)||(manualSettings&&i>0)?'medium':'low'))&&x.model===targetModel)
+    : report.requests.length>=2 && report.requests.every((x,i)=>x.effort===(routingBudget?(i>=4?'high':'low'):((reassess&&i>=4)||(manualSettings&&i>0)?'medium':'low'))&&x.model===targetModel)
       && report.audit.some(x=>x.status==='start_forwarded')
       && (!reassess||report.audit.some(x=>x.status==='applied'&&x.published==='medium'))
       && report.audit.some(x=>x.kind==='turn_usage'&&x.usage?.inputTokens===50*(steps+1));
-  if(routingBudget)report.passed=report.passed&&report.requests.length===8&&report.audit.filter(x=>x.kind==='decision').length===6&&report.audit.filter(x=>x.kind==='effort_restore'&&x.status==='applied').length===2;
+  if(routingBudget)report.passed=report.passed&&report.requests.length===8&&report.audit.filter(x=>x.kind==='decision').length===6&&report.audit.filter(x=>x.kind==='effort_restore'&&x.status==='applied').length===1&&report.audit.filter(x=>x.status==='budget_held').length===2;
   if(manualSettings)report.passed=report.passed&&report.manualSettings?.status==='applied'&&report.manualJudgeEffort==='medium'&&report.audit.some(x=>x.kind==='external_settings'&&x.status==='applied');
   if(inspectCacheContext){
     const initial=inputSnapshots[0];

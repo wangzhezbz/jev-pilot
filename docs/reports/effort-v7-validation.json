@@ -1,0 +1,748 @@
+{
+  "policy": "effort-v7-stable-budget",
+  "engine": "codex-cli 0.155.0-alpha.9.2",
+  "platform": "macOS arm64",
+  "syntheticModelAndEvaluator": true,
+  "runs": [
+    {
+      "scenario": "budget-astra",
+      "passed": true,
+      "openaiPaidCalls": 0,
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "low",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "low",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        },
+        {
+          "number": 3,
+          "model": "gpt-6-astra",
+          "effort": "low",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        },
+        {
+          "number": 4,
+          "model": "gpt-6-astra",
+          "effort": "low",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        },
+        {
+          "number": 5,
+          "model": "gpt-6-astra",
+          "effort": "high",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        },
+        {
+          "number": 6,
+          "model": "gpt-6-astra",
+          "effort": "high",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        },
+        {
+          "number": 7,
+          "model": "gpt-6-astra",
+          "effort": "high",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        },
+        {
+          "number": 8,
+          "model": "gpt-6-astra",
+          "effort": "high",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        }
+      ],
+      "decisions": [
+        {
+          "event": "BeforeTurnStart",
+          "from": "high",
+          "recommended": "low",
+          "published": "low",
+          "status": "start_forwarded"
+        },
+        {
+          "event": "PostToolUse",
+          "from": "low",
+          "recommended": "low",
+          "published": "low",
+          "status": "unchanged"
+        },
+        {
+          "event": "PostToolUse",
+          "from": "low",
+          "recommended": "low",
+          "published": "low",
+          "status": "unchanged"
+        },
+        {
+          "event": "PostToolUse",
+          "from": "low",
+          "recommended": "low",
+          "published": "low",
+          "status": "unchanged"
+        },
+        {
+          "event": "PostToolUse",
+          "from": "high",
+          "recommended": "low",
+          "published": "high",
+          "status": "budget_held"
+        },
+        {
+          "event": "PostToolUse",
+          "from": "high",
+          "recommended": "low",
+          "published": "high",
+          "status": "budget_held"
+        }
+      ],
+      "restores": [
+        {
+          "from": "low",
+          "published": "high",
+          "reason": "routing_budget",
+          "status": "applied"
+        }
+      ],
+      "cacheContext": {
+        "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+        "initialItems": 7,
+        "perRequest": [
+          {
+            "request": 1,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 2,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 3,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 4,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 5,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 6,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 7,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 8,
+            "initialPrefixPreserved": true
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "budget-sol",
+      "passed": true,
+      "openaiPaidCalls": 0,
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-sol",
+          "effort": "low",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-sol",
+          "effort": "low",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        },
+        {
+          "number": 3,
+          "model": "gpt-6-sol",
+          "effort": "low",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        },
+        {
+          "number": 4,
+          "model": "gpt-6-sol",
+          "effort": "low",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        },
+        {
+          "number": 5,
+          "model": "gpt-6-sol",
+          "effort": "high",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        },
+        {
+          "number": 6,
+          "model": "gpt-6-sol",
+          "effort": "high",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        },
+        {
+          "number": 7,
+          "model": "gpt-6-sol",
+          "effort": "high",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        },
+        {
+          "number": 8,
+          "model": "gpt-6-sol",
+          "effort": "high",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        }
+      ],
+      "decisions": [
+        {
+          "event": "BeforeTurnStart",
+          "from": "high",
+          "recommended": "low",
+          "published": "low",
+          "status": "start_forwarded"
+        },
+        {
+          "event": "PostToolUse",
+          "from": "low",
+          "recommended": "low",
+          "published": "low",
+          "status": "unchanged"
+        },
+        {
+          "event": "PostToolUse",
+          "from": "low",
+          "recommended": "low",
+          "published": "low",
+          "status": "unchanged"
+        },
+        {
+          "event": "PostToolUse",
+          "from": "low",
+          "recommended": "low",
+          "published": "low",
+          "status": "unchanged"
+        },
+        {
+          "event": "PostToolUse",
+          "from": "high",
+          "recommended": "low",
+          "published": "high",
+          "status": "budget_held"
+        },
+        {
+          "event": "PostToolUse",
+          "from": "high",
+          "recommended": "low",
+          "published": "high",
+          "status": "budget_held"
+        }
+      ],
+      "restores": [
+        {
+          "from": "low",
+          "published": "high",
+          "reason": "routing_budget",
+          "status": "applied"
+        }
+      ],
+      "cacheContext": null
+    },
+    {
+      "scenario": "budget-luna",
+      "passed": true,
+      "openaiPaidCalls": 0,
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-luna",
+          "effort": "low",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-luna",
+          "effort": "low",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        },
+        {
+          "number": 3,
+          "model": "gpt-6-luna",
+          "effort": "low",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        },
+        {
+          "number": 4,
+          "model": "gpt-6-luna",
+          "effort": "low",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        },
+        {
+          "number": 5,
+          "model": "gpt-6-luna",
+          "effort": "high",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        },
+        {
+          "number": 6,
+          "model": "gpt-6-luna",
+          "effort": "high",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        },
+        {
+          "number": 7,
+          "model": "gpt-6-luna",
+          "effort": "high",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        },
+        {
+          "number": 8,
+          "model": "gpt-6-luna",
+          "effort": "high",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        }
+      ],
+      "decisions": [
+        {
+          "event": "BeforeTurnStart",
+          "from": "high",
+          "recommended": "low",
+          "published": "low",
+          "status": "start_forwarded"
+        },
+        {
+          "event": "PostToolUse",
+          "from": "low",
+          "recommended": "low",
+          "published": "low",
+          "status": "unchanged"
+        },
+        {
+          "event": "PostToolUse",
+          "from": "low",
+          "recommended": "low",
+          "published": "low",
+          "status": "unchanged"
+        },
+        {
+          "event": "PostToolUse",
+          "from": "low",
+          "recommended": "low",
+          "published": "low",
+          "status": "unchanged"
+        },
+        {
+          "event": "PostToolUse",
+          "from": "high",
+          "recommended": "low",
+          "published": "high",
+          "status": "budget_held"
+        },
+        {
+          "event": "PostToolUse",
+          "from": "high",
+          "recommended": "low",
+          "published": "high",
+          "status": "budget_held"
+        }
+      ],
+      "restores": [
+        {
+          "from": "low",
+          "published": "high",
+          "reason": "routing_budget",
+          "status": "applied"
+        }
+      ],
+      "cacheContext": null
+    },
+    {
+      "scenario": "manual-5.6-sol",
+      "passed": true,
+      "openaiPaidCalls": 0,
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-5.6-sol",
+          "effort": "low",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        },
+        {
+          "number": 2,
+          "model": "gpt-5.6-sol",
+          "effort": "medium",
+          "keys": [
+            "model",
+            "input",
+            "tool_choice",
+            "parallel_tool_calls",
+            "reasoning",
+            "store",
+            "stream",
+            "include",
+            "prompt_cache_key",
+            "text",
+            "client_metadata"
+          ]
+        }
+      ],
+      "decisions": [
+        {
+          "event": "BeforeTurnStart",
+          "from": "high",
+          "recommended": "low",
+          "published": "low",
+          "status": "start_forwarded"
+        },
+        {
+          "event": "PostToolUse",
+          "from": "medium",
+          "recommended": "medium",
+          "published": "medium",
+          "status": "unchanged"
+        }
+      ],
+      "restores": [],
+      "cacheContext": null
+    }
+  ],
+  "installation": {
+    "at": "2026-09-23T05:37:12.274Z",
+    "version": "0.2.0+codex.20260923053541",
+    "installed": true,
+    "compatible": true,
+    "configuredForNextLaunch": true,
+    "installedFingerprint": "345ec99601b6c20811164326581f2a925fe4cc1cf0414dd8f3db74404b1d7967",
+    "loadedRevisionMatches": false,
+    "loadedPolicies": [
+      "effort-v6-bounded-reassessment"
+    ]
+  },
+  "ui": {
+    "driver": "Chrome extension",
+    "languages": [
+      "en",
+      "zh-CN",
+      "ru",
+      "ja",
+      "ko"
+    ],
+    "rendered": true,
+    "reloadAuthorization": true,
+    "persistedLocale": "zh-CN",
+    "consoleErrorsObserved": 0
+  },
+  "regressionTests": {
+    "passed": 127,
+    "failed": 0
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "checkedAt": "2026-09-23T05:07:03.393578+00:00",
+  "policyVersion": "effort-v6-bounded-reassessment",
+  "installedFingerprint": "77103be7f97ce4532fa1d4a17188e1b240ec7d1c17aa5ca16f65cabea5766ae9",
+  "loadedRevisionMatches": true,
+  "runtimeVersion": "codex-cli 0.155.0-alpha.9.2",
+  "processChainVerified": true,
+  "processChain": [
+    {
+      "pid": 38595,
+      "ppid": 38591,
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/codex"
+    },
+    {
+      "pid": 38591,
+      "ppid": 38590,
+      "executable": "/Users/wangzhe/.nvm/versions/node/v24.18.0/bin/node"
+    },
+    {
+      "pid": 38590,
+      "ppid": 37958,
+      "executable": "/Users/wangzhe/.codex/jev-pilot/jev-pilot"
+    },
+    {
+      "pid": 37958,
+      "ppid": 1,
+      "executable": "/Applications/ChatGPT.app/Contents/MacOS/ChatGPT"
+    }
+  ],
+  "currentOrdinaryTurnRecords": [
+    {
+      "at": "2026-09-23T05:06:11.975Z",
+      "kind": "decision",
+      "policyVersion": "effort-v6-bounded-reassessment",
+      "targetModel": "gpt-6-astra",
+      "from": "high",
+      "recommended": "keep",
+      "published": "high",
+      "status": "unchanged",
+      "event": "BeforeTurnStart",
+      "confirmation": null,
+      "elapsedMs": 1750,
+      "inputTokens": 837,
+      "outputTokens": 106,
+      "horizon": 1
+    },
+    {
+      "at": "2026-09-23T05:06:35.798Z",
+      "kind": "decision",
+      "policyVersion": "effort-v6-bounded-reassessment",
+      "targetModel": "gpt-6-astra",
+      "from": "high",
+      "recommended": "medium",
+      "published": "high",
+      "status": "superseded",
+      "event": "PostToolUse",
+      "confirmation": null,
+      "elapsedMs": 1274,
+      "inputTokens": 1890,
+      "outputTokens": 106,
+      "horizon": 1
+    },
+    {
+      "at": "2026-09-23T05:06:36.876Z",
+      "kind": "decision",
+      "policyVersion": "effort-v6-bounded-reassessment",
+      "targetModel": "gpt-6-astra",
+      "from": "high",
+      "recommended": "medium",
+      "published": "medium",
+      "status": "applied",
+      "event": "PostToolUse",
+      "confirmation": "native_settings_published",
+      "elapsedMs": 1078,
+      "inputTokens": 2561,
+      "outputTokens": 106,
+      "horizon": 1
+    }
+  ],
+  "interpretation": "Runtime activation and observed native settings publications only; not final savings or native outgoing request capture."
+}

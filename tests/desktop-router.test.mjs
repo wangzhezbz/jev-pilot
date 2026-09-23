@@ -52,8 +52,8 @@ test('first inference is not falsely routed through UserPromptSubmit',async()=>{
 });
 test('bounded calls and duplicate hooks never add requests',async()=>{
  let judgments=0;const s=setup({maxCalls:1,judge:async()=>{judgments++;return{answer:answer('low')};}});
- await s.router.hook(s.p);await s.router.hook(s.p);await s.router.hook({...s.p,tool_use_id:'b'});
- assert.equal(judgments,1);assert.deepEqual(s.calls.map(x=>x.params.effort),['low','high']);
+ await s.router.routeStart({threadId:'thread'});await s.router.hook(s.p);await s.router.hook(s.p);await s.router.hook({...s.p,tool_use_id:'b'});
+ assert.equal(judgments,1);assert.deepEqual(s.calls.map(x=>x.params.effort),['high']);
 });
 test('credentials are removed before task state is shared',()=>{
  const text=redact('token=secretvalue apikey_not_a_real_secret_123 Bearer abc.def sk-notarealkey123456','secretvalue');assert(!text.includes('secretvalue'));assert(!text.includes('apikey_'));assert(!text.includes('abc.def'));assert(!text.includes('sk-notareal'));
@@ -137,6 +137,21 @@ test('report separates missing usage and never invents saved quota',()=>{
  assert.equal(report.savings.quota,null);
  const overhead=summarize([{kind:'effort_restore',status:'applied',elapsedMs:27},{kind:'decision',elapsedMs:81,inputTokens:10,outputTokens:2}]);
  assert.equal(overhead.routing.observedWaitMs,108);assert.equal(overhead.routing.decisions,1);assert.equal(overhead.routing.knownJevInputTokens,10);
+});
+test('routing diagnostics distinguish held changes, typed failures and metadata recovery',()=>{
+ const report=summarize([
+  {kind:'decision',status:'budget_held'},
+  {kind:'fallback',code:'JEV_TIMEOUT'},
+  {kind:'fallback',code:'JEV_TIMEOUT',measurementSource:'synthetic'},
+  {kind:'metadata_unavailable',code:'METADATA_TIMEOUT'},
+  {kind:'metadata_unavailable'},
+  {kind:'metadata_loaded',attempt:1},
+  {kind:'metadata_loaded',attempt:2},
+ ]);
+ assert.equal(report.routing.budgetHeld,1);assert.equal(report.routing.nativeUpdatesApplied,0);
+ assert.deepEqual(report.routing.failureReasons,{JEV_TIMEOUT:1});
+ assert.deepEqual(report.routing.metadataFailureReasons,{METADATA_TIMEOUT:1,UNKNOWN:1});
+ assert.equal(report.routing.metadataRecoveries,1);assert.equal(report.excludedSyntheticEvents,1);
 });
 test('an interrupted turn still records final observed usage',()=>{
  const s=setup();s.router.stop('thread');
@@ -322,11 +337,11 @@ test('routine calls reserve two judgments for late failures and then restore bas
  await s.router.hook({...s.p,tool_use_id:'no-reserve'});
  assert.equal(judgments,4);assert.equal(s.router.turns.get('thread').current,'high');
  for(let i=0;i<2;i++)await s.router.hook({...s.p,tool_use_id:'failure'+i,tool_response:{exit_code:1}});
- assert.equal(judgments,6);assert.equal(s.router.turns.get('thread').current,'low');
+ assert.equal(judgments,6);assert.equal(s.router.turns.get('thread').current,'high');
  await s.router.hook({...s.p,tool_use_id:'last-failure',tool_response:{exit_code:2}});
  assert.equal(judgments,6);assert.equal(s.router.turns.get('thread').current,'high');
- assert.equal(s.logs.filter(x=>x.kind==='effort_restore'&&x.status==='applied').length,2);
- const report=summarize(s.logs);assert.equal(report.routing.baselineRestoresApplied,2);
+ assert.equal(s.logs.filter(x=>x.kind==='effort_restore'&&x.status==='applied').length,1);
+ const report=summarize(s.logs);assert.equal(report.routing.baselineRestoresApplied,1);assert.equal(report.routing.budgetHeld,2);
  assert.equal(report.routing.knownJevInputTokens,0);assert.equal(report.routing.decisions,5);
 });
 test('new input and public plan can use reserved judgments after routine exhaustion',async()=>{
@@ -350,7 +365,7 @@ test('routine stale results cannot consume the reserved capacity',async()=>{
  assert(s.logs.some(x=>x.kind==='effort_restore'&&x.reason==='stale_evidence'));
 });
 test('budget restores respect manual baseline and never lower a stronger current effort',async()=>{
- const s=setup({maxCalls:1});await s.router.hook(s.p);
+ const s=setup({maxCalls:1});await s.router.routeStart({threadId:'thread'});
  const control=s.router.beginSettingsUpdate({threadId:'thread',turnId:'turn',effort:'medium'});
  s.router.finishSettingsUpdate(control,{status:'applied'});
  const t=s.router.turns.get('thread');t.current='low';
@@ -359,7 +374,7 @@ test('budget restores respect manual baseline and never lower a stronger current
  await s.router.hook({...s.p,tool_use_id:'stronger'});assert.equal(t.current,'xhigh');assert.equal(s.calls.length,count);
 });
 test('manual publication fences an in-flight budget restoration',async()=>{
- let release;const s=setup({maxCalls:1});await s.router.hook(s.p);
+ let release;const s=setup({maxCalls:1});await s.router.routeStart({threadId:'thread'});
  s.router.request=async()=>new Promise(r=>release=r);
  const p=s.router.hook({...s.p,tool_use_id:'restore'});await new Promise(r=>setImmediate(r));
  const control=s.router.beginSettingsUpdate({threadId:'thread',turnId:'turn',effort:'medium'});
@@ -369,7 +384,7 @@ test('manual publication fences an in-flight budget restoration',async()=>{
 });
 test('unconfirmed or rejected restoration never fabricates applied or retries indefinitely',async()=>{
  for(const outcome of ['timeout','targetUnavailable']){
-  const s=setup({maxCalls:1});await s.router.hook(s.p);let attempts=0;
+  const s=setup({maxCalls:1});await s.router.routeStart({threadId:'thread'});let attempts=0;
   s.router.request=async()=>{attempts++;if(outcome==='timeout')throw new Error('TIMEOUT');return{status:outcome};};
   await s.router.hook({...s.p,tool_use_id:'restore'});await s.router.hook({...s.p,tool_use_id:'again'});
   assert.equal(attempts,1);assert.equal(s.router.turns.get('thread').current,'low');
@@ -390,4 +405,18 @@ test('timed-out native routing publication never sends a competing baseline rest
  await s.router.hook({...s.p,tool_use_id:'timeout'});await s.router.hook({...s.p,tool_use_id:'later'});
  assert.equal(publications,1);assert.equal(judgments,2);assert.equal(s.router.turns.get('thread').settingsUncertain,true);
  assert(!s.logs.some(x=>x.kind==='effort_restore'));
+});
+test('the final routine judgment cannot introduce a downgrade with no routine capacity left',async()=>{
+ let n=0;const s=setup({judge:async()=>({answer:answer(++n<4?'high':'medium')})});
+ for(let i=0;i<4;i++)await s.router.hook({...s.p,tool_use_id:String(i)});
+ assert.equal(n,4);assert.equal(s.calls.length,0);assert.equal(s.logs.at(-1).status,'budget_held');
+ await s.router.hook({...s.p,tool_use_id:'next'});assert.equal(s.calls.length,0);
+});
+test('reserved judgments still raise effort after baseline restoration',async()=>{
+ let n=0;const s=setup({judge:async()=>({answer:answer(++n<5?'low':'xhigh')})});
+ await s.router.routeStart({threadId:'thread'});
+ for(let i=0;i<4;i++)await s.router.hook({...s.p,tool_use_id:String(i)});
+ assert.equal(s.router.turns.get('thread').current,'high');
+ await s.router.hook({...s.p,tool_use_id:'failure',tool_response:{exit_code:1}});
+ assert.equal(s.router.turns.get('thread').current,'xhigh');assert.equal(n,5);
 });

@@ -7,6 +7,7 @@ import { parseEnv } from 'node:util';
 import { spawn, execFileSync } from 'node:child_process';
 import { proxyEnvironment } from '../runtime/desktop/bootstrap.mjs';
 import { RequestGuard, GUARD_DEFAULTS } from './request-guard.mjs';
+import { curlOutput, curlFailure } from '../runtime/desktop/transport.mjs';
 
 export const VERSION = '0.2.0';
 export const JUDGMENT_POLICY = 'shared-state-v2';
@@ -100,16 +101,16 @@ export function loadKey(home) {
   } return null;
 }
 // Never put credentials in argv or logs.
-export function transport(payload, key, { timeoutMs = 5000, signal } = {}) {
+export function transport(payload, key, { timeoutMs = 5000, signal, spawnImpl = spawn } = {}) {
   requireValue(key && !/[\r\n]/.test(key), 'MISSING_KEY');
   const quote = v => '"' + String(v).replaceAll('\\', '\\\\').replaceAll('"', '\\"').replaceAll('\r', '\\r').replaceAll('\n', '\\n') + '"';
   const config = ['url = "https://api.typesafe.ai/v1/systemone"', 'request = "POST"', 'silent', 'show-error', 'fail',
     `max-time = ${timeoutMs / 1000}`, 'connect-timeout = 2', 'header = ' + quote('Authorization: Bearer ' + key),
-    'header = "Content-Type: application/json"', 'data = ' + quote(JSON.stringify(payload))].join('\n') + '\n';
+    'header = "Content-Type: application/json"', 'write-out = "\\nJEV_HTTP_STATUS:%{http_code}"', 'data = ' + quote(JSON.stringify(payload))].join('\n') + '\n';
   return new Promise((yes, no) => {
     let proxy = ''; if (process.platform === 'darwin' && !process.env.HTTPS_PROXY && !process.env.https_proxy) try { proxy = execFileSync('/usr/sbin/scutil', ['--proxy'], { encoding: 'utf8', timeout: 1000 }); } catch {}
     const env = proxyEnvironment(process.env, proxy); delete env.TYPESAFE_API_KEY;
-    const p = spawn(process.platform === 'win32' ? 'curl.exe' : 'curl', ['-q', '--config', '-'], { env, stdio: ['pipe', 'pipe', 'pipe'], windowsHide: true });
+    const p = spawnImpl(process.platform === 'win32' ? 'curl.exe' : 'curl', ['-q', '--config', '-'], { env, stdio: ['pipe', 'pipe', 'pipe'], windowsHide: true });
     let data = '', finished = false;
     const done = (err, result) => { if (finished) return; finished = true; clearTimeout(timer); signal?.removeEventListener('abort', abort); err ? no(fail(err)) : yes(result); };
     const abort = () => { p.kill(); done('CANCELLED'); };
@@ -117,7 +118,7 @@ export function transport(payload, key, { timeoutMs = 5000, signal } = {}) {
     signal?.addEventListener('abort', abort, { once: true }); if (signal?.aborted) abort();
     p.stdout.on('data', c => { data += c; if (byteBudget(data) > 2000000) { p.kill(); done('RESPONSE_LIMIT'); } });
     p.stderr.resume(); p.on('error', () => done('TRANSPORT_UNAVAILABLE')); p.stdin.on('error', () => {});
-    p.on('close', code => { if (code !== 0) return done('JEV_UNAVAILABLE'); try { done(null, JSON.parse(data)); } catch { done('INVALID_RESPONSE'); } });
+    p.on('close', code => { const parsed=curlOutput(data);if (code !== 0||parsed.httpStatus>=400) return done(curlFailure(code,parsed.httpStatus)); try { done(null, JSON.parse(parsed.body)); } catch { done('INVALID_RESPONSE'); } });
     p.stdin.end(config);
   });
 }
