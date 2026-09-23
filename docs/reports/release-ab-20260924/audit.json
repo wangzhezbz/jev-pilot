@@ -1,0 +1,11 @@
+{
+  "plannedAndCompleted": 12,
+  "qualityPassed": 12,
+  "sourceHashesMatchProtocol": true,
+  "sequentialRecordedIntervals": true,
+  "nativeUsageReconciliation": "All cumulative increments match generation last usage; duplicate notifications removed by the analyzer.",
+  "jevLedgerOverlap": 0,
+  "unknownJevUsageCalls": 0,
+  "semanticReasonReview": "All four findings.md outputs reviewed against eight positive source narratives; IDs and refund/settlement claims match.",
+  "scope": "macOS native app-server backend, GPT-6 Astra, high baseline, v16 installed plugin; no Windows/Linux performance or full fourteen-feature acceptance claim."
+}

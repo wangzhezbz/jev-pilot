@@ -24,8 +24,12 @@ out.mkdir(parents=True, exist_ok=True)
 data = json.loads((source/'results.json').read_text())
 rows=[]; details=[]; generations=[]; accounting=[]
 for r in data['records']:
-    events = r.get('jevEvents', [])
-    ledger = 'per_run_store'
+    events = r.get('jevEvents', []) + r.get('externalJevEvents', [])
+    ledger = 'per_run_and_default_store_exact_synthetic_project' if 'externalJevEvents' in r else 'per_run_store'
+    if 'externalJevEvents' in r:
+        local={json.dumps(e,sort_keys=True) for e in r.get('jevEvents',[])}
+        external={json.dumps(e,sort_keys=True) for e in r['externalJevEvents']}
+        assert not local.intersection(external), (r['id'],'overlapping Jev ledgers')
     if r['arm']=='routing':
         projects = {e['projectId'] for e in r.get('routing',[]) if e.get('projectId')}
         assert len(projects)==1, (r['id'],'routing project identity')
@@ -41,7 +45,7 @@ for r in data['records']:
     successful=[e for e in calls if e.get('status')=='success']
     # Decisions are a second view of the router's calls, not additional calls.
     assert len(successful)>=len(decisions), (r['id'],'missing real router ledger')
-    row={k:r.get(k) for k in ['id','task','arm','status','passed','wallMs','startupMs','totalMs']}
+    row={k:r.get(k) for k in ['id','model','task','repeat','arm','startedAt','status','passed','wallMs','startupMs','totalMs']}
     row.update({k:t.get(k) for k in ['inputTokens','cachedInputTokens','outputTokens','reasoningOutputTokens','totalTokens']})
     row['uncachedInputTokens']=t['inputTokens']-t['cachedInputTokens'] if t else None
     row.update(generations=len(r.get('usage',[])),jevCalls=len(calls),jevFailures=sum(e.get('status')!='success' for e in calls),jevUnknownUsage=sum(e.get('inputTokens') is None or e.get('outputTokens') is None for e in calls),jevInputTokens=sum(e.get('inputTokens') or 0 for e in calls),jevOutputTokens=sum(e.get('outputTokens') or 0 for e in calls),jevRequestMs=sum(e.get('elapsedMs') or 0 for e in calls),routerDecisions=len(decisions),routerDecisionMs=sum(e.get('elapsedMs') or 0 for e in decisions),startChanges=sum(e.get('status')=='start_forwarded' and e.get('from')!=e.get('published') for e in decisions),nativeAppliedChanges=sum(e.get('status')=='applied' and e.get('from')!=e.get('published') for e in decisions),nativeRestores=sum(e.get('kind')=='effort_restore' and e.get('status')=='applied' for e in route),preparedOutputs=sum(e['kind']=='prepared_output' and e.get('status')=='prepared' for e in events),evidenceOperations=sum(e['kind']=='operation' and e.get('operation') in ['prepare_output','filter_output','select','search','extract'] for e in events),recalls=sum(e['kind']=='operation' and e.get('operation') in ['recall_output','recall'] for e in events),hookSubmissions=sum(e['kind']=='automatic_output_result' and e.get('submitted',False) for e in events))
@@ -87,14 +91,14 @@ for arm in ['bare','routing','evidence','combined']:
     summary['arms'][arm]=dict(runs=len(rs),passed=sum(bool(r['passed']) for r in rs),**{k:sum(r.get(k) or 0 for r in rs) for k in metrics})
 for a in rows:
     if a['arm']=='bare':continue
-    b=next((r for r in rows if r['arm']=='bare' and r['task']==a['task']),None)
+    b=next((r for r in rows if r['arm']=='bare' and r['task']==a['task'] and r.get('repeat')==a.get('repeat') and r.get('model')==a.get('model')),None)
     if not b:continue
-    pair=dict(task=a['task'],arm=a['arm'],bothPassed=a['passed'] and b['passed'],increasePercent={k:100*(a[k]/b[k]-1) if a.get(k) is not None and b.get(k) else None for k in ['wallMs','totalMs','totalTokens','uncachedInputTokens','knownAllModelTokens']})
+    pair=dict(model=a.get('model'),task=a['task'],repeat=a.get('repeat'),arm=a['arm'],bothPassed=a['passed'] and b['passed'],increasePercent={k:100*(a[k]/b[k]-1) if a.get(k) is not None and b.get(k) else None for k in ['wallMs','totalMs','totalTokens','uncachedInputTokens','knownAllModelTokens']})
     summary['pairs'].append(pair)
     if a['firstInputTokens'] is not None and b['firstInputTokens'] is not None:
         parts=dict(extraGenerationBase=(a['generations']-b['generations'])*b['firstInputTokens'],repeatedFirstInputDifference=a['generations']*(a['firstInputTokens']-b['firstInputTokens']),historyGrowthDifference=a['historyGrowthTokens']-b['historyGrowthTokens'],outputDifference=a['outputTokens']-b['outputTokens'])
         delta=a['totalTokens']-b['totalTokens'];assert sum(parts.values())==delta
-        accounting.append(dict(task=a['task'],arm=a['arm'],totalTokenDelta=delta,**parts))
+        accounting.append(dict(model=a.get('model'),task=a['task'],repeat=a.get('repeat'),arm=a['arm'],totalTokenDelta=delta,**parts))
 
 # Machine-specific paths are replaced only in the public copy. Raw local data is
 # retained byte-for-byte under dist/. No credential file is read by this script.

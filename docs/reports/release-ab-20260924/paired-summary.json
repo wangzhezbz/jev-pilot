@@ -1,0 +1,128 @@
+{
+  "allQualityPassed": true,
+  "pairedRuns": [
+    {
+      "task": "cross_file",
+      "repeat": 0,
+      "bothPassed": true,
+      "wallMsChangePercent": -23.28752963228403,
+      "totalTokensChangePercent": -21.75055892457911,
+      "uncachedInputTokensChangePercent": -18.163368848300355,
+      "knownAllModelTokensChangePercent": -14.73632331197634,
+      "bareId": "gpt-6-astra-cross_file-0-bare",
+      "combinedId": "gpt-6-astra-cross_file-0-combined"
+    },
+    {
+      "task": "cross_file",
+      "repeat": 1,
+      "bothPassed": true,
+      "wallMsChangePercent": -5.297970853692369,
+      "totalTokensChangePercent": -16.65157897099422,
+      "uncachedInputTokensChangePercent": -50.78845220766618,
+      "knownAllModelTokensChangePercent": -10.271354077044503,
+      "bareId": "gpt-6-astra-cross_file-1-bare",
+      "combinedId": "gpt-6-astra-cross_file-1-combined"
+    },
+    {
+      "task": "incident",
+      "repeat": 0,
+      "bothPassed": true,
+      "wallMsChangePercent": 67.70864206140274,
+      "totalTokensChangePercent": 56.358505394012994,
+      "uncachedInputTokensChangePercent": 68.10327093190702,
+      "knownAllModelTokensChangePercent": 63.75830535114668,
+      "bareId": "gpt-6-astra-incident-0-bare",
+      "combinedId": "gpt-6-astra-incident-0-combined"
+    },
+    {
+      "task": "incident",
+      "repeat": 1,
+      "bothPassed": true,
+      "wallMsChangePercent": 30.890052356020938,
+      "totalTokensChangePercent": 27.155099080383604,
+      "uncachedInputTokensChangePercent": -7.8436934860465986,
+      "knownAllModelTokensChangePercent": 34.47979440708471,
+      "bareId": "gpt-6-astra-incident-1-bare",
+      "combinedId": "gpt-6-astra-incident-1-combined"
+    },
+    {
+      "task": "semantic",
+      "repeat": 0,
+      "bothPassed": true,
+      "wallMsChangePercent": 4.098040310423756,
+      "totalTokensChangePercent": 24.604199225385614,
+      "uncachedInputTokensChangePercent": 62.39366856896738,
+      "knownAllModelTokensChangePercent": 30.19335160396519,
+      "bareId": "gpt-6-astra-semantic-0-bare",
+      "combinedId": "gpt-6-astra-semantic-0-combined"
+    },
+    {
+      "task": "semantic",
+      "repeat": 1,
+      "bothPassed": true,
+      "wallMsChangePercent": 18.01807265449693,
+      "totalTokensChangePercent": 24.53807749739816,
+      "uncachedInputTokensChangePercent": 10.246021316980581,
+      "knownAllModelTokensChangePercent": 30.124888761519774,
+      "bareId": "gpt-6-astra-semantic-1-bare",
+      "combinedId": "gpt-6-astra-semantic-1-combined"
+    }
+  ],
+  "byTask": {
+    "cross_file": {
+      "bare": {
+        "wallMs": 285713,
+        "totalTokens": 273664,
+        "uncachedInputTokens": 50355,
+        "knownAllModelTokens": 273664
+      },
+      "combined": {
+        "wallMs": 244471,
+        "totalTokens": 220956,
+        "uncachedInputTokens": 33140,
+        "knownAllModelTokens": 239304
+      }
+    },
+    "incident": {
+      "bare": {
+        "wallMs": 107401,
+        "totalTokens": 223653,
+        "uncachedInputTokens": 47645,
+        "knownAllModelTokens": 223653
+      },
+      "combined": {
+        "wallMs": 161696,
+        "totalTokens": 317087,
+        "uncachedInputTokens": 58675,
+        "knownAllModelTokens": 333553
+      }
+    },
+    "semantic": {
+      "bare": {
+        "wallMs": 103200,
+        "totalTokens": 265051,
+        "uncachedInputTokens": 45970,
+        "knownAllModelTokens": 265051
+      },
+      "combined": {
+        "wallMs": 114315,
+        "totalTokens": 330177,
+        "uncachedInputTokens": 60366,
+        "knownAllModelTokens": 344988
+      }
+    }
+  },
+  "totalChangePercent": {
+    "wallMs": 4.869497938804868,
+    "totalTokens": 13.884633143049019,
+    "uncachedInputTokens": 5.703271514898933,
+    "knownAllModelTokens": 20.393956724311614
+  },
+  "pairsBetter": {
+    "wallMs": 2,
+    "totalTokens": 2,
+    "uncachedInputTokens": 3,
+    "knownAllModelTokens": 2
+  },
+  "inferenceBoundary": "Six matched pairs across three fixed synthetic tasks; descriptive only, no stable/general or subscription-debit claim."
+}

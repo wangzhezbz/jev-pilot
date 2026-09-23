@@ -1,0 +1,128 @@
+{
+  "at": "2026-09-23T17:34:36.716Z",
+  "jobs": [
+    {
+      "model": "gpt-6-astra",
+      "task": "cross_file",
+      "repeat": 0,
+      "arms": [
+        "bare",
+        "combined"
+      ]
+    },
+    {
+      "model": "gpt-6-astra",
+      "task": "incident",
+      "repeat": 0,
+      "arms": [
+        "combined",
+        "bare"
+      ]
+    },
+    {
+      "model": "gpt-6-astra",
+      "task": "semantic",
+      "repeat": 0,
+      "arms": [
+        "bare",
+        "combined"
+      ]
+    },
+    {
+      "model": "gpt-6-astra",
+      "task": "cross_file",
+      "repeat": 1,
+      "arms": [
+        "combined",
+        "bare"
+      ]
+    },
+    {
+      "model": "gpt-6-astra",
+      "task": "incident",
+      "repeat": 1,
+      "arms": [
+        "bare",
+        "combined"
+      ]
+    },
+    {
+      "model": "gpt-6-astra",
+      "task": "semantic",
+      "repeat": 1,
+      "arms": [
+        "combined",
+        "bare"
+      ]
+    }
+  ],
+  "runs": 12,
+  "models": [
+    "gpt-6-astra"
+  ],
+  "initialEffort": "high",
+  "concurrency": 1,
+  "hashes": {
+    "src/core.mjs": "09989cab5a162f33c1daa19eec16674b0874b2ae90b88b43504736ab7e7532fe",
+    "src/request-guard.mjs": "ebe0a0f2262b2846de814a141e095add69b984b3a10e92a528a5ce02ce521f76",
+    "src/automation.mjs": "f2848f1b51f478911340fa02959914e1f6df797fd50c71146ebf886e5f5bcbd6",
+    "src/evidence.mjs": "2e361d73cd8f720a272eb9eb2ba459a94aeab470d8242838970404d31589519e",
+    "src/policy.mjs": "4f29ab06c3f91509aa260247165d12a2e48e37b507b2c5f726f95e5b291582de",
+    "runtime/desktop/router.mjs": "11800aeeb3c03f3227dcfa8130da9ff261c7fc6d3a554ecc931e7fdc7900fa0a",
+    "runtime/desktop/bridge.mjs": "7360145816317f03cb9cb6ac03ff432ff0e3ccd41bce415db21179ed6dd2f3a4",
+    "skills/jev-pilot/SKILL.md": "2f398a72fc2fb47981f62689334dea8a06d04ac073f70ef11086092e878b1113",
+    "skills/jev-pilot/references/operations.md": "3ffe04b32ee869f87daa6a995e1836fc8610cc329b4353a19a39e8b442b87808",
+    "scripts/benchmark/tasks.mjs": "a205373e2b1f6bd9b7ced8eb8ed85093802d9f4f1babf0902ae2d1fbe6a60d29",
+    "scripts/acceptance/tasks.mjs": "ad1c528e00822d3d501ca001998d55493b854c56cc9167f480c4aa6faa6c1f52",
+    "scripts/acceptance/factorial-run.mjs": "af00094ad11170ffb9987bdcaf595adf9ca31733f3e73dd1122d5c81fda9e6b1",
+    "scripts/acceptance/factorial-tasks.mjs": "80c710fc9a4cf2514990e817973a0cad7462422a22d680a99294787677d6d9ed",
+    "src/prepare-output.mjs": "62b978bb88509313b1b40a5c50b3feea5ab03d3a28ccc29c5a6a12af33eca6fc",
+    "src/evidence-tool.mjs": "38bee8b9df216da1d72a65cb1f8f6fc22fe95dc9cecd7792f26d6cf7ea926cd4",
+    "src/server.mjs": "cbaaa6ae29c6c6d260a2713898287e03fc65c66012899f3c1bda9d22b4dfb307",
+    "src/runtime-compatibility.mjs": "b298c0b2b252980e8131ea5dc90a6ba666ae665e95f9e269279b7b67a7086ae4",
+    "skills/jev-pilot/references/evidence.md": "480e009b71691b9ca88e458dc2f5eadccc5fe8c2bd478c1b25a57b229f69face",
+    "scripts/acceptance/timeline.mjs": "f8794e32a0bc3044ee2e8ce07ee0324be42118106301c146a831c1c810e1c49b",
+    "src/distribution.mjs": "1ceba37ba94ea6ca1f036e7195f24e996c08ae4004c0fa67f7bea55a87cdc5a3",
+    "scripts/acceptance/semantic-task.mjs": "a167b7cdd94cea2bf0bc13be01d30ad28a9364b657aedf73c989ad03fe258efa"
+  },
+  "config": {
+    "features.apps": false,
+    "features.multi_agent": false,
+    "web_search": "disabled",
+    "hooks.Stop": []
+  },
+  "quality": "Frozen independent oracle after inference; protected fixtures unchanged; failed attempts retained.",
+  "stopRule": "Stop after infrastructure failure, timeout, interruption or provider limit; retain all prior and failed runs. No reruns or mid-test product changes.",
+  "timeLimitMs": 240000,
+  "nativeVersion": "codex-cli 0.155.0-alpha.16.3",
+  "revision": "ee7c3b6d284b8b43b39370874e8506e2ad35cd93",
+  "expectedPluginVersion": "0.2.0+codex.20260924011258",
+  "scope": "Frozen installed v16, GPT-6 Astra initially high. 3 tasks x 2 repeats x bare/combined = 12 real tasks, sequential, AB/BA balanced within each task. No mandated Jev or full reads. Equal prompts, frozen independent quality oracles, startup separate. Native desktop backend timing, not UI or subscription debits; small exploratory sample.",
+  "tasks": [
+    {
+      "id": "cross_file",
+      "prompt": "Investigate the balance lookup defects across src/. Follow SPEC.md, fix the implementation, add regression tests and run them alongside smoke.mjs. Write diagnosis.md explaining the causes and verification. Preserve existing exports. Do not change SPEC.md or smoke.mjs. Pay particular attention to tenant isolation, request lifetime, error propagation and preservation of monetary values.",
+      "files": {
+        "SPEC.md": "87bca2a766a0ca835690b95773274511ba92eac162fc3887ec58a1d84e99adb3",
+        "src/pending.mjs": "1640f5c4bcf41f92b0d5ecb422c2384b8f705c3e8df5ae169aab4b407875426c",
+        "src/client.mjs": "a186a5393f464c7a8d0ed2bdb92bbb2bcf068855be016bc3552fc2aa34678f0e",
+        "src/resolve.mjs": "d61036e902870005bc3fa13f00afd213ffaab40ddf132288fb3e45aa934386ae",
+        "smoke.mjs": "230c8b4798410dfa30f7402ff2b1ea218284cdd3bfe9ab7ed7685998034f4a95"
+      }
+    },
+    {
+      "id": "incident",
+      "prompt": "Analyze incident.log and write incident.md explaining the checkout incident. Evidence is spread throughout the log. Identify the supported root cause, the rejected hypothesis and why it is rejected, the observed impact, mitigation and verification, and what remains unknown. Cite the original L-prefixed evidence IDs. Do not turn guesses into facts. Also write findings.data as a machine-readable object with these keys: rootCause (one of pool_limit_regression, dns_failure, unknown), failedRequests (integer), totalRequests (integer), failureRate (number 0..1), mitigationPoolLimit (integer), postMitigationFailures (integer), settlementImpact (one of unknown, confirmed_safe, confirmed_loss), rejectedHypothesis (one of dns_failure, pool_limit_regression, none), evidenceIds (all L-prefixed IDs supporting the report). Do not change incident.log. The requirement is substantive incident analysis; concise factual output is enough.",
+      "files": {
+        "incident.log": "6a932f3daa50ac58d2a81f515744b30cd1808f25660d7dc46225a4dec6ff6b6e"
+      }
+    },
+    {
+      "id": "semantic",
+      "prompt": "Review support-notes.md and identify cases that still require returning an unintended extra payment caused by a repeated checkout attempt. Exclude pending holds, intentional separate purchases and cases already fully compensated. Write findings.md with one bullet per qualifying case: its CASE identifier and a short source-grounded reason. Do not modify the source. Check ambiguous facts before concluding; do not list excluded cases in findings.md.",
+      "files": {
+        "support-notes.md": "fdf66664a8a8d9a178252decd385e8d6cdea67e70d7378db6a142c0722d94448"
+      }
+    }
+  ]
+}
