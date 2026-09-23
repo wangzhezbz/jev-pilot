@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { parseEnv } from 'node:util';
 import { postTypeSafe } from './transport.mjs';
 
-export const POLICY_VERSION = 'effort-v9-context-batches';
+export const POLICY_VERSION = 'effort-v10-bounded-recovery';
 const effortOrder=['none','minimal','low','medium','high','xhigh','max','ultra'];
 export const LEASE_UNIT = 'observed_tool_batch_or_boundary';
 export const SUPPORTED_MODELS = ['gpt-6-astra','gpt-6-sol','gpt-6-luna','gpt-5.6-sol','gpt-5.6-terra','gpt-5.6-luna'];
@@ -91,9 +91,12 @@ export function routineProgress(text) {
   return typeof text==='string' && text.length<=160 && (/^(?:(?:检查|测试|验证)(?:已)?通过[，,。;； ]*)?继续(?:执行)?(?:原计划|下一项|下一步)(?:检查|测试|验证)?[。.!！ ]*$/.test(text.trim()) || /^(?:(?:The (?:first|next) )?(?:check|test|verification) passed[.;, ]+)?continuing (?:the same plan|the next check)[.! ]*$/i.test(text.trim()));
 }
 
+export const isContinuation=value=>/^(?:继续(?:吧)?|开始吧|重启(?:了|好了)|按你说的来|continue|go ahead|resumed|restarted)[。.!！\s]*$/i.test(String(value).trim());
+const transientErrors=new Set(['JEV_TIMEOUT','CURL_TIMEOUT','JEV_CONNECT','JEV_DNS','JEV_PROXY_DNS','JEV_SERVER']);
+
 export class Router {
-  constructor({ request, judge, log = () => {}, maxCalls = 6, reservedCalls = 2, coalesceMs = 50, leaseSteps = 1, leaseMs = 60000, groupToolBatches = false }) {
-    Object.assign(this, { request, judge, log, maxCalls, leaseSteps, leaseMs, groupToolBatches });
+  constructor({ request, judge, log = () => {}, maxCalls = 6, reservedCalls = 2, coalesceMs = 50, leaseSteps = 1, leaseMs = 60000, groupToolBatches = false, recoveryCooldownMs = 15000, clock = Date.now }) {
+    Object.assign(this, { request, judge, log, maxCalls, leaseSteps, leaseMs, groupToolBatches, recoveryCooldownMs, clock });
     this.routineLimit=Math.max(1,maxCalls-Math.max(0,Math.min(reservedCalls,maxCalls-1)));
     this.coalesceMs=Math.max(0,Math.min(coalesceMs,100));
     this.turns = new Map();
@@ -106,9 +109,12 @@ export class Router {
     const meta = this.threads.get(threadId) ?? {};
     const current = params.effort ?? params.collaborationMode?.settings?.reasoning_effort ?? meta.effort;
     const model = params.model ?? params.collaborationMode?.settings?.model ?? meta.model;
-    this.turns.set(threadId, { threadId, cwd: params.cwd ?? meta.cwd, turnId: null, current, model, active: true, revision: 0,
+    const cwd=params.cwd??meta.cwd,stamp=this.clock();
+    const historical=old?.completed&&old.cwd===cwd&&stamp-(old.completedAt??old.openedAt)>=0&&stamp-(old.completedAt??old.openedAt)<=86400000
+      ? {source:'memory',sourceTurnId:old.turnId,taskSourceTurnId:isContinuation(old.task)?old.previousTurn?.taskSourceTurnId??old.previousTurn?.sourceTurnId??old.turnId:old.turnId,observedAt:new Date(old.completedAt??old.openedAt).toISOString(),requiresReview:true,task:compact(isContinuation(old.task)?old.previousTurn?.task??old.task:old.task,1000),progress:old.progress.slice(-1).map(x=>compact(x,1000))} : undefined;
+    this.turns.set(threadId, { threadId, cwd, turnId: null, current, model, active: true, revision: 0,
       task: compact((params.input ?? []).filter(x=>x.type==='text').map(x=>x.text).join('\n'),4000),
-      previousTurn: old?.completed ? {task:compact(old.task,1000),progress:old.progress.slice(-1).map(x=>compact(x,1000))} : undefined,
+      previousTurn:historical,openedAt:stamp,recoveryAttempts:0,retryAt:null,
       baseline:current,forceRecheck:false, evidenceVersion:0, progressVersion:0, noteVersion:0, judgedProgress:0, leaseSkips:0,
       urgentVersion:0,judgedUrgent:0,budgetSkips:0,coalescedBoundaries:0,
       progress: [], publicNotes: [], recent: [], calls: 0, pending: Promise.resolve(), seen: new Set(), lastAt: 0, settingsPending: 0,
@@ -171,6 +177,10 @@ export class Router {
     t.reusedBatch=null;t.lease=t.horizon-1;t.leaseUntil=Date.now()+this.leaseMs;
     t.judgedProgress=snapshot.progress;t.judgedUrgent=snapshot.urgent;t.forceRecheck=false;
   }
+  failJudgment(t,error) {
+    t.routineBudgetBlocked=error.message==='TASK_URGENT_RESERVE';t.unavailable=!t.routineBudgetBlocked;
+    t.retryAt=t.unavailable&&!t.settingsUncertain&&transientErrors.has(error.message)&&t.recoveryAttempts<1&&t.calls<this.maxCalls ? this.clock()+this.recoveryCooldownMs : null;
+  }
   canJudge(t) { return t.calls<this.maxCalls && (t.calls<this.routineLimit || t.urgentVersion!==t.judgedUrgent); }
   // No extra evaluator spend when the bounded budget is depleted. Never leave
   // an expired automatic downgrade in force indefinitely, or lower a stronger
@@ -225,9 +235,9 @@ export class Router {
       return {...params,effort,...(params.collaborationMode?.settings?{collaborationMode:{...params.collaborationMode,
         settings:{...params.collaborationMode.settings,reasoning_effort:effort}}}:{})};
     }catch(error){
-      t.routineBudgetBlocked=error.message==='TASK_URGENT_RESERVE';t.unavailable=!t.routineBudgetBlocked;
+      this.failJudgment(t,error);
       t.startDecision={kind:'fallback',policyVersion:POLICY_VERSION,event:'BeforeTurnStart',threadId:t.threadId,
-        effort:from,code:/^[A-Z][A-Z0-9_]+$/.test(error.message)?error.message:'UNAVAILABLE',elapsedMs:Math.round(performance.now()-started)};
+        effort:from,recoveryScheduled:t.retryAt!==null,retryAfterMs:t.retryAt===null?null:this.recoveryCooldownMs,code:/^[A-Z][A-Z0-9_]+$/.test(error.message)?error.message:'UNAVAILABLE',elapsedMs:Math.round(performance.now()-started)};
       return params;
     }
   }
@@ -276,7 +286,7 @@ export class Router {
         jevCalls:t.calls,batchLeaseSkips:t.batchLeaseSkips,routineProgressNotes:t.routineProgressNotes,leaseSkips:t.leaseSkips,budgetSkips:t.budgetSkips,coalescedBoundaries:t.coalescedBoundaries,
         usage:t.usage,usageEvents:t.usageEvents,invalidUsageEvents:t.invalidUsageEvents,
         accounting:'runtime_reported_tokens_not_account_debits'});
-      t.completed=true;
+      t.completed=true;t.completedAt=this.clock();
       this.stop(p.threadId);
     }
     if (message.method==='item/completed' && p.item?.type==='agentMessage') {
@@ -319,7 +329,11 @@ export class Router {
       const admission=()=>{
         if(!t.active || revision!==t.revision)return {status:'stale'};
         if(t.settingsPending || t.settingsUncertain)return {status:'external_settings_pending_or_unknown'};
-        if(t.unavailable)return {status:'disabled_for_turn'};
+        if(t.unavailable){
+          if(t.retryAt===null||this.clock()<t.retryAt||t.recoveryAttempts>=1||!this.canJudge(t))return {status:'disabled_for_turn'};
+          t.unavailable=false;t.retryAt=null;t.recoveryAttempts++;t.lease=0;t.forceRecheck=true;
+          this.log({kind:'routing_recovery',threadId:t.threadId,turnId:t.turnId,attempt:t.recoveryAttempts,status:'admitted'});
+        }
         const urgent=t.forceRecheck || t.progressVersion!==t.judgedProgress;
         if(!urgent && Date.now()<t.leaseUntil){
           if(batch!==undefined && t.reusedBatch===batch){t.batchLeaseSkips++;return {status:'batch_lease_held'};}
@@ -384,8 +398,8 @@ export class Router {
         const metrics=this.metrics(t,result,from,status,started,p.hook_event_name);
         this.log(metrics);return {status};
       } catch(error) {
-        t.routineBudgetBlocked=error.message==='TASK_URGENT_RESERVE';t.unavailable=!t.routineBudgetBlocked;
-        this.log({kind:'fallback',threadId:t.threadId,turnId:t.turnId,effort:t.current,code:/^[A-Z][A-Z0-9_]+$/.test(error.message)?error.message:'UNAVAILABLE',elapsedMs:Math.round(performance.now()-started)});
+        this.failJudgment(t,error);
+        this.log({kind:'fallback',threadId:t.threadId,turnId:t.turnId,effort:t.current,recoveryScheduled:t.retryAt!==null,retryAfterMs:t.retryAt===null?null:this.recoveryCooldownMs,code:/^[A-Z][A-Z0-9_]+$/.test(error.message)?error.message:'UNAVAILABLE',elapsedMs:Math.round(performance.now()-started)});
         await this.restoreBaseline(t,'evaluator_unavailable');
         return {status:'unavailable'};
       }

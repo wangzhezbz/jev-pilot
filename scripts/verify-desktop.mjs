@@ -17,14 +17,16 @@ const root=join(dirname(fileURLToPath(import.meta.url)),'../runtime/desktop');
 const targetModel=process.argv.find(x=>x.startsWith('--model='))?.slice(8)??'gpt-6-astra';
 const reassess=process.argv.includes('--reassess');
 const parallelTools=process.argv.includes('--parallel-tools');
+const recoverTimeout=process.argv.includes('--recover-timeout');
 const resumeFixture=process.argv.includes('--resume-context');
 const routingBudget=process.argv.includes('--routing-budget');
+const noBenefitFiltering=process.argv.includes('--no-benefit-filter');
 const mcpFiltering=process.argv.includes('--filter-mcp');
-const filtering=process.argv.includes('--filter-output')||mcpFiltering;
+const filtering=process.argv.includes('--filter-output')||mcpFiltering||noBenefitFiltering;
 const manualSettings=process.argv.includes('--manual-settings');
 const inspectCacheContext=process.argv.includes('--inspect-cache-context');
 const inputSnapshots=[];
-const steps=routingBudget?7:reassess?4:1;
+const steps=routingBudget?7:reassess?4:noBenefitFiltering?2:1;
 const realBin=process.env.JEV_PILOT_CODEX??'/Applications/ChatGPT.app/Contents/Resources/codex';
 const work=await mkdtemp(join(tmpdir(),'jev-desktop-verification-'));
 const codexHome=join(work,'home');await mkdir(codexHome);
@@ -50,8 +52,8 @@ const server=createServer(async(req,res)=>{
   const responseId='resp_'+apiCount;
   let item;
   if(apiCount<=steps && tool) {
-    const command=filtering?`printf 'NEEDLE target\\n'; printf 'noise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\n%.0s' {1..350}`:(reassess&&apiCount===4)||(routingBudget&&apiCount>=5)?'exit 7':'printf fixture_ok';
-    const args=mcpFiltering?{}:tool.name==='exec_command'?{cmd:command,max_output_tokens:filtering?15000:50}:
+    const command=noBenefitFiltering?`printf 'error '; printf 'important xxxxxxxxxxxxxxxx%.0s' {1..1000}; printf '\n'; printf 'ordinary noise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n%.0s' {1..100}`:recoverTimeout?'sleep 15.1; printf fixture_ok':filtering?`printf 'NEEDLE target\\n'; printf 'noise xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\n%.0s' {1..350}`:(reassess&&apiCount===4)||(routingBudget&&apiCount>=5)?'exit 7':'printf fixture_ok';
+    const args=mcpFiltering?{}:tool.name==='exec_command'?{cmd:command,max_output_tokens:filtering?15000:50,...(recoverTimeout?{yield_time_ms:20000}:{})}:
       tool.name==='shell_command'?{command}:{command:['/bin/sh','-c',command]};
     item={id:'fc_fixture_'+apiCount,type:'function_call',call_id:'call_fixture_'+apiCount,name:tool.name,...(mcpFiltering?{namespace:'mcp__fixture'}:{}),arguments:JSON.stringify(args),status:'completed'};
   }else item={id:'msg_fixture',type:'message',role:'assistant',status:'completed',content:[{type:'output_text',text:'fixture_ok'}]};
@@ -116,7 +118,8 @@ try{
   let input=new PassThrough(),output=new PassThrough();
   let judgeCalls=0;
   const mockedJudge=async state=>{if(resumeFixture)report.resumeState={source:state.previousTurn?.source,requiresReview:state.previousTurn?.requiresReview,historicalTaskPresent:state.previousTurn?.task==='Verify the prepared parser patch',currentTask:state.task};const choice=(reassess||manualSettings)&&judgeCalls++>0?'medium':'low';if(manualSettings && judgeCalls>1)report.manualJudgeEffort=state.currentEffort;return{answer:{type:'choice',choice,confidence:.4,probabilities:Object.fromEntries(Object.keys(effortQuestion.criteria).map(k=>[k,k===choice?.5:.1]))},horizon:{type:'choice',choice:routingBudget?'1':'5',confidence:1,probabilities:Object.fromEntries(Object.keys(horizonQuestion.criteria).map(k=>[k,k===(routingBudget?'1':'5')?1:0]))},model:'offline-fixture',inputTokens:0};};
-  const judge=process.argv.includes('--unavailable-jev')?async()=>{throw new Error('TIMEOUT');}:
+  let recoveryCalls=0;
+  const judge=recoverTimeout?async state=>{if(recoveryCalls++===0)throw new Error('JEV_TIMEOUT');return mockedJudge(state);}:process.argv.includes('--unavailable-jev')?async()=>{throw new Error('TIMEOUT');}:
     process.argv.includes('--real-jev')?await makeJudge(join(installHome(),'.env.local')):mockedJudge;
   report.realJev=process.argv.includes('--real-jev');
   if(process.argv.includes('--incompatible') || process.argv.includes('--disabled')) {
@@ -171,6 +174,8 @@ try{
   report.audit=(await readFile(auditFile,'utf8')).trim().split('\n').map(JSON.parse).filter(x=>auditOverride||!installed||x.threadId===started.thread.id);
   report.passed=process.argv.includes('--incompatible') || process.argv.includes('--disabled')
     ? report.requests.length>=2 && report.requests.every(x=>x.effort==='high') && report.audit.some(x=>x.kind==='compatibility_fallback')
+    : recoverTimeout
+    ? report.requests.length===2&&report.requests[0].effort==='high'&&report.requests[1].effort==='low'&&report.audit.some(x=>x.kind==='routing_recovery')&&report.audit.some(x=>x.kind==='decision'&&x.status==='applied')&&recoveryCalls===2
     : process.argv.includes('--unavailable-jev')
     ? report.requests.length>=2 && report.requests.every(x=>x.effort==='high') && report.audit.some(x=>x.kind==='fallback')
     : report.requests.length>=2 && report.requests.every((x,i)=>x.effort===(routingBudget?(i>=4?'high':'low'):((reassess&&i>=4)||(manualSettings&&i>0)?'medium':'low'))&&x.model===targetModel)
@@ -189,7 +194,7 @@ try{
     report.passed=report.passed&&report.cacheContext.perRequest.every(x=>x.initialPrefixPreserved);
   }
   if(mcpFiltering){const outputs=JSON.parse(report.requests[1]?.inputText||'[]').filter(x=>x.type==='function_call_output');report.mcpEnvelopePreserved=outputs.some(x=>{try{const r=JSON.parse(x.output);return r.content?.length===1&&r.content[0].type==='text'&&r.content[0].text.includes('NEEDLE target')&&r.isError!==true;}catch{return false;}});report.passed=report.passed&&report.mcpEnvelopePreserved;}
-  if(filtering){const saved=autoStore.list(autoStore.project(work),'checkpoint')[0];report.automaticCheckpoint={observed:Boolean(saved),auto:saved?.auto,requiresReview:saved?.requiresReview,turnStatus:saved?.turnStatus,coverage:saved?.coverage,verifiedCompletedCount:saved?.completed?.length??0,publicProgressObserved:Boolean(saved?.lastPublishedProgress)};report.passed=report.passed&&saved?.auto===true&&saved?.requiresReview===true&&saved?.turnStatus==='completed';report.automaticEvents=autoStore.events(autoStore.project(work));report.passed=report.passed&&report.automaticEvents.some(e=>e.kind==='automatic_output_filter')&&report.requests.slice(1).some(r=>r.inputText?.includes('JevPilot retained task evidence'));}
+  if(filtering){const saved=autoStore.list(autoStore.project(work),'checkpoint')[0];report.automaticCheckpoint={observed:Boolean(saved),auto:saved?.auto,requiresReview:saved?.requiresReview,turnStatus:saved?.turnStatus,coverage:saved?.coverage,verifiedCompletedCount:saved?.completed?.length??0,publicProgressObserved:Boolean(saved?.lastPublishedProgress)};report.passed=report.passed&&saved?.auto===true&&saved?.requiresReview===true&&saved?.turnStatus==='completed';report.automaticEvents=autoStore.events(autoStore.project(work));report.passed=report.passed&&(noBenefitFiltering ? report.automaticEvents.some(e=>e.kind==='automatic_output_result'&&e.reason==='insufficient_reduction')&&report.automaticEvents.some(e=>e.kind==='automatic_output_admission'&&e.reason==='no_benefit_cooldown')&&!report.automaticEvents.some(e=>e.kind==='automatic_output_filter')&&report.requests.length===3 : report.automaticEvents.some(e=>e.kind==='automatic_output_filter')&&report.requests.slice(1).some(r=>r.inputText?.includes('JevPilot retained task evidence')));}
   report.status=report.passed?'passed':'failed';
   if(!report.passed)process.exitCode=1;
 }catch(error){report.status='failed';report.error=String(error.message);process.exitCode=1;}

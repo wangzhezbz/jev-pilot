@@ -7,7 +7,7 @@ import { tmpdir, homedir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { randomUUID, createHash } from 'node:crypto';
-import { Router, makeJudge, POLICY_VERSION, LEASE_UNIT } from './router.mjs';
+import { Router, makeJudge, POLICY_VERSION, LEASE_UNIT, isContinuation } from './router.mjs';
 import { Store, Judge, loadConfig } from '../../src/core.mjs';
 
 export function toml(value) {
@@ -122,7 +122,7 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
         if(starting){
           await ensureMetadata();const cwd=msg.params.cwd??router.threads.get(threadId)?.cwd;
           if(!assistant||!cwd||assistant.enabled(cwd)){
-            if(assistant&&cwd&&!starting.previousTurn){
+            if(assistant&&cwd&&(!starting.previousTurn||isContinuation(starting.task))){
               const revision=starting.revision;let timer;
               const previous=await Promise.race([assistant.resumeContext(cwd,threadId,starting.task).catch(()=>undefined),new Promise(resolve=>{timer=setTimeout(()=>resolve(undefined),150);})]).finally(()=>clearTimeout(timer));
               if(previous&&starting.active&&starting.revision===revision&&router.turns.get(threadId)===starting){

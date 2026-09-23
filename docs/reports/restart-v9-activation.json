@@ -1,0 +1,67 @@
+{
+  "checkedAt": "2026-09-23T07:33:22.978413+00:00",
+  "policyVersion": "effort-v9-context-batches",
+  "compatible": true,
+  "loadedRevisionMatches": true,
+  "installedFingerprint": "25dc35d9bc6f064dc525b9573b5aabc5418037af243af4e119cf741d5fa9dead",
+  "loadedFingerprint": "25dc35d9bc6f064dc525b9573b5aabc5418037af243af4e119cf741d5fa9dead",
+  "processChain": [
+    {
+      "pid": 2561,
+      "parentPid": 2557,
+      "executable": "/Applications/ChatGPT.app/Contents/Resources/codex"
+    },
+    {
+      "pid": 2557,
+      "parentPid": 2556,
+      "executable": "/Users/wangzhe/.nvm/versions/node/v24.18.0/bin/node"
+    },
+    {
+      "pid": 2556,
+      "parentPid": 1890,
+      "executable": "/Users/wangzhe/.codex/jev-pilot/jev-pilot"
+    },
+    {
+      "pid": 1890,
+      "parentPid": 1,
+      "executable": "/Applications/ChatGPT.app/Contents/MacOS/ChatGPT"
+    }
+  ],
+  "currentThreadId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+  "currentThreadEvents": [
+    {
+      "at": "2026-09-23T07:30:38.290Z",
+      "kind": "resume_context",
+      "threadId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "sourceTurnId": "01a0ccfe-5948-74c3-86e3-637df5599eda",
+      "changedFilesCount": 0,
+      "requiresReview": true
+    },
+    {
+      "at": "2026-09-23T07:30:40.334Z",
+      "kind": "fallback",
+      "threadId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "turnId": "01a0cd2c-7e39-7990-98e4-0c4fd9cdba87",
+      "policyVersion": "effort-v9-context-batches",
+      "code": "JEV_TIMEOUT",
+      "elapsedMs": 2019
+    }
+  ],
+  "connectionProbe": {
+    "syntheticState": true,
+    "status": "success",
+    "model": "jev-1.13.0",
+    "effort": "keep",
+    "horizon": "1",
+    "inputTokens": 877,
+    "outputTokens": 106,
+    "elapsedMs": 919
+  },
+  "activationVerified": true,
+  "currentTurnEffortChangeVerified": false,
+  "notes": [
+    "Current ordinary turn restored checkpoint context; initial Jev routing timed out at the 2-second limit and retained the original effort.",
+    "Subsequent synthetic probe through the same transport succeeded; this does not prove recovery or switching in the already-running ordinary turn.",
+    "No stable savings measurement; no configuration changes or additional restart required."
+  ]
+}

@@ -3,6 +3,7 @@ import {promisify} from 'node:util';
 import {open} from 'node:fs/promises';
 import {randomUUID} from 'node:crypto';
 import {inside,hash,now,redact} from './core.mjs';
+import {isContinuation} from '../runtime/desktop/router.mjs';
 const exec=promisify(execFile),MAX_BYTES=1000000;
 async function sourceHash(root,path) {
  const file=await open(inside(root,path),'r');
@@ -30,13 +31,12 @@ export function checkpointRelevant(message) {
   (message?.method==='turn/completed'&&Boolean(p?.turn?.id));
 }
 const text=value=>redact(String(value??'')).slice(0,1000);
-const continuation=value=>/^(?:继续(?:吧)?|开始吧|重启(?:了|好了)|按你说的来|continue|go ahead|resumed|restarted)[。.!！\s]*$/i.test(String(value).trim());
 export function checkpointForTurn(saved,t) {
  if(saved?.turnId===t.turnId&&saved?.threadId===t.threadId)return saved;
  const inherited=saved ? {sourceTurnId:saved.turnId??null,observedAt:saved.updatedAt??saved.createdAt,
   task:text(saved.task),pending:(saved.pending??[]).slice(0,10).map(text),lastPublishedProgress:text(saved.lastPublishedProgress)} : undefined;
  const age=Date.now()-Date.parse(saved?.updatedAt??saved?.createdAt);
- const historicalTask=continuation(t.task)&&age>=0&&age<=86400000 ? saved.historicalTask??{text:text(saved.task),sourceTurnId:saved.turnId??null} : undefined;
+ const historicalTask=isContinuation(t.task)&&age>=0&&age<=86400000 ? saved.historicalTask??{text:text(saved.task),sourceTurnId:saved.turnId??null} : undefined;
  return {task:text(t.task),threadId:t.threadId,turnId:t.turnId,createdAt:now(),completed:[],pending:[],receiptIds:[],sourceHashes:{},toolReceipts:[],...(inherited?{inherited}:{}),...(historicalTask?{historicalTask}:{}),auto:true,requiresReview:true};
 }
 export function checkpointObserver(store,{snapshot=worktreeSnapshot}={}) {
@@ -65,7 +65,7 @@ export function checkpointObserver(store,{snapshot=worktreeSnapshot}={}) {
 }
 export async function resumeContext(store,root,threadId,currentTask,{clock=Date.now,maxAgeMs=86400000}={}) {
  // Only short continuation requests inherit historical context automatically.
- if(!continuation(currentTask))return;
+ if(!isContinuation(currentTask))return;
  const saved=store.get(store.project(root),'checkpoint','auto-'+hash(threadId));
  const age=clock()-Date.parse(saved?.updatedAt??saved?.createdAt);
  if(saved?.threadId!==threadId||!saved.turnId||!Number.isFinite(age)||age<0||age>maxAgeMs)return;

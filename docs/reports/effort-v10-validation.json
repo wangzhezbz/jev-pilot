@@ -1,0 +1,471 @@
+{
+  "policy": "effort-v10-bounded-recovery",
+  "regressions": {
+    "passed": 163,
+    "failed": 0
+  },
+  "nativeRuntime": "codex-cli 0.155.0-alpha.9.2",
+  "nativeScenarios": [
+    {
+      "scenario": "recovery",
+      "passed": true,
+      "requests": [
+        {
+          "model": "gpt-6-astra",
+          "effort": "high"
+        },
+        {
+          "model": "gpt-6-astra",
+          "effort": "low"
+        }
+      ],
+      "decisions": [
+        {
+          "kind": "fallback",
+          "code": "JEV_TIMEOUT",
+          "recoveryScheduled": true,
+          "retryAfterMs": 15000,
+          "elapsedMs": 0
+        },
+        {
+          "kind": "routing_recovery",
+          "status": "admitted"
+        },
+        {
+          "kind": "decision",
+          "status": "applied",
+          "from": "high",
+          "published": "low",
+          "elapsedMs": 52
+        }
+      ]
+    },
+    {
+      "scenario": "resume",
+      "passed": true,
+      "requests": [
+        {
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-6-astra",
+          "effort": "low"
+        }
+      ],
+      "decisions": [
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "elapsedMs": 0
+        }
+      ]
+    },
+    {
+      "scenario": "batch",
+      "passed": true,
+      "requests": [
+        {
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-6-astra",
+          "effort": "low"
+        }
+      ],
+      "decisions": [
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "elapsedMs": 1
+        }
+      ]
+    },
+    {
+      "scenario": "astra",
+      "passed": true,
+      "requests": [
+        {
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-6-astra",
+          "effort": "high"
+        },
+        {
+          "model": "gpt-6-astra",
+          "effort": "high"
+        },
+        {
+          "model": "gpt-6-astra",
+          "effort": "high"
+        },
+        {
+          "model": "gpt-6-astra",
+          "effort": "high"
+        }
+      ],
+      "decisions": [
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "low",
+          "published": "low",
+          "elapsedMs": 52
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "low",
+          "published": "low",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "low",
+          "published": "low",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "effort_restore",
+          "status": "applied",
+          "from": "low",
+          "published": "high",
+          "elapsedMs": 1
+        },
+        {
+          "kind": "decision",
+          "status": "budget_held",
+          "from": "high",
+          "published": "high",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "decision",
+          "status": "budget_held",
+          "from": "high",
+          "published": "high",
+          "elapsedMs": 51
+        }
+      ]
+    },
+    {
+      "scenario": "sol",
+      "passed": true,
+      "requests": [
+        {
+          "model": "gpt-6-sol",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-6-sol",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-6-sol",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-6-sol",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-6-sol",
+          "effort": "high"
+        },
+        {
+          "model": "gpt-6-sol",
+          "effort": "high"
+        },
+        {
+          "model": "gpt-6-sol",
+          "effort": "high"
+        },
+        {
+          "model": "gpt-6-sol",
+          "effort": "high"
+        }
+      ],
+      "decisions": [
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "low",
+          "published": "low",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "low",
+          "published": "low",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "low",
+          "published": "low",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "effort_restore",
+          "status": "applied",
+          "from": "low",
+          "published": "high",
+          "elapsedMs": 1
+        },
+        {
+          "kind": "decision",
+          "status": "budget_held",
+          "from": "high",
+          "published": "high",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "decision",
+          "status": "budget_held",
+          "from": "high",
+          "published": "high",
+          "elapsedMs": 51
+        }
+      ]
+    },
+    {
+      "scenario": "luna",
+      "passed": true,
+      "requests": [
+        {
+          "model": "gpt-6-luna",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-6-luna",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-6-luna",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-6-luna",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-6-luna",
+          "effort": "high"
+        },
+        {
+          "model": "gpt-6-luna",
+          "effort": "high"
+        },
+        {
+          "model": "gpt-6-luna",
+          "effort": "high"
+        },
+        {
+          "model": "gpt-6-luna",
+          "effort": "high"
+        }
+      ],
+      "decisions": [
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "low",
+          "published": "low",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "low",
+          "published": "low",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "low",
+          "published": "low",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "effort_restore",
+          "status": "applied",
+          "from": "low",
+          "published": "high",
+          "elapsedMs": 1
+        },
+        {
+          "kind": "decision",
+          "status": "budget_held",
+          "from": "high",
+          "published": "high",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "decision",
+          "status": "budget_held",
+          "from": "high",
+          "published": "high",
+          "elapsedMs": 51
+        }
+      ]
+    },
+    {
+      "scenario": "manual",
+      "passed": true,
+      "requests": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "medium"
+        }
+      ],
+      "decisions": [
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "medium",
+          "published": "medium",
+          "elapsedMs": 51
+        }
+      ]
+    },
+    {
+      "scenario": "mcp",
+      "passed": true,
+      "requests": [
+        {
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-6-astra",
+          "effort": "low"
+        }
+      ],
+      "decisions": [
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "elapsedMs": 0
+        }
+      ]
+    },
+    {
+      "scenario": "no-benefit",
+      "passed": true,
+      "requests": [
+        {
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-6-astra",
+          "effort": "low"
+        }
+      ],
+      "decisions": [
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "elapsedMs": 0
+        }
+      ],
+      "filterResults": [
+        {
+          "kind": "automatic_output_admission",
+          "reason": "no_benefit_cooldown"
+        },
+        {
+          "kind": "automatic_output_result",
+          "reason": "insufficient_reduction",
+          "applied": false,
+          "originalBytes": 31607,
+          "retainedBytes": 27840,
+          "retainedRatio": 0.8808175404182618,
+          "elapsedMs": 5
+        },
+        {
+          "kind": "automatic_output_admission",
+          "reason": "eligible"
+        }
+      ]
+    }
+  ],
+  "controlledValidation": {
+    "responseSource": "synthetic evaluator and GPT responses through original macOS engine",
+    "extraPaidGptCalls": 0,
+    "extraPaidJevCalls": 0,
+    "doesNotCountOrdinaryConversationAutomaticCalls": true
+  },
+  "installation": {
+    "pluginVersion": "0.2.0+codex.20260923074707",
+    "compatible": true,
+    "installedFingerprint": "0ac145b6e87ff9adcf9e6e419e01666255fe20bd2b283c1a577f9821e442ffeb",
+    "loadedRevisionMatches": false,
+    "configuredForNextLaunch": true,
+    "loadedPolicy": "effort-v9-context-batches"
+  },
+  "savingsVerified": false
+}
