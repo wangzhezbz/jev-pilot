@@ -1,0 +1,458 @@
+[
+  {
+    "pair": 0,
+    "fixture": "chronological",
+    "concurrency": 1,
+    "elapsedMs": 1184,
+    "applied": true,
+    "requiredFactsRetained": 8,
+    "originalBytes": 33338,
+    "deliveredBytes": 19708,
+    "calls": [
+      {
+        "at": "2026-09-23T11:10:22.768Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "model": "jev-1.13.0",
+        "elapsedMs": 558,
+        "inputTokens": 3219,
+        "outputTokens": 111,
+        "questions": 3,
+        "status": "success"
+      },
+      {
+        "at": "2026-09-23T11:10:22.209Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "model": "jev-1.13.0",
+        "elapsedMs": 620,
+        "inputTokens": 8887,
+        "outputTokens": 327,
+        "questions": 9,
+        "status": "success"
+      }
+    ],
+    "requestHashes": [
+      "1fd65d0d28b07f9a1aa828ab75bf0ffb3bf2a20a8b149e02156f16998fdfa41c",
+      "aee813fca4b20a491b82aaada2f9f54c7eb5ecd2bfea5ad05484c18051ad7b87"
+    ],
+    "outcome": {
+      "at": "2026-09-23T11:10:22.768Z",
+      "kind": "automatic_output_result",
+      "boundaryId": "9c788dfbd050da3c67dc9a8548d668ca93837154e5cc4d2fa99618325db50f52",
+      "applied": true,
+      "reason": "applied",
+      "originalBytes": 33338,
+      "sourceTextBytes": 33338,
+      "retainedBytes": 19708,
+      "retainedRatio": 0.5911572379866818,
+      "artifactId": "73ba9e9d-e4a4-4e47-a559-48dbc7d8b086",
+      "excludedItems": 5,
+      "deferredItems": 0,
+      "duplicateItems": 0,
+      "completeCoverage": true,
+      "elapsedMs": 1183,
+      "nativeTokenSavings": null
+    },
+    "passed": true
+  },
+  {
+    "pair": 0,
+    "fixture": "chronological",
+    "concurrency": 2,
+    "elapsedMs": 628,
+    "applied": true,
+    "requiredFactsRetained": 8,
+    "originalBytes": 33338,
+    "deliveredBytes": 16945,
+    "calls": [
+      {
+        "at": "2026-09-23T11:10:23.398Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "model": "jev-1.13.0",
+        "elapsedMs": 624,
+        "inputTokens": 3219,
+        "outputTokens": 111,
+        "questions": 3,
+        "status": "success"
+      },
+      {
+        "at": "2026-09-23T11:10:23.382Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "model": "jev-1.13.0",
+        "elapsedMs": 609,
+        "inputTokens": 8887,
+        "outputTokens": 327,
+        "questions": 9,
+        "status": "success"
+      }
+    ],
+    "requestHashes": [
+      "1fd65d0d28b07f9a1aa828ab75bf0ffb3bf2a20a8b149e02156f16998fdfa41c",
+      "aee813fca4b20a491b82aaada2f9f54c7eb5ecd2bfea5ad05484c18051ad7b87"
+    ],
+    "outcome": {
+      "at": "2026-09-23T11:10:23.398Z",
+      "kind": "automatic_output_result",
+      "boundaryId": "4896fa52a120cc590e2fd891a40edbdc60d1689daec1cf2720a5163cf9e9ae64",
+      "applied": true,
+      "reason": "applied",
+      "originalBytes": 33338,
+      "sourceTextBytes": 33338,
+      "retainedBytes": 16945,
+      "retainedRatio": 0.5082788409622653,
+      "artifactId": "af68e6ca-945a-4cf3-b3b8-b560bf815bdb",
+      "excludedItems": 6,
+      "deferredItems": 0,
+      "duplicateItems": 0,
+      "completeCoverage": true,
+      "elapsedMs": 627,
+      "nativeTokenSavings": null
+    },
+    "passed": true
+  },
+  {
+    "pair": 1,
+    "fixture": "reordered",
+    "concurrency": 2,
+    "elapsedMs": 728,
+    "applied": true,
+    "requiredFactsRetained": 8,
+    "originalBytes": 33338,
+    "deliveredBytes": 16947,
+    "calls": [
+      {
+        "at": "2026-09-23T11:10:24.128Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "model": "jev-1.13.0",
+        "elapsedMs": 725,
+        "inputTokens": 8992,
+        "outputTokens": 327,
+        "questions": 9,
+        "status": "success"
+      },
+      {
+        "at": "2026-09-23T11:10:23.929Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "model": "jev-1.13.0",
+        "elapsedMs": 526,
+        "inputTokens": 3114,
+        "outputTokens": 111,
+        "questions": 3,
+        "status": "success"
+      }
+    ],
+    "requestHashes": [
+      "ab835f900823f9260b30047ef17b79e419e9fe3c4b107bef593f957926c0a6b1",
+      "c61e7d304abf9db1125d92fed5168a41232353bf9fa4151f4e9c601656462556"
+    ],
+    "outcome": {
+      "at": "2026-09-23T11:10:24.128Z",
+      "kind": "automatic_output_result",
+      "boundaryId": "9b9330170e8fa4f6624fe31a36617bcfcd3a736684e5f599d60c8d35ccf5ead4",
+      "applied": true,
+      "reason": "applied",
+      "originalBytes": 33338,
+      "sourceTextBytes": 33338,
+      "retainedBytes": 16947,
+      "retainedRatio": 0.5083388325634411,
+      "artifactId": "04fd6795-7c49-4f16-bf53-c35f2baf6421",
+      "excludedItems": 6,
+      "deferredItems": 0,
+      "duplicateItems": 0,
+      "completeCoverage": true,
+      "elapsedMs": 727,
+      "nativeTokenSavings": null
+    },
+    "passed": true
+  },
+  {
+    "pair": 1,
+    "fixture": "reordered",
+    "concurrency": 1,
+    "elapsedMs": 1215,
+    "applied": true,
+    "requiredFactsRetained": 8,
+    "originalBytes": 33338,
+    "deliveredBytes": 16947,
+    "calls": [
+      {
+        "at": "2026-09-23T11:10:25.345Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "model": "jev-1.13.0",
+        "elapsedMs": 614,
+        "inputTokens": 3114,
+        "outputTokens": 111,
+        "questions": 3,
+        "status": "success"
+      },
+      {
+        "at": "2026-09-23T11:10:24.730Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "model": "jev-1.13.0",
+        "elapsedMs": 597,
+        "inputTokens": 8992,
+        "outputTokens": 327,
+        "questions": 9,
+        "status": "success"
+      }
+    ],
+    "requestHashes": [
+      "ab835f900823f9260b30047ef17b79e419e9fe3c4b107bef593f957926c0a6b1",
+      "c61e7d304abf9db1125d92fed5168a41232353bf9fa4151f4e9c601656462556"
+    ],
+    "outcome": {
+      "at": "2026-09-23T11:10:25.345Z",
+      "kind": "automatic_output_result",
+      "boundaryId": "a95796fc25c88d45ee7903ec4430627afe1865b36f635cad990d7fbdcf5a28de",
+      "applied": true,
+      "reason": "applied",
+      "originalBytes": 33338,
+      "sourceTextBytes": 33338,
+      "retainedBytes": 16947,
+      "retainedRatio": 0.5083388325634411,
+      "artifactId": "ebe9732d-7423-4253-aded-167dca6615fb",
+      "excludedItems": 6,
+      "deferredItems": 0,
+      "duplicateItems": 0,
+      "completeCoverage": true,
+      "elapsedMs": 1214,
+      "nativeTokenSavings": null
+    },
+    "passed": true
+  },
+  {
+    "pair": 2,
+    "fixture": "chronological",
+    "concurrency": 2,
+    "elapsedMs": 642,
+    "applied": true,
+    "requiredFactsRetained": 8,
+    "originalBytes": 33338,
+    "deliveredBytes": 19708,
+    "calls": [
+      {
+        "at": "2026-09-23T11:10:25.989Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "model": "jev-1.13.0",
+        "elapsedMs": 639,
+        "inputTokens": 8887,
+        "outputTokens": 327,
+        "questions": 9,
+        "status": "success"
+      },
+      {
+        "at": "2026-09-23T11:10:25.924Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "model": "jev-1.13.0",
+        "elapsedMs": 574,
+        "inputTokens": 3219,
+        "outputTokens": 111,
+        "questions": 3,
+        "status": "success"
+      }
+    ],
+    "requestHashes": [
+      "1fd65d0d28b07f9a1aa828ab75bf0ffb3bf2a20a8b149e02156f16998fdfa41c",
+      "aee813fca4b20a491b82aaada2f9f54c7eb5ecd2bfea5ad05484c18051ad7b87"
+    ],
+    "outcome": {
+      "at": "2026-09-23T11:10:25.990Z",
+      "kind": "automatic_output_result",
+      "boundaryId": "6b5439dd47d1e7289d519ee2beaaa92b6c8317104bea070dfc515811d465f36d",
+      "applied": true,
+      "reason": "applied",
+      "originalBytes": 33338,
+      "sourceTextBytes": 33338,
+      "retainedBytes": 19708,
+      "retainedRatio": 0.5911572379866818,
+      "artifactId": "074339fc-df12-4476-8fd7-716d35a5d2e5",
+      "excludedItems": 5,
+      "deferredItems": 0,
+      "duplicateItems": 0,
+      "completeCoverage": true,
+      "elapsedMs": 642,
+      "nativeTokenSavings": null
+    },
+    "passed": true
+  },
+  {
+    "pair": 2,
+    "fixture": "chronological",
+    "concurrency": 1,
+    "elapsedMs": 1213,
+    "applied": true,
+    "requiredFactsRetained": 8,
+    "originalBytes": 33338,
+    "deliveredBytes": 19708,
+    "calls": [
+      {
+        "at": "2026-09-23T11:10:27.204Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "model": "jev-1.13.0",
+        "elapsedMs": 603,
+        "inputTokens": 3219,
+        "outputTokens": 111,
+        "questions": 3,
+        "status": "success"
+      },
+      {
+        "at": "2026-09-23T11:10:26.601Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "model": "jev-1.13.0",
+        "elapsedMs": 607,
+        "inputTokens": 8887,
+        "outputTokens": 327,
+        "questions": 9,
+        "status": "success"
+      }
+    ],
+    "requestHashes": [
+      "1fd65d0d28b07f9a1aa828ab75bf0ffb3bf2a20a8b149e02156f16998fdfa41c",
+      "aee813fca4b20a491b82aaada2f9f54c7eb5ecd2bfea5ad05484c18051ad7b87"
+    ],
+    "outcome": {
+      "at": "2026-09-23T11:10:27.204Z",
+      "kind": "automatic_output_result",
+      "boundaryId": "0b1d9511b30d26193093d7a0bd6666f74129d5856a562bed2ce07fc969d1c45d",
+      "applied": true,
+      "reason": "applied",
+      "originalBytes": 33338,
+      "sourceTextBytes": 33338,
+      "retainedBytes": 19708,
+      "retainedRatio": 0.5911572379866818,
+      "artifactId": "0a57481f-8cda-4a53-ba79-2f21a5b3915f",
+      "excludedItems": 5,
+      "deferredItems": 0,
+      "duplicateItems": 0,
+      "completeCoverage": true,
+      "elapsedMs": 1212,
+      "nativeTokenSavings": null
+    },
+    "passed": true
+  },
+  {
+    "pair": 3,
+    "fixture": "reordered",
+    "concurrency": 1,
+    "elapsedMs": 1160,
+    "applied": true,
+    "requiredFactsRetained": 8,
+    "originalBytes": 33338,
+    "deliveredBytes": 16947,
+    "calls": [
+      {
+        "at": "2026-09-23T11:10:28.366Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "model": "jev-1.13.0",
+        "elapsedMs": 505,
+        "inputTokens": 3114,
+        "outputTokens": 111,
+        "questions": 3,
+        "status": "success"
+      },
+      {
+        "at": "2026-09-23T11:10:27.860Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "model": "jev-1.13.0",
+        "elapsedMs": 650,
+        "inputTokens": 8992,
+        "outputTokens": 327,
+        "questions": 9,
+        "status": "success"
+      }
+    ],
+    "requestHashes": [
+      "ab835f900823f9260b30047ef17b79e419e9fe3c4b107bef593f957926c0a6b1",
+      "c61e7d304abf9db1125d92fed5168a41232353bf9fa4151f4e9c601656462556"
+    ],
+    "outcome": {
+      "at": "2026-09-23T11:10:28.366Z",
+      "kind": "automatic_output_result",
+      "boundaryId": "0e344cf6d343fe353e32f84c08713bc510762bcf13895dd07ee8524f2cd3c739",
+      "applied": true,
+      "reason": "applied",
+      "originalBytes": 33338,
+      "sourceTextBytes": 33338,
+      "retainedBytes": 16947,
+      "retainedRatio": 0.5083388325634411,
+      "artifactId": "76316458-7c11-4b86-9235-34168a48be37",
+      "excludedItems": 6,
+      "deferredItems": 0,
+      "duplicateItems": 0,
+      "completeCoverage": true,
+      "elapsedMs": 1159,
+      "nativeTokenSavings": null
+    },
+    "passed": true
+  },
+  {
+    "pair": 3,
+    "fixture": "reordered",
+    "concurrency": 2,
+    "elapsedMs": 623,
+    "applied": true,
+    "requiredFactsRetained": 8,
+    "originalBytes": 33338,
+    "deliveredBytes": 19754,
+    "calls": [
+      {
+        "at": "2026-09-23T11:10:28.991Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "model": "jev-1.13.0",
+        "elapsedMs": 619,
+        "inputTokens": 8992,
+        "outputTokens": 327,
+        "questions": 9,
+        "status": "success"
+      },
+      {
+        "at": "2026-09-23T11:10:28.895Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "model": "jev-1.13.0",
+        "elapsedMs": 524,
+        "inputTokens": 3114,
+        "outputTokens": 111,
+        "questions": 3,
+        "status": "success"
+      }
+    ],
+    "requestHashes": [
+      "ab835f900823f9260b30047ef17b79e419e9fe3c4b107bef593f957926c0a6b1",
+      "c61e7d304abf9db1125d92fed5168a41232353bf9fa4151f4e9c601656462556"
+    ],
+    "outcome": {
+      "at": "2026-09-23T11:10:28.991Z",
+      "kind": "automatic_output_result",
+      "boundaryId": "f459b5af4a1cc624e6b51c82cc5ad3a8bfbb9162e5033a61ff2a43b4a706bade",
+      "applied": true,
+      "reason": "applied",
+      "originalBytes": 33338,
+      "sourceTextBytes": 33338,
+      "retainedBytes": 19754,
+      "retainedRatio": 0.592537044813726,
+      "artifactId": "d6d2e024-d867-46a3-9db8-de86cdfb04aa",
+      "excludedItems": 5,
+      "deferredItems": 0,
+      "duplicateItems": 0,
+      "completeCoverage": true,
+      "elapsedMs": 622,
+      "nativeTokenSavings": null
+    },
+    "passed": true
+  }
+]

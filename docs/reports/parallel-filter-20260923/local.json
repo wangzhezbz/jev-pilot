@@ -1,0 +1,33 @@
+{
+  "kind": "local_mocked_reproduction",
+  "baseline": "a44a5d4c96a8324a6ddd0c2835ae6a99044747d5",
+  "paidCalls": 0,
+  "before": {
+    "calls": 3,
+    "finalEffort": "high",
+    "fallbacks": [
+      {
+        "code": "JEV_TIMEOUT",
+        "recoveryScheduled": true,
+        "recoveryBlockedReason": null
+      },
+      {
+        "code": "JEV_TIMEOUT",
+        "recoveryScheduled": false,
+        "recoveryBlockedReason": null
+      }
+    ]
+  },
+  "after": {
+    "calls": 2,
+    "finalEffort": "high",
+    "fallbacks": [
+      {
+        "code": "JEV_TIMEOUT",
+        "recoveryScheduled": false,
+        "recoveryBlockedReason": "baseline_no_benefit"
+      }
+    ]
+  },
+  "limits": "Synthetic timeout with no real wait. Avoided-call result, not paid latency or billing measurement."
+}

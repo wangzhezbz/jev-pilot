@@ -108,6 +108,7 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
     if(msg.method && msg.id!==undefined) clientRequests.set(JSON.stringify(msg.id),{method:msg.method,params:msg.params});
     if(msg.method==='initialize') msg.params={...msg.params,capabilities:{...msg.params?.capabilities,experimentalApi:true}};
     const threadId=msg.params?.threadId;
+    if(['turn/start','turn/steer','turn/interrupt'].includes(msg.method))assistant?.cancel?.(threadId);
     const starting=msg.method==='turn/start'?router.start(threadId,msg.params):null;
     if(msg.method==='turn/steer') router.invalidate(msg.params.threadId,msg.params.input);
     if(msg.method==='turn/interrupt') router.stop(msg.params.threadId);

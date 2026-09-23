@@ -1,0 +1,20 @@
+{
+  "installedVersion": "0.2.0+codex.20260923111655",
+  "policyVersion": "effort-v13-bounded-parallel",
+  "compatible": true,
+  "configuredForNextLaunch": true,
+  "currentLoadedRevisionMatches": false,
+  "activePolicyVersions": [
+    "effort-v12-benefit-admission"
+  ],
+  "filesMatch": {
+    "runtime/desktop/router.mjs": true,
+    "runtime/desktop/bridge.mjs": true,
+    "src/core.mjs": true,
+    "src/automation.mjs": true,
+    "src/evidence.mjs": true,
+    "src/workflows.mjs": true
+  },
+  "browserNetworkChanged": false,
+  "currentTaskChanged": false
+}

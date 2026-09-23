@@ -149,8 +149,9 @@ export function classificationPlan(model,items,instructions,criteria,context={})
   return {batches,oversized};
 }
 export class Judge {
-  constructor({ store, project, config, key = loadKey(store.home), send = transport, signal, taskId, priority='routine' }) {
+  constructor({ store, project, config, key = loadKey(store.home), send = transport, signal, taskId, priority='routine', concurrency=1 }) {
     Object.assign(this, { store, project, config, key, send, signal, priority }); this.calls = 0; this.inflight = new Map();
+    this.concurrency=concurrency===2?2:1;
     this.guard = new RequestGuard({ store, project, taskId, config });
   }
   async ask(state, questions, purpose = 'decision') {
@@ -180,7 +181,7 @@ export class Judge {
         this.guard.finish(reservation, { status: 'success', elapsedMs: performance.now() - started });
         this.store.event(this.project, 'jev_call', { purpose, model: result.model, elapsedMs: Math.round(performance.now() - started), inputTokens: result.usage?.input_tokens ?? null, outputTokens: result.usage?.output_tokens ?? null, questions: ids.length, status: 'success' });
         if (this.config.cacheMs > 0) this.store.cachePut(key, result, this.config.cacheMs); return result;
-      } catch (e) { this.guard.finish(reservation, { status: e.code === 'CANCELLED' ? 'cancelled' : 'failed', elapsedMs: performance.now() - started }); this.store.event(this.project, 'jev_call', { purpose, elapsedMs: Math.round(performance.now() - started), status: 'failed', code: e.code || 'UNAVAILABLE' }); throw e; }
+      } catch (e) { const status=e.code === 'CANCELLED' ? 'cancelled' : 'failed';this.guard.finish(reservation, { status, elapsedMs: performance.now() - started }); this.store.event(this.project, 'jev_call', { purpose, elapsedMs: Math.round(performance.now() - started), status, code: e.code || 'UNAVAILABLE' }); throw e; }
       finally { this.inflight.delete(key); }
     }); this.inflight.set(key, task); return task;
   }
@@ -189,10 +190,15 @@ export class Judge {
     const build = batch => classificationPayload(this.config.model,batch,instructions,criteria,context);
     const plan=classificationPlan(this.config.model,items,instructions,criteria,context);
     for(const item of plan.oversized){out.push({id:item.id,choice:'review',source:'fallback',reason:'REQUEST_LIMIT'});this.store.event(this.project,'judgment_skipped',{purpose,reason:'REQUEST_LIMIT',items:1});}
-    for (const batch of plan.batches) {
-      const { state, questions } = build(batch);
-      try { const result = await this.ask(state, questions, purpose); batch.forEach((r, i) => out.push({ id: r.id, ...result.answers['q' + i], source: 'jev' })); }
-      catch (e) { batch.forEach(r => out.push({ id: r.id, choice: 'review', source: 'fallback', reason: e.code || 'UNAVAILABLE' })); }
-    } const byId = new Map(out.map(row => [row.id, row])); return items.map(item => byId.get(item.id));
+    let next=0;
+    const workers=Math.min(this.concurrency,plan.batches.length);
+    this.store.event(this.project,'classification_batches',{purpose,batches:plan.batches.length,concurrency:workers});
+    await Promise.all(Array.from({length:workers},async()=>{
+      while(next<plan.batches.length){
+        const batch=plan.batches[next++],{state,questions}=build(batch);
+        try { const result = await this.ask(state, questions, purpose); batch.forEach((r, i) => out.push({ id: r.id, ...result.answers['q' + i], source: 'jev' })); }
+        catch (e) { batch.forEach(r => out.push({ id: r.id, choice: 'review', source: 'fallback', reason: e.code || 'UNAVAILABLE' })); }
+      }
+    }));const byId = new Map(out.map(row => [row.id, row])); return items.map(item => byId.get(item.id));
   }
 }

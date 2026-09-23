@@ -1,0 +1,66 @@
+{
+  "kind": "ordinary_desktop_v12_activation",
+  "loadedRevisionMatches": true,
+  "activePolicyVersions": [
+    "effort-v12-benefit-admission"
+  ],
+  "threadHash": "f45bb92de965c78221ce3da9d3df089cd47a2ea38039677643c96b040e2a34ce",
+  "counts": {
+    "decision": 1,
+    "fallback": 2,
+    "routing_recovery": 1
+  },
+  "events": [
+    {
+      "at": "2026-09-23T11:03:11.093Z",
+      "kind": "decision",
+      "status": "unchanged",
+      "event": "BeforeTurnStart",
+      "from": "high",
+      "recommended": "keep",
+      "published": "high",
+      "elapsedMs": 845,
+      "inputTokens": 936,
+      "outputTokens": 106,
+      "confirmation": null
+    },
+    {
+      "at": "2026-09-23T11:03:26.774Z",
+      "kind": "fallback",
+      "code": "JEV_TIMEOUT",
+      "elapsedMs": 2071
+    },
+    {
+      "at": "2026-09-23T11:03:59.308Z",
+      "kind": "routing_recovery",
+      "status": "admitted"
+    },
+    {
+      "at": "2026-09-23T11:04:01.378Z",
+      "kind": "fallback",
+      "code": "JEV_TIMEOUT",
+      "elapsedMs": 2069
+    }
+  ],
+  "scope": "Current task events and separately grouped other ordinary desktop tasks since v12 restart; observations only, not paired savings.",
+  "otherObservedThreads": [
+    {
+      "threadHash": "69379e3eafd79457a407f0d68e2bb08ee5cfc4e7a2e3020e52fe14f2f28b5df8",
+      "counts": {
+        "resume_context": 1,
+        "decision": 3,
+        "routing_admission": 29,
+        "baseline_no_benefit": 29
+      }
+    },
+    {
+      "threadHash": "616492ecfadd60d33c3de9a5f8335f117dab6dd8b1395d874d920d66c22085e8",
+      "counts": {
+        "decision": 3,
+        "routing_admission": 2,
+        "baseline_no_benefit": 2,
+        "turn_usage": 2
+      }
+    }
+  ]
+}

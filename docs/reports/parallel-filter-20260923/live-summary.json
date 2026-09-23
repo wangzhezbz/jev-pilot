@@ -1,0 +1,73 @@
+{
+  "at": "2026-09-23T11:10:28.992Z",
+  "gptCalls": 0,
+  "arms": [
+    {
+      "concurrency": 1,
+      "runs": 4,
+      "passed": 4,
+      "totalElapsedMs": 4772,
+      "meanElapsedMs": 1193,
+      "inputTokens": 48424,
+      "outputTokens": 1752,
+      "requests": 8,
+      "failures": 0,
+      "missingUsage": 0
+    },
+    {
+      "concurrency": 2,
+      "runs": 4,
+      "passed": 4,
+      "totalElapsedMs": 2621,
+      "meanElapsedMs": 655.25,
+      "inputTokens": 48424,
+      "outputTokens": 1752,
+      "requests": 8,
+      "failures": 0,
+      "missingUsage": 0
+    }
+  ],
+  "pairs": [
+    {
+      "pair": 0,
+      "identicalRequests": true,
+      "bothPassed": true,
+      "serialMs": 1184,
+      "parallelMs": 628,
+      "deltaMs": -556
+    },
+    {
+      "pair": 1,
+      "identicalRequests": true,
+      "bothPassed": true,
+      "serialMs": 1215,
+      "parallelMs": 728,
+      "deltaMs": -487
+    },
+    {
+      "pair": 2,
+      "identicalRequests": true,
+      "bothPassed": true,
+      "serialMs": 1213,
+      "parallelMs": 642,
+      "deltaMs": -571
+    },
+    {
+      "pair": 3,
+      "identicalRequests": true,
+      "bothPassed": true,
+      "serialMs": 1160,
+      "parallelMs": 623,
+      "deltaMs": -537
+    }
+  ],
+  "observedElapsedChangePercent": -45.07544006705784,
+  "allQualityPassed": true,
+  "allRequestsMatched": true,
+  "sourceHashes": {
+    "src/core.mjs": "09989cab5a162f33c1daa19eec16674b0874b2ae90b88b43504736ab7e7532fe",
+    "src/automation.mjs": "c9bec4ae2a4fc9467b7783c13e09ffa42c3a2ec17bbc76c988a895ba177fa709",
+    "src/evidence.mjs": "ba31b4dc7563185b1a474582895612bbf9f492cb02990a74ea4e58ad27b6d6d3"
+  },
+  "limitations": "Same current implementation with concurrency 1 vs 2; serialized request hashes must match within each pair. Synthetic component timing, not whole Codex task or account savings."
+}

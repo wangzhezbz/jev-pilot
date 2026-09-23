@@ -1,0 +1,53 @@
+{
+  "at": "2026-09-23T11:10:21.581Z",
+  "kind": "predeclared_component_scheduling_AB",
+  "baselineCommit": "a44a5d4c96a8324a6ddd0c2835ae6a99044747d5",
+  "cases": [
+    {
+      "pair": 0,
+      "fixture": "chronological",
+      "order": [
+        1,
+        2
+      ]
+    },
+    {
+      "pair": 1,
+      "fixture": "reordered",
+      "order": [
+        2,
+        1
+      ]
+    },
+    {
+      "pair": 2,
+      "fixture": "chronological",
+      "order": [
+        2,
+        1
+      ]
+    },
+    {
+      "pair": 3,
+      "fixture": "reordered",
+      "order": [
+        1,
+        2
+      ]
+    }
+  ],
+  "maxJevHttpCalls": 16,
+  "gptCalls": 0,
+  "requiredFacts": [
+    "10:04 checkout: p95 latency increased from 120ms to 900ms while request volume remained unchanged.",
+    "10:04 checkout: the increased latency began two minutes before the dashboard theme rollout.",
+    "10:05 ledger-pool: available connections reached zero and checkout waits increased.",
+    "10:06 checkout: application CPU remained at 25 percent; database query execution stayed at 8ms.",
+    "10:06 checkout: customers with both old and new dashboard themes showed identical latency.",
+    "10:07 ledger-pool: the max connection setting changed from 40 to 4 at 10:02.",
+    "10:09 ledger-pool: restoring the max connection setting to 40 restored available connections.",
+    "10:10 checkout: p95 returned to 125ms without reverting the dashboard theme."
+  ],
+  "qualityGate": "All 8 facts retained, automatic replacement applied, wrapped bytes reduced by at least 20 percent; no retries; include failures.",
+  "scope": "Same current implementation with concurrency 1 vs 2; serialized request hashes must match within each pair. Synthetic component timing, not whole Codex task or account savings."
+}

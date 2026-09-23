@@ -52,3 +52,7 @@ test('batch planner preserves all representable records across question and byte
  const p=classificationPlan('fixture',items,'Classify',{yes:'yes',no:'no'});
  assert.deepEqual(p.oversized.map(x=>x.id),['large']);assert.deepEqual(p.batches.flat().map(x=>x.id),items.filter(x=>x.id!=='large').map(x=>x.id));assert(p.batches.every(x=>x.length<=24));
 });
+test('a failed reassessment after a valid unchanged baseline does not trigger a speculative recovery call',async()=>{
+ let now=0;const f=routeFixture();f.r.clock=()=>now;await f.r.routeStart(f.p);let attempts=0;f.r.judge=async()=>{attempts++;throw Error('JEV_TIMEOUT');};await f.hook('fail');assert.equal(attempts,1);assert.equal(f.t.current,'medium');assert.equal(f.t.retryAt,null);assert.equal(f.t.recoveryBlockedReason,'baseline_no_benefit');
+ now=60000;await f.hook('later');assert.equal(attempts,1);assert.equal(f.updates.length,0);
+});

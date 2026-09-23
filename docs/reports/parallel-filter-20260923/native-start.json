@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "passed": true,
+  "requests": [
+    {
+      "number": 1,
+      "effort": "low"
+    },
+    {
+      "number": 2,
+      "effort": "low"
+    }
+  ],
+  "kind": "native_engine_synthetic_model_final_start_cancellation_smoke"
+}

@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { parseEnv } from 'node:util';
 import { postTypeSafe } from './transport.mjs';
 
-export const POLICY_VERSION = 'effort-v12-benefit-admission';
+export const POLICY_VERSION = 'effort-v13-bounded-parallel';
 const effortOrder=['none','minimal','low','medium','high','xhigh','max','ultra'];
 export const LEASE_UNIT = 'observed_tool_batch_or_boundary';
 export const SUPPORTED_MODELS = ['gpt-6-astra','gpt-6-sol','gpt-6-luna','gpt-5.6-sol','gpt-5.6-terra','gpt-5.6-luna'];
@@ -186,7 +186,8 @@ export class Router {
   }
   failJudgment(t,error) {
     t.routineBudgetBlocked=error.message==='TASK_URGENT_RESERVE';t.unavailable=!t.routineBudgetBlocked;
-    t.retryAt=t.unavailable&&!t.settingsUncertain&&transientErrors.has(error.message)&&t.recoveryAttempts<1&&t.calls<this.maxCalls ? this.clock()+this.recoveryCooldownMs : null;
+    t.recoveryBlockedReason=t.current===t.baseline&&t.noBenefitHits>0?'baseline_no_benefit':null;
+    t.retryAt=t.unavailable&&!t.recoveryBlockedReason&&!t.settingsUncertain&&transientErrors.has(error.message)&&t.recoveryAttempts<1&&t.calls<this.maxCalls ? this.clock()+this.recoveryCooldownMs : null;
   }
   canJudge(t) { return t.calls<this.maxCalls && (t.calls<this.routineLimit || t.urgentVersion!==t.judgedUrgent); }
   // No extra evaluator spend when the bounded budget is depleted. Never leave
@@ -412,7 +413,7 @@ export class Router {
         this.log(metrics);return {status};
       } catch(error) {
         this.failJudgment(t,error);
-        this.log({kind:'fallback',threadId:t.threadId,turnId:t.turnId,effort:t.current,recoveryScheduled:t.retryAt!==null,retryAfterMs:t.retryAt===null?null:this.recoveryCooldownMs,code:/^[A-Z][A-Z0-9_]+$/.test(error.message)?error.message:'UNAVAILABLE',elapsedMs:Math.round(performance.now()-started)});
+        this.log({kind:'fallback',threadId:t.threadId,turnId:t.turnId,effort:t.current,recoveryScheduled:t.retryAt!==null,recoveryBlockedReason:t.recoveryBlockedReason,retryAfterMs:t.retryAt===null?null:this.recoveryCooldownMs,code:/^[A-Z][A-Z0-9_]+$/.test(error.message)?error.message:'UNAVAILABLE',elapsedMs:Math.round(performance.now()-started)});
         await this.restoreBaseline(t,'evaluator_unavailable');
         return {status:'unavailable'};
       }
