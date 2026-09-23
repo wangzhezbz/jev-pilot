@@ -12,6 +12,7 @@ import { dashboard } from '../src/dashboard.mjs';
 import { createAutomation } from '../src/automation.mjs';
 import { desktopStatus, desktopMetrics } from '../src/setup.mjs';
 import { writeFileSync } from 'node:fs';
+import { runtimeFingerprint } from '../runtime/desktop/bridge.mjs';
 
 test('vendored source hashes match pinned originals', () => {
   for (const source of JSON.parse(readFileSync(new URL('../vendor/sources.json', import.meta.url)))) assert.equal(hash(readFileSync(new URL('../' + source.path, import.meta.url), 'utf8')), source.sha256);
@@ -95,6 +96,20 @@ test('runtime metrics exclude marked fixtures and explicitly identified legacy f
   process.env.JEV_PILOT_HOME=home;
   try {const report=desktopMetrics();assert.equal(report.turns,1);assert.equal(report.models.model.usage.inputTokens,42);assert.equal(report.excludedSyntheticEvents,2);assert.equal(report.savings.quota,null);}
   finally {if(previous===undefined)delete process.env.JEV_PILOT_HOME;else process.env.JEV_PILOT_HOME=previous;}
+});
+test('doctor distinguishes installed files from matching, older and unidentified live revisions',()=>{
+  const home=mkdtempSync(join(tmpdir(),'jev-revision-status-')),previous=process.env.JEV_PILOT_HOME;
+  const dir=join(home,'runtime/desktop');mkdirSync(join(dir,'logs'),{recursive:true});
+  writeFileSync(join(dir,'router.mjs'),'fixture');
+  const hashes={'router.mjs':hash('fixture')};
+  writeFileSync(join(dir,'install.json'),JSON.stringify({realBin:process.execPath,verifiedVersion:process.version,sha256:hashes}));
+  process.env.JEV_PILOT_HOME=home;
+  try {
+    for(const [fingerprint,expected] of [[undefined,null],[runtimeFingerprint(hashes),true],[runtimeFingerprint({'router.mjs':'older'}),false]]){
+      writeFileSync(join(dir,'logs/events.jsonl'),JSON.stringify({kind:'bridge_started',pid:process.pid,backendPid:process.pid,runtimeFingerprint:fingerprint}));
+      const status=desktopStatus();assert.equal(status.compatible,true);assert.equal(status.loadedRevisionMatches,expected);
+    }
+  }finally{if(previous===undefined)delete process.env.JEV_PILOT_HOME;else process.env.JEV_PILOT_HOME=previous;}
 });
 
 test('portable plugin MCP uses only fields accepted by the native plugin loader', () => {

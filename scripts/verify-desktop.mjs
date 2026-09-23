@@ -17,6 +17,9 @@ const root=join(dirname(fileURLToPath(import.meta.url)),'../runtime/desktop');
 const targetModel=process.argv.find(x=>x.startsWith('--model='))?.slice(8)??'gpt-6-astra';
 const reassess=process.argv.includes('--reassess');
 const filtering=process.argv.includes('--filter-output');
+const manualSettings=process.argv.includes('--manual-settings');
+const inspectCacheContext=process.argv.includes('--inspect-cache-context');
+const inputSnapshots=[];
 const steps=reassess?4:1;
 const realBin=process.env.JEV_PILOT_CODEX??'/Applications/ChatGPT.app/Contents/Resources/codex';
 const work=await mkdtemp(join(tmpdir(),'jev-desktop-verification-'));
@@ -30,7 +33,14 @@ const server=createServer(async(req,res)=>{
   let raw='';for await(const chunk of req)raw+=chunk;
   if(!req.url.endsWith('/responses')){res.writeHead(404);res.end();return;}
   const body=JSON.parse(raw);apiCount++;
+  if(inspectCacheContext)inputSnapshots.push(body.input);
   report.requests.push({number:apiCount,model:body.model,effort:body.reasoning?.effort,keys:Object.keys(body),toolNames:body.tools?.map(t=>t.name??t.type),configuration:body.configuration,inputText:filtering?JSON.stringify(body.input):undefined});
+  if(manualSettings && apiCount===1) {
+    try {
+      const t=[...bridge.router.turns.values()].find(t=>t.active);
+      report.manualSettings=await c.request('turn/settings/update',{threadId:t.threadId,turnId:t.turnId,effort:'medium'});
+    }catch(error){report.manualSettings={error:error.message};}
+  }
   const tools=body.tools??body.configuration?.tools??[];
   const tool=tools.find(x=>['exec_command','shell_command','shell'].includes(x.name))??{name:'exec_command'};
   const responseId='resp_'+apiCount;
@@ -87,7 +97,7 @@ try{
   await writeFile(join(work,'trust.json'),JSON.stringify(trust,null,2));
   let input=new PassThrough(),output=new PassThrough();
   let judgeCalls=0;
-  const mockedJudge=async()=>{const choice=reassess&&judgeCalls++>0?'medium':'low';return{answer:{type:'choice',choice,confidence:.4,probabilities:Object.fromEntries(Object.keys(effortQuestion.criteria).map(k=>[k,k===choice?.5:.1]))},horizon:{type:'choice',choice:'5',confidence:1,probabilities:Object.fromEntries(Object.keys(horizonQuestion.criteria).map(k=>[k,k==='5'?1:0]))},model:'offline-fixture',inputTokens:0};};
+  const mockedJudge=async state=>{const choice=(reassess||manualSettings)&&judgeCalls++>0?'medium':'low';if(manualSettings && judgeCalls>1)report.manualJudgeEffort=state.currentEffort;return{answer:{type:'choice',choice,confidence:.4,probabilities:Object.fromEntries(Object.keys(effortQuestion.criteria).map(k=>[k,k===choice?.5:.1]))},horizon:{type:'choice',choice:'5',confidence:1,probabilities:Object.fromEntries(Object.keys(horizonQuestion.criteria).map(k=>[k,k==='5'?1:0]))},model:'offline-fixture',inputTokens:0};};
   const judge=process.argv.includes('--unavailable-jev')?async()=>{throw new Error('TIMEOUT');}:
     process.argv.includes('--real-jev')?await makeJudge(join(installHome(),'.env.local')):mockedJudge;
   report.realJev=process.argv.includes('--real-jev');
@@ -136,10 +146,18 @@ try{
     ? report.requests.length>=2 && report.requests.every(x=>x.effort==='high') && report.audit.some(x=>x.kind==='compatibility_fallback')
     : process.argv.includes('--unavailable-jev')
     ? report.requests.length>=2 && report.requests.every(x=>x.effort==='high') && report.audit.some(x=>x.kind==='fallback')
-    : report.requests.length>=2 && report.requests.every((x,i)=>x.effort===(reassess&&i>=4?'medium':'low')&&x.model===targetModel)
+    : report.requests.length>=2 && report.requests.every((x,i)=>x.effort===((reassess&&i>=4)||(manualSettings&&i>0)?'medium':'low')&&x.model===targetModel)
       && report.audit.some(x=>x.status==='start_forwarded')
       && (!reassess||report.audit.some(x=>x.status==='applied'&&x.published==='medium'))
       && report.audit.some(x=>x.kind==='turn_usage'&&x.usage?.inputTokens===50*(steps+1));
+  if(manualSettings)report.passed=report.passed&&report.manualSettings?.status==='applied'&&report.manualJudgeEffort==='medium'&&report.audit.some(x=>x.kind==='external_settings'&&x.status==='applied');
+  if(inspectCacheContext){
+    const initial=inputSnapshots[0];
+    report.cacheContext={measurement:'serialized_initial_input_prefix_not_cache_hit_rate',
+      initialItems:Array.isArray(initial)?initial.length:null,
+      perRequest:inputSnapshots.map((items,i)=>({request:i+1,initialPrefixPreserved:Array.isArray(initial)&&Array.isArray(items)&&JSON.stringify(items.slice(0,initial.length))===JSON.stringify(initial)}))};
+    report.passed=report.passed&&report.cacheContext.perRequest.every(x=>x.initialPrefixPreserved);
+  }
   if(filtering){report.automaticEvents=autoStore.events(autoStore.project(work));report.passed=report.passed&&report.automaticEvents.some(e=>e.kind==='automatic_output_filter')&&report.requests.slice(1).some(r=>r.inputText?.includes('JevPilot retained task evidence'));}
   report.status=report.passed?'passed':'failed';
   if(!report.passed)process.exitCode=1;

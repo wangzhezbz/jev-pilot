@@ -2,7 +2,8 @@ import { readFile } from 'node:fs/promises';
 import { parseEnv } from 'node:util';
 import { postTypeSafe } from './transport.mjs';
 
-export const POLICY_VERSION = 'effort-v4-adaptive-lease';
+export const POLICY_VERSION = 'effort-v5-context-freshness';
+export const LEASE_UNIT = 'tool_completion_boundary';
 export const SUPPORTED_MODELS = ['gpt-6-astra','gpt-5.6-sol','gpt-5.6-terra','gpt-5.6-luna'];
 export const effortQuestion = {
   type: 'choice',
@@ -92,7 +93,7 @@ export class Router {
       task: compact((params.input ?? []).filter(x=>x.type==='text').map(x=>x.text).join('\n'),4000),
       previousTurn: old?.completed ? {task:compact(old.task,1000),progress:old.progress.slice(-1).map(x=>compact(x,1000))} : undefined,
       forceRecheck:false, evidenceVersion:0, progressVersion:0, judgedProgress:0, leaseSkips:0,
-      progress: [], recent: [], calls: 0, pending: Promise.resolve(), seen: new Set(), lastAt: 0,
+      progress: [], publicNotes: [], recent: [], calls: 0, pending: Promise.resolve(), seen: new Set(), lastAt: 0, settingsPending: 0,
       opened:performance.now(),lease:0,leaseUntil:0,usage:null,usageSnapshots:new Set(),usageEvents:0,invalidUsageEvents:0,nativeFailures:new Map() });
     return this.turns.get(threadId);
   }
@@ -102,9 +103,39 @@ export class Router {
     if(text)t.task=compact(t.task+'\nLatest user input: '+redact(text),4000);
   } }
   stop(threadId) { const t=this.turns.get(threadId); if(t) { t.active=false; t.revision++; } }
+  // Only client-originated active-turn changes enter this fence. Internal
+  // publications and future-thread defaults have different semantics.
+  beginSettingsUpdate(p) {
+    const t=this.turns.get(p?.threadId);
+    if(!t?.active || t.turnId!==p.turnId || !(typeof p.effort==='string'||typeof p.model==='string'))return null;
+    this.invalidate(p.threadId);
+    if(t.settingsPending || t.publicationPending)t.settingsUncertain=true;
+    t.settingsPending++;
+    return {t,params:p};
+  }
+  finishSettingsUpdate(control,reply,error) {
+    if(!control)return;
+    const {t,params:p}=control;t.settingsPending--;
+    if(this.turns.get(t.threadId)!==t || !t.active)return;
+    if(!error && reply?.status==='applied') {
+      if(typeof p.model==='string')t.model=p.model;
+      if(typeof p.effort==='string')t.current=p.effort;
+      // Model-only publication may select a different native default effort.
+      // Do not guess it or route while overlapping controls have ambiguous order.
+      if(typeof p.model==='string' && typeof p.effort!=='string')t.settingsUncertain=true;
+    }
+    this.log({kind:'external_settings',threadId:t.threadId,turnId:t.turnId,status:error?'rejected':reply?.status??'unknown',
+      targetModel:t.model,effort:t.current,routingSuspended:Boolean(t.settingsUncertain)});
+  }
   eligible(t) { return SUPPORTED_MODELS.includes(t.model) && this.supported.get(t.model)?.includes(t.current); }
-  state(t) { return {task:t.task,previousTurn:t.previousTurn,progress:t.progress,recentTools:t.recent,currentEffort:t.current,
+  state(t) { return {task:t.task,previousTurn:t.previousTurn,progress:[...t.progress],publicNotes:[...t.publicNotes],recentTools:[...t.recent],currentEffort:t.current,
     model:t.model,supportedEfforts:this.supported.get(t.model)?.filter(x=>x!=='ultra')}; }
+  note(t,kind,text) {
+    if(typeof text!=='string'||!text.trim())return;
+    const note={kind,text:compact(text,1200)};
+    if(JSON.stringify(note)===JSON.stringify(t.publicNotes.at(-1)))return;
+    t.publicNotes.push(note);t.publicNotes=t.publicNotes.slice(-4);t.progressVersion++;
+  }
   context(t) { return { taskId: t.threadId, cwd: t.cwd ?? this.threads.get(t.threadId)?.cwd }; }
   renew(t,result,applied=true) {
     const validEffort=result?.answer?.choice!=='keep' && select(result?.answer,'invalid',this.supported.get(t.model)??[])!=='invalid';
@@ -116,7 +147,8 @@ export class Router {
     return {kind:'decision',policyVersion:POLICY_VERSION,threadId:t.threadId,turnId:t.turnId,event,
       targetModel:t.model,from,recommended:result.answer?.choice,confidence:result.answer?.confidence,
       probability:result.answer?.probabilities?.[result.answer?.choice],published:t.current,status,
-      model:result.model,inputTokens:result.inputTokens??null,outputTokens:result.outputTokens??null,horizon:t.horizon,
+      model:result.model,inputTokens:result.inputTokens??null,outputTokens:result.outputTokens??null,horizon:t.horizon,leaseUnit:LEASE_UNIT,
+      confirmation:status==='applied'?'native_settings_published':status==='start_forwarded'?'start_parameter_forwarded':null,
       estimatedJevUsd:Number.isFinite(result.inputTokens)?result.inputTokens*.042/1e6:null,
       elapsedMs:Math.round(performance.now()-started)};
   }
@@ -143,7 +175,13 @@ export class Router {
     }
   }
   observe(message) {
-    const p=message.params, t=this.turns.get(p?.threadId);
+    const p=message.params;
+    if(message.method==='thread/settings/updated' && p?.threadSettings) {
+      const s=p.threadSettings;
+      this.threads.set(p.threadId,{...this.threads.get(p.threadId),model:s.model,effort:s.effort??s.collaborationMode?.settings?.reasoning_effort,cwd:s.cwd});
+      // Native protocol: these are defaults for subsequent turns only.
+    }
+    const t=this.turns.get(p?.threadId);
     if (!t || t.completed) return;
     if(!t.active && !['thread/tokenUsage/updated','turn/completed'].includes(message.method))return;
     if (message.method==='turn/started') {
@@ -178,6 +216,11 @@ export class Router {
       const progress=compact(p.item.text,1200);
       if(progress && progress!==t.progress.at(-1)){t.progress.push(progress);t.progress=t.progress.slice(-2);t.progressVersion++;}
     }
+    if(message.method==='turn/plan/updated' && Array.isArray(p.plan))
+      this.note(t,'plan',JSON.stringify({explanation:p.explanation,steps:p.plan.map(x=>({step:x.step,status:x.status}))}));
+    if(message.method==='item/completed' && p.item?.type==='plan')this.note(t,'plan',p.item.text);
+    if(message.method==='item/completed' && p.item?.type==='reasoning' && Array.isArray(p.item.summary))
+      this.note(t,'reasoning_summary',p.item.summary.filter(x=>typeof x==='string').join('\n'));
   }
   async hook(p) {
     const t=this.turns.get(p.session_id);
@@ -206,6 +249,7 @@ export class Router {
     t.inFlight=true;
     t.pending=t.pending.catch(()=>{}).then(async()=>{
       if(!t.active || revision!==t.revision) return {status:'stale'};
+      if(t.settingsPending || t.settingsUncertain)return {status:'external_settings_pending_or_unknown'};
       if(t.unavailable) return {status:'disabled_for_turn'};
       if(t.calls>=this.maxCalls) return {status:'budget'};
       const urgent=t.forceRecheck || t.progressVersion!==t.judgedProgress;
@@ -215,27 +259,40 @@ export class Router {
       t.calls++;t.lastAt=Date.now();
       let started=performance.now();
       try {
-        let version=t.evidenceVersion;
+        let version=t.evidenceVersion,progress=t.progressVersion;
         let result=await this.judge(this.state(t),this.context(t));
-        // A failure arriving in parallel must not be hidden by coalescing. One
-        // bounded fresh judgment covers the newest batch before releasing hooks.
-        if(t.active && revision===t.revision && version!==t.evidenceVersion && t.forceRecheck && t.calls<this.maxCalls){
-          t.calls++;version=t.evidenceVersion;
+        // A result is valid only for the evidence it saw. Refresh at most once
+        // for late tool results or public progress; otherwise keep current effort.
+        const changed=()=>version!==t.evidenceVersion||progress!==t.progressVersion;
+        if(t.active && revision===t.revision && changed() && t.calls<this.maxCalls){
+          t.calls++;version=t.evidenceVersion;progress=t.progressVersion;
           this.log({...this.metrics(t,result,t.current,'superseded',started,p.hook_event_name),published:t.current});
           started=performance.now();
           result=await this.judge(this.state(t),this.context(t));
         }
-        if(version!==t.evidenceVersion && t.forceRecheck)return {status:'stale_evidence'};
         if(!t.active || revision!==t.revision) return {status:'stale'};
+        if(changed()) {
+          t.lease=0;t.forceRecheck=true;
+          this.log(this.metrics(t,result,t.current,'stale_evidence',started,p.hook_event_name));
+          return {status:'stale_evidence'};
+        }
         const effort=select(result.answer,t.current,this.supported.get(t.model));
         const from=t.current;
         let status='unchanged';
         if(effort!==from) {
-          const reply=await this.request('turn/settings/update',{threadId:t.threadId,turnId:t.turnId,effort},2500);
+          t.publicationPending=true;
+          let reply;
+          try {reply=await this.request('turn/settings/update',{threadId:t.threadId,turnId:t.turnId,effort},2500);}
+          finally {t.publicationPending=false;}
           status=reply.status;
+          if(!t.active || revision!==t.revision) {
+            this.log({...this.metrics(t,result,from,'superseded',started,p.hook_event_name),nativeStatus:status});
+            return {status:'stale'};
+          }
           if(status==='applied') t.current=effort;
         }
         this.renew(t,result,status==='unchanged'||status==='applied');
+        if(changed()){t.lease=0;t.forceRecheck=true;}
         const metrics=this.metrics(t,result,from,status,started,p.hook_event_name);
         this.log(metrics);return {status};
       } catch(error) {

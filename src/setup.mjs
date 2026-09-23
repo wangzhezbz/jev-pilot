@@ -6,7 +6,7 @@ import { execFileSync, spawn } from 'node:child_process';
 import { createInterface } from 'node:readline';
 import { mkdtempSync } from 'node:fs';
 import { hash, loadKey, requireValue, privateDirectory } from './core.mjs';
-import { hookOverrides } from '../runtime/desktop/bridge.mjs';
+import { hookOverrides, runtimeFingerprint } from '../runtime/desktop/bridge.mjs';
 import { summarize } from '../runtime/desktop/report.mjs';
 import { withLaunchAgent } from './launch-agent.mjs';
 import { maintainBrowserNetwork } from './browser-network.mjs';
@@ -35,7 +35,10 @@ export function desktopStatus() {
   const bridges=[];
   try { for(const line of readFileSync(join(home,'runtime/desktop/logs/events.jsonl'),'utf8').split('\n'))try{const e=JSON.parse(line);if(e.kind==='bridge_started'&&e.measurementSource!=='synthetic')bridges.push(e);}catch{} } catch {}
   const activeBridges=bridges.filter(e=>{try{if(!Number.isInteger(e.pid)||e.pid<=0||!Number.isInteger(e.backendPid)||e.backendPid<=0)return false;process.kill(e.pid,0);process.kill(e.backendPid,0);return true;}catch{return false;}});
-  return { platform: process.platform, arch: process.arch, node: process.version, nodeSupported: +process.versions.node.split('.')[0] >= 24, curl: commandVersion(process.platform === 'win32' ? 'curl.exe' : 'curl'), rg: commandVersion('rg'), credentialsConfigured: Boolean(loadKey(home)), realBin, runtimeVersion: version, installed: Boolean(config), compatible, disabled: existsSync(join(home, 'runtime/desktop/disabled')), configuredForNextLaunch: config?.activated === true, bridgeProcessAlive: activeBridges.length>0, activeBridges, latestBridge: activeBridges.at(-1)??bridges.at(-1)??null, desktopVerifiedPlatforms: ['darwin'], crossPlatformRuntimeNeedsAcceptance: ['win32', 'linux'] };
+  const installedFingerprint=runtimeFingerprint(config?.sha256);
+  const loadedRevisionMatches=activeBridges.length && activeBridges.every(e=>typeof e.runtimeFingerprint==='string')
+    ? activeBridges.every(e=>e.runtimeFingerprint===installedFingerprint) : null;
+  return { platform: process.platform, arch: process.arch, node: process.version, nodeSupported: +process.versions.node.split('.')[0] >= 24, curl: commandVersion(process.platform === 'win32' ? 'curl.exe' : 'curl'), rg: commandVersion('rg'), credentialsConfigured: Boolean(loadKey(home)), realBin, runtimeVersion: version, installed: Boolean(config), compatible, disabled: existsSync(join(home, 'runtime/desktop/disabled')), configuredForNextLaunch: config?.activated === true, bridgeProcessAlive: activeBridges.length>0, installedFingerprint, loadedRevisionMatches, activeBridges, latestBridge: activeBridges.at(-1)??bridges.at(-1)??null, desktopVerifiedPlatforms: ['darwin'], crossPlatformRuntimeNeedsAcceptance: ['win32', 'linux'] };
 }
 export function desktopMetrics() {
   const file = join(installHome(), 'runtime/desktop/logs/events.jsonl'); let events = [], malformed = 0;

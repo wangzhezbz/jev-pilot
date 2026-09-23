@@ -6,7 +6,7 @@ import { tmpdir, homedir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { randomUUID, createHash } from 'node:crypto';
-import { Router, makeJudge, POLICY_VERSION } from './router.mjs';
+import { Router, makeJudge, POLICY_VERSION, LEASE_UNIT } from './router.mjs';
 import { Store, Judge, loadConfig } from '../../src/core.mjs';
 
 export function toml(value) {
@@ -25,7 +25,11 @@ export function hookOverrides(node, hookPath, trust={}) {
   return result;
 }
 
-export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,automation=false,input=process.stdin,output=process.stdout,env=process.env}={}) {
+export function runtimeFingerprint(hashes) {
+  if(!hashes || typeof hashes!=='object' || Array.isArray(hashes) || !Object.keys(hashes).length)return null;
+  return createHash('sha256').update(JSON.stringify(Object.entries(hashes).sort(([a],[b])=>a<b?-1:a>b?1:0))).digest('hex');
+}
+export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,automation=false,runtimeIdentity=null,input=process.stdin,output=process.stdout,env=process.env}={}) {
   const home=dirname(fileURLToPath(import.meta.url));
   const dir=await mkdtemp(join(tmpdir(),'jev-bridge-'));await chmod(dir,0o700);
   const socketPath=process.platform==='win32'?`\\\\.\\pipe\\jev-pilot-${randomUUID()}`:join(dir,'hook.sock');
@@ -81,6 +85,10 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
     const starting=msg.method==='turn/start'?router.start(threadId,msg.params):null;
     if(msg.method==='turn/steer') router.invalidate(msg.params.threadId,msg.params.input);
     if(msg.method==='turn/interrupt') router.stop(msg.params.threadId);
+    if(msg.method==='turn/settings/update' && msg.id!==undefined) {
+      const requestState=clientRequests.get(JSON.stringify(msg.id));
+      requestState.control=router.beginSettingsUpdate(msg.params);
+    }
     // Keep control messages behind their pending start, while invalidating
     // recommendations immediately. Other threads and backend RPC replies flow.
     if(starting || (threadId && threadQueues.has(threadId))) {
@@ -102,6 +110,7 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
     }
     if(!msg.method && msg.id!==undefined){
       const p=clientRequests.get(JSON.stringify(msg.id));clientRequests.delete(JSON.stringify(msg.id));
+      if(p?.control)router.finishSettingsUpdate(p.control,msg.result,msg.error);
       if(p?.method==='initialize' && !msg.error) {
         metadataReady=request('model/list',{includeHidden:true,limit:100}).then(result=>{
           for(const m of result.data??[]) router.supported.set(m.model,(m.supportedReasoningEfforts??[]).map(x=>x.reasoningEffort));
@@ -129,7 +138,7 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
   child.on('error',()=>{log({kind:'backend_start_failed'});cleanup();});
   child.on('exit',()=>cleanup());
   for(const signal of ['SIGTERM','SIGINT'])process.once(signal,()=>{child.kill(signal);cleanup();});
-  log({kind:'bridge_started',policyVersion:POLICY_VERSION,pid:process.pid,backendPid:child.pid,networkMode:env.JEV_NETWORK_MODE??'inherited'});
+  log({kind:'bridge_started',policyVersion:POLICY_VERSION,leaseUnit:LEASE_UNIT,runtimeFingerprint:runtimeIdentity,pid:process.pid,backendPid:child.pid,networkMode:env.JEV_NETWORK_MODE??'inherited'});
   return {child,router,request,cleanup,socketPath,flushLog:()=>logPending};
 }
 
@@ -162,6 +171,6 @@ async function main() {
     return passthrough();
   }
   await runBridge({realBin:config.realBin,args,trust:config.trust,
-    automation:config.automation===true,keyPath:config.keyPath??join(homedir(),'.codex/skills/jev-assistant/.env.local'),logPath:join(home,'logs/events.jsonl')});
+    runtimeIdentity:runtimeFingerprint(config.sha256),automation:config.automation===true,keyPath:config.keyPath??join(homedir(),'.codex/skills/jev-assistant/.env.local'),logPath:join(home,'logs/events.jsonl')});
 }
 if(process.argv[1] && await realpath(resolve(process.argv[1])).catch(()=>null)===fileURLToPath(import.meta.url))main().catch(()=>{process.stderr.write('Jev adapter failed to start. Disable the override to use stock Codex.\n');process.exitCode=1;});

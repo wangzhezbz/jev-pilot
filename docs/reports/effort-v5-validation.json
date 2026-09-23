@@ -1,0 +1,187 @@
+{
+  "date": "2026-09-23",
+  "policyVersion": "effort-v5-context-freshness",
+  "reference": {
+    "repository": "https://github.com/miuuyy/Astra-Ares",
+    "commit": "a1dbc976103e300419cb0b4ab54150ad6a3e0b4b",
+    "mode": "source review; no installer or patched Codex executed; original implementation of compatible improvements"
+  },
+  "regressions": {
+    "passed": 106,
+    "failed": 0
+  },
+  "nativeFixtures": [
+    {
+      "case": "manual-astra",
+      "passed": true,
+      "models": [
+        "gpt-6-astra"
+      ],
+      "requestEfforts": [
+        "low",
+        "medium"
+      ],
+      "manualReceipt": {
+        "status": "applied"
+      },
+      "manualJudgeEffort": "medium",
+      "cacheContext": null,
+      "paidGPTCalls": 0,
+      "realJev": false
+    },
+    {
+      "case": "manual-sol",
+      "passed": true,
+      "models": [
+        "gpt-5.6-sol"
+      ],
+      "requestEfforts": [
+        "low",
+        "medium"
+      ],
+      "manualReceipt": {
+        "status": "applied"
+      },
+      "manualJudgeEffort": "medium",
+      "cacheContext": null,
+      "paidGPTCalls": 0,
+      "realJev": false
+    },
+    {
+      "case": "reassessment-and-prefix",
+      "passed": true,
+      "models": [
+        "gpt-6-astra"
+      ],
+      "requestEfforts": [
+        "low",
+        "low",
+        "low",
+        "low",
+        "medium"
+      ],
+      "manualReceipt": null,
+      "manualJudgeEffort": null,
+      "cacheContext": {
+        "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+        "initialItems": 7,
+        "perRequest": [
+          {
+            "request": 1,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 2,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 3,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 4,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 5,
+            "initialPrefixPreserved": true
+          }
+        ]
+      },
+      "paidGPTCalls": 0,
+      "realJev": false
+    },
+    {
+      "case": "unavailable",
+      "passed": true,
+      "models": [
+        "gpt-6-astra"
+      ],
+      "requestEfforts": [
+        "high",
+        "high"
+      ],
+      "manualReceipt": null,
+      "manualJudgeEffort": null,
+      "cacheContext": null,
+      "paidGPTCalls": 0,
+      "realJev": false
+    },
+    {
+      "case": "disabled",
+      "passed": true,
+      "models": [
+        "gpt-6-astra"
+      ],
+      "requestEfforts": [
+        "high",
+        "high"
+      ],
+      "manualReceipt": null,
+      "manualJudgeEffort": null,
+      "cacheContext": null,
+      "paidGPTCalls": 0,
+      "realJev": false
+    },
+    {
+      "case": "incompatible",
+      "passed": true,
+      "models": [
+        "gpt-6-astra"
+      ],
+      "requestEfforts": [
+        "high",
+        "high"
+      ],
+      "manualReceipt": null,
+      "manualJudgeEffort": null,
+      "cacheContext": null,
+      "paidGPTCalls": 0,
+      "realJev": false
+    }
+  ],
+  "installedStartup": {
+    "kind": "isolated_installed_startup_no_inference",
+    "paidCalls": 0,
+    "passed": true,
+    "policyVersion": "effort-v5-context-freshness",
+    "runtimeFingerprint": "954d90a9f55806df365069ac02db7d167ebff9868820227b0f3cade883bf69ae",
+    "currentDesktopReloaded": false
+  },
+  "desktopActivation": {
+    "installed": true,
+    "compatible": true,
+    "currentDesktopReloaded": false,
+    "observedActivePolicyVersions": [
+      "effort-v4-adaptive-lease"
+    ],
+    "loadedRevisionMatches": null
+  },
+  "sourceHashes": {
+    "runtime/desktop/router.mjs": "8dbfcf559dea3990ca83bb9b75d54da593750c8db5d1169560e206b719a84cda",
+    "runtime/desktop/bridge.mjs": "b0214c2319d7fbab43a3eeebe11d48dad9e5bac5df78482dbad3e25fb2f45a34",
+    "src/setup.mjs": "895223cca5bce1e46cbf66d02608a6dfb53b55af25c12f95a9d2d46d5b64c9f0",
+    "scripts/verify-desktop.mjs": "a818611fc4257abba3da2ca38f46bc1bff68029026948e53b2fdadc2a26056d1",
+    "tests/desktop-router.test.mjs": "8b55b9c34db56e181b961f1159ea6ba4cd5bd0beccd0580ff5e184ed9ca09630",
+    "tests/integration.test.mjs": "3dbe865a3e514300f1ae61894c0a8f45f594b3ac88281a9b6d825e0b18e9a682"
+  },
+  "performance": {
+    "newPaidBenchmark": false,
+    "finalSavings": null,
+    "reason": "Previous benchmark stopped at provider quota; no retry in this review"
+  },
+  "nativePluginDiscovery": {
+    "kind": "real_codex_plugin_loading",
+    "gptCalls": 0,
+    "installedVersion": "0.2.0+codex.20260923032822",
+    "servers": [
+      {
+        "name": "jev-pilot",
+        "tools": [
+          "jev_pilot"
+        ]
+      }
+    ],
+    "passed": true
+  }
+}

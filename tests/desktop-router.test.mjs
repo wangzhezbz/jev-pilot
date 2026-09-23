@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {Router,select,redact,effortQuestion,horizonQuestion,selectedHorizon,compact,SUPPORTED_MODELS,usageCounts} from '../runtime/desktop/router.mjs';
 import {proxyEnvironment} from '../runtime/desktop/bootstrap.mjs';
 import {summarize} from '../runtime/desktop/report.mjs';
+import {runtimeFingerprint} from '../runtime/desktop/bridge.mjs';
 const answer=(choice,confidence=1)=>({type:'choice',choice,confidence,probabilities:Object.fromEntries(Object.keys(effortQuestion.criteria).map(k=>[k,k===choice?1:0]))});
 function setup(options={}){
  const calls=[],logs=[];const router=new Router({judge:async()=>({answer:answer('low'),model:'fixture',inputTokens:10}),request:async(method,params)=>{calls.push({method,params});return{status:'applied'};},log:x=>logs.push(x),...options});
@@ -186,4 +187,100 @@ test('continue receives bounded prior completed progress, never another thread s
 test('bounded evidence keeps both beginning and result tail and redacts secrets',()=>{
  const text=compact('BEGIN '+'.'.repeat(9000)+' END token=secretvalue',1000);
  assert.equal(text.length,1000);assert(text.startsWith('BEGIN'));assert(text.includes('END'));assert(!text.includes('secretvalue'));
+});
+
+test('manual turn settings fence an in-flight recommendation until native receipt',async()=>{
+ let release,count=0;
+ const s=setup({judge:async()=>{count++;return count===1?new Promise(r=>release=r):{answer:answer('keep')};}});
+ const pending=s.router.hook(s.p);await new Promise(r=>setImmediate(r));
+ const control=s.router.beginSettingsUpdate({threadId:'thread',turnId:'turn',effort:'medium'});
+ release({answer:answer('low')});assert.equal((await pending).status,'stale');assert.equal(s.calls.length,0);
+ assert.equal((await s.router.hook({...s.p,tool_use_id:'b'})).status,'external_settings_pending_or_unknown');
+ s.router.finishSettingsUpdate(control,{status:'applied'});
+ await s.router.hook({...s.p,tool_use_id:'c'});
+ assert.equal(count,2);assert.equal(s.router.turns.get('thread').current,'medium');
+});
+test('rejected settings and settings for an old turn never pretend to apply',async()=>{
+ const s=setup();assert.equal(s.router.beginSettingsUpdate({threadId:'thread',turnId:'old',effort:'low'}),null);
+ const control=s.router.beginSettingsUpdate({threadId:'thread',turnId:'turn',effort:'low'});
+ s.router.finishSettingsUpdate(control,undefined,{code:-1});assert.equal(s.router.turns.get('thread').current,'high');
+ assert.equal(s.router.turns.get('thread').settingsPending,0);
+});
+test('model changes preserve selected model and suspend routing for unknown native defaults',async()=>{
+ for(const effort of ['medium',undefined]){
+  const s=setup();s.router.supported.set('gpt-5.6-sol',['low','medium','high']);
+  const control=s.router.beginSettingsUpdate({threadId:'thread',turnId:'turn',model:'gpt-5.6-sol',effort});
+  s.router.finishSettingsUpdate(control,{status:'applied'});
+  const t=s.router.turns.get('thread');assert.equal(t.model,'gpt-5.6-sol');
+  if(!effort){assert.equal(t.settingsUncertain,true);assert.equal((await s.router.hook({...s.p,model:'gpt-5.6-sol'})).status,'external_settings_pending_or_unknown');}
+  else {await s.router.hook({...s.p,model:'gpt-5.6-sol'});assert.equal(s.calls[0].params.effort,'low');assert.equal(t.model,'gpt-5.6-sol');}
+ }
+});
+test('future thread defaults update the next turn without changing the active turn',()=>{
+ const s=setup();s.router.observe({method:'thread/settings/updated',params:{threadId:'thread',threadSettings:{model:'gpt-5.6-sol',effort:'medium',cwd:'/project'}}});
+ assert.equal(s.router.turns.get('thread').current,'high');assert.equal(s.router.turns.get('thread').model,'gpt-6-astra');
+ const next=s.router.start('thread',{});assert.equal(next.current,'medium');assert.equal(next.model,'gpt-5.6-sol');assert.equal(next.cwd,'/project');
+});
+test('late automatic receipt cannot overwrite an already confirmed manual change',async()=>{
+ let release;const s=setup({request:async()=>new Promise(r=>release=r)});
+ const pending=s.router.hook(s.p);await new Promise(r=>setImmediate(r));
+ const control=s.router.beginSettingsUpdate({threadId:'thread',turnId:'turn',effort:'medium'});
+ s.router.finishSettingsUpdate(control,{status:'applied'});release({status:'applied'});
+ assert.equal((await pending).status,'stale');assert.equal(s.router.turns.get('thread').current,'medium');
+ assert(s.logs.some(x=>x.status==='superseded'&&x.nativeStatus==='applied'));
+ assert.equal(s.router.turns.get('thread').settingsUncertain,true);
+});
+test('overlapping or rejected controls during publication suspend further automatic changes',async()=>{
+ let release;const s=setup({request:async()=>new Promise(r=>release=r)});
+ const pending=s.router.hook(s.p);await new Promise(r=>setImmediate(r));
+ const control=s.router.beginSettingsUpdate({threadId:'thread',turnId:'turn',effort:'medium'});
+ s.router.finishSettingsUpdate(control,null,{code:-1});release({status:'applied'});await pending;
+ assert.equal((await s.router.hook({...s.p,tool_use_id:'next'})).status,'external_settings_pending_or_unknown');
+ assert.equal(s.router.turns.get('thread').lease,0);
+});
+test('public plan and summary invalidate the lease without sharing private reasoning',async()=>{
+ let count=0;const s=setup({judge:async()=>{count++;return{answer:answer('low'),horizon:horizon(10)};}});
+ await s.router.routeStart({threadId:'thread'});
+ s.router.observe({method:'item/completed',params:{threadId:'thread',turnId:'turn',item:{type:'reasoning',summary:['Inspect the conflicting test results'],content:['PRIVATE_REASONING_SENTINEL'],encrypted_content:'ENCRYPTED_SENTINEL'}}});
+ s.router.observe({method:'turn/plan/updated',params:{threadId:'thread',turnId:'turn',plan:[{step:'Diagnose the conflict',status:'inProgress'}]}});
+ await s.router.hook(s.p);assert.equal(count,2);
+ const state=JSON.stringify(s.router.state(s.router.turns.get('thread')));
+ assert(state.includes('Inspect the conflicting'));assert(state.includes('Diagnose'));assert(!state.includes('PRIVATE_REASONING'));assert(!state.includes('ENCRYPTED'));
+});
+test('a public update during judgment causes a bounded refresh with the latest state',async()=>{
+ let release,count=0;const s=setup({judge:async state=>{
+  count++;if(count===1)return new Promise(r=>release=r);
+  assert(state.progress.some(x=>x.includes('New conflict')));return{answer:answer('high')};
+ }});
+ const pending=s.router.hook(s.p);await new Promise(r=>setImmediate(r));
+ s.router.observe({method:'item/completed',params:{threadId:'thread',turnId:'turn',item:{type:'agentMessage',text:'New conflict changes the investigation'}}});
+ release({answer:answer('low')});await pending;assert.equal(count,2);assert.equal(s.calls.length,0);
+});
+test('a late successful tool result also supersedes the earlier snapshot',async()=>{
+ let release,count=0;const states=[];const s=setup({judge:async state=>{
+  states.push(state);return ++count===1?new Promise(r=>release=r):{answer:answer('high')};
+ }});
+ const a=s.router.hook(s.p);await new Promise(r=>setImmediate(r));
+ const b=s.router.hook({...s.p,tool_use_id:'b',tool_response:'A contradiction was found, exit code 0'});
+ release({answer:answer('low')});await Promise.all([a,b]);
+ assert.equal(states[0].recentTools.length,1);assert.equal(states[1].recentTools.length,2);assert.equal(s.calls.length,0);
+});
+test('continuously changing evidence preserves effort after one refresh',async()=>{
+ let s,count=0;s=setup({judge:async()=>{
+  count++;s.router.observe({method:'item/completed',params:{threadId:'thread',turnId:'turn',item:{type:'agentMessage',text:'progress '+count}}});
+  return{answer:answer('low'),horizon:horizon(10)};
+ }});
+ assert.equal((await s.router.hook(s.p)).status,'stale_evidence');assert.equal(count,2);assert.equal(s.calls.length,0);
+ assert.equal(s.router.turns.get('thread').lease,0);
+});
+test('progress arriving during native publication prevents reuse of that decision',async()=>{
+ let release;const s=setup({judge:async()=>({answer:answer('low'),horizon:horizon(10)}),request:async()=>new Promise(r=>release=r)});
+ const pending=s.router.hook(s.p);await new Promise(r=>setImmediate(r));
+ s.router.observe({method:'item/completed',params:{threadId:'thread',turnId:'turn',item:{type:'plan',text:'Investigate unresolved failure'}}});
+ release({status:'applied'});await pending;assert.equal(s.router.turns.get('thread').lease,0);assert.equal(s.router.turns.get('thread').forceRecheck,true);
+ assert.equal(s.logs.at(-1).confirmation,'native_settings_published');assert.equal(s.logs.at(-1).leaseUnit,'tool_completion_boundary');
+});
+test('runtime identity is deterministic, detects changed sources and never invents old identities',()=>{
+ assert.equal(runtimeFingerprint({a:'one',b:'two'}),runtimeFingerprint({b:'two',a:'one'}));
+ assert.notEqual(runtimeFingerprint({a:'one'}),runtimeFingerprint({a:'two'}));assert.equal(runtimeFingerprint(undefined),null);assert.equal(runtimeFingerprint({}),null);
 });

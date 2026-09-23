@@ -17,7 +17,7 @@ Status: macOS delivery candidate. Core fixes and local/native-engine acceptance 
 
 | Layer | Result | What it establishes |
 |---|---|---|
-| Local regressions | 93 passed | Deterministic contracts, failure behavior, concurrency budgets and evidence retention |
+| Local regressions | 106 passed after v5 follow-up | Deterministic contracts, failure behavior, concurrency budgets, evidence retention and stale-routing protection |
 | Paid TypeSafe smoke | 11 calls, nine scenarios passed | Current API integration, usage and bounded semantic examples |
 | Policy regression | 3 calls; 32 labeled cases; 24 long-instruction candidates | No observed false exclusions in this small synthetic set; not production calibration |
 | Original macOS engine | Routing, native applied receipt, output filtering, outage/version/disabled fallback passed | Actual request parameters and native hooks, using synthetic inference |
@@ -29,6 +29,8 @@ Status: macOS delivery candidate. Core fixes and local/native-engine acceptance 
 | Real model benchmark | 12 of 24 attempts; 11 passed, one provider quota failure | Partial observed data only; no final savings claim |
 
 Machine-readable evidence is in [delivery-acceptance.json](delivery-acceptance.json), [live-smoke.json](live-smoke.json), [policy-regression.json](policy-regression.json), [benchmark-partial.json](benchmark-partial.json) and [benchmark-partial.csv](benchmark-partial.csv).
+
+The subsequent [v5 routing review](EFFORT-V5-REVIEW.md) adds manual-settings fences, bounded public context, stale-result protection and installed-versus-loaded revision diagnostics. Its [separate validation](effort-v5-validation.json) does not replace historical benchmark or package evidence.
 
 The benchmark used a frozen source snapshot and paired fixed-high versus automatic arms on Astra and Sol. Later diagnostic ordering, synchronous-error cleanup and manifest checks are separately covered by regressions. This is not a full benchmark of the final packaged revision. The original failed run stays in local raw evidence; the public summary identifies the provider limit without publishing account-specific reset details.
 
