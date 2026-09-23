@@ -28,14 +28,14 @@ export function createAutomation({ store = new Store(), key, send } = {}) {
         : /\b(json|csv|verbatim|exact output)\b|原样|完整输出|不.*删减/i.test(state.goal) ? 'exact_output'
         : /jev_pilot|code_mode|functions\.exec/i.test(payload.tool_name || '') ? 'nested_or_self' : 'eligible';
       const eligible = reason === 'eligible';
-      store.event(project, 'automatic_output_admission', { reason });
+      store.event(project, 'automatic_output_admission', { reason, boundaryId: fingerprint });
       if (!eligible) { store.put(project, 'automatic_task', state, id); return {}; }
       state.count++; store.put(project, 'automatic_task', state, id);
       const judge = new Judge({ store, project, taskId: payload.session_id, config: { ...config, maxCalls: 2, timeoutMs: 1800 }, ...(key !== undefined ? { key } : {}), ...(send ? { send } : {}) });
       const result = await filterOutput({ store, project, config, judge, root: payload.cwd }, { goal: state.goal, text: response, source: payload.tool_name, budget: 10000 });
       if (result.degraded || result.context.length >= response.length * .8 || !result.items.length) return {};
       const feedback = `JevPilot retained task evidence from ${payload.tool_name}. The original output is saved locally. This is partial evidence; use jev_pilot recall for omitted material. Artifact: ${result.artifactId}\n${result.context}`;
-      store.event(project, 'automatic_output_filter', { originalBytes: Buffer.byteLength(response), retainedBytes: Buffer.byteLength(feedback), artifactId: result.artifactId, nativeTokenSavings: null });
+      store.event(project, 'automatic_output_filter', { boundaryId: fingerprint, originalBytes: Buffer.byteLength(response), retainedBytes: Buffer.byteLength(feedback), artifactId: result.artifactId, nativeTokenSavings: null });
       return { continue: false, stopReason: feedback };
     },
     close() { store.close(); },

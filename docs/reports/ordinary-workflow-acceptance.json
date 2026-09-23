@@ -1,0 +1,125 @@
+{
+  "date": "2026-09-23",
+  "regressionTestsPassed": 108,
+  "currentAgentSemanticChecks": {
+    "delivery": "installed plugin CLI invoked by the current Codex agent; user ran no command",
+    "candidateSelection": {
+      "realJev": true,
+      "model": "jev-1.13.0",
+      "kept": [
+        "automation",
+        "dashboard",
+        "diagnostics"
+      ],
+      "excluded": [
+        "localize",
+        "launcher"
+      ],
+      "inputTokens": 1042,
+      "outputTokens": 183,
+      "serviceElapsedMs": 551
+    },
+    "outputFiltering": {
+      "kind": "current_agent_installed_plugin_cli_live_jev",
+      "automaticNativeHook": false,
+      "checks": {
+        "notDegraded": true,
+        "requiredEvidenceRetained": true,
+        "originalRecovered": true
+      },
+      "passed": true,
+      "inputBytes": 10734,
+      "retainedBytes": 1076,
+      "excluded": [
+        "s0"
+      ],
+      "duplicates": [
+        "s60",
+        "s90"
+      ],
+      "artifactId": "50ec908e-0d1b-40bd-b759-b569a93b2eeb"
+    },
+    "outputFilteringUsage": {
+      "model": "jev-1.13.0",
+      "inputTokens": 1278,
+      "outputTokens": 39,
+      "serviceElapsedMs": 510
+    },
+    "requests": [
+      {
+        "at": "2026-09-23T03:59:52.107Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "model": "jev-1.13.0",
+        "elapsedMs": 510,
+        "inputTokens": 1278,
+        "outputTokens": 39,
+        "questions": 1,
+        "status": "success"
+      },
+      {
+        "at": "2026-09-23T03:59:15.069Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "model": "jev-1.13.0",
+        "elapsedMs": 551,
+        "inputTokens": 1042,
+        "outputTokens": 183,
+        "questions": 5,
+        "status": "success"
+      }
+    ]
+  },
+  "browser": {
+    "driver": "official Chrome extension",
+    "locales": [
+      "en",
+      "zh-CN",
+      "ru",
+      "ja",
+      "ko"
+    ],
+    "loadedRevisionVisible": true,
+    "legacyFilterCountsSeparated": true,
+    "reloadPassed": true
+  },
+  "paidGPTBenchmarkRetried": false,
+  "latestDesktopActivation": "pending normal restart; other task active; existing live bridges use v4",
+  "windowsLinuxDesktopAcceptance": "pending real devices",
+  "syntheticNativeFilter": {
+    "passed": true,
+    "realJev": false,
+    "matchingBoundary": true,
+    "paidGPTCalls": 0
+  },
+  "ordinaryDesktopRouting": {
+    "policy": "effort-v4-adaptive-lease",
+    "nativePublications": [
+      {
+        "from": "high",
+        "to": "medium",
+        "confirmation": "native_settings_published"
+      }
+    ],
+    "isLatestInstalledVersion": false
+  },
+  "sourceHashes": {
+    "src/automation.mjs": "8be6c09c38f882967ce8cdd00f5882ece6898e688378a042c9200c02fe02a12c",
+    "src/diagnostics.mjs": "2b0b87381683884be794f2e59ad07a6276632b9ab26acc86cad7c738be312ae8",
+    "web/app.js": "b6e33b86def76ec66ead89cce78cc2baf0a5ae12a00172a14784005f6dc8f6f1"
+  },
+  "nativePluginDiscovery": {
+    "kind": "real_codex_plugin_loading",
+    "gptCalls": 0,
+    "installedVersion": "0.2.0+codex.20260923040220",
+    "servers": [
+      {
+        "name": "jev-pilot",
+        "tools": [
+          "jev_pilot"
+        ]
+      }
+    ],
+    "passed": true
+  }
+}

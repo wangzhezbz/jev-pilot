@@ -33,7 +33,7 @@
   "shadow": "Shadow mode: retain evidence and record exclusion proposals",
   "firstStep": "First-request changes · all projects",
   "observed": "Observed tool boundaries",
-  "filtered": "Outputs filtered",
+  "filtered": "Filters with a matched boundary",
   "proposed": "Proposed evidence exclusions",
   "removed": "Applied evidence exclusions",
   "cooling": "Services cooling down",
@@ -57,5 +57,10 @@
   "MISSING_KEY": "Missing key",
   "DISABLED": "Assistance disabled",
   "CANCELLED": "Cancelled",
-  "REQUEST_LIMIT": "Request too large"
+  "REQUEST_LIMIT": "Request too large",
+  "loadedRevision": "Loaded adapter revision",
+  "revisionCurrent": "Matches installed version",
+  "revisionOld": "Older version; restart required",
+  "revisionUnknown": "Not verified",
+  "unmatchedFilters": "Filters without a matching boundary (legacy/outside window)"
 }

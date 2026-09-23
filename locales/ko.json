@@ -33,7 +33,7 @@
   "shadow": "섀도 모드: 증거를 유지하고 제외 제안만 기록",
   "firstStep": "첫 요청 변경 · 전체 프로젝트",
   "observed": "관찰한 도구 결과",
-  "filtered": "선별한 출력",
+  "filtered": "경계와 연결된 필터링",
   "proposed": "제안한 증거 제외",
   "removed": "적용한 증거 제외",
   "cooling": "대기 중인 서비스",
@@ -57,5 +57,10 @@
   "MISSING_KEY": "키 미설정",
   "DISABLED": "지원 비활성화",
   "CANCELLED": "취소됨",
-  "REQUEST_LIMIT": "요청 크기 초과"
+  "REQUEST_LIMIT": "요청 크기 초과",
+  "loadedRevision": "로드된 어댑터 버전",
+  "revisionCurrent": "설치된 버전과 일치",
+  "revisionOld": "버전 불일치 · 재시작 필요",
+  "revisionUnknown": "미확인",
+  "unmatchedFilters": "경계와 연결되지 않은 필터링 (이전 기록/집계 범위 밖)"
 }

@@ -13,6 +13,20 @@ function fixture(t,send) {
 function response(payload,choice='keep',probabilities) {
   return {model:'fixture',answers:Object.fromEntries(Object.keys(payload.questions).map(id=>[id,{type:'choice',choice,probabilities:probabilities||{keep:choice==='keep'?1:0,review:0,exclude:choice==='exclude'?1:0}}]))};
 }
+test('diagnostics separate matched filters from legacy and window-truncated records',async t=>{
+ const f=fixture(t,async p=>response(p));
+ for(const event of [
+  {kind:'automatic_output_filter'},
+  {kind:'automatic_output_filter',boundaryId:'outside-window'},
+  {kind:'automatic_output_admission',boundaryId:'small',reason:'small'},
+  {kind:'automatic_output_admission',boundaryId:'matched',reason:'eligible'},
+  {kind:'automatic_output_filter',boundaryId:'matched'},
+ ]){const {kind,...data}=event;f.store.event(f.project,kind,data);}
+ const r=await f.call('diagnostics',{});
+ assert.equal(r.outputAdmission.observed,2);assert.equal(r.outputAdmission.applied,3);
+ assert.equal(r.outputAdmission.matchedApplied,1);assert.equal(r.outputAdmission.unmatchedApplied,2);
+ assert.equal(r.outputAdmission.coverageRate,null);
+});
 test('long shared Chinese task fits once instead of overflowing 24 repeated questions',async t=>{
   const sent=[],f=fixture(t,async p=>{sent.push(p);return response(p);});
   const instruction='任务背景'.repeat(500);

@@ -33,7 +33,7 @@
   "shadow": "影子模式：保留证据，只记录排除建议",
   "firstStep": "首步强度变更 · 全部项目",
   "observed": "已观察工具边界",
-  "filtered": "已筛选输出",
+  "filtered": "已关联边界的过滤",
   "proposed": "建议排除的证据",
   "removed": "实际排除的证据",
   "cooling": "冷却中的服务",
@@ -57,5 +57,10 @@
   "MISSING_KEY": "未配置密钥",
   "DISABLED": "已关闭协作",
   "CANCELLED": "已取消",
-  "REQUEST_LIMIT": "请求超出大小限制"
+  "REQUEST_LIMIT": "请求超出大小限制",
+  "loadedRevision": "实际加载版本",
+  "revisionCurrent": "与安装版本一致",
+  "revisionOld": "版本不一致，需要重启",
+  "revisionUnknown": "尚未核实",
+  "unmatchedFilters": "未关联边界的过滤（历史或窗口外）"
 }

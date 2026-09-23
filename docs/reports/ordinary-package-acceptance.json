@@ -1,0 +1,11 @@
+{
+  "kind": "extracted_archive_isolated_install_existing_host_dependencies",
+  "archiveSha256": "ba8e17758440458660ecfe591857a3123988c5d658b85058e061f6d9d4b88508",
+  "compatible": true,
+  "installed": true,
+  "configuredForNextLaunch": false,
+  "globalActivationChanged": false,
+  "platform": "darwin",
+  "arch": "arm64",
+  "passed": true
+}

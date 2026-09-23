@@ -17,6 +17,8 @@ Requirements and evidence to collect:
 
 No completion claim until requirement-specific evidence is recorded. Passing unit tests is not desktop or performance acceptance. No official Codex binary patch for browser networking. No API keys in artifacts. Existing upstream copyright notices are retained.
 
+Latest ordinary-workflow check: [report](reports/ORDINARY-WORKFLOW-ACCEPTANCE.md). 108 regressions passed; current-agent live Jev selection and recoverable filtering passed; dashboard activation/coverage distinctions passed in Chrome. Latest desktop activation, full performance and Windows/Linux real-device acceptance remain open.
+
 ## Current evidence
 
 - 107 local regression tests passed after the routing freshness review; syntax, JSON and credential-pattern checks passed. See `reports/EFFORT-V5-REVIEW.md` for the additional context, manual-settings and revision checks.

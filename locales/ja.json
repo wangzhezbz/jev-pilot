@@ -33,7 +33,7 @@
   "shadow": "シャドーモード：証拠を保持し、除外提案のみ記録",
   "firstStep": "初回リクエストの変更 · 全プロジェクト",
   "observed": "観測したツール結果",
-  "filtered": "選別済みの出力",
+  "filtered": "境界に紐づくフィルター",
   "proposed": "提案された証拠の除外",
   "removed": "適用された証拠の除外",
   "cooling": "冷却中のサービス",
@@ -57,5 +57,10 @@
   "MISSING_KEY": "キー未設定",
   "DISABLED": "補助が無効",
   "CANCELLED": "キャンセル済み",
-  "REQUEST_LIMIT": "リクエストが大きすぎます"
+  "REQUEST_LIMIT": "リクエストが大きすぎます",
+  "loadedRevision": "読み込まれたアダプターの版",
+  "revisionCurrent": "インストール済みの版と一致",
+  "revisionOld": "版が異なります・再起動が必要",
+  "revisionUnknown": "未確認",
+  "unmatchedFilters": "境界に紐づかないフィルター（旧記録・集計範囲外）"
 }
