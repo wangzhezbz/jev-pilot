@@ -1,0 +1,314 @@
+{
+  "at": "2026-09-22T08:16:31.702Z",
+  "scope": "Small synthetic regression with prespecified labels. The two sets are not representative production data; no calibrated accuracy or savings claim.",
+  "passed": true,
+  "falseExclusions": 0,
+  "longInstruction24": true,
+  "evaluation": {
+    "id": "08b7dade-fac9-40f9-8c01-f658dd5916c6",
+    "at": "2026-09-22T08:16:31.079Z",
+    "policy": "preserve-uncertainty-v2",
+    "domain": "synthetic-invoice-relevance",
+    "model": "jev-1.13.0",
+    "rubricHash": "cd005566444d413d8e3d65e6d4c87bdde314a59a78d40462a498e71a4062c1b7",
+    "datasetHash": "bb2f0284996623eb356386cf59b248d895027353cdfb51c393e224a4d7a80049",
+    "labels": "caller-supplied",
+    "threshold": null,
+    "fit": {
+      "samples": 16,
+      "excluded": 0,
+      "falseExclusions": 0,
+      "precision": null,
+      "coverage": 0,
+      "lower95": 0
+    },
+    "holdout": {
+      "samples": 16,
+      "excluded": 0,
+      "falseExclusions": 0,
+      "precision": null,
+      "coverage": 0,
+      "lower95": 0
+    },
+    "status": "insufficient-or-failed",
+    "warnings": [
+      "Need at least 100 labeled fit and 100 independent holdout samples with both relevant and irrelevant cases.",
+      "No fit threshold meets the one-sided 95% Wilson lower bound of 0.95."
+    ],
+    "applied": false,
+    "limitation": "Evaluation only. No automatic activation, no guarantee outside this labeled domain/model/rubric."
+  },
+  "rows": [
+    {
+      "id": "fit-keep-0",
+      "group": "fit-keep-0",
+      "split": "fit",
+      "gold": "keep",
+      "choice": "keep",
+      "probability": 1
+    },
+    {
+      "id": "fit-keep-1",
+      "group": "fit-keep-1",
+      "split": "fit",
+      "gold": "keep",
+      "choice": "keep",
+      "probability": 1
+    },
+    {
+      "id": "fit-keep-2",
+      "group": "fit-keep-2",
+      "split": "fit",
+      "gold": "keep",
+      "choice": "keep",
+      "probability": 1
+    },
+    {
+      "id": "fit-keep-3",
+      "group": "fit-keep-3",
+      "split": "fit",
+      "gold": "keep",
+      "choice": "keep",
+      "probability": 0.99
+    },
+    {
+      "id": "fit-keep-4",
+      "group": "fit-keep-4",
+      "split": "fit",
+      "gold": "keep",
+      "choice": "keep",
+      "probability": 0.99
+    },
+    {
+      "id": "fit-keep-5",
+      "group": "fit-keep-5",
+      "split": "fit",
+      "gold": "keep",
+      "choice": "keep",
+      "probability": 0.85
+    },
+    {
+      "id": "fit-keep-6",
+      "group": "fit-keep-6",
+      "split": "fit",
+      "gold": "keep",
+      "choice": "keep",
+      "probability": 0.97
+    },
+    {
+      "id": "fit-keep-7",
+      "group": "fit-keep-7",
+      "split": "fit",
+      "gold": "keep",
+      "choice": "keep",
+      "probability": 0.53
+    },
+    {
+      "id": "fit-exclude-0",
+      "group": "fit-exclude-0",
+      "split": "fit",
+      "gold": "exclude",
+      "choice": "exclude",
+      "probability": 0.88
+    },
+    {
+      "id": "fit-exclude-1",
+      "group": "fit-exclude-1",
+      "split": "fit",
+      "gold": "exclude",
+      "choice": "exclude",
+      "probability": 0.9
+    },
+    {
+      "id": "fit-exclude-2",
+      "group": "fit-exclude-2",
+      "split": "fit",
+      "gold": "exclude",
+      "choice": "exclude",
+      "probability": 0.93
+    },
+    {
+      "id": "fit-exclude-3",
+      "group": "fit-exclude-3",
+      "split": "fit",
+      "gold": "exclude",
+      "choice": "exclude",
+      "probability": 0.96
+    },
+    {
+      "id": "fit-exclude-4",
+      "group": "fit-exclude-4",
+      "split": "fit",
+      "gold": "exclude",
+      "choice": "exclude",
+      "probability": 0.95
+    },
+    {
+      "id": "fit-exclude-5",
+      "group": "fit-exclude-5",
+      "split": "fit",
+      "gold": "exclude",
+      "choice": "exclude",
+      "probability": 0.97
+    },
+    {
+      "id": "fit-exclude-6",
+      "group": "fit-exclude-6",
+      "split": "fit",
+      "gold": "exclude",
+      "choice": "exclude",
+      "probability": 0.93
+    },
+    {
+      "id": "fit-exclude-7",
+      "group": "fit-exclude-7",
+      "split": "fit",
+      "gold": "exclude",
+      "choice": "exclude",
+      "probability": 0.92
+    },
+    {
+      "id": "holdout-keep-0",
+      "group": "holdout-keep-0",
+      "split": "holdout",
+      "gold": "keep",
+      "choice": "keep",
+      "probability": 1
+    },
+    {
+      "id": "holdout-keep-1",
+      "group": "holdout-keep-1",
+      "split": "holdout",
+      "gold": "keep",
+      "choice": "keep",
+      "probability": 0.83
+    },
+    {
+      "id": "holdout-keep-2",
+      "group": "holdout-keep-2",
+      "split": "holdout",
+      "gold": "keep",
+      "choice": "keep",
+      "probability": 0.98
+    },
+    {
+      "id": "holdout-keep-3",
+      "group": "holdout-keep-3",
+      "split": "holdout",
+      "gold": "keep",
+      "choice": "keep",
+      "probability": 1
+    },
+    {
+      "id": "holdout-keep-4",
+      "group": "holdout-keep-4",
+      "split": "holdout",
+      "gold": "keep",
+      "choice": "keep",
+      "probability": 0.96
+    },
+    {
+      "id": "holdout-keep-5",
+      "group": "holdout-keep-5",
+      "split": "holdout",
+      "gold": "keep",
+      "choice": "keep",
+      "probability": 0.95
+    },
+    {
+      "id": "holdout-keep-6",
+      "group": "holdout-keep-6",
+      "split": "holdout",
+      "gold": "keep",
+      "choice": "keep",
+      "probability": 1
+    },
+    {
+      "id": "holdout-keep-7",
+      "group": "holdout-keep-7",
+      "split": "holdout",
+      "gold": "keep",
+      "choice": "keep",
+      "probability": 0.99
+    },
+    {
+      "id": "holdout-exclude-0",
+      "group": "holdout-exclude-0",
+      "split": "holdout",
+      "gold": "exclude",
+      "choice": "exclude",
+      "probability": 0.83
+    },
+    {
+      "id": "holdout-exclude-1",
+      "group": "holdout-exclude-1",
+      "split": "holdout",
+      "gold": "exclude",
+      "choice": "exclude",
+      "probability": 0.91
+    },
+    {
+      "id": "holdout-exclude-2",
+      "group": "holdout-exclude-2",
+      "split": "holdout",
+      "gold": "exclude",
+      "choice": "exclude",
+      "probability": 0.98
+    },
+    {
+      "id": "holdout-exclude-3",
+      "group": "holdout-exclude-3",
+      "split": "holdout",
+      "gold": "exclude",
+      "choice": "exclude",
+      "probability": 0.94
+    },
+    {
+      "id": "holdout-exclude-4",
+      "group": "holdout-exclude-4",
+      "split": "holdout",
+      "gold": "exclude",
+      "choice": "exclude",
+      "probability": 0.96
+    },
+    {
+      "id": "holdout-exclude-5",
+      "group": "holdout-exclude-5",
+      "split": "holdout",
+      "gold": "exclude",
+      "choice": "exclude",
+      "probability": 0.93
+    },
+    {
+      "id": "holdout-exclude-6",
+      "group": "holdout-exclude-6",
+      "split": "holdout",
+      "gold": "exclude",
+      "choice": "exclude",
+      "probability": 0.93
+    },
+    {
+      "id": "holdout-exclude-7",
+      "group": "holdout-exclude-7",
+      "split": "holdout",
+      "gold": "exclude",
+      "choice": "exclude",
+      "probability": 0.92
+    }
+  ],
+  "metrics": {
+    "events": 4,
+    "windowLimit": 10000,
+    "jev": {
+      "calls": 3,
+      "failures": 0,
+      "inputTokens": 8513,
+      "outputTokens": 1883,
+      "totalElapsedMs": 1830,
+      "missingUsage": 0
+    },
+    "cacheHits": 0,
+    "savings": null,
+    "savingsReason": "Requires matched baseline tasks with quality acceptance and provider usage. No counterfactual savings inferred."
+  }
+}

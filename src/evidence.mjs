@@ -4,6 +4,7 @@ import { realpathSync } from 'node:fs';
 import { relative, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { records, array, text, requireValue, readSource, byteBudget, hash, now } from './core.mjs';
+import { protectedEvidence, exclusionDecision, EVIDENCE_POLICY } from './policy.mjs';
 const exec = promisify(execFile);
 const relevant = { keep: 'Relevant evidence including contradictions or unresolved errors.', review: 'Unclear; retain for Codex review.', exclude: 'Clearly unrelated or superseded evidence.' };
 const terms = s => new Set(s.toLowerCase().match(/[\p{L}\p{N}_]+/gu) || []);
@@ -17,15 +18,23 @@ export function chunks(source, linesPerChunk = 30) {
 export async function selectEvidence(ctx, { goal, items, budget = 16000, against = [] }) {
   text(goal, 10000); records(items); array(against); requireValue(Number.isInteger(budget) && budget >= 128 && budget <= 500000, 'INVALID_BUDGET');
   const artifactId = ctx.store.put(ctx.project, 'artifact', { goal, items, createdAt: now() });
-  const judgments = await ctx.judge.classify(items, `Task: ${goal}. Should this item be included as task evidence?`, relevant, 'evidence');
   const selected = [], excluded = [], deferred = [], duplicates = [], seen = new Set(against.map(hash));
+  const unique = [];
+  for (const item of items) {
+    if (seen.has(hash(item.text)) && !protectedEvidence(item)) { duplicates.push(item.id); continue; }
+    seen.add(hash(item.text)); unique.push(item);
+  }
+  const judged = unique.filter(item => !protectedEvidence(item));
+  const answers = await ctx.judge.classify(judged, `Task: ${goal}. Should this item be included as task evidence?`, relevant, 'evidence');
+  const byId = new Map(answers.map(answer => [answer.id, answer]));
+  const judgments = unique.map(item => byId.get(item.id) || { id: item.id, choice: 'keep', source: 'deterministic', reason: 'protected_evidence' });
   const candidates = [];
-  items.forEach((item, i) => {
-    const j = judgments[i]; const protectedItem = item.pin || /\b(error|failed|exception|traceback)\b/i.test(item.text);
-    if (seen.has(hash(item.text)) && !protectedItem) { duplicates.push(item.id); return; }
-    seen.add(hash(item.text));
-    if (j.choice === 'exclude' && !protectedItem) excluded.push(item.id);
-    else candidates.push({ ...item, judgment: j, protected: protectedItem || j.choice === 'review' || j.source === 'fallback' });
+  const proposals = [];
+  unique.forEach((item, i) => {
+    const j = judgments[i], protectedItem = protectedEvidence(item), decision = exclusionDecision(j, ctx.config);
+    if (decision.proposed && !protectedItem) proposals.push(item.id);
+    if (decision.apply && !protectedItem) excluded.push(item.id);
+    else candidates.push({ ...item, judgment: j, protected: protectedItem || j.choice !== 'keep' || j.source === 'fallback' });
   });
   let used = 0;
   const render = x => `[${x.id} ${x.source || 'provided'}${x.startLine ? ':' + x.startLine : ''}]\n${x.text}\n`;
@@ -39,7 +48,8 @@ export async function selectEvidence(ctx, { goal, items, budget = 16000, against
     });
     const c = pool.shift(); if (used + byteBudget(render(c)) <= budget) add(c); else deferred.push(c.id);
   }
-  return { artifactId, context: selected.map(render).join(''), items: selected, excludedIds: excluded, deferredIds: deferred, duplicateIds: duplicates,
+  ctx.store.event(ctx.project, 'evidence_selection', { policy: EVIDENCE_POLICY, candidates: items.length, judged: judged.length, duplicates: duplicates.length, proposedExclusions: proposals.length, appliedExclusions: excluded.length, mode: ctx.config?.evidenceMode || 'active' });
+  return { artifactId, context: selected.map(render).join(''), items: selected, excludedIds: excluded, proposedExcludedIds: proposals, policy: EVIDENCE_POLICY, deferredIds: deferred, duplicateIds: duplicates,
     budget, usedBytes: used, budgetUnit: 'UTF-8 bytes; conservative token bound, not measured tokens', protectedOverflow: used > budget,
     completeCoverage: deferred.length === 0, recovery: { operation: 'recall', artifactId }, degraded: judgments.some(j => j.source === 'fallback') };
 }
@@ -80,14 +90,17 @@ export async function compactContext(ctx, { goal, blocks, session = 'default', p
   const originalId = ctx.store.put(ctx.project, 'artifact', { items: blocks.map(b => ({ ...b, text: b.content })), goal });
   const pairs = new Map(); blocks.forEach((b, i) => { if (b.callId) { const group = pairs.get(b.callId) || []; group.push({ ...b, index: i }); pairs.set(b.callId, group); } });
   const eligible = [...pairs].filter(([, group]) => group.length === 2 && group.some(b => b.role === 'tool_call' && b.readOnly === true && b.verified === true)
-    && group.some(b => b.role === 'tool_result') && group.every(b => !b.pin && !b.error && !b.failed && (!b.status || ['completed', 'success', 'succeeded', 'passed'].includes(b.status)) && b.verified !== false && b.index < blocks.length - preserveRecent && !/\b(error|failed|exception)\b/i.test(b.content)));
-  const cacheId = hash({ session, goal, policy: 'protected-handoff-v1' }), previous = ctx.store.get(ctx.project, 'compaction', cacheId) || { decisions: {} };
+    && group.some(b => b.role === 'tool_result') && group.every(b => !protectedEvidence(b, { paths: true }) && (!b.status || ['completed', 'success', 'succeeded', 'passed'].includes(b.status)) && b.verified !== false && b.index < blocks.length - preserveRecent));
+  const cacheId = hash({ session, goal, policy: EVIDENCE_POLICY }), previous = ctx.store.get(ctx.project, 'compaction', cacheId) || { decisions: {} };
   const pending = eligible.filter(([id, group]) => previous.decisions[id]?.hash !== hash(group));
   const decisions = await ctx.judge.classify(pending.map(([id, group], i) => ({ id: 'p' + i, text: JSON.stringify(group) })), `Goal: ${goal}. Is this completed read-only tool exchange still useful?`, relevant, 'context');
-  pending.forEach(([id, group], i) => { previous.decisions[id] = { hash: hash(group), choice: decisions[i].choice, source: decisions[i].source }; });
-  const remove = new Set(eligible.filter(([id]) => previous.decisions[id]?.choice === 'exclude' && previous.decisions[id]?.source === 'jev').map(([id]) => id));
+  const failed = decisions.some(d => d.source === 'fallback');
+  pending.forEach(([id, group], i) => { if (decisions[i].source === 'jev') previous.decisions[id] = { hash: hash(group), ...decisions[i] }; });
+  const proposed = eligible.filter(([id]) => exclusionDecision(previous.decisions[id], ctx.config).proposed).map(([id]) => id);
+  const remove = new Set(failed || ctx.config?.evidenceMode === 'shadow' ? [] : proposed);
   const retained = blocks.filter(b => !remove.has(b.callId)); ctx.store.put(ctx.project, 'compaction', previous, cacheId);
-  return { mode: 'recoverable_handoff', originalId, blocks: retained, omittedCallIds: [...remove], reusedJudgments: eligible.length - pending.length,
+  ctx.store.event(ctx.project, 'context_compaction', { candidates: eligible.length, judged: pending.length, proposedExclusions: proposed.length, appliedExclusions: remove.size, degraded: failed, mode: ctx.config.evidenceMode, policy: EVIDENCE_POLICY });
+  return { mode: 'recoverable_handoff', originalId, blocks: retained, omittedCallIds: [...remove], proposedOmittedCallIds: proposed, degraded: failed, policy: EVIDENCE_POLICY, reusedJudgments: eligible.length - pending.length,
     inputBytes: byteBudget(JSON.stringify(blocks)), outputBytes: byteBudget(JSON.stringify(retained)), nativeHistoryChanged: false,
     context: retained.map(b => `[${b.role} ${b.id}]\n${b.content}`).join('\n\n'), recovery: { operation: 'recall', artifactId: originalId } };
 }

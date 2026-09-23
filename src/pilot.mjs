@@ -5,8 +5,11 @@ import * as workflow from './workflows.mjs';
 import { browserStep, consumeBrowserTicket } from './browser.mjs';
 import { desktopStatus, desktopMetrics } from './setup.mjs';
 import { browserNetwork } from './browser-network.mjs';
+import { evaluatePolicy } from './evaluation.mjs';
+import { diagnostics } from './diagnostics.mjs';
 
 export const operations = {
+  diagnostics, evaluate_policy: evaluatePolicy,
   desktop_status: desktopStatus, desktop_metrics: desktopMetrics,
   browser_network: (ctx, input) => browserNetwork({ repair: input.repair === true }),
   decide: workflow.decide, select: evidence.selectEvidence, search: evidence.search,
@@ -18,10 +21,12 @@ export const operations = {
   status: ctx => ({ version: '0.2.0', configured: Boolean(ctx.judge.key), config: ctx.config, operations: Object.keys(operations), effortIntegration: 'Separate version-checked desktop bridge; use doctor for runtime status.' }),
   configure: (ctx, input) => {
     requireValue(input && typeof input === 'object');
-    const allowed = ['enabled', 'memory', 'locale', 'maxCalls', 'timeoutMs', 'cacheMs'];
+    const allowed = ['enabled', 'memory', 'locale', 'maxCalls', 'timeoutMs', 'cacheMs', 'evidenceMode', 'taskMaxCalls', 'taskMaxBytes', 'taskMaxWaitMs'];
     requireValue(Object.keys(input).every(k => allowed.includes(k)), 'UNKNOWN_SETTING');
     for (const k of ['enabled', 'memory']) if (k in input) requireValue(typeof input[k] === 'boolean');
     if ('locale' in input) requireValue(['en', 'zh-CN', 'ru', 'ja', 'ko'].includes(input.locale));
+    if ('evidenceMode' in input) requireValue(['active', 'shadow'].includes(input.evidenceMode));
+    for (const [k, low, high] of [['taskMaxCalls', 0, 200], ['taskMaxBytes', 0, 5000000], ['taskMaxWaitMs', 100, 120000]]) if (k in input) requireValue(Number.isInteger(input[k]) && input[k] >= low && input[k] <= high);
     for (const [k, low, high] of [['maxCalls', 0, 30], ['timeoutMs', 500, 10000], ['cacheMs', 0, 86400000]]) if (k in input) requireValue(Number.isInteger(input[k]) && input[k] >= low && input[k] <= high);
     const config = { ...ctx.config, ...input }; ctx.store.put(ctx.project, 'config', config, 'settings'); return { config };
   },
@@ -32,7 +37,9 @@ export class Pilot {
     requireValue(typeof workspace === 'string' && workspace.length > 0, 'WORKSPACE_REQUIRED');
     requireValue(Object.hasOwn(operations, operation), 'UNKNOWN_OPERATION');
     const root = realpathSync(workspace), project = this.store.project(root), config = loadConfig(this.store, project);
-    const judge = new Judge({ store: this.store, project, config, ...(this.key !== undefined ? { key: this.key } : {}), ...(this.send ? { send: this.send } : {}), signal });
+    const taskId = input.taskId ?? process.env.CODEX_THREAD_ID;
+    if (taskId !== undefined) requireValue(typeof taskId === 'string' && /^[\w.:-]{1,128}$/.test(taskId), 'INVALID_TASK_ID');
+    const judge = new Judge({ store: this.store, project, config, ...(this.key !== undefined ? { key: this.key } : {}), ...(this.send ? { send: this.send } : {}), signal, taskId });
     const ctx = { root, project, config, judge, store: this.store };
     const start = performance.now();
     const result = await operations[operation](ctx, input);

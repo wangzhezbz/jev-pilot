@@ -18,7 +18,7 @@ export async function dashboard(workspace, { port = 0, pilot = new Pilot() } = {
     if (req.method === 'GET' && /^\/locales\/(en|zh-CN|ru|ja|ko)\.json$/.test(path)) return respond(200, JSON.parse(readFileSync(join(packageRoot, path.slice(1)), 'utf8')));
     if (req.headers.authorization !== 'Bearer ' + token || req.headers.origin && req.headers.origin !== origin) return respond(403, { error: 'AUTH' });
     try {
-      if (req.method === 'GET' && path === '/api/status') return respond(200, { status: await pilot.call({ workspace, operation: 'status' }), metrics: await pilot.call({ workspace, operation: 'metrics' }), desktop: await pilot.call({ workspace, operation: 'desktop_status' }), routing: await pilot.call({ workspace, operation: 'desktop_metrics' }) });
+      if (req.method === 'GET' && path === '/api/status') return respond(200, { diagnostics: await pilot.call({ workspace, operation: 'diagnostics' }), status: await pilot.call({ workspace, operation: 'status' }), metrics: await pilot.call({ workspace, operation: 'metrics' }), desktop: await pilot.call({ workspace, operation: 'desktop_status' }), routing: await pilot.call({ workspace, operation: 'desktop_metrics' }) });
       if (req.method === 'POST' && ['/api/config', '/api/key'].includes(path)) {
         let raw = ''; for await (const chunk of req) { raw += chunk; if (raw.length > 4096) return respond(413, { error: 'LIMIT' }); }
         const data = JSON.parse(raw);

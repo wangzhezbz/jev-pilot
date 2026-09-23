@@ -1,5 +1,6 @@
 import { records, array, text, requireValue, readSource, hash, now } from './core.mjs';
 import { extractSpans } from '../vendor/jeveryword/extract.mjs';
+import { mayOmit } from './policy.mjs';
 
 export async function decide(ctx, { items, question, choices }) {
   records(items); text(question, 10000); requireValue(choices && Object.keys(choices).length >= 2 && Object.keys(choices).length <= 255);
@@ -8,7 +9,7 @@ export async function decide(ctx, { items, question, choices }) {
 export async function selectTools(ctx, { goal, tools, required = [] }) {
   records(tools, 255); array(required, 255); requireValue(required.every(id => tools.some(t => t.id === id)), 'UNKNOWN_REQUIRED_TOOL');
   const judgments = await ctx.judge.classify(tools, `Task: ${text(goal, 10000)}. Is this tool or skill useful for the next step?`, { use: 'Useful capability.', review: 'Potentially useful or uncertain.', skip: 'Clearly unrelated.' }, 'tool_selection');
-  const selected = tools.filter((t, i) => required.includes(t.id) || judgments[i].choice !== 'skip');
+  const selected = tools.filter((t, i) => required.includes(t.id) || !mayOmit(judgments[i], 'skip', ctx.config));
   return { selected, judgments, nativeToolsRemoved: false, recoverableCandidates: tools.map(t => t.id) };
 }
 export async function recoverFailure(ctx, { task, action, error, state = {}, candidates }) {
@@ -31,7 +32,7 @@ export async function reviewChanges(ctx, { goal, changes, tests, required = [] }
   requireValue(required.every(id => tests.some(t => t.id === id)), 'UNKNOWN_REQUIRED_TEST');
   const risks = await ctx.judge.classify(changes, `Review change for task: ${text(goal, 10000)}. Flag concrete correctness, security, compatibility or data-loss concerns. This is triage, not final code review.`, { inspect: 'Potential defect warrants Codex review.', routine: 'No obvious concern in this excerpt.', review: 'Insufficient context.' }, 'review');
   const judgments = await ctx.judge.classify(tests, `Which tests cover these changes? ${JSON.stringify(changes)}. Never skip an uncertain test.`, { run: 'Relevant or changed test.', review: 'Uncertain dependency; run.', defer: 'Clearly unrelated optional test.' }, 'test_priority');
-  return { risks, run: tests.filter((t, i) => t.required || t.changed || required.includes(t.id) || judgments[i].choice !== 'defer').map(t => t.id), deferred: tests.filter((t, i) => !t.required && !t.changed && !required.includes(t.id) && judgments[i].choice === 'defer').map(t => t.id), judgments, finalReviewOwner: 'Codex' };
+  return { risks, run: tests.filter((t, i) => t.required || t.changed || required.includes(t.id) || !mayOmit(judgments[i], 'defer', ctx.config)).map(t => t.id), deferred: tests.filter((t, i) => !t.required && !t.changed && !required.includes(t.id) && mayOmit(judgments[i], 'defer', ctx.config)).map(t => t.id), judgments, finalReviewOwner: 'Codex' };
 }
 const snapshot = (ctx, files) => Object.fromEntries(array(files, 100).map(p => [p, readSource(ctx.root, p).hash]));
 export async function memory(ctx, input) {
@@ -54,8 +55,14 @@ export async function memory(ctx, input) {
       return receipt?.status === 'passed' && Object.entries(receipt.sourceHashes || {}).every(([p, h]) => readSource(ctx.root, p).hash === h);
     } catch { return false; }
   })());
-  const judgments = await ctx.judge.classify(active.slice(0, 100).map((m, i) => ({ id: 'm' + i, text: m.content })), `Relevance to task: ${input.goal}`, { use: 'Relevant project experience.', review: 'Uncertain relevance.', skip: 'Unrelated.' }, 'memory');
-  return { memories: active.slice(0, 100).filter((m, i) => judgments[i].choice !== 'skip'), skippedStaleOrRevoked: all.length - active.length, truncated: active.length > 100, judgments, conflictsRequireReview: true };
+  // Rank across all valid memories before limiting API candidates, so older
+  // relevant sources are not excluded merely by insertion time.
+  const segments = new Intl.Segmenter(undefined, { granularity: 'word' });
+  const terms = [...new Set([...segments.segment(input.goal.toLowerCase())].filter(s => s.isWordLike).map(s => s.segment))];
+  const rank = m => terms.reduce((n, term) => n + (m.topic + ' ' + m.content).toLowerCase().includes(term), 0);
+  const ranked = active.map(m => ({ m, score: rank(m) })).sort((a, b) => b.score - a.score).map(x => x.m), candidates = ranked.slice(0, 100);
+  const judgments = await ctx.judge.classify(candidates.map((m, i) => ({ id: 'm' + i, text: m.content })), `Relevance to task: ${input.goal}`, { use: 'Relevant project experience.', review: 'Uncertain relevance.', skip: 'Unrelated.' }, 'memory');
+  return { memories: candidates.filter((m, i) => !mayOmit(judgments[i], 'skip', ctx.config)), skippedStaleOrRevoked: all.length - active.length, truncated: active.length > 100, deferredIds: ranked.slice(100).map(m => m.id), candidateSelection: 'lexical-then-Jev', judgments, conflictsRequireReview: true };
 }
 export function checkpoint(ctx, input) {
   if (input.action === 'save') {

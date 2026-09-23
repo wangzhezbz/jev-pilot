@@ -1,6 +1,6 @@
 # JevPilot 0.2: fourteen feature areas
 
-Runnable development preview. Code and automated tests exist for all areas; host integration has separate acceptance gates.
+macOS delivery candidate; final evidence is tracked in [delivery ledger](DELIVERY-PLAN.md). Code and automated tests exist for all areas; host integration has separate acceptance gates.
 
 | # | Feature | Implemented behavior | Acceptance boundary |
 |---|---|---|---|
@@ -38,3 +38,13 @@ Windows/Linux runtime code and launchers are implemented. Compilation is not OS 
 `npm run check`: syntax, JSON and credential-pattern scan. `npm test`: modules, MCP, privacy, recovery, failures, router and dashboard. `scripts/verify-desktop.mjs`: actual Codex engine with synthetic model endpoint. `npm run smoke:live`: small **paid TypeSafe** synthetic sample, no GPT calls. CI: macOS, Windows and Linux portable tests.
 
 See [full acceptance report](reports/ACCEPTANCE.md), [live API results](reports/live-smoke.json), and [implementation ledger](IMPLEMENTATION.md). Reports distinguish these evidence layers.
+
+## Reliability and evaluation additions
+
+Shared request/byte/wait budgets and a service cooldown cover both desktop routing and MCP semantic calls. Task scope is used when the host supplies an identifier; otherwise diagnostics explicitly show a workspace/hour scope. API failures preserve the native workflow.
+
+Evidence policies now keep uncertain candidates, pending work, errors and source paths; deduplicate before requesting Jev; and share task instructions once per request. Disabling cache disables both lookup and insertion. Project memory ranks all valid entries before taking the bounded candidate set.
+
+Shadow mode records proposed evidence exclusions without applying them. Labeled policy evaluation separates fit and independent holdout groups, reports precision/coverage/false exclusions and a one-sided interval, and never activates itself. An initial 0.9 exclusion probability is not an empirically calibrated guarantee.
+
+The local dashboard exposes these diagnostics in all five languages. Reload preserves the local tab's authorization; built-in localization is not overwritten by browser auto-translation.

@@ -1,0 +1,145 @@
+{
+  "reassess": {
+    "passed": true,
+    "requests": [
+      {
+        "number": 1,
+        "effort": "low"
+      },
+      {
+        "number": 2,
+        "effort": "low"
+      },
+      {
+        "number": 3,
+        "effort": "low"
+      },
+      {
+        "number": 4,
+        "effort": "low"
+      },
+      {
+        "number": 5,
+        "effort": "medium"
+      }
+    ],
+    "paidGPTCalls": 0,
+    "realJev": false,
+    "appliedReceipts": 1
+  },
+  "filter_output": {
+    "passed": true,
+    "requests": [
+      {
+        "number": 1,
+        "effort": "low"
+      },
+      {
+        "number": 2,
+        "effort": "low"
+      }
+    ],
+    "paidGPTCalls": 0,
+    "realJev": false,
+    "appliedReceipts": 0
+  },
+  "incompatible": {
+    "passed": true,
+    "requests": [
+      {
+        "number": 1,
+        "effort": "high"
+      },
+      {
+        "number": 2,
+        "effort": "high"
+      }
+    ],
+    "paidGPTCalls": 0,
+    "realJev": false,
+    "appliedReceipts": 0
+  },
+  "outage": {
+    "passed": true,
+    "requests": [
+      {
+        "number": 1,
+        "effort": "high"
+      },
+      {
+        "number": 2,
+        "effort": "high"
+      }
+    ],
+    "paidGPTCalls": 0,
+    "realJev": false,
+    "appliedReceipts": 0
+  },
+  "installed": {
+    "passed": true,
+    "requests": [
+      {
+        "number": 1,
+        "effort": "low"
+      },
+      {
+        "number": 2,
+        "effort": "low"
+      }
+    ],
+    "paidGPTCalls": 0,
+    "realJev": true,
+    "appliedReceipts": 0
+  },
+  "disabled": {
+    "passed": true,
+    "requests": [
+      {
+        "number": 1,
+        "effort": "high"
+      },
+      {
+        "number": 2,
+        "effort": "high"
+      }
+    ],
+    "paidGPTCalls": 0,
+    "realJev": false,
+    "appliedReceipts": 0
+  },
+  "pluginDiscovery": {
+    "kind": "real_codex_plugin_loading",
+    "gptCalls": 0,
+    "installedVersion": "0.2.0+codex.20260922081157",
+    "servers": [
+      {
+        "name": "jev-pilot",
+        "tools": [
+          "jev_pilot"
+        ]
+      }
+    ],
+    "passed": true
+  },
+  "updateRollback": {
+    "scope": "isolated macOS installation, no activation or global override changes",
+    "firstInstall": true,
+    "failedUpdateRejected": true,
+    "priorManifestRestored": true,
+    "compatibleAfterRollback": true
+  },
+  "chromeDashboard": {
+    "driver": "official Chrome extension",
+    "fiveLocalesVerified": [
+      "en",
+      "zh-CN",
+      "ru",
+      "ja",
+      "ko"
+    ],
+    "reloadRetainsAuthorization": true,
+    "shadowSettingSurvivesReload": true,
+    "consoleErrors": 0,
+    "nativeDesktopRestarted": false
+  }
+}

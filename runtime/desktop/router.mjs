@@ -63,13 +63,14 @@ export function select(answer, current, supported) {
   // Apply valid choices directly; keep and unsupported responses still preserve current.
   return answer.choice;
 }
-export async function makeJudge(keyPath, {env=process.env,send=postTypeSafe} = {}) {
-  return async state => {
+export async function makeJudge(keyPath, {env=process.env,send=postTypeSafe,judgeFactory} = {}) {
+  return async (state, context = {}) => {
     // Read at decision time so private setup/key rotation does not require a restart.
     let key = env.TYPESAFE_API_KEY;
     if (!key) try { key = parseEnv(await readFile(keyPath, 'utf8')).TYPESAFE_API_KEY; } catch {}
     if (!key) throw new Error('MISSING_KEY');
-    const body = await send({model:'jev-1.13.0',state:JSON.parse(redact(state,key)),questions:{effort:effortQuestion,horizon:horizonQuestion}},key);
+    const payload = {model:'jev-1.13.0',state:JSON.parse(redact(state,key)),questions:{effort:effortQuestion,horizon:horizonQuestion}};
+    const body = judgeFactory ? await judgeFactory(context, key).ask(payload.state, payload.questions, 'effort') : await send(payload,key);
     return { answer: body.answers?.effort, horizon: body.answers?.horizon, outputTokens: body.usage?.output_tokens ?? null, model: body.model, inputTokens: body.usage?.input_tokens ?? null };
   };
 }
@@ -87,7 +88,7 @@ export class Router {
     const meta = this.threads.get(threadId) ?? {};
     const current = params.effort ?? params.collaborationMode?.settings?.reasoning_effort ?? meta.effort;
     const model = params.model ?? params.collaborationMode?.settings?.model ?? meta.model;
-    this.turns.set(threadId, { threadId, turnId: null, current, model, active: true, revision: 0,
+    this.turns.set(threadId, { threadId, cwd: params.cwd ?? meta.cwd, turnId: null, current, model, active: true, revision: 0,
       task: compact((params.input ?? []).filter(x=>x.type==='text').map(x=>x.text).join('\n'),4000),
       previousTurn: old?.completed ? {task:compact(old.task,1000),progress:old.progress.slice(-1).map(x=>compact(x,1000))} : undefined,
       forceRecheck:false, evidenceVersion:0, progressVersion:0, judgedProgress:0, leaseSkips:0,
@@ -104,6 +105,7 @@ export class Router {
   eligible(t) { return SUPPORTED_MODELS.includes(t.model) && this.supported.get(t.model)?.includes(t.current); }
   state(t) { return {task:t.task,previousTurn:t.previousTurn,progress:t.progress,recentTools:t.recent,currentEffort:t.current,
     model:t.model,supportedEfforts:this.supported.get(t.model)?.filter(x=>x!=='ultra')}; }
+  context(t) { return { taskId: t.threadId, cwd: t.cwd ?? this.threads.get(t.threadId)?.cwd }; }
   renew(t,result,applied=true) {
     const validEffort=result?.answer?.choice!=='keep' && select(result?.answer,'invalid',this.supported.get(t.model)??[])!=='invalid';
     t.horizon=applied&&validEffort?selectedHorizon(result?.horizon,this.leaseSteps):1;
@@ -123,7 +125,7 @@ export class Router {
     if(!t?.active || !this.eligible(t))return params;
     const revision=t.revision,started=performance.now(),from=t.current;t.calls++;t.lastAt=Date.now();
     try {
-      const result=await this.judge(this.state(t));
+      const result=await this.judge(this.state(t),this.context(t));
       if(!t.active || revision!==t.revision || this.turns.get(t.threadId)!==t)return params;
       const effort=select(result.answer,from,this.supported.get(t.model));
       t.current=effort;this.renew(t,result);
@@ -214,14 +216,14 @@ export class Router {
       let started=performance.now();
       try {
         let version=t.evidenceVersion;
-        let result=await this.judge(this.state(t));
+        let result=await this.judge(this.state(t),this.context(t));
         // A failure arriving in parallel must not be hidden by coalescing. One
         // bounded fresh judgment covers the newest batch before releasing hooks.
         if(t.active && revision===t.revision && version!==t.evidenceVersion && t.forceRecheck && t.calls<this.maxCalls){
           t.calls++;version=t.evidenceVersion;
           this.log({...this.metrics(t,result,t.current,'superseded',started,p.hook_event_name),published:t.current});
           started=performance.now();
-          result=await this.judge(this.state(t));
+          result=await this.judge(this.state(t),this.context(t));
         }
         if(version!==t.evidenceVersion && t.forceRecheck)return {status:'stale_evidence'};
         if(!t.active || revision!==t.revision) return {status:'stale'};

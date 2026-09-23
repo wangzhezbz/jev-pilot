@@ -1,0 +1,7 @@
+{
+  "scope": "isolated macOS installation, no activation or global override changes",
+  "firstInstall": true,
+  "failedUpdateRejected": true,
+  "priorManifestRestored": true,
+  "compatibleAfterRollback": true
+}

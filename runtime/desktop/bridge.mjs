@@ -7,6 +7,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { randomUUID, createHash } from 'node:crypto';
 import { Router, makeJudge, POLICY_VERSION } from './router.mjs';
+import { Store, Judge, loadConfig } from '../../src/core.mjs';
 
 export function toml(value) {
   if(value===null || value===undefined) throw new Error('TOML_NULL');
@@ -50,7 +51,13 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
     const id=prefix+(++counter),timer=setTimeout(()=>{pending.delete(id);reject(new Error('TIMEOUT'));},timeout);
     pending.set(id,{resolve,reject,timer});send({id,method,params});
   });
-  const router=new Router({request,judge:judge??await makeJudge(keyPath),log});
+  const guardStore = judge ? null : assistant?.store ?? new Store();
+  const judgeFactory = (context, key) => {
+    const project = guardStore.project(context.cwd || process.cwd());
+    return new Judge({ store: guardStore, project, taskId: context.taskId, key,
+      config: { ...loadConfig(guardStore, project), timeoutMs: 2000, cacheMs: 0 } });
+  };
+  const router=new Router({request,judge:judge??await makeJudge(keyPath,{env,judgeFactory}),log});
   let metadataReady=Promise.resolve();
   const threadQueues=new Map();
   const server=createServer(socket=>{
@@ -115,7 +122,7 @@ export async function runBridge({realBin,args,trust={},keyPath,logPath,judge,aut
   const cleanup=async()=>{
     if(closed)return;closed=true;toBackend.close();fromBackend.close();
     for(const p of pending.values()){clearTimeout(p.timer);p.reject(new Error('CLOSED'));}pending.clear();
-    server.close();assistant?.close();for(const t of router.turns.values())t.active=false;
+    server.close();assistant?.close();if(guardStore && guardStore !== assistant?.store)guardStore.close();for(const t of router.turns.values())t.active=false;
     try{await unlink(socketPath);}catch{}try{await rmdir(dir);}catch{}
   };
   input.on('end',()=>Promise.allSettled([...threadQueues.values()]).then(()=>child.stdin.end()));child.stdin.on('error',()=>{});
@@ -144,7 +151,7 @@ async function main() {
   let compatible=false;
   try {
     const version=execFileSync(config.realBin,['--version'],{encoding:'utf8',timeout:4000}).trim();
-    compatible=version===config.verifiedVersion;
+    compatible=version===config.verifiedVersion && Boolean(config.sha256 && typeof config.sha256==='object' && !Array.isArray(config.sha256) && Object.keys(config.sha256).length);
     for(const [name,hash] of Object.entries(config.sha256??{})) {
       if(createHash('sha256').update(await readFile(join(home,name))).digest('hex')!==hash) compatible=false;
     }

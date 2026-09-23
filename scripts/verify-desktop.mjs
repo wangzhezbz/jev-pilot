@@ -6,7 +6,8 @@ import {tmpdir} from 'node:os';
 import {join,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createInterface} from 'node:readline';
-import {spawn} from 'node:child_process';
+import {spawn,execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
 import {runBridge,hookOverrides,toml} from '../runtime/desktop/bridge.mjs';
 import {effortQuestion,horizonQuestion,makeJudge} from '../runtime/desktop/router.mjs';
 import {Store} from '../src/core.mjs';
@@ -90,10 +91,13 @@ try{
   const judge=process.argv.includes('--unavailable-jev')?async()=>{throw new Error('TIMEOUT');}:
     process.argv.includes('--real-jev')?await makeJudge(join(installHome(),'.env.local')):mockedJudge;
   report.realJev=process.argv.includes('--real-jev');
-  if(process.argv.includes('--incompatible')) {
+  if(process.argv.includes('--incompatible') || process.argv.includes('--disabled')) {
     const isolated=join(work,'adapter/runtime/desktop');await mkdir(isolated,{recursive:true});await cp(join(root,'../../src'),join(work,'adapter/src'),{recursive:true});
-    for(const file of ['bridge.mjs','router.mjs','hook.mjs','transport.mjs'])await copyFile(join(root,file),join(isolated,file));
-    await writeFile(join(isolated,'install.json'),JSON.stringify({realBin,verifiedVersion:'deliberately-incompatible',sha256:{},trust:{}}));
+    for(const file of ['bridge.mjs','router.mjs','hook.mjs','transport.mjs','bootstrap.mjs'])await copyFile(join(root,file),join(isolated,file));
+    const disabled=process.argv.includes('--disabled');
+    const sha256={'bridge.mjs':createHash('sha256').update(await readFile(join(isolated,'bridge.mjs'))).digest('hex')};
+    await writeFile(join(isolated,'install.json'),JSON.stringify({realBin,verifiedVersion:disabled?execFileSync(realBin,['--version'],{encoding:'utf8'}).trim():'deliberately-incompatible',sha256,trust:{}}));
+    if(disabled)await writeFile(join(isolated,'disabled'),'disabled\n');
     installed=spawn(process.execPath,[join(isolated,'bridge.mjs'),...args],{env,stdio:['pipe','pipe','pipe']});installed.stderr.pipe(process.stderr);
     input=installed.stdin;output=installed.stdout;auditOverride=join(isolated,'logs/events.jsonl');
   } else if(process.argv.includes('--installed')) {
@@ -128,7 +132,7 @@ try{
     await new Promise(r=>setTimeout(r,50));
   }
   report.audit=(await readFile(auditFile,'utf8')).trim().split('\n').map(JSON.parse).filter(x=>auditOverride||!installed||x.threadId===started.thread.id);
-  report.passed=process.argv.includes('--incompatible')
+  report.passed=process.argv.includes('--incompatible') || process.argv.includes('--disabled')
     ? report.requests.length>=2 && report.requests.every(x=>x.effort==='high') && report.audit.some(x=>x.kind==='compatibility_fallback')
     : process.argv.includes('--unavailable-jev')
     ? report.requests.length>=2 && report.requests.every(x=>x.effort==='high') && report.audit.some(x=>x.kind==='fallback')

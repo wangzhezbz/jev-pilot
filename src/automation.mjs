@@ -22,12 +22,16 @@ export function createAutomation({ store = new Store(), key, send } = {}) {
       const response = payload.tool_response;
       store.put(project, 'checkpoint', { task: state.goal, sourceHashes: {}, completed: [], pending: ['Reinspect state before continuing'], createdAt: now(), receiptIds: [], lastTool: payload.tool_name, auto: true }, 'auto-' + id);
       // Admission gate avoids API overhead on small, exact-output and structured results.
-      const eligible = typeof response === 'string' && response.length >= 12000 && response.length <= 100000
-        && state.count < 2 && !/\b(json|csv|verbatim|exact output)\b|原样|完整输出|不.*删减/i.test(state.goal)
-        && !/jev_pilot|code_mode|functions\.exec/i.test(payload.tool_name || '');
+      const reason = typeof response !== 'string' ? 'structured'
+        : response.length < 12000 ? 'small' : response.length > 100000 ? 'oversized'
+        : state.count >= 2 ? 'turn_limit'
+        : /\b(json|csv|verbatim|exact output)\b|原样|完整输出|不.*删减/i.test(state.goal) ? 'exact_output'
+        : /jev_pilot|code_mode|functions\.exec/i.test(payload.tool_name || '') ? 'nested_or_self' : 'eligible';
+      const eligible = reason === 'eligible';
+      store.event(project, 'automatic_output_admission', { reason });
       if (!eligible) { store.put(project, 'automatic_task', state, id); return {}; }
       state.count++; store.put(project, 'automatic_task', state, id);
-      const judge = new Judge({ store, project, config: { ...config, maxCalls: 2, timeoutMs: 1800 }, ...(key !== undefined ? { key } : {}), ...(send ? { send } : {}) });
+      const judge = new Judge({ store, project, taskId: payload.session_id, config: { ...config, maxCalls: 2, timeoutMs: 1800 }, ...(key !== undefined ? { key } : {}), ...(send ? { send } : {}) });
       const result = await filterOutput({ store, project, config, judge, root: payload.cwd }, { goal: state.goal, text: response, source: payload.tool_name, budget: 10000 });
       if (result.degraded || result.context.length >= response.length * .8 || !result.items.length) return {};
       const feedback = `JevPilot retained task evidence from ${payload.tool_name}. The original output is saved locally. This is partial evidence; use jev_pilot recall for omitted material. Artifact: ${result.artifactId}\n${result.context}`;

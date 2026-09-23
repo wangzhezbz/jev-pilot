@@ -1,0 +1,13 @@
+id,model,task,repeat,arm,status,qualityPassed,elapsedMs,inputTokens,cachedInputTokens,outputTokens,reasoningOutputTokens,totalTokens,jevCalls,jevInputTokens,jevOutputTokens,jevWaitMs,effortChanges,failureReason
+gpt-5.6-sol-local_change-0-auto,gpt-5.6-sol,local_change,0,auto,completed,True,88517,97143,60544,2402,762,99545,3,4776,318,1891,2,
+gpt-5.6-sol-local_change-0-fixed,gpt-5.6-sol,local_change,0,fixed,completed,True,155864,119572,96256,4240,1850,123812,0,0,0,0,0,
+gpt-5.6-sol-transcript-0-auto,gpt-5.6-sol,transcript,0,auto,completed,True,38336,55104,40576,867,281,55971,2,2614,212,1436,1,
+gpt-5.6-sol-transcript-0-fixed,gpt-5.6-sol,transcript,0,fixed,completed,True,48107,55535,40704,957,315,56492,0,0,0,0,0,
+gpt-6-astra-local_change-0-auto,gpt-6-astra,local_change,0,auto,completed,True,76564,56715,23168,1814,42,58529,3,4419,318,1883,2,
+gpt-6-astra-local_change-0-fixed,gpt-6-astra,local_change,0,fixed,completed,True,122339,56931,42240,2029,79,58960,0,0,0,0,0,
+gpt-6-astra-local_change-1-auto,gpt-6-astra,local_change,1,auto,completed,True,80184,56515,17792,1636,34,58151,3,4388,318,1631,2,
+gpt-6-astra-local_change-1-fixed,gpt-6-astra,local_change,1,fixed,failed,False,69929,36348,0,1829,62,38177,0,0,0,0,0,provider_usage_limit
+gpt-6-astra-transcript-0-auto,gpt-6-astra,transcript,0,auto,completed,True,31674,56347,41856,495,0,56842,2,2585,212,1277,1,
+gpt-6-astra-transcript-0-fixed,gpt-6-astra,transcript,0,fixed,completed,True,44223,56458,42880,473,0,56931,0,0,0,0,0,
+gpt-6-astra-transcript-1-auto,gpt-6-astra,transcript,1,auto,completed,True,29908,56484,36608,468,0,56952,2,2596,212,1256,1,
+gpt-6-astra-transcript-1-fixed,gpt-6-astra,transcript,1,fixed,completed,True,28140,56499,24064,486,0,56985,0,0,0,0,0,
