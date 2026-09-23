@@ -1,0 +1,152 @@
+[
+  {
+    "id": "gpt-6-sol-bug_fix-0-bare",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "unchanged:repro.mjs",
+          "pass": true
+        },
+        {
+          "name": "independent_oracle",
+          "pass": true,
+          "stdout": "independent validation passed\n",
+          "stderr": "",
+          "exitCode": 0
+        }
+      ]
+    },
+    "errors": [
+      "Reconnecting... 2/5",
+      "Reconnecting... 3/5"
+    ],
+    "mcpServers": [],
+    "operations": [],
+    "routing": [],
+    "outputAdmission": []
+  },
+  {
+    "id": "gpt-6-sol-bug_fix-0-idle",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "unchanged:repro.mjs",
+          "pass": true
+        },
+        {
+          "name": "independent_oracle",
+          "pass": true,
+          "stdout": "independent validation passed\n",
+          "stderr": "",
+          "exitCode": 0
+        }
+      ]
+    },
+    "errors": [],
+    "mcpServers": [],
+    "operations": [],
+    "routing": [
+      {
+        "kind": "bridge_started"
+      },
+      {
+        "kind": "metadata_loaded"
+      },
+      {
+        "kind": "decision",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "event": "BeforeTurnStart",
+        "elapsedMs": 0,
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      {
+        "kind": "decision",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "event": "PostToolUse",
+        "elapsedMs": 52,
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "turn_usage",
+        "status": "completed",
+        "elapsedMs": 108342
+      }
+    ],
+    "outputAdmission": []
+  },
+  {
+    "id": "gpt-6-sol-bug_fix-0-auto",
+    "quality": null,
+    "errors": [],
+    "mcpServers": null,
+    "operations": [],
+    "routing": [],
+    "outputAdmission": []
+  }
+]

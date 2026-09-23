@@ -1,0 +1,112 @@
+{
+  "id": "gpt-6-sol-incident-0-auto",
+  "status": "aborted_environment_contamination",
+  "tokens": null,
+  "jevEvents": [
+    {
+      "kind": "jev_call",
+      "at": "2026-09-23T13:20:28.514Z",
+      "status": "failed",
+      "elapsedMs": 2017,
+      "code": "JEV_TIMEOUT"
+    },
+    {
+      "kind": "automatic_output_admission",
+      "at": "2026-09-23T13:20:38.847Z",
+      "reason": "small"
+    },
+    {
+      "kind": "automatic_output_admission",
+      "at": "2026-09-23T13:20:38.848Z",
+      "reason": "small"
+    },
+    {
+      "kind": "jev_call",
+      "at": "2026-09-23T13:20:53.307Z",
+      "status": "success",
+      "elapsedMs": 874,
+      "inputTokens": 2477,
+      "outputTokens": 106
+    },
+    {
+      "kind": "automatic_output_admission",
+      "at": "2026-09-23T13:20:53.308Z",
+      "reason": "small"
+    },
+    {
+      "kind": "automatic_output_admission",
+      "at": "2026-09-23T13:20:53.308Z",
+      "reason": "small"
+    },
+    {
+      "kind": "automatic_output_admission",
+      "at": "2026-09-23T13:20:53.308Z",
+      "reason": "small"
+    },
+    {
+      "kind": "jev_call",
+      "at": "2026-09-23T13:20:58.665Z",
+      "status": "success",
+      "elapsedMs": 623,
+      "inputTokens": 2455,
+      "outputTokens": 106
+    },
+    {
+      "kind": "automatic_output_admission",
+      "at": "2026-09-23T13:20:58.666Z",
+      "reason": "small"
+    }
+  ],
+  "routing": [
+    {
+      "kind": "bridge_started",
+      "at": "2026-09-23T13:20:21.259Z"
+    },
+    {
+      "kind": "metadata_loaded",
+      "at": "2026-09-23T13:20:21.284Z"
+    },
+    {
+      "kind": "fallback",
+      "at": "2026-09-23T13:20:28.523Z",
+      "event": "BeforeTurnStart",
+      "elapsedMs": 2018,
+      "code": "JEV_TIMEOUT"
+    },
+    {
+      "kind": "routing_recovery",
+      "at": "2026-09-23T13:20:52.382Z",
+      "status": "admitted"
+    },
+    {
+      "kind": "decision",
+      "at": "2026-09-23T13:20:53.308Z",
+      "status": "applied",
+      "event": "PostToolUse",
+      "elapsedMs": 926,
+      "inputTokens": 2477,
+      "outputTokens": 106,
+      "from": "medium",
+      "published": "low",
+      "recommended": "low"
+    },
+    {
+      "kind": "decision",
+      "at": "2026-09-23T13:20:58.665Z",
+      "status": "unchanged",
+      "event": "PostToolUse",
+      "elapsedMs": 675,
+      "inputTokens": 2455,
+      "outputTokens": 106,
+      "from": "low",
+      "published": "low",
+      "recommended": "low"
+    },
+    {
+      "kind": "fallback",
+      "at": "2026-09-23T13:21:12.850Z",
+      "elapsedMs": 728,
+      "code": "UNAVAILABLE"
+    }
+  ]
+}

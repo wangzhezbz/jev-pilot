@@ -1,0 +1,8 @@
+{
+  "attemptsIncludingPreInferenceFailures": 13,
+  "completedPaidGptTasks": 11,
+  "interruptedTasksWithUnknownGptUsage": 1,
+  "knownGptTokensAcrossExperiments": 1546344,
+  "allInCostKnown": false,
+  "boundary": "Only benchmark runs; excludes this development conversation and earlier project experiments. The interrupted global-plugin attempt has incomplete accounting; never counted as zero."
+}

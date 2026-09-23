@@ -1,0 +1,132 @@
+{
+  "planned": 6,
+  "attempted": 6,
+  "passed": 6,
+  "arms": {
+    "bare": {
+      "runs": 2,
+      "passed": 2,
+      "wallMs": 106069,
+      "totalMs": 106211,
+      "totalTokens": 220879,
+      "uncachedInputTokens": 29794,
+      "outputTokens": 3949,
+      "reasoningOutputTokens": 553,
+      "knownAllModelTokens": 220879,
+      "jevCalls": 0,
+      "jevFailures": 0,
+      "jevUnknownUsage": 0,
+      "jevInputTokens": 0,
+      "jevOutputTokens": 0,
+      "jevWaitMs": 0,
+      "actualChanges": 0,
+      "automaticFilters": 0,
+      "modelTurns": 11,
+      "knownJevInputUsdEstimate": 0.0
+    },
+    "idle": {
+      "runs": 2,
+      "passed": 2,
+      "wallMs": 173023,
+      "totalMs": 173212,
+      "totalTokens": 276720,
+      "uncachedInputTokens": 48308,
+      "outputTokens": 5052,
+      "reasoningOutputTokens": 998,
+      "knownAllModelTokens": 276720,
+      "jevCalls": 0,
+      "jevFailures": 0,
+      "jevUnknownUsage": 0,
+      "jevInputTokens": 0,
+      "jevOutputTokens": 0,
+      "jevWaitMs": 0,
+      "actualChanges": 0,
+      "automaticFilters": 0,
+      "modelTurns": 14,
+      "knownJevInputUsdEstimate": 0.0
+    },
+    "auto": {
+      "runs": 2,
+      "passed": 2,
+      "wallMs": 133689,
+      "totalMs": 134039,
+      "totalTokens": 240058,
+      "uncachedInputTokens": 53910,
+      "outputTokens": 5284,
+      "reasoningOutputTokens": 964,
+      "knownAllModelTokens": 245432,
+      "jevCalls": 4,
+      "jevFailures": 0,
+      "jevUnknownUsage": 0,
+      "jevInputTokens": 4950,
+      "jevOutputTokens": 424,
+      "jevWaitMs": 3309,
+      "actualChanges": 0,
+      "automaticFilters": 0,
+      "modelTurns": 13,
+      "knownJevInputUsdEstimate": 0.0002079
+    }
+  },
+  "pairs": [
+    {
+      "task": "bug_fix",
+      "repeat": 0,
+      "control": "bare",
+      "bothPassed": true,
+      "autoIncreasePercent": {
+        "wallMs": 18.26248686713803,
+        "totalMs": 18.38540854099593,
+        "totalTokens": 26.96212475265245,
+        "uncachedInputTokens": 285.1691729323308,
+        "outputTokens": 17.578832910474816,
+        "reasoningOutputTokens": 59.28270042194092,
+        "knownAllModelTokens": 29.648890789225103
+      }
+    },
+    {
+      "task": "bug_fix",
+      "repeat": 0,
+      "control": "idle",
+      "bothPassed": true,
+      "autoIncreasePercent": {
+        "wallMs": -38.01338006682592,
+        "totalMs": -37.92852149857965,
+        "totalTokens": -18.267304233159855,
+        "uncachedInputTokens": 41.219848380427294,
+        "outputTokens": -14.78854741266089,
+        "reasoningOutputTokens": -17.124039517014268,
+        "knownAllModelTokens": -16.53768107592546
+      }
+    },
+    {
+      "task": "incident",
+      "repeat": 0,
+      "control": "bare",
+      "bothPassed": true,
+      "autoIncreasePercent": {
+        "wallMs": 41.41153360460221,
+        "totalMs": 41.633990589289716,
+        "totalTokens": -6.596183256865484,
+        "uncachedInputTokens": -32.50495979951968,
+        "outputTokens": 71.42857142857142,
+        "reasoningOutputTokens": 164.55696202531644,
+        "knownAllModelTokens": -4.375290910299889
+      }
+    },
+    {
+      "task": "incident",
+      "repeat": 0,
+      "control": "idle",
+      "bothPassed": true,
+      "autoIncreasePercent": {
+        "wallMs": 30.400579650139736,
+        "totalMs": 30.541070783210287,
+        "totalTokens": -6.742682633339148,
+        "uncachedInputTokens": -32.97386976358357,
+        "outputTokens": 63.85542168674698,
+        "reasoningOutputTokens": 140.22988505747125,
+        "knownAllModelTokens": -4.525273649181338
+      }
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+id,model,task,repeat,arm,status,passed,wallMs,startupMs,totalMs,inputTokens,cachedInputTokens,outputTokens,reasoningOutputTokens,totalTokens,uncachedInputTokens,jevCalls,jevFailures,jevUnknownUsage,jevInputTokens,jevOutputTokens,jevWaitMs,actualChanges,automaticFilters,modelTurns,commands,knownAllModelTokens
+gpt-6-sol-bug_fix-0-bare,gpt-6-sol,bug_fix,0,bare,completed,True,70434,73,70507,97808,87168,2759,474,100567,10640,0,0,0,0,0,0,0,0,6,8,100567
+gpt-6-sol-bug_fix-0-idle,gpt-6-sol,bug_fix,0,idle,completed,True,134379,95,134474,152412,123392,3807,911,156219,29020,0,0,0,0,0,0,0,0,9,7,156219
+gpt-6-sol-bug_fix-0-auto,gpt-6-sol,bug_fix,0,auto,completed,True,83297,173,83470,124438,83456,3244,755,127682,40982,2,0,0,2490,212,1759,0,0,7,9,130384
+gpt-6-sol-incident-0-auto,gpt-6-sol,incident,0,auto,completed,True,50392,177,50569,110336,97408,2040,209,112376,12928,2,0,0,2460,212,1550,0,0,6,7,115048
+gpt-6-sol-incident-0-idle,gpt-6-sol,incident,0,idle,completed,True,38644,94,38738,119256,99968,1245,87,120501,19288,0,0,0,0,0,0,0,0,5,3,120501
+gpt-6-sol-incident-0-bare,gpt-6-sol,incident,0,bare,completed,True,35635,69,35704,119122,99968,1190,79,120312,19154,0,0,0,0,0,0,0,0,5,3,120312

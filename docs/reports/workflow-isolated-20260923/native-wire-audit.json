@@ -1,0 +1,28 @@
+{
+  "paidGptCalls": 0,
+  "cacheContext": {
+    "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+    "initialItems": 7,
+    "perRequest": [
+      {
+        "request": 1,
+        "initialPrefixPreserved": true
+      },
+      {
+        "request": 2,
+        "initialPrefixPreserved": true
+      }
+    ]
+  },
+  "structuredMcpProbe": {
+    "modelRequests": 2,
+    "observedOutputs": [
+      {
+        "bytes": 25263,
+        "sentinelOccurrences": 1
+      }
+    ],
+    "conclusion": "Native engine forwards one copy from the double-envelope structured MCP result. No duplicate-body fix warranted.",
+    "fixtureStatus": "Original plain-text-filter assertion intentionally fails after the probe changes the fixture to structured content. This is an observation probe, not the product regression suite."
+  }
+}

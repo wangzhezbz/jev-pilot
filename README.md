@@ -52,3 +52,5 @@ JevPilot is licensed under [MIT](LICENSE). Independent community project, not an
 Cost regression follow-up: [v11 investigation and real-model pilot (Chinese)](docs/reports/cost-fix-20260923/README.zh-CN.md). Automatic effort is capped at the user setting, and automatic filtering cannot defer relevant evidence to meet a size budget. Stable efficiency gains remain unproven.
 
 Further investigation: [deep cost audit and bounded fixes (Chinese)](docs/reports/deep-audit-20260923/README.zh-CN.md), covering duplicate evidence bodies, ineffective reassessment, input limits, and desktop benchmark gaps.
+
+Complete-workflow follow-up: [v14 investigation and measurements (Chinese)](docs/reports/workflow-clean-20260923/README.zh-CN.md). Includes clean native controls, failed experiments, installation fixes and bounded no-change backoff; whole-task savings remain unproven.

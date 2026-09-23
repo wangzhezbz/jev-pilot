@@ -1,0 +1,14 @@
+{
+  "kind": "real_codex_plugin_loading",
+  "gptCalls": 0,
+  "installedVersion": "0.2.0+codex.20260923133500",
+  "servers": [
+    {
+      "name": "jev-pilot",
+      "tools": [
+        "jev_pilot"
+      ]
+    }
+  ],
+  "passed": true
+}

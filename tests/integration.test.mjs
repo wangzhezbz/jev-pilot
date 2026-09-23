@@ -99,7 +99,7 @@ test('doctor finds a live bridge behind a newer exited probe and malformed log l
   const live={kind:'bridge_started',pid:process.pid,backendPid:process.pid};
   writeFileSync(join(home,'runtime/desktop/logs/events.jsonl'),[JSON.stringify(live),'broken',JSON.stringify({...live,pid:2147483647}),JSON.stringify({...live,measurementSource:'synthetic'})].join('\n'));
   process.env.JEV_PILOT_HOME=home;
-  try {const status=desktopStatus();assert.equal(status.bridgeProcessAlive,true);assert.deepEqual(status.activeBridges,[live]);assert.deepEqual(status.latestBridge,live);}
+  try {const status=desktopStatus({inspectProcesses:()=>new Map([[process.pid,{parentPid:process.pid}]])});assert.equal(status.bridgeProcessAlive,true);assert.deepEqual(status.activeBridges,[live]);assert.deepEqual(status.latestBridge,live);}
   finally {if(previous===undefined)delete process.env.JEV_PILOT_HOME;else process.env.JEV_PILOT_HOME=previous;}
 });
 test('runtime metrics exclude marked fixtures and explicitly identified legacy fixture threads', () => {
@@ -122,7 +122,7 @@ test('doctor distinguishes installed files from matching, older and unidentified
   try {
     for(const [fingerprint,expected] of [[undefined,null],[runtimeFingerprint(hashes),true],[runtimeFingerprint({'router.mjs':'older'}),false]]){
       writeFileSync(join(dir,'logs/events.jsonl'),JSON.stringify({kind:'bridge_started',pid:process.pid,backendPid:process.pid,runtimeFingerprint:fingerprint}));
-      const status=desktopStatus();assert.equal(status.compatible,true);assert.equal(status.loadedRevisionMatches,expected);
+      const status=desktopStatus({inspectProcesses:()=>new Map([[process.pid,{parentPid:process.pid}]])});assert.equal(status.compatible,true);assert.equal(status.loadedRevisionMatches,expected);
     }
   }finally{if(previous===undefined)delete process.env.JEV_PILOT_HOME;else process.env.JEV_PILOT_HOME=previous;}
 });

@@ -1,0 +1,65 @@
+{
+  "platform": "darwin",
+  "arch": "arm64",
+  "node": "v24.18.0",
+  "nodeSupported": true,
+  "curl": "curl 8.7.1 (x86_64-apple-darwin26.0) libcurl/8.7.1 (SecureTransport) LibreSSL/3.3.6 zlib/1.2.12 nghttp2/1.69.0",
+  "rg": "ripgrep 15.2.0",
+  "credentialsConfigured": true,
+  "realBin": "/Applications/ChatGPT.app/Contents/Resources/codex",
+  "runtimeVersion": "codex-cli 0.155.0-alpha.9.2",
+  "installed": true,
+  "compatible": true,
+  "disabled": false,
+  "configuredForNextLaunch": true,
+  "bridgeProcessAlive": true,
+  "processIdentityUnknown": 0,
+  "ignoredReusedPids": 0,
+  "installedFingerprint": "31b9bde9238e38c61c51e262505b52d5bd2b6cd855c89550c2ebbb9a4a6f9bbf",
+  "loadedRevisionMatches": false,
+  "activeBridges": [
+    {
+      "at": "2026-09-23T13:00:52.166Z",
+      "bridgeId": "jev:0e2baa0c-cfb4-4ff8-a76c-41fc8437300a:",
+      "pid": 62377,
+      "measurementSource": "runtime",
+      "kind": "bridge_started",
+      "policyVersion": "effort-v13-bounded-parallel",
+      "leaseUnit": "observed_tool_batch_or_boundary",
+      "runtimeFingerprint": "54ccfaa36dac3d2ac892bce575d7c6672cfcb9cfb4bf2abc690bef54a7b22892",
+      "backendPid": 62381,
+      "networkMode": "environment_proxy"
+    },
+    {
+      "at": "2026-09-23T13:31:01.791Z",
+      "bridgeId": "jev:26c0f595-a7fc-4186-aefe-e073a88ef3e0:",
+      "pid": 78304,
+      "measurementSource": "runtime",
+      "kind": "bridge_started",
+      "policyVersion": "effort-v13-bounded-parallel",
+      "leaseUnit": "observed_tool_batch_or_boundary",
+      "runtimeFingerprint": "54ccfaa36dac3d2ac892bce575d7c6672cfcb9cfb4bf2abc690bef54a7b22892",
+      "backendPid": 78308,
+      "networkMode": "environment_proxy"
+    }
+  ],
+  "latestBridge": {
+    "at": "2026-09-23T13:31:01.791Z",
+    "bridgeId": "jev:26c0f595-a7fc-4186-aefe-e073a88ef3e0:",
+    "pid": 78304,
+    "measurementSource": "runtime",
+    "kind": "bridge_started",
+    "policyVersion": "effort-v13-bounded-parallel",
+    "leaseUnit": "observed_tool_batch_or_boundary",
+    "runtimeFingerprint": "54ccfaa36dac3d2ac892bce575d7c6672cfcb9cfb4bf2abc690bef54a7b22892",
+    "backendPid": 78308,
+    "networkMode": "environment_proxy"
+  },
+  "desktopVerifiedPlatforms": [
+    "darwin"
+  ],
+  "crossPlatformRuntimeNeedsAcceptance": [
+    "win32",
+    "linux"
+  ]
+}

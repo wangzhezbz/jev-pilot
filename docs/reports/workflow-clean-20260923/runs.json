@@ -1,0 +1,650 @@
+[
+  {
+    "id": "gpt-6-sol-bug_fix-0-bare",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "unchanged:repro.mjs",
+          "pass": true
+        },
+        {
+          "name": "independent_oracle",
+          "pass": true,
+          "stdout": "independent validation passed\n",
+          "stderr": "",
+          "exitCode": 0
+        }
+      ]
+    },
+    "errors": [],
+    "mcpServers": [],
+    "operations": [],
+    "routing": [],
+    "outputAdmission": []
+  },
+  {
+    "id": "gpt-6-sol-bug_fix-0-idle",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "unchanged:repro.mjs",
+          "pass": true
+        },
+        {
+          "name": "independent_oracle",
+          "pass": true,
+          "stdout": "independent validation passed\n",
+          "stderr": "",
+          "exitCode": 0
+        }
+      ]
+    },
+    "errors": [],
+    "mcpServers": [],
+    "operations": [],
+    "routing": [
+      {
+        "kind": "bridge_started"
+      },
+      {
+        "kind": "metadata_loaded"
+      },
+      {
+        "kind": "decision",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "event": "BeforeTurnStart",
+        "elapsedMs": 0,
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      {
+        "kind": "decision",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "event": "PostToolUse",
+        "elapsedMs": 51,
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "turn_usage",
+        "status": "completed",
+        "elapsedMs": 134379
+      }
+    ],
+    "outputAdmission": []
+  },
+  {
+    "id": "gpt-6-sol-bug_fix-0-auto",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "unchanged:repro.mjs",
+          "pass": true
+        },
+        {
+          "name": "independent_oracle",
+          "pass": true,
+          "stdout": "independent validation passed\n",
+          "stderr": "",
+          "exitCode": 0
+        }
+      ]
+    },
+    "errors": [],
+    "mcpServers": [
+      {
+        "name": "jev-pilot",
+        "tools": [
+          "jev_pilot"
+        ]
+      }
+    ],
+    "operations": [],
+    "routing": [
+      {
+        "kind": "bridge_started"
+      },
+      {
+        "kind": "metadata_loaded"
+      },
+      {
+        "kind": "decision",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "high",
+        "event": "BeforeTurnStart",
+        "elapsedMs": 1020,
+        "inputTokens": 1068,
+        "outputTokens": 106
+      },
+      {
+        "kind": "decision",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "medium",
+        "event": "PostToolUse",
+        "elapsedMs": 792,
+        "inputTokens": 1422,
+        "outputTokens": 106
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "turn_usage",
+        "status": "completed",
+        "elapsedMs": 83292
+      }
+    ],
+    "outputAdmission": [
+      {
+        "at": "2026-09-23T13:37:58.213Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "4e40afa5a0d1581618944fa32640a290ac40e371c6a84bc7f804b0bb56fe40ef"
+      },
+      {
+        "at": "2026-09-23T13:37:58.155Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "2d128fa5c5257fd5c664fe4653b9f6387f43a9b30c64d19128e87e36bedab8e5"
+      },
+      {
+        "at": "2026-09-23T13:37:58.145Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "9b835379017fef868879960194b89ab0862270e76bd029d02c44b9149861390f"
+      },
+      {
+        "at": "2026-09-23T13:37:49.471Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "12d964e5d7577557eb81cfd34e41a72aab63e5fcea261a0863c97d88eb69d97c"
+      },
+      {
+        "at": "2026-09-23T13:37:21.666Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "d897dbfe44617950db9f20e258d59854e18a5782901bfa8eb692a05adeb86e86"
+      },
+      {
+        "at": "2026-09-23T13:37:12.274Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "0e02cc13405279a7fc78f690b815efe0a84c30dd3e20c322c92feb362dfbec1b"
+      },
+      {
+        "at": "2026-09-23T13:36:59.279Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "e863f30e268334c95815296a012bd8e8f22ec9947c60a7fd1a1dfd4f665970c5"
+      },
+      {
+        "at": "2026-09-23T13:36:59.254Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "6492d6ebfb6e25efa3d9eb71c86cb0e91937d357051be8af6ea791d88325fbfe"
+      },
+      {
+        "at": "2026-09-23T13:36:59.253Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "ad9421ae68fbd659ca31dda57c1aad675bdda7f1d4e28e459dc271b0335714eb"
+      },
+      {
+        "at": "2026-09-23T13:36:53.646Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "877d96920138f031220b38d9df614eaa2d1694fd377c22d6782e08b50f914dc3"
+      },
+      {
+        "at": "2026-09-23T13:36:53.645Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "e395da5090a64c41a6aed0fb3ab10855ab7ae44e6332e3c2387b8f3f5cd01c16"
+      }
+    ]
+  },
+  {
+    "id": "gpt-6-sol-incident-0-auto",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "unchanged:incident.log",
+          "pass": true
+        },
+        {
+          "name": "rootCause",
+          "pass": true
+        },
+        {
+          "name": "failedRequests",
+          "pass": true
+        },
+        {
+          "name": "totalRequests",
+          "pass": true
+        },
+        {
+          "name": "failureRate",
+          "pass": true
+        },
+        {
+          "name": "mitigationPoolLimit",
+          "pass": true
+        },
+        {
+          "name": "postMitigationFailures",
+          "pass": true
+        },
+        {
+          "name": "settlementImpact",
+          "pass": true
+        },
+        {
+          "name": "rejectedHypothesis",
+          "pass": true
+        },
+        {
+          "name": "evidence_coverage",
+          "pass": true
+        },
+        {
+          "name": "no_invented_ids",
+          "pass": true
+        },
+        {
+          "name": "written_report_with_citations",
+          "pass": true
+        }
+      ]
+    },
+    "errors": [],
+    "mcpServers": [
+      {
+        "name": "jev-pilot",
+        "tools": [
+          "jev_pilot"
+        ]
+      }
+    ],
+    "operations": [],
+    "routing": [
+      {
+        "kind": "bridge_started"
+      },
+      {
+        "kind": "metadata_loaded"
+      },
+      {
+        "kind": "decision",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "high",
+        "event": "BeforeTurnStart",
+        "elapsedMs": 779,
+        "inputTokens": 1127,
+        "outputTokens": 106
+      },
+      {
+        "kind": "decision",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "medium",
+        "event": "PostToolUse",
+        "elapsedMs": 823,
+        "inputTokens": 1333,
+        "outputTokens": 106
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "turn_usage",
+        "status": "completed",
+        "elapsedMs": 50386
+      }
+    ],
+    "outputAdmission": [
+      {
+        "at": "2026-09-23T13:38:51.593Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "b2e0d6f103ec5a6a00443ca4c9533005474ba5af466b8f6e57c1e8cefeae8927"
+      },
+      {
+        "at": "2026-09-23T13:38:51.590Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "8d101aff64a4acf12c23ef1c0ee9a0c94b49ac79dee1fe75b79749ff8ea6a00b"
+      },
+      {
+        "at": "2026-09-23T13:38:41.113Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "6ad3e710b0ca058d6e346c1450814d3d6cf86065042b857f1c15914dc1a177f4"
+      },
+      {
+        "at": "2026-09-23T13:38:27.066Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "f261a824275494bc8e27e98b3aaeb029f37a606d4921a489f951432fc7cb2335"
+      },
+      {
+        "at": "2026-09-23T13:38:27.065Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "784a9613ebe97c9ad3778307d0a59ffd8cc2711ec33129123b371b1fb5f3229e"
+      },
+      {
+        "at": "2026-09-23T13:38:21.605Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "6c22e8b544a6f11e178b788f5d1fdee0ba24192f8e7be362ef8e6227382891cc"
+      },
+      {
+        "at": "2026-09-23T13:38:15.677Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "82a5cb4a1c2baeb31657b0f47ec39478a3921abfc6f63afb99e7403da1674caa"
+      },
+      {
+        "at": "2026-09-23T13:38:15.676Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "64c6eb6ec31814ab761ec310d0b38bb3b25ab652afe8f4f49b41676a2d4d2662"
+      }
+    ]
+  },
+  {
+    "id": "gpt-6-sol-incident-0-idle",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "unchanged:incident.log",
+          "pass": true
+        },
+        {
+          "name": "rootCause",
+          "pass": true
+        },
+        {
+          "name": "failedRequests",
+          "pass": true
+        },
+        {
+          "name": "totalRequests",
+          "pass": true
+        },
+        {
+          "name": "failureRate",
+          "pass": true
+        },
+        {
+          "name": "mitigationPoolLimit",
+          "pass": true
+        },
+        {
+          "name": "postMitigationFailures",
+          "pass": true
+        },
+        {
+          "name": "settlementImpact",
+          "pass": true
+        },
+        {
+          "name": "rejectedHypothesis",
+          "pass": true
+        },
+        {
+          "name": "evidence_coverage",
+          "pass": true
+        },
+        {
+          "name": "no_invented_ids",
+          "pass": true
+        },
+        {
+          "name": "written_report_with_citations",
+          "pass": true
+        }
+      ]
+    },
+    "errors": [],
+    "mcpServers": [],
+    "operations": [],
+    "routing": [
+      {
+        "kind": "bridge_started"
+      },
+      {
+        "kind": "metadata_loaded"
+      },
+      {
+        "kind": "decision",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "event": "BeforeTurnStart",
+        "elapsedMs": 0,
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      {
+        "kind": "decision",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "event": "PostToolUse",
+        "elapsedMs": 51,
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "turn_usage",
+        "status": "completed",
+        "elapsedMs": 38644
+      }
+    ],
+    "outputAdmission": []
+  },
+  {
+    "id": "gpt-6-sol-incident-0-bare",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "unchanged:incident.log",
+          "pass": true
+        },
+        {
+          "name": "rootCause",
+          "pass": true
+        },
+        {
+          "name": "failedRequests",
+          "pass": true
+        },
+        {
+          "name": "totalRequests",
+          "pass": true
+        },
+        {
+          "name": "failureRate",
+          "pass": true
+        },
+        {
+          "name": "mitigationPoolLimit",
+          "pass": true
+        },
+        {
+          "name": "postMitigationFailures",
+          "pass": true
+        },
+        {
+          "name": "settlementImpact",
+          "pass": true
+        },
+        {
+          "name": "rejectedHypothesis",
+          "pass": true
+        },
+        {
+          "name": "evidence_coverage",
+          "pass": true
+        },
+        {
+          "name": "no_invented_ids",
+          "pass": true
+        },
+        {
+          "name": "written_report_with_citations",
+          "pass": true
+        }
+      ]
+    },
+    "errors": [],
+    "mcpServers": [],
+    "operations": [],
+    "routing": [],
+    "outputAdmission": []
+  }
+]

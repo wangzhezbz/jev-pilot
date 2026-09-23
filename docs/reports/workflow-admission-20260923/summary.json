@@ -1,0 +1,10 @@
+{
+  "validForComparison": false,
+  "reason": "native global plugins persisted despite disable overrides; duplicate Jev MCP tools; not a clean control",
+  "completedAttempts": 3,
+  "interruptedAttempts": 1,
+  "knownCompletedGptTokens": 483589,
+  "inFlightGptUsage": "unknown",
+  "jevUsage": "Private-store records are incomplete if the installed global MCP was invoked. No full-spend claim.",
+  "savingsConclusion": "none; experiment invalidated"
+}

@@ -1,0 +1,20 @@
+{
+  "installed": "/Users/wangzhe/.codex/jev-pilot",
+  "launcher": "/Users/wangzhe/.codex/jev-pilot/jev-pilot",
+  "configuredForNextLaunch": true,
+  "restartRequired": true,
+  "currentTaskChanged": false,
+  "credentialsConfigured": true,
+  "browserNetwork": {
+    "manifests": [
+      {
+        "version": "26.915.31945",
+        "missing": [],
+        "status": "ready"
+      }
+    ],
+    "changed": false,
+    "existingProcessesUpdated": false,
+    "status": "ready"
+  }
+}

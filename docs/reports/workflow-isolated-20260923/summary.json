@@ -1,0 +1,102 @@
+{
+  "planned": 12,
+  "attempted": 3,
+  "passed": 2,
+  "arms": {
+    "bare": {
+      "runs": 1,
+      "passed": 1,
+      "wallMs": 170670,
+      "totalMs": 170741,
+      "totalTokens": 160549,
+      "uncachedInputTokens": 20931,
+      "outputTokens": 3042,
+      "reasoningOutputTokens": 843,
+      "knownAllModelTokens": 160549,
+      "jevCalls": 0,
+      "jevFailures": 0,
+      "jevUnknownUsage": 0,
+      "jevInputTokens": 0,
+      "jevOutputTokens": 0,
+      "jevWaitMs": 0,
+      "actualChanges": 0,
+      "automaticFilters": 0,
+      "modelTurns": 10,
+      "knownJevInputUsdEstimate": 0.0
+    },
+    "idle": {
+      "runs": 1,
+      "passed": 1,
+      "wallMs": 108343,
+      "totalMs": 108436,
+      "totalTokens": 164549,
+      "uncachedInputTokens": 22063,
+      "outputTokens": 4118,
+      "reasoningOutputTokens": 1202,
+      "knownAllModelTokens": 164549,
+      "jevCalls": 0,
+      "jevFailures": 0,
+      "jevUnknownUsage": 0,
+      "jevInputTokens": 0,
+      "jevOutputTokens": 0,
+      "jevWaitMs": 0,
+      "actualChanges": 0,
+      "automaticFilters": 0,
+      "modelTurns": 9,
+      "knownJevInputUsdEstimate": 0.0
+    },
+    "auto": {
+      "runs": 1,
+      "passed": 0,
+      "wallMs": 0,
+      "totalMs": 0,
+      "totalTokens": 0,
+      "uncachedInputTokens": 0,
+      "outputTokens": 0,
+      "reasoningOutputTokens": 0,
+      "knownAllModelTokens": 0,
+      "jevCalls": 0,
+      "jevFailures": 0,
+      "jevUnknownUsage": 0,
+      "jevInputTokens": 0,
+      "jevOutputTokens": 0,
+      "jevWaitMs": 0,
+      "actualChanges": 0,
+      "automaticFilters": 0,
+      "modelTurns": 0,
+      "knownJevInputUsdEstimate": 0.0
+    }
+  },
+  "pairs": [
+    {
+      "task": "bug_fix",
+      "repeat": 0,
+      "control": "bare",
+      "bothPassed": false,
+      "autoIncreasePercent": {
+        "wallMs": null,
+        "totalMs": null,
+        "totalTokens": null,
+        "uncachedInputTokens": null,
+        "outputTokens": null,
+        "reasoningOutputTokens": null,
+        "knownAllModelTokens": null
+      }
+    },
+    {
+      "task": "bug_fix",
+      "repeat": 0,
+      "control": "idle",
+      "bothPassed": false,
+      "autoIncreasePercent": {
+        "wallMs": null,
+        "totalMs": null,
+        "totalTokens": null,
+        "uncachedInputTokens": null,
+        "outputTokens": null,
+        "reasoningOutputTokens": null,
+        "knownAllModelTokens": null
+      }
+    }
+  ]
+}

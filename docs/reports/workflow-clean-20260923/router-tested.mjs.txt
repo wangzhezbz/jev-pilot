@@ -110,23 +110,18 @@ export class Router {
     const current = params.effort ?? params.collaborationMode?.settings?.reasoning_effort ?? meta.effort;
     const model = params.model ?? params.collaborationMode?.settings?.model ?? meta.model;
     const cwd=params.cwd??meta.cwd,stamp=this.clock();
-    const reuseAdmission=old?.completed&&old.model===model&&old.baseline===current&&old.cwd===cwd&&stamp-old.completedAt>=0&&stamp-old.completedAt<=300000;
-    const backoff=Boolean(reuseAdmission&&old.backoffRemaining>0);
     const historical=old?.completed&&old.cwd===cwd&&stamp-(old.completedAt??old.openedAt)>=0&&stamp-(old.completedAt??old.openedAt)<=86400000
       ? {source:'memory',sourceTurnId:old.turnId,taskSourceTurnId:isContinuation(old.task)?old.previousTurn?.taskSourceTurnId??old.previousTurn?.sourceTurnId??old.turnId:old.turnId,observedAt:new Date(old.completedAt??old.openedAt).toISOString(),requiresReview:true,task:compact(isContinuation(old.task)?old.previousTurn?.task??old.task:old.task,1000),progress:old.progress.slice(-1).map(x=>compact(x,1000))} : undefined;
     this.turns.set(threadId, { threadId, cwd, turnId: null, current, model, active: true, revision: 0,
       task: compact((params.input ?? []).filter(x=>x.type==='text').map(x=>x.text).join('\n'),4000),
       previousTurn:historical,openedAt:stamp,recoveryAttempts:0,retryAt:null,
-      routingBackoff:backoff,backoffRemaining:backoff?old.backoffRemaining-1:0,noChangeTurns:reuseAdmission?old.noChangeTurns??0:0,autoChanged:false,
       baseline:current,noBenefitHits:0,ceilingHits:0,ceilingSkips:0,forceRecheck:false, evidenceVersion:0, progressVersion:0, noteVersion:0, judgedProgress:0, leaseSkips:0,
       urgentVersion:0,judgedUrgent:0,budgetSkips:0,coalescedBoundaries:0,
       progress: [], publicNotes: [], recent: [], calls: 0, pending: Promise.resolve(), seen: new Set(), lastAt: 0, settingsPending: 0,
       toolBatches:new Map(),toolBatchSequence:0,reusedBatch:null,batchLeaseSkips:0,routineProgressNotes:0,opened:performance.now(),lease:0,leaseUntil:0,usage:null,usageSnapshots:new Set(),usageEvents:0,invalidUsageEvents:0,nativeFailures:new Map() });
-    if(backoff)this.log({kind:'routing_admission',threadId,status:'cross_turn_no_change_backoff',skippedTurn:true,remainingTurns:old.backoffRemaining,effort:current});
     return this.turns.get(threadId);
   }
   invalidate(threadId,input=[]) { const t=this.turns.get(threadId); if(t) {
-    t.routingBackoff=false;t.backoffRemaining=0;t.noChangeTurns=0;
     t.revision++; t.noBenefitHits=0;t.ceilingHits=0;t.lastAt=0; t.lease=0; t.forceRecheck=true;t.urgentVersion++;
     const text=input.filter(x=>x.type==='text').map(x=>x.text).join('\n');
     if(text)t.task=compact(t.task+'\nLatest user input: '+redact(text),4000);
@@ -158,7 +153,6 @@ export class Router {
   }
   eligible(t) {
     const supported=this.supported.get(t.model);
-    if(t.routingBackoff&&t.current===t.baseline)return false;
     if(!SUPPORTED_MODELS.includes(t.model)||!supported?.includes(t.current))return false;
     // At the user's floor there is no legal lower target and the ceiling forbids
     // an upgrade. A prior automatic downgrade must still be reassessed.
@@ -247,7 +241,7 @@ export class Router {
       const result=await this.judge(this.state(t),this.context(t));
       if(!t.active || revision!==t.revision || this.turns.get(t.threadId)!==t)return params;
       const effort=this.boundedEffort(t,result.answer);
-      t.current=effort;if(effort!==from)t.autoChanged=true;this.renew(t,result);
+      t.current=effort;this.renew(t,result);
       // Buffered until the backend announces the actual turn id. This is a
       // forwarded start parameter, not a turn/settings/update applied receipt.
       t.startDecision=this.metrics(t,result,from,effort===from?'unchanged':'start_forwarded',started,'BeforeTurnStart');
@@ -306,10 +300,6 @@ export class Router {
         jevCalls:t.calls,batchLeaseSkips:t.batchLeaseSkips,routineProgressNotes:t.routineProgressNotes,leaseSkips:t.leaseSkips,budgetSkips:t.budgetSkips,coalescedBoundaries:t.coalescedBoundaries,
         usage:t.usage,usageEvents:t.usageEvents,invalidUsageEvents:t.invalidUsageEvents,
         accounting:'runtime_reported_tokens_not_account_debits'});
-      if(!t.routingBackoff){
-        t.noChangeTurns=p.turn.status==='completed'&&!t.autoChanged&&t.noBenefitHits>=2?t.noChangeTurns+1:0;
-        if(t.noChangeTurns>=2){t.noChangeTurns=0;t.backoffRemaining=2;this.log({kind:'routing_admission',threadId:t.threadId,turnId:p.turn.id,status:'cross_turn_backoff_armed',nextTurns:2,effort:t.baseline});}
-      }else if(p.turn.status!=='completed'){t.noChangeTurns=0;t.backoffRemaining=0;}
       t.completed=true;t.completedAt=this.clock();
       this.stop(p.threadId);
     }
@@ -421,7 +411,7 @@ export class Router {
             this.log({...this.metrics(t,result,from,'superseded',started,p.hook_event_name),nativeStatus:status});
             return {status:'stale'};
           }
-          if(status==='applied'){t.current=effort;t.autoChanged=true;}
+          if(status==='applied') t.current=effort;
         }
         this.renew(t,result,status==='unchanged'||status==='applied',{progress,urgent});
         if(changed()){t.lease=0;t.forceRecheck=true;}

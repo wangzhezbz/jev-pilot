@@ -1,0 +1,5 @@
+{
+  "at": "2026-09-23T13:21:12.525791+00:00",
+  "reason": "native global plugins persisted despite disable overrides; duplicate Jev MCP tools; not a clean control",
+  "action": "SIGTERM sent to own benchmark runner; bridge handler terminates active backend. Retain every completed and in-flight attempt; no saving inference."
+}

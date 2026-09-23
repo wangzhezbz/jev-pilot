@@ -1,0 +1,319 @@
+[
+  {
+    "id": "gpt-6-sol-bug_fix-0-bare",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "unchanged:repro.mjs",
+          "pass": true
+        },
+        {
+          "name": "independent_oracle",
+          "pass": true,
+          "stdout": "independent validation passed\n",
+          "stderr": "",
+          "exitCode": 0
+        }
+      ]
+    },
+    "errors": [],
+    "mcpServers": null,
+    "operations": [],
+    "routing": [],
+    "outputAdmission": []
+  },
+  {
+    "id": "gpt-6-sol-bug_fix-0-idle",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "unchanged:repro.mjs",
+          "pass": true
+        },
+        {
+          "name": "independent_oracle",
+          "pass": true,
+          "stdout": "independent validation passed\n",
+          "stderr": "",
+          "exitCode": 0
+        }
+      ]
+    },
+    "errors": [],
+    "mcpServers": null,
+    "operations": [],
+    "routing": [
+      {
+        "kind": "bridge_started"
+      },
+      {
+        "kind": "metadata_loaded"
+      },
+      {
+        "kind": "decision",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "event": "BeforeTurnStart",
+        "elapsedMs": 0,
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      {
+        "kind": "decision",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "keep",
+        "event": "PostToolUse",
+        "elapsedMs": 51,
+        "inputTokens": 0,
+        "outputTokens": 0
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "turn_usage",
+        "status": "completed",
+        "elapsedMs": 75219
+      }
+    ],
+    "outputAdmission": []
+  },
+  {
+    "id": "gpt-6-sol-bug_fix-0-auto",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "unchanged:repro.mjs",
+          "pass": true
+        },
+        {
+          "name": "independent_oracle",
+          "pass": true,
+          "stdout": "independent validation passed\n",
+          "stderr": "",
+          "exitCode": 0
+        }
+      ]
+    },
+    "errors": [],
+    "mcpServers": [
+      {
+        "name": "chatcut_desktop",
+        "tools": []
+      },
+      {
+        "name": "chatgpt_codex_bridge",
+        "tools": []
+      },
+      {
+        "name": "codex_app",
+        "tools": []
+      },
+      {
+        "name": "computer-history",
+        "tools": [
+          "computer_history_get_settings",
+          "computer_history_pause",
+          "computer_history_resume",
+          "computer_history_status",
+          "computer_history_update_settings"
+        ]
+      },
+      {
+        "name": "computer-use",
+        "tools": []
+      },
+      {
+        "name": "cowart_mcp",
+        "tools": [
+          "download_cowart_file",
+          "get_cowart_canvas_state",
+          "render_cowart_canvas_widget",
+          "save_cowart_reference_image",
+          "save_cowart_selection_state",
+          "save_cowart_canvas_state",
+          "get_cowart_selection",
+          "insert_cowart_html_draft",
+          "insert_cowart_image",
+          "read_cowart_page_asset",
+          "save_cowart_view_state"
+        ]
+      },
+      {
+        "name": "cua_repl",
+        "tools": [
+          "js",
+          "js_reset",
+          "turn_ended"
+        ]
+      },
+      {
+        "name": "event-stream",
+        "tools": [
+          "event_stream_start",
+          "event_stream_status",
+          "event_stream_stop"
+        ]
+      },
+      {
+        "name": "jev-pilot",
+        "tools": [
+          "jev_pilot"
+        ]
+      },
+      {
+        "name": "jev_workflow",
+        "tools": [
+          "jev_pilot"
+        ]
+      },
+      {
+        "name": "node_repl",
+        "tools": []
+      }
+    ],
+    "operations": [],
+    "routing": [
+      {
+        "kind": "bridge_started"
+      },
+      {
+        "kind": "metadata_loaded"
+      },
+      {
+        "kind": "decision",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "high",
+        "event": "BeforeTurnStart",
+        "elapsedMs": 1475,
+        "inputTokens": 1068,
+        "outputTokens": 106
+      },
+      {
+        "kind": "decision",
+        "status": "unchanged",
+        "from": "medium",
+        "published": "medium",
+        "recommended": "medium",
+        "event": "PostToolUse",
+        "elapsedMs": 912,
+        "inputTokens": 1231,
+        "outputTokens": 106
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "routing_admission",
+        "status": "baseline_no_benefit"
+      },
+      {
+        "kind": "turn_usage",
+        "status": "completed",
+        "elapsedMs": 68897
+      }
+    ],
+    "outputAdmission": [
+      {
+        "at": "2026-09-23T13:20:13.306Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "ced73c8de576dfd259556d7a34ed01dc1b8fc836d700f8a924ec5248e154637f"
+      },
+      {
+        "at": "2026-09-23T13:20:13.304Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "c40c11958bc4939fbef63b1ca03ea7f8ea1afbfcb7196da923f1aa2e6b0e4612"
+      },
+      {
+        "at": "2026-09-23T13:20:08.030Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "3a02f3eb187dbf3d350edf9c27a3df5d2ed8e1ede06bddd7fcae710e876aa7d6"
+      },
+      {
+        "at": "2026-09-23T13:20:04.032Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "c67ccb5fe7838f2211dd146d137385535c199487c8922425a02cd9726d26f2ce"
+      },
+      {
+        "at": "2026-09-23T13:19:38.669Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "3c62769feda3f8c196534ec75723d1694af9f6a3ad64dd3f36cf0b5dc43c4881"
+      },
+      {
+        "at": "2026-09-23T13:19:24.525Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "03b879da0abfb8b809e96009a3aaf514d152005eaabbb6714f8c5ab8d4833734"
+      },
+      {
+        "at": "2026-09-23T13:19:21.106Z",
+        "kind": "automatic_output_admission",
+        "reason": "small",
+        "adapter": "text",
+        "boundaryId": "de5a52d1444804c3c2e52a388b8590d9d1220e7c65071c4627e9afe2328558e2"
+      }
+    ]
+  }
+]

@@ -1,3 +1,4 @@
+import {processTable,bridgeIdentity} from './process-observation.mjs';
 import { existsSync, readFileSync, writeFileSync, mkdirSync, cpSync, chmodSync, unlinkSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { homedir, tmpdir } from 'node:os';
@@ -27,18 +28,22 @@ export function checkPrerequisites({node=process.versions.node,command=commandVe
   requireValue(command(process.platform==='win32'?'curl.exe':'curl'),'CURL_REQUIRED');
   requireValue(command('rg'),'RIPGREP_REQUIRED');
 }
-export function desktopStatus() {
+export function desktopStatus({inspectProcesses=processTable}={}) {
   const home = installHome(), configPath = join(home, 'runtime/desktop/install.json');
   let config = null; try { config = JSON.parse(readFileSync(configPath)); } catch {}
   const realBin = config?.realBin || discoverCodex(), version = realBin ? commandVersion(realBin) : null;
   const compatible = Boolean(config && config.sha256 && typeof config.sha256 === 'object' && !Array.isArray(config.sha256) && Object.keys(config.sha256).length && version === config.verifiedVersion && Object.entries(config.sha256).every(([p, h]) => { try { return hash(readFileSync(join(home, 'runtime/desktop', p), 'utf8')) === h; } catch { return false; } }));
   const bridges=[];
   try { for(const line of readFileSync(join(home,'runtime/desktop/logs/events.jsonl'),'utf8').split('\n'))try{const e=JSON.parse(line);if(e.kind==='bridge_started'&&e.measurementSource!=='synthetic')bridges.push(e);}catch{} } catch {}
-  const activeBridges=bridges.filter(e=>{try{if(!Number.isInteger(e.pid)||e.pid<=0||!Number.isInteger(e.backendPid)||e.backendPid<=0)return false;process.kill(e.pid,0);process.kill(e.backendPid,0);return true;}catch{return false;}});
+  const liveCandidates=bridges.filter(e=>{try{if(!Number.isInteger(e.pid)||e.pid<=0||!Number.isInteger(e.backendPid)||e.backendPid<=0)return false;process.kill(e.pid,0);process.kill(e.backendPid,0);return true;}catch{return false;}});
+  const table=inspectProcesses(liveCandidates.flatMap(e=>[e.pid,e.backendPid]));
+  const activeBridges=liveCandidates.filter(e=>bridgeIdentity(e,table)==='verified');
+  const processIdentityUnknown=liveCandidates.filter(e=>bridgeIdentity(e,table)==='unverified').length;
+  const ignoredReusedPids=liveCandidates.filter(e=>bridgeIdentity(e,table)==='pid_reused').length;
   const installedFingerprint=runtimeFingerprint(config?.sha256);
   const loadedRevisionMatches=activeBridges.length && activeBridges.every(e=>typeof e.runtimeFingerprint==='string')
     ? activeBridges.every(e=>e.runtimeFingerprint===installedFingerprint) : null;
-  return { platform: process.platform, arch: process.arch, node: process.version, nodeSupported: +process.versions.node.split('.')[0] >= 24, curl: commandVersion(process.platform === 'win32' ? 'curl.exe' : 'curl'), rg: commandVersion('rg'), credentialsConfigured: Boolean(loadKey(home)), realBin, runtimeVersion: version, installed: Boolean(config), compatible, disabled: existsSync(join(home, 'runtime/desktop/disabled')), configuredForNextLaunch: config?.activated === true, bridgeProcessAlive: activeBridges.length>0, installedFingerprint, loadedRevisionMatches, activeBridges, latestBridge: activeBridges.at(-1)??bridges.at(-1)??null, desktopVerifiedPlatforms: ['darwin'], crossPlatformRuntimeNeedsAcceptance: ['win32', 'linux'] };
+  return { platform: process.platform, arch: process.arch, node: process.version, nodeSupported: +process.versions.node.split('.')[0] >= 24, curl: commandVersion(process.platform === 'win32' ? 'curl.exe' : 'curl'), rg: commandVersion('rg'), credentialsConfigured: Boolean(loadKey(home)), realBin, runtimeVersion: version, installed: Boolean(config), compatible, disabled: existsSync(join(home, 'runtime/desktop/disabled')), configuredForNextLaunch: config?.activated === true, bridgeProcessAlive: activeBridges.length>0, processIdentityUnknown, ignoredReusedPids, installedFingerprint, loadedRevisionMatches, activeBridges, latestBridge: activeBridges.at(-1)??bridges.at(-1)??null, desktopVerifiedPlatforms: ['darwin'], crossPlatformRuntimeNeedsAcceptance: ['win32', 'linux'] };
 }
 export function desktopMetrics() {
   const file = join(installHome(), 'runtime/desktop/logs/events.jsonl'); let events = [], malformed = 0;

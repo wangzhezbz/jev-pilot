@@ -1,0 +1,9 @@
+{
+  "oldInstalledSize": "157M from du -sh, rounded",
+  "stagedFiles": 235,
+  "stagedBytes": 17197566,
+  "fileDigestEncoding": "sha256 over raw file bytes",
+  "sourceMode": "allowlisted new directory outside repository",
+  "oldCacheRetained": true,
+  "privateNamedFilesInNewStage": 0
+}

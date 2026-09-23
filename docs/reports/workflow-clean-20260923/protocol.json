@@ -1,0 +1,73 @@
+{
+  "at": "2026-09-23T13:33:16.273Z",
+  "jobs": [
+    {
+      "model": "gpt-6-sol",
+      "task": "bug_fix",
+      "repeat": 0,
+      "arms": [
+        "bare",
+        "idle",
+        "auto"
+      ]
+    },
+    {
+      "model": "gpt-6-sol",
+      "task": "incident",
+      "repeat": 0,
+      "arms": [
+        "auto",
+        "idle",
+        "bare"
+      ]
+    }
+  ],
+  "runs": 6,
+  "models": [
+    "gpt-6-sol"
+  ],
+  "initialEffort": "medium",
+  "concurrency": 1,
+  "hashes": {
+    "src/core.mjs": "09989cab5a162f33c1daa19eec16674b0874b2ae90b88b43504736ab7e7532fe",
+    "src/request-guard.mjs": "ebe0a0f2262b2846de814a141e095add69b984b3a10e92a528a5ce02ce521f76",
+    "src/automation.mjs": "c9bec4ae2a4fc9467b7783c13e09ffa42c3a2ec17bbc76c988a895ba177fa709",
+    "src/evidence.mjs": "ba31b4dc7563185b1a474582895612bbf9f492cb02990a74ea4e58ad27b6d6d3",
+    "src/policy.mjs": "f833df40d3dddd6846cc67d0b8527d58a075272a1e15962fa5f433e58da8f73b",
+    "runtime/desktop/router.mjs": "d159aca568b850a64b0b181b3f1a0d5e8660a05a140ebd885b5d4340598ee04c",
+    "runtime/desktop/bridge.mjs": "7d1b15707869b5a7f9f2fd5682c6f471e916a89bc3ec740aa4503997a9abe57d",
+    "skills/jev-pilot/SKILL.md": "5cda8fd0a4e5e9ac61ad0468f88cc1c0c42f34cd5c184197d0c41dc01f086adc",
+    "skills/jev-pilot/references/operations.md": "aa1c0fe76ddb6f2f1c13aadaf089389883e4eb70cb7be865336bc15fb2e2e210",
+    "scripts/benchmark/tasks.mjs": "a205373e2b1f6bd9b7ced8eb8ed85093802d9f4f1babf0902ae2d1fbe6a60d29",
+    "scripts/acceptance/tasks.mjs": "ad1c528e00822d3d501ca001998d55493b854c56cc9167f480c4aa6faa6c1f52",
+    "scripts/acceptance/workflow-run.mjs": "da79b0e78b807f128ad19c7b27a446f2a3a1d44a6a8ca0af2b9c9570446fa461",
+    "src/distribution.mjs": "cf4900383a6162a66593654c432301fa583c6ddfc6c79570b87fdc42a73fe111"
+  },
+  "config": {
+    "features.apps": false,
+    "features.multi_agent": false,
+    "web_search": "disabled",
+    "hooks.Stop": []
+  },
+  "quality": "Frozen independent oracle after inference; protected fixtures unchanged; failed attempts retained.",
+  "stopRule": "Stop on infrastructure or provider rate/quota error, no substitution or retries.",
+  "timeLimitMs": 240000,
+  "scope": "Controlled native app-server experiment, not desktop UI or account billing. Bare: native engine. Idle: adapter hooks, no Jev, fixed effort. Auto: bridge plus the native plugin manager installed JevPilot alone in a fresh private CODEX_HOME. Native skill discovery and loading, no injected skill text. All arms use clean homes with only a private auth symlink and public model catalog. Verify MCP inventory before any inference; abort if unexpected or duplicate tools exist. Native default base instructions and code mode retained. Six-run diagnostic after prior interrupted experiments; not statistically powered. All previous costs retained separately. No significance claim. Startup measured separately. No required Jev use, no forced full reads.",
+  "tasks": [
+    {
+      "id": "bug_fix",
+      "prompt": "Investigate and fix singleflight.mjs. Contract: createSingleFlight(load) returns a function get(key). While a request is pending, concurrent calls for the same key share its Promise; different keys are independent. After either fulfillment or rejection the entry must be removed, so a later call retries and invokes load again. load may return a plain value or throw synchronously; callers must always receive a Promise, never a synchronous throw. A rejection must propagate to every waiting caller without creating an additional unhandled rejection. Preserve API and add regression tests covering the cause; execute them. Write diagnosis.md with the root cause and why your fix handles success/failure. Do not change repro.mjs.",
+      "files": {
+        "singleflight.mjs": "ba3c3e29220db3567c61c62f572a312f5234474e09a1647a08a5d2ff1a4e1f16",
+        "repro.mjs": "56019e96414c8403b73134c86d3847280cc639743303120f326660022ef4f2b3"
+      }
+    },
+    {
+      "id": "incident",
+      "prompt": "Analyze incident.log and write incident.md explaining the checkout incident. Evidence is spread throughout the log. Identify the supported root cause, the rejected hypothesis and why it is rejected, the observed impact, mitigation and verification, and what remains unknown. Cite the original L-prefixed evidence IDs. Do not turn guesses into facts. Also write findings.data as a machine-readable object with these keys: rootCause (one of pool_limit_regression, dns_failure, unknown), failedRequests (integer), totalRequests (integer), failureRate (number 0..1), mitigationPoolLimit (integer), postMitigationFailures (integer), settlementImpact (one of unknown, confirmed_safe, confirmed_loss), rejectedHypothesis (one of dns_failure, pool_limit_regression, none), evidenceIds (all L-prefixed IDs supporting the report). Do not change incident.log. The requirement is substantive incident analysis; concise factual output is enough.",
+      "files": {
+        "incident.log": "6a932f3daa50ac58d2a81f515744b30cd1808f25660d7dc46225a4dec6ff6b6e"
+      }
+    }
+  ]
+}

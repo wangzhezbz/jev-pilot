@@ -56,3 +56,8 @@ test('a failed reassessment after a valid unchanged baseline does not trigger a 
  let now=0;const f=routeFixture();f.r.clock=()=>now;await f.r.routeStart(f.p);let attempts=0;f.r.judge=async()=>{attempts++;throw Error('JEV_TIMEOUT');};await f.hook('fail');assert.equal(attempts,1);assert.equal(f.t.current,'medium');assert.equal(f.t.retryAt,null);assert.equal(f.t.recoveryBlockedReason,'baseline_no_benefit');
  now=60000;await f.hook('later');assert.equal(attempts,1);assert.equal(f.updates.length,0);
 });
+test('a user-selected lowest supported effort needs no routing API, but automatic downgrades still do',async()=>{
+ const f=routeFixture('low');f.p.effort='low';const t=f.r.start('s',f.p);t.turnId='t';await f.r.routeStart(f.p);await f.hook('a');assert.equal(f.calls(),0);assert.equal(t.current,'low');
+ t.baseline='high';assert.equal(f.r.eligible(t),true);
+ const g=routeFixture();g.r.supported.set('gpt-6-sol',['medium','high']);await g.r.routeStart(g.p);assert.equal(g.calls(),0);
+});
