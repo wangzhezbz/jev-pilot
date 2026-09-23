@@ -1,0 +1,80 @@
+{
+  "baseCommit": "40419bb2b589faf9ee1e497fd09a2f21af69dc32",
+  "checks": [
+    {
+      "path": "src/pilot.mjs",
+      "unchangedFromV14": true,
+      "sha256": "f4c18076c6ef2b398c3a8db0c2af3aeb25d799e1927e869330cacd0dd67cf3fd"
+    },
+    {
+      "path": "src/evidence.mjs",
+      "unchangedFromV14": true,
+      "sha256": "ba31b4dc7563185b1a474582895612bbf9f492cb02990a74ea4e58ad27b6d6d3"
+    },
+    {
+      "path": "src/workflows.mjs",
+      "unchangedFromV14": true,
+      "sha256": "d045036f82598e1b50ee73ccab15f36678d1b5d5c855e4d5533262ee25511c76"
+    },
+    {
+      "path": "src/browser.mjs",
+      "unchangedFromV14": true,
+      "sha256": "85310abb20a884a5b253e4618fb7a2a02d8cddcf4f16f5ddef7c401fd8ca94ee"
+    },
+    {
+      "path": "src/browser-network.mjs",
+      "unchangedFromV14": true,
+      "sha256": "4a4f4e25d5000890addf1da69b19a4c79c3dc5dec7ff19b0edd5bee51c250d24"
+    },
+    {
+      "path": "src/automation.mjs",
+      "unchangedFromV14": true,
+      "sha256": "c9bec4ae2a4fc9467b7783c13e09ffa42c3a2ec17bbc76c988a895ba177fa709"
+    },
+    {
+      "path": "src/core.mjs",
+      "unchangedFromV14": true,
+      "sha256": "09989cab5a162f33c1daa19eec16674b0874b2ae90b88b43504736ab7e7532fe"
+    },
+    {
+      "path": "src/policy.mjs",
+      "unchangedFromV14": true,
+      "sha256": "f833df40d3dddd6846cc67d0b8527d58a075272a1e15962fa5f433e58da8f73b"
+    },
+    {
+      "path": "src/evaluation.mjs",
+      "unchangedFromV14": true,
+      "sha256": "e7504345195318a12ceec0fc9392369358693f04fcc94a8c99ea47e74fb87997"
+    },
+    {
+      "path": "src/request-guard.mjs",
+      "unchangedFromV14": true,
+      "sha256": "ebe0a0f2262b2846de814a141e095add69b984b3a10e92a528a5ce02ce521f76"
+    },
+    {
+      "path": "skills/jev-pilot/SKILL.md",
+      "unchangedFromV14": true,
+      "sha256": "5cda8fd0a4e5e9ac61ad0468f88cc1c0c42f34cd5c184197d0c41dc01f086adc"
+    },
+    {
+      "path": "skills/jev-pilot/references/evidence.md",
+      "unchangedFromV14": true,
+      "sha256": "79e57dec202cb3a52565b66e561d998c90dd917fc6a0f2f983f90653f6079e1d"
+    },
+    {
+      "path": "skills/jev-pilot/references/workflow.md",
+      "unchangedFromV14": true,
+      "sha256": "7d9e56ccdc718d31ca67db8d04c39725a6f9cc2be4fbf15efa5391e17b6fe719"
+    },
+    {
+      "path": "skills/jev-pilot/references/state.md",
+      "unchangedFromV14": true,
+      "sha256": "e83f30f78748e4e6bccda69cfaacfd6e9dc0d8e7b44b82675cebea88e6b5b7d7"
+    },
+    {
+      "path": "skills/jev-pilot/references/browser.md",
+      "unchangedFromV14": true,
+      "sha256": "bc31c043747ac751ed6d4ef5ab748dc3978e58aa6125fe0ce06bbfa0fed6f9c9"
+    }
+  ]
+}

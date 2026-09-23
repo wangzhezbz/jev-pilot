@@ -8,11 +8,10 @@ function routeFixture(selected='medium'){
  r.supported.set('gpt-6-sol',['low','medium','high']);const p={threadId:'s',model:'gpt-6-sol',effort:'medium',input:[{type:'text',text:'Investigate a bounded task'}]},t=r.start('s',p);t.turnId='t';
  const hook=(id,tool_response='ok')=>r.hook({session_id:'s',turn_id:'t',hook_event_name:'PostToolUse',tool_use_id:id,tool_name:'shell',tool_response});return{r,t,p,hook,updates,calls:()=>calls};
 }
-test('default gate stops unchanged baseline decisions despite further commentary and tool failures',async()=>{
+test('new failures and progress remain eligible within the hard request budget',async()=>{
  const f=routeFixture();await f.r.routeStart(f.p);await f.hook('first');
- for(let i=0;i<10;i++){f.r.observe({method:'item/completed',params:{threadId:'s',item:{type:'agentMessage',text:'Checking step '+i}}});await f.hook('next'+i,{exit_code:1});}
- assert.equal(f.calls(),2);assert.equal(f.t.current,'medium');assert.equal(f.updates.length,0);
- f.r.invalidate('s',[{type:'text',text:'Now implement a changed requirement'}]);await f.hook('new');assert.equal(f.calls(),3);
+ for(let i=0;i<10;i++){f.r.observe({method:'item/completed',params:{threadId:'s',item:{type:'agentMessage',text:'New contradiction at step '+i}}});await f.hook('next'+i,{exit_code:1});}
+ assert.equal(f.calls(),6);assert.equal(f.t.current,'medium');assert.equal(f.updates.length,0);
 });
 test('unchanged automatic downgrade still gets reassessed and restores baseline when calls run out',async()=>{
  const f=routeFixture('low');await f.r.routeStart(f.p);await f.hook('a');await f.hook('b');await f.hook('c');await f.hook('d');
@@ -52,9 +51,9 @@ test('batch planner preserves all representable records across question and byte
  const p=classificationPlan('fixture',items,'Classify',{yes:'yes',no:'no'});
  assert.deepEqual(p.oversized.map(x=>x.id),['large']);assert.deepEqual(p.batches.flat().map(x=>x.id),items.filter(x=>x.id!=='large').map(x=>x.id));assert(p.batches.every(x=>x.length<=24));
 });
-test('a failed reassessment after a valid unchanged baseline does not trigger a speculative recovery call',async()=>{
- let now=0;const f=routeFixture();f.r.clock=()=>now;await f.r.routeStart(f.p);let attempts=0;f.r.judge=async()=>{attempts++;throw Error('JEV_TIMEOUT');};await f.hook('fail');assert.equal(attempts,1);assert.equal(f.t.current,'medium');assert.equal(f.t.retryAt,null);assert.equal(f.t.recoveryBlockedReason,'baseline_no_benefit');
- now=60000;await f.hook('later');assert.equal(attempts,1);assert.equal(f.updates.length,0);
+test('unchanged baseline does not block one delayed recovery, and persistent failure stays bounded',async()=>{
+ let now=0;const f=routeFixture();f.r.clock=()=>now;await f.r.routeStart(f.p);let attempts=0;f.r.judge=async()=>{attempts++;throw Error('JEV_TIMEOUT');};await f.hook('fail');assert.equal(attempts,1);assert.equal(f.t.current,'medium');assert.equal(f.t.retryAt,15000);
+ now=60000;await f.hook('later');assert.equal(attempts,2);assert.equal(f.t.retryAt,null);await f.hook('still-failing');assert.equal(attempts,2);assert.equal(f.updates.length,0);
 });
 test('a user-selected lowest supported effort needs no routing API, but automatic downgrades still do',async()=>{
  const f=routeFixture('low');f.p.effort='low';const t=f.r.start('s',f.p);t.turnId='t';await f.r.routeStart(f.p);await f.hook('a');assert.equal(f.calls(),0);assert.equal(t.current,'low');

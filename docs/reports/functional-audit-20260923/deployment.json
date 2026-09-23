@@ -1,0 +1,33 @@
+{
+  "at": "2026-09-23T14:18:52.198853+00:00",
+  "installedPolicy": "effort-v15-functional-reevaluation",
+  "pluginVersion": "0.2.0+codex.20260923221505",
+  "installedAdapterMatchesSource": true,
+  "pluginChecks": [
+    {
+      "path": "runtime/desktop/router.mjs",
+      "cachedSha256": "f6cf1dd8191aae55c345063660ade7f5b6ff8e531743692444aea64750b91d5b",
+      "matchesSource": true
+    },
+    {
+      "path": "skills/jev-pilot/SKILL.md",
+      "cachedSha256": "5cda8fd0a4e5e9ac61ad0468f88cc1c0c42f34cd5c184197d0c41dc01f086adc",
+      "matchesSource": true
+    },
+    {
+      "path": "skills/jev-pilot/references/operations.md",
+      "cachedSha256": "3ffe04b32ee869f87daa6a995e1836fc8610cc329b4353a19a39e8b442b87808",
+      "matchesSource": true
+    }
+  ],
+  "runtimeVersion": "codex-cli 0.155.0-alpha.9.2",
+  "installed": true,
+  "compatible": true,
+  "loadedRevisionMatches": false,
+  "activePolicies": [
+    "effort-v14-admission-distribution",
+    "effort-v14-admission-distribution"
+  ],
+  "restartRequired": true,
+  "note": "No active task was restarted. Plugin cache and adapter files verified separately from loaded process."
+}

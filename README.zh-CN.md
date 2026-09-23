@@ -53,4 +53,4 @@ JevPilot 采用 [MIT 许可证](LICENSE)。这是独立社区项目，并非 Ope
 
 进一步排查：[深层成本审计与局部修复](docs/reports/deep-audit-20260923/README.zh-CN.md)，包含重复正文、无效复查、输入上限和正常桌面测试缺口。
 
-完整流程复查：[v14 排查与实测](docs/reports/workflow-clean-20260923/README.zh-CN.md)。包含干净原生对照、作废试验、安装修复与无变化自动退避，仍未验证整体节省。
+功能保真复查：[v15 回退修复与耗时、token 逐项分析](docs/reports/functional-audit-20260923/README.zh-CN.md)。修复漏判新任务、阶段变化和失败的问题，保留调用预算；尚未验证整体节省。

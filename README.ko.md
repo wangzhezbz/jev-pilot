@@ -49,4 +49,4 @@
 
 JevPilot은 [MIT 라이선스](LICENSE)로 배포됩니다. OpenAI 또는 TypeSafe의 공식 제품이 아닌 독립 커뮤니티 프로젝트입니다.
 
-전체 작업 흐름 재검증: [v14 조사 및 실측 보고서(중국어)](docs/reports/workflow-clean-20260923/README.zh-CN.md). 설치 문제와 변경 없는 반복 판단을 개선했습니다. 전체 작업의 속도 향상 및 토큰 절감은 아직 검증되지 않았습니다.
+기능 재검증: [v15 수정 및 토큰 상세 분석(중국어)](docs/reports/functional-audit-20260923/README.zh-CN.md). 새 작업과 오류의 재평가를 막던 중단을 제거하고 호출 한도를 유지했습니다. 전체 작업의 속도 향상과 절감은 아직 검증되지 않았습니다.

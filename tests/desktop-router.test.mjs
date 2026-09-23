@@ -8,7 +8,7 @@ const answer=(choice,confidence=1)=>({type:'choice',choice,confidence,probabilit
 // These fixtures exercise budgets and leases independently; production admission is
 // covered with its default limit in benefit-admission.test.mjs.
 function setup(options={}){
- const calls=[],logs=[];const router=new Router({coalesceMs:0,noBenefitLimit:Infinity,judge:async()=>({answer:answer('low'),model:'fixture',inputTokens:10}),request:async(method,params)=>{calls.push({method,params});return{status:'applied'};},log:x=>logs.push(x),...options});
+ const calls=[],logs=[];const router=new Router({coalesceMs:0,judge:async()=>({answer:answer('low'),model:'fixture',inputTokens:10}),request:async(method,params)=>{calls.push({method,params});return{status:'applied'};},log:x=>logs.push(x),...options});
  router.supported.set('gpt-6-astra',['low','medium','high','xhigh']);
  router.start('thread',{model:'gpt-6-astra',effort:'high',input:[{type:'text',text:'Format verified results.'}]});
  router.observe({method:'turn/started',params:{threadId:'thread',turn:{id:'turn'}}});
@@ -464,11 +464,12 @@ test('late budget can return an older automatic upgrade to baseline',async()=>{
  t.baseline='medium';t.current='high';t.calls=s.router.routineLimit-1;
  await s.router.hook(s.p);assert.equal(t.current,'medium');assert.equal(s.calls.at(-1).params.effort,'medium');
 });
-test('two denied upgrades stop further evaluator spend at baseline until new input',async()=>{
- let n=0;const s=setup({judge:async()=>{n++;return {answer:answer('xhigh'),horizon:horizon(1)};}});
+test('two denied upgrades do not suppress a subsequent valid downgrade',async()=>{
+ let n=0;const s=setup({judge:async()=>({answer:answer(++n<=2?'xhigh':'medium'),horizon:horizon(1)})});
  await s.router.routeStart({threadId:'thread'});await s.router.hook(s.p);
- for(let i=0;i<5;i++)await s.router.hook({...s.p,tool_use_id:'skip'+i,tool_response:{exit_code:1}});
  assert.equal(n,2);assert.equal(s.router.turns.get('thread').current,'high');
- s.router.invalidate('thread',[{type:'text',text:'Now format the verified output'}]);
- await s.router.hook({...s.p,tool_use_id:'new'});assert.equal(n,3);
+ s.router.note(s.router.turns.get('thread'),'public_progress','Diagnosis complete; implement the small verified repair');
+ await s.router.hook({...s.p,tool_use_id:'new-phase'});
+ assert.equal(n,3);assert.equal(s.router.turns.get('thread').current,'medium');
+ assert.equal(s.calls.at(-1).params.effort,'medium');
 });

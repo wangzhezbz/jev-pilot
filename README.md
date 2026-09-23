@@ -53,4 +53,4 @@ Cost regression follow-up: [v11 investigation and real-model pilot (Chinese)](do
 
 Further investigation: [deep cost audit and bounded fixes (Chinese)](docs/reports/deep-audit-20260923/README.zh-CN.md), covering duplicate evidence bodies, ineffective reassessment, input limits, and desktop benchmark gaps.
 
-Complete-workflow follow-up: [v14 investigation and measurements (Chinese)](docs/reports/workflow-clean-20260923/README.zh-CN.md). Includes clean native controls, failed experiments, installation fixes and bounded no-change backoff; whole-task savings remain unproven.
+Functional audit: [v15 regression fixes and exact token accounting (Chinese)](docs/reports/functional-audit-20260923/README.zh-CN.md). Removes routing pauses that missed task changes and failures; preserves bounded budgets. Whole-task savings remain unproven.

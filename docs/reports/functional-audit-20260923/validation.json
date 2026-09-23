@@ -1,0 +1,62 @@
+{
+  "localTests": {
+    "total": 198,
+    "passed": 198,
+    "failed": 0,
+    "source": "node --test tests/*.test.mjs"
+  },
+  "nativeChecks": {
+    "total": 16,
+    "passed": 16,
+    "kind": "real_native_engine_synthetic_model",
+    "newPaidCalls": 0
+  },
+  "syntaxJsonSecretScan": "passed",
+  "darwinArm64LauncherBuild": "passed",
+  "mcpOperationsRetained": 28,
+  "regressionReproduction": {
+    "baselineCommit": "40419bb2b589faf9ee1e497fd09a2f21af69dc32",
+    "testFile": "tests/routing-backoff.test.mjs",
+    "before": {
+      "passed": 1,
+      "failed": 4
+    },
+    "after": {
+      "passed": 5,
+      "failed": 0
+    },
+    "cases": [
+      {
+        "name": "new_task_after_two_unchanged_turns",
+        "before": "failed",
+        "after": "passed"
+      },
+      {
+        "name": "new_phase_can_downshift",
+        "before": "failed",
+        "after": "passed"
+      },
+      {
+        "name": "new_failure_reassessed",
+        "before": "failed",
+        "after": "passed"
+      },
+      {
+        "name": "bounded_transient_recovery",
+        "before": "failed",
+        "after": "passed"
+      },
+      {
+        "name": "hard_budget_and_expired_downgrade_restore",
+        "before": "passed",
+        "after": "passed"
+      }
+    ]
+  },
+  "limits": [
+    "No new paid model performance experiment.",
+    "Chrome real-page operation not reaccepted in this turn.",
+    "Windows/Linux desktop acceptance is not implied by portable CI.",
+    "No stable savings claim."
+  ]
+}

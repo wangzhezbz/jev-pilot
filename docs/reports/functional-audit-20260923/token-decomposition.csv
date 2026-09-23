@@ -1,0 +1,5 @@
+task,control,totalTokenDelta,extraGenerationBase,repeatedFirstInputDifference,historyGrowthDifference,outputDifference,inputDelta,cachedInputDelta,uncachedInputDelta,wallDeltaMs
+bug_fix,bare,27115,14761,6503,5366,485,26630,-3712,30342,12863
+bug_fix,idle,-28537,-29536,6454,-4892,-563,-27974,-39936,11962,-51082
+incident,bare,-7936,14819,5448,-29053,850,-8786,-2560,-6226,14757
+incident,idle,-8125,14820,5442,-29182,795,-8920,-2560,-6360,11748

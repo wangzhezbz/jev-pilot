@@ -20,13 +20,14 @@ const parallelTools=process.argv.includes('--parallel-tools');
 const recoverTimeout=process.argv.includes('--recover-timeout');
 const resumeFixture=process.argv.includes('--resume-context');
 const routingBudget=process.argv.includes('--routing-budget');
+const phaseReevaluation=process.argv.includes('--phase-reevaluation');
 const noBenefitFiltering=process.argv.includes('--no-benefit-filter');
 const mcpFiltering=process.argv.includes('--filter-mcp');
 const filtering=process.argv.includes('--filter-output')||mcpFiltering||noBenefitFiltering;
 const manualSettings=process.argv.includes('--manual-settings');
 const inspectCacheContext=process.argv.includes('--inspect-cache-context');
 const inputSnapshots=[];
-const steps=routingBudget?7:reassess?4:noBenefitFiltering?2:1;
+const steps=routingBudget?7:phaseReevaluation?3:reassess?4:noBenefitFiltering?2:1;
 const realBin=process.env.JEV_PILOT_CODEX??'/Applications/ChatGPT.app/Contents/Resources/codex';
 const work=await mkdtemp(join(tmpdir(),'jev-desktop-verification-'));
 const codexHome=join(work,'home');await mkdir(codexHome);
@@ -117,7 +118,7 @@ try{
   await writeFile(join(work,'trust.json'),JSON.stringify(trust,null,2));
   let input=new PassThrough(),output=new PassThrough();
   let judgeCalls=0;
-  const mockedJudge=async state=>{if(resumeFixture)report.resumeState={source:state.previousTurn?.source,requiresReview:state.previousTurn?.requiresReview,historicalTaskPresent:state.previousTurn?.task==='Verify the prepared parser patch',currentTask:state.task};const choice=(reassess||manualSettings)&&judgeCalls++>0?'medium':'low';if(manualSettings && judgeCalls>1)report.manualJudgeEffort=state.currentEffort;return{answer:{type:'choice',choice,confidence:.4,probabilities:Object.fromEntries(Object.keys(effortQuestion.criteria).map(k=>[k,k===choice?.5:.1]))},horizon:{type:'choice',choice:routingBudget?'1':'5',confidence:1,probabilities:Object.fromEntries(Object.keys(horizonQuestion.criteria).map(k=>[k,k===(routingBudget?'1':'5')?1:0]))},model:'offline-fixture',inputTokens:0};};
+  const mockedJudge=async state=>{if(resumeFixture)report.resumeState={source:state.previousTurn?.source,requiresReview:state.previousTurn?.requiresReview,historicalTaskPresent:state.previousTurn?.task==='Verify the prepared parser patch',currentTask:state.task};const choice=phaseReevaluation?(judgeCalls++<2?'high':'medium'):(reassess||manualSettings)&&judgeCalls++>0?'medium':'low';if(manualSettings && judgeCalls>1)report.manualJudgeEffort=state.currentEffort;return{answer:{type:'choice',choice,confidence:.4,probabilities:Object.fromEntries(Object.keys(effortQuestion.criteria).map(k=>[k,k===choice?.5:.1]))},horizon:{type:'choice',choice:(routingBudget||phaseReevaluation)?'1':'5',confidence:1,probabilities:Object.fromEntries(Object.keys(horizonQuestion.criteria).map(k=>[k,k===((routingBudget||phaseReevaluation)?'1':'5')?1:0]))},model:'offline-fixture',inputTokens:0};};
   let recoveryCalls=0;
   const judge=recoverTimeout?async state=>{if(recoveryCalls++===0)throw new Error('JEV_TIMEOUT');return mockedJudge(state);}:process.argv.includes('--unavailable-jev')?async()=>{throw new Error('TIMEOUT');}:
     process.argv.includes('--real-jev')?await makeJudge(join(installHome(),'.env.local')):mockedJudge;
@@ -174,6 +175,8 @@ try{
   report.audit=(await readFile(auditFile,'utf8')).trim().split('\n').map(JSON.parse).filter(x=>auditOverride||!installed||x.threadId===started.thread.id);
   report.passed=process.argv.includes('--incompatible') || process.argv.includes('--disabled')
     ? report.requests.length>=2 && report.requests.every(x=>x.effort==='high') && report.audit.some(x=>x.kind==='compatibility_fallback')
+    : phaseReevaluation
+    ? JSON.stringify(report.requests.map(x=>x.effort))===JSON.stringify(['high','high','medium','medium'])&&report.audit.filter(x=>x.kind==='decision').length===4&&report.audit.some(x=>x.kind==='decision'&&x.status==='applied'&&x.from==='high'&&x.published==='medium')
     : recoverTimeout
     ? report.requests.length===2&&report.requests[0].effort==='high'&&report.requests[1].effort==='low'&&report.audit.some(x=>x.kind==='routing_recovery')&&report.audit.some(x=>x.kind==='decision'&&x.status==='applied')&&recoveryCalls===2
     : process.argv.includes('--unavailable-jev')

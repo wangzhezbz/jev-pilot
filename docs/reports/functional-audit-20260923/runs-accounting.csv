@@ -1,0 +1,7 @@
+id,task,arm,wallMs,generations,firstInput,historyGrowth,totalTokens,inputTokens,cachedInputTokens,cacheWriteInputTokens,outputTokens,reasoningOutputTokens,uncachedInput,reasoningIncludedInOutput,jevCalls,jevInput,jevOutput,jevRequestMs,routerDecisionMs,actualSwitches,commands,nativeCommandDurationMs,commandDurationUsable
+gpt-6-sol-bug_fix-0-bare,bug_fix,bare,70434,6,14761,9242,100567,97808,87168,0,2759,474,10640,True,0,0,0,0,0,0,8,0,False
+gpt-6-sol-bug_fix-0-idle,bug_fix,idle,134379,9,14768,19500,156219,152412,123392,0,3807,911,29020,True,0,0,0,0,51,0,7,0,False
+gpt-6-sol-bug_fix-0-auto,bug_fix,auto,83297,7,15690,14608,127682,124438,83456,0,3244,755,40982,True,2,2490,212,1759,1812,0,9,0,False
+gpt-6-sol-incident-0-auto,incident,auto,50392,6,15727,15974,112376,110336,97408,0,2040,209,12928,True,2,2460,212,1550,1602,0,7,0,False
+gpt-6-sol-incident-0-idle,incident,idle,38644,5,14820,45156,120501,119256,99968,0,1245,87,19288,True,0,0,0,0,51,0,3,0,False
+gpt-6-sol-incident-0-bare,incident,bare,35635,5,14819,45027,120312,119122,99968,0,1190,79,19154,True,0,0,0,0,0,0,3,0,False
