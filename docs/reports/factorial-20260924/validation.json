@@ -1,0 +1,22 @@
+{
+  "at": "2026-09-23T16:31:19.115581+00:00",
+  "frozenRuntimeAndFixtureFilesUnchanged": 20,
+  "realModelTasks": 12,
+  "qualityPassed": 12,
+  "jevAttempts": 28,
+  "jevFailuresWithUnknownUsage": 1,
+  "duplicateNativeUsageNotifications": 1,
+  "duplicateNotificationTokensNotRecounted": 27858,
+  "nativeUsageReconciled": true,
+  "packageCheck": {
+    "files": 370,
+    "modules": 91,
+    "jsonAndSecretScan": "passed"
+  },
+  "localLinksChecked": 63,
+  "pythonSyntax": "passed",
+  "nodeSyntax": "passed",
+  "productionRuntimeModified": false,
+  "paidTaskRetries": 0,
+  "analyzerSha256": "6dd7c82c2ddb003764f12851d1432edf03acf987481a8debac64c58c11b34673"
+}

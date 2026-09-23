@@ -45,7 +45,7 @@ Portable tests pass on macOS, Windows and Linux. Native macOS engine routing and
 
 Recoverable context handoff does not replace native conversation history or reclaim existing tokens. No universal speed, token or quota savings are claimed. See the [acceptance report](docs/reports/ACCEPTANCE.md), [feature boundaries](docs/FEATURES.md) and [roadmap](docs/ROADMAP.md).
 
-Latest measurements: the [2026-09-23 functional and performance report](docs/reports/validation-20260923/README.md) includes real calls, failures, per-run tokens, timing and reproducible fixtures. Smaller tool output does not necessarily reduce whole-task usage.
+Latest diagnostic: [12-run comparison, 2026-09-24](docs/reports/factorial-20260924/README.md). All tasks passed; combined observed time −6.36% and GPT tokens −18.90%, but uncached input +67.83%. Account-quota savings remain unproven. The [earlier functional and performance report](docs/reports/validation-20260923/README.md) is retained.
 
 JevPilot is licensed under [MIT](LICENSE). Independent community project, not an official OpenAI or TypeSafe product.
 

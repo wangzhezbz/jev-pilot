@@ -1,0 +1,261 @@
+{
+  "planned": 12,
+  "attempted": 12,
+  "passed": 12,
+  "arms": {
+    "bare": {
+      "runs": 3,
+      "passed": 3,
+      "wallMs": 268587,
+      "startupMs": 218,
+      "totalMs": 268805,
+      "inputTokens": 499514,
+      "cachedInputTokens": 441856,
+      "uncachedInputTokens": 57658,
+      "outputTokens": 11264,
+      "reasoningOutputTokens": 2993,
+      "totalTokens": 510778,
+      "generations": 23,
+      "jevCalls": 0,
+      "jevFailures": 0,
+      "jevUnknownUsage": 0,
+      "jevInputTokens": 0,
+      "jevOutputTokens": 0,
+      "jevRequestMs": 0,
+      "routerDecisions": 0,
+      "routerDecisionMs": 0,
+      "recommendedChanges": 0,
+      "budgetHeldDecisions": 0,
+      "startChanges": 0,
+      "nativeAppliedChanges": 0,
+      "nativeRestores": 0,
+      "preparedOutputs": 0,
+      "evidenceOperations": 0,
+      "recalls": 0,
+      "hookSubmissions": 0,
+      "knownAllModelTokens": 510778,
+      "knownJevInputUsdEstimate": 0,
+      "commands": 30,
+      "identicalCommandRepeats": 1,
+      "observedToolSpanUnionMs": 582.3489999999999
+    },
+    "routing": {
+      "runs": 3,
+      "passed": 3,
+      "wallMs": 240690,
+      "startupMs": 299,
+      "totalMs": 240989,
+      "inputTokens": 461685,
+      "cachedInputTokens": 379520,
+      "uncachedInputTokens": 82165,
+      "outputTokens": 9762,
+      "reasoningOutputTokens": 2710,
+      "totalTokens": 471447,
+      "generations": 22,
+      "jevCalls": 13,
+      "jevFailures": 1,
+      "jevUnknownUsage": 1,
+      "jevInputTokens": 21230,
+      "jevOutputTokens": 1272,
+      "jevRequestMs": 12680,
+      "routerDecisions": 12,
+      "routerDecisionMs": 11135,
+      "recommendedChanges": 3,
+      "budgetHeldDecisions": 2,
+      "startChanges": 0,
+      "nativeAppliedChanges": 1,
+      "nativeRestores": 0,
+      "preparedOutputs": 0,
+      "evidenceOperations": 0,
+      "recalls": 0,
+      "hookSubmissions": 0,
+      "knownAllModelTokens": 493949,
+      "knownJevInputUsdEstimate": 0.0008916600000000001,
+      "commands": 34,
+      "identicalCommandRepeats": 2,
+      "observedToolSpanUnionMs": 666.011
+    },
+    "evidence": {
+      "runs": 3,
+      "passed": 3,
+      "wallMs": 235981,
+      "startupMs": 555,
+      "totalMs": 236536,
+      "inputTokens": 464923,
+      "cachedInputTokens": 386944,
+      "uncachedInputTokens": 77979,
+      "outputTokens": 9599,
+      "reasoningOutputTokens": 2460,
+      "totalTokens": 474522,
+      "generations": 22,
+      "jevCalls": 0,
+      "jevFailures": 0,
+      "jevUnknownUsage": 0,
+      "jevInputTokens": 0,
+      "jevOutputTokens": 0,
+      "jevRequestMs": 0,
+      "routerDecisions": 0,
+      "routerDecisionMs": 0,
+      "recommendedChanges": 0,
+      "budgetHeldDecisions": 0,
+      "startChanges": 0,
+      "nativeAppliedChanges": 0,
+      "nativeRestores": 0,
+      "preparedOutputs": 0,
+      "evidenceOperations": 0,
+      "recalls": 0,
+      "hookSubmissions": 0,
+      "knownAllModelTokens": 474522,
+      "knownJevInputUsdEstimate": 0,
+      "commands": 33,
+      "identicalCommandRepeats": 0,
+      "observedToolSpanUnionMs": 563.543
+    },
+    "combined": {
+      "runs": 3,
+      "passed": 3,
+      "wallMs": 251513,
+      "startupMs": 540,
+      "totalMs": 252053,
+      "inputTokens": 404993,
+      "cachedInputTokens": 308224,
+      "uncachedInputTokens": 96769,
+      "outputTokens": 9254,
+      "reasoningOutputTokens": 2475,
+      "totalTokens": 414247,
+      "generations": 19,
+      "jevCalls": 15,
+      "jevFailures": 0,
+      "jevUnknownUsage": 0,
+      "jevInputTokens": 29358,
+      "jevOutputTokens": 1590,
+      "jevRequestMs": 11360,
+      "routerDecisions": 15,
+      "routerDecisionMs": 11927,
+      "recommendedChanges": 4,
+      "budgetHeldDecisions": 2,
+      "startChanges": 0,
+      "nativeAppliedChanges": 1,
+      "nativeRestores": 0,
+      "preparedOutputs": 0,
+      "evidenceOperations": 0,
+      "recalls": 0,
+      "hookSubmissions": 0,
+      "knownAllModelTokens": 445195,
+      "knownJevInputUsdEstimate": 0.001233036,
+      "commands": 28,
+      "identicalCommandRepeats": 0,
+      "observedToolSpanUnionMs": 816.817
+    }
+  },
+  "pairs": [
+    {
+      "task": "cross_file",
+      "arm": "routing",
+      "bothPassed": true,
+      "increasePercent": {
+        "wallMs": -0.07532956685498693,
+        "totalMs": -0.049617177809146984,
+        "totalTokens": 2.3875644464002255,
+        "uncachedInputTokens": 2.136216786444245,
+        "knownAllModelTokens": 7.568846892598247
+      }
+    },
+    {
+      "task": "cross_file",
+      "arm": "evidence",
+      "bothPassed": true,
+      "increasePercent": {
+        "wallMs": -9.677281287450779,
+        "totalMs": -9.571837974250396,
+        "totalTokens": -3.159434596195354,
+        "uncachedInputTokens": 2.848289048592334,
+        "knownAllModelTokens": -3.159434596195354
+      }
+    },
+    {
+      "task": "cross_file",
+      "arm": "combined",
+      "bothPassed": true,
+      "increasePercent": {
+        "wallMs": -2.73240883410375,
+        "totalMs": -2.6382651097138443,
+        "totalTokens": -15.112123356505291,
+        "uncachedInputTokens": 60.40087031054262,
+        "knownAllModelTokens": -8.14566819098137
+      }
+    },
+    {
+      "task": "incident",
+      "arm": "evidence",
+      "bothPassed": true,
+      "increasePercent": {
+        "wallMs": 16.118698729464718,
+        "totalMs": 16.339233612137715,
+        "totalTokens": -12.915348675237237,
+        "uncachedInputTokens": 20.086414297638335,
+        "knownAllModelTokens": -12.915348675237237
+      }
+    },
+    {
+      "task": "incident",
+      "arm": "combined",
+      "bothPassed": true,
+      "increasePercent": {
+        "wallMs": 11.159931603212048,
+        "totalMs": 11.379109122738761,
+        "totalTokens": -27.07565512638208,
+        "uncachedInputTokens": 105.95571267246035,
+        "knownAllModelTokens": -20.884964740706348
+      }
+    },
+    {
+      "task": "incident",
+      "arm": "routing",
+      "bothPassed": true,
+      "increasePercent": {
+        "wallMs": 7.783381312092819,
+        "totalMs": 7.832458017246968,
+        "totalTokens": 0.34461243796977126,
+        "uncachedInputTokens": 127.90789021456277,
+        "knownAllModelTokens": 3.172610928930042
+      }
+    },
+    {
+      "task": "repository",
+      "arm": "combined",
+      "bothPassed": true,
+      "increasePercent": {
+        "wallMs": -18.034215561828614,
+        "totalMs": -17.92201891311138,
+        "totalTokens": -16.50462205597254,
+        "uncachedInputTokens": 37.83221840535165,
+        "knownAllModelTokens": -11.279476899486763
+      }
+    },
+    {
+      "task": "repository",
+      "arm": "evidence",
+      "bothPassed": true,
+      "increasePercent": {
+        "wallMs": -27.232252808669454,
+        "totalMs": -27.110686191914123,
+        "totalTokens": -6.417161916016778,
+        "uncachedInputTokens": 71.4066172482372,
+        "knownAllModelTokens": -6.417161916016778
+      }
+    },
+    {
+      "task": "repository",
+      "arm": "routing",
+      "bothPassed": true,
+      "increasePercent": {
+        "wallMs": -29.749161661898714,
+        "totalMs": -29.70626934618188,
+        "totalTokens": -21.3991669067629,
+        "uncachedInputTokens": -8.443319472066534,
+        "knownAllModelTokens": -16.569081790613293
+      }
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+[
+  {
+    "task": "cross_file",
+    "arm": "routing",
+    "totalTokenDelta": 4015,
+    "extraGenerationBase": 0,
+    "repeatedFirstInputDifference": 9,
+    "historyGrowthDifference": 4155,
+    "outputDifference": -149
+  },
+  {
+    "task": "cross_file",
+    "arm": "evidence",
+    "totalTokenDelta": -5313,
+    "extraGenerationBase": -14697,
+    "repeatedFirstInputDifference": 7344,
+    "historyGrowthDifference": 2793,
+    "outputDifference": -753
+  },
+  {
+    "task": "cross_file",
+    "arm": "combined",
+    "totalTokenDelta": -25413,
+    "extraGenerationBase": -29394,
+    "repeatedFirstInputDifference": 6524,
+    "historyGrowthDifference": -2273,
+    "outputDifference": -270
+  },
+  {
+    "task": "incident",
+    "arm": "evidence",
+    "totalTokenDelta": -17802,
+    "extraGenerationBase": 0,
+    "repeatedFirstInputDifference": 5502,
+    "historyGrowthDifference": -23427,
+    "outputDifference": 123
+  },
+  {
+    "task": "incident",
+    "arm": "combined",
+    "totalTokenDelta": -37320,
+    "extraGenerationBase": -14812,
+    "repeatedFirstInputDifference": 4620,
+    "historyGrowthDifference": -26852,
+    "outputDifference": -276
+  },
+  {
+    "task": "incident",
+    "arm": "routing",
+    "totalTokenDelta": 475,
+    "extraGenerationBase": 0,
+    "repeatedFirstInputDifference": 0,
+    "historyGrowthDifference": 579,
+    "outputDifference": -104
+  },
+  {
+    "task": "repository",
+    "arm": "combined",
+    "totalTokenDelta": -33798,
+    "extraGenerationBase": -14774,
+    "repeatedFirstInputDifference": 6503,
+    "historyGrowthDifference": -24063,
+    "outputDifference": -1464
+  },
+  {
+    "task": "repository",
+    "arm": "evidence",
+    "totalTokenDelta": -13141,
+    "extraGenerationBase": 0,
+    "repeatedFirstInputDifference": 7376,
+    "historyGrowthDifference": -19482,
+    "outputDifference": -1035
+  },
+  {
+    "task": "repository",
+    "arm": "routing",
+    "totalTokenDelta": -43821,
+    "extraGenerationBase": -14774,
+    "repeatedFirstInputDifference": 0,
+    "historyGrowthDifference": -27798,
+    "outputDifference": -1249
+  }
+]

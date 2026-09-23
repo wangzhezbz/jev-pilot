@@ -1,0 +1,10 @@
+task,arm,totalTokenDelta,extraGenerationBase,repeatedFirstInputDifference,historyGrowthDifference,outputDifference
+cross_file,routing,4015,0,9,4155,-149
+cross_file,evidence,-5313,-14697,7344,2793,-753
+cross_file,combined,-25413,-29394,6524,-2273,-270
+incident,evidence,-17802,0,5502,-23427,123
+incident,combined,-37320,-14812,4620,-26852,-276
+incident,routing,475,0,0,579,-104
+repository,combined,-33798,-14774,6503,-24063,-1464
+repository,evidence,-13141,0,7376,-19482,-1035
+repository,routing,-43821,-14774,0,-27798,-1249
