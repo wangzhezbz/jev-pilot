@@ -1,0 +1,5 @@
+index,variant,selectionMs,peakRequests,passed,jevCalls,inputTokens,outputTokens,unknownUsage,failedCalls,contextBytes,wireBytes,sameResultBeforeBytes,sameResultAfterBytes,queryBytes,fullRecallBytes
+0,before,1775.651292,1,True,2,11504,1762,0,0,7454,15554,15554,12481,503,11736
+1,after,893.4497089999998,2,True,2,11504,1762,0,0,8311,13099,16449,13099,503,11736
+2,after,795.1327919999999,2,True,2,11504,1762,0,0,7877,12481,15646,12481,503,11736
+3,before,1613.1823330000002,1,True,2,11504,1762,0,0,7663,15997,15997,12782,503,11736

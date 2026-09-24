@@ -1,6 +1,7 @@
 import {requireValue,readSource,hash} from './core.mjs';
 import {filterOutput,recall} from './evidence.mjs';
 import {outputAdapter} from './output-adapters.mjs';
+import {evidenceHandoff} from './evidence-handoff.mjs';
 
 export const exactEvidenceRequest=goal=>/\b(json|csv|verbatim|exact output)\b|原样|完整输出|不.*删减/i.test(goal);
 const codeSource=source=>/\.(?:[cm]?[jt]sx?|py|rs|go|java|c|cpp|h|sh|ps1|sql|toml|ya?ml|json|csv)(?:$|:)/i.test(source);
@@ -57,7 +58,7 @@ export async function prepareOutput(ctx,input){
     if(!selected.completeCoverage||selected.deferredIds.length)return original('incomplete_coverage');
     if(!selected.items.length)return original('empty_selection');
     if(!selected.excludedIds.length&&!selected.duplicateIds.length)return original('no_exclusions');
-    const display=`JevPilot partial evidence. Recall omitted material with jev_evidence recall, artifactId ${selected.artifactId}.\n${selected.context}`;
+    const display=evidenceHandoff(selected);
     const prepared=adapter.wrap(display),originalBytes=Buffer.byteLength(JSON.stringify(value)),returnedBytes=Buffer.byteLength(JSON.stringify(prepared));
     // Include result metadata in the benefit check, not just the evidence body.
     const selection={status:'prepared',reason:'reduced',artifactId:selected.artifactId,sourceHash:hash(body),originalBytes,returnedBytes,completeCoverage:true,excludedItems:selected.excludedIds.length,modelReceipt:'unconfirmed',nativeTokenSavings:null};
@@ -71,6 +72,6 @@ export async function prepareOutput(ctx,input){
 export function recallOutput(ctx,input){
   requireValue(typeof input.artifactId==='string','ARTIFACT_REQUIRED');
   const artifact=ctx.store.get(ctx.project,'artifact',input.artifactId);requireValue(artifact,'ARTIFACT_NOT_FOUND');
-  if(!input.ids&&Object.hasOwn(artifact,'originalValue'))return{artifactId:input.artifactId,value:artifact.originalValue,original:true};
+  if(!input.ids&&input.query===undefined&&Object.hasOwn(artifact,'originalValue'))return{artifactId:input.artifactId,value:artifact.originalValue,original:true};
   return recall(ctx,input);
 }

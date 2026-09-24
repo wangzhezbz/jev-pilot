@@ -2,6 +2,8 @@ import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { packageRoot } from '../src/setup.mjs';
+const manifests=['plugin.json','.codex-plugin/plugin.json'].map(path=>JSON.parse(readFileSync(join(packageRoot,path),'utf8')));
+if(manifests[0].name!==manifests[1].name||manifests[0].version!==manifests[1].version)throw new Error('PLUGIN_MANIFEST_VERSION_MISMATCH');
 const files = [];
 function walk(dir) { for (const entry of readdirSync(dir, { withFileTypes: true })) { if (['.git', 'node_modules', 'dist', 'bin'].includes(entry.name)) continue; const path = join(dir, entry.name); if (entry.isDirectory()) walk(path); else files.push(path); } }
 walk(packageRoot); let modules = 0;

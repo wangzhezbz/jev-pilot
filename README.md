@@ -47,6 +47,8 @@ Recoverable context handoff does not replace native conversation history or recl
 
 The main model remains the one selected by the user; automatic substitution with a smaller model is not enabled. See the [model-preservation policy](docs/MODEL-PRESERVATION.md). The latest [matched-entry effort comparison](docs/reports/matched-routing-20260924/README.zh-CN.md) attempted 4 tasks: 3 passed and 1 reached its deadline; routing gains remain unproven. The [fixed-model delegation comparison](docs/reports/delegation-ab-20260924/README.zh-CN.md) passed 4/4: known GPT + Jev tokens −9.74%, time +12.60%, uncached GPT input +43.77%. These component results do not establish desktop speedups or quota savings. New reports are in Chinese; the [earlier 12-run comparison](docs/reports/factorial-20260924/README.md) is retained.
 
+New [evidence handoff optimization report](docs/reports/evidence-handoff-20260924/README.md): all four component runs passed, with mean selection latency −50.17% and equal Jev token usage. This is not an end-to-end Codex speedup. Coverage-aware text, targeted recall and compact output are implemented.
+
 JevPilot is licensed under [MIT](LICENSE). Independent community project, not an official OpenAI or TypeSafe product.
 
 Cost regression follow-up: [v11 investigation and real-model pilot (Chinese)](docs/reports/cost-fix-20260923/README.zh-CN.md). Automatic effort is capped at the user setting, and automatic filtering cannot defer relevant evidence to meet a size budget. Stable efficiency gains remain unproven.

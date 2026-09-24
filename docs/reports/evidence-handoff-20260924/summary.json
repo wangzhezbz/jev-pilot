@@ -1,0 +1,30 @@
+{
+  "attempted": 4,
+  "passed": 4,
+  "gptCalls": 0,
+  "groups": {
+    "before": {
+      "runs": 2,
+      "meanSelectionMs": 1694.4168125,
+      "jevCalls": 4,
+      "inputTokens": 23008,
+      "outputTokens": 3524
+    },
+    "after": {
+      "runs": 2,
+      "meanSelectionMs": 844.2912504999998,
+      "jevCalls": 4,
+      "inputTokens": 23008,
+      "outputTokens": 3524
+    }
+  },
+  "selectionTimeChangePct": -50.17216281899943,
+  "sameResultWireChangePct": [
+    -19.756975697569757,
+    -20.365979694814275,
+    -20.22881247603221,
+    -20.097518284678372
+  ],
+  "totalKnownJevInputUsdEstimate": 0.001932672,
+  "nativeSavings": null
+}

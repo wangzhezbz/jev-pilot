@@ -34,7 +34,7 @@ Prefer `jev_evidence` for select and recall. Other operations remain available t
 | select | `{goal,items,budget?:16000,against?:[already_read_text]}` |
 | search | `{goal,query,paths?:['.'],maxMatches?:100,budget?}`; literal ripgrep candidates, then semantic selection |
 | filter_output | `{goal,path,budget?}` or `{goal,text,source?,budget?,against?}` |
-| recall | `{artifactId,ids?:[item_id]}` |
+| recall | `{artifactId,ids?:[item_id]}` or `{artifactId,query,offset?:0,limit?:20}`; omit both selectors for the full original |
 | extract | `{path,fields:[{id,description}]}` or `{content,fields}`; max 20k characters/16 fields |
 
 Use native exact search first when concrete task terms suffice. Do not send a large source merely because it is large. Filtering is useful when many unresolved semantic candidates would otherwise need reading. The `budget` is UTF-8 bytes, not tokens. Do not inflate it just to conceal incomplete coverage.
@@ -42,3 +42,7 @@ Use native exact search first when concrete task terms suffice. Do not send a la
 Read evidence once from `context`; `items` contains provenance without duplicate text. `excludedIds` are judged exclusions; `deferredIds` are unexamined overflow, not irrelevant evidence. `completeCoverage:false`, degraded answers, or protected overflow require attention before exhaustive claims. Uncertain, contradictory, unfinished status metadata and failure evidence must stay available. Identical bodies at different source locations or observations remain distinct; text-only `against` applies only to plain-text candidates. Recall only missing items by `artifactId` and IDs; the full original is recoverable. Source offsets/hashes are provenance, not proof of conclusions. Exact extraction leaves missing or ambiguous values unresolved.
 
 Exclusion requires the configured conservative probability threshold; it is not a calibrated accuracy guarantee. Errors fall back to Codex review. Native context or billing savings must be measured separately from byte reductions.
+
+The read-only tool embeds a compact coverage/recovery note in `context`, so emitting just the text no longer loses that information. It removes repeated probability distributions from per-record display metadata; the advanced tool and internal API retain their detailed results. It does not change the relevance threshold or remove review records. Evidence classification runs at most two independent batches concurrently under the same request guard.
+
+When a specific gap appears and its ID is unknown, `recall` with `query` performs a case-insensitive literal search of original text, IDs and sources in that saved artifact. No Jev call is made. Follow `nextOffset` until it is null if all matches are needed; `matchedItems` counts literal matches only. A miss is not a semantic relevance judgment. Full recall remains available for changed goals, suspected omissions or tasks requiring exhaustive source verification.

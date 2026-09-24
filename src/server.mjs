@@ -21,12 +21,13 @@ async function handle(msg) {
     else if (msg.method === 'tools/call') {
       if (![tool.name,evidenceTool.name].includes(msg.params?.name)) throw Object.assign(new Error(), { code: 'UNKNOWN_TOOL' });
       try {
-        if(msg.params.name===evidenceTool.name)msg={...msg,params:{...msg.params,arguments:evidenceArguments(msg.params.arguments)}};
+        const compactEvidence=msg.params.name===evidenceTool.name;
+        if(compactEvidence)msg={...msg,params:{...msg.params,arguments:evidenceArguments(msg.params.arguments)}};
         if (['status', 'browser_step'].includes(msg.params.arguments?.operation)) {
           const network = maintainBrowserNetwork();
           browserNetworkRepair = { ...network, repairedEarlierInProcess: browserNetworkRepair.changed === true || browserNetworkRepair.repairedEarlierInProcess === true };
         }
-        const data = modelResult(msg.params.arguments.operation, await pilot.call(msg.params.arguments, { signal: controller.signal }));
+        const data = modelResult(msg.params.arguments.operation, await pilot.call(msg.params.arguments, { signal: controller.signal }),{compactEvidence});
         if (['status', 'browser_step'].includes(msg.params.arguments?.operation)) data.browserNetwork = browserNetworkRepair;
         result = { content: [{ type: 'text', text: JSON.stringify(data) }], structuredContent: data };
       }

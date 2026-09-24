@@ -1,0 +1,50 @@
+{
+  "installedVersion": "0.2.0+codex.20260924150300",
+  "cachedFilesMatch": {
+    "src/evidence.mjs": true,
+    "src/evidence-handoff.mjs": true,
+    "src/evidence-tool.mjs": true,
+    "src/model-result.mjs": true,
+    "src/prepare-output.mjs": true,
+    "src/server.mjs": true,
+    "skills/jev-pilot/SKILL.md": true,
+    "plugin.json": true,
+    ".codex-plugin/plugin.json": true
+  },
+  "isolatedNativeHost": {
+    "kind": "real_codex_plugin_loading",
+    "gptCalls": 0,
+    "installedVersion": "0.2.0+codex.20260924150300",
+    "servers": [
+      {
+        "name": "jev-pilot",
+        "tools": [
+          "jev_evidence",
+          "jev_pilot"
+        ]
+      }
+    ],
+    "passed": true
+  },
+  "observedMcpProcesses": [
+    {
+      "pid": 71971,
+      "version": "0.2.0+codex.20260924124913"
+    },
+    {
+      "pid": 72181,
+      "version": "0.2.0+codex.20260924124913"
+    },
+    {
+      "pid": 73974,
+      "version": "0.2.0+codex.20260924124913"
+    },
+    {
+      "pid": 75891,
+      "version": "0.2.0+codex.20260924124913"
+    }
+  ],
+  "currentConversationActivation": "not_verified",
+  "desktopAdapterChanged": false,
+  "forcedRestart": false
+}

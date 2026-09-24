@@ -1,0 +1,26 @@
+{
+  "at": "2026-09-24T06:55:58.208Z",
+  "runs": 4,
+  "order": [
+    "before",
+    "after",
+    "after",
+    "before"
+  ],
+  "baseline": "60f3e595a456d014d5c3653d1eec3145c015b409",
+  "sourceHashes": {
+    "src/evidence.mjs": "c285499ebaee7c4eeba8f3bf4c8739161a98503cd4d2fcafd8a040f1246d529b",
+    "src/evidence-handoff.mjs": "f3c277bad1d1bcbda2b5e14eb741f1848785decacd4e79346061b958008ce50b",
+    "src/model-result.mjs": "6c0f0b975e69f6dbe5283ecd3aa62f780e2fe3e35cfefe93aaf644988d6defc1",
+    "src/core.mjs": "09989cab5a162f33c1daa19eec16674b0874b2ae90b88b43504736ab7e7532fe",
+    "src/policy.mjs": "4f29ab06c3f91509aa260247165d12a2e48e37b507b2c5f726f95e5b291582de",
+    "scripts/acceptance/offline-task.mjs": "de24cd31f41d9aac91b290fb0a40a4536cf16248ecc799d678f891d5952866ee",
+    "scripts/acceptance/evidence-handoff-probe.mjs": "a642b5a691ba71136a1cb7aa9ef42681138a0dba6e9f5254f02148d27e78be89"
+  },
+  "fixtureHash": "3b41a81b42aef44efd0f2bdba4b3253540d0492078ac56da1d52090843b90802",
+  "model": "jev-1.13.0",
+  "gptCalls": 0,
+  "cacheMs": 0,
+  "scope": "Component-only development regression on the existing 48-record synthetic fixture, not held-out or desktop/GPT speed measurement. Baseline and candidate use identical rubrics, thresholds and transport. Compare sequential vs two independent batches and wire presentation. Full recall and fixed required/review sets are safety checks. All attempts retained; stop on first failure.",
+  "stopRule": "Stop first degraded result, missing required/review record, changed original or failed request; no retry."
+}

@@ -66,6 +66,9 @@ export async function selectEvidence(ctx, { goal, items, budget = 16000, against
     const reason=plan.oversized.length?'REQUEST_LIMIT':plan.batches.length>ctx.judge.config.maxCalls-ctx.judge.calls?'CALL_BUDGET':null;
     if(reason){ctx.store.event(ctx.project,'evidence_admission',{reason,batches:plan.batches.length,oversizedItems:plan.oversized.length,calls:0});throw Object.assign(new Error(reason),{code:reason});}
   }
+  // Independent evidence batches share no answers. Use the existing bounded
+  // worker pool instead of waiting for each network round trip in sequence.
+  ctx.judge.concurrency = 2;
   const answers = await ctx.judge.classify(judged, instructions, relevant, 'evidence');
   const byId = new Map(answers.map(answer => [answer.id, answer]));
   const judgments = unique.map(item => byId.get(item.id) || { id: item.id, choice: 'keep', source: 'deterministic', reason: 'protected_evidence' });
@@ -101,7 +104,7 @@ export async function selectEvidence(ctx, { goal, items, budget = 16000, against
   ctx.store.event(ctx.project, 'evidence_selection', { policy: EVIDENCE_POLICY, candidates: items.length, judged: judged.length, duplicates: duplicates.length, proposedExclusions: proposals.length, appliedExclusions: excluded.length, mode: ctx.config?.evidenceMode || 'active' });
   return { artifactId, context: selected.map(render).join(''), items: selected, excludedIds: excluded, proposedExcludedIds: proposals, policy: EVIDENCE_POLICY, deferredIds: deferred, duplicateIds: duplicates,
     budget, usedBytes: used, budgetUnit: 'UTF-8 bytes; conservative token bound, not measured tokens', protectedOverflow: used > budget,
-    completeCoverage: deferred.length === 0, recovery: { operation: 'recall', artifactId }, degraded: judgments.some(j => j.source === 'fallback') };
+    completeCoverage: deferred.length === 0, coverage: {total:items.length,retained:selected.length,excluded:excluded.length,deferred:deferred.length,duplicates:duplicates.length}, recovery: { operation: 'recall', artifactId }, degraded: judgments.some(j => j.source === 'fallback') };
 }
 export async function search(ctx, { goal, query, maxMatches = 100, budget, paths = ['.'] }) {
   text(query, 1000); requireValue(query.length > 0); requireValue(Number.isInteger(maxMatches) && maxMatches > 0 && maxMatches <= 400);
@@ -127,8 +130,16 @@ export async function filterOutput(ctx, input) {
   else { text(input.text); source = { path: input.source || 'tool-output', text: input.text, hash: hash(input.text) }; }
   return selectEvidence(ctx, { goal: input.goal, items: chunks(source), budget: input.budget, against: input.against, requireCompleteJudgment: input.requireCompleteJudgment });
 }
-export function recall(ctx, { artifactId, ids }) {
+export function recall(ctx, { artifactId, ids, query, offset = 0, limit = 20 }) {
   const artifact = ctx.store.get(ctx.project, 'artifact', artifactId); requireValue(artifact, 'ARTIFACT_NOT_FOUND');
+  if (query !== undefined) {
+    text(query, 1000); requireValue(query.trim().length > 0 && ids === undefined, 'ONE_RECALL_SELECTOR_REQUIRED');
+    requireValue(Number.isInteger(offset) && offset >= 0 && Number.isInteger(limit) && limit >= 1 && limit <= 100, 'INVALID_RECALL_PAGE');
+    const needle = query.toLocaleLowerCase('en-US');
+    const matches = artifact.items.filter(item => [item.id,item.source,item.text].some(value => typeof value === 'string' && value.toLocaleLowerCase('en-US').includes(needle)));
+    const items = matches.slice(offset, offset + limit), nextOffset = offset + items.length < matches.length ? offset + items.length : null;
+    return {artifactId,items,original:true,query,matchedItems:matches.length,offset,nextOffset,complete:nextOffset===null,scope:'Literal match in this saved artifact only; no match does not prove semantic absence.'};
+  }
   if (ids) array(ids); const items = ids ? artifact.items.filter(x => ids.includes(x.id)) : artifact.items;
   return { artifactId, items, original: true, missingIds: (ids || []).filter(id => !items.some(x => x.id === id)) };
 }

@@ -47,6 +47,8 @@ macOS、Windows、Linux 的核心自动检查已通过。macOS 原版引擎切�
 
 主模型保持为用户所选模型，不自动替换为更小模型；详见[模型保持策略](docs/MODEL-PRESERVATION.md)。最新[同入口档位对照](docs/reports/matched-routing-20260924/README.zh-CN.md)尝试 4 次、完成 3 次，另一次达到截止，未证明判档收益。[固定模型语义委派对照](docs/reports/delegation-ab-20260924/README.zh-CN.md)4/4 通过：计入 Jev 的已知总 token −9.74%，时间 +12.60%，未缓存 GPT 输入 +43.77%。这是组件试验，尚不能宣称桌面加速或节省额度。[此前十二次对照](docs/reports/factorial-20260924/README.zh-CN.md)继续保留。
 
+新增[证据筛选与交接优化报告](docs/reports/evidence-handoff-20260924/README.zh-CN.md)：四次组件对照全部通过，筛选平均耗时 −50.17%，两组 Jev token 相同；这不等于整个 Codex 任务提速。覆盖说明、定向回读和精简输出已实现。
+
 JevPilot 采用 [MIT 许可证](LICENSE)。这是独立社区项目，并非 OpenAI 或 TypeSafe 官方产品。
 
 成本回归修复：[v11 排查与真实复测](docs/reports/cost-fix-20260923/README.zh-CN.md)。自动档位以用户选择为上限；相关证据不因长度预算被扣留，暂不宣称稳定效率收益。

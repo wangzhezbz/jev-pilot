@@ -1,0 +1,29 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {spawn} from 'node:child_process';
+import {mkdtempSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {createInterface} from 'node:readline';
+
+test('real MCP server returns coverage text and serves targeted/full recall without a model call',async t=>{
+  const home=mkdtempSync(join(tmpdir(),'jev-evidence-mcp-'));
+  const child=spawn(process.execPath,[fileURLToPath(new URL('../src/server.mjs',import.meta.url))],{env:{...process.env,JEV_PILOT_HOME:home,TYPESAFE_API_KEY:'fixture',JEV_PILOT_BROWSER_PROXY_REPAIR:'0'},stdio:['pipe','pipe','pipe']});
+  child.stderr.resume();const lines=createInterface({input:child.stdout});let id=0;const pending=new Map();
+  lines.on('line',line=>{const r=JSON.parse(line),p=pending.get(r.id);if(p){clearTimeout(p.timer);pending.delete(r.id);p.resolve(r);}});
+  t.after(()=>{lines.close();child.kill();for(const p of pending.values())clearTimeout(p.timer);});
+  const rpc=(method,params)=>new Promise((resolve,reject)=>{const next=++id,timer=setTimeout(()=>{pending.delete(next);reject(Error('MCP_TIMEOUT'));},10000);pending.set(next,{resolve,timer});child.stdin.write(JSON.stringify({jsonrpc:'2.0',id:next,method,params})+'\n');});
+  await rpc('initialize',{protocolVersion:'2025-06-18',capabilities:{},clientInfo:{name:'test',version:'1'}});
+  const tools=(await rpc('tools/list',{})).result.tools;
+  assert(tools.find(x=>x.name==='jev_evidence').inputSchema.properties.input.properties.query);
+  const items=[{id:'a',text:'Battery observation',pin:true},{id:'b',text:'Radio observation',status:'pending'}];
+  const call=async(name,operation,input)=>{const response=await rpc('tools/call',{name,arguments:{workspace:home,operation,input}});assert.equal(response.result.isError,undefined);assert.deepEqual(JSON.parse(response.result.content[0].text),response.result.structuredContent);return response.result.structuredContent;};
+  const selected=await call('jev_evidence','select',{goal:'Review both observations',items});
+  assert.match(selected.context,/2\/2 records retained/);assert(selected.context.includes(selected.artifactId));
+  const targeted=await call('jev_evidence','recall',{artifactId:selected.artifactId,query:'battery'});
+  assert.deepEqual(targeted.items,[items[0]]);assert.equal(targeted.nextOffset,null);
+  const full=await call('jev_evidence','recall',{artifactId:selected.artifactId});assert.deepEqual(full.items,items);
+  const advanced=await call('jev_pilot','select',{goal:'Review both observations',items});assert(!advanced.context.includes('JevPilot evidence:'));
+  const metrics=await call('jev_pilot','metrics',{});assert.equal(metrics.jev.calls,0);
+});
