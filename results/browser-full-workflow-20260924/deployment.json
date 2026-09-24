@@ -1,0 +1,35 @@
+{
+  "version": "0.2.0+codex.20260924233203",
+  "installedVia": "Native Codex app-server plugin/install",
+  "authResult": {
+    "appsNeedingAuth": []
+  },
+  "fileHashes": [
+    {
+      "path": "src/host-browser-session.mjs",
+      "sha256": "baebae9a9ca80835ae704d7db0299dc8130087b8bbc4cfafedcc8ebbd7dd4dcc"
+    },
+    {
+      "path": "src/host-browser-drivers.mjs",
+      "sha256": "1f0577ac50bb375e9250aebbf49c290a56e9986537dcd1a5b07dae82c69c3475"
+    },
+    {
+      "path": "skills/jev-pilot/references/browser.md",
+      "sha256": "a95dc2454263b2f6e7bd992cf11ee2df2d9d878995cfef60f45bfadd7ce0ec43"
+    },
+    {
+      "path": ".codex-plugin/plugin.json",
+      "sha256": "9621e8a93f46399ce76caad138b44826899e1b5ff00337a3917470d1ad6eda4f"
+    },
+    {
+      "path": "plugin.json",
+      "sha256": "33670ed06e6b12f7bbf9ffdd0dc7b625a6b9ab78ca2d56d34cf7f5740bf88538"
+    }
+  ],
+  "backgroundRuntime": {
+    "installedFingerprint": "8bedc24904a4d5830b46ee5ca4611481c25436e6d1ad039b44fdbbe39ea329a7",
+    "loadedRevisionMatches": true,
+    "modifiedThisTurn": false
+  },
+  "hostAcceptance": "New installed module loaded in the existing official Chrome and Computer Use JS host. Both read existing final synthetic document state with defineTask: needs_verification, zero actions, zero paid requests. This proves installation and literal-proof execution, not a new performance A/B."
+}

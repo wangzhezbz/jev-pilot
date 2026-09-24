@@ -1,0 +1,188 @@
+{
+  "id": "cua-document-auto",
+  "host": "cua",
+  "caseId": "document",
+  "arm": "auto",
+  "startedAt": "2026-09-24T15:24:34.074Z",
+  "goal": "Open the published Vega operations runbook, English version v2.4. Read its preview and report the reference and publication state. Do not delete or change anything.",
+  "elapsedMs": 45221.52533400059,
+  "passed": true,
+  "answer": "DOC-VEGA-EN-2.4; Vega operations runbook, English v2.4; Published; read-only preview verified",
+  "proof": "Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview",
+  "state": "\t\t\t\t5 HTML内容 Description: JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=document&variant=b\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 Document preview, Value: 1\n\t\t\t\t\t\t\t8 文本 Document preview\n\t\t\t\t\t\t9 文本 Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview",
+  "loop": {
+    "runs": [
+      {
+        "status": "codex_review_required",
+        "reason": "TASK_WAIT_BUDGET",
+        "evidence": null,
+        "stageIndex": 1,
+        "lastDecision": {
+          "stage": "preview",
+          "action": null,
+          "decision": null,
+          "reason": "TASK_WAIT_BUDGET"
+        },
+        "history": [
+          {
+            "action": "Document library",
+            "stage": "find",
+            "progress": true,
+            "probability": 0.98
+          },
+          {
+            "action": "Published documents",
+            "stage": "find",
+            "progress": true,
+            "probability": 0.99
+          },
+          {
+            "action": "Vega operations runbook",
+            "stage": "find",
+            "progress": true,
+            "probability": 1
+          },
+          {
+            "action": "English",
+            "stage": "preview",
+            "progress": true,
+            "probability": 0.97
+          },
+          {
+            "action": "Version v2.4",
+            "stage": "preview",
+            "progress": true,
+            "probability": 0.99
+          }
+        ],
+        "snapshot": "\t\t\t\t5 HTML内容 Description: JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=document&variant=b\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 Vega operations runbook — English — v2.4, Value: 1\n\t\t\t\t\t\t\t8 文本 Vega operations runbook — English — v2.4\n\t\t\t\t\t\t9 文本 Choose the matching item. This synthetic workspace supports read-only preview.\n\t\t\t\t\t\t10 按钮 Delete document\n\t\t\t\t\t\t11 按钮 Preview document",
+        "stateMayHaveChanged": false,
+        "metrics": {
+          "runs": 1,
+          "actions": 5,
+          "jevRequests": 5,
+          "inputTokens": 4085,
+          "outputTokens": 247,
+          "unknownUsage": 0,
+          "apiMs": 1683.1894990038127,
+          "elapsedMs": 11379.214583998546,
+          "handoffs": 1
+        },
+        "sessionMetrics": {
+          "runs": 1,
+          "actions": 5,
+          "jevRequests": 5,
+          "inputTokens": 4085,
+          "outputTokens": 247,
+          "unknownUsage": 0,
+          "apiMs": 1683.1894990038127,
+          "elapsedMs": 11379.214583998546,
+          "handoffs": 1
+        },
+        "phases": [
+          {
+            "phase": "observe",
+            "ms": 4476.820875000209
+          },
+          {
+            "phase": "decision",
+            "ms": 668.4979170002043
+          },
+          {
+            "phase": "revalidate",
+            "ms": 88.84266700036824
+          },
+          {
+            "phase": "execute",
+            "ms": 172.07925000041723
+          },
+          {
+            "phase": "observe",
+            "ms": 983.8619999997318
+          },
+          {
+            "phase": "decision",
+            "ms": 258.08762500062585
+          },
+          {
+            "phase": "revalidate",
+            "ms": 146.0632910002023
+          },
+          {
+            "phase": "execute",
+            "ms": 491.9856669995934
+          },
+          {
+            "phase": "observe",
+            "ms": 346.5525000002235
+          },
+          {
+            "phase": "decision",
+            "ms": 251.76795900054276
+          },
+          {
+            "phase": "revalidate",
+            "ms": 136.39570900052786
+          },
+          {
+            "phase": "execute",
+            "ms": 230.68079200014472
+          },
+          {
+            "phase": "observe",
+            "ms": 607.3147500008345
+          },
+          {
+            "phase": "decision",
+            "ms": 264.4599580001086
+          },
+          {
+            "phase": "revalidate",
+            "ms": 134.44749999977648
+          },
+          {
+            "phase": "execute",
+            "ms": 231.52912499941885
+          },
+          {
+            "phase": "observe",
+            "ms": 598.4490419998765
+          },
+          {
+            "phase": "decision",
+            "ms": 243.97366599924862
+          },
+          {
+            "phase": "revalidate",
+            "ms": 70.015625
+          },
+          {
+            "phase": "execute",
+            "ms": 301.43104099854827
+          },
+          {
+            "phase": "observe",
+            "ms": 673.9000839982182
+          },
+          {
+            "phase": "decision",
+            "ms": 0.4924159999936819
+          }
+        ],
+        "instruction": "Continue with native Codex; observe freshly before any further action, preserve the task and completed work."
+      }
+    ],
+    "metrics": {
+      "runs": 1,
+      "actions": 5,
+      "jevRequests": 5,
+      "inputTokens": 4085,
+      "outputTokens": 247,
+      "unknownUsage": 0,
+      "apiMs": 1683.1894990038127,
+      "elapsedMs": 11379.214583998546,
+      "handoffs": 1
+    },
+    "nativeRecoveryActions": 1
+  }
+}

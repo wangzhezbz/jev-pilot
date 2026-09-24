@@ -5,6 +5,62 @@ import { hostTransport } from './host-browser-transport.mjs';
 import { browserStep, consumeBrowserTicket } from './browser.mjs';
 export { createChromeDriver, createComputerUseDriver } from './host-browser-drivers.mjs';
 
+// Literal visible-text contracts avoid regenerating callback boilerplate.
+// Complex acceptance rules retain the original callback API.
+export function defineTask({ goal, stages, proof, reject = [] }) {
+  text(goal, 10000); requireValue(goal.trim().length > 0, 'INVALID_HOST_TASK');
+  const literals = (values, min) => {
+    requireValue(Array.isArray(values) && values.length >= min && values.length <= 20 &&
+      values.every(v => typeof v === 'string' && v.trim().length > 0 && v.length <= 2000), 'INVALID_HOST_LITERAL_PROOF');
+    return [...values];
+  };
+  const required = literals(proof, 1), forbidden = literals(reject, 0);
+  requireValue(Array.isArray(stages) && stages.length > 0 && stages.length <= 10, 'INVALID_HOST_TASK');
+  const steps = stages.map((stage, i) => {
+    text(stage.goal, 2000); requireValue(stage.goal.trim().length > 0, 'INVALID_HOST_STAGE');
+    const until = stage.until === undefined ? null : literals(stage.until, 1);
+    return { id: 'stage_' + i, goal: stage.goal,
+      complete: o => until !== null && until.every(value => o.snapshot.includes(value)) };
+  });
+  return { goal, stages: steps,
+    invariant: o => ({ ok: !forbidden.some(value => o.snapshot.includes(value)), evidence: forbidden.filter(value => o.snapshot.includes(value)).join(' | ') || null }),
+    verify: o => { const passed = required.every(value => o.snapshot.includes(value)); return { passed, evidence: passed ? required.join(' | ') : null }; },
+  };
+}
+
+// Keep the full run in the host variable; send only the receipt to the model.
+// This never changes execution, verification requirements or measured usage.
+export function summarizeHostResult(result) {
+  const truncatedFields = [];
+  const clip = (value, limit, field) => {
+    if (value == null) return null;
+    const string = typeof value === 'string' ? value : JSON.stringify(value);
+    if (string.length > limit) truncatedFields.push(field);
+    return string.slice(0, limit);
+  };
+  const decision = result.lastDecision?.decision;
+  const receipt = {
+    status: result.status, reason: result.reason, stageIndex: result.stageIndex,
+    evidence: clip(result.evidence, 1500, 'evidence'),
+    stateMayHaveChanged: result.stateMayHaveChanged,
+    metrics: { ...result.metrics }, sessionMetrics: { ...result.sessionMetrics },
+    instruction: result.instruction, fullResultRetainedInHost: true,
+  };
+  if (result.status !== 'needs_verification') {
+    receipt.snapshot = clip(result.snapshot, 4000, 'snapshot');
+    receipt.lastDecision = result.lastDecision ? {
+      stage: result.lastDecision.stage, action: clip(result.lastDecision.action, 180, 'action'),
+      reason: result.lastDecision.reason, choice: decision?.choice,
+      probability: decision?.probabilities?.[decision?.choice],
+    } : null;
+    receipt.recentActions = result.history.slice(-4).map(h => ({
+      action: clip(h.action, 180, 'history.action'), stage: h.stage, progress: h.progress,
+    }));
+    if (result.history.length > 4) truncatedFields.push('history');
+  }
+  return { ...receipt, truncatedFields };
+}
+
 export function createSession({ workspace, taskId, driver, store, send = hostTransport, key, maxSteps = 12, maxMs = 45000, minProbability = .7 }) {
   requireValue(typeof taskId === 'string' && /^[\w.:-]{1,128}$/.test(taskId), 'REAL_TASK_ID_REQUIRED');
   requireValue(driver && ['chrome', 'computer-use'].includes(driver.kind) && typeof driver.observe === 'function' && typeof driver.execute === 'function', 'INVALID_HOST_DRIVER');

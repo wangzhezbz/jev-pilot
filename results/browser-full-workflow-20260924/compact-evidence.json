@@ -1,0 +1,62 @@
+{
+  "runs": [
+    {
+      "id": "chrome/report/auto",
+      "run": 1,
+      "status": "codex_review_required",
+      "rawChars": 1763,
+      "receiptChars": 1631,
+      "metricsIdentical": true,
+      "reasonPreserved": true,
+      "unknownUsage": 0,
+      "truncatedFields": []
+    },
+    {
+      "id": "chrome/report/auto",
+      "run": 2,
+      "status": "needs_verification",
+      "rawChars": 2730,
+      "receiptChars": 632,
+      "metricsIdentical": true,
+      "reasonPreserved": true,
+      "unknownUsage": 0,
+      "truncatedFields": []
+    },
+    {
+      "id": "chrome/document/auto",
+      "run": 1,
+      "status": "needs_verification",
+      "rawChars": 3019,
+      "receiptChars": 631,
+      "metricsIdentical": true,
+      "reasonPreserved": true,
+      "unknownUsage": 0,
+      "truncatedFields": []
+    },
+    {
+      "id": "cua/report/auto",
+      "run": 1,
+      "status": "needs_verification",
+      "rawChars": 2723,
+      "receiptChars": 630,
+      "metricsIdentical": true,
+      "reasonPreserved": true,
+      "unknownUsage": 0,
+      "truncatedFields": []
+    },
+    {
+      "id": "cua/document/auto",
+      "run": 1,
+      "status": "codex_review_required",
+      "rawChars": 2556,
+      "receiptChars": 1475,
+      "metricsIdentical": true,
+      "reasonPreserved": true,
+      "unknownUsage": 0,
+      "truncatedFields": [
+        "history"
+      ]
+    }
+  ],
+  "literalProofReplay": "Four recorded final states passed; four substituted wrong identities rejected. No new paid requests; not a live performance result."
+}

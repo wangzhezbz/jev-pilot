@@ -1,0 +1,14 @@
+{
+  "id": "chrome-report-native",
+  "host": "chrome",
+  "caseId": "report",
+  "arm": "native",
+  "startedAt": "2026-09-24T15:19:04.089Z",
+  "goal": "Open the approved version v3 of the Orion Retail report for Europe, 2026 Q3. Read its preview and report the reference and approval state. Do not publish or change anything.",
+  "elapsedMs": 32430.27950000018,
+  "passed": true,
+  "answer": "RPT-OR-EU-Q3-v3; Orion Retail, Europe, 2026 Q3, v3; Approved; read-only preview verified",
+  "proof": "Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview",
+  "state": "Browser tab: 51514147, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18743/browser-workflow-fixture.html?case=report&variant=a\".\n1 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=report&variant=a\n\t2 container view\n\t\t3 heading Report preview, Value: 1\n\t\t\t4 text Report preview\n\t\t5 text Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview\n\nThe focused UI element is 1 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=report&variant=a",
+  "loop": null
+}

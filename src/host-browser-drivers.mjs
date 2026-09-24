@@ -4,6 +4,10 @@ import { requireValue, hash } from './core.mjs';
 const roles = 'radio button|toggle button|menu item|check box|checkbox|checkBox|radioButton|menuItem|button|link|tab|switch|按钮|链接|复选框|单选按钮|标签页';
 const control = new RegExp(`^\\s*(\\d+) (${roles})(?: \\([^)]*\\))? (?:Description: )?(.+)$`);
 const reserved = /\b(delete|remove|send|submit|publish|pay|purchase|buy|install|upload|reset|restart|rollback|permissions?|authorize|grant|password)\b|删除|发送|提交|发布|支付|购买|安装|上传|重置|重启|回滚|权限|授权|密码/i;
+// Host AX metadata is not part of a control's accessible name. Keep it for
+// denial/risk checks and exact snapshot revalidation, never for broad matching.
+const accessibleName = label => label.split(/, (?:Value|ID|Help|URL): /, 1)[0].trim();
+const readOnlyPreview = /^Preview rollback (?:readiness|plan|details)$|^预览回滚(?:准备情况|计划|详情)$/i;
 const match = (name, pattern) => {
   if (typeof pattern === 'string') return name === pattern;
   if (pattern instanceof RegExp) { pattern.lastIndex = 0; return pattern.test(name); }
@@ -19,12 +23,12 @@ function observation(raw, policy, scope) {
   requireValue(typeof snapshot === 'string' && snapshot.length > 0 && raw.includes(snapshot), 'INVALID_HOST_SCOPE');
   requireValue(snapshot.length <= 50000, 'HOST_OBSERVATION_TOO_LARGE');
   const entries = snapshot.split('\n').filter(line => !/\((?:disabled|unavailable)\)/i.test(line)).map(line => line.match(control)).filter(Boolean)
-    .map(m => ({ id: 'ax_' + m[1], text: m[3].trim(), role: m[2], target: Number(m[1]), op: 'click' }));
+    .map(m => ({ id: 'ax_' + m[1], text: accessibleName(m[3]), description: m[3].trim(), role: m[2], target: Number(m[1]), op: 'click' }));
   const counts = new Map(); for (const entry of entries) counts.set(entry.text, (counts.get(entry.text) || 0) + 1);
   const candidates = entries.filter(c => counts.get(c.text) === 1 && !/\b(disabled|unavailable)\b|已停用|不可用/i.test(c.text))
-    .filter(c => policy.allowNames.some(p => match(c.text, p)) && !(policy.denyNames || []).some(p => match(c.text, p)))
+    .filter(c => policy.allowNames.some(p => match(c.text, p)) && !(policy.denyNames || []).some(p => match(c.text, p) || match(c.description, p)))
     // Consequential labels always hand back, even if included in the host's allow list.
-    .map(c => ({ ...c, requiresApproval: reserved.test(c.text) && !/^(preview|查看|预览)\b|^预览/.test(c.text.toLowerCase()) }));
+    .map(c => ({ ...c, requiresApproval: reserved.test(c.description) && !(readOnlyPreview.test(c.text) && !reserved.test(c.description.slice(c.text.length))) }));
   requireValue(candidates.length <= 40, 'HOST_CANDIDATES_TOO_LARGE');
   return { snapshot, observedAt: Date.now(), candidates, semanticHash: hash(semanticState(snapshot)) };
 }

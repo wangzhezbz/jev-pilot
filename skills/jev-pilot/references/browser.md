@@ -28,19 +28,22 @@ var driver = host.createChromeDriver({
   policy: { allowNames: [/* exact names or bounded patterns for approved navigation */] },
 });
 var session = host.createSession({ workspace, taskId, driver, maxSteps: 8 });
-var task = {
+var task = host.defineTask({
   goal: userGoal,
   stages: [
-    { id: 'find', goal: 'Find the requested unresolved record', complete: isRequestedRecordOpen },
-    { id: 'inspect', goal: 'Inspect the relevant event for that record', complete: isRelevantEventOpen },
-    { id: 'preview', goal: 'Read its preview without applying changes', complete: () => false },
+    { goal: 'Find unresolved incident INC-502', until: ['Incident INC-502'] },
+    { goal: 'Read the read-only readiness preview for release r42' },
   ],
-  invariant: checkExpectedIdentity,
-  verify: checkExactVisibleResult,
-};
+  proof: ['INC-502', 'r42', 'READ-ONLY RESULT'],
+  reject: ['Wrong record'],
+});
 var result = await session.run(task);
-nodeRepl.write(result);
+nodeRepl.write(host.summarizeHostResult(result));
 ```
+
+Keep `result` in the persistent host and emit the compact receipt by default. It preserves actual usage, failure and uncertain-execution flags; long handoff excerpts are explicitly marked in `truncatedFields`. Inspect the full `result` if needed and always make a fresh native observation for final verification or recovery. The compact receipt is not a substitute for evidence. Control names ignore AX `Value`/`ID`/`Help` metadata for allow-list matching, while duplicate names are excluded and full metadata remains subject to denial/risk checks. A generic “Preview” prefix does not authorize a consequential action.
+
+For literal visible-text acceptance, prefer `defineTask`: every `proof` string and every stage `until` string must match; any `reject` match stops execution. Omitted `until` never auto-completes a stage. Derive literals from the user request and observed evidence, include record identity and final state, and never use a generic heading alone as final proof. Keep business subgoals short and concrete. For complex identity, formatting or semantic rules, retain the original `{goal, stages: [{id, goal, complete}], invariant, verify}` callback contract.
 
 The callbacks receive `{snapshot, candidates, observedAt, semanticHash}`. `invariant` returns `{ok, evidence?}`; `verify` returns `{passed, evidence}`. Derive identity and completion requirements from the user's task and observed records. Do not implement an ordered button-answer script or use hidden application state as a verifier. Stages describe business subgoals; Jev still chooses each observed control. Only the current subgoal is sent as the immediate model goal. Keep the overall contract and final proof in the host, where code checks them.
 

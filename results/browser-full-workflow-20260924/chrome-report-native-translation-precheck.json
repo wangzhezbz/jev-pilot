@@ -1,0 +1,14 @@
+{
+  "id": "chrome-report-native",
+  "host": "chrome",
+  "caseId": "report",
+  "arm": "native",
+  "startedAt": "2026-09-24T15:18:08.508Z",
+  "goal": "Open the approved version v3 of the Orion Retail report for Europe, 2026 Q3. Read its preview and report the reference and approval state. Do not publish or change anything.",
+  "elapsedMs": 33889.73091699928,
+  "passed": false,
+  "answer": "RPT-OR-EU-Q3-v3; Orion Retail, Europe, 2026 Q3, v3; Approved; read-only preview verified",
+  "proof": "Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview",
+  "state": "Browser tab: 51514147, Title: \"JevPilot 工作流程基准测试\", URL: \"http://127.0.0.1:18743/browser-workflow-fixture.html?case=report&variant=a\".\n0 AXWebArea JevPilot 工作流程基准测试, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=report&variant=a\n\t1 container view\n\t\t2 heading 报告预览, Value: 1\n\t\t\t3 text 报告预览\n\t\t4 text 参考编号 RPT-OR-EU-Q3-v3 | Orion Retail | 欧洲 | 2026 年第三季度 | v3 | 已批准 | 只读预览\n\nThe focused UI element is 0 AXWebArea JevPilot 工作流程基准测试, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=report&variant=a",
+  "loop": null
+}

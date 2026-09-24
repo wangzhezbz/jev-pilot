@@ -1,0 +1,214 @@
+{
+  "id": "cua-report-auto",
+  "host": "cua",
+  "caseId": "report",
+  "arm": "auto",
+  "startedAt": "2026-09-24T15:22:16.971Z",
+  "goal": "Open the approved version v3 of the Orion Retail report for Europe, 2026 Q3. Read its preview and report the reference and approval state. Do not publish or change anything.",
+  "elapsedMs": 36692.72616700083,
+  "passed": true,
+  "answer": "RPT-OR-EU-Q3-v3; Orion Retail, Europe, 2026 Q3, v3; Approved; read-only preview verified",
+  "proof": "Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview",
+  "state": "\t\t\t\t5 HTML内容 Description: JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=report&variant=a\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 Report preview, Value: 1\n\t\t\t\t\t\t\t8 文本 Report preview\n\t\t\t\t\t\t9 文本 Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview",
+  "loop": {
+    "runs": [
+      {
+        "status": "needs_verification",
+        "reason": null,
+        "evidence": "RPT-OR-EU-Q3-v3 | Approved | Read-only preview",
+        "stageIndex": 1,
+        "lastDecision": {
+          "stage": "preview",
+          "action": "Preview report",
+          "decision": {
+            "type": "choice",
+            "choice": "action_0",
+            "confidence": 0.97,
+            "probabilities": {
+              "review": 0.02,
+              "action_0": 0.98
+            }
+          },
+          "reason": null
+        },
+        "history": [
+          {
+            "action": "Analytics",
+            "stage": "report",
+            "progress": true,
+            "probability": 0.77
+          },
+          {
+            "action": "Europe",
+            "stage": "report",
+            "progress": true,
+            "probability": 0.97
+          },
+          {
+            "action": "2026 Q3",
+            "stage": "report",
+            "progress": true,
+            "probability": 0.99
+          },
+          {
+            "action": "Orion Retail",
+            "stage": "report",
+            "progress": true,
+            "probability": 0.99
+          },
+          {
+            "action": "Version v3 — approved",
+            "stage": "preview",
+            "progress": true,
+            "probability": 0.98
+          },
+          {
+            "action": "Preview report",
+            "stage": "preview",
+            "progress": true,
+            "probability": 0.98
+          }
+        ],
+        "snapshot": "\t\t\t\t5 HTML内容 Description: JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=report&variant=a\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 Report preview, Value: 1\n\t\t\t\t\t\t\t8 文本 Report preview\n\t\t\t\t\t\t9 文本 Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview",
+        "stateMayHaveChanged": false,
+        "metrics": {
+          "runs": 1,
+          "actions": 6,
+          "jevRequests": 6,
+          "inputTokens": 4903,
+          "outputTokens": 282,
+          "unknownUsage": 0,
+          "apiMs": 4276.963623996824,
+          "elapsedMs": 9922.509042000398,
+          "handoffs": 0
+        },
+        "sessionMetrics": {
+          "runs": 1,
+          "actions": 6,
+          "jevRequests": 6,
+          "inputTokens": 4903,
+          "outputTokens": 282,
+          "unknownUsage": 0,
+          "apiMs": 4276.963623996824,
+          "elapsedMs": 9922.509042000398,
+          "handoffs": 0
+        },
+        "phases": [
+          {
+            "phase": "observe",
+            "ms": 59.857750000432134
+          },
+          {
+            "phase": "decision",
+            "ms": 1464.244041999802
+          },
+          {
+            "phase": "revalidate",
+            "ms": 59.97024999931455
+          },
+          {
+            "phase": "execute",
+            "ms": 539.2323749996722
+          },
+          {
+            "phase": "observe",
+            "ms": 328.2562500014901
+          },
+          {
+            "phase": "decision",
+            "ms": 853.7324160002172
+          },
+          {
+            "phase": "revalidate",
+            "ms": 56.84866699948907
+          },
+          {
+            "phase": "execute",
+            "ms": 471.09016600064933
+          },
+          {
+            "phase": "observe",
+            "ms": 343.12887500040233
+          },
+          {
+            "phase": "decision",
+            "ms": 787.8155419994146
+          },
+          {
+            "phase": "revalidate",
+            "ms": 55.32041699998081
+          },
+          {
+            "phase": "execute",
+            "ms": 234.66445799916983
+          },
+          {
+            "phase": "observe",
+            "ms": 602.2727499995381
+          },
+          {
+            "phase": "decision",
+            "ms": 648.5195840001106
+          },
+          {
+            "phase": "revalidate",
+            "ms": 58.05012500099838
+          },
+          {
+            "phase": "execute",
+            "ms": 284.45670800097287
+          },
+          {
+            "phase": "observe",
+            "ms": 625.8807919993997
+          },
+          {
+            "phase": "decision",
+            "ms": 279.61733399890363
+          },
+          {
+            "phase": "revalidate",
+            "ms": 48.79416700080037
+          },
+          {
+            "phase": "execute",
+            "ms": 250.1507500000298
+          },
+          {
+            "phase": "observe",
+            "ms": 640.6557080000639
+          },
+          {
+            "phase": "decision",
+            "ms": 247.50662500038743
+          },
+          {
+            "phase": "revalidate",
+            "ms": 73.70566700026393
+          },
+          {
+            "phase": "execute",
+            "ms": 269.56874999962747
+          },
+          {
+            "phase": "observe",
+            "ms": 637.402458999306
+          }
+        ],
+        "instruction": "Codex must independently verify the final observed outcome."
+      }
+    ],
+    "metrics": {
+      "runs": 1,
+      "actions": 6,
+      "jevRequests": 6,
+      "inputTokens": 4903,
+      "outputTokens": 282,
+      "unknownUsage": 0,
+      "apiMs": 4276.963623996824,
+      "elapsedMs": 9922.509042000398,
+      "handoffs": 0
+    },
+    "nativeRecoveryActions": 0
+  }
+}

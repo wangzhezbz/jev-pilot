@@ -1,0 +1,243 @@
+{
+  "windowStart": "2026-09-24T15:19:04.089Z",
+  "windowEnd": "2026-09-24T15:25:19.295525Z",
+  "browserJevRequests": [
+    {
+      "at": "2026-09-24T15:20:20.266Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 695,
+      "inputTokens": 915,
+      "outputTokens": 44,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T15:20:31.318Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 696,
+      "inputTokens": 763,
+      "outputTokens": 44,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T15:20:32.406Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 912,
+      "inputTokens": 909,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T15:20:32.888Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 306,
+      "inputTokens": 915,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T15:20:33.460Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 395,
+      "inputTokens": 971,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T15:20:33.888Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 251,
+      "inputTokens": 827,
+      "outputTokens": 35,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T15:21:11.556Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 1272,
+      "inputTokens": 906,
+      "outputTokens": 44,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T15:21:12.537Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 803,
+      "inputTokens": 783,
+      "outputTokens": 44,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T15:21:13.488Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 773,
+      "inputTokens": 908,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T15:21:13.934Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 269,
+      "inputTokens": 921,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T15:21:14.392Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 279,
+      "inputTokens": 984,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T15:21:14.820Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 251,
+      "inputTokens": 841,
+      "outputTokens": 35,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T15:22:33.525Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 1464,
+      "inputTokens": 818,
+      "outputTokens": 44,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T15:22:35.307Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 853,
+      "inputTokens": 699,
+      "outputTokens": 44,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T15:22:36.966Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 787,
+      "inputTokens": 852,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T15:22:38.507Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 648,
+      "inputTokens": 858,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T15:22:39.755Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 279,
+      "inputTokens": 914,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T15:22:40.943Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 247,
+      "inputTokens": 762,
+      "outputTokens": 35,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T15:24:58.433Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 668,
+      "inputTokens": 811,
+      "outputTokens": 44,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T15:24:59.936Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 258,
+      "inputTokens": 698,
+      "outputTokens": 44,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T15:25:01.172Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 251,
+      "inputTokens": 829,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T15:25:02.411Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 264,
+      "inputTokens": 842,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T15:25:03.620Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 243,
+      "inputTokens": 905,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    }
+  ],
+  "backgroundEventCounts": {
+    "generation_usage": 49
+  },
+  "backgroundEffortCounts": {
+    "high": 49
+  },
+  "note": "Both arms retain the same active desktop routing configuration. No background judgment event inside this window; 49 enclosed generation_usage events all high. Native usage totals come from 50 explicitly marked response records, including initiation generation before the wall-clock start."
+}

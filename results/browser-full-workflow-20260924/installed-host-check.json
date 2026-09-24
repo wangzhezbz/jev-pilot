@@ -1,0 +1,68 @@
+[
+  {
+    "host": "chrome",
+    "status": "needs_verification",
+    "reason": null,
+    "stageIndex": 0,
+    "evidence": "DOC-VEGA-EN-2.4 | Published | Read-only preview",
+    "stateMayHaveChanged": false,
+    "metrics": {
+      "runs": 1,
+      "actions": 0,
+      "jevRequests": 0,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "unknownUsage": 0,
+      "apiMs": 0,
+      "elapsedMs": 26.356250001117587,
+      "handoffs": 0
+    },
+    "sessionMetrics": {
+      "runs": 1,
+      "actions": 0,
+      "jevRequests": 0,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "unknownUsage": 0,
+      "apiMs": 0,
+      "elapsedMs": 26.356250001117587,
+      "handoffs": 0
+    },
+    "instruction": "Codex must independently verify the final observed outcome.",
+    "fullResultRetainedInHost": true,
+    "truncatedFields": []
+  },
+  {
+    "host": "computer-use",
+    "status": "needs_verification",
+    "reason": null,
+    "stageIndex": 0,
+    "evidence": "DOC-VEGA-EN-2.4 | Published | Read-only preview",
+    "stateMayHaveChanged": false,
+    "metrics": {
+      "runs": 1,
+      "actions": 0,
+      "jevRequests": 0,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "unknownUsage": 0,
+      "apiMs": 0,
+      "elapsedMs": 85.04179200157523,
+      "handoffs": 0
+    },
+    "sessionMetrics": {
+      "runs": 1,
+      "actions": 0,
+      "jevRequests": 0,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "unknownUsage": 0,
+      "apiMs": 0,
+      "elapsedMs": 85.04179200157523,
+      "handoffs": 0
+    },
+    "instruction": "Codex must independently verify the final observed outcome.",
+    "fullResultRetainedInHost": true,
+    "truncatedFields": []
+  }
+]

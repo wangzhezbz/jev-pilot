@@ -1,0 +1,14 @@
+{
+  "id": "chrome-document-native",
+  "host": "chrome",
+  "caseId": "document",
+  "arm": "native",
+  "startedAt": "2026-09-24T15:21:32.242Z",
+  "goal": "Open the published Vega operations runbook, English version v2.4. Read its preview and report the reference and publication state. Do not delete or change anything.",
+  "elapsedMs": 36535.85324999876,
+  "passed": true,
+  "answer": "DOC-VEGA-EN-2.4; Vega operations runbook, English v2.4; Published; read-only preview verified",
+  "proof": "Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview",
+  "state": "Browser tab: 51514147, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18743/browser-workflow-fixture.html?case=document&variant=b\".\n1 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=document&variant=b\n\t2 container view\n\t\t3 heading Document preview, Value: 1\n\t\t\t4 text Document preview\n\t\t5 text Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview\n\nThe focused UI element is 1 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=document&variant=b",
+  "loop": null
+}

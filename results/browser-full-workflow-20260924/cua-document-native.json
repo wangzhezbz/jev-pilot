@@ -1,0 +1,14 @@
+{
+  "id": "cua-document-native",
+  "host": "cua",
+  "caseId": "document",
+  "arm": "native",
+  "startedAt": "2026-09-24T15:23:56.122Z",
+  "goal": "Open the published Vega operations runbook, English version v2.4. Read its preview and report the reference and publication state. Do not delete or change anything.",
+  "elapsedMs": 33841.49220800027,
+  "passed": true,
+  "answer": "DOC-VEGA-EN-2.4; Vega operations runbook, English v2.4; Published; read-only preview verified",
+  "proof": "Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview",
+  "state": "\t\t\t\t5 HTML内容 Description: JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=document&variant=b\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 Document preview, Value: 1\n\t\t\t\t\t\t\t8 文本 Document preview\n\t\t\t\t\t\t9 文本 Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview",
+  "loop": null
+}

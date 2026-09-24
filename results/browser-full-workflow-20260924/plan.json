@@ -1,0 +1,28 @@
+{
+  "frozenBeforePaidRuns": true,
+  "cases": [
+    "report",
+    "document"
+  ],
+  "hosts": [
+    "chrome",
+    "computer-use Safari"
+  ],
+  "order": [
+    "chrome/report/native",
+    "chrome/report/auto",
+    "chrome/document/auto",
+    "chrome/document/native",
+    "cua/report/auto",
+    "cua/report/native",
+    "cua/document/native",
+    "cua/document/auto"
+  ],
+  "scope": "Eight exploratory real desktop runs, four matched pairs; task navigation, in-task contract construction, recovery and final native verification included. Browser bootstrap, fixture creation and installation excluded. Synthetic tasks authored by the tester, not blind. No ordered action script supplied to decision models. Real current task ID and unchanged shared hourly budget. All failed attempts retained. Actual GPT usage from marked native usage records; Jev separately counted. No account billing claim.",
+  "goals": {
+    "report": "Open the approved version v3 of the Orion Retail report for Europe, 2026 Q3. Read its preview and report the reference and approval state. Do not publish or change anything.",
+    "document": "Open the published Vega operations runbook, English version v2.4. Read its preview and report the reference and publication state. Do not delete or change anything."
+  },
+  "amendment": "Before any paid Jev run, first native precheck exposed automatic browser translation. Preserved separately with original failed exact-text oracle. Fixture now declares translate=no and google notranslate; no browser settings changed. All eight comparisons start again on the same frozen fixture.",
+  "fixtureSha256": "020d94b5d03ed3c29c14bbea9c4d0e989a231907fa395d937527a33660e9cc67"
+}

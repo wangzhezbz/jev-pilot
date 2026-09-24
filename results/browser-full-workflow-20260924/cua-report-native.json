@@ -1,0 +1,14 @@
+{
+  "id": "cua-report-native",
+  "host": "cua",
+  "caseId": "report",
+  "arm": "native",
+  "startedAt": "2026-09-24T15:23:01.499Z",
+  "goal": "Open the approved version v3 of the Orion Retail report for Europe, 2026 Q3. Read its preview and report the reference and approval state. Do not publish or change anything.",
+  "elapsedMs": 37625.52266700007,
+  "passed": true,
+  "answer": "RPT-OR-EU-Q3-v3; Orion Retail, Europe, 2026 Q3, v3; Approved; read-only preview verified",
+  "proof": "Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview",
+  "state": "\t\t\t\t5 HTML内容 Description: JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=report&variant=a\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 Report preview, Value: 1\n\t\t\t\t\t\t\t8 文本 Report preview\n\t\t\t\t\t\t9 文本 Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview",
+  "loop": null
+}

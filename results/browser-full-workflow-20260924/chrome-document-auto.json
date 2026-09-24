@@ -1,0 +1,214 @@
+{
+  "id": "chrome-document-auto",
+  "host": "chrome",
+  "caseId": "document",
+  "arm": "auto",
+  "startedAt": "2026-09-24T15:20:53.750Z",
+  "goal": "Open the published Vega operations runbook, English version v2.4. Read its preview and report the reference and publication state. Do not delete or change anything.",
+  "elapsedMs": 31105.716167001054,
+  "passed": true,
+  "answer": "DOC-VEGA-EN-2.4; Vega operations runbook, English v2.4; Published; read-only preview verified",
+  "proof": "Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview",
+  "state": "Browser tab: 51514147, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18743/browser-workflow-fixture.html?case=document&variant=b\".\n1 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=document&variant=b\n\t2 container view\n\t\t3 heading Document preview, Value: 1\n\t\t\t4 text Document preview\n\t\t5 text Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview\n\nThe focused UI element is 1 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=document&variant=b",
+  "loop": {
+    "runs": [
+      {
+        "status": "needs_verification",
+        "reason": null,
+        "evidence": "DOC-VEGA-EN-2.4 | Published | Read-only preview",
+        "stageIndex": 1,
+        "lastDecision": {
+          "stage": "preview",
+          "action": "Preview document",
+          "decision": {
+            "type": "choice",
+            "choice": "action_0",
+            "confidence": 0.98,
+            "probabilities": {
+              "action_0": 0.99,
+              "review": 0.01
+            }
+          },
+          "reason": null
+        },
+        "history": [
+          {
+            "action": "Document library",
+            "stage": "find",
+            "progress": true,
+            "probability": 0.97
+          },
+          {
+            "action": "Published documents",
+            "stage": "find",
+            "progress": true,
+            "probability": 0.99
+          },
+          {
+            "action": "Vega operations runbook",
+            "stage": "find",
+            "progress": true,
+            "probability": 1
+          },
+          {
+            "action": "English",
+            "stage": "preview",
+            "progress": true,
+            "probability": 0.98
+          },
+          {
+            "action": "Version v2.4",
+            "stage": "preview",
+            "progress": true,
+            "probability": 1
+          },
+          {
+            "action": "Preview document",
+            "stage": "preview",
+            "progress": true,
+            "probability": 0.99
+          }
+        ],
+        "snapshot": "Browser tab: 51514147, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18743/browser-workflow-fixture.html?case=document&variant=b\".\n1 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=document&variant=b\n\t2 container view\n\t\t3 heading Document preview, Value: 1\n\t\t\t4 text Document preview\n\t\t5 text Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview\n\nThe focused UI element is 1 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=document&variant=b",
+        "stateMayHaveChanged": false,
+        "metrics": {
+          "runs": 1,
+          "actions": 6,
+          "jevRequests": 6,
+          "inputTokens": 5343,
+          "outputTokens": 282,
+          "unknownUsage": 0,
+          "apiMs": 3647.131376001984,
+          "elapsedMs": 4736.720458999276,
+          "handoffs": 0
+        },
+        "sessionMetrics": {
+          "runs": 1,
+          "actions": 6,
+          "jevRequests": 6,
+          "inputTokens": 5343,
+          "outputTokens": 282,
+          "unknownUsage": 0,
+          "apiMs": 3647.131376001984,
+          "elapsedMs": 4736.720458999276,
+          "handoffs": 0
+        },
+        "phases": [
+          {
+            "phase": "observe",
+            "ms": 25.031624998897314
+          },
+          {
+            "phase": "decision",
+            "ms": 1272.6623330004513
+          },
+          {
+            "phase": "revalidate",
+            "ms": 14.12958300113678
+          },
+          {
+            "phase": "execute",
+            "ms": 12.262375000864267
+          },
+          {
+            "phase": "observe",
+            "ms": 150.3831669986248
+          },
+          {
+            "phase": "decision",
+            "ms": 804.2369160000235
+          },
+          {
+            "phase": "revalidate",
+            "ms": 13.64087500050664
+          },
+          {
+            "phase": "execute",
+            "ms": 12.231041999533772
+          },
+          {
+            "phase": "observe",
+            "ms": 150.19062500074506
+          },
+          {
+            "phase": "decision",
+            "ms": 774.3147919997573
+          },
+          {
+            "phase": "revalidate",
+            "ms": 12.724750000983477
+          },
+          {
+            "phase": "execute",
+            "ms": 11.236124999821186
+          },
+          {
+            "phase": "observe",
+            "ms": 151.48629200085998
+          },
+          {
+            "phase": "decision",
+            "ms": 270.26724999956787
+          },
+          {
+            "phase": "revalidate",
+            "ms": 13.697999998927116
+          },
+          {
+            "phase": "execute",
+            "ms": 11.810667000710964
+          },
+          {
+            "phase": "observe",
+            "ms": 152.55537500046194
+          },
+          {
+            "phase": "decision",
+            "ms": 279.865042001009
+          },
+          {
+            "phase": "revalidate",
+            "ms": 13.750917000696063
+          },
+          {
+            "phase": "execute",
+            "ms": 11.39041700027883
+          },
+          {
+            "phase": "observe",
+            "ms": 150.2971670012921
+          },
+          {
+            "phase": "decision",
+            "ms": 252.14604200050235
+          },
+          {
+            "phase": "revalidate",
+            "ms": 13.663666998967528
+          },
+          {
+            "phase": "execute",
+            "ms": 11.583874998614192
+          },
+          {
+            "phase": "observe",
+            "ms": 149.29187500104308
+          }
+        ],
+        "instruction": "Codex must independently verify the final observed outcome."
+      }
+    ],
+    "metrics": {
+      "runs": 1,
+      "actions": 6,
+      "jevRequests": 6,
+      "inputTokens": 5343,
+      "outputTokens": 282,
+      "unknownUsage": 0,
+      "apiMs": 3647.131376001984,
+      "elapsedMs": 4736.720458999276,
+      "handoffs": 0
+    },
+    "nativeRecoveryActions": 0
+  }
+}

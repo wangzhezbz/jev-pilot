@@ -1,0 +1,252 @@
+{
+  "id": "chrome-report-auto",
+  "host": "chrome",
+  "caseId": "report",
+  "arm": "auto",
+  "startedAt": "2026-09-24T15:19:42.769Z",
+  "goal": "Open the approved version v3 of the Orion Retail report for Europe, 2026 Q3. Read its preview and report the reference and approval state. Do not publish or change anything.",
+  "elapsedMs": 63119.64712499827,
+  "passed": true,
+  "answer": "RPT-OR-EU-Q3-v3; Orion Retail, Europe, 2026 Q3, v3; Approved; read-only preview verified",
+  "proof": "Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview",
+  "state": "Browser tab: 51514147, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18743/browser-workflow-fixture.html?case=report&variant=a\".\n1 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=report&variant=a\n\t2 container view\n\t\t3 heading Report preview, Value: 1\n\t\t\t4 text Report preview\n\t\t5 text Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview\n\nThe focused UI element is 1 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=report&variant=a",
+  "loop": {
+    "runs": [
+      {
+        "status": "codex_review_required",
+        "reason": "HOST_AMBIGUOUS_CHOICE",
+        "evidence": null,
+        "stageIndex": 0,
+        "lastDecision": {
+          "stage": "report",
+          "action": "Analytics",
+          "decision": {
+            "type": "choice",
+            "choice": "action_0",
+            "confidence": 0.36,
+            "probabilities": {
+              "action_1": 0.14,
+              "action_0": 0.58,
+              "review": 0.28
+            }
+          },
+          "reason": null
+        },
+        "history": [],
+        "snapshot": "Browser tab: 51514147, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18743/browser-workflow-fixture.html?case=report&variant=a\".\n1 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=report&variant=a\n\t2 container view\n\t\t3 heading Analytics workspace, Value: 1\n\t\t\t4 text Analytics workspace\n\t\t5 text Choose the matching item. This synthetic workspace supports read-only preview.\n\t\t6 link Description: Analytics, Value: 127.0.0.1:18743/browser-workflow-fixture.html?case=report&variant=a#region\n\t\t7 link Description: Document library, Value: 127.0.0.1:18743/browser-workflow-fixture.html?case=report&variant=a#wrong\n\nThe focused UI element is 1 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=report&variant=a",
+        "stateMayHaveChanged": false,
+        "metrics": {
+          "runs": 1,
+          "actions": 0,
+          "jevRequests": 1,
+          "inputTokens": 915,
+          "outputTokens": 44,
+          "unknownUsage": 0,
+          "apiMs": 694.7637499999255,
+          "elapsedMs": 721.9528330005705,
+          "handoffs": 1
+        },
+        "sessionMetrics": {
+          "runs": 1,
+          "actions": 0,
+          "jevRequests": 1,
+          "inputTokens": 915,
+          "outputTokens": 44,
+          "unknownUsage": 0,
+          "apiMs": 694.7637499999255,
+          "elapsedMs": 721.9528330005705,
+          "handoffs": 1
+        },
+        "phases": [
+          {
+            "phase": "observe",
+            "ms": 25.355415999889374
+          },
+          {
+            "phase": "decision",
+            "ms": 696.3751670010388
+          }
+        ],
+        "instruction": "Continue with native Codex; observe freshly before any further action, preserve the task and completed work."
+      },
+      {
+        "status": "needs_verification",
+        "reason": null,
+        "evidence": "RPT-OR-EU-Q3-v3 | Approved | Read-only preview",
+        "stageIndex": 1,
+        "lastDecision": {
+          "stage": "preview",
+          "action": "Preview report",
+          "decision": {
+            "type": "choice",
+            "choice": "action_0",
+            "confidence": 0.98,
+            "probabilities": {
+              "review": 0.01,
+              "action_0": 0.99
+            }
+          },
+          "reason": null
+        },
+        "history": [
+          {
+            "action": "Europe",
+            "stage": "report",
+            "progress": true,
+            "probability": 0.94
+          },
+          {
+            "action": "2026 Q3",
+            "stage": "report",
+            "progress": true,
+            "probability": 0.98
+          },
+          {
+            "action": "Orion Retail",
+            "stage": "report",
+            "progress": true,
+            "probability": 0.99
+          },
+          {
+            "action": "Version v3 — approved",
+            "stage": "preview",
+            "progress": true,
+            "probability": 0.99
+          },
+          {
+            "action": "Preview report",
+            "stage": "preview",
+            "progress": true,
+            "probability": 0.99
+          }
+        ],
+        "snapshot": "Browser tab: 51514147, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18743/browser-workflow-fixture.html?case=report&variant=a\".\n1 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=report&variant=a\n\t2 container view\n\t\t3 heading Report preview, Value: 1\n\t\t\t4 text Report preview\n\t\t5 text Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview\n\nThe focused UI element is 1 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=report&variant=a",
+        "stateMayHaveChanged": false,
+        "metrics": {
+          "runs": 1,
+          "actions": 5,
+          "jevRequests": 5,
+          "inputTokens": 4385,
+          "outputTokens": 238,
+          "unknownUsage": 0,
+          "apiMs": 2558.3857930004597,
+          "elapsedMs": 3593.4452500008047,
+          "handoffs": 0
+        },
+        "sessionMetrics": {
+          "runs": 2,
+          "actions": 5,
+          "jevRequests": 6,
+          "inputTokens": 5300,
+          "outputTokens": 282,
+          "unknownUsage": 0,
+          "apiMs": 3253.149543000385,
+          "elapsedMs": 4315.398083001375,
+          "handoffs": 1
+        },
+        "phases": [
+          {
+            "phase": "observe",
+            "ms": 150.91987499967217
+          },
+          {
+            "phase": "decision",
+            "ms": 696.6299169994891
+          },
+          {
+            "phase": "revalidate",
+            "ms": 12.247791999951005
+          },
+          {
+            "phase": "execute",
+            "ms": 10.939249999821186
+          },
+          {
+            "phase": "observe",
+            "ms": 151.97599999979138
+          },
+          {
+            "phase": "decision",
+            "ms": 912.4349589999765
+          },
+          {
+            "phase": "revalidate",
+            "ms": 13.711792001500726
+          },
+          {
+            "phase": "execute",
+            "ms": 11.158250000327826
+          },
+          {
+            "phase": "observe",
+            "ms": 149.86250000074506
+          },
+          {
+            "phase": "decision",
+            "ms": 307.2989579997957
+          },
+          {
+            "phase": "revalidate",
+            "ms": 12.845750000327826
+          },
+          {
+            "phase": "execute",
+            "ms": 11.904749998822808
+          },
+          {
+            "phase": "observe",
+            "ms": 151.4558749999851
+          },
+          {
+            "phase": "decision",
+            "ms": 395.1705000009388
+          },
+          {
+            "phase": "revalidate",
+            "ms": 13.853457998484373
+          },
+          {
+            "phase": "execute",
+            "ms": 11.804750001057982
+          },
+          {
+            "phase": "observe",
+            "ms": 150.04612500034273
+          },
+          {
+            "phase": "decision",
+            "ms": 252.11295799911022
+          },
+          {
+            "phase": "revalidate",
+            "ms": 13.703125
+          },
+          {
+            "phase": "execute",
+            "ms": 11.347957998514175
+          },
+          {
+            "phase": "observe",
+            "ms": 150.26950000040233
+          }
+        ],
+        "instruction": "Codex must independently verify the final observed outcome."
+      }
+    ],
+    "metrics": {
+      "runs": 2,
+      "actions": 5,
+      "jevRequests": 6,
+      "inputTokens": 5300,
+      "outputTokens": 282,
+      "unknownUsage": 0,
+      "apiMs": 3253.149543000385,
+      "elapsedMs": 4315.398083001375,
+      "handoffs": 1
+    },
+    "harnessErrors": [
+      "First contract cell read an unavailable REPL binding; fixed in the timed task"
+    ],
+    "nativeRecoveryActions": 1
+  }
+}
