@@ -1,4 +1,5 @@
 import {spawn} from 'node:child_process';
+import {pooledTypeSafe,poolSupported} from './pooled-transport.mjs';
 
 export function curlOutput(raw) {
   const match=/\nJEV_HTTP_STATUS:(\d{3})$/.exec(raw);
@@ -16,8 +17,10 @@ export function curlFailure(code,httpStatus) {
 
 // macOS curl reliably uses the configured local HTTP proxy. Secret headers and
 // payload travel on stdin, never in argv, shell text, temporary files or logs.
-export function postTypeSafe(payload,key,{spawnImpl=spawn}={}) {
+export function postTypeSafe(payload,key,{spawnImpl}={}) {
   if(!key||/[\r\n]/.test(key))return Promise.reject(new Error('INVALID_KEY'));
+  if(!spawnImpl&&poolSupported())return pooledTypeSafe(payload,key,{timeoutMs:2000});
+  spawnImpl??=spawn;
   const escape=value=>'"'+String(value).replaceAll('\\','\\\\').replaceAll('"','\\"').replaceAll('\r','\\r').replaceAll('\n','\\n')+'"';
   const config=[
     'url = "https://api.typesafe.ai/v1/systemone"','request = "POST"',

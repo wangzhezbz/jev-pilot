@@ -7,6 +7,7 @@ import { parseEnv } from 'node:util';
 import { spawn, execFileSync } from 'node:child_process';
 import { proxyEnvironment } from '../runtime/desktop/bootstrap.mjs';
 import { RequestGuard, GUARD_DEFAULTS } from './request-guard.mjs';
+import { pooledTypeSafe, poolSupported } from '../runtime/desktop/pooled-transport.mjs';
 import { curlOutput, curlFailure } from '../runtime/desktop/transport.mjs';
 
 export const VERSION = '0.2.0';
@@ -101,15 +102,17 @@ export function loadKey(home) {
   } return null;
 }
 // Never put credentials in argv or logs.
-export function transport(payload, key, { timeoutMs = 5000, signal, spawnImpl = spawn } = {}) {
+export function transport(payload, key, { timeoutMs = 5000, signal, spawnImpl, onTiming } = {}) {
   requireValue(key && !/[\r\n]/.test(key), 'MISSING_KEY');
+  let proxy = ''; if (process.platform === 'darwin' && !process.env.HTTPS_PROXY && !process.env.https_proxy) try { proxy = execFileSync('/usr/sbin/scutil', ['--proxy'], { encoding: 'utf8', timeout: 1000 }); } catch {}
+  const env = proxyEnvironment(process.env, proxy); delete env.TYPESAFE_API_KEY;
+  if(!spawnImpl&&poolSupported(env))return pooledTypeSafe(payload,key,{timeoutMs,signal,env,onTiming});
+  spawnImpl??=spawn;
   const quote = v => '"' + String(v).replaceAll('\\', '\\\\').replaceAll('"', '\\"').replaceAll('\r', '\\r').replaceAll('\n', '\\n') + '"';
   const config = ['url = "https://api.typesafe.ai/v1/systemone"', 'request = "POST"', 'silent', 'show-error', 'fail',
     `max-time = ${timeoutMs / 1000}`, 'connect-timeout = 2', 'header = ' + quote('Authorization: Bearer ' + key),
     'header = "Content-Type: application/json"', 'write-out = "\\nJEV_HTTP_STATUS:%{http_code}"', 'data = ' + quote(JSON.stringify(payload))].join('\n') + '\n';
   return new Promise((yes, no) => {
-    let proxy = ''; if (process.platform === 'darwin' && !process.env.HTTPS_PROXY && !process.env.https_proxy) try { proxy = execFileSync('/usr/sbin/scutil', ['--proxy'], { encoding: 'utf8', timeout: 1000 }); } catch {}
-    const env = proxyEnvironment(process.env, proxy); delete env.TYPESAFE_API_KEY;
     const p = spawnImpl(process.platform === 'win32' ? 'curl.exe' : 'curl', ['-q', '--config', '-'], { env, stdio: ['pipe', 'pipe', 'pipe'], windowsHide: true });
     let data = '', finished = false;
     const done = (err, result) => { if (finished) return; finished = true; clearTimeout(timer); signal?.removeEventListener('abort', abort); err ? no(fail(err)) : yes(result); };
@@ -178,7 +181,7 @@ export class Judge {
     const started = performance.now();
     const task = Promise.resolve().then(async () => {
       try {
-        const result = validateAnswers(questions, await this.send(payload, this.key, { timeoutMs: reservation.allowance, signal: this.signal }));
+        const result = validateAnswers(questions, await this.send(payload, this.key, { timeoutMs: reservation.allowance, signal: this.signal, onTiming: timing=>this.store.event(this.project,'transport_timing',{purpose,...timing}) }));
         this.guard.finish(reservation, { status: 'success', elapsedMs: performance.now() - started });
         this.store.event(this.project, 'jev_call', { purpose, model: result.model, elapsedMs: Math.round(performance.now() - started), inputTokens: result.usage?.input_tokens ?? null, outputTokens: result.usage?.output_tokens ?? null, questions: ids.length, status: 'success' });
         if (this.config.cacheMs > 0) this.store.cachePut(key, result, this.config.cacheMs); return result;

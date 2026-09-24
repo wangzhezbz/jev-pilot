@@ -1,0 +1,207 @@
+{
+  "source": "investigation-packed-20260924",
+  "rows": [
+    {
+      "id": "policy-bare-0",
+      "arm": "bare",
+      "generations": [
+        {
+          "generation": 1,
+          "input": 15183,
+          "cached": 8832,
+          "uncached": 6351,
+          "output": 67
+        },
+        {
+          "generation": 2,
+          "input": 15407,
+          "cached": 14976,
+          "uncached": 431,
+          "output": 31
+        },
+        {
+          "generation": 3,
+          "input": 22587,
+          "cached": 15232,
+          "uncached": 7355,
+          "output": 81
+        },
+        {
+          "generation": 4,
+          "input": 23416,
+          "cached": 22400,
+          "uncached": 1016,
+          "output": 652
+        },
+        {
+          "generation": 5,
+          "input": 24139,
+          "cached": 23296,
+          "uncached": 843,
+          "output": 48
+        }
+      ],
+      "first": {
+        "generation": 1,
+        "input": 15183,
+        "cached": 8832,
+        "uncached": 6351,
+        "output": 67
+      },
+      "laterUncached": 9645
+    },
+    {
+      "id": "policy-jev-0",
+      "arm": "jev",
+      "generations": [
+        {
+          "generation": 1,
+          "input": 16052,
+          "cached": 0,
+          "uncached": 16052,
+          "output": 87
+        },
+        {
+          "generation": 2,
+          "input": 17012,
+          "cached": 15872,
+          "uncached": 1140,
+          "output": 135
+        },
+        {
+          "generation": 3,
+          "input": 21699,
+          "cached": 16896,
+          "uncached": 4803,
+          "output": 757
+        },
+        {
+          "generation": 4,
+          "input": 22530,
+          "cached": 21504,
+          "uncached": 1026,
+          "output": 58
+        }
+      ],
+      "first": {
+        "generation": 1,
+        "input": 16052,
+        "cached": 0,
+        "uncached": 16052,
+        "output": 87
+      },
+      "laterUncached": 6969
+    },
+    {
+      "id": "policy-jev-1",
+      "arm": "jev",
+      "generations": [
+        {
+          "generation": 1,
+          "input": 16036,
+          "cached": 0,
+          "uncached": 16036,
+          "output": 78
+        },
+        {
+          "generation": 2,
+          "input": 16945,
+          "cached": 15872,
+          "uncached": 1073,
+          "output": 125
+        },
+        {
+          "generation": 3,
+          "input": 23396,
+          "cached": 16768,
+          "uncached": 6628,
+          "output": 637
+        },
+        {
+          "generation": 4,
+          "input": 24104,
+          "cached": 23168,
+          "uncached": 936,
+          "output": 42
+        }
+      ],
+      "first": {
+        "generation": 1,
+        "input": 16036,
+        "cached": 0,
+        "uncached": 16036,
+        "output": 78
+      },
+      "laterUncached": 8637
+    },
+    {
+      "id": "policy-bare-1",
+      "arm": "bare",
+      "generations": [
+        {
+          "generation": 1,
+          "input": 15191,
+          "cached": 0,
+          "uncached": 15191,
+          "output": 67
+        },
+        {
+          "generation": 2,
+          "input": 15418,
+          "cached": 14976,
+          "uncached": 442,
+          "output": 31
+        },
+        {
+          "generation": 3,
+          "input": 21217,
+          "cached": 15232,
+          "uncached": 5985,
+          "output": 36
+        },
+        {
+          "generation": 4,
+          "input": 21965,
+          "cached": 20992,
+          "uncached": 973,
+          "output": 705
+        },
+        {
+          "generation": 5,
+          "input": 22742,
+          "cached": 21760,
+          "uncached": 982,
+          "output": 48
+        }
+      ],
+      "first": {
+        "generation": 1,
+        "input": 15191,
+        "cached": 0,
+        "uncached": 15191,
+        "output": 67
+      },
+      "laterUncached": 8382
+    }
+  ],
+  "byArm": {
+    "bare": {
+      "firstInput": 30374,
+      "firstCached": 8832,
+      "firstUncached": 21542,
+      "laterUncached": 18027
+    },
+    "jev": {
+      "firstInput": 32088,
+      "firstCached": 0,
+      "firstUncached": 32088,
+      "laterUncached": 15606
+    }
+  },
+  "delta": {
+    "firstUncached": 10546,
+    "laterUncached": -2421,
+    "totalUncached": 8125
+  },
+  "interpretation": "The first-request cache imbalance is larger than the aggregate uncached-input increase. Later-generation uncached input decreased. This does not establish stable savings or prove the cause of server cache placement. Do not silently normalize observed totals or call the existing cache broken."
+}

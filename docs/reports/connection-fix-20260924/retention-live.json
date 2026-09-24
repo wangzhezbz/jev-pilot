@@ -1,0 +1,74 @@
+{
+  "protocol": {
+    "at": "2026-09-24T09:00:18.866Z",
+    "sourceHash": "3270883a72ae9e974ff8aa3879df24906f3a38d4fc77573e1dc81a808926dfd5",
+    "sourceHashes": {
+      "src/core.mjs": "c8f8cc35c5daab160474d46d08b8b27569b84d1728da792429627fb89e2153d1",
+      "src/evidence.mjs": "36e14f8df678f32eb3bf9bfbc3a70ed1be9b190436c56d501d8a88cb204cc142",
+      "src/investigate.mjs": "029bf617980adccb4d68cf47bbf620a6ddbdc5e6ba6f82cb2c488ed53265b9cd",
+      "scripts/acceptance/investigation-live.mjs": "875c6f2482f9765c086ac7a02976a5a44261c609d4aecc97f1d9a248736fdac6"
+    },
+    "sourceLabelsAdded": true,
+    "maxJevCalls": 2,
+    "gptCalls": 0,
+    "scope": "Single live integration/retention check on a source-labelled development fixture; not task latency, token savings or natural adoption evidence."
+  },
+  "elapsedMs": 766.772917,
+  "selection": {
+    "method": "jev",
+    "reason": "large_semantic_candidates"
+  },
+  "retainedSources": [
+    "notes/n00.md",
+    "notes/n01.md",
+    "notes/n02.md",
+    "notes/n04.md",
+    "notes/n05.md",
+    "notes/n06.md",
+    "notes/n09.md"
+  ],
+  "excluded": 5,
+  "missingRequired": [],
+  "deferred": [],
+  "completeCoverage": true,
+  "degraded": false,
+  "recallMatchesSnapshots": true,
+  "transportTimings": [
+    {
+      "at": "2026-09-24T09:00:19.632Z",
+      "kind": "transport_timing",
+      "purpose": "evidence",
+      "transport": "node_keepalive",
+      "reusedSocket": false,
+      "requestWrittenMs": 349.117,
+      "firstByteMs": 747.94,
+      "httpStatus": 200,
+      "totalMs": 748.177,
+      "status": "success"
+    }
+  ],
+  "profiles": [
+    {
+      "at": "2026-09-24T09:00:18.883Z",
+      "kind": "classification_batches",
+      "purpose": "evidence",
+      "batches": 1,
+      "concurrency": 1,
+      "inputProfile": "candidate_in_question_v1"
+    }
+  ],
+  "calls": [
+    {
+      "at": "2026-09-24T09:00:19.633Z",
+      "kind": "jev_call",
+      "purpose": "evidence",
+      "model": "jev-1.13.0",
+      "elapsedMs": 750,
+      "inputTokens": 11498,
+      "outputTokens": 437,
+      "questions": 12,
+      "status": "success"
+    }
+  ],
+  "passed": true
+}

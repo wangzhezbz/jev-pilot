@@ -155,7 +155,7 @@ try{
   report.realJev=process.argv.includes('--real-jev');
   if(process.argv.includes('--incompatible') || process.argv.includes('--disabled')) {
     const isolated=join(work,'adapter/runtime/desktop');await mkdir(isolated,{recursive:true});await cp(join(root,'../../src'),join(work,'adapter/src'),{recursive:true});
-    for(const file of ['bridge.mjs','router.mjs','hook.mjs','transport.mjs','bootstrap.mjs'])await copyFile(join(root,file),join(isolated,file));
+    for(const file of ['bridge.mjs','router.mjs','hook.mjs','transport.mjs','pooled-transport.mjs','bootstrap.mjs'])await copyFile(join(root,file),join(isolated,file));
     const disabled=process.argv.includes('--disabled');
     const sha256={'bridge.mjs':createHash('sha256').update(await readFile(join(isolated,'bridge.mjs'))).digest('hex')};
     await writeFile(join(isolated,'install.json'),JSON.stringify({realBin,verifiedVersion:disabled?execFileSync(realBin,['--version'],{encoding:'utf8'}).trim():'deliberately-incompatible',sha256,trust:{}}));

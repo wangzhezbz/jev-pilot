@@ -1,0 +1,144 @@
+{
+  "protocol": {
+    "at": "2026-09-24T08:59:58.025Z",
+    "order": [
+      "curl",
+      "pool",
+      "pool",
+      "curl",
+      "pool",
+      "pool"
+    ],
+    "maxPaidCalls": 6,
+    "gptCalls": 0,
+    "timeoutMs": 5000,
+    "retries": 0,
+    "scope": "Identical tiny judgments; cold curl process versus process-local pooled HTTPS. Component transport measurement, not whole-task acceleration."
+  },
+  "rows": [
+    {
+      "arm": "curl",
+      "passed": true,
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 293,
+        "output_tokens": 31
+      },
+      "elapsedMs": 623.5889579999999,
+      "timings": [
+        {
+          "dnsSeconds": 0.000059,
+          "tcpSeconds": 0.000192,
+          "tlsSeconds": 0.335807,
+          "firstByteSeconds": 0.614492,
+          "totalSeconds": 0.614517,
+          "httpCode": 200
+        }
+      ]
+    },
+    {
+      "arm": "pool",
+      "passed": true,
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 293,
+        "output_tokens": 31
+      },
+      "elapsedMs": 496.7752919999999,
+      "timings": [
+        {
+          "transport": "node_keepalive",
+          "reusedSocket": false,
+          "requestWrittenMs": 251.767,
+          "firstByteMs": 495.91,
+          "httpStatus": 200,
+          "totalMs": 496.138,
+          "status": "success"
+        }
+      ]
+    },
+    {
+      "arm": "pool",
+      "passed": true,
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 293,
+        "output_tokens": 31
+      },
+      "elapsedMs": 279.6378750000001,
+      "timings": [
+        {
+          "transport": "node_keepalive",
+          "reusedSocket": true,
+          "requestWrittenMs": 0.298,
+          "firstByteMs": 279.229,
+          "httpStatus": 200,
+          "totalMs": 279.391,
+          "status": "success"
+        }
+      ]
+    },
+    {
+      "arm": "curl",
+      "passed": true,
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 293,
+        "output_tokens": 31
+      },
+      "elapsedMs": 571.1703749999999,
+      "timings": [
+        {
+          "dnsSeconds": 0.000063,
+          "tcpSeconds": 0.000211,
+          "tlsSeconds": 0.27142,
+          "firstByteSeconds": 0.563152,
+          "totalSeconds": 0.563177,
+          "httpCode": 200
+        }
+      ]
+    },
+    {
+      "arm": "pool",
+      "passed": true,
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 293,
+        "output_tokens": 31
+      },
+      "elapsedMs": 278.76441699999987,
+      "timings": [
+        {
+          "transport": "node_keepalive",
+          "reusedSocket": true,
+          "requestWrittenMs": 0.215,
+          "firstByteMs": 278.458,
+          "httpStatus": 200,
+          "totalMs": 278.567,
+          "status": "success"
+        }
+      ]
+    },
+    {
+      "arm": "pool",
+      "passed": true,
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 293,
+        "output_tokens": 31
+      },
+      "elapsedMs": 259.3833340000001,
+      "timings": [
+        {
+          "transport": "node_keepalive",
+          "reusedSocket": true,
+          "requestWrittenMs": 0.269,
+          "firstByteMs": 258.943,
+          "httpStatus": 200,
+          "totalMs": 259.064,
+          "status": "success"
+        }
+      ]
+    }
+  ]
+}

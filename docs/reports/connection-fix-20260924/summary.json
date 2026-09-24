@@ -1,0 +1,19 @@
+{
+  "legacyCurlMeanMs": 597.3796665,
+  "pooledReusedMeanMs": 272.5952086666667,
+  "pooledWarmChangePercent": -54.36818091519915,
+  "smallJudgments": 6,
+  "liveRetentionPassed": true,
+  "gptTaskCallsThisFollowUp": 0,
+  "knownJevInputTokens": 13256,
+  "knownJevOutputTokens": 623,
+  "unknownUsageCalls": 0,
+  "unitTests": 259,
+  "nativeSyntheticChecks": 27,
+  "desktopDeployed": false,
+  "bounds": [
+    "One process-local tiny-query sequence and one semantic integration run, not whole-task acceleration or broad network reliability.",
+    "Timing schema added socketAssignedMs after the live run; no request behavior changed.",
+    "The four earlier full-task results remain unchanged; first-step cache imbalance requires separate attribution."
+  ]
+}
