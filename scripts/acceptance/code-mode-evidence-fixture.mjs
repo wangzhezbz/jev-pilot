@@ -12,7 +12,7 @@ if(!work)throw new Error('FIXTURE_WORK_REQUIRED');
 const pilot=new Pilot({store:new Store({home:join(work,'chain-pilot')}),key:'fixture',send:async p=>{if(process.argv.includes('--fail'))throw Error('FIXTURE_NETWORK_FAILURE');return({
   model:'fixture',usage:{input_tokens:1,output_tokens:1},
   answers:Object.fromEntries(Object.entries(p.questions).map(([id])=>{
-    const keep=p.state.items[Number(id.slice(1))].text.includes('NEEDLE');
+    const keep=(p.state.items?.[Number(id.slice(1))]??JSON.parse(p.questions[id].instructions.split('\n').at(-1))).text.includes('NEEDLE');
     return[id,{type:'choice',choice:keep?'keep':'exclude',probabilities:{keep:keep?1:0,review:0,exclude:keep?0:1}}];
   })),
 });}});

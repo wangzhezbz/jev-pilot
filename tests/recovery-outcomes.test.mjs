@@ -57,7 +57,7 @@ test('no-benefit result is measured and next same-source call passes through dur
  const f=autoFixture(t);await f.start();assert.deepEqual(await f.hook('1'),{});assert.equal(f.calls(),1);
  const outcome=f.events().find(x=>x.kind==='automatic_output_result');assert.equal(outcome.reason,'insufficient_reduction');assert(outcome.retainedRatio>=.8);assert.equal(outcome.nativeTokenSavings,null);
  assert.deepEqual(await f.hook('2'),{});assert.equal(f.calls(),1);assert(f.events().some(x=>x.reason==='no_benefit_cooldown'));
- f.advance(60000);await f.hook('3');assert.equal(f.events().filter(x=>x.kind==='automatic_output_admission'&&x.reason==='eligible').length,2);assert(f.events().some(x=>x.kind==='cache_hit'));assert.equal(f.calls(),1);
+ f.advance(60000);await f.hook('3');assert.equal(f.events().filter(x=>x.kind==='automatic_output_admission'&&x.reason==='eligible').length,2);assert(f.events().some(x=>x.kind==='item_cache_hit'&&x.items>0));assert.equal(f.calls(),1);
 });
 test('cooldown survives turn reset but never crosses tasks, tool sources or projects',async t=>{
  const f=autoFixture(t);await f.start();await f.hook('1');await f.start(undefined,'b');await f.hook('2',{turn_id:'b'});assert.equal(f.calls(),1);
@@ -84,7 +84,7 @@ test('a slow filter from an older turn cannot replace new-turn output or set its
 test('automatic filtering never hides relevant unique evidence to meet a length budget',async t=>{
  const f=autoFixture(t);await f.start();const input=Array.from({length:540},(_,i)=>'fact '+i+' '+('unique evidence '.repeat(7))).join('\n');
  assert.deepEqual(await f.hook('all-keep',{tool_response:input}),{});
- assert.equal(f.calls(),3);assert(f.events().some(e=>e.kind==='automatic_output_result'&&e.reason==='insufficient_reduction'&&e.excludedItems===0));
+ assert.equal(f.calls(),1);assert(f.events().some(e=>e.kind==='automatic_output_result'&&e.reason==='insufficient_reduction'&&e.excludedItems===0));
  await f.start(undefined,'b');assert.deepEqual(await f.hook('fits-two',{turn_id:'b',tool_response:input.split('\n').slice(0,300).join('\n')}),{});
  const e=f.events().find(e=>e.kind==='automatic_output_result');assert.equal(e.deferredItems,0);assert.equal(e.excludedItems,0);assert.equal(e.applied,false);assert(f.calls()>0);
 });

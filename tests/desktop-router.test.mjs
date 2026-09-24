@@ -116,7 +116,9 @@ test('usage uses per-turn deltas, ignores duplicate snapshots and does not doubl
  send(counts(50,5,2),counts(1050,105,22));send(counts(50,5,2),counts(1050,105,22));
  send(counts(60,8,3),counts(1110,113,25));
  const complete={method:'turn/completed',params:{threadId:'thread',turn:{id:'turn',status:'completed'}}};s.router.observe(complete);s.router.observe(complete);
- assert.equal(s.logs.length,1);assert.equal(s.logs[0].usage.inputTokens,110);assert.equal(s.logs[0].usage.outputTokens,13);assert.equal(s.logs[0].usage.reasoningOutputTokens,5);
+ const turns=s.logs.filter(x=>x.kind==='turn_usage'),generations=s.logs.filter(x=>x.kind==='generation_usage');
+ assert.equal(turns.length,1);assert.equal(turns[0].usage.inputTokens,110);assert.equal(turns[0].usage.outputTokens,13);assert.equal(turns[0].usage.reasoningOutputTokens,5);
+ assert.equal(generations.length,2);assert.deepEqual(generations.map(x=>x.usage.inputTokens),[50,60]);
 });
 test('absent usage is unknown; malformed counters and wrong turn are excluded',()=>{
  const s=setup();assert.equal(usageCounts({}),null);
@@ -160,7 +162,7 @@ test('an interrupted turn still records final observed usage',()=>{
  const count={inputTokens:5,cachedInputTokens:0,outputTokens:2,reasoningOutputTokens:1,totalTokens:7};
  s.router.observe({method:'thread/tokenUsage/updated',params:{threadId:'thread',turnId:'turn',tokenUsage:{last:count,total:count}}});
  s.router.observe({method:'turn/completed',params:{threadId:'thread',turn:{id:'turn',status:'interrupted'}}});
- assert.equal(s.logs[0].usage.totalTokens,7);assert.equal(s.logs[0].status,'interrupted');
+ const result=s.logs.find(x=>x.kind==='turn_usage');assert.equal(result.usage.totalTokens,7);assert.equal(result.status,'interrupted');
 });
 const horizon = choice => ({type:'choice',choice:String(choice),confidence:1,probabilities:Object.fromEntries(Object.keys(horizonQuestion.criteria).map(k=>[k,k===String(choice)?1:0]))});
 test('adaptive horizons reuse exactly N minus one completions then reassess',async()=>{

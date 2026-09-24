@@ -295,6 +295,7 @@ export class Router {
       t.usageSnapshots.add(fingerprint);t.usageEvents++;t.toolBatchSequence=0;
       const delta=t.previousTotal?Object.fromEntries(Object.keys(total).map(k=>[k,total[k]-t.previousTotal[k]])):last;
       if(Object.values(delta).some(v=>v<0)){t.invalidUsageEvents++;t.toolBatches.clear();t.reusedBatch=null;t.previousTotal=total;return;}
+      this.log({kind:'generation_usage',threadId:t.threadId,turnId:t.turnId,configuredModel:t.model,effort:t.current,generation:t.usageEvents,observedElapsedMs:Math.round(performance.now()-t.opened),usage:last,accounting:'host_observed_request_usage_not_provider_timing_or_account_debit'});
       t.previousTotal=total;
       t.usage=Object.fromEntries(Object.keys(delta).map(k=>[k,(t.usage?.[k]??0)+delta[k]]));
     }

@@ -1,0 +1,24 @@
+{
+  "at": "2026-09-24T09:40:00.029Z",
+  "scope": "Offline production prepare operation, synthetic semantic corpus, no GPT and no real Jev calls",
+  "elapsedMs": 4.491125000000004,
+  "paidCalls": 0,
+  "selection": {
+    "status": "prepared",
+    "reason": "lossless_projection",
+    "artifactId": "3ec062d54151b06aad707a9f77508539a418bb5184011a477317740ee8488678",
+    "sourceHash": "fdf66664a8a8d9a178252decd385e8d6cdea67e70d7378db6a142c0722d94448",
+    "originalBytes": 59157,
+    "returnedBytes": 32994,
+    "completeCoverage": true,
+    "excludedItems": 0,
+    "lossless": true,
+    "modelReceipt": "unconfirmed",
+    "nativeTokenSavings": null
+  },
+  "exactRecall": true,
+  "allOccurrencesRestored": true,
+  "sourceBytes": 58616,
+  "displayBytes": 32255,
+  "records": 180
+}

@@ -189,10 +189,23 @@ export class Judge {
       finally { this.inflight.delete(key); }
     }); this.inflight.set(key, task); return task;
   }
+  classificationWork(items,instructions,criteria,context={}) {
+    const cached=[],pending=[],keys=new Map();
+    if(this.isolateItems!==true)return {...classificationPlan(this.config.model,items,instructions,criteria,context),cached,keys};
+    for(const item of items){
+      const key=hash({project:this.project,policy:'independent-evidence-cache-v1',payload:redact(classificationPayload(this.config.model,[item],instructions,criteria,context,true))});
+      keys.set(item.id,key);
+      const value=this.isolateItems===true&&this.config.enabled&&this.key&&this.config.cacheMs>0&&!this.signal?.aborted?this.store.cacheGet(key):null;
+      if(value){try{validateAnswers({q0:{type:'choice',criteria}}, {model:value.model,answers:{q0:value.answer}});cached.push({id:item.id,...value.answer,source:'jev',cached:true});continue;}catch{}}
+      pending.push(item);
+    }
+    return {...classificationPlan(this.config.model,pending,instructions,criteria,context,this.isolateItems===true),cached,keys};
+  }
   async classify(items, instructions, criteria, purpose = 'classify', context = {}) {
     records(items); text(instructions, 60000); const out = [];
     const build = batch => classificationPayload(this.config.model,batch,instructions,criteria,context,this.isolateItems===true);
-    const plan=classificationPlan(this.config.model,items,instructions,criteria,context,this.isolateItems===true);
+    const plan=this.classificationWork(items,instructions,criteria,context);
+    out.push(...plan.cached);if(plan.cached.length)this.store.event(this.project,'item_cache_hit',{purpose,items:plan.cached.length});
     for(const item of plan.oversized){out.push({id:item.id,choice:'review',source:'fallback',reason:'REQUEST_LIMIT'});this.store.event(this.project,'judgment_skipped',{purpose,reason:'REQUEST_LIMIT',items:1});}
     let next=0;
     const workers=Math.min(this.concurrency,plan.batches.length);
@@ -200,7 +213,11 @@ export class Judge {
     await Promise.all(Array.from({length:workers},async()=>{
       while(next<plan.batches.length){
         const batch=plan.batches[next++],{state,questions}=build(batch);
-        try { const result = await this.ask(state, questions, purpose); batch.forEach((r, i) => out.push({ id: r.id, ...result.answers['q' + i], source: 'jev' })); }
+        try { const result = await this.ask(state, questions, purpose); batch.forEach((r, i) => {
+          const answer=result.answers['q'+i];out.push({id:r.id,...answer,source:'jev'});
+        });
+        if(this.isolateItems===true&&this.config.cacheMs>0)this.store.transaction(()=>batch.forEach((r,i)=>this.store.cachePut(plan.keys.get(r.id),{model:result.model,answer:result.answers['q'+i]},this.config.cacheMs)));
+        }
         catch (e) { batch.forEach(r => out.push({ id: r.id, choice: 'review', source: 'fallback', reason: e.code || 'UNAVAILABLE' })); }
       }
     }));const byId = new Map(out.map(row => [row.id, row])); return items.map(item => byId.get(item.id));

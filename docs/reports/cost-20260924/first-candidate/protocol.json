@@ -1,0 +1,105 @@
+{
+  "at": "2026-09-24T09:23:20.200Z",
+  "jobs": [
+    {
+      "model": "gpt-6-astra",
+      "task": "incident",
+      "repeat": 0,
+      "arms": [
+        "bare",
+        "combined"
+      ]
+    },
+    {
+      "model": "gpt-6-astra",
+      "task": "semantic",
+      "repeat": 0,
+      "arms": [
+        "combined",
+        "bare"
+      ]
+    },
+    {
+      "model": "gpt-6-astra",
+      "task": "incident",
+      "repeat": 1,
+      "arms": [
+        "combined",
+        "bare"
+      ]
+    },
+    {
+      "model": "gpt-6-astra",
+      "task": "semantic",
+      "repeat": 1,
+      "arms": [
+        "bare",
+        "combined"
+      ]
+    }
+  ],
+  "runs": 8,
+  "models": [
+    "gpt-6-astra"
+  ],
+  "initialEffort": "high",
+  "concurrency": 1,
+  "hashes": {
+    "src/core.mjs": "2bfdc5137f4bf560228e7d85f67c725e93ee83bc9fdce0b29e7292d22dadb844",
+    "src/request-guard.mjs": "ebe0a0f2262b2846de814a141e095add69b984b3a10e92a528a5ce02ce521f76",
+    "src/automation.mjs": "217a7f6340e3cd129fcd3eb5b275c56b0abf55292f8003ac8ef3f2418d1bd948",
+    "src/evidence.mjs": "0c68a965626d83f9a756903a4cafae642cbb4bd830955c31584c2563c3571d65",
+    "src/policy.mjs": "4f29ab06c3f91509aa260247165d12a2e48e37b507b2c5f726f95e5b291582de",
+    "runtime/desktop/router.mjs": "6026b7eaf71f9f035378cd81fc298ae494b6438f6eab541b32c719178e13f2ca",
+    "runtime/desktop/bridge.mjs": "da5374664ea2512e818fa71840893c87d86040c51d8d1dcbbad5cf38dd9d7484",
+    "skills/jev-pilot/SKILL.md": "d3173ea97a8c6b5661f7117b536347a118dc557818dd9a8c464088a73c43c048",
+    "skills/jev-pilot/references/operations.md": "3ffe04b32ee869f87daa6a995e1836fc8610cc329b4353a19a39e8b442b87808",
+    "scripts/benchmark/tasks.mjs": "a205373e2b1f6bd9b7ced8eb8ed85093802d9f4f1babf0902ae2d1fbe6a60d29",
+    "scripts/acceptance/tasks.mjs": "ad1c528e00822d3d501ca001998d55493b854c56cc9167f480c4aa6faa6c1f52",
+    "scripts/acceptance/factorial-run.mjs": "195c3229c867f80902758c961edae997cb4459f656c6936a87c89fe1c224ee56",
+    "scripts/acceptance/factorial-tasks.mjs": "80c710fc9a4cf2514990e817973a0cad7462422a22d680a99294787677d6d9ed",
+    "src/prepare-output.mjs": "d5b06473980297fcf48bae3d0dcc55944c3fb5259bc1cc743f1d251ec6469e40",
+    "src/evidence-tool.mjs": "92d5566a888bd0e20b69b0d7f40ec37b63f3fd2cce1cc5b8306d2bf96b1ff594",
+    "src/server.mjs": "2bdd808c970cf1c7b9a8204381aa266a059d414a2f50a721f7074a7cc4f5e315",
+    "src/runtime-compatibility.mjs": "b298c0b2b252980e8131ea5dc90a6ba666ae665e95f9e269279b7b67a7086ae4",
+    "skills/jev-pilot/references/evidence.md": "7ded905ee3b15a76599b68769c30a27d555b06ea2e9912bd2420b82ffa186f77",
+    "scripts/acceptance/timeline.mjs": "f8794e32a0bc3044ee2e8ce07ee0324be42118106301c146a831c1c810e1c49b",
+    "scripts/acceptance/terminal-state.mjs": "431a65f5c59a2ed68f9415b8601cf69790e7eb220a612731a89bee2d03934489",
+    "src/distribution.mjs": "1ceba37ba94ea6ca1f036e7195f24e996c08ae4004c0fa67f7bea55a87cdc5a3",
+    "scripts/acceptance/semantic-task.mjs": "a167b7cdd94cea2bf0bc13be01d30ad28a9364b657aedf73c989ad03fe258efa"
+  },
+  "config": {
+    "features.apps": false,
+    "features.multi_agent": false,
+    "web_search": "disabled",
+    "hooks.Stop": []
+  },
+  "quality": "Frozen independent oracle after inference; protected fixtures unchanged; failed attempts retained.",
+  "stopRule": "Stop after infrastructure failure, timeout, interruption or provider limit; retain all prior and failed runs. No reruns or mid-test product changes.",
+  "timeLimitMs": 240000,
+  "nativeVersion": "codex-cli 0.155.0-alpha.16.3",
+  "revision": "b100c1f0efb44da49f16fe5f5ba486c3a16679e0",
+  "expectedPluginVersion": "0.2.0+codex.20260924172500",
+  "scope": "Frozen candidate entry follow-up: 2 tasks x 2 repeats x bare/combined = 8 real tasks. GPT-6 Astra high, sequential balanced AB/BA; same frozen task inputs and oracle. No forced Jev or full reads. Original v17 campaign remains separate. Backend time and model usage, not UI latency or billed quotas.",
+  "tasks": [
+    {
+      "id": "incident",
+      "prompt": "Analyze incident.log and write incident.md explaining the checkout incident. Evidence is spread throughout the log. Identify the supported root cause, the rejected hypothesis and why it is rejected, the observed impact, mitigation and verification, and what remains unknown. Cite the original L-prefixed evidence IDs. Do not turn guesses into facts. Also write findings.data as a machine-readable object with these keys: rootCause (one of pool_limit_regression, dns_failure, unknown), failedRequests (integer), totalRequests (integer), failureRate (number 0..1), mitigationPoolLimit (integer), postMitigationFailures (integer), settlementImpact (one of unknown, confirmed_safe, confirmed_loss), rejectedHypothesis (one of dns_failure, pool_limit_regression, none), evidenceIds (all L-prefixed IDs supporting the report). Do not change incident.log. The requirement is substantive incident analysis; concise factual output is enough.",
+      "files": {
+        "incident.log": "6a932f3daa50ac58d2a81f515744b30cd1808f25660d7dc46225a4dec6ff6b6e"
+      }
+    },
+    {
+      "id": "semantic",
+      "prompt": "Review support-notes.md and identify cases that still require returning an unintended extra payment caused by a repeated checkout attempt. Exclude pending holds, intentional separate purchases and cases already fully compensated. Write findings.md with one bullet per qualifying case: its CASE identifier and a short source-grounded reason. Do not modify the source. Check ambiguous facts before concluding; do not list excluded cases in findings.md.",
+      "files": {
+        "support-notes.md": "fdf66664a8a8d9a178252decd385e8d6cdea67e70d7378db6a142c0722d94448"
+      }
+    }
+  ],
+  "sourceMode": "isolated staged candidate plugin plus matching workspace bridge",
+  "caseIds": [
+    "incident",
+    "semantic"
+  ]
+}

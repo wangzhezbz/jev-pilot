@@ -26,7 +26,7 @@ test('cancellation stops queued batches and remains unknown usage rather than a 
  const job=judge.classify(items,'Inspect records',rubric);await tick();controller.abort();const results=await job;assert.equal(started,2);assert(results.every(x=>x.reason==='CANCELLED'));
  const m=metrics(f);assert.equal(m.jev.cancellations,2);assert.equal(m.jev.failures,0);assert.equal(m.jev.missingUsage,2);assert(f.store.list(f.project,'circuit').every(c=>c.failures===0));
 });
-const log=Array.from({length:360},(_,i)=>`10:04 inventory-reporter: warehouse catalog shard ${i} processed 25 unchanged product labels.`).join('\n');
+const log=Array.from({length:780},(_,i)=>`10:04 inventory-reporter: warehouse catalog shard ${i} processed 25 unchanged product labels.`).join('\n');
 async function autoFixture(){const root=mkdtempSync(join(tmpdir(),'jev-parallel-auto-')),store=new Store({home:join(root,'private')});let calls=0,aborted=0;
  const auto=createAutomation({store,key:'fixture',send:(p,key,{signal})=>new Promise((resolve,reject)=>{calls++;signal.addEventListener('abort',()=>{aborted++;reject(Object.assign(Error('cancelled'),{code:'CANCELLED'}));},{once:true});})});
  const base={cwd:root,session_id:'s',turn_id:'a'},prompt=extra=>auto.hook({...base,hook_event_name:'UserPromptSubmit',prompt:'Inspect checkout observations',...extra}),hook=extra=>auto.hook({...base,hook_event_name:'PostToolUse',tool_use_id:'read',tool_name:'shell',tool_response:log,...extra});

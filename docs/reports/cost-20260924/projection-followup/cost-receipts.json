@@ -1,0 +1,1038 @@
+[
+  {
+    "id": "gpt-6-astra-semantic-0-bare",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "source_unchanged",
+          "pass": true
+        },
+        {
+          "name": "independent_case_set",
+          "pass": true,
+          "found": [
+            "CASE-008",
+            "CASE-029",
+            "CASE-050",
+            "CASE-077",
+            "CASE-106",
+            "CASE-131",
+            "CASE-154",
+            "CASE-179"
+          ],
+          "expected": [
+            "CASE-008",
+            "CASE-029",
+            "CASE-050",
+            "CASE-077",
+            "CASE-106",
+            "CASE-131",
+            "CASE-154",
+            "CASE-179"
+          ]
+        }
+      ]
+    },
+    "errors": [],
+    "status": "completed",
+    "usage": [
+      {
+        "total": {
+          "totalTokens": 15250,
+          "inputTokens": 15149,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 101,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 15250,
+          "inputTokens": 15149,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 101,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 30634,
+          "inputTokens": 30498,
+          "cachedInputTokens": 14976,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 136,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 15384,
+          "inputTokens": 15349,
+          "cachedInputTokens": 14976,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 35,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 54245,
+          "inputTokens": 53883,
+          "cachedInputTokens": 14976,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 362,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 23611,
+          "inputTokens": 23385,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 226,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 79666,
+          "inputTokens": 78849,
+          "cachedInputTokens": 38144,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 817,
+          "reasoningOutputTokens": 37
+        },
+        "last": {
+          "totalTokens": 25421,
+          "inputTokens": 24966,
+          "cachedInputTokens": 23168,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 455,
+          "reasoningOutputTokens": 37
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 105992,
+          "inputTokens": 104927,
+          "cachedInputTokens": 62976,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1065,
+          "reasoningOutputTokens": 37
+        },
+        "last": {
+          "totalTokens": 26326,
+          "inputTokens": 26078,
+          "cachedInputTokens": 24832,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 248,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 132477,
+          "inputTokens": 131332,
+          "cachedInputTokens": 88832,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1145,
+          "reasoningOutputTokens": 37
+        },
+        "last": {
+          "totalTokens": 26485,
+          "inputTokens": 26405,
+          "cachedInputTokens": 25856,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 80,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      }
+    ],
+    "jevCalls": [],
+    "routing": [],
+    "preparations": []
+  },
+  {
+    "id": "gpt-6-astra-semantic-0-combined",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "source_unchanged",
+          "pass": true
+        },
+        {
+          "name": "independent_case_set",
+          "pass": true,
+          "found": [
+            "CASE-008",
+            "CASE-029",
+            "CASE-050",
+            "CASE-077",
+            "CASE-106",
+            "CASE-131",
+            "CASE-154",
+            "CASE-179"
+          ],
+          "expected": [
+            "CASE-008",
+            "CASE-029",
+            "CASE-050",
+            "CASE-077",
+            "CASE-106",
+            "CASE-131",
+            "CASE-154",
+            "CASE-179"
+          ]
+        }
+      ]
+    },
+    "errors": [],
+    "status": "completed",
+    "pluginVersion": "0.2.0+codex.20260924173500",
+    "usage": [
+      {
+        "total": {
+          "totalTokens": 16173,
+          "inputTokens": 16078,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 95,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 16173,
+          "inputTokens": 16078,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 95,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 33316,
+          "inputTokens": 33174,
+          "cachedInputTokens": 15872,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 142,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 17143,
+          "inputTokens": 17096,
+          "cachedInputTokens": 15872,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 47,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 52877,
+          "inputTokens": 52524,
+          "cachedInputTokens": 32768,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 353,
+          "reasoningOutputTokens": 21
+        },
+        "last": {
+          "totalTokens": 19561,
+          "inputTokens": 19350,
+          "cachedInputTokens": 16896,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 211,
+          "reasoningOutputTokens": 21
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 73943,
+          "inputTokens": 73406,
+          "cachedInputTokens": 51968,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 537,
+          "reasoningOutputTokens": 49
+        },
+        "last": {
+          "totalTokens": 21066,
+          "inputTokens": 20882,
+          "cachedInputTokens": 19200,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 184,
+          "reasoningOutputTokens": 28
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 96138,
+          "inputTokens": 95089,
+          "cachedInputTokens": 72704,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1049,
+          "reasoningOutputTokens": 49
+        },
+        "last": {
+          "totalTokens": 22195,
+          "inputTokens": 21683,
+          "cachedInputTokens": 20736,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 512,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 118467,
+          "inputTokens": 117366,
+          "cachedInputTokens": 94336,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1101,
+          "reasoningOutputTokens": 49
+        },
+        "last": {
+          "totalTokens": 22329,
+          "inputTokens": 22277,
+          "cachedInputTokens": 21632,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 52,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      }
+    ],
+    "jevCalls": [
+      {
+        "at": "2026-09-24T09:34:57.811Z",
+        "kind": "jev_call",
+        "purpose": "effort",
+        "model": "jev-1.13.0",
+        "elapsedMs": 303,
+        "inputTokens": 2438,
+        "outputTokens": 106,
+        "questions": 2,
+        "status": "success"
+      },
+      {
+        "at": "2026-09-24T09:34:49.335Z",
+        "kind": "jev_call",
+        "purpose": "effort",
+        "model": "jev-1.13.0",
+        "elapsedMs": 677,
+        "inputTokens": 1784,
+        "outputTokens": 106,
+        "questions": 2,
+        "status": "success"
+      },
+      {
+        "at": "2026-09-24T09:34:42.580Z",
+        "kind": "jev_call",
+        "purpose": "effort",
+        "model": "jev-1.13.0",
+        "elapsedMs": 683,
+        "inputTokens": 1420,
+        "outputTokens": 106,
+        "questions": 2,
+        "status": "success"
+      },
+      {
+        "at": "2026-09-24T09:34:34.381Z",
+        "kind": "jev_call",
+        "purpose": "effort",
+        "model": "jev-1.13.0",
+        "elapsedMs": 517,
+        "inputTokens": 1001,
+        "outputTokens": 106,
+        "questions": 2,
+        "status": "success"
+      }
+    ],
+    "routing": [
+      {
+        "at": "2026-09-24T09:34:34.384Z",
+        "bridgeId": "jev:c6bca1b1-d2a7-4e37-8b43-c4bcbdcf7bb7:",
+        "pid": 91558,
+        "projectId": "724e41a3fb1ef1dcb1167862ae7f05ee6f89012a37156e6cadd0894ab52ee70c",
+        "measurementSource": "runtime",
+        "kind": "decision",
+        "policyVersion": "effort-v17-bounded-final-lease",
+        "threadId": "01a0d2c4-4748-7050-8a83-1cd37e6e4b5d",
+        "turnId": "01a0d2c4-498e-7f12-9041-fd04d71896a6",
+        "event": "BeforeTurnStart",
+        "targetModel": "gpt-6-astra",
+        "from": "high",
+        "baselineEffort": "high",
+        "ceilingApplied": false,
+        "recommended": "high",
+        "confidence": 0.59,
+        "probability": 0.66,
+        "published": "high",
+        "status": "unchanged",
+        "model": "jev-1.13.0",
+        "inputTokens": 1001,
+        "outputTokens": 106,
+        "horizon": 1,
+        "leaseUnit": "observed_tool_batch_or_boundary",
+        "recommendedHorizon": 1,
+        "horizonReason": "jev_selected",
+        "confirmation": null,
+        "estimatedJevUsd": 0.000042042,
+        "elapsedMs": 519
+      },
+      {
+        "at": "2026-09-24T09:34:42.581Z",
+        "bridgeId": "jev:c6bca1b1-d2a7-4e37-8b43-c4bcbdcf7bb7:",
+        "pid": 91558,
+        "projectId": "724e41a3fb1ef1dcb1167862ae7f05ee6f89012a37156e6cadd0894ab52ee70c",
+        "measurementSource": "runtime",
+        "kind": "decision",
+        "policyVersion": "effort-v17-bounded-final-lease",
+        "threadId": "01a0d2c4-4748-7050-8a83-1cd37e6e4b5d",
+        "turnId": "01a0d2c4-498e-7f12-9041-fd04d71896a6",
+        "event": "PostToolUse",
+        "targetModel": "gpt-6-astra",
+        "from": "high",
+        "baselineEffort": "high",
+        "ceilingApplied": false,
+        "recommended": "high",
+        "confidence": 0.58,
+        "probability": 0.66,
+        "published": "high",
+        "status": "unchanged",
+        "model": "jev-1.13.0",
+        "inputTokens": 1420,
+        "outputTokens": 106,
+        "horizon": 2,
+        "leaseUnit": "observed_tool_batch_or_boundary",
+        "recommendedHorizon": 1,
+        "horizonReason": "baseline_budget_spacing",
+        "confirmation": null,
+        "estimatedJevUsd": 0.00005964,
+        "elapsedMs": 735
+      },
+      {
+        "at": "2026-09-24T09:34:42.585Z",
+        "bridgeId": "jev:c6bca1b1-d2a7-4e37-8b43-c4bcbdcf7bb7:",
+        "pid": 91558,
+        "projectId": "724e41a3fb1ef1dcb1167862ae7f05ee6f89012a37156e6cadd0894ab52ee70c",
+        "measurementSource": "runtime",
+        "kind": "generation_usage",
+        "threadId": "01a0d2c4-4748-7050-8a83-1cd37e6e4b5d",
+        "turnId": "01a0d2c4-498e-7f12-9041-fd04d71896a6",
+        "configuredModel": "gpt-6-astra",
+        "effort": "high",
+        "generation": 1,
+        "observedElapsedMs": 8722,
+        "usage": {
+          "inputTokens": 16078,
+          "cachedInputTokens": 0,
+          "outputTokens": 95,
+          "reasoningOutputTokens": 0,
+          "totalTokens": 16173,
+          "cacheWriteInputTokens": 0
+        },
+        "accounting": "host_observed_request_usage_not_provider_timing_or_account_debit"
+      },
+      {
+        "at": "2026-09-24T09:34:49.335Z",
+        "bridgeId": "jev:c6bca1b1-d2a7-4e37-8b43-c4bcbdcf7bb7:",
+        "pid": 91558,
+        "projectId": "724e41a3fb1ef1dcb1167862ae7f05ee6f89012a37156e6cadd0894ab52ee70c",
+        "measurementSource": "runtime",
+        "kind": "decision",
+        "policyVersion": "effort-v17-bounded-final-lease",
+        "threadId": "01a0d2c4-4748-7050-8a83-1cd37e6e4b5d",
+        "turnId": "01a0d2c4-498e-7f12-9041-fd04d71896a6",
+        "event": "PostToolUse",
+        "targetModel": "gpt-6-astra",
+        "from": "high",
+        "baselineEffort": "high",
+        "ceilingApplied": false,
+        "recommended": "high",
+        "confidence": 0.71,
+        "probability": 0.76,
+        "published": "high",
+        "status": "unchanged",
+        "model": "jev-1.13.0",
+        "inputTokens": 1784,
+        "outputTokens": 106,
+        "horizon": 2,
+        "leaseUnit": "observed_tool_batch_or_boundary",
+        "recommendedHorizon": 1,
+        "horizonReason": "baseline_budget_spacing",
+        "confirmation": null,
+        "estimatedJevUsd": 0.00007492800000000001,
+        "elapsedMs": 729
+      },
+      {
+        "at": "2026-09-24T09:34:49.339Z",
+        "bridgeId": "jev:c6bca1b1-d2a7-4e37-8b43-c4bcbdcf7bb7:",
+        "pid": 91558,
+        "projectId": "724e41a3fb1ef1dcb1167862ae7f05ee6f89012a37156e6cadd0894ab52ee70c",
+        "measurementSource": "runtime",
+        "kind": "generation_usage",
+        "threadId": "01a0d2c4-4748-7050-8a83-1cd37e6e4b5d",
+        "turnId": "01a0d2c4-498e-7f12-9041-fd04d71896a6",
+        "configuredModel": "gpt-6-astra",
+        "effort": "high",
+        "generation": 2,
+        "observedElapsedMs": 15476,
+        "usage": {
+          "inputTokens": 17096,
+          "cachedInputTokens": 15872,
+          "outputTokens": 47,
+          "reasoningOutputTokens": 0,
+          "totalTokens": 17143,
+          "cacheWriteInputTokens": 0
+        },
+        "accounting": "host_observed_request_usage_not_provider_timing_or_account_debit"
+      },
+      {
+        "at": "2026-09-24T09:34:57.812Z",
+        "bridgeId": "jev:c6bca1b1-d2a7-4e37-8b43-c4bcbdcf7bb7:",
+        "pid": 91558,
+        "projectId": "724e41a3fb1ef1dcb1167862ae7f05ee6f89012a37156e6cadd0894ab52ee70c",
+        "measurementSource": "runtime",
+        "kind": "decision",
+        "policyVersion": "effort-v17-bounded-final-lease",
+        "threadId": "01a0d2c4-4748-7050-8a83-1cd37e6e4b5d",
+        "turnId": "01a0d2c4-498e-7f12-9041-fd04d71896a6",
+        "event": "PostToolUse",
+        "targetModel": "gpt-6-astra",
+        "from": "high",
+        "baselineEffort": "high",
+        "ceilingApplied": false,
+        "recommended": "medium",
+        "confidence": 0.23,
+        "probability": 0.36,
+        "published": "medium",
+        "status": "applied",
+        "model": "jev-1.13.0",
+        "inputTokens": 2438,
+        "outputTokens": 106,
+        "horizon": 1,
+        "leaseUnit": "observed_tool_batch_or_boundary",
+        "recommendedHorizon": 1,
+        "horizonReason": "jev_selected",
+        "confirmation": "native_settings_published",
+        "estimatedJevUsd": 0.000102396,
+        "elapsedMs": 356
+      },
+      {
+        "at": "2026-09-24T09:34:57.816Z",
+        "bridgeId": "jev:c6bca1b1-d2a7-4e37-8b43-c4bcbdcf7bb7:",
+        "pid": 91558,
+        "projectId": "724e41a3fb1ef1dcb1167862ae7f05ee6f89012a37156e6cadd0894ab52ee70c",
+        "measurementSource": "runtime",
+        "kind": "generation_usage",
+        "threadId": "01a0d2c4-4748-7050-8a83-1cd37e6e4b5d",
+        "turnId": "01a0d2c4-498e-7f12-9041-fd04d71896a6",
+        "configuredModel": "gpt-6-astra",
+        "effort": "medium",
+        "generation": 3,
+        "observedElapsedMs": 23953,
+        "usage": {
+          "inputTokens": 19350,
+          "cachedInputTokens": 16896,
+          "outputTokens": 211,
+          "reasoningOutputTokens": 21,
+          "totalTokens": 19561,
+          "cacheWriteInputTokens": 0
+        },
+        "accounting": "host_observed_request_usage_not_provider_timing_or_account_debit"
+      },
+      {
+        "at": "2026-09-24T09:35:05.484Z",
+        "bridgeId": "jev:c6bca1b1-d2a7-4e37-8b43-c4bcbdcf7bb7:",
+        "pid": 91558,
+        "projectId": "724e41a3fb1ef1dcb1167862ae7f05ee6f89012a37156e6cadd0894ab52ee70c",
+        "measurementSource": "runtime",
+        "kind": "effort_restore",
+        "policyVersion": "effort-v17-bounded-final-lease",
+        "threadId": "01a0d2c4-4748-7050-8a83-1cd37e6e4b5d",
+        "turnId": "01a0d2c4-498e-7f12-9041-fd04d71896a6",
+        "targetModel": "gpt-6-astra",
+        "from": "medium",
+        "published": "high",
+        "requested": "high",
+        "reason": "routing_budget",
+        "status": "applied",
+        "confirmation": "native_settings_published",
+        "elapsedMs": 0
+      },
+      {
+        "at": "2026-09-24T09:35:05.487Z",
+        "bridgeId": "jev:c6bca1b1-d2a7-4e37-8b43-c4bcbdcf7bb7:",
+        "pid": 91558,
+        "projectId": "724e41a3fb1ef1dcb1167862ae7f05ee6f89012a37156e6cadd0894ab52ee70c",
+        "measurementSource": "runtime",
+        "kind": "generation_usage",
+        "threadId": "01a0d2c4-4748-7050-8a83-1cd37e6e4b5d",
+        "turnId": "01a0d2c4-498e-7f12-9041-fd04d71896a6",
+        "configuredModel": "gpt-6-astra",
+        "effort": "high",
+        "generation": 4,
+        "observedElapsedMs": 31624,
+        "usage": {
+          "inputTokens": 20882,
+          "cachedInputTokens": 19200,
+          "outputTokens": 184,
+          "reasoningOutputTokens": 28,
+          "totalTokens": 21066,
+          "cacheWriteInputTokens": 0
+        },
+        "accounting": "host_observed_request_usage_not_provider_timing_or_account_debit"
+      },
+      {
+        "at": "2026-09-24T09:35:22.840Z",
+        "bridgeId": "jev:c6bca1b1-d2a7-4e37-8b43-c4bcbdcf7bb7:",
+        "pid": 91558,
+        "projectId": "724e41a3fb1ef1dcb1167862ae7f05ee6f89012a37156e6cadd0894ab52ee70c",
+        "measurementSource": "runtime",
+        "kind": "generation_usage",
+        "threadId": "01a0d2c4-4748-7050-8a83-1cd37e6e4b5d",
+        "turnId": "01a0d2c4-498e-7f12-9041-fd04d71896a6",
+        "configuredModel": "gpt-6-astra",
+        "effort": "high",
+        "generation": 5,
+        "observedElapsedMs": 48977,
+        "usage": {
+          "inputTokens": 21683,
+          "cachedInputTokens": 20736,
+          "outputTokens": 512,
+          "reasoningOutputTokens": 0,
+          "totalTokens": 22195,
+          "cacheWriteInputTokens": 0
+        },
+        "accounting": "host_observed_request_usage_not_provider_timing_or_account_debit"
+      },
+      {
+        "at": "2026-09-24T09:35:26.909Z",
+        "bridgeId": "jev:c6bca1b1-d2a7-4e37-8b43-c4bcbdcf7bb7:",
+        "pid": 91558,
+        "projectId": "724e41a3fb1ef1dcb1167862ae7f05ee6f89012a37156e6cadd0894ab52ee70c",
+        "measurementSource": "runtime",
+        "kind": "generation_usage",
+        "threadId": "01a0d2c4-4748-7050-8a83-1cd37e6e4b5d",
+        "turnId": "01a0d2c4-498e-7f12-9041-fd04d71896a6",
+        "configuredModel": "gpt-6-astra",
+        "effort": "high",
+        "generation": 6,
+        "observedElapsedMs": 53046,
+        "usage": {
+          "inputTokens": 22277,
+          "cachedInputTokens": 21632,
+          "outputTokens": 52,
+          "reasoningOutputTokens": 0,
+          "totalTokens": 22329,
+          "cacheWriteInputTokens": 0
+        },
+        "accounting": "host_observed_request_usage_not_provider_timing_or_account_debit"
+      }
+    ],
+    "preparations": []
+  },
+  {
+    "id": "gpt-6-astra-semantic-1-combined",
+    "quality": {
+      "pass": false,
+      "checks": [
+        {
+          "name": "source_unchanged",
+          "pass": true
+        },
+        {
+          "name": "independent_case_set",
+          "pass": false,
+          "found": [],
+          "expected": [
+            "CASE-008",
+            "CASE-029",
+            "CASE-050",
+            "CASE-077",
+            "CASE-106",
+            "CASE-131",
+            "CASE-154",
+            "CASE-179"
+          ]
+        }
+      ]
+    },
+    "errors": [
+      "You’ve hit your usage limit. Visit https://chatgpt.com/codex/settings/usage to purchase more credits or try again at Sep 30th, 2026 10:59 AM."
+    ],
+    "status": "failed",
+    "pluginVersion": "0.2.0+codex.20260924173500",
+    "usage": [
+      {
+        "total": {
+          "totalTokens": 16173,
+          "inputTokens": 16069,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 104,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 16173,
+          "inputTokens": 16069,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 104,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 33075,
+          "inputTokens": 32924,
+          "cachedInputTokens": 15872,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 151,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 16902,
+          "inputTokens": 16855,
+          "cachedInputTokens": 15872,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 47,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 51621,
+          "inputTokens": 51304,
+          "cachedInputTokens": 32640,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 317,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 18546,
+          "inputTokens": 18380,
+          "cachedInputTokens": 16768,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 166,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 71575,
+          "inputTokens": 71163,
+          "cachedInputTokens": 50816,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 412,
+          "reasoningOutputTokens": 30
+        },
+        "last": {
+          "totalTokens": 19954,
+          "inputTokens": 19859,
+          "cachedInputTokens": 18176,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 95,
+          "reasoningOutputTokens": 30
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 71575,
+          "inputTokens": 71163,
+          "cachedInputTokens": 50816,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 412,
+          "reasoningOutputTokens": 30
+        },
+        "last": {
+          "totalTokens": 19954,
+          "inputTokens": 19859,
+          "cachedInputTokens": 18176,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 95,
+          "reasoningOutputTokens": 30
+        },
+        "modelContextWindow": 258400
+      }
+    ],
+    "jevCalls": [
+      {
+        "at": "2026-09-24T09:35:45.123Z",
+        "kind": "jev_call",
+        "purpose": "effort",
+        "model": "jev-1.13.0",
+        "elapsedMs": 297,
+        "inputTokens": 2205,
+        "outputTokens": 106,
+        "questions": 2,
+        "status": "success"
+      },
+      {
+        "at": "2026-09-24T09:35:38.247Z",
+        "kind": "jev_call",
+        "purpose": "effort",
+        "model": "jev-1.13.0",
+        "elapsedMs": 395,
+        "inputTokens": 1582,
+        "outputTokens": 106,
+        "questions": 2,
+        "status": "success"
+      },
+      {
+        "at": "2026-09-24T09:35:34.866Z",
+        "kind": "jev_call",
+        "purpose": "effort",
+        "model": "jev-1.13.0",
+        "elapsedMs": 313,
+        "inputTokens": 1134,
+        "outputTokens": 106,
+        "questions": 2,
+        "status": "success"
+      },
+      {
+        "at": "2026-09-24T09:35:27.487Z",
+        "kind": "jev_call",
+        "purpose": "effort",
+        "model": "jev-1.13.0",
+        "elapsedMs": 265,
+        "inputTokens": 1001,
+        "outputTokens": 106,
+        "questions": 2,
+        "status": "success"
+      }
+    ],
+    "routing": [
+      {
+        "at": "2026-09-24T09:35:27.490Z",
+        "bridgeId": "jev:a5620eb3-d4e1-4afa-abf0-1acad5e569ad:",
+        "pid": 91558,
+        "projectId": "c43290b30fac80a62940d6729089fac9789d3014f75bfa94d5a8fb71f85419cf",
+        "measurementSource": "runtime",
+        "kind": "decision",
+        "policyVersion": "effort-v17-bounded-final-lease",
+        "threadId": "01a0d2c5-17b8-7162-9f95-a1781a4fce08",
+        "turnId": "01a0d2c5-1900-7172-b16c-6139cdf64ce5",
+        "event": "BeforeTurnStart",
+        "targetModel": "gpt-6-astra",
+        "from": "high",
+        "baselineEffort": "high",
+        "ceilingApplied": false,
+        "recommended": "high",
+        "confidence": 0.59,
+        "probability": 0.66,
+        "published": "high",
+        "status": "unchanged",
+        "model": "jev-1.13.0",
+        "inputTokens": 1001,
+        "outputTokens": 106,
+        "horizon": 1,
+        "leaseUnit": "observed_tool_batch_or_boundary",
+        "recommendedHorizon": 1,
+        "horizonReason": "jev_selected",
+        "confirmation": null,
+        "estimatedJevUsd": 0.000042042,
+        "elapsedMs": 265
+      },
+      {
+        "at": "2026-09-24T09:35:34.866Z",
+        "bridgeId": "jev:a5620eb3-d4e1-4afa-abf0-1acad5e569ad:",
+        "pid": 91558,
+        "projectId": "c43290b30fac80a62940d6729089fac9789d3014f75bfa94d5a8fb71f85419cf",
+        "measurementSource": "runtime",
+        "kind": "decision",
+        "policyVersion": "effort-v17-bounded-final-lease",
+        "threadId": "01a0d2c5-17b8-7162-9f95-a1781a4fce08",
+        "turnId": "01a0d2c5-1900-7172-b16c-6139cdf64ce5",
+        "event": "PostToolUse",
+        "targetModel": "gpt-6-astra",
+        "from": "high",
+        "baselineEffort": "high",
+        "ceilingApplied": false,
+        "recommended": "high",
+        "confidence": 0.64,
+        "probability": 0.71,
+        "published": "high",
+        "status": "unchanged",
+        "model": "jev-1.13.0",
+        "inputTokens": 1134,
+        "outputTokens": 106,
+        "horizon": 2,
+        "leaseUnit": "observed_tool_batch_or_boundary",
+        "recommendedHorizon": 1,
+        "horizonReason": "baseline_budget_spacing",
+        "confirmation": null,
+        "estimatedJevUsd": 0.000047628,
+        "elapsedMs": 364
+      },
+      {
+        "at": "2026-09-24T09:35:34.870Z",
+        "bridgeId": "jev:a5620eb3-d4e1-4afa-abf0-1acad5e569ad:",
+        "pid": 91558,
+        "projectId": "c43290b30fac80a62940d6729089fac9789d3014f75bfa94d5a8fb71f85419cf",
+        "measurementSource": "runtime",
+        "kind": "generation_usage",
+        "threadId": "01a0d2c5-17b8-7162-9f95-a1781a4fce08",
+        "turnId": "01a0d2c5-1900-7172-b16c-6139cdf64ce5",
+        "configuredModel": "gpt-6-astra",
+        "effort": "high",
+        "generation": 1,
+        "observedElapsedMs": 7648,
+        "usage": {
+          "inputTokens": 16069,
+          "cachedInputTokens": 0,
+          "outputTokens": 104,
+          "reasoningOutputTokens": 0,
+          "totalTokens": 16173,
+          "cacheWriteInputTokens": 0
+        },
+        "accounting": "host_observed_request_usage_not_provider_timing_or_account_debit"
+      },
+      {
+        "at": "2026-09-24T09:35:38.247Z",
+        "bridgeId": "jev:a5620eb3-d4e1-4afa-abf0-1acad5e569ad:",
+        "pid": 91558,
+        "projectId": "c43290b30fac80a62940d6729089fac9789d3014f75bfa94d5a8fb71f85419cf",
+        "measurementSource": "runtime",
+        "kind": "decision",
+        "policyVersion": "effort-v17-bounded-final-lease",
+        "threadId": "01a0d2c5-17b8-7162-9f95-a1781a4fce08",
+        "turnId": "01a0d2c5-1900-7172-b16c-6139cdf64ce5",
+        "event": "PostToolUse",
+        "targetModel": "gpt-6-astra",
+        "from": "high",
+        "baselineEffort": "high",
+        "ceilingApplied": false,
+        "recommended": "high",
+        "confidence": 0.7,
+        "probability": 0.75,
+        "published": "high",
+        "status": "unchanged",
+        "model": "jev-1.13.0",
+        "inputTokens": 1582,
+        "outputTokens": 106,
+        "horizon": 2,
+        "leaseUnit": "observed_tool_batch_or_boundary",
+        "recommendedHorizon": 1,
+        "horizonReason": "baseline_budget_spacing",
+        "confirmation": null,
+        "estimatedJevUsd": 0.000066444,
+        "elapsedMs": 446
+      },
+      {
+        "at": "2026-09-24T09:35:38.251Z",
+        "bridgeId": "jev:a5620eb3-d4e1-4afa-abf0-1acad5e569ad:",
+        "pid": 91558,
+        "projectId": "c43290b30fac80a62940d6729089fac9789d3014f75bfa94d5a8fb71f85419cf",
+        "measurementSource": "runtime",
+        "kind": "generation_usage",
+        "threadId": "01a0d2c5-17b8-7162-9f95-a1781a4fce08",
+        "turnId": "01a0d2c5-1900-7172-b16c-6139cdf64ce5",
+        "configuredModel": "gpt-6-astra",
+        "effort": "high",
+        "generation": 2,
+        "observedElapsedMs": 11029,
+        "usage": {
+          "inputTokens": 16855,
+          "cachedInputTokens": 15872,
+          "outputTokens": 47,
+          "reasoningOutputTokens": 0,
+          "totalTokens": 16902,
+          "cacheWriteInputTokens": 0
+        },
+        "accounting": "host_observed_request_usage_not_provider_timing_or_account_debit"
+      },
+      {
+        "at": "2026-09-24T09:35:45.123Z",
+        "bridgeId": "jev:a5620eb3-d4e1-4afa-abf0-1acad5e569ad:",
+        "pid": 91558,
+        "projectId": "c43290b30fac80a62940d6729089fac9789d3014f75bfa94d5a8fb71f85419cf",
+        "measurementSource": "runtime",
+        "kind": "decision",
+        "policyVersion": "effort-v17-bounded-final-lease",
+        "threadId": "01a0d2c5-17b8-7162-9f95-a1781a4fce08",
+        "turnId": "01a0d2c5-1900-7172-b16c-6139cdf64ce5",
+        "event": "PostToolUse",
+        "targetModel": "gpt-6-astra",
+        "from": "high",
+        "baselineEffort": "high",
+        "ceilingApplied": false,
+        "recommended": "high",
+        "confidence": 0.43,
+        "probability": 0.52,
+        "published": "high",
+        "status": "unchanged",
+        "model": "jev-1.13.0",
+        "inputTokens": 2205,
+        "outputTokens": 106,
+        "horizon": 2,
+        "leaseUnit": "observed_tool_batch_or_boundary",
+        "recommendedHorizon": 1,
+        "horizonReason": "baseline_budget_spacing",
+        "confirmation": null,
+        "estimatedJevUsd": 0.00009261,
+        "elapsedMs": 349
+      },
+      {
+        "at": "2026-09-24T09:35:45.126Z",
+        "bridgeId": "jev:a5620eb3-d4e1-4afa-abf0-1acad5e569ad:",
+        "pid": 91558,
+        "projectId": "c43290b30fac80a62940d6729089fac9789d3014f75bfa94d5a8fb71f85419cf",
+        "measurementSource": "runtime",
+        "kind": "generation_usage",
+        "threadId": "01a0d2c5-17b8-7162-9f95-a1781a4fce08",
+        "turnId": "01a0d2c5-1900-7172-b16c-6139cdf64ce5",
+        "configuredModel": "gpt-6-astra",
+        "effort": "high",
+        "generation": 3,
+        "observedElapsedMs": 17904,
+        "usage": {
+          "inputTokens": 18380,
+          "cachedInputTokens": 16768,
+          "outputTokens": 166,
+          "reasoningOutputTokens": 0,
+          "totalTokens": 18546,
+          "cacheWriteInputTokens": 0
+        },
+        "accounting": "host_observed_request_usage_not_provider_timing_or_account_debit"
+      },
+      {
+        "at": "2026-09-24T09:35:49.953Z",
+        "bridgeId": "jev:a5620eb3-d4e1-4afa-abf0-1acad5e569ad:",
+        "pid": 91558,
+        "projectId": "c43290b30fac80a62940d6729089fac9789d3014f75bfa94d5a8fb71f85419cf",
+        "measurementSource": "runtime",
+        "kind": "generation_usage",
+        "threadId": "01a0d2c5-17b8-7162-9f95-a1781a4fce08",
+        "turnId": "01a0d2c5-1900-7172-b16c-6139cdf64ce5",
+        "configuredModel": "gpt-6-astra",
+        "effort": "high",
+        "generation": 4,
+        "observedElapsedMs": 22731,
+        "usage": {
+          "inputTokens": 19859,
+          "cachedInputTokens": 18176,
+          "outputTokens": 95,
+          "reasoningOutputTokens": 30,
+          "totalTokens": 19954,
+          "cacheWriteInputTokens": 0
+        },
+        "accounting": "host_observed_request_usage_not_provider_timing_or_account_debit"
+      }
+    ],
+    "preparations": []
+  }
+]

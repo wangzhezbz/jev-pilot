@@ -13,3 +13,9 @@ test('code, structured sources, unique short text and marker collisions stay ver
  const collision=make();collision[0].text+='\n[=S0]';const r=projectEvidence(collision);assert.equal(r.kind,'original');assert.deepEqual(expandEvidenceProjection(r),collision);
  assert.equal(projectEvidence([{id:'a',text:'short',source:'a.md'}]).kind,'original');
 });
+test('inline prose dictionary preserves arbitrary whitespace, occurrences and contradictory records',()=>{
+ const phrase='The external processor has not confirmed settlement and an authorization must not be treated as a completed payment.';
+ const items=Array.from({length:60},(_,i)=>({id:String(i),source:'requests.md',startLine:i+1,endLine:i+1,text:`Record ${i}. ${phrase}\t  ${i===17?'Correction: settlement was later confirmed.':'No later update.'}\r`,sourceHash:'original'}));
+ const p=projectEvidence(items,{fragments:true});assert.equal(p.kind,'shared_fragments');assert.deepEqual(expandEvidenceProjection(p),items);assert(p.context.includes('Correction: settlement was later confirmed.'));
+ const collision=items.map((x,i)=>({...x,text:x.text+(i===0?'[=S1]':'')}));assert.equal(projectEvidence(collision,{fragments:true}).kind,'original');
+});

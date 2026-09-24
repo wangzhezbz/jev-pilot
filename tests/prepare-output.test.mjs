@@ -10,7 +10,7 @@ import {evidenceArguments,evidenceTool} from '../src/evidence-tool.mjs';
 const body='NEEDLE target\n'+('noise '+('x'.repeat(64))+'\n').repeat(350);
 function fixture(t,{fail=false,keepAll=false,key='fixture'}={}){
   const home=mkdtempSync(join(tmpdir(),'jev-prepare-')),store=new Store({home});let calls=0;
-  const send=async p=>{calls++;if(fail)throw Error('offline');return{model:'fixture',answers:Object.fromEntries(Object.keys(p.questions).map(id=>{const keep=keepAll||p.state.items[Number(id.slice(1))].text.includes('NEEDLE');return[id,{type:'choice',choice:keep?'keep':'exclude',probabilities:{keep:keep?1:0,review:0,exclude:keep?0:1}}]}))};};
+  const send=async p=>{calls++;if(fail)throw Error('offline');return{model:'fixture',answers:Object.fromEntries(Object.keys(p.questions).map(id=>{const keep=keepAll||(p.state.items?.[Number(id.slice(1))]??JSON.parse(p.questions[id].instructions.split('\n').at(-1))).text.includes('NEEDLE');return[id,{type:'choice',choice:keep?'keep':'exclude',probabilities:{keep:keep?1:0,review:0,exclude:keep?0:1}}]}))};};
   const pilot=new Pilot({store,key,send});t.after(()=>pilot.close());
   const call=(operation,input)=>pilot.call({workspace:home,operation,input});
   return{home,store,pilot,send,call,calls:()=>calls,prepare:input=>call('prepare_output',{goal:'Find NEEDLE evidence',...input})};
@@ -67,17 +67,17 @@ test('nested native command hook adds no second judgment; direct hooks remain fu
 
 test('record boundaries isolate pending evidence while preserving preamble and exact recall',async t=>{
  const f=fixture(t),head='# Support archive\nShared context: one independent report per section\n';
- const records=Array.from({length:90},(_,i)=>`## Record ${i}\n${i===0?'pending NEEDLE':i===1?'NEEDLE':'unrelated resolved notice'} ${'detail '.repeat(30)}\n`);
+ const records=Array.from({length:90},(_,i)=>`## Record ${i}\n${i===0?'pending NEEDLE':i===1?'NEEDLE':'unrelated resolved notice'} ${'detail '.repeat(30)} source-reference-${i}\n`);
  const source=head+records.join('\n');const r=await f.prepare({value:source,source:'archive.md'});
  assert.equal(r.selection.status,'prepared');assert(r.value.includes(head.trim()));
  assert(r.value.includes('pending NEEDLE'));assert(r.value.includes('## Record 1\n'));
- assert(!r.value.includes('## Record 2\n'));assert(f.calls()>2&&f.calls()<=6);
+ assert(!r.value.includes('## Record 2\n'));assert(f.calls()>0&&f.calls()<=6);
  assert.equal((await f.call('recall_output',{artifactId:r.selection.artifactId})).value,source);
 });
-test('three-batch logs no longer fall back solely because preparation allowed only two calls',async t=>{
+test('large logs retain coverage under the bounded request budget',async t=>{
  const f=fixture(t),source='NEEDLE original\n'+Array.from({length:540},(_,i)=>`${i}: notice ${'x'.repeat(115)}`).join('\n');
  const r=await f.prepare({value:source,source:'service.log'});
- assert.equal(r.selection.status,'prepared');assert(f.calls()>2&&f.calls()<=6);assert(r.value.includes('NEEDLE original'));
+ assert.equal(r.selection.status,'prepared');assert(f.calls()>0&&f.calls()<=6);assert(r.value.includes('NEEDLE original'));
  assert.equal((await f.call('recall_output',{artifactId:r.selection.artifactId})).value,source);
 });
 test('an explicit lower request budget is respected without partial paid filtering',async t=>{

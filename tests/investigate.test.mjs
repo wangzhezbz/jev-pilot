@@ -55,7 +55,7 @@ test('large ambiguous candidate set is filtered once, with exact recovery and re
   const raw=await f.call('recall_output',{artifactId:r.artifactId});assert.equal(raw.items.length,12);assert(raw.items.every(x=>x.sourceHash));
   await f.run({budget:4000});assert.equal(f.calls(),1);
   assert.deepEqual(f.profiles(),['isolated']);
-  await f.call('select',{goal:'Keep necessary evidence',items:[{id:'a',text:'NECESSARY'}]});assert.deepEqual(f.profiles(),['isolated','shared']);
+  await f.call('select',{goal:'Keep necessary evidence',items:[{id:'a',text:'NECESSARY'}]});assert.deepEqual(f.profiles(),['isolated','isolated']);
 });
 test('local control and fit-in-budget cases make zero semantic requests',async t=>{
   const f=fixture(t);many(f);const all=await f.run({budget:100000});assert.equal(all.items.length,12);assert.equal(all.selection.reason,'fits_context_budget');

@@ -1,0 +1,26 @@
+{
+  "at": "2026-09-24T09:43:33.222Z",
+  "version": "0.2.0+codex.20260924174500",
+  "testedVersion": "0.2.0+codex.20260924173500",
+  "matchingProductFiles": 45,
+  "productIdenticalToTestedCandidate": true,
+  "pluginInstalled": true,
+  "adapterInstalled": true,
+  "compatible": true,
+  "configuredForNextLaunch": true,
+  "installedFingerprint": "e5f92fe6f8ef9abb0f1b03ac35352a476a9be02c1394a85e5425dc2599e8de95",
+  "loadedRevisionMatches": false,
+  "currentTaskChanged": false,
+  "restartRequired": true,
+  "browserNetwork": {
+    "status": "automatic_repair_disabled"
+  },
+  "active": [
+    {
+      "pid": 54963,
+      "backendPid": 54967,
+      "runtimeFingerprint": "c0b711d9cf98110af182ac091ff705e0ed95ee7d6c6d3bbaba12b457f245d300",
+      "policyVersion": "effort-v17-bounded-final-lease"
+    }
+  ]
+}

@@ -167,7 +167,7 @@ try{
     input=installed.stdin;output=installed.stdout;report.realJev=true;
   } else {
     if(filtering||resumeFixture)autoStore=new Store({home:join(work,'pilot')});
-    const automation=(filtering||resumeFixture)?{store:autoStore,key:'fixture',send:async p=>({model:'fixture',usage:{input_tokens:1,output_tokens:1},answers:Object.fromEntries(Object.entries(p.questions).map(([id,q])=>{const item=p.state.items[Number(id.slice(1))];const choice=item.text.includes('NEEDLE')?'keep':'exclude';return[id,{type:'choice',choice,probabilities:{keep:choice==='keep'?1:0,review:0,exclude:choice==='exclude'?1:0}}]}))})}:false;
+    const automation=(filtering||resumeFixture)?{store:autoStore,key:'fixture',send:async p=>({model:'fixture',usage:{input_tokens:1,output_tokens:1},answers:Object.fromEntries(Object.entries(p.questions).map(([id,q])=>{const item=p.state.items?.[Number(id.slice(1))]??JSON.parse(q.instructions.split("\n").at(-1));const choice=item.text.includes('NEEDLE')?'keep':'exclude';return[id,{type:'choice',choice,probabilities:{keep:choice==='keep'?1:0,review:0,exclude:choice==='exclude'?1:0}}]}))})}:false;
     bridge=await runBridge({realBin,args,nativeVersion:adapterCacheDefault?execFileSync(realBin,['--version'],{encoding:'utf8'}).trim():null,trust,env,input,output,judge,automation,logPath:join(work,'audit.jsonl')});
   }
   c=client(input,output);

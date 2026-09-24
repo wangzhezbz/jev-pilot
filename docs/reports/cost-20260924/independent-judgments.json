@@ -1,0 +1,1379 @@
+{
+  "protocol": {
+    "at": "2026-09-24T09:21:50.921Z",
+    "order": [
+      "shared",
+      "isolated",
+      "isolated",
+      "shared"
+    ],
+    "maxPaidRequests": 10,
+    "sourceHash": "e52dd6ee8a6b1507cdce48a57d635a6e64cae0cddd094c963004451ef82f3bb0",
+    "oracle": [
+      "keep",
+      "exclude",
+      "review",
+      "keep",
+      "exclude",
+      "exclude",
+      "exclude",
+      "keep",
+      "review",
+      "exclude",
+      "exclude",
+      "keep"
+    ],
+    "retries": 0,
+    "gptCalls": 0,
+    "scope": "Synthetic per-record semantic decisions. ABBA plus initial/reordered/one-item-changed cache validation; component evidence only, not full-task speed."
+  },
+  "rows": [
+    {
+      "profile": "shared",
+      "cacheMs": 0,
+      "elapsedMs": 629.15175,
+      "questionsPaid": 12,
+      "calls": [
+        {
+          "at": "2026-09-24T09:21:51.553Z",
+          "kind": "jev_call",
+          "purpose": "evidence",
+          "model": "jev-1.13.0",
+          "elapsedMs": 627,
+          "inputTokens": 6552,
+          "outputTokens": 255,
+          "questions": 7,
+          "status": "success"
+        },
+        {
+          "at": "2026-09-24T09:21:51.528Z",
+          "kind": "jev_call",
+          "purpose": "evidence",
+          "model": "jev-1.13.0",
+          "elapsedMs": 601,
+          "inputTokens": 4812,
+          "outputTokens": 183,
+          "questions": 5,
+          "status": "success"
+        }
+      ],
+      "cacheHits": [],
+      "correct": false,
+      "answers": [
+        {
+          "id": "r0",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.98,
+          "probabilities": {
+            "keep": 0.99,
+            "review": 0,
+            "exclude": 0.01
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r1",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r2",
+          "type": "choice",
+          "choice": "review",
+          "confidence": 0.97,
+          "probabilities": {
+            "keep": 0,
+            "review": 0.98,
+            "exclude": 0.02
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r3",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.98,
+          "probabilities": {
+            "keep": 0.99,
+            "review": 0,
+            "exclude": 0.01
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r4",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r5",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r6",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r7",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.93,
+          "probabilities": {
+            "exclude": 0.04,
+            "review": 0.01,
+            "keep": 0.95
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r8",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 0.53,
+          "probabilities": {
+            "exclude": 0.69,
+            "keep": 0,
+            "review": 0.31
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r9",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 0.99,
+          "probabilities": {
+            "exclude": 1,
+            "review": 0,
+            "keep": 0
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r10",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "exclude": 1,
+            "review": 0,
+            "keep": 0
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r11",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.98,
+          "probabilities": {
+            "exclude": 0.01,
+            "review": 0,
+            "keep": 0.99
+          },
+          "source": "jev"
+        }
+      ],
+      "timings": [
+        {
+          "at": "2026-09-24T09:21:51.553Z",
+          "kind": "transport_timing",
+          "purpose": "evidence",
+          "transport": "node_keepalive",
+          "reusedSocket": false,
+          "socketAssignedMs": 254.716,
+          "requestWrittenMs": 254.786,
+          "firstByteMs": 625,
+          "httpStatus": 200,
+          "totalMs": 625.214,
+          "status": "success"
+        },
+        {
+          "at": "2026-09-24T09:21:51.526Z",
+          "kind": "transport_timing",
+          "purpose": "evidence",
+          "transport": "node_keepalive",
+          "reusedSocket": false,
+          "socketAssignedMs": 249.064,
+          "requestWrittenMs": 249.337,
+          "firstByteMs": 594.348,
+          "httpStatus": 200,
+          "totalMs": 594.626,
+          "status": "success"
+        }
+      ],
+      "knownUsd": 0.0004772880000000001,
+      "unknownUsage": 0
+    },
+    {
+      "profile": "isolated",
+      "cacheMs": 0,
+      "elapsedMs": 374.47191599999985,
+      "questionsPaid": 12,
+      "calls": [
+        {
+          "at": "2026-09-24T09:21:51.930Z",
+          "kind": "jev_call",
+          "purpose": "evidence",
+          "model": "jev-1.13.0",
+          "elapsedMs": 372,
+          "inputTokens": 11166,
+          "outputTokens": 437,
+          "questions": 12,
+          "status": "success"
+        }
+      ],
+      "cacheHits": [],
+      "correct": true,
+      "answers": [
+        {
+          "id": "r0",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.95,
+          "probabilities": {
+            "keep": 0.97,
+            "review": 0.01,
+            "exclude": 0.02
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r1",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r2",
+          "type": "choice",
+          "choice": "review",
+          "confidence": 0.95,
+          "probabilities": {
+            "keep": 0,
+            "review": 0.97,
+            "exclude": 0.03
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r3",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.96,
+          "probabilities": {
+            "keep": 0.97,
+            "review": 0.01,
+            "exclude": 0.02
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r4",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r5",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r6",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r7",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.88,
+          "probabilities": {
+            "keep": 0.93,
+            "review": 0.02,
+            "exclude": 0.05
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r8",
+          "type": "choice",
+          "choice": "review",
+          "confidence": 0.51,
+          "probabilities": {
+            "keep": 0.01,
+            "review": 0.68,
+            "exclude": 0.31
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r9",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 0.99,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r10",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r11",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.98,
+          "probabilities": {
+            "keep": 0.99,
+            "review": 0,
+            "exclude": 0.01
+          },
+          "source": "jev"
+        }
+      ],
+      "timings": [
+        {
+          "at": "2026-09-24T09:21:51.929Z",
+          "kind": "transport_timing",
+          "purpose": "evidence",
+          "transport": "node_keepalive",
+          "reusedSocket": true,
+          "socketAssignedMs": 0.24,
+          "requestWrittenMs": 0.448,
+          "firstByteMs": 370.865,
+          "httpStatus": 200,
+          "totalMs": 371.072,
+          "status": "success"
+        }
+      ],
+      "knownUsd": 0.00046897200000000006,
+      "unknownUsage": 0
+    },
+    {
+      "profile": "isolated",
+      "cacheMs": 0,
+      "elapsedMs": 338.6285419999999,
+      "questionsPaid": 12,
+      "calls": [
+        {
+          "at": "2026-09-24T09:21:52.271Z",
+          "kind": "jev_call",
+          "purpose": "evidence",
+          "model": "jev-1.13.0",
+          "elapsedMs": 336,
+          "inputTokens": 11166,
+          "outputTokens": 437,
+          "questions": 12,
+          "status": "success"
+        }
+      ],
+      "cacheHits": [],
+      "correct": true,
+      "answers": [
+        {
+          "id": "r0",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.94,
+          "probabilities": {
+            "keep": 0.96,
+            "exclude": 0.03,
+            "review": 0.01
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r1",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "exclude": 1,
+            "keep": 0,
+            "review": 0
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r2",
+          "type": "choice",
+          "choice": "review",
+          "confidence": 0.96,
+          "probabilities": {
+            "exclude": 0.03,
+            "keep": 0,
+            "review": 0.97
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r3",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.96,
+          "probabilities": {
+            "keep": 0.97,
+            "exclude": 0.02,
+            "review": 0.01
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r4",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "exclude": 1,
+            "keep": 0,
+            "review": 0
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r5",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "exclude": 1,
+            "keep": 0,
+            "review": 0
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r6",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "keep": 0,
+            "exclude": 1,
+            "review": 0
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r7",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.89,
+          "probabilities": {
+            "exclude": 0.06,
+            "keep": 0.92,
+            "review": 0.02
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r8",
+          "type": "choice",
+          "choice": "review",
+          "confidence": 0.4,
+          "probabilities": {
+            "exclude": 0.39,
+            "keep": 0.01,
+            "review": 0.6
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r9",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 0.99,
+          "probabilities": {
+            "exclude": 1,
+            "keep": 0,
+            "review": 0
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r10",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "exclude": 1,
+            "keep": 0,
+            "review": 0
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r11",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.97,
+          "probabilities": {
+            "keep": 0.98,
+            "exclude": 0.02,
+            "review": 0
+          },
+          "source": "jev"
+        }
+      ],
+      "timings": [
+        {
+          "at": "2026-09-24T09:21:52.270Z",
+          "kind": "transport_timing",
+          "purpose": "evidence",
+          "transport": "node_keepalive",
+          "reusedSocket": true,
+          "socketAssignedMs": 0.138,
+          "requestWrittenMs": 0.238,
+          "firstByteMs": 335.227,
+          "httpStatus": 200,
+          "totalMs": 335.356,
+          "status": "success"
+        }
+      ],
+      "knownUsd": 0.00046897200000000006,
+      "unknownUsage": 0
+    },
+    {
+      "profile": "shared",
+      "cacheMs": 0,
+      "elapsedMs": 313.10083299999997,
+      "questionsPaid": 12,
+      "calls": [
+        {
+          "at": "2026-09-24T09:21:52.586Z",
+          "kind": "jev_call",
+          "purpose": "evidence",
+          "model": "jev-1.13.0",
+          "elapsedMs": 311,
+          "inputTokens": 4812,
+          "outputTokens": 183,
+          "questions": 5,
+          "status": "success"
+        },
+        {
+          "at": "2026-09-24T09:21:52.585Z",
+          "kind": "jev_call",
+          "purpose": "evidence",
+          "model": "jev-1.13.0",
+          "elapsedMs": 311,
+          "inputTokens": 6552,
+          "outputTokens": 255,
+          "questions": 7,
+          "status": "success"
+        }
+      ],
+      "cacheHits": [],
+      "correct": false,
+      "answers": [
+        {
+          "id": "r0",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.99,
+          "probabilities": {
+            "exclude": 0.01,
+            "review": 0,
+            "keep": 0.99
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r1",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "exclude": 1,
+            "review": 0,
+            "keep": 0
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r2",
+          "type": "choice",
+          "choice": "review",
+          "confidence": 0.97,
+          "probabilities": {
+            "exclude": 0.02,
+            "review": 0.98,
+            "keep": 0
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r3",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.99,
+          "probabilities": {
+            "exclude": 0.01,
+            "review": 0,
+            "keep": 0.99
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r4",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "exclude": 1,
+            "review": 0,
+            "keep": 0
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r5",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "exclude": 1,
+            "review": 0,
+            "keep": 0
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r6",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "exclude": 1,
+            "review": 0,
+            "keep": 0
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r7",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.87,
+          "probabilities": {
+            "exclude": 0.06,
+            "review": 0.02,
+            "keep": 0.92
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r8",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 0.4,
+          "probabilities": {
+            "exclude": 0.59,
+            "review": 0.4,
+            "keep": 0.01
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r9",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 0.99,
+          "probabilities": {
+            "exclude": 1,
+            "review": 0,
+            "keep": 0
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r10",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "exclude": 1,
+            "review": 0,
+            "keep": 0
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r11",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.98,
+          "probabilities": {
+            "exclude": 0.01,
+            "review": 0,
+            "keep": 0.99
+          },
+          "source": "jev"
+        }
+      ],
+      "timings": [
+        {
+          "at": "2026-09-24T09:21:52.586Z",
+          "kind": "transport_timing",
+          "purpose": "evidence",
+          "transport": "node_keepalive",
+          "reusedSocket": true,
+          "socketAssignedMs": 0.144,
+          "requestWrittenMs": 0.194,
+          "firstByteMs": 310.645,
+          "httpStatus": 200,
+          "totalMs": 310.745,
+          "status": "success"
+        },
+        {
+          "at": "2026-09-24T09:21:52.584Z",
+          "kind": "transport_timing",
+          "purpose": "evidence",
+          "transport": "node_keepalive",
+          "reusedSocket": true,
+          "socketAssignedMs": 0.262,
+          "requestWrittenMs": 0.388,
+          "firstByteMs": 309.701,
+          "httpStatus": 200,
+          "totalMs": 309.801,
+          "status": "success"
+        }
+      ],
+      "knownUsd": 0.0004772880000000001,
+      "unknownUsage": 0
+    },
+    {
+      "profile": "isolated",
+      "cacheMs": 60000,
+      "elapsedMs": 365.66625,
+      "questionsPaid": 12,
+      "calls": [
+        {
+          "at": "2026-09-24T09:21:52.953Z",
+          "kind": "jev_call",
+          "purpose": "evidence",
+          "model": "jev-1.13.0",
+          "elapsedMs": 363,
+          "inputTokens": 11166,
+          "outputTokens": 437,
+          "questions": 12,
+          "status": "success"
+        }
+      ],
+      "cacheHits": [],
+      "correct": true,
+      "answers": [
+        {
+          "id": "r0",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.94,
+          "probabilities": {
+            "review": 0.01,
+            "keep": 0.96,
+            "exclude": 0.03
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r1",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r2",
+          "type": "choice",
+          "choice": "review",
+          "confidence": 0.97,
+          "probabilities": {
+            "review": 0.98,
+            "keep": 0,
+            "exclude": 0.02
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r3",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.97,
+          "probabilities": {
+            "keep": 0.97,
+            "review": 0.01,
+            "exclude": 0.02
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r4",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r5",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r6",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r7",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.87,
+          "probabilities": {
+            "review": 0.02,
+            "keep": 0.92,
+            "exclude": 0.06
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r8",
+          "type": "choice",
+          "choice": "review",
+          "confidence": 0.4,
+          "probabilities": {
+            "keep": 0.01,
+            "review": 0.6,
+            "exclude": 0.39
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r9",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 0.99,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r10",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "review": 0,
+            "keep": 0,
+            "exclude": 1
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r11",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.98,
+          "probabilities": {
+            "keep": 0.99,
+            "review": 0,
+            "exclude": 0.01
+          },
+          "source": "jev"
+        }
+      ],
+      "timings": [
+        {
+          "at": "2026-09-24T09:21:52.953Z",
+          "kind": "transport_timing",
+          "purpose": "evidence",
+          "transport": "node_keepalive",
+          "reusedSocket": true,
+          "socketAssignedMs": 0.153,
+          "requestWrittenMs": 0.26,
+          "firstByteMs": 362.07,
+          "httpStatus": 200,
+          "totalMs": 362.187,
+          "status": "success"
+        }
+      ],
+      "knownUsd": 0.00046897200000000006,
+      "unknownUsage": 0
+    },
+    {
+      "profile": "isolated",
+      "cacheMs": 60000,
+      "elapsedMs": 0.5177499999999782,
+      "questionsPaid": 0,
+      "calls": [],
+      "cacheHits": [
+        {
+          "at": "2026-09-24T09:21:52.955Z",
+          "kind": "item_cache_hit",
+          "purpose": "evidence",
+          "items": 12
+        }
+      ],
+      "correct": true,
+      "answers": [
+        {
+          "id": "r11",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.98,
+          "probabilities": {
+            "keep": 0.99,
+            "review": 0,
+            "exclude": 0.01
+          },
+          "source": "jev",
+          "cached": true
+        },
+        {
+          "id": "r10",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "review": 0,
+            "keep": 0,
+            "exclude": 1
+          },
+          "source": "jev",
+          "cached": true
+        },
+        {
+          "id": "r9",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 0.99,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev",
+          "cached": true
+        },
+        {
+          "id": "r8",
+          "type": "choice",
+          "choice": "review",
+          "confidence": 0.4,
+          "probabilities": {
+            "keep": 0.01,
+            "review": 0.6,
+            "exclude": 0.39
+          },
+          "source": "jev",
+          "cached": true
+        },
+        {
+          "id": "r7",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.87,
+          "probabilities": {
+            "review": 0.02,
+            "keep": 0.92,
+            "exclude": 0.06
+          },
+          "source": "jev",
+          "cached": true
+        },
+        {
+          "id": "r6",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev",
+          "cached": true
+        },
+        {
+          "id": "r5",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev",
+          "cached": true
+        },
+        {
+          "id": "r4",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev",
+          "cached": true
+        },
+        {
+          "id": "r3",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.97,
+          "probabilities": {
+            "keep": 0.97,
+            "review": 0.01,
+            "exclude": 0.02
+          },
+          "source": "jev",
+          "cached": true
+        },
+        {
+          "id": "r2",
+          "type": "choice",
+          "choice": "review",
+          "confidence": 0.97,
+          "probabilities": {
+            "review": 0.98,
+            "keep": 0,
+            "exclude": 0.02
+          },
+          "source": "jev",
+          "cached": true
+        },
+        {
+          "id": "r1",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev",
+          "cached": true
+        },
+        {
+          "id": "r0",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.94,
+          "probabilities": {
+            "review": 0.01,
+            "keep": 0.96,
+            "exclude": 0.03
+          },
+          "source": "jev",
+          "cached": true
+        }
+      ],
+      "timings": [],
+      "knownUsd": 0,
+      "unknownUsage": 0
+    },
+    {
+      "profile": "isolated",
+      "cacheMs": 60000,
+      "elapsedMs": 288.5685840000001,
+      "questionsPaid": 1,
+      "calls": [
+        {
+          "at": "2026-09-24T09:21:53.243Z",
+          "kind": "jev_call",
+          "purpose": "evidence",
+          "model": "jev-1.13.0",
+          "elapsedMs": 287,
+          "inputTokens": 1214,
+          "outputTokens": 39,
+          "questions": 1,
+          "status": "success"
+        }
+      ],
+      "cacheHits": [
+        {
+          "at": "2026-09-24T09:21:52.955Z",
+          "kind": "item_cache_hit",
+          "purpose": "evidence",
+          "items": 11
+        }
+      ],
+      "correct": true,
+      "answers": [
+        {
+          "id": "r0",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.94,
+          "probabilities": {
+            "review": 0.01,
+            "keep": 0.96,
+            "exclude": 0.03
+          },
+          "source": "jev",
+          "cached": true
+        },
+        {
+          "id": "r1",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev",
+          "cached": true
+        },
+        {
+          "id": "r2",
+          "type": "choice",
+          "choice": "review",
+          "confidence": 0.97,
+          "probabilities": {
+            "review": 0.98,
+            "keep": 0,
+            "exclude": 0.02
+          },
+          "source": "jev",
+          "cached": true
+        },
+        {
+          "id": "r3",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.97,
+          "probabilities": {
+            "keep": 0.99,
+            "review": 0,
+            "exclude": 0.01
+          },
+          "source": "jev"
+        },
+        {
+          "id": "r4",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev",
+          "cached": true
+        },
+        {
+          "id": "r5",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev",
+          "cached": true
+        },
+        {
+          "id": "r6",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev",
+          "cached": true
+        },
+        {
+          "id": "r7",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.87,
+          "probabilities": {
+            "review": 0.02,
+            "keep": 0.92,
+            "exclude": 0.06
+          },
+          "source": "jev",
+          "cached": true
+        },
+        {
+          "id": "r8",
+          "type": "choice",
+          "choice": "review",
+          "confidence": 0.4,
+          "probabilities": {
+            "keep": 0.01,
+            "review": 0.6,
+            "exclude": 0.39
+          },
+          "source": "jev",
+          "cached": true
+        },
+        {
+          "id": "r9",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 0.99,
+          "probabilities": {
+            "keep": 0,
+            "review": 0,
+            "exclude": 1
+          },
+          "source": "jev",
+          "cached": true
+        },
+        {
+          "id": "r10",
+          "type": "choice",
+          "choice": "exclude",
+          "confidence": 1,
+          "probabilities": {
+            "review": 0,
+            "keep": 0,
+            "exclude": 1
+          },
+          "source": "jev",
+          "cached": true
+        },
+        {
+          "id": "r11",
+          "type": "choice",
+          "choice": "keep",
+          "confidence": 0.98,
+          "probabilities": {
+            "keep": 0.99,
+            "review": 0,
+            "exclude": 0.01
+          },
+          "source": "jev",
+          "cached": true
+        }
+      ],
+      "timings": [
+        {
+          "at": "2026-09-24T09:21:53.243Z",
+          "kind": "transport_timing",
+          "purpose": "evidence",
+          "transport": "node_keepalive",
+          "reusedSocket": true,
+          "socketAssignedMs": 0.124,
+          "requestWrittenMs": 0.188,
+          "firstByteMs": 286.769,
+          "httpStatus": 200,
+          "totalMs": 286.871,
+          "status": "success"
+        }
+      ],
+      "knownUsd": 0.00005098800000000001,
+      "unknownUsage": 0
+    }
+  ]
+}

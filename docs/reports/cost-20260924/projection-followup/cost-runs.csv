@@ -1,0 +1,4 @@
+id,task,repeat,arm,passed,status,wallMs,totalMs,totalTokens,inputTokens,cachedInputTokens,cacheWriteInputTokens,outputTokens,reasoningOutputTokens,generations,gptStandardUsd,jevKnownUsd,totalStandardKnownUsd,totalFastKnownUsd,unknownCalls,complete,jevCalls,jevInputTokens,changes
+"gpt-6-astra-semantic-0-bare","semantic","0","bare","true","completed","56621","56761","132477","131332","88832","0","1145","37","6","0.571082","0","0.571082","1.142164","0","true","0","0","0"
+"gpt-6-astra-semantic-0-combined","semantic","0","combined","true","completed","53049","53272","118467","117366","94336","0","1101","49","6","0.379686","0.00027900600000000005","0.37996500600000005","0.759651006","0","true","4","6643","2"
+"gpt-6-astra-semantic-1-combined","semantic","1","combined","false","failed","23039","23259","71575","71163","50816","0","412","30","4","0.274886","0.00024872399999999997","0.27513472400000005","0.5500207240000001","0","false","4","5922","0"
