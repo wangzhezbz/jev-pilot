@@ -1,0 +1,32 @@
+{
+  "epochMs": 1790261064589,
+  "mono": 8465615.923333,
+  "driver": "computer-use",
+  "arm": "native_codex",
+  "caseId": "checkout-rollback-from-list",
+  "actions": [
+    {
+      "name": "Open INC-502",
+      "at": 1790261069096
+    },
+    {
+      "name": "View deployment timeline",
+      "at": 1790261074626
+    },
+    {
+      "name": "Inspect release r42",
+      "at": 1790261080817
+    },
+    {
+      "name": "Preview rollback readiness",
+      "at": 1790261090737
+    }
+  ],
+  "endEpochMs": 1790261091126,
+  "elapsedMs": 26536.63341699913,
+  "passed": true,
+  "snapshot": "\t\t\t\t5 HTML内容 Description: JevPilot incident fixture, URL: 127.0.0.1:18743/browser-incident-fixture.html\n\t\t\t\t\t6 标题 JevPilot synthetic incident review, Value: 1\n\t\t\t\t\t\t7 文本 JevPilot synthetic incident review\n\t\t\t\t\t8 文本 Local synthetic records. Read-only investigation; do not apply any changes.\n\t\t\t\t\t9 container\n\t\t\t\t\t\t10 标题 INC-502 event r42, Value: 2\n\t\t\t\t\t\t\t11 文本 INC-502 event r42\n\t\t\t\t\t\t12 文本 Read the preview before any production change.\n\t\t\t\t\t\t13 按钮 Preview rollback readiness\n\t\t\t\t\t\t14 按钮 Preview session recovery prerequisites\n\t\t\t\t\t\t15 按钮 Apply rollback now\n\t\t\t\t\t\t16 按钮 Reset all user sessions\n\t\t\t\t\t17 文本 READ-ONLY RESULT | INC-502 | r42 | rollback: blocked by pending migration check | no changes applied",
+  "jevRequests": 0,
+  "decisionToolCalls": 4,
+  "scope": "Current-session four-step Codex execution segment from unresolved list; excludes planning, setup and later independent verification. Nonblinded known fixture, one run."
+}

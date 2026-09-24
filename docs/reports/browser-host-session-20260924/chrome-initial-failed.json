@@ -1,0 +1,149 @@
+{
+  "status": "codex_review_required",
+  "reason": "HOST_INVARIANT_FAILED",
+  "evidence": "Observed a different incident or event",
+  "stageIndex": 1,
+  "history": [
+    {
+      "action": "Open incident queue",
+      "stage": "find-record",
+      "progress": true,
+      "probability": 0.99
+    },
+    {
+      "action": "Show unresolved incidents",
+      "stage": "find-record",
+      "progress": true,
+      "probability": 1
+    },
+    {
+      "action": "Open INC-401",
+      "stage": "find-record",
+      "progress": true,
+      "probability": 1
+    },
+    {
+      "action": "View deployment timeline",
+      "stage": "inspect-event",
+      "progress": true,
+      "probability": 0.93
+    },
+    {
+      "action": "Inspect release r42",
+      "stage": "inspect-event",
+      "progress": true,
+      "probability": 0.72
+    }
+  ],
+  "snapshot": "Browser tab: 51514136, Title: \"JevPilot incident fixture\", URL: \"http://127.0.0.1:18743/browser-incident-fixture.html\".\n0 AXWebArea JevPilot incident fixture, URL: 127.0.0.1:18743/browser-incident-fixture.html\n\t1 heading JevPilot synthetic incident review, Value: 1\n\t\t2 text JevPilot synthetic incident review\n\t3 text Local synthetic records. Read-only investigation; do not apply any changes.\n\t4 container view\n\t\t5 heading INC-401 event r42, Value: 2\n\t\t\t6 text INC-401 event r42\n\t\t7 text Read the preview before any production change.\n\t\t8 button Preview rollback readiness\n\t\t9 button Preview session recovery prerequisites\n\t\t10 button Apply rollback now\n\t\t11 button Reset all user sessions\n\nThe focused UI element is 0 AXWebArea JevPilot incident fixture, URL: 127.0.0.1:18743/browser-incident-fixture.html",
+  "stateMayHaveChanged": false,
+  "metrics": {
+    "runs": 1,
+    "actions": 5,
+    "jevRequests": 5,
+    "inputTokens": 4660,
+    "outputTokens": 220,
+    "unknownUsage": 0,
+    "apiMs": 1711.3637089999393,
+    "elapsedMs": 2665.42583299987,
+    "handoffs": 1
+  },
+  "sessionMetrics": {
+    "runs": 1,
+    "actions": 5,
+    "jevRequests": 5,
+    "inputTokens": 4660,
+    "outputTokens": 220,
+    "unknownUsage": 0,
+    "apiMs": 1711.3637089999393,
+    "elapsedMs": 2665.42583299987,
+    "handoffs": 1
+  },
+  "phases": [
+    {
+      "phase": "observe",
+      "ms": 29.79633400030434
+    },
+    {
+      "phase": "decision",
+      "ms": 694.0911249993369
+    },
+    {
+      "phase": "revalidate",
+      "ms": 19.79445799998939
+    },
+    {
+      "phase": "execute",
+      "ms": 17.165791999548674
+    },
+    {
+      "phase": "observe",
+      "ms": 149.08116699941456
+    },
+    {
+      "phase": "decision",
+      "ms": 249.98133299965411
+    },
+    {
+      "phase": "revalidate",
+      "ms": 13.291000000201166
+    },
+    {
+      "phase": "execute",
+      "ms": 12.161249999888241
+    },
+    {
+      "phase": "observe",
+      "ms": 152.6606250004843
+    },
+    {
+      "phase": "decision",
+      "ms": 239.18708300031722
+    },
+    {
+      "phase": "revalidate",
+      "ms": 14.816250000149012
+    },
+    {
+      "phase": "execute",
+      "ms": 13.596333999186754
+    },
+    {
+      "phase": "observe",
+      "ms": 157.63508299924433
+    },
+    {
+      "phase": "decision",
+      "ms": 282.8277080003172
+    },
+    {
+      "phase": "revalidate",
+      "ms": 15.863667000085115
+    },
+    {
+      "phase": "execute",
+      "ms": 13.308082999661565
+    },
+    {
+      "phase": "observe",
+      "ms": 154.03041699994355
+    },
+    {
+      "phase": "decision",
+      "ms": 252.08854199945927
+    },
+    {
+      "phase": "revalidate",
+      "ms": 16.70291700027883
+    },
+    {
+      "phase": "execute",
+      "ms": 12.344833000563085
+    },
+    {
+      "phase": "observe",
+      "ms": 152.50445799995214
+    }
+  ],
+  "instruction": "Continue with native Codex; observe freshly before any further action, preserve the task and completed work."
+}

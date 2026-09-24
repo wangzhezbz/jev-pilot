@@ -1,6 +1,6 @@
 ---
 name: jev-pilot
-description: Configure or diagnose JevPilot itself, or use advanced browser coordination, authorized memory, checkpoints and handoffs. Ordinary evidence selection uses the self-contained jev_evidence tool; background effort routing does not require reading this skill.
+description: Use JevPilot for multi-step low-risk Chrome or Computer Use navigation inside ordinary Codex tasks, or configure and diagnose JevPilot, authorized memory, checkpoints and handoffs. Evidence selection uses jev_evidence; background effort routing needs no skill read.
 ---
 
 # JevPilot
@@ -8,6 +8,8 @@ description: Configure or diagnose JevPilot itself, or use advanced browser coor
 Ordinary evidence selection needs only the `jev_evidence` tool description and schema. Read this reference for configuration or advanced operations, not as a prerequisite for every task.
 
 Keep the normal conversation and chosen Codex model. Invoke bundled tools yourself when they replace substantial work; no special prompt, task file or separate runner. Do not judge the same evidence again through an older jev-assistant integration.
+
+For a multi-step Chrome or Computer Use task with low-risk navigation, read [browser.md](references/browser.md) and the installed official host skill. Use the bundled continuous host session inside that host's JS tool when suitable; do not ask the user to run a script or install another Jev skill. Codex supplies business subgoals and checks the final result. Jev selects observed controls between those boundaries. Keep native tools for an obvious single action, unsupported interactions or ambiguous branches. This is agent-initiated delegation, not interception of every browser tool call.
 
 Use native tools for exact searches, arithmetic, known errors, small sets and already-read evidence. Search discriminating task terms first; generic words matching most records are not a useful filter. Inspect size or a small sample before a large semantic review. Do not call Jev for reassurance or extra checklists.
 

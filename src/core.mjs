@@ -1,7 +1,7 @@
 import { DatabaseSync } from 'node:sqlite';
 import { mkdirSync, chmodSync, readFileSync, realpathSync, statSync, existsSync } from 'node:fs';
 import { join, resolve, relative, isAbsolute, basename } from 'node:path';
-import { homedir } from 'node:os';
+import { homedir, platform } from 'node:os';
 import { createHash, randomUUID } from 'node:crypto';
 import { parseEnv } from 'node:util';
 import { spawn, execFileSync } from 'node:child_process';
@@ -57,13 +57,13 @@ export function readSource(root, path, maxBytes = 1000000) {
 
 export function privateDirectory(home) {
     const fresh = !existsSync(home); mkdirSync(home, { recursive: true, mode: 0o700 });
-    if (process.platform === 'win32' && fresh) {
+    if (platform() === 'win32' && fresh) {
       const owner = execFileSync('whoami.exe', [], { encoding: 'utf8', windowsHide: true }).trim();
       execFileSync('icacls.exe', [home, '/inheritance:r', '/grant:r', owner + ':(OI)(CI)F', '*S-1-5-18:(OI)(CI)F'], { stdio: 'ignore', windowsHide: true });
-    } else if (process.platform !== 'win32') chmodSync(home, 0o700);
+    } else if (platform() !== 'win32') chmodSync(home, 0o700);
 }
 export class Store {
-  constructor({ home = process.env.JEV_PILOT_HOME || join(homedir(), '.codex', 'jev-pilot') } = {}) {
+  constructor({ home = (typeof process !== 'undefined' && process.env.JEV_PILOT_HOME) || join(homedir(), '.codex', 'jev-pilot') } = {}) {
     this.home = home; privateDirectory(home);
     this.db = new DatabaseSync(join(home, 'state.sqlite'));
     try { chmodSync(join(home, 'state.sqlite'), 0o600); } catch {}
@@ -96,7 +96,7 @@ export function loadConfig(store, project) {
     taskReservedCalls:2,taskReservedWaitMs:4000,taskReservedBytes:100000,...store.get('global', 'config', 'settings'), ...store.get(project, 'config', 'settings') };
 }
 export function loadKey(home) {
-  if (process.env.TYPESAFE_API_KEY) return process.env.TYPESAFE_API_KEY;
+  if (typeof process !== 'undefined' && process.env.TYPESAFE_API_KEY) return process.env.TYPESAFE_API_KEY;
   for (const p of [join(home, '.env.local'), join(homedir(), '.codex/skills/jev-assistant/.env.local')]) {
     try { const k = parseEnv(readFileSync(p, 'utf8')).TYPESAFE_API_KEY; if (k) return k; } catch {}
   } return null;

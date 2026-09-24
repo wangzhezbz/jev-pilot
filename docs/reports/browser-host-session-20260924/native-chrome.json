@@ -1,0 +1,40 @@
+{
+  "epochMs": 1790260952826,
+  "mono": 8353853.213125,
+  "driver": "chrome",
+  "arm": "native_codex",
+  "caseId": "checkout-rollback",
+  "actions": [
+    {
+      "name": "Open incident queue",
+      "at": 1790260957300
+    },
+    {
+      "name": "Show unresolved incidents",
+      "at": 1790260962811
+    },
+    {
+      "name": "Open INC-502",
+      "at": 1790260970124
+    },
+    {
+      "name": "View deployment timeline",
+      "at": 1790260978082
+    },
+    {
+      "name": "Inspect release r42",
+      "at": 1790260984072
+    },
+    {
+      "name": "Preview rollback readiness",
+      "at": 1790260993033
+    }
+  ],
+  "endEpochMs": 1790260993185,
+  "elapsedMs": 40358.29004099965,
+  "passed": true,
+  "snapshot": "Browser tab: 51514136, Title: \"JevPilot incident fixture\", URL: \"http://127.0.0.1:18743/browser-incident-fixture.html\".\n1 AXWebArea JevPilot incident fixture, URL: 127.0.0.1:18743/browser-incident-fixture.html\n\t2 heading JevPilot synthetic incident review, Value: 1\n\t\t3 text JevPilot synthetic incident review\n\t4 text Local synthetic records. Read-only investigation; do not apply any changes.\n\t5 container view\n\t\t6 heading INC-502 event r42, Value: 2\n\t\t\t7 text INC-502 event r42\n\t\t8 text Read the preview before any production change.\n\t\t9 button Preview rollback readiness\n\t\t10 button Preview session recovery prerequisites\n\t\t11 button Apply rollback now\n\t\t12 button Reset all user sessions\n\t13 text READ-ONLY RESULT | INC-502 | r42 | rollback: blocked by pending migration check | no changes applied\n\nThe focused UI element is 9 button Preview rollback readiness",
+  "jevRequests": 0,
+  "decisionToolCalls": 6,
+  "scope": "Current-session stepwise Codex execution segment; excludes prior planning, setup and later independent verification. Nonblinded known fixture, one run."
+}

@@ -1,0 +1,307 @@
+{
+  "scope": "One nonblinded pair per host in an existing long desktop conversation. Native usage is from real token_usage_record entries for the marked decision tool cells, including recovery. Setup, planning and final verification are excluded; no stable speed or account-billing claim. Input includes cached context. CUA automatic arm exhausted shared test wait budget and needed native recovery; not a balanced fresh-budget comparison.",
+  "groups": [
+    {
+      "arm": "native",
+      "driver": "chrome",
+      "segmentMs": 40358.29004099965,
+      "decisionCalls": 6,
+      "nativeUsage": {
+        "input_tokens": 622467,
+        "cached_input_tokens": 619264,
+        "output_tokens": 643,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 623110,
+        "uncached_input_tokens": 3203
+      },
+      "jev": null,
+      "passed": true,
+      "cells": [
+        {
+          "marker": "native-chrome-1",
+          "timestamp": "2026-09-24T14:42:37.271Z",
+          "usageTimestamp": "2026-09-24T14:42:37.638Z",
+          "usage": {
+            "input_tokens": 102861,
+            "cached_input_tokens": 102016,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 83,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 102944
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "native-chrome-2",
+          "timestamp": "2026-09-24T14:42:42.780Z",
+          "usageTimestamp": "2026-09-24T14:42:42.898Z",
+          "usage": {
+            "input_tokens": 103184,
+            "cached_input_tokens": 102784,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 83,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 103267
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "native-chrome-3",
+          "timestamp": "2026-09-24T14:42:50.094Z",
+          "usageTimestamp": "2026-09-24T14:42:50.274Z",
+          "usage": {
+            "input_tokens": 103573,
+            "cached_input_tokens": 103040,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 85,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 103658
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "native-chrome-4",
+          "timestamp": "2026-09-24T14:42:58.053Z",
+          "usageTimestamp": "2026-09-24T14:42:58.235Z",
+          "usage": {
+            "input_tokens": 103925,
+            "cached_input_tokens": 103424,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 82,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 104007
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "native-chrome-5",
+          "timestamp": "2026-09-24T14:43:04.043Z",
+          "usageTimestamp": "2026-09-24T14:43:04.218Z",
+          "usage": {
+            "input_tokens": 104285,
+            "cached_input_tokens": 103808,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 83,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 104368
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "native-chrome-6",
+          "timestamp": "2026-09-24T14:43:13.002Z",
+          "usageTimestamp": "2026-09-24T14:43:13.281Z",
+          "usage": {
+            "input_tokens": 104639,
+            "cached_input_tokens": 104192,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 227,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 104866
+          },
+          "model": "gpt-6-astra"
+        }
+      ]
+    },
+    {
+      "arm": "auto",
+      "driver": "chrome",
+      "segmentMs": 11055.519249999896,
+      "decisionCalls": 1,
+      "nativeUsage": {
+        "input_tokens": 106073,
+        "cached_input_tokens": 105472,
+        "output_tokens": 191,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 106264,
+        "uncached_input_tokens": 601
+      },
+      "jev": {
+        "runs": 1,
+        "actions": 6,
+        "jevRequests": 6,
+        "inputTokens": 5191,
+        "outputTokens": 264,
+        "unknownUsage": 0,
+        "apiMs": 2081.518083995208,
+        "elapsedMs": 3205.390583999455,
+        "handoffs": 0
+      },
+      "passed": true,
+      "cells": [
+        {
+          "marker": "auto-chrome-1",
+          "timestamp": "2026-09-24T14:43:33.519Z",
+          "usageTimestamp": "2026-09-24T14:43:33.947Z",
+          "usage": {
+            "input_tokens": 106073,
+            "cached_input_tokens": 105472,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 191,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 106264
+          },
+          "model": "gpt-6-astra"
+        }
+      ]
+    },
+    {
+      "arm": "native",
+      "driver": "cua",
+      "segmentMs": 26536.63341699913,
+      "decisionCalls": 4,
+      "nativeUsage": {
+        "input_tokens": 448288,
+        "cached_input_tokens": 445952,
+        "output_tokens": 499,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 448787,
+        "uncached_input_tokens": 2336
+      },
+      "jev": null,
+      "passed": true,
+      "cells": [
+        {
+          "marker": "native-cua-1",
+          "timestamp": "2026-09-24T14:44:29.063Z",
+          "usageTimestamp": "2026-09-24T14:44:29.425Z",
+          "usage": {
+            "input_tokens": 111563,
+            "cached_input_tokens": 110592,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 87,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 111650
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "native-cua-2",
+          "timestamp": "2026-09-24T14:44:34.593Z",
+          "usageTimestamp": "2026-09-24T14:44:34.821Z",
+          "usage": {
+            "input_tokens": 111896,
+            "cached_input_tokens": 111488,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 85,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 111981
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "native-cua-3",
+          "timestamp": "2026-09-24T14:44:40.749Z",
+          "usageTimestamp": "2026-09-24T14:44:41.270Z",
+          "usage": {
+            "input_tokens": 112243,
+            "cached_input_tokens": 111744,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 87,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 112330
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "native-cua-4",
+          "timestamp": "2026-09-24T14:44:50.704Z",
+          "usageTimestamp": "2026-09-24T14:44:51.145Z",
+          "usage": {
+            "input_tokens": 112586,
+            "cached_input_tokens": 112128,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 240,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 112826
+          },
+          "model": "gpt-6-astra"
+        }
+      ]
+    },
+    {
+      "arm": "auto",
+      "driver": "cua",
+      "segmentMs": 33393.714082999155,
+      "decisionCalls": 3,
+      "nativeUsage": {
+        "input_tokens": 344215,
+        "cached_input_tokens": 342144,
+        "output_tokens": 665,
+        "reasoning_output_tokens": 78,
+        "total_tokens": 344880,
+        "uncached_input_tokens": 2071
+      },
+      "jev": {
+        "runs": 1,
+        "actions": 2,
+        "jevRequests": 3,
+        "inputTokens": 1636,
+        "outputTokens": 97,
+        "unknownUsage": 1,
+        "apiMs": 1437.537791999057,
+        "elapsedMs": 2596.658624999225,
+        "handoffs": 1
+      },
+      "passed": true,
+      "cells": [
+        {
+          "marker": "auto-cua-1",
+          "timestamp": "2026-09-24T14:45:11.245Z",
+          "usageTimestamp": "2026-09-24T14:45:11.700Z",
+          "usage": {
+            "input_tokens": 114089,
+            "cached_input_tokens": 113408,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 208,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 114297
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "auto-cua-recovery-1",
+          "timestamp": "2026-09-24T14:45:23.918Z",
+          "usageTimestamp": "2026-09-24T14:45:24.278Z",
+          "usage": {
+            "input_tokens": 114827,
+            "cached_input_tokens": 114048,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 216,
+            "reasoning_output_tokens": 78,
+            "total_tokens": 115043
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "auto-cua-recovery-2",
+          "timestamp": "2026-09-24T14:45:35.844Z",
+          "usageTimestamp": "2026-09-24T14:45:36.246Z",
+          "usage": {
+            "input_tokens": 115299,
+            "cached_input_tokens": 114688,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 241,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 115540
+          },
+          "model": "gpt-6-astra"
+        }
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "driver": "chrome",
+      "timeReductionPct": 72.6065716888186,
+      "gptTotalTokenReductionPct": 82.94618927637175,
+      "gptUncachedInputReductionPct": 81.23634093037776
+    },
+    {
+      "driver": "cua",
+      "timeReductionPct": -25.840054984546157,
+      "gptTotalTokenReductionPct": 23.152854249343225,
+      "gptUncachedInputReductionPct": 11.34417808219178
+    }
+  ]
+}

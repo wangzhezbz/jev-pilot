@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0+codex.20260924225249",
+  "release": "/Users/wangzhe/.agents/plugins/releases/jev-pilot-20260924225249-release",
+  "cache": "/Users/wangzhe/.codex/plugins/cache/personal/jev-pilot/0.2.0+codex.20260924225249",
+  "previousRelease": "/Users/wangzhe/.agents/plugins/releases/jev-pilot-20260924201153-release",
+  "installedVia": "native app-server plugin/install",
+  "sourceReleaseCacheMatch": {
+    "src/host-browser-session.mjs": true,
+    "src/host-browser-drivers.mjs": true,
+    "src/host-browser-transport.mjs": true,
+    "src/browser.mjs": true,
+    "src/core.mjs": true,
+    "src/request-guard.mjs": true,
+    "skills/jev-pilot/SKILL.md": true,
+    "skills/jev-pilot/references/browser.md": true
+  },
+  "hostHelperCurrentTaskImportVerified": true,
+  "desktopRuntimeUpdated": false,
+  "desktopInstalledFingerprint": "8bedc24904a4d5830b46ee5ca4611481c25436e6d1ad039b44fdbbe39ea329a7",
+  "desktopLoadedRevisionMatches": true,
+  "chromeRestarted": false,
+  "desktopRestartRequiredForHostHelper": false,
+  "runningMcpReloadClaim": false,
+  "scope": "New plugin version and skill registered; current task imported helper from installed cache. Existing desktop bridge and already-running MCP processes were not hot-patched."
+}

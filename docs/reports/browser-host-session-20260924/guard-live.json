@@ -1,0 +1,48 @@
+{
+  "status": "codex_review_required",
+  "reason": "TASK_URGENT_RESERVE",
+  "evidence": null,
+  "stageIndex": 0,
+  "lastDecision": {
+    "stage": "find-record",
+    "action": null,
+    "decision": null,
+    "reason": "TASK_URGENT_RESERVE"
+  },
+  "history": [],
+  "snapshot": "Browser tab: 51514136, Title: \"JevPilot incident fixture\", URL: \"http://127.0.0.1:18743/browser-incident-fixture.html\".\n1 AXWebArea JevPilot incident fixture, URL: 127.0.0.1:18743/browser-incident-fixture.html\n\t2 heading JevPilot synthetic incident review, Value: 1\n\t\t3 text JevPilot synthetic incident review\n\t4 text Local synthetic records. Read-only investigation; do not apply any changes.\n\t5 container view\n\t\t6 heading Service operations, Value: 2\n\t\t\t7 text Service operations\n\t\t8 button Open incident queue\n\t\t9 button Read knowledge base\n\t\t10 button Change service permissions\n\nThe focused UI element is 1 AXWebArea JevPilot incident fixture, URL: 127.0.0.1:18743/browser-incident-fixture.html",
+  "stateMayHaveChanged": false,
+  "metrics": {
+    "runs": 1,
+    "actions": 0,
+    "jevRequests": 0,
+    "inputTokens": 0,
+    "outputTokens": 0,
+    "unknownUsage": 0,
+    "apiMs": 0,
+    "elapsedMs": 71.82408299855888,
+    "handoffs": 1
+  },
+  "sessionMetrics": {
+    "runs": 1,
+    "actions": 0,
+    "jevRequests": 0,
+    "inputTokens": 0,
+    "outputTokens": 0,
+    "unknownUsage": 0,
+    "apiMs": 0,
+    "elapsedMs": 71.82408299855888,
+    "handoffs": 1
+  },
+  "phases": [
+    {
+      "phase": "observe",
+      "ms": 70.13979100063443
+    },
+    {
+      "phase": "decision",
+      "ms": 1.4398749992251396
+    }
+  ],
+  "instruction": "Continue with native Codex; observe freshly before any further action, preserve the task and completed work."
+}

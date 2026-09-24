@@ -31,7 +31,8 @@ export class RequestGuard {
       const remaining=cfg.taskMaxWaitMs-state.elapsedMs-pendingMs;
       if(priority!=='urgent' && ((reserveBytes>0&&state.bytes+bytes>cfg.taskMaxBytes-reserveBytes)||(reserveCalls>0&&state.calls>=cfg.taskMaxCalls-reserveCalls) || (reserveWait>0&&remaining-reserveWait<100)))denied('TASK_URGENT_RESERVE');
       const allowance = Math.min(timeoutMs, remaining-(priority==='urgent'?0:reserveWait));
-      if (allowance < 100) denied('TASK_WAIT_BUDGET');
+      const minimumAllowance = Math.max(100, Number.isFinite(cfg.minimumRequestAllowanceMs) ? cfg.minimumRequestAllowanceMs : 100);
+      if (allowance < minimumAllowance) denied('TASK_WAIT_BUDGET');
       const token = randomUUID(), expiresAt = now + allowance + 1000;
       state.calls++; state.bytes += bytes; state.scope = scope; state.windowEndsAt = (Math.floor(now / cfg.budgetWindowMs) + 1) * cfg.budgetWindowMs;
       state.reservedCalls=reserveCalls;state.reservedWaitMs=reserveWait;state.reservedBytes=reserveBytes;

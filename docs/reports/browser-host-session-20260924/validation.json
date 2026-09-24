@@ -1,0 +1,33 @@
+{
+  "actualJevTotals": {
+    "jevRequests": 36,
+    "inputTokens": 29597,
+    "outputTokens": 1540,
+    "unknownUsage": 1,
+    "actions": 33
+  },
+  "paidRunsIncluded": [
+    "chrome-initial-failed",
+    "chrome-identity-narrow",
+    "cua-checkout",
+    "chrome-checkout",
+    "cua-identity",
+    "cua-identity-resumed",
+    "auto-chrome",
+    "auto-cua"
+  ],
+  "regressionTests": 304,
+  "regressionPassed": 304,
+  "check": "passed",
+  "macArmBuild": "passed",
+  "realHosts": [
+    "official Chrome extension",
+    "official Computer Use using Safari"
+  ],
+  "untested": [
+    "Windows/Linux actual UI",
+    "held-out paired end-to-end task benchmark",
+    "actual account charges"
+  ],
+  "baseCommit": "260a3c65c36ca62ca0116a2f7ef9f17240603a1a"
+}

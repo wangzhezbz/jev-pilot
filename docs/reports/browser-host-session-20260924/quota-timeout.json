@@ -1,0 +1,232 @@
+{
+  "config": {
+    "taskMaxCalls": 40,
+    "taskMaxWaitMs": 20000,
+    "taskReservedWaitMs": 4000
+  },
+  "budget": {
+    "calls": 36,
+    "bytes": 68091,
+    "elapsedMs": 16000,
+    "reservations": {},
+    "scope": "task",
+    "windowEndsAt": 1790262000000,
+    "reservedCalls": 2,
+    "reservedWaitMs": 4000,
+    "reservedBytes": 100000
+  },
+  "events": [
+    {
+      "at": "2026-09-24T14:45:13.848Z",
+      "kind": "browser_host_run",
+      "driver": "computer-use",
+      "status": "codex_review_required",
+      "reason": "JEV_TIMEOUT",
+      "stageIndex": 1,
+      "runs": 1,
+      "actions": 2,
+      "jevRequests": 3,
+      "inputTokens": 1636,
+      "outputTokens": 97,
+      "unknownUsage": 1,
+      "apiMs": 1437.537791999057,
+      "elapsedMs": 2596.658624999225,
+      "handoffs": 1,
+      "nativeGptUsage": null
+    },
+    {
+      "at": "2026-09-24T14:45:13.848Z",
+      "kind": "jev_call",
+      "purpose": "browser",
+      "elapsedMs": 268,
+      "status": "failed",
+      "code": "JEV_TIMEOUT"
+    },
+    {
+      "at": "2026-09-24T14:45:13.847Z",
+      "kind": "transport_timing",
+      "purpose": "browser",
+      "transport": "host_fetch",
+      "status": "JEV_TIMEOUT",
+      "totalMs": 267.68116699904203
+    },
+    {
+      "at": "2026-09-24T14:45:13.024Z",
+      "kind": "jev_call",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 266,
+      "inputTokens": 764,
+      "outputTokens": 44,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T14:45:13.024Z",
+      "kind": "transport_timing",
+      "purpose": "browser",
+      "transport": "host_fetch",
+      "status": "success",
+      "httpStatus": 200,
+      "totalMs": 265.83258300088346
+    },
+    {
+      "at": "2026-09-24T14:45:12.234Z",
+      "kind": "jev_call",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 904,
+      "inputTokens": 872,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T14:45:12.234Z",
+      "kind": "transport_timing",
+      "purpose": "browser",
+      "transport": "host_fetch",
+      "status": "success",
+      "httpStatus": 200,
+      "totalMs": 903.1628750003874
+    },
+    {
+      "at": "2026-09-24T14:43:36.731Z",
+      "kind": "browser_host_run",
+      "driver": "chrome",
+      "status": "needs_verification",
+      "reason": null,
+      "stageIndex": 2,
+      "runs": 1,
+      "actions": 6,
+      "jevRequests": 6,
+      "inputTokens": 5191,
+      "outputTokens": 264,
+      "unknownUsage": 0,
+      "apiMs": 2081.518083995208,
+      "elapsedMs": 3205.390583999455,
+      "handoffs": 0,
+      "nativeGptUsage": null
+    },
+    {
+      "at": "2026-09-24T14:43:36.550Z",
+      "kind": "jev_call",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 252,
+      "inputTokens": 935,
+      "outputTokens": 44,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T14:43:36.550Z",
+      "kind": "transport_timing",
+      "purpose": "browser",
+      "transport": "host_fetch",
+      "status": "success",
+      "httpStatus": 200,
+      "totalMs": 251.3617920000106
+    },
+    {
+      "at": "2026-09-24T14:43:36.116Z",
+      "kind": "jev_call",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 293,
+      "inputTokens": 987,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T14:43:36.116Z",
+      "kind": "transport_timing",
+      "purpose": "browser",
+      "transport": "host_fetch",
+      "status": "success",
+      "httpStatus": 200,
+      "totalMs": 291.95262500084937
+    },
+    {
+      "at": "2026-09-24T14:43:35.638Z",
+      "kind": "jev_call",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 292,
+      "inputTokens": 875,
+      "outputTokens": 44,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T14:43:35.637Z",
+      "kind": "transport_timing",
+      "purpose": "browser",
+      "transport": "host_fetch",
+      "status": "success",
+      "httpStatus": 200,
+      "totalMs": 291.73629200086
+    },
+    {
+      "at": "2026-09-24T14:43:35.163Z",
+      "kind": "jev_call",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 263,
+      "inputTokens": 978,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T14:43:35.162Z",
+      "kind": "transport_timing",
+      "purpose": "browser",
+      "transport": "host_fetch",
+      "status": "success",
+      "httpStatus": 200,
+      "totalMs": 262.5414999984205
+    },
+    {
+      "at": "2026-09-24T14:43:34.717Z",
+      "kind": "jev_call",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 271,
+      "inputTokens": 721,
+      "outputTokens": 35,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T14:43:34.717Z",
+      "kind": "transport_timing",
+      "purpose": "browser",
+      "transport": "host_fetch",
+      "status": "success",
+      "httpStatus": 200,
+      "totalMs": 269.9968330003321
+    },
+    {
+      "at": "2026-09-24T14:43:34.265Z",
+      "kind": "jev_call",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 712,
+      "inputTokens": 695,
+      "outputTokens": 35,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T14:43:34.265Z",
+      "kind": "transport_timing",
+      "purpose": "browser",
+      "transport": "host_fetch",
+      "status": "success",
+      "httpStatus": 200,
+      "totalMs": 711.1291249990463
+    }
+  ]
+}
