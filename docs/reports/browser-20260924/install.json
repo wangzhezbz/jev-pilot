@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0+codex.20260924184000",
+  "currentTaskChanged": false,
+  "restartRequired": true,
+  "browserProxyRepair": false,
+  "files": {
+    "src/browser.mjs": {
+      "sha256": "870b089845941b8e35eecdea301fb133b40a8f4e692f727bc75ee3244af4930a",
+      "workspaceReleaseCacheInstalledMatch": true
+    },
+    "skills/jev-pilot/references/browser.md": {
+      "sha256": "ac3de2c099081c447fdd523e1c3ca95a1b6f2fd6dc5dade281c0633d2c2b7e66",
+      "workspaceReleaseCacheInstalledMatch": true
+    }
+  }
+}

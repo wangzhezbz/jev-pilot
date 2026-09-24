@@ -1,0 +1,13 @@
+session,arm,passed,elapsedMs,jevInput,jevOutput,knownJevUsd,unknownUsage,error
+run-0,direct,False,2432.6912089999823,0,0,0.0,0,FIXTURE_NOT_FOCUSED
+run-1,direct,True,2148.5317499999946,0,0,0.0,0,
+run-2,legacy,False,,0,0,0.0,0,Sky Computer Use native pipe closed before response
+run-3,legacy,True,3309.051832999976,1903,258,7.992600000000001e-05,0,
+run-4,choice,True,2773.8637500000186,1311,97,5.5062e-05,0,
+run-5,choice,True,3217.0676669999957,1311,97,5.5062e-05,0,
+run-6,legacy,True,2623.5397080000257,1903,258,7.992600000000001e-05,0,
+run-7,legacy,True,2680.100124999997,1903,258,7.992600000000001e-05,0,
+run-8,choice,True,3010.381041000015,1311,97,5.5062e-05,0,
+run-9,choice,True,2933.808000000019,1311,97,5.5062e-05,0,
+run-10,legacy,True,2956.6890840000124,1903,258,7.992600000000001e-05,0,
+run-11,direct,True,2000.1833329999936,0,0,0.0,0,

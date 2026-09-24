@@ -1,0 +1,69 @@
+{
+  "scope": "Official Computer Use component; not full GPT task A/B or subscription billing",
+  "arms": {
+    "direct": {
+      "n": 2,
+      "meanMs": 2003.4212294999986,
+      "minMs": 1989.7244589999973,
+      "maxMs": 2017.118,
+      "jevInput": 0,
+      "jevOutput": 0,
+      "knownJevUsd": 0.0,
+      "unknownUsage": 0,
+      "meanPhaseMs": {
+        "observe": 761.4398540000018,
+        "jev_decision": 0.0,
+        "revalidate": 0.0,
+        "consume": 0.0,
+        "execute": 1241.7423335000015
+      }
+    },
+    "legacy": {
+      "n": 4,
+      "meanMs": 3084.162135499999,
+      "minMs": 2792.857833,
+      "maxMs": 3558.7231249999995,
+      "jevInput": 7612,
+      "jevOutput": 1032,
+      "knownJevUsd": 0.00031970400000000003,
+      "unknownUsage": 0,
+      "meanPhaseMs": {
+        "observe": 1022.8918857500001,
+        "jev_decision": 672.8305417499987,
+        "revalidate": 142.35450025000114,
+        "consume": 4.149551750000228,
+        "execute": 1241.4915212500005
+      }
+    },
+    "choice": {
+      "n": 4,
+      "meanMs": 2916.847833249999,
+      "minMs": 2708.4877500000002,
+      "maxMs": 3252.05825,
+      "jevInput": 5456,
+      "jevOutput": 388,
+      "knownJevUsd": 0.00022915200000000002,
+      "unknownUsage": 0,
+      "meanPhaseMs": {
+        "observe": 953.5391974999991,
+        "jev_decision": 574.5747602500019,
+        "revalidate": 140.866406499998,
+        "consume": 4.913323000003857,
+        "execute": 1242.6868550000002
+      }
+    }
+  },
+  "failedRuns": [],
+  "changePercent": {
+    "meanMs": -5.424951571908043,
+    "jevInput": -28.32369942196532,
+    "jevOutput": -62.4031007751938,
+    "knownJevUsd": -28.32369942196532
+  },
+  "pairedDeltaMs": [
+    -601.5962919999993,
+    459.200417,
+    -301.6498749999955,
+    -225.21145900000556
+  ]
+}

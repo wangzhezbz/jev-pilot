@@ -1,0 +1,910 @@
+[
+  {
+    "session": "run-0",
+    "arm": "direct",
+    "driver": "computer-use",
+    "elapsedMs": 2432.6912089999823,
+    "passed": false,
+    "proof": null,
+    "error": "FIXTURE_NOT_FOCUSED",
+    "actions": [
+      "Show pending reviews",
+      "Preview INV-204"
+    ],
+    "decisions": [],
+    "stages": [
+      {
+        "phase": "setup_focus",
+        "elapsedMs": 129.99316700000782
+      },
+      {
+        "phase": "setup_reload",
+        "elapsedMs": 7.726332999998704
+      },
+      {
+        "phase": "setup_ready",
+        "elapsedMs": 951.299874999997
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 123.60404099998414
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 478.62837500000023
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 395.7875409999979
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 752.9105839999975
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 681.606832999998
+      }
+    ],
+    "setupExcluded": true,
+    "gptUsage": null
+  },
+  {
+    "session": "run-1",
+    "arm": "direct",
+    "driver": "computer-use",
+    "elapsedMs": 2148.5317499999946,
+    "passed": true,
+    "proof": "INV-204 | Cedar Labs | 1,240 EUR | pending review | no payment performed",
+    "error": null,
+    "actions": [
+      "Show pending reviews",
+      "Preview INV-204"
+    ],
+    "decisions": [],
+    "stages": [
+      {
+        "phase": "setup_focus",
+        "elapsedMs": 91.04095799999777
+      },
+      {
+        "phase": "setup_reload",
+        "elapsedMs": 4.739790999999968
+      },
+      {
+        "phase": "setup_ready",
+        "elapsedMs": 882.4340840000077
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 100.91808399997535
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 493.058875000017
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 409.83941600000253
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 755.7096249999886
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 388.88416600000346
+      }
+    ],
+    "setupExcluded": true,
+    "gptUsage": null
+  },
+  {
+    "session": "run-2",
+    "arm": "legacy",
+    "driver": "computer-use",
+    "passed": false,
+    "error": "Sky Computer Use native pipe closed before response",
+    "phase": "setup",
+    "elapsedMs": null,
+    "gptUsage": null
+  },
+  {
+    "session": "run-3",
+    "arm": "legacy",
+    "driver": "computer-use",
+    "elapsedMs": 3309.051832999976,
+    "passed": true,
+    "proof": "INV-204 | Cedar Labs | 1,240 EUR | pending review | no payment performed",
+    "error": null,
+    "actions": [
+      "Show pending reviews",
+      "Preview INV-204"
+    ],
+    "decisions": [
+      {
+        "status": "candidate_selected",
+        "action": "Show pending reviews"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Preview INV-204"
+      }
+    ],
+    "stages": [
+      {
+        "phase": "setup_focus",
+        "elapsedMs": 75.60054100002162
+      },
+      {
+        "phase": "setup_reload",
+        "elapsedMs": 28.43499999999767
+      },
+      {
+        "phase": "setup_ready",
+        "elapsedMs": 626.7106670000358
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 67.3339580000029
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 581.6048749999609
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 74.7980830000015
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 3.3757089999853633
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 473.47537499998
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 605.6765000000014
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 314.24950000003446
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 65.99920800002292
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 2.400207999977283
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 760.8825829999987
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 358.9384999999893
+      }
+    ],
+    "setupExcluded": true,
+    "gptUsage": null
+  },
+  {
+    "session": "run-4",
+    "arm": "choice",
+    "driver": "computer-use",
+    "elapsedMs": 2773.8637500000186,
+    "passed": true,
+    "proof": "INV-204 | Cedar Labs | 1,240 EUR | pending review | no payment performed",
+    "error": null,
+    "actions": [
+      "Show pending reviews",
+      "Preview INV-204"
+    ],
+    "decisions": [
+      {
+        "status": "candidate_selected",
+        "action": "Show pending reviews",
+        "decision": {
+          "type": "choice",
+          "choice": "action_0",
+          "confidence": 0.97,
+          "probabilities": {
+            "action_1": 0,
+            "review": 0.02,
+            "action_0": 0.98
+          }
+        }
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Preview INV-204",
+        "decision": {
+          "type": "choice",
+          "choice": "action_2",
+          "confidence": 0.98,
+          "probabilities": {
+            "action_2": 0.99,
+            "action_0": 0,
+            "action_1": 0,
+            "review": 0.01
+          }
+        }
+      }
+    ],
+    "stages": [
+      {
+        "phase": "setup_focus",
+        "elapsedMs": 77.56404200004181
+      },
+      {
+        "phase": "setup_reload",
+        "elapsedMs": 7.2285419999971054
+      },
+      {
+        "phase": "setup_ready",
+        "elapsedMs": 621.5130000000354
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 49.410833000030834
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 306.44062499998836
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 72.02291599998716
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 2.57545800000662
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 476.45879199996125
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 357.2003750000149
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 316.41354099998716
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 74.94624999997905
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.7085000000079162
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 758.043209000025
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 358.3469169999589
+      }
+    ],
+    "setupExcluded": true,
+    "gptUsage": null
+  },
+  {
+    "session": "run-5",
+    "arm": "choice",
+    "driver": "computer-use",
+    "elapsedMs": 3217.0676669999957,
+    "passed": true,
+    "proof": "INV-204 | Cedar Labs | 1,240 EUR | pending review | no payment performed",
+    "error": null,
+    "actions": [
+      "Show pending reviews",
+      "Preview INV-204"
+    ],
+    "decisions": [
+      {
+        "status": "candidate_selected",
+        "action": "Show pending reviews",
+        "decision": {
+          "type": "choice",
+          "choice": "action_0",
+          "confidence": 0.97,
+          "probabilities": {
+            "action_0": 0.98,
+            "action_1": 0,
+            "review": 0.02
+          }
+        }
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Preview INV-204",
+        "decision": {
+          "type": "choice",
+          "choice": "action_2",
+          "confidence": 0.99,
+          "probabilities": {
+            "action_0": 0,
+            "action_2": 0.99,
+            "review": 0.01,
+            "action_1": 0
+          }
+        }
+      }
+    ],
+    "stages": [
+      {
+        "phase": "setup_focus",
+        "elapsedMs": 58.81383399997139
+      },
+      {
+        "phase": "setup_reload",
+        "elapsedMs": 4.907000000006519
+      },
+      {
+        "phase": "setup_ready",
+        "elapsedMs": 650.2237500000047
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 58.37733400001889
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 284.76491700002225
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 72.78341700002784
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.822667000000365
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 469.0424999999814
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 628.4336250000051
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 265.44383399997605
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 67.47620799997821
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.7163329999893904
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 759.2957089999691
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 607.6797909999732
+      }
+    ],
+    "setupExcluded": true,
+    "gptUsage": null
+  },
+  {
+    "session": "run-6",
+    "arm": "legacy",
+    "driver": "computer-use",
+    "elapsedMs": 2623.5397080000257,
+    "passed": true,
+    "proof": "INV-204 | Cedar Labs | 1,240 EUR | pending review | no payment performed",
+    "error": null,
+    "actions": [
+      "Show pending reviews",
+      "Preview INV-204"
+    ],
+    "decisions": [
+      {
+        "status": "candidate_selected",
+        "action": "Show pending reviews"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Preview INV-204"
+      }
+    ],
+    "stages": [
+      {
+        "phase": "setup_focus",
+        "elapsedMs": 54.42608399997698
+      },
+      {
+        "phase": "setup_reload",
+        "elapsedMs": 4.5319580000359565
+      },
+      {
+        "phase": "setup_ready",
+        "elapsedMs": 630.2667500000098
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 49.49320800002897
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 247.51158300001407
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 67.23037499998463
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.68587500002468
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 479.5969590000459
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 355.601250000007
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 238.20804200001294
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 68.24850000004517
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 2.248834000027273
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 770.1286250000121
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 343.33412499999395
+      }
+    ],
+    "setupExcluded": true,
+    "gptUsage": null
+  },
+  {
+    "session": "run-7",
+    "arm": "legacy",
+    "driver": "computer-use",
+    "elapsedMs": 2680.100124999997,
+    "passed": true,
+    "proof": "INV-204 | Cedar Labs | 1,240 EUR | pending review | no payment performed",
+    "error": null,
+    "actions": [
+      "Show pending reviews",
+      "Preview INV-204"
+    ],
+    "decisions": [
+      {
+        "status": "candidate_selected",
+        "action": "Show pending reviews"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Preview INV-204"
+      }
+    ],
+    "stages": [
+      {
+        "phase": "setup_focus",
+        "elapsedMs": 73.44691700005205
+      },
+      {
+        "phase": "setup_reload",
+        "elapsedMs": 4.113000000012107
+      },
+      {
+        "phase": "setup_ready",
+        "elapsedMs": 652.6948330000159
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 56.040708000015
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 254.1542499999632
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 71.54162500001257
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.8214170000283048
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 478.1006670000497
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 359.88058399996953
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 267.33908300002804
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 69.14170799998101
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 3.606541000015568
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 762.5645830000285
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 355.65625
+      }
+    ],
+    "setupExcluded": true,
+    "gptUsage": null
+  },
+  {
+    "session": "run-8",
+    "arm": "choice",
+    "driver": "computer-use",
+    "elapsedMs": 3010.381041000015,
+    "passed": true,
+    "proof": "INV-204 | Cedar Labs | 1,240 EUR | pending review | no payment performed",
+    "error": null,
+    "actions": [
+      "Show pending reviews",
+      "Preview INV-204"
+    ],
+    "decisions": [
+      {
+        "status": "candidate_selected",
+        "action": "Show pending reviews",
+        "decision": {
+          "type": "choice",
+          "choice": "action_0",
+          "confidence": 0.97,
+          "probabilities": {
+            "review": 0.02,
+            "action_0": 0.98,
+            "action_1": 0
+          }
+        }
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Preview INV-204",
+        "decision": {
+          "type": "choice",
+          "choice": "action_2",
+          "confidence": 0.98,
+          "probabilities": {
+            "action_0": 0,
+            "action_1": 0,
+            "action_2": 0.99,
+            "review": 0.01
+          }
+        }
+      }
+    ],
+    "stages": [
+      {
+        "phase": "setup_focus",
+        "elapsedMs": 55.92275000002701
+      },
+      {
+        "phase": "setup_reload",
+        "elapsedMs": 4.516791000030935
+      },
+      {
+        "phase": "setup_ready",
+        "elapsedMs": 636.8227080000215
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 52.77891599998111
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 307.5511670000269
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 74.82012499996927
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 2.87704200000735
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 478.5693339999998
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 627.0248340000398
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 279.03758300002664
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 70.11020799999824
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 2.2862089999835007
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 756.4745419999817
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 358.6261250000098
+      }
+    ],
+    "setupExcluded": true,
+    "gptUsage": null
+  },
+  {
+    "session": "run-9",
+    "arm": "choice",
+    "driver": "computer-use",
+    "elapsedMs": 2933.808000000019,
+    "passed": true,
+    "proof": "INV-204 | Cedar Labs | 1,240 EUR | pending review | no payment performed",
+    "error": null,
+    "actions": [
+      "Show pending reviews",
+      "Preview INV-204"
+    ],
+    "decisions": [
+      {
+        "status": "candidate_selected",
+        "action": "Show pending reviews",
+        "decision": {
+          "type": "choice",
+          "choice": "action_0",
+          "confidence": 0.97,
+          "probabilities": {
+            "review": 0.02,
+            "action_1": 0,
+            "action_0": 0.98
+          }
+        }
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Preview INV-204",
+        "decision": {
+          "type": "choice",
+          "choice": "action_2",
+          "confidence": 0.99,
+          "probabilities": {
+            "review": 0.01,
+            "action_1": 0,
+            "action_2": 0.99,
+            "action_0": 0
+          }
+        }
+      }
+    ],
+    "stages": [
+      {
+        "phase": "setup_focus",
+        "elapsedMs": 54.57408300001407
+      },
+      {
+        "phase": "setup_reload",
+        "elapsedMs": 4.741333000012673
+      },
+      {
+        "phase": "setup_ready",
+        "elapsedMs": 630.6928330000374
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 53.75633399997605
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 291.11008300003596
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 69.45695900003193
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 3.0244580000289716
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 472.42808300000615
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 598.3427080000401
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 263.09666600002674
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 69.22462499997346
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.0357499999809079
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 754.0664999999572
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 358.00204200000735
+      }
+    ],
+    "setupExcluded": true,
+    "gptUsage": null
+  },
+  {
+    "session": "run-10",
+    "arm": "legacy",
+    "driver": "computer-use",
+    "elapsedMs": 2956.6890840000124,
+    "passed": true,
+    "proof": "INV-204 | Cedar Labs | 1,240 EUR | pending review | no payment performed",
+    "error": null,
+    "actions": [
+      "Show pending reviews",
+      "Preview INV-204"
+    ],
+    "decisions": [
+      {
+        "status": "candidate_selected",
+        "action": "Show pending reviews"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Preview INV-204"
+      }
+    ],
+    "stages": [
+      {
+        "phase": "setup_focus",
+        "elapsedMs": 51.45837499998743
+      },
+      {
+        "phase": "setup_reload",
+        "elapsedMs": 4.615292000002228
+      },
+      {
+        "phase": "setup_ready",
+        "elapsedMs": 639.2739169999841
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 54.864665999950375
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 290.1388330000336
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 72.48999999999069
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 2.26462500001071
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 478.45954199996777
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 608.309917000006
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 257.1595420000376
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 68.8004999999539
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.9994169999845326
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 761.8130419999943
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 360.1895829999703
+      }
+    ],
+    "setupExcluded": true,
+    "gptUsage": null
+  },
+  {
+    "session": "run-11",
+    "arm": "direct",
+    "driver": "computer-use",
+    "elapsedMs": 2000.1833329999936,
+    "passed": true,
+    "proof": "INV-204 | Cedar Labs | 1,240 EUR | pending review | no payment performed",
+    "error": null,
+    "actions": [
+      "Show pending reviews",
+      "Preview INV-204"
+    ],
+    "decisions": [],
+    "stages": [
+      {
+        "phase": "setup_focus",
+        "elapsedMs": 55.47541700000875
+      },
+      {
+        "phase": "setup_reload",
+        "elapsedMs": 4.8977080000331625
+      },
+      {
+        "phase": "setup_ready",
+        "elapsedMs": 645.1578340000124
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 52.756583000009414
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 480.33445800002664
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 359.17875000002095
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 757.2582079999847
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 350.4342920000199
+      }
+    ],
+    "setupExcluded": true,
+    "gptUsage": null
+  }
+]

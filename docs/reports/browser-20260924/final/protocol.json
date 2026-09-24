@@ -1,0 +1,21 @@
+{
+  "at": "2026-09-24T10:32:27.459Z",
+  "baseline": "d3f4b471f15dd14d4d2480bd4287d5cb74191d1d",
+  "candidateHash": "870b089845941b8e35eecdea301fb133b40a8f4e692f727bc75ee3244af4930a",
+  "driver": "computer-use",
+  "order": [
+    "direct",
+    "legacy",
+    "choice",
+    "choice",
+    "legacy",
+    "legacy",
+    "choice",
+    "choice",
+    "legacy",
+    "direct"
+  ],
+  "maxPaidRequests": 24,
+  "gptTasks": 0,
+  "scope": "Actual official host UI operations. Direct is a scripted lower bound, NOT a GPT task baseline. Cold request cache. No retries."
+}

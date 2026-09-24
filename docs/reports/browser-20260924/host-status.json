@@ -1,0 +1,39 @@
+{
+  "chrome": {
+    "status": "blocked_before_task_execution",
+    "pluginVersion": "26.917.62051",
+    "discoverySucceeded": true,
+    "browserRunning": true,
+    "extensionInstalledEnabled": true,
+    "nativeHostManifestValid": true,
+    "failedProbes": [
+      {
+        "operation": "nameSession then tabs.new; timed-out operation not isolated",
+        "timeoutMs": 30000
+      },
+      {
+        "operation": "nameSession",
+        "timeoutMs": 12000
+      },
+      {
+        "operation": "tabs.list",
+        "timeoutMs": 12000
+      }
+    ],
+    "profileWindowRetry": "awaiting user permission required by official troubleshooting",
+    "jevCalls": 0,
+    "speedComparison": null
+  },
+  "computerUse": {
+    "provider": "official @oai/sky via node_repl",
+    "platform": "macOS arm64",
+    "userBrowserSettingsChanged": false,
+    "fixtureOnlyDataSentToJev": true,
+    "testWindowClosed": true
+  },
+  "sourceHashes": {
+    "src/browser.mjs": "870b089845941b8e35eecdea301fb133b40a8f4e692f727bc75ee3244af4930a",
+    "scripts/acceptance/browser-host-probe.mjs": "ab5fed3b52ea2b4a48e4bceeb0fba033e216e56a0a1cc67690afae56ee1dd1bb",
+    "scripts/acceptance/browser-fixture.html": "822b1617183f941520f2cd3c086b8605216168ae8126ababdf3e824ab903e623"
+  }
+}
