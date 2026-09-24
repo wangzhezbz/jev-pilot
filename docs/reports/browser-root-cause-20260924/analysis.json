@@ -1,0 +1,40 @@
+{
+  "scopeCorrection": "results.json scope says Eight real Jev calls but eight variants were planned and only seven were sent; the final variant was blocked by TASK_URGENT_RESERVE. Original output retained.",
+  "plannedVariants": 8,
+  "actualPaidCalls": 7,
+  "answeredCorrectly": 6,
+  "wrongDecisions": 1,
+  "admissionSkipped": 1,
+  "inputTokens": 3657,
+  "outputTokens": 308,
+  "responseModels": [
+    "jev-1.13.0"
+  ],
+  "scriptSha256AtExecution": "2d945acbe9f1aac59f8f722e1260e2aa210a2ab7f35c675eebc6c06e462a6a4f",
+  "checkedRepoCommit": "cba4c15b4f6c12a72f829816f0cf09d518eefd64",
+  "codeUnchangedDuringProbe": true,
+  "productionRuntimeChanged": false,
+  "limitations": [
+    "Synthetic reconstruction, not the missing original branch AX",
+    "One observation per variant; cannot separate stochastic variation from order sensitivity",
+    "Subgoal is supplied by Codex; planning cost not measured",
+    "The final skipped variant is neither a Jev failure nor a correct answer"
+  ],
+  "jevUsdEstimate": 0.00015359400000000003,
+  "localNetworkDiagnosticMs": [
+    17.188708,
+    14.204958,
+    13.918334,
+    14.286958,
+    14.183583
+  ],
+  "networkDiagnosticScope": "Read-only browserNetwork component, not the full MCP call, five repetitions; no model or UI operations",
+  "computerUseCheckout": {
+    "samples": 2,
+    "totalMeanMs": 5782.896874500002,
+    "decisionMeanMs": 1839.6070414999958,
+    "nonDecisionMeanMs": 3943.289833000006,
+    "decisionShare": 0.31811168025697345,
+    "hypotheticalZeroDecisionSpeedup": 1.4665158077159257
+  }
+}
