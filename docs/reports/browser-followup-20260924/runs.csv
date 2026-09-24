@@ -1,0 +1,9 @@
+session,app,caseId,arm,passed,elapsedMs,jevCalls,jevInputTokens,jevOutputTokens
+safari-0,com.apple.Safari,checkout-rollback,direct,True,3737.365125000004,0,0,0
+safari-1,com.apple.Safari,checkout-rollback,legacy,True,6534.408666999996,6,5659,702
+safari-2,com.apple.Safari,checkout-rollback,choice,True,5650.454582999999,6,4249,282
+safari-3,com.apple.Safari,checkout-rollback,choice,True,5915.339166000005,6,4249,282
+safari-4,com.apple.Safari,checkout-rollback,legacy,True,5449.107499999998,6,5659,702
+safari-5,com.apple.Safari,identity-recovery,direct,True,4448.305582999994,0,0,0
+safari-6,com.apple.Safari,identity-recovery,legacy,True,7197.862625000009,6,5688,702
+safari-7,com.apple.Safari,identity-recovery,choice,True,9934.189958000003,8,5692,370

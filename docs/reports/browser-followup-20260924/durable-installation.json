@@ -1,0 +1,10 @@
+{
+  "version": "0.2.0+codex.20260924201153",
+  "release": "/Users/wangzhe/.agents/plugins/releases/jev-pilot-20260924201153-release",
+  "cache": "/Users/wangzhe/.codex/plugins/cache/personal/jev-pilot/0.2.0+codex.20260924201153",
+  "installed": "/Users/wangzhe/.codex/jev-pilot",
+  "restartRequired": true,
+  "currentTaskChanged": false,
+  "credentialsConfigured": true,
+  "activation": "next normal desktop launch; Chrome not restarted"
+}

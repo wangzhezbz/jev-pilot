@@ -2,6 +2,7 @@
 import {execFileSync,spawn} from 'node:child_process';
 import {dirname,join,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {realpathSync} from 'node:fs';
 
 export function proxyEnvironment(input, systemProxyText) {
   const env={...input},added=[];
@@ -17,7 +18,9 @@ export function proxyEnvironment(input, systemProxyText) {
   env.JEV_NETWORK_MODE=added.length?'system_proxy':(env.HTTPS_PROXY||env.https_proxy?'environment_proxy':'direct');
   return env;
 }
-if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)) {
+let entryPoint=false;
+try { entryPoint=Boolean(process.argv[1]&&realpathSync(resolve(process.argv[1]))===fileURLToPath(import.meta.url)); } catch {}
+if(entryPoint) {
   let system='';try{system=execFileSync('/usr/sbin/scutil',['--proxy'],{encoding:'utf8',timeout:1500});}catch{}
   const env=proxyEnvironment(process.env,system);
   // Reuse the same PID so the desktop remains the direct parent of the adapter.

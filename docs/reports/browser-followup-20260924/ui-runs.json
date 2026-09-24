@@ -1,0 +1,1576 @@
+[
+  {
+    "session": "safari-0",
+    "arm": "direct",
+    "caseId": "checkout-rollback",
+    "driver": "computer-use",
+    "app": "com.apple.Safari",
+    "phase": "task",
+    "elapsedMs": 3737.365125000004,
+    "passed": true,
+    "proof": "READ-ONLY RESULT | INC-502 | r42 | rollback: blocked by pending migration check | no changes applied",
+    "error": null,
+    "actions": [
+      "Open incident queue",
+      "Show unresolved incidents",
+      "Open INC-502",
+      "View deployment timeline",
+      "Inspect release r42",
+      "Preview rollback readiness"
+    ],
+    "decisions": [],
+    "stages": [
+      {
+        "phase": "setup_focus",
+        "elapsedMs": 58.645958000000974
+      },
+      {
+        "phase": "setup_reload",
+        "elapsedMs": 9.901833999996597
+      },
+      {
+        "phase": "setup_ready",
+        "elapsedMs": 588.7561249999999
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 49.88116699999955
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 475.2640409999949
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 342.1115840000057
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 224.76470900000277
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 343.80279199999495
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 222.5489579999994
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 352.22204200000124
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 223.87900000000081
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 351.25366600000416
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 232.9130839999998
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 341.20758300000307
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 223.40279200000077
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 353.7627500000017
+      }
+    ],
+    "setupExcluded": true,
+    "gptUsage": null,
+    "jevCalls": 0,
+    "jevInputTokens": 0,
+    "jevOutputTokens": 0
+  },
+  {
+    "session": "safari-1",
+    "arm": "legacy",
+    "caseId": "checkout-rollback",
+    "driver": "computer-use",
+    "app": "com.apple.Safari",
+    "phase": "task",
+    "elapsedMs": 6534.408666999996,
+    "passed": true,
+    "proof": "READ-ONLY RESULT | INC-502 | r42 | rollback: blocked by pending migration check | no changes applied",
+    "error": null,
+    "actions": [
+      "Open incident queue",
+      "Show unresolved incidents",
+      "Open INC-502",
+      "View deployment timeline",
+      "Inspect release r42",
+      "Preview rollback readiness"
+    ],
+    "decisions": [
+      {
+        "status": "candidate_selected",
+        "action": "Open incident queue"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Show unresolved incidents"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Open INC-502"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "View deployment timeline"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Inspect release r42"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Preview rollback readiness"
+      }
+    ],
+    "stages": [
+      {
+        "phase": "setup_focus",
+        "elapsedMs": 55.96750000000611
+      },
+      {
+        "phase": "setup_reload",
+        "elapsedMs": 6.520749999996042
+      },
+      {
+        "phase": "setup_ready",
+        "elapsedMs": 624.2855419999978
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 50.29750000000058
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 720.8712500000038
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 63.68095799999719
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.4886659999974654
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 221.40170800000487
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 337.7316659999997
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 307.94650000000547
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 64.58908300000621
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.628208000001905
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 221.51608300000225
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 359.6146249999947
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 769.698292000001
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 63.419834000000264
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.2445840000000317
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 221.77841599999374
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 352.25579200000357
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 301.36149999999907
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 59.50800000000163
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.2830420000027516
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 219.99104100000113
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 342.1368750000038
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 272.66720799999894
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 62.33970899999986
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.0432500000024447
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 219.861917000002
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 342.8351249999978
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 322.0515000000014
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 62.26087499999994
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.0408749999987776
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 222.54841700000543
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 343.85845900000277
+      }
+    ],
+    "setupExcluded": true,
+    "gptUsage": null,
+    "jevCalls": 6,
+    "jevInputTokens": 5659,
+    "jevOutputTokens": 702
+  },
+  {
+    "session": "safari-2",
+    "arm": "choice",
+    "caseId": "checkout-rollback",
+    "driver": "computer-use",
+    "app": "com.apple.Safari",
+    "phase": "task",
+    "elapsedMs": 5650.454582999999,
+    "passed": true,
+    "proof": "READ-ONLY RESULT | INC-502 | r42 | rollback: blocked by pending migration check | no changes applied",
+    "error": null,
+    "actions": [
+      "Open incident queue",
+      "Show unresolved incidents",
+      "Open INC-502",
+      "View deployment timeline",
+      "Inspect release r42",
+      "Preview rollback readiness"
+    ],
+    "decisions": [
+      {
+        "status": "candidate_selected",
+        "action": "Open incident queue",
+        "decision": {
+          "type": "choice",
+          "choice": "action_0",
+          "confidence": 0.9,
+          "probabilities": {
+            "action_1": 0,
+            "review": 0.07,
+            "action_0": 0.93
+          }
+        }
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Show unresolved incidents",
+        "decision": {
+          "type": "choice",
+          "choice": "action_0",
+          "confidence": 0.95,
+          "probabilities": {
+            "review": 0.03,
+            "action_0": 0.97,
+            "action_1": 0
+          }
+        }
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Open INC-502",
+        "decision": {
+          "type": "choice",
+          "choice": "action_0",
+          "confidence": 0.99,
+          "probabilities": {
+            "action_1": 0,
+            "action_2": 0,
+            "review": 0,
+            "action_0": 1
+          }
+        }
+      },
+      {
+        "status": "candidate_selected",
+        "action": "View deployment timeline",
+        "decision": {
+          "type": "choice",
+          "choice": "action_0",
+          "confidence": 0.96,
+          "probabilities": {
+            "action_0": 0.97,
+            "action_1": 0,
+            "review": 0.03
+          }
+        }
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Inspect release r42",
+        "decision": {
+          "type": "choice",
+          "choice": "action_0",
+          "confidence": 0.92,
+          "probabilities": {
+            "action_2": 0.04,
+            "review": 0.02,
+            "action_1": 0,
+            "action_0": 0.94
+          }
+        }
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Preview rollback readiness",
+        "decision": {
+          "type": "choice",
+          "choice": "action_0",
+          "confidence": 0.6,
+          "probabilities": {
+            "review": 0.25,
+            "action_1": 0.01,
+            "action_0": 0.74
+          }
+        }
+      }
+    ],
+    "stages": [
+      {
+        "phase": "setup_focus",
+        "elapsedMs": 47.04449999999633
+      },
+      {
+        "phase": "setup_reload",
+        "elapsedMs": 3.9295839999977034
+      },
+      {
+        "phase": "setup_ready",
+        "elapsedMs": 596.9382919999989
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 49.79466699999466
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 259.6188750000001
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 66.04499999999825
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.0488750000004075
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 223.42549999999756
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 348.1886249999952
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 250.85250000000087
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 69.1085000000021
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.1194170000017039
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 219.39929200000188
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 355.5328750000044
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 277.4581670000043
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 61.700707999996666
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.008916999999201
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 222.90883400000166
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 358.44870799999626
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 342.1011249999938
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 69.0144580000051
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.0533329999962007
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 227.99283300000388
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 353.00491599999805
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 260.9148750000022
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 60.054457999998704
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.6156669999982114
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 224.32179200000246
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 343.0389170000053
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 358.03279200000543
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 68.02629199999501
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 0.9603750000023865
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 223.85495799999626
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 350.36520899999596
+      }
+    ],
+    "setupExcluded": true,
+    "gptUsage": null,
+    "jevCalls": 6,
+    "jevInputTokens": 4249,
+    "jevOutputTokens": 282
+  },
+  {
+    "session": "safari-3",
+    "arm": "choice",
+    "caseId": "checkout-rollback",
+    "driver": "computer-use",
+    "app": "com.apple.Safari",
+    "phase": "task",
+    "elapsedMs": 5915.339166000005,
+    "passed": true,
+    "proof": "READ-ONLY RESULT | INC-502 | r42 | rollback: blocked by pending migration check | no changes applied",
+    "error": null,
+    "actions": [
+      "Open incident queue",
+      "Show unresolved incidents",
+      "Open INC-502",
+      "View deployment timeline",
+      "Inspect release r42",
+      "Preview rollback readiness"
+    ],
+    "decisions": [
+      {
+        "status": "candidate_selected",
+        "action": "Open incident queue",
+        "decision": {
+          "type": "choice",
+          "choice": "action_0",
+          "confidence": 0.91,
+          "probabilities": {
+            "action_1": 0,
+            "action_0": 0.94,
+            "review": 0.06
+          }
+        }
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Show unresolved incidents",
+        "decision": {
+          "type": "choice",
+          "choice": "action_0",
+          "confidence": 0.95,
+          "probabilities": {
+            "review": 0.04,
+            "action_1": 0,
+            "action_0": 0.96
+          }
+        }
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Open INC-502",
+        "decision": {
+          "type": "choice",
+          "choice": "action_0",
+          "confidence": 0.99,
+          "probabilities": {
+            "action_2": 0,
+            "review": 0,
+            "action_1": 0,
+            "action_0": 1
+          }
+        }
+      },
+      {
+        "status": "candidate_selected",
+        "action": "View deployment timeline",
+        "decision": {
+          "type": "choice",
+          "choice": "action_0",
+          "confidence": 0.94,
+          "probabilities": {
+            "action_0": 0.96,
+            "review": 0.04,
+            "action_1": 0
+          }
+        }
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Inspect release r42",
+        "decision": {
+          "type": "choice",
+          "choice": "action_0",
+          "confidence": 0.95,
+          "probabilities": {
+            "review": 0.01,
+            "action_2": 0.02,
+            "action_0": 0.97,
+            "action_1": 0
+          }
+        }
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Preview rollback readiness",
+        "decision": {
+          "type": "choice",
+          "choice": "action_0",
+          "confidence": 0.59,
+          "probabilities": {
+            "action_0": 0.73,
+            "action_1": 0.01,
+            "review": 0.26
+          }
+        }
+      }
+    ],
+    "stages": [
+      {
+        "phase": "setup_focus",
+        "elapsedMs": 64.92958300000464
+      },
+      {
+        "phase": "setup_reload",
+        "elapsedMs": 6.573999999993248
+      },
+      {
+        "phase": "setup_ready",
+        "elapsedMs": 612.6105000000098
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 56.324042000007466
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 341.20333299999766
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 72.45662499999162
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 0.9535000000032596
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 230.40333400000236
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 368.74637500000244
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 286.81795799999963
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 75.7563749999972
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.515625
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 222.4965419999935
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 353.89933400000155
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 308.11604100000113
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 72.35437499999534
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.8090830000001006
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 226.90095799999835
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 357.58729100000346
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 427.52445899999293
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 59.245209000000614
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 0.9780420000024606
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 220.00887499999953
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 353.97149999999965
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 255.9567079999979
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 65.32516599999508
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.0264579999929992
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 222.6301659999881
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 351.11658299999544
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 310.6172499999957
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 67.68050000000221
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.0329159999964759
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 259.004208000013
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 341.4269159999967
+      }
+    ],
+    "setupExcluded": true,
+    "gptUsage": null,
+    "jevCalls": 6,
+    "jevInputTokens": 4249,
+    "jevOutputTokens": 282
+  },
+  {
+    "session": "safari-4",
+    "arm": "legacy",
+    "caseId": "checkout-rollback",
+    "driver": "computer-use",
+    "app": "com.apple.Safari",
+    "phase": "task",
+    "elapsedMs": 5449.107499999998,
+    "passed": true,
+    "proof": "READ-ONLY RESULT | INC-502 | r42 | rollback: blocked by pending migration check | no changes applied",
+    "error": null,
+    "actions": [
+      "Open incident queue",
+      "Show unresolved incidents",
+      "Open INC-502",
+      "View deployment timeline",
+      "Inspect release r42",
+      "Preview rollback readiness"
+    ],
+    "decisions": [
+      {
+        "status": "candidate_selected",
+        "action": "Open incident queue"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Show unresolved incidents"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Open INC-502"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "View deployment timeline"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Inspect release r42"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Preview rollback readiness"
+      }
+    ],
+    "stages": [
+      {
+        "phase": "setup_focus",
+        "elapsedMs": 62.384459000008064
+      },
+      {
+        "phase": "setup_reload",
+        "elapsedMs": 8.567957999999635
+      },
+      {
+        "phase": "setup_ready",
+        "elapsedMs": 625.7609999999986
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 64.52820899999642
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 301.69845799999894
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 67.20424999999523
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.001124999995227
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 219.28925000000163
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 344.52595799999835
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 256.99849999998696
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 62.40541700000176
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.0120829999941634
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 219.28120900000795
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 344.23370799999975
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 325.9577500000014
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 120.45779200000106
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.6862090000067838
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 47.19100000000617
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 338.81908299999486
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 266.2765420000069
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 68.11654099999578
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.0270420000015292
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 26.321374999999534
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 336.70895799998834
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 320.93195900000865
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 71.85441699999501
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 0.9927909999969415
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 278.2120419999992
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 346.33995799999684
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 283.81874999999127
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 94.50516699999571
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.1158750000031432
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 252.20612500001153
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 383.9488330000022
+      }
+    ],
+    "setupExcluded": true,
+    "gptUsage": null,
+    "jevCalls": 6,
+    "jevInputTokens": 5659,
+    "jevOutputTokens": 702
+  },
+  {
+    "session": "safari-5",
+    "arm": "direct",
+    "caseId": "identity-recovery",
+    "driver": "computer-use",
+    "app": "com.apple.Safari",
+    "phase": "task",
+    "elapsedMs": 4448.305582999994,
+    "passed": true,
+    "proof": "READ-ONLY RESULT | INC-401 | k17 | session recovery: requires key propagation confirmation | no changes applied",
+    "error": null,
+    "actions": [
+      "Open incident queue",
+      "Show unresolved incidents",
+      "Open INC-401",
+      "View authentication events",
+      "Inspect rotation k17",
+      "Preview session recovery prerequisites"
+    ],
+    "decisions": [],
+    "stages": [
+      {
+        "phase": "setup_focus",
+        "elapsedMs": 83.5266249999986
+      },
+      {
+        "phase": "setup_reload",
+        "elapsedMs": 9.650415999989491
+      },
+      {
+        "phase": "setup_ready",
+        "elapsedMs": 596.404291999992
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 51.42904200000339
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 233.30070800000976
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 351.7479580000072
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 231.79349999999977
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 364.8740839999955
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 232.82833400000527
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 348.05137499999546
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 545.4048330000078
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 342.2151659999945
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 422.6188750000001
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 342.7512080000015
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 633.0177499999991
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 348.0022920000047
+      }
+    ],
+    "setupExcluded": true,
+    "gptUsage": null,
+    "jevCalls": 0,
+    "jevInputTokens": 0,
+    "jevOutputTokens": 0
+  },
+  {
+    "session": "safari-6",
+    "arm": "legacy",
+    "caseId": "identity-recovery",
+    "driver": "computer-use",
+    "app": "com.apple.Safari",
+    "phase": "task",
+    "elapsedMs": 7197.862625000009,
+    "passed": true,
+    "proof": "READ-ONLY RESULT | INC-401 | k17 | session recovery: requires key propagation confirmation | no changes applied",
+    "error": null,
+    "actions": [
+      "Open incident queue",
+      "Show unresolved incidents",
+      "Open INC-401",
+      "View authentication events",
+      "Inspect rotation k17",
+      "Preview session recovery prerequisites"
+    ],
+    "decisions": [
+      {
+        "status": "candidate_selected",
+        "action": "Open incident queue"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Show unresolved incidents"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Open INC-401"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "View authentication events"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Inspect rotation k17"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Preview session recovery prerequisites"
+      }
+    ],
+    "stages": [
+      {
+        "phase": "setup_focus",
+        "elapsedMs": 66.80454099999042
+      },
+      {
+        "phase": "setup_reload",
+        "elapsedMs": 4.544083000000683
+      },
+      {
+        "phase": "setup_ready",
+        "elapsedMs": 628.0175420000014
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 58.077874999988126
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 543.6417499999952
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 68.1420000000071
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 0.969042000011541
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 429.6634170000034
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 353.44499999999243
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 323.95708300000115
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 72.87541700000293
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 0.9764579999900889
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 234.8245420000021
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 349.13729199999943
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 359.58358299999963
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 58.7718329999916
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.033499999990454
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 229.23816599999554
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 351.8637500000041
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 299.48300000000745
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 66.80404099999578
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 0.9718750000029104
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 536.7018749999988
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 343.22016599999915
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 235.26854200000525
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 66.2297499999986
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 0.9900000000052387
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 423.72987500000454
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 352.18404100000043
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 369.60229199999594
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 65.05483300000196
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.0052919999870937
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 640.4191250000003
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 359.5847500000091
+      }
+    ],
+    "setupExcluded": true,
+    "gptUsage": null,
+    "jevCalls": 6,
+    "jevInputTokens": 5688,
+    "jevOutputTokens": 702
+  },
+  {
+    "session": "safari-7",
+    "arm": "choice",
+    "caseId": "identity-recovery",
+    "driver": "computer-use",
+    "app": "com.apple.Safari",
+    "phase": "task",
+    "elapsedMs": 9934.189958000003,
+    "passed": true,
+    "proof": "READ-ONLY RESULT | INC-401 | k17 | session recovery: requires key propagation confirmation | no changes applied",
+    "error": null,
+    "actions": [
+      "Open incident queue",
+      "Show unresolved incidents",
+      "Open INC-401",
+      "View deployment timeline",
+      "Return to incident details",
+      "View authentication events",
+      "Inspect rotation k17",
+      "Preview session recovery prerequisites"
+    ],
+    "decisions": [
+      {
+        "status": "candidate_selected",
+        "action": "Open incident queue",
+        "decision": {
+          "type": "choice",
+          "choice": "action_0",
+          "confidence": 0.84,
+          "probabilities": {
+            "review": 0.07,
+            "action_1": 0.04,
+            "action_0": 0.89
+          }
+        }
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Show unresolved incidents",
+        "decision": {
+          "type": "choice",
+          "choice": "action_0",
+          "confidence": 0.97,
+          "probabilities": {
+            "action_0": 0.98,
+            "review": 0.02,
+            "action_1": 0
+          }
+        }
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Open INC-401",
+        "decision": {
+          "type": "choice",
+          "choice": "action_1",
+          "confidence": 1,
+          "probabilities": {
+            "action_1": 1,
+            "action_0": 0,
+            "review": 0,
+            "action_2": 0
+          }
+        }
+      },
+      {
+        "status": "candidate_selected",
+        "action": "View deployment timeline",
+        "decision": {
+          "type": "choice",
+          "choice": "action_0",
+          "confidence": 0.38,
+          "probabilities": {
+            "action_1": 0.37,
+            "review": 0.04,
+            "action_0": 0.59
+          }
+        }
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Return to incident details",
+        "decision": {
+          "type": "choice",
+          "choice": "action_2",
+          "confidence": 0.31,
+          "probabilities": {
+            "review": 0.1,
+            "action_2": 0.48,
+            "action_0": 0.4,
+            "action_1": 0.02
+          }
+        }
+      },
+      {
+        "status": "candidate_selected",
+        "action": "View authentication events",
+        "decision": {
+          "type": "choice",
+          "choice": "action_0",
+          "confidence": 0.89,
+          "probabilities": {
+            "review": 0.05,
+            "action_0": 0.95
+          }
+        }
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Inspect rotation k17",
+        "decision": {
+          "type": "choice",
+          "choice": "action_0",
+          "confidence": 0.99,
+          "probabilities": {
+            "action_0": 0.99,
+            "action_2": 0,
+            "review": 0.01,
+            "action_1": 0
+          }
+        }
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Preview session recovery prerequisites",
+        "decision": {
+          "type": "choice",
+          "choice": "action_1",
+          "confidence": 0.84,
+          "probabilities": {
+            "review": 0.1,
+            "action_0": 0.01,
+            "action_1": 0.89
+          }
+        }
+      }
+    ],
+    "stages": [
+      {
+        "phase": "setup_focus",
+        "elapsedMs": 67.66929200000595
+      },
+      {
+        "phase": "setup_reload",
+        "elapsedMs": 8.473999999987427
+      },
+      {
+        "phase": "setup_ready",
+        "elapsedMs": 624.3067089999968
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 65.06720900000073
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 296.2911659999954
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 75.05245800000557
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 0.9619589999929303
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 446.9752079999889
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 334.377999999997
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 317.1343749999942
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 80.00812499999302
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 0.934625000008964
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 233.2903340000048
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 351.2231250000041
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 372.4638750000013
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 89.14241599998786
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.0139999999955762
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 256.00041600000986
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 347.40620800000033
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 237.30829200000153
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 63.03920900000958
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 0.9542919999948936
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 227.3288329999923
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 338.246833000012
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 385.7108750000043
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 70.57583400000294
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 0.9578330000076676
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 709.1990840000071
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 348.25587500000256
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 1081.1654580000031
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 71.8662500000064
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 0.9674999999988358
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 32.989291999998386
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 598.075125000003
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 269.56149999999616
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 63.415042000007816
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 0.9774579999939306
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 432.4936250000028
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 345.7572919999948
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 337.3755830000009
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 65.14845900000364
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 0.9743339999986347
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 632.7335000000021
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 351.19754100000137
+      }
+    ],
+    "setupExcluded": true,
+    "gptUsage": null,
+    "jevCalls": 8,
+    "jevInputTokens": 5692,
+    "jevOutputTokens": 370
+  }
+]

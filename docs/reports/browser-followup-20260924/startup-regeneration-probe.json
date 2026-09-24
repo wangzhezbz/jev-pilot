@@ -1,0 +1,48 @@
+{
+  "scope": "Two isolated native launcher startups after simulated desktop config regeneration; actual stock Codex MCP children; no Chrome actions or model turns",
+  "runs": [
+    {
+      "attempt": 1,
+      "simulatedDesktopConfigRegeneration": true,
+      "proxyEnvironmentInitiallyEmpty": true,
+      "onlyIntendedConfigChanges": true,
+      "startupRepairStatus": "repaired_for_next_plugin_process",
+      "mcpProcesses": [
+        {
+          "proxyVariableNames": [
+            "HTTP_PROXY",
+            "HTTPS_PROXY",
+            "NO_PROXY",
+            "NODE_USE_ENV_PROXY"
+          ],
+          "nodeProxyEnabled": true
+        }
+      ],
+      "passed": true,
+      "modelTurnsStarted": 0,
+      "paidModelCalls": 0
+    },
+    {
+      "attempt": 2,
+      "simulatedDesktopConfigRegeneration": true,
+      "proxyEnvironmentInitiallyEmpty": true,
+      "onlyIntendedConfigChanges": true,
+      "startupRepairStatus": "repaired_for_next_plugin_process",
+      "mcpProcesses": [
+        {
+          "proxyVariableNames": [
+            "HTTP_PROXY",
+            "HTTPS_PROXY",
+            "NO_PROXY",
+            "NODE_USE_ENV_PROXY"
+          ],
+          "nodeProxyEnabled": true
+        }
+      ],
+      "passed": true,
+      "modelTurnsStarted": 0,
+      "paidModelCalls": 0
+    }
+  ],
+  "passed": true
+}

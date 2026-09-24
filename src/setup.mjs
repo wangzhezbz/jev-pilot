@@ -98,7 +98,7 @@ async function prepareSetup({ activate = false, source = packageRoot } = {}) {
   for (const name of ['src', 'runtime', 'vendor', 'scripts', 'skills', 'web', 'locales','launcher','bin']) if (resolve(source) !== resolve(home) && existsSync(join(source,name))) cpSync(join(source, name), join(home, name), { recursive: true });
   const desktop = join(home, 'runtime/desktop'), trust = await probeHooks(realBin, join(desktop, 'hook.mjs'));
   const sha256 = {};
-  for (const name of ['bridge.mjs', 'router.mjs', 'hook.mjs', 'bootstrap.mjs', 'transport.mjs','pooled-transport.mjs', 'report.mjs', '../../src/automation.mjs', '../../src/output-adapters.mjs', '../../src/prepare-output.mjs', '../../src/checkpoints.mjs', '../../src/core.mjs', '../../src/evidence.mjs', '../../src/policy.mjs', '../../src/request-guard.mjs']) sha256[name] = hash(readFileSync(join(desktop, name), 'utf8'));
+  for (const name of ['bridge.mjs', 'router.mjs', 'hook.mjs', 'bootstrap.mjs', 'transport.mjs','pooled-transport.mjs', 'report.mjs', '../../src/automation.mjs', '../../src/output-adapters.mjs', '../../src/prepare-output.mjs', '../../src/checkpoints.mjs', '../../src/core.mjs', '../../src/evidence.mjs', '../../src/policy.mjs', '../../src/request-guard.mjs', '../../src/browser-network.mjs', '../../src/browser-node-network.mjs']) sha256[name] = hash(readFileSync(join(desktop, name), 'utf8'));
   const nativeName = process.platform === 'win32' ? 'jev-pilot.exe' : 'jev-pilot';
   const launcher = join(home, nativeName), prebuilt = join(source, 'bin', process.platform + '-' + process.arch, nativeName);
   if (existsSync(prebuilt)) cpSync(prebuilt, launcher);

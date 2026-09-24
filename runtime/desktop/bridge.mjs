@@ -217,6 +217,17 @@ async function main() {
     await appendFile(join(home,'logs/events.jsonl'),JSON.stringify({at:new Date().toISOString(),kind:'compatibility_fallback'})+'\n',{mode:0o600});
     return passthrough();
   }
+  // The desktop regenerates its MCP tables before launching this adapter.
+  // Repair that generated configuration before native Codex loads it or starts
+  // MCP children. Repairing from the Jev MCP itself would race those children.
+  try {
+    const { maintainBrowserNetwork } = await import('../../src/browser-network.mjs');
+    const network = maintainBrowserNetwork({ home: resolve(home, '../..') });
+    await appendFile(join(home,'logs/events.jsonl'),JSON.stringify({at:new Date().toISOString(),kind:'browser_network_before_backend',measurementSource:process.env.JEV_PILOT_MEASUREMENT==='synthetic'?'synthetic':'runtime',...network})+'\n',{mode:0o600});
+  } catch {
+    // A networking diagnostic must never prevent ordinary Codex startup.
+    await appendFile(join(home,'logs/events.jsonl'),JSON.stringify({at:new Date().toISOString(),kind:'browser_network_before_backend',status:'unavailable'})+'\n',{mode:0o600}).catch(()=>{});
+  }
   await runBridge({realBin:config.realBin,args,nativeVersion:config.verifiedVersion,trust:config.trust,
     runtimeIdentity:runtimeFingerprint(config.sha256),automation:config.automation===true,keyPath:config.keyPath??join(homedir(),'.codex/skills/jev-assistant/.env.local'),logPath:join(home,'logs/events.jsonl')});
 }

@@ -2,6 +2,7 @@ import { readdirSync, readFileSync, writeFileSync, mkdirSync, realpathSync, lsta
 import { join } from 'node:path';
 import { homedir } from 'node:os';
 import { createHash, randomUUID } from 'node:crypto';
+import { nodeBrowserNetwork } from './browser-node-network.mjs';
 
 export const proxyNames = ['HTTP_PROXY','HTTPS_PROXY','ALL_PROXY','NO_PROXY','http_proxy','https_proxy','all_proxy','no_proxy'];
 const digest = text => createHash('sha256').update(text).digest('hex');
@@ -10,10 +11,11 @@ const digest = text => createHash('sha256').update(text).digest('hex');
 // security settings. Values remain in the existing parent environment.
 export function browserNetwork({ repair = false, codexHome = process.env.CODEX_HOME || join(homedir(), '.codex'), home = process.env.JEV_PILOT_HOME || join(homedir(), '.codex', 'jev-pilot') } = {}) {
   const root = join(codexHome, 'plugins/cache/openai-bundled/unified-computer-use');
-  const result = { manifests: [], changed: false, existingProcessesUpdated: false };
+  const nodeRepl = nodeBrowserNetwork({ codexHome, home, repair, names: proxyNames });
+  const result = { manifests: [], nodeRepl, changed: nodeRepl.changed, existingProcessesUpdated: false };
   let versions;
   try { versions = readdirSync(root, { withFileTypes: true }).filter(e => e.isDirectory()).slice(0, 100); }
-  catch (error) { return { ...result, status: error.code === 'ENOENT' ? 'plugin_not_installed' : 'unavailable' }; }
+  catch (error) { return { ...result, status: error.code === 'ENOENT' ? nodeRepl.status === 'not_configured' ? 'plugin_not_installed' : nodeRepl.status : 'unavailable' }; }
   for (const version of versions) {
     const file = join(root, version.name, '.mcp.json');
     try {
@@ -43,7 +45,8 @@ export function browserNetwork({ repair = false, codexHome = process.env.CODEX_H
       result.manifests.push({ version: version.name, status: 'skipped', reason: ['UNSAFE_PATH','UNSUPPORTED_MANIFEST','MANIFEST_CHANGED'].includes(error.message) ? error.message : 'MANIFEST_UNAVAILABLE' });
     }
   }
-  result.status = result.changed ? 'repaired_for_next_plugin_process' : result.manifests.length && result.manifests.every(m => m.status === 'ready') ? 'ready' : 'attention_needed';
+  const nodeAttention = ['repair_available', 'attention_needed'].includes(nodeRepl.status);
+  result.status = nodeAttention ? 'attention_needed' : result.changed ? 'repaired_for_next_plugin_process' : result.manifests.length && result.manifests.every(m => m.status === 'ready') ? 'ready' : nodeRepl.status === 'configured_for_new_process' && !result.manifests.length ? nodeRepl.status : 'attention_needed';
   return result;
 }
 

@@ -1,0 +1,28 @@
+{
+  "result": {
+    "manifests": [
+      {
+        "version": "26.917.62051",
+        "missing": [],
+        "status": "ready"
+      }
+    ],
+    "nodeRepl": {
+      "changed": true,
+      "existingProcessesUpdated": false,
+      "missing": [],
+      "nodeProxyEnabled": true,
+      "status": "repaired_for_next_plugin_process",
+      "beforeHash": "eaeefbcd3f554a2c004df61b2de17099dea291aa40a3219e605263e77fa8a9ba",
+      "afterHash": "5025f42ed8271a1940d76ff64a4d2e6aa69c3db35bcaac2b901f2f5f2da006fd"
+    },
+    "changed": true,
+    "existingProcessesUpdated": false,
+    "status": "repaired_for_next_plugin_process"
+  },
+  "onlyIntendedSettingsChanged": true,
+  "effectiveMcpConfigVerified": true,
+  "existingProcessesUpdated": false,
+  "browserRestarted": false,
+  "paidCalls": 0
+}

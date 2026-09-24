@@ -1,0 +1,43 @@
+{
+  "at": "2026-09-24T12:02:55.351497+00:00",
+  "userConfirmedChromePluginReenabled": true,
+  "configProxyAllowlistRetained": [
+    "HTTP_PROXY",
+    "HTTPS_PROXY",
+    "ALL_PROXY",
+    "NO_PROXY",
+    "http_proxy",
+    "https_proxy",
+    "all_proxy",
+    "no_proxy"
+  ],
+  "configNodeProxyEnabled": true,
+  "toolProcesses": [
+    {
+      "pid": 11436,
+      "ppid": 11248,
+      "proxyVariableNames": []
+    },
+    {
+      "pid": 12154,
+      "ppid": 11248,
+      "proxyVariableNames": []
+    },
+    {
+      "pid": 13480,
+      "ppid": 11248,
+      "proxyVariableNames": []
+    }
+  ],
+  "chromeDiscoveryPassed": true,
+  "chromeControlAttempt": {
+    "operation": "nameSession",
+    "status": "host_tool_timeout",
+    "timeoutMs": 20000,
+    "kernelResetReportedByHost": true
+  },
+  "browserRestarted": false,
+  "chromePageActionsCompleted": 0,
+  "paidModelCalls": 0,
+  "conclusion": "Plugin toggle did not replace the shared MCP processes. Desktop restart requested; Chrome can remain running."
+}

@@ -19,7 +19,8 @@ writeFileSync(join(base, 'legacy.mjs'), original.replace("'./core.mjs'", JSON.st
 const legacy = await import(pathToFileURL(join(base, 'legacy.mjs')));
 const store = new Store({ home: join(base, 'state') }), project = 'synthetic-browser', key = loadKey(installHome());
 if (!key) throw Error('MISSING_KEY');
-const protocol = { at: new Date().toISOString(), baseline: revision, candidateHash: hash(readFileSync(new URL('../../src/browser.mjs', import.meta.url), 'utf8')), driver: 'computer-use', order: ['direct','legacy','choice','choice','legacy','legacy','choice','choice','legacy','direct'], maxPaidRequests: 24, gptTasks: 0, scope: 'Actual official host UI operations. Direct is a scripted lower bound, NOT a GPT task baseline. Cold request cache. No retries.' };
+const incident = process.argv.includes('--incident');
+const protocol = { at: new Date().toISOString(), baseline: revision, candidateHash: hash(readFileSync(new URL('../../src/browser.mjs', import.meta.url), 'utf8')), driver: 'computer-use', order: incident ? ['direct','legacy','choice','choice','legacy'] : ['direct','legacy','choice','choice','legacy','legacy','choice','choice','legacy','direct'], cases: incident ? ['checkout-rollback','identity-recovery'] : ['invoice-preview'], maxPaidRequests: incident ? 48 : 24, gptTasks: 0, scope: 'Actual official host UI operations. Direct is a scripted lower bound, NOT a GPT task baseline. Cold request cache. No retries.' };
 writeFileSync(join(out, 'protocol.json'), JSON.stringify(protocol, null, 2), { flag: 'wx' });
 let calls = 0;
 const server = createServer(async (req, res) => {
@@ -28,7 +29,7 @@ const server = createServer(async (req, res) => {
   try {
     let raw = ''; for await (const chunk of req) { raw += chunk; if (raw.length > 100000) throw Error('BODY_LIMIT'); }
     const input = JSON.parse(raw), arm = input.arm, api = arm === 'legacy' ? legacy : current;
-    const config = { ...loadConfig(store, project), cacheMs: 0, maxCalls: 2 };
+    const config = { ...loadConfig(store, project), cacheMs: 0, maxCalls: 2, taskMaxCalls: protocol.maxPaidRequests + 2, taskMaxWaitMs: 30000 };
     const judge = new Judge({ store, project, config, key, send: async (...args) => {
       if (++calls > protocol.maxPaidRequests) throw Error('LIVE_CALL_LIMIT');
       const { transport } = await import('../../src/core.mjs'); return transport(...args);
@@ -36,7 +37,7 @@ const server = createServer(async (req, res) => {
     const ctx = { store, project, config, judge };
     let result;
     if (req.url === '/step') {
-      if (!['legacy','choice'].includes(arm) || !input.observation.snapshot.includes('JevPilot synthetic invoice review')) throw Error('SYNTHETIC_ONLY');
+      if (!['legacy','choice'].includes(arm) || !input.observation.snapshot.includes(incident ? 'JevPilot synthetic incident review' : 'JevPilot synthetic invoice review')) throw Error('SYNTHETIC_ONLY');
       result = await api.browserStep(ctx, input.observation);
     } else if (req.url === '/consume') result = api.consumeBrowserTicket(ctx, input.observation);
     else if (req.url === '/save') {
@@ -47,4 +48,4 @@ const server = createServer(async (req, res) => {
     res.end(JSON.stringify(result));
   } catch (e) { res.writeHead(400).end(JSON.stringify({ error: e.code || e.message })); }
 });
-server.listen(18744, '127.0.0.1', () => console.log('Synthetic benchmark decision service ready; budget 24 real Jev requests.'));
+server.listen(18744, '127.0.0.1', () => console.log(`Synthetic benchmark decision service ready; budget ${protocol.maxPaidRequests} real Jev requests.`));

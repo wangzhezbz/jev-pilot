@@ -1,0 +1,144 @@
+[
+  {
+    "session": "incident-0",
+    "arm": "direct",
+    "caseId": "checkout-rollback",
+    "driver": "computer-use",
+    "phase": "task",
+    "elapsedMs": 3871.9273749999993,
+    "passed": true,
+    "proof": "READ-ONLY RESULT | INC-502 | r42 | rollback: blocked by pending migration check | no changes applied",
+    "error": null,
+    "actions": [
+      "Open incident queue",
+      "Show unresolved incidents",
+      "Open INC-502",
+      "View deployment timeline",
+      "Inspect release r42",
+      "Preview rollback readiness"
+    ],
+    "decisions": [],
+    "stages": [
+      {
+        "phase": "setup_focus",
+        "elapsedMs": 66.29191699999865
+      },
+      {
+        "phase": "setup_reload",
+        "elapsedMs": 5.926917000000685
+      },
+      {
+        "phase": "setup_ready",
+        "elapsedMs": 625.2995420000007
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 66.28045900000143
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 544.7636249999996
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 354.0776250000017
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 229.07300000000032
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 338.22229199999856
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 243.1372080000001
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 339.3457500000004
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 227.09933400000227
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 339.96941700000025
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 220.91616599999907
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 362.83450000000084
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 234.23037500000282
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 371.58408399999826
+      }
+    ],
+    "setupExcluded": true,
+    "gptUsage": null
+  },
+  {
+    "session": "incident-1",
+    "arm": "legacy",
+    "caseId": "checkout-rollback",
+    "driver": "computer-use",
+    "phase": "task",
+    "elapsedMs": 120735.98308300001,
+    "passed": false,
+    "proof": null,
+    "error": "Sky Computer Use request timed out",
+    "actions": [],
+    "decisions": [
+      {
+        "status": "candidate_selected",
+        "action": "Open incident queue"
+      }
+    ],
+    "stages": [
+      {
+        "phase": "setup_focus",
+        "elapsedMs": 70.85683300000164
+      },
+      {
+        "phase": "setup_reload",
+        "elapsedMs": 5.869416999998066
+      },
+      {
+        "phase": "setup_ready",
+        "elapsedMs": 623.4274170000026
+      },
+      {
+        "phase": "observe",
+        "elapsedMs": 65.36124999999811
+      },
+      {
+        "phase": "jev_decision",
+        "elapsedMs": 604.875250000001
+      },
+      {
+        "phase": "revalidate",
+        "elapsedMs": 62.56975000000239
+      },
+      {
+        "phase": "consume",
+        "elapsedMs": 1.483458000002429
+      },
+      {
+        "phase": "execute",
+        "elapsedMs": 120001.60100000001
+      }
+    ],
+    "setupExcluded": true,
+    "gptUsage": null
+  }
+]
