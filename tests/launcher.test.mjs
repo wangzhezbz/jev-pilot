@@ -9,7 +9,7 @@ import { createHash } from 'node:crypto';
 test('native launcher handles spaced paths, forwards args and uses original runtime on corrupt adapter', {timeout:120000}, () => {
   const root=mkdtempSync(join(tmpdir(),'jev launcher '));mkdirSync(join(root,'runtime/desktop'),{recursive:true});mkdirSync(join(root,'scripts'));
   const binary=join(root,process.platform==='win32'?'jev-pilot.exe':'jev-pilot');
-  execFileSync('go',['build','-o',binary,fileURLToPath(new URL('../launcher/main.go',import.meta.url))],{timeout:100000});
+  execFileSync('go',['build','-trimpath','-ldflags=-s -w','-o',binary,fileURLToPath(new URL('../launcher/main.go',import.meta.url))],{timeout:100000,env:{...process.env,CGO_ENABLED:'0'}});
   const configPath=join(root,'runtime/desktop/install.json');
   const config={node:process.execPath,realBin:process.execPath,sha256:{'verified.txt':createHash('sha256').update('fixture').digest('hex')}};
   writeFileSync(join(root,'runtime/desktop/verified.txt'),'fixture');

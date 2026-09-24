@@ -42,8 +42,9 @@ jobs:
           }
           throw 'ripgrep is unavailable after three installation attempts'
       - run: npm run check
-      - run: npm test
+      # Compile before process-heavy tests; keep the test runner bounded on CI.
       - run: node scripts/build.mjs
+      - run: node --test --test-concurrency=2 tests/*.test.mjs
       - run: npm pack
       - uses: actions/upload-artifact@v4
         with:

@@ -58,5 +58,22 @@
       "elapsedMs": 659
     }
   ],
-  "activation": "Installed package verified through a new standard MCP process. Current conversation still uses its old MCP process; reload not confirmed. No desktop process killed and no background runtime overwritten. Default official control socket is unavailable."
+  "activation": "Installed package verified through a new standard MCP process. Current conversation still uses its old MCP process; reload not confirmed. No desktop process killed and no background runtime overwritten. Default official control socket is unavailable.",
+  "ciInitial": {
+    "commit": "57488b7afef0a55c7c58741771fb1f24fb30c583",
+    "run": "https://github.com/wangzhezbz/jev-pilot/actions/runs/36030225471",
+    "macOS": "success",
+    "Linux": "success",
+    "Windows": {
+      "passed": 325,
+      "failed": 1,
+      "cancelled": 1,
+      "skipped": 2,
+      "errors": [
+        "launcher test: spawnSync go ETIMEDOUT at 100 seconds",
+        "bridge cancellation test: exceeded 5 second deadline"
+      ]
+    },
+    "response": "Build before tests with matching production Go flags and CGO mode; limit CI test file concurrency to 2. No assertions removed and no timeouts increased."
+  }
 }
