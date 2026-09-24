@@ -78,3 +78,5 @@ Computer Use 实际通过官方插件操作 Safari；Chrome 通过官方 Chrome 
 方法参考核对了 [jev-ultrafast 的性能说明](https://github.com/browser-use/jev-ultrafast/blob/main/docs/performance.md)：它也区分循环计时、初始化/独立检查以及失败尝试。本轮借鉴这种计量边界，没有移除官方宿主的新鲜状态复核来追求速度。
 
 本机已安装 `0.2.0+codex.20260924233203`。[部署与哈希核验](../../../results/browser-full-workflow-20260924/deployment.json) · [新模块双宿主读取验证](../../../results/browser-full-workflow-20260924/installed-host-check.json)。新入口在现有页面执行了可见证据检查，未发起额外收费调用；不把这两次只读验收计入八次性能结果。
+
+实现提交 `8e2777e` 的 [三系统 CI](https://github.com/wangzhezbz/jev-pilot/actions/runs/36021145329) 已全部通过：[结果快照](../../../results/browser-full-workflow-20260924/ci.json)。
