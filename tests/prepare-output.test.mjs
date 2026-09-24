@@ -64,3 +64,24 @@ test('nested native command hook adds no second judgment; direct hooks remain fu
   const result=await auto.hook({...hook,tool_use_id:'call_direct'});assert.equal(result.continue,false);assert.equal(f.calls(),1);
   const outcome=f.store.events(f.store.project(f.home)).find(e=>e.kind==='automatic_output_result');assert.equal(outcome.submitted,true);assert.equal(outcome.applied,false);
 });
+
+test('record boundaries isolate pending evidence while preserving preamble and exact recall',async t=>{
+ const f=fixture(t),head='# Support archive\nShared context: one independent report per section\n';
+ const records=Array.from({length:90},(_,i)=>`## Record ${i}\n${i===0?'pending NEEDLE':i===1?'NEEDLE':'unrelated resolved notice'} ${'detail '.repeat(30)}\n`);
+ const source=head+records.join('\n');const r=await f.prepare({value:source,source:'archive.md'});
+ assert.equal(r.selection.status,'prepared');assert(r.value.includes(head.trim()));
+ assert(r.value.includes('pending NEEDLE'));assert(r.value.includes('## Record 1\n'));
+ assert(!r.value.includes('## Record 2\n'));assert(f.calls()>2&&f.calls()<=6);
+ assert.equal((await f.call('recall_output',{artifactId:r.selection.artifactId})).value,source);
+});
+test('three-batch logs no longer fall back solely because preparation allowed only two calls',async t=>{
+ const f=fixture(t),source='NEEDLE original\n'+Array.from({length:540},(_,i)=>`${i}: notice ${'x'.repeat(115)}`).join('\n');
+ const r=await f.prepare({value:source,source:'service.log'});
+ assert.equal(r.selection.status,'prepared');assert(f.calls()>2&&f.calls()<=6);assert(r.value.includes('NEEDLE original'));
+ assert.equal((await f.call('recall_output',{artifactId:r.selection.artifactId})).value,source);
+});
+test('an explicit lower request budget is respected without partial paid filtering',async t=>{
+ const f=fixture(t);await f.call('configure',{maxCalls:1});
+ const source=Array.from({length:90},(_,i)=>`## Record ${i}\n${i?'notice':'NEEDLE'} ${'detail '.repeat(30)}\n`).join('\n');
+ const r=await f.prepare({value:source});assert.equal(r.value,source);assert.equal(f.calls(),0);
+});

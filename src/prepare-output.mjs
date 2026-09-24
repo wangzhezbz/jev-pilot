@@ -45,7 +45,10 @@ export async function prepareOutput(ctx,input){
   if(!reason&&structuredText(body))reason='structured_text';
   if(reason)return original(reason);
   // Keep failure/cancellation budgets bounded and preserve the task guard.
-  ctx.judge.config={...ctx.judge.config,maxCalls:Math.min(2,ctx.judge.config.maxCalls),timeoutMs:Math.min(1800,ctx.judge.config.timeoutMs)};
+  // Up to three concurrent pairs fit the existing bounded operation budget.
+  // Complete-coverage preflight still refuses work that cannot fit, before any
+  // request is paid. Two batches rejected ordinary saved logs outright.
+  ctx.judge.config={...ctx.judge.config,maxCalls:Math.min(6,ctx.judge.config.maxCalls),timeoutMs:Math.min(1800,ctx.judge.config.timeoutMs)};
   ctx.judge.concurrency=2;
   let selected;
   try{

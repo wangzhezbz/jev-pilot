@@ -18,6 +18,9 @@ const out=resolve(process.argv.find(x=>x.startsWith('--out='))?.slice(6)||'dist/
 await mkdir(out,{recursive:true});
 const bin=discoverCodex(),key=loadKey(installHome());if(!key)throw Error('MISSING_KEY');
 const releaseAB=process.argv.includes('--release-ab');
+const candidateRoot=process.argv.find(x=>x.startsWith('--candidate-root='))?.slice(17);
+if(candidateRoot&&!releaseAB)throw Error('CANDIDATE_REQUIRES_RELEASE_AB');
+const candidateVersion=candidateRoot?JSON.parse(await readFile(join(candidateRoot,'.codex-plugin/plugin.json'),'utf8')).version:null;
 const models=[releaseAB?'gpt-6-astra':'gpt-6-sol'],jobs=[];
 const semantic=process.argv.includes('--semantic-local');
 const selectedTasks=releaseAB?[...tasks.filter(t=>['cross_file','incident'].includes(t.id)),semanticTask]:semantic?[semanticTask]:tasks;
@@ -33,6 +36,7 @@ const disableArgs=[];
 const hashes={};for(const path of ['src/core.mjs','src/request-guard.mjs','src/automation.mjs','src/evidence.mjs','src/policy.mjs','runtime/desktop/router.mjs','runtime/desktop/bridge.mjs','skills/jev-pilot/SKILL.md','skills/jev-pilot/references/operations.md','scripts/benchmark/tasks.mjs','scripts/acceptance/tasks.mjs','scripts/acceptance/factorial-run.mjs','scripts/acceptance/factorial-tasks.mjs','src/prepare-output.mjs','src/evidence-tool.mjs','src/server.mjs','src/runtime-compatibility.mjs','skills/jev-pilot/references/evidence.md','scripts/acceptance/timeline.mjs','src/distribution.mjs'])hashes[path]=hash(await readFile(path,'utf8'));
 const protocol={at:new Date().toISOString(),jobs,runs:runCount,models,initialEffort:'high',concurrency:1,hashes,config,quality:'Frozen independent oracle after inference; protected fixtures unchanged; failed attempts retained.',stopRule:'Stop on infrastructure or provider rate/quota error, no substitution or retries.',timeLimitMs:240000,nativeVersion:spawnSync(bin,['--version'],{encoding:'utf8'}).stdout.trim(),revision:spawnSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).stdout.trim(),expectedPluginVersion:releaseAB?'0.2.0+codex.20260924011258':semantic?'workspace-candidate':'0.2.0+codex.20260923233124',scope:'12 single-replicate diagnostic runs, synthetic workspaces, GPT-6 Sol initially high (desktop user baseline). Bare: native engine. Routing: real router without plugin or automation. Evidence: plugin and automatic evidence hook, fixed keep router control with no routing API calls. Combined: real router, plugin and automation. All use clean private CODEX_HOME, same prompt and native code mode; independent oracle; no forced Jev calls or full reads. Orders predefined, not completely balanced with three tasks. Startup separately measured. Native app-server backend timing, not desktop UI latency or account billing. No statistical or guaranteed savings claim. Main session background routing excluded. Failures retained. No post-result policy changes.' ,tasks:selectedTasks.map(t=>({id:t.id,prompt:t.prompt,files:Object.fromEntries(Object.entries(t.files).map(([k,v])=>[k,hash(v)]))}))};
 if(releaseAB){protocol.scope='Frozen installed v16, GPT-6 Astra initially high. 3 tasks x 2 repeats x bare/combined = 12 real tasks, sequential, AB/BA balanced within each task. No mandated Jev or full reads. Equal prompts, frozen independent quality oracles, startup separate. Native desktop backend timing, not UI or subscription debits; small exploratory sample.';protocol.stopRule='Stop after infrastructure failure, timeout, interruption or provider limit; retain all prior and failed runs. No reruns or mid-test product changes.';protocol.hashes['scripts/acceptance/semantic-task.mjs']=hash(await readFile('scripts/acceptance/semantic-task.mjs','utf8'));}
+if(candidateRoot){protocol.expectedPluginVersion=candidateVersion;protocol.sourceMode='isolated staged candidate plugin plus matching workspace bridge';protocol.scope=protocol.scope.replace('installed v16','candidate v17');}
 if(process.argv.includes('--plan')){console.log(JSON.stringify(protocol,null,2));process.exit(0);}
 if(semantic)protocol.scope='Exploratory natural semantic tasks (arms listed in jobs): native bare vs local candidate skill and MCP with fixed high routing control. No mandated Jev calls or full reads; no performance significance or billing claim.';
 await writeFile(join(out,'protocol.json'),JSON.stringify(protocol,null,2),{flag:'wx'});
@@ -74,7 +78,13 @@ runs: for(const job of jobs)for(const arm of job.arms){
     args.push('-c',`mcp_servers.jev-pilot=${toml({command:process.execPath,args:['--use-env-proxy',resolve('src/server.mjs')],env_vars:['JEV_PILOT_HOME','HTTPS_PROXY','HTTP_PROXY','ALL_PROXY','NO_PROXY']})}`);
     record.pluginVersion='workspace-candidate';
    }else{
-   const install=spawnSync(bin,['plugin','add','jev-pilot@personal','--json'],{env,encoding:'utf8',timeout:30000});if(install.status!==0)throw Error('PLUGIN_INSTALL_FAILED');record.pluginVersion=JSON.parse(install.stdout).version;if(record.pluginVersion!==protocol.expectedPluginVersion)throw Error('PLUGIN_VERSION_DRIFT');
+   let marketplace='personal';
+   if(candidateRoot){
+    marketplace='jev-candidate';const root=join(cleanHome,'candidate-marketplace');await mkdir(join(root,'.agents/plugins'),{recursive:true});await mkdir(join(root,'plugins'));await symlink(candidateRoot,join(root,'plugins/jev-pilot'));
+    await writeFile(join(root,'.agents/plugins/marketplace.json'),JSON.stringify({name:marketplace,plugins:[{name:'jev-pilot',source:{source:'local',path:'./plugins/jev-pilot'},policy:{installation:'AVAILABLE',authentication:'ON_INSTALL'}}]}));
+    const added=spawnSync(bin,['plugin','marketplace','add',root,'--json'],{env,encoding:'utf8',timeout:30000});if(added.status!==0)throw Error('CANDIDATE_MARKETPLACE_FAILED');
+   }
+   const install=spawnSync(bin,['plugin','add',`jev-pilot@${marketplace}`,'--json'],{env,encoding:'utf8',timeout:30000});if(install.status!==0)throw Error('PLUGIN_INSTALL_FAILED');record.pluginVersion=JSON.parse(install.stdout).version;if(record.pluginVersion!==protocol.expectedPluginVersion)throw Error('PLUGIN_VERSION_DRIFT');
    }
   }
   if(arm==='bare'){native=spawn(bin,args,{env,stdio:['pipe','pipe','pipe']});native.stderr.resume();c=client(native.stdin,native.stdout);}

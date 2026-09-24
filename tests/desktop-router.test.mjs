@@ -339,11 +339,11 @@ test('routine calls reserve two judgments for late failures and then restore bas
  await s.router.hook({...s.p,tool_use_id:'no-reserve'});
  assert.equal(judgments,4);assert.equal(s.router.turns.get('thread').current,'high');
  for(let i=0;i<2;i++)await s.router.hook({...s.p,tool_use_id:'failure'+i,tool_response:{exit_code:1}});
- assert.equal(judgments,6);assert.equal(s.router.turns.get('thread').current,'high');
+ assert.equal(judgments,6);assert.equal(s.router.turns.get('thread').current,'low');
  await s.router.hook({...s.p,tool_use_id:'last-failure',tool_response:{exit_code:2}});
  assert.equal(judgments,6);assert.equal(s.router.turns.get('thread').current,'high');
- assert.equal(s.logs.filter(x=>x.kind==='effort_restore'&&x.status==='applied').length,1);
- const report=summarize(s.logs);assert.equal(report.routing.baselineRestoresApplied,1);assert.equal(report.routing.budgetHeld,2);
+ assert.equal(s.logs.filter(x=>x.kind==='effort_restore'&&x.status==='applied').length,2);
+ const report=summarize(s.logs);assert.equal(report.routing.baselineRestoresApplied,2);assert.equal(report.routing.budgetHeld,0);
  assert.equal(report.routing.knownJevInputTokens,0);assert.equal(report.routing.decisions,5);
 });
 test('new input and public plan can use reserved judgments after routine exhaustion',async()=>{
@@ -408,11 +408,13 @@ test('timed-out native routing publication never sends a competing baseline rest
  assert.equal(publications,1);assert.equal(judgments,2);assert.equal(s.router.turns.get('thread').settingsUncertain,true);
  assert(!s.logs.some(x=>x.kind==='effort_restore'));
 });
-test('the final routine judgment cannot introduce a downgrade with no routine capacity left',async()=>{
+test('the final routine judgment applies a bounded downgrade then restores without an extra API call',async()=>{
  let n=0;const s=setup({judge:async()=>({answer:answer(++n<4?'high':'medium')})});
  for(let i=0;i<4;i++)await s.router.hook({...s.p,tool_use_id:String(i)});
- assert.equal(n,4);assert.equal(s.calls.length,0);assert.equal(s.logs.at(-1).status,'budget_held');
- await s.router.hook({...s.p,tool_use_id:'next'});assert.equal(s.calls.length,0);
+ assert.equal(n,4);assert.equal(s.calls.length,1);assert.equal(s.logs.at(-1).status,'applied');
+ assert.equal(s.router.turns.get('thread').current,'medium');
+ await s.router.hook({...s.p,tool_use_id:'next'});assert.equal(s.calls.length,2);
+ assert.equal(s.router.turns.get('thread').current,'high');assert.equal(n,4);
 });
 test('reserved judgments respect the user ceiling after baseline restoration',async()=>{
  let n=0;const s=setup({judge:async()=>({answer:answer(++n<5?'low':'xhigh')})});
@@ -472,4 +474,16 @@ test('two denied upgrades do not suppress a subsequent valid downgrade',async()=
  await s.router.hook({...s.p,tool_use_id:'new-phase'});
  assert.equal(n,3);assert.equal(s.router.turns.get('thread').current,'medium');
  assert.equal(s.calls.at(-1).params.effort,'medium');
+});
+
+test('a final-call lease survives only its selected boundaries and hard expiry/new input/failure still restores',async()=>{
+ for(const reason of ['boundaries','expiry','input','failure']){
+  let n=0;const s=setup({maxCalls:1,reservedCalls:0,judge:async()=>{n++;return{answer:answer('low'),horizon:horizon(5)};}});
+  await s.router.hook(s.p);const t=s.router.turns.get('thread');assert.equal(t.current,'low');
+  if(reason==='boundaries')for(let i=0;i<4;i++){await s.router.hook({...s.p,tool_use_id:'reuse'+i});assert.equal(t.current,'low');}
+  if(reason==='expiry')t.leaseUntil=Date.now()-1;
+  if(reason==='input')s.router.invalidate('thread',[{type:'text',text:'A new task supersedes the old plan'}]);
+  await s.router.hook({...s.p,tool_use_id:'restore',...(reason==='failure'?{tool_response:{exit_code:1}}:{})});
+  assert.equal(t.current,'high');assert.equal(n,1);assert.equal(s.calls.length,2);
+ }
 });

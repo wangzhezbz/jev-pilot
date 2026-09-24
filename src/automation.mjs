@@ -51,7 +51,7 @@ export function createAutomation({ store = new Store(), key, send, clock=Date.no
       if (!eligible) { store.put(project, 'automatic_task', state, id); return {}; }
       state.count++; store.put(project, 'automatic_task', state, id);
       const controller=new AbortController();let release;const settled=new Promise(resolve=>release=resolve),job={threadId:payload.session_id,controller,settled};active.add(job);
-      const judge = new Judge({ store, project, taskId: payload.session_id, signal:controller.signal, concurrency:batchConcurrency, config: { ...config, maxCalls: 2, timeoutMs: 1800 }, ...(key !== undefined ? { key } : {}), ...(send ? { send } : {}) });
+      const judge = new Judge({ store, project, taskId: payload.session_id, signal:controller.signal, concurrency:batchConcurrency, config: { ...config, maxCalls: Math.min(6,config.maxCalls), timeoutMs: Math.min(1800,config.timeoutMs) }, ...(key !== undefined ? { key } : {}), ...(send ? { send } : {}) });
       const started=performance.now(),originalBytes=Buffer.byteLength(typeof payload.tool_response==='string'?payload.tool_response:JSON.stringify(payload.tool_response)),sourceTextBytes=Buffer.byteLength(response);
       let result;
       try {result=await filterOutput({store,project,config,judge,root:payload.cwd},{goal:state.goal,text:response,source:payload.tool_name,budget:500000,requireCompleteJudgment:true});}

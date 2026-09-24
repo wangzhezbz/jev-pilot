@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { parseEnv } from 'node:util';
 import { postTypeSafe } from './transport.mjs';
 
-export const POLICY_VERSION = 'effort-v16-cache-budget';
+export const POLICY_VERSION = 'effort-v17-bounded-final-lease';
 const effortOrder=['none','minimal','low','medium','high','xhigh','max','ultra'];
 export const LEASE_UNIT = 'observed_tool_batch_or_boundary';
 export const SUPPORTED_MODELS = ['gpt-6-astra','gpt-6-sol','gpt-6-luna','gpt-5.6-sol','gpt-5.6-terra','gpt-5.6-luna'];
@@ -394,12 +394,10 @@ export class Router {
         let effort=this.boundedEffort(t,result.answer);
         const from=t.current;
         let status='unchanged';
-        // The final routine call and reserved calls cannot open another
-        // downgrade that the exhausted budget would immediately undo. Existing
-        // valid leases survive; reserved judgments can still raise effort.
-        if(t.calls>=this.routineLimit && effortOrder.indexOf(effort)<effortOrder.indexOf(from) && effortOrder.indexOf(effort)<effortOrder.indexOf(t.baseline)){
-          effort=from;status='budget_held';
-        }
+        // A paid valid judgment remains useful on the final admitted call.
+        // Admission checks its bounded lease before the remaining call budget;
+        // expiry, failure or changed input restores baseline if no refresh is
+        // available. Do not pay for a recommendation and unconditionally veto it.
         if(effort!==from) {
           t.publicationPending=true;
           let reply;

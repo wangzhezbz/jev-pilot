@@ -1,0 +1,1520 @@
+[
+  {
+    "experiment": "v17-evidence-probe-20260924",
+    "adopted": false,
+    "records": [
+      {
+        "task": "incident",
+        "kind": "real_jev_prepare_component",
+        "gptCalls": 0,
+        "sourceHash": "6a932f3daa50ac58d2a81f515744b30cd1808f25660d7dc46225a4dec6ff6b6e",
+        "sourceBytes": 64072,
+        "returnedBytes": 64692,
+        "elapsedMs": 1318,
+        "selection": {
+          "status": "original",
+          "reason": "insufficient_reduction"
+        },
+        "missedExpected": [],
+        "recallExact": false,
+        "events": [
+          {
+            "at": "2026-09-24T04:13:58.993Z",
+            "kind": "operation",
+            "operation": "prepare_output",
+            "elapsedMs": 1318,
+            "calls": 3
+          },
+          {
+            "at": "2026-09-24T04:13:58.993Z",
+            "kind": "prepared_output",
+            "status": "original",
+            "reason": "insufficient_reduction",
+            "nativeTokenSavings": null
+          },
+          {
+            "at": "2026-09-24T04:13:58.993Z",
+            "kind": "evidence_selection",
+            "policy": "preserve-uncertainty-v3",
+            "candidates": 19,
+            "judged": 19,
+            "duplicates": 0,
+            "proposedExclusions": 4,
+            "appliedExclusions": 4,
+            "mode": "active"
+          },
+          {
+            "at": "2026-09-24T04:13:58.992Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 645,
+            "inputTokens": 6347,
+            "outputTokens": 183,
+            "questions": 5,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:13:58.361Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 678,
+            "inputTokens": 10400,
+            "outputTokens": 255,
+            "questions": 7,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:13:58.347Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 664,
+            "inputTokens": 10269,
+            "outputTokens": 255,
+            "questions": 7,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:13:57.682Z",
+            "kind": "classification_batches",
+            "purpose": "evidence",
+            "batches": 3,
+            "concurrency": 2
+          }
+        ],
+        "passed": false
+      },
+      {
+        "task": "semantic",
+        "kind": "real_jev_prepare_component",
+        "gptCalls": 0,
+        "sourceHash": "fdf66664a8a8d9a178252decd385e8d6cdea67e70d7378db6a142c0722d94448",
+        "sourceBytes": 58616,
+        "returnedBytes": 34752,
+        "elapsedMs": 1981,
+        "selection": {
+          "status": "prepared",
+          "reason": "reduced",
+          "artifactId": "4f4c30e6-df13-45ef-a137-a3c9fc773d97",
+          "sourceHash": "fdf66664a8a8d9a178252decd385e8d6cdea67e70d7378db6a142c0722d94448",
+          "originalBytes": 59157,
+          "returnedBytes": 34415,
+          "completeCoverage": true,
+          "excludedItems": 84,
+          "modelReceipt": "unconfirmed",
+          "nativeTokenSavings": null
+        },
+        "missedExpected": [],
+        "recallExact": true,
+        "events": [
+          {
+            "at": "2026-09-24T04:14:00.976Z",
+            "kind": "operation",
+            "operation": "recall_output",
+            "elapsedMs": 0,
+            "calls": 0
+          },
+          {
+            "at": "2026-09-24T04:14:00.975Z",
+            "kind": "operation",
+            "operation": "prepare_output",
+            "elapsedMs": 1980,
+            "calls": 6
+          },
+          {
+            "at": "2026-09-24T04:14:00.975Z",
+            "kind": "prepared_output",
+            "status": "prepared",
+            "reason": "reduced",
+            "artifactId": "4f4c30e6-df13-45ef-a137-a3c9fc773d97",
+            "sourceHash": "fdf66664a8a8d9a178252decd385e8d6cdea67e70d7378db6a142c0722d94448",
+            "originalBytes": 59157,
+            "returnedBytes": 34415,
+            "completeCoverage": true,
+            "excludedItems": 84,
+            "modelReceipt": "unconfirmed",
+            "nativeTokenSavings": null
+          },
+          {
+            "at": "2026-09-24T04:14:00.974Z",
+            "kind": "evidence_selection",
+            "policy": "preserve-uncertainty-v3",
+            "candidates": 180,
+            "judged": 133,
+            "duplicates": 0,
+            "proposedExclusions": 84,
+            "appliedExclusions": 84,
+            "mode": "active"
+          },
+          {
+            "at": "2026-09-24T04:14:00.973Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 682,
+            "inputTokens": 7306,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:14:00.965Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 637,
+            "inputTokens": 4125,
+            "outputTokens": 474,
+            "questions": 13,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:14:00.328Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 669,
+            "inputTokens": 7290,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:14:00.290Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 615,
+            "inputTokens": 7304,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:13:59.674Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 661,
+            "inputTokens": 7225,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:13:59.658Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 644,
+            "inputTokens": 7303,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:13:59.013Z",
+            "kind": "classification_batches",
+            "purpose": "evidence",
+            "batches": 6,
+            "concurrency": 2
+          }
+        ],
+        "passed": true
+      }
+    ],
+    "jevCalls": 9,
+    "inputTokens": 67569,
+    "outputTokens": 5572,
+    "unknownUsage": 0
+  },
+  {
+    "experiment": "v17-evidence-probe-concise-20260924",
+    "adopted": false,
+    "records": [
+      {
+        "task": "incident",
+        "kind": "real_jev_prepare_component",
+        "gptCalls": 0,
+        "sourceHash": "6a932f3daa50ac58d2a81f515744b30cd1808f25660d7dc46225a4dec6ff6b6e",
+        "sourceBytes": 64072,
+        "returnedBytes": 12839,
+        "elapsedMs": 2054,
+        "selection": {
+          "status": "prepared",
+          "reason": "reduced",
+          "artifactId": "b2453d33-d2c5-4431-8b7e-f0d7c3bfddb3",
+          "sourceHash": "6a932f3daa50ac58d2a81f515744b30cd1808f25660d7dc46225a4dec6ff6b6e",
+          "originalBytes": 64614,
+          "returnedBytes": 12502,
+          "completeCoverage": true,
+          "excludedItems": 88,
+          "modelReceipt": "unconfirmed",
+          "nativeTokenSavings": null
+        },
+        "missedExpected": [],
+        "recallExact": true,
+        "events": [
+          {
+            "at": "2026-09-24T04:24:56.427Z",
+            "kind": "operation",
+            "operation": "recall_output",
+            "elapsedMs": 0,
+            "calls": 0
+          },
+          {
+            "at": "2026-09-24T04:24:56.426Z",
+            "kind": "operation",
+            "operation": "prepare_output",
+            "elapsedMs": 2053,
+            "calls": 5
+          },
+          {
+            "at": "2026-09-24T04:24:56.426Z",
+            "kind": "prepared_output",
+            "status": "prepared",
+            "reason": "reduced",
+            "artifactId": "b2453d33-d2c5-4431-8b7e-f0d7c3bfddb3",
+            "sourceHash": "6a932f3daa50ac58d2a81f515744b30cd1808f25660d7dc46225a4dec6ff6b6e",
+            "originalBytes": 64614,
+            "returnedBytes": 12502,
+            "completeCoverage": true,
+            "excludedItems": 88,
+            "modelReceipt": "unconfirmed",
+            "nativeTokenSavings": null
+          },
+          {
+            "at": "2026-09-24T04:24:56.424Z",
+            "kind": "evidence_selection",
+            "policy": "preserve-uncertainty-v3",
+            "candidates": 108,
+            "judged": 108,
+            "duplicates": 0,
+            "proposedExclusions": 88,
+            "appliedExclusions": 88,
+            "mode": "active"
+          },
+          {
+            "at": "2026-09-24T04:24:56.422Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 673,
+            "inputTokens": 5534,
+            "outputTokens": 437,
+            "questions": 12,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:24:56.037Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 642,
+            "inputTokens": 10643,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:24:55.748Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 638,
+            "inputTokens": 10595,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:24:55.394Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 1001,
+            "inputTokens": 10471,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:24:55.109Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 716,
+            "inputTokens": 10503,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:24:54.392Z",
+            "kind": "classification_batches",
+            "purpose": "evidence",
+            "batches": 5,
+            "concurrency": 2
+          }
+        ],
+        "passed": true
+      },
+      {
+        "task": "semantic",
+        "kind": "real_jev_prepare_component",
+        "gptCalls": 0,
+        "sourceHash": "fdf66664a8a8d9a178252decd385e8d6cdea67e70d7378db6a142c0722d94448",
+        "sourceBytes": 58616,
+        "returnedBytes": 59235,
+        "elapsedMs": 2000,
+        "selection": {
+          "status": "original",
+          "reason": "insufficient_reduction"
+        },
+        "missedExpected": [],
+        "recallExact": false,
+        "events": [
+          {
+            "at": "2026-09-24T04:24:58.430Z",
+            "kind": "operation",
+            "operation": "prepare_output",
+            "elapsedMs": 2000,
+            "calls": 6
+          },
+          {
+            "at": "2026-09-24T04:24:58.430Z",
+            "kind": "prepared_output",
+            "status": "original",
+            "reason": "insufficient_reduction",
+            "nativeTokenSavings": null
+          },
+          {
+            "at": "2026-09-24T04:24:58.429Z",
+            "kind": "evidence_selection",
+            "policy": "preserve-uncertainty-v3",
+            "candidates": 180,
+            "judged": 133,
+            "duplicates": 0,
+            "proposedExclusions": 30,
+            "appliedExclusions": 30,
+            "mode": "active"
+          },
+          {
+            "at": "2026-09-24T04:24:58.429Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 613,
+            "inputTokens": 4288,
+            "outputTokens": 474,
+            "questions": 13,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:24:58.402Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 675,
+            "inputTokens": 7502,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:24:57.815Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 643,
+            "inputTokens": 7500,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:24:57.726Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 620,
+            "inputTokens": 7486,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:24:57.172Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 723,
+            "inputTokens": 7499,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:24:57.105Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 657,
+            "inputTokens": 7421,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:24:56.448Z",
+            "kind": "classification_batches",
+            "purpose": "evidence",
+            "batches": 6,
+            "concurrency": 2
+          }
+        ],
+        "passed": false
+      }
+    ],
+    "jevCalls": 11,
+    "inputTokens": 89442,
+    "outputTokens": 8840,
+    "unknownUsage": 0
+  },
+  {
+    "experiment": "v17-evidence-probe-criteria-20260924",
+    "adopted": true,
+    "records": [
+      {
+        "task": "incident",
+        "kind": "real_jev_prepare_component",
+        "gptCalls": 0,
+        "sourceHash": "6a932f3daa50ac58d2a81f515744b30cd1808f25660d7dc46225a4dec6ff6b6e",
+        "sourceBytes": 64072,
+        "returnedBytes": 15976,
+        "elapsedMs": 2182,
+        "selection": {
+          "status": "prepared",
+          "reason": "reduced",
+          "artifactId": "e67ac6f1-1538-470a-8abe-788515a9643a",
+          "sourceHash": "6a932f3daa50ac58d2a81f515744b30cd1808f25660d7dc46225a4dec6ff6b6e",
+          "originalBytes": 64614,
+          "returnedBytes": 15639,
+          "completeCoverage": true,
+          "excludedItems": 83,
+          "modelReceipt": "unconfirmed",
+          "nativeTokenSavings": null
+        },
+        "missedExpected": [],
+        "recallExact": true,
+        "events": [
+          {
+            "at": "2026-09-24T04:17:44.746Z",
+            "kind": "operation",
+            "operation": "recall_output",
+            "elapsedMs": 0,
+            "calls": 0
+          },
+          {
+            "at": "2026-09-24T04:17:44.746Z",
+            "kind": "operation",
+            "operation": "prepare_output",
+            "elapsedMs": 2181,
+            "calls": 5
+          },
+          {
+            "at": "2026-09-24T04:17:44.746Z",
+            "kind": "prepared_output",
+            "status": "prepared",
+            "reason": "reduced",
+            "artifactId": "e67ac6f1-1538-470a-8abe-788515a9643a",
+            "sourceHash": "6a932f3daa50ac58d2a81f515744b30cd1808f25660d7dc46225a4dec6ff6b6e",
+            "originalBytes": 64614,
+            "returnedBytes": 15639,
+            "completeCoverage": true,
+            "excludedItems": 83,
+            "modelReceipt": "unconfirmed",
+            "nativeTokenSavings": null
+          },
+          {
+            "at": "2026-09-24T04:17:44.745Z",
+            "kind": "evidence_selection",
+            "policy": "preserve-uncertainty-v3",
+            "candidates": 108,
+            "judged": 108,
+            "duplicates": 0,
+            "proposedExclusions": 83,
+            "appliedExclusions": 83,
+            "mode": "active"
+          },
+          {
+            "at": "2026-09-24T04:17:44.745Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 743,
+            "inputTokens": 6078,
+            "outputTokens": 437,
+            "questions": 12,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:17:44.331Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 850,
+            "inputTokens": 11811,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:17:44.001Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 739,
+            "inputTokens": 11763,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:17:43.479Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 893,
+            "inputTokens": 11639,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:17:43.260Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 674,
+            "inputTokens": 11671,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:17:42.585Z",
+            "kind": "classification_batches",
+            "purpose": "evidence",
+            "batches": 5,
+            "concurrency": 2
+          }
+        ],
+        "passed": true
+      },
+      {
+        "task": "semantic",
+        "kind": "real_jev_prepare_component",
+        "gptCalls": 0,
+        "sourceHash": "fdf66664a8a8d9a178252decd385e8d6cdea67e70d7378db6a142c0722d94448",
+        "sourceBytes": 58616,
+        "returnedBytes": 30795,
+        "elapsedMs": 2091,
+        "selection": {
+          "status": "prepared",
+          "reason": "reduced",
+          "artifactId": "400060fc-a0b8-45db-875f-eb2c36a141a7",
+          "sourceHash": "fdf66664a8a8d9a178252decd385e8d6cdea67e70d7378db6a142c0722d94448",
+          "originalBytes": 59157,
+          "returnedBytes": 30458,
+          "completeCoverage": true,
+          "excludedItems": 95,
+          "modelReceipt": "unconfirmed",
+          "nativeTokenSavings": null
+        },
+        "missedExpected": [],
+        "recallExact": true,
+        "events": [
+          {
+            "at": "2026-09-24T04:17:46.840Z",
+            "kind": "operation",
+            "operation": "recall_output",
+            "elapsedMs": 0,
+            "calls": 0
+          },
+          {
+            "at": "2026-09-24T04:17:46.840Z",
+            "kind": "operation",
+            "operation": "prepare_output",
+            "elapsedMs": 2091,
+            "calls": 6
+          },
+          {
+            "at": "2026-09-24T04:17:46.840Z",
+            "kind": "prepared_output",
+            "status": "prepared",
+            "reason": "reduced",
+            "artifactId": "400060fc-a0b8-45db-875f-eb2c36a141a7",
+            "sourceHash": "fdf66664a8a8d9a178252decd385e8d6cdea67e70d7378db6a142c0722d94448",
+            "originalBytes": 59157,
+            "returnedBytes": 30458,
+            "completeCoverage": true,
+            "excludedItems": 95,
+            "modelReceipt": "unconfirmed",
+            "nativeTokenSavings": null
+          },
+          {
+            "at": "2026-09-24T04:17:46.839Z",
+            "kind": "evidence_selection",
+            "policy": "preserve-uncertainty-v3",
+            "candidates": 180,
+            "judged": 133,
+            "duplicates": 0,
+            "proposedExclusions": 95,
+            "appliedExclusions": 95,
+            "mode": "active"
+          },
+          {
+            "at": "2026-09-24T04:17:46.839Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 657,
+            "inputTokens": 8670,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:17:46.800Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 577,
+            "inputTokens": 4884,
+            "outputTokens": 474,
+            "questions": 13,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:17:46.223Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 681,
+            "inputTokens": 8668,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:17:46.182Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 671,
+            "inputTokens": 8654,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:17:45.542Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 772,
+            "inputTokens": 8667,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:17:45.510Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 741,
+            "inputTokens": 8589,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:17:44.769Z",
+            "kind": "classification_batches",
+            "purpose": "evidence",
+            "batches": 6,
+            "concurrency": 2
+          }
+        ],
+        "passed": true
+      }
+    ],
+    "jevCalls": 11,
+    "inputTokens": 101094,
+    "outputTokens": 8840,
+    "unknownUsage": 0
+  },
+  {
+    "experiment": "v17-evidence-probe-records-20260924",
+    "adopted": false,
+    "records": [
+      {
+        "task": "incident",
+        "kind": "real_jev_prepare_component",
+        "gptCalls": 0,
+        "sourceHash": "6a932f3daa50ac58d2a81f515744b30cd1808f25660d7dc46225a4dec6ff6b6e",
+        "sourceBytes": 64072,
+        "returnedBytes": 64683,
+        "elapsedMs": 2388,
+        "selection": {
+          "status": "original",
+          "reason": "no_exclusions"
+        },
+        "missedExpected": [],
+        "recallExact": false,
+        "events": [
+          {
+            "at": "2026-09-24T04:15:10.882Z",
+            "kind": "operation",
+            "operation": "prepare_output",
+            "elapsedMs": 2386,
+            "calls": 5
+          },
+          {
+            "at": "2026-09-24T04:15:10.882Z",
+            "kind": "prepared_output",
+            "status": "original",
+            "reason": "no_exclusions",
+            "nativeTokenSavings": null
+          },
+          {
+            "at": "2026-09-24T04:15:10.882Z",
+            "kind": "evidence_selection",
+            "policy": "preserve-uncertainty-v3",
+            "candidates": 108,
+            "judged": 108,
+            "duplicates": 0,
+            "proposedExclusions": 0,
+            "appliedExclusions": 0,
+            "mode": "active"
+          },
+          {
+            "at": "2026-09-24T04:15:10.881Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 1676,
+            "inputTokens": 10447,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:15:10.472Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 653,
+            "inputTokens": 5374,
+            "outputTokens": 437,
+            "questions": 12,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:15:09.818Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 626,
+            "inputTokens": 10399,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:15:09.205Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 691,
+            "inputTokens": 10275,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:15:09.190Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 675,
+            "inputTokens": 10307,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:15:08.514Z",
+            "kind": "classification_batches",
+            "purpose": "evidence",
+            "batches": 5,
+            "concurrency": 2
+          }
+        ],
+        "passed": false
+      },
+      {
+        "task": "semantic",
+        "kind": "real_jev_prepare_component",
+        "gptCalls": 0,
+        "sourceHash": "fdf66664a8a8d9a178252decd385e8d6cdea67e70d7378db6a142c0722d94448",
+        "sourceBytes": 58616,
+        "returnedBytes": 34000,
+        "elapsedMs": 1928,
+        "selection": {
+          "status": "prepared",
+          "reason": "reduced",
+          "artifactId": "e1162f5f-68b9-43f4-8c4a-ca147bb1e82d",
+          "sourceHash": "fdf66664a8a8d9a178252decd385e8d6cdea67e70d7378db6a142c0722d94448",
+          "originalBytes": 59157,
+          "returnedBytes": 33663,
+          "completeCoverage": true,
+          "excludedItems": 86,
+          "modelReceipt": "unconfirmed",
+          "nativeTokenSavings": null
+        },
+        "missedExpected": [],
+        "recallExact": true,
+        "events": [
+          {
+            "at": "2026-09-24T04:15:12.815Z",
+            "kind": "operation",
+            "operation": "recall_output",
+            "elapsedMs": 0,
+            "calls": 0
+          },
+          {
+            "at": "2026-09-24T04:15:12.815Z",
+            "kind": "operation",
+            "operation": "prepare_output",
+            "elapsedMs": 1928,
+            "calls": 6
+          },
+          {
+            "at": "2026-09-24T04:15:12.814Z",
+            "kind": "prepared_output",
+            "status": "prepared",
+            "reason": "reduced",
+            "artifactId": "e1162f5f-68b9-43f4-8c4a-ca147bb1e82d",
+            "sourceHash": "fdf66664a8a8d9a178252decd385e8d6cdea67e70d7378db6a142c0722d94448",
+            "originalBytes": 59157,
+            "returnedBytes": 33663,
+            "completeCoverage": true,
+            "excludedItems": 86,
+            "modelReceipt": "unconfirmed",
+            "nativeTokenSavings": null
+          },
+          {
+            "at": "2026-09-24T04:15:12.814Z",
+            "kind": "evidence_selection",
+            "policy": "preserve-uncertainty-v3",
+            "candidates": 180,
+            "judged": 133,
+            "duplicates": 0,
+            "proposedExclusions": 86,
+            "appliedExclusions": 86,
+            "mode": "active"
+          },
+          {
+            "at": "2026-09-24T04:15:12.813Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 605,
+            "inputTokens": 4125,
+            "outputTokens": 474,
+            "questions": 13,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:15:12.786Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 640,
+            "inputTokens": 7306,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:15:12.207Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 665,
+            "inputTokens": 7304,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:15:12.145Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 611,
+            "inputTokens": 7290,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:15:11.541Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 636,
+            "inputTokens": 7225,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:15:11.532Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 627,
+            "inputTokens": 7303,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:15:10.904Z",
+            "kind": "classification_batches",
+            "purpose": "evidence",
+            "batches": 6,
+            "concurrency": 2
+          }
+        ],
+        "passed": true
+      }
+    ],
+    "jevCalls": 11,
+    "inputTokens": 87355,
+    "outputTokens": 8840,
+    "unknownUsage": 0
+  },
+  {
+    "experiment": "v17-evidence-probe-rubric-20260924",
+    "adopted": false,
+    "records": [
+      {
+        "task": "incident",
+        "kind": "real_jev_prepare_component",
+        "gptCalls": 0,
+        "sourceHash": "6a932f3daa50ac58d2a81f515744b30cd1808f25660d7dc46225a4dec6ff6b6e",
+        "sourceBytes": 64072,
+        "returnedBytes": 15341,
+        "elapsedMs": 2036,
+        "selection": {
+          "status": "prepared",
+          "reason": "reduced",
+          "artifactId": "718936f9-fea6-40f5-8d3e-84b7fe97f826",
+          "sourceHash": "6a932f3daa50ac58d2a81f515744b30cd1808f25660d7dc46225a4dec6ff6b6e",
+          "originalBytes": 64614,
+          "returnedBytes": 15004,
+          "completeCoverage": true,
+          "excludedItems": 84,
+          "modelReceipt": "unconfirmed",
+          "nativeTokenSavings": null
+        },
+        "missedExpected": [],
+        "recallExact": true,
+        "events": [
+          {
+            "at": "2026-09-24T04:16:31.832Z",
+            "kind": "operation",
+            "operation": "recall_output",
+            "elapsedMs": 0,
+            "calls": 0
+          },
+          {
+            "at": "2026-09-24T04:16:31.831Z",
+            "kind": "operation",
+            "operation": "prepare_output",
+            "elapsedMs": 2035,
+            "calls": 5
+          },
+          {
+            "at": "2026-09-24T04:16:31.831Z",
+            "kind": "prepared_output",
+            "status": "prepared",
+            "reason": "reduced",
+            "artifactId": "718936f9-fea6-40f5-8d3e-84b7fe97f826",
+            "sourceHash": "6a932f3daa50ac58d2a81f515744b30cd1808f25660d7dc46225a4dec6ff6b6e",
+            "originalBytes": 64614,
+            "returnedBytes": 15004,
+            "completeCoverage": true,
+            "excludedItems": 84,
+            "modelReceipt": "unconfirmed",
+            "nativeTokenSavings": null
+          },
+          {
+            "at": "2026-09-24T04:16:31.829Z",
+            "kind": "evidence_selection",
+            "policy": "preserve-uncertainty-v3",
+            "candidates": 108,
+            "judged": 108,
+            "duplicates": 0,
+            "proposedExclusions": 84,
+            "appliedExclusions": 84,
+            "mode": "active"
+          },
+          {
+            "at": "2026-09-24T04:16:31.828Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 590,
+            "inputTokens": 5982,
+            "outputTokens": 437,
+            "questions": 12,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:16:31.281Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 752,
+            "inputTokens": 11619,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:16:31.237Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 739,
+            "inputTokens": 11571,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:16:30.528Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 708,
+            "inputTokens": 11479,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:16:30.496Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 677,
+            "inputTokens": 11447,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:16:29.817Z",
+            "kind": "classification_batches",
+            "purpose": "evidence",
+            "batches": 5,
+            "concurrency": 2
+          }
+        ],
+        "passed": true
+      },
+      {
+        "task": "semantic",
+        "kind": "real_jev_prepare_component",
+        "gptCalls": 0,
+        "sourceHash": "fdf66664a8a8d9a178252decd385e8d6cdea67e70d7378db6a142c0722d94448",
+        "sourceBytes": 58616,
+        "returnedBytes": 59235,
+        "elapsedMs": 2025,
+        "selection": {
+          "status": "original",
+          "reason": "insufficient_reduction"
+        },
+        "missedExpected": [],
+        "recallExact": false,
+        "events": [
+          {
+            "at": "2026-09-24T04:16:33.862Z",
+            "kind": "operation",
+            "operation": "prepare_output",
+            "elapsedMs": 2025,
+            "calls": 6
+          },
+          {
+            "at": "2026-09-24T04:16:33.862Z",
+            "kind": "prepared_output",
+            "status": "original",
+            "reason": "insufficient_reduction",
+            "nativeTokenSavings": null
+          },
+          {
+            "at": "2026-09-24T04:16:33.862Z",
+            "kind": "evidence_selection",
+            "policy": "preserve-uncertainty-v3",
+            "candidates": 180,
+            "judged": 133,
+            "duplicates": 0,
+            "proposedExclusions": 22,
+            "appliedExclusions": 22,
+            "mode": "active"
+          },
+          {
+            "at": "2026-09-24T04:16:33.861Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 740,
+            "inputTokens": 8478,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:16:33.760Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 628,
+            "inputTokens": 4780,
+            "outputTokens": 474,
+            "questions": 13,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:16:33.131Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 670,
+            "inputTokens": 8462,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:16:33.120Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 648,
+            "inputTokens": 8476,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:16:32.472Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 616,
+            "inputTokens": 8475,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:16:32.460Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 604,
+            "inputTokens": 8397,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:16:31.855Z",
+            "kind": "classification_batches",
+            "purpose": "evidence",
+            "batches": 6,
+            "concurrency": 2
+          }
+        ],
+        "passed": false
+      }
+    ],
+    "jevCalls": 11,
+    "inputTokens": 99166,
+    "outputTokens": 8840,
+    "unknownUsage": 0
+  },
+  {
+    "experiment": "v17-evidence-probe-shared-rubric-20260924",
+    "adopted": false,
+    "records": [
+      {
+        "task": "incident",
+        "kind": "real_jev_prepare_component",
+        "gptCalls": 0,
+        "sourceHash": "6a932f3daa50ac58d2a81f515744b30cd1808f25660d7dc46225a4dec6ff6b6e",
+        "sourceBytes": 64072,
+        "returnedBytes": 14084,
+        "elapsedMs": 1994,
+        "selection": {
+          "status": "prepared",
+          "reason": "reduced",
+          "artifactId": "7f9aa61b-a8e2-4029-9ef9-ba391ccc6d75",
+          "sourceHash": "6a932f3daa50ac58d2a81f515744b30cd1808f25660d7dc46225a4dec6ff6b6e",
+          "originalBytes": 64614,
+          "returnedBytes": 13747,
+          "completeCoverage": true,
+          "excludedItems": 86,
+          "modelReceipt": "unconfirmed",
+          "nativeTokenSavings": null
+        },
+        "missedExpected": [],
+        "recallExact": true,
+        "events": [
+          {
+            "at": "2026-09-24T04:24:19.249Z",
+            "kind": "operation",
+            "operation": "recall_output",
+            "elapsedMs": 0,
+            "calls": 0
+          },
+          {
+            "at": "2026-09-24T04:24:19.249Z",
+            "kind": "operation",
+            "operation": "prepare_output",
+            "elapsedMs": 1993,
+            "calls": 5
+          },
+          {
+            "at": "2026-09-24T04:24:19.249Z",
+            "kind": "prepared_output",
+            "status": "prepared",
+            "reason": "reduced",
+            "artifactId": "7f9aa61b-a8e2-4029-9ef9-ba391ccc6d75",
+            "sourceHash": "6a932f3daa50ac58d2a81f515744b30cd1808f25660d7dc46225a4dec6ff6b6e",
+            "originalBytes": 64614,
+            "returnedBytes": 13747,
+            "completeCoverage": true,
+            "excludedItems": 86,
+            "modelReceipt": "unconfirmed",
+            "nativeTokenSavings": null
+          },
+          {
+            "at": "2026-09-24T04:24:19.247Z",
+            "kind": "evidence_selection",
+            "policy": "preserve-uncertainty-v3",
+            "candidates": 108,
+            "judged": 108,
+            "duplicates": 0,
+            "proposedExclusions": 86,
+            "appliedExclusions": 86,
+            "mode": "active"
+          },
+          {
+            "at": "2026-09-24T04:24:19.245Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 569,
+            "inputTokens": 5462,
+            "outputTokens": 437,
+            "questions": 12,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:24:18.759Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 657,
+            "inputTokens": 10499,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:24:18.675Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 700,
+            "inputTokens": 10451,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:24:18.101Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 826,
+            "inputTokens": 10327,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:24:17.974Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 699,
+            "inputTokens": 10359,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:24:17.274Z",
+            "kind": "classification_batches",
+            "purpose": "evidence",
+            "batches": 5,
+            "concurrency": 2
+          }
+        ],
+        "passed": true
+      },
+      {
+        "task": "semantic",
+        "kind": "real_jev_prepare_component",
+        "gptCalls": 0,
+        "sourceHash": "fdf66664a8a8d9a178252decd385e8d6cdea67e70d7378db6a142c0722d94448",
+        "sourceBytes": 58616,
+        "returnedBytes": 59235,
+        "elapsedMs": 2260,
+        "selection": {
+          "status": "original",
+          "reason": "insufficient_reduction"
+        },
+        "missedExpected": [],
+        "recallExact": false,
+        "events": [
+          {
+            "at": "2026-09-24T04:24:21.511Z",
+            "kind": "operation",
+            "operation": "prepare_output",
+            "elapsedMs": 2259,
+            "calls": 6
+          },
+          {
+            "at": "2026-09-24T04:24:21.511Z",
+            "kind": "prepared_output",
+            "status": "original",
+            "reason": "insufficient_reduction",
+            "nativeTokenSavings": null
+          },
+          {
+            "at": "2026-09-24T04:24:21.511Z",
+            "kind": "evidence_selection",
+            "policy": "preserve-uncertainty-v3",
+            "candidates": 180,
+            "judged": 133,
+            "duplicates": 0,
+            "proposedExclusions": 21,
+            "appliedExclusions": 21,
+            "mode": "active"
+          },
+          {
+            "at": "2026-09-24T04:24:21.510Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 939,
+            "inputTokens": 7358,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:24:21.344Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 665,
+            "inputTokens": 4210,
+            "outputTokens": 474,
+            "questions": 13,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:24:20.678Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 704,
+            "inputTokens": 7356,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:24:20.570Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 703,
+            "inputTokens": 7342,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:24:19.973Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 703,
+            "inputTokens": 7355,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:24:19.866Z",
+            "kind": "jev_call",
+            "purpose": "evidence",
+            "model": "jev-1.13.0",
+            "elapsedMs": 596,
+            "inputTokens": 7277,
+            "outputTokens": 881,
+            "questions": 24,
+            "status": "success"
+          },
+          {
+            "at": "2026-09-24T04:24:19.269Z",
+            "kind": "classification_batches",
+            "purpose": "evidence",
+            "batches": 6,
+            "concurrency": 2
+          }
+        ],
+        "passed": false
+      }
+    ],
+    "jevCalls": 11,
+    "inputTokens": 87996,
+    "outputTokens": 8840,
+    "unknownUsage": 0
+  }
+]

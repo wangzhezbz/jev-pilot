@@ -38,9 +38,10 @@ test('bounded quality checks use named evidence and preserve the complete source
 
 import {createAutomation} from '../src/automation.mjs';
 import {classificationPlan} from '../src/core.mjs';
-test('automatic filtering does not spend two requests on output requiring three batches',async t=>{
+test('automatic filtering respects an explicit two-call limit before starting three batches',async t=>{
  const root=mkdtempSync(join(tmpdir(),'jev-batch-admission-'));let calls=0;
- const store=new Store({home:join(root,'private')}),automation=createAutomation({store,key:'fixture',send:async()=>{calls++;throw new Error('must not request');}});t.after(()=>automation.close());
+ const store=new Store({home:join(root,'private')});store.put(store.project(root),'config',{maxCalls:2},'settings');
+ const automation=createAutomation({store,key:'fixture',send:async()=>{calls++;throw new Error('must not request');}});t.after(()=>automation.close());
  await automation.hook({cwd:root,session_id:'batch-test',turn_id:'t',hook_event_name:'UserPromptSubmit',prompt:'Find release entries relevant to session handling'});
  const result=await automation.hook({cwd:root,session_id:'batch-test',turn_id:'t',hook_event_name:'PostToolUse',tool_use_id:'read',tool_name:'shell',tool_response:Array.from({length:1500},(_,i)=>`Record ${i}: release note alpha beta`).join('\n')});
  assert.deepEqual(result,{});assert.equal(calls,0);

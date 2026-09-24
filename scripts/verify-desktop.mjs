@@ -209,14 +209,14 @@ try{
     ? report.requests.length===2&&report.requests[0].effort==='high'&&report.requests[1].effort==='low'&&report.audit.some(x=>x.kind==='routing_recovery')&&report.audit.some(x=>x.kind==='decision'&&x.status==='applied')&&recoveryCalls===2
     : process.argv.includes('--unavailable-jev')
     ? report.requests.length>=2 && report.requests.every(x=>x.effort==='high') && report.audit.some(x=>x.kind==='fallback')
-    : report.requests.length>=2 && report.requests.every((x,i)=>x.effort===(routingBudget?(i>=4?'high':'low'):((reassess&&i>=4)||(manualSettings&&i>0)?'medium':'low'))&&x.model===targetModel)
+    : report.requests.length>=2 && report.requests.every((x,i)=>x.effort===(routingBudget?([4,7].includes(i)?'high':'low'):((reassess&&i>=4)||(manualSettings&&i>0)?'medium':'low'))&&x.model===targetModel)
       && report.audit.some(x=>x.status==='start_forwarded')
       && (!reassess||report.audit.some(x=>x.status==='applied'&&x.published==='medium'))
       && report.audit.some(x=>x.kind==='turn_usage'&&x.usage?.inputTokens===50*(steps+1));
   if(steerContext)report.passed=report.passed&&Boolean(report.steer?.turnId)&&!report.steer?.error&&report.requests.length===3&&!report.requests[1].inputText.includes('JevPilot retained task evidence')&&report.requests[2].inputText.includes('JevPilot retained task evidence');
   if(resumeFixture)report.passed=report.passed&&report.resumeState?.source==='checkpoint'&&report.resumeState?.requiresReview===true&&report.resumeState?.historicalTaskPresent===true&&report.resumeState?.currentTask==='继续'&&report.audit.some(x=>x.kind==='resume_context');
   if(parallelTools)report.passed=report.passed&&report.requests.length===2&&report.audit.filter(x=>x.kind==='decision').length===1&&report.audit.some(x=>x.kind==='turn_usage'&&x.batchLeaseSkips===4)&&report.events.filter(x=>x.method==='item/completed'&&x.params.item?.type==='commandExecution').length===5;
-  if(routingBudget)report.passed=report.passed&&report.requests.length===8&&report.audit.filter(x=>x.kind==='decision').length===6&&report.audit.filter(x=>x.kind==='effort_restore'&&x.status==='applied').length===1&&report.audit.filter(x=>x.status==='budget_held').length===2;
+  if(routingBudget)report.passed=report.passed&&report.requests.length===8&&report.audit.filter(x=>x.kind==='decision').length===6&&report.audit.filter(x=>x.kind==='effort_restore'&&x.status==='applied').length===2&&report.audit.filter(x=>x.status==='budget_held').length===0;
   if(manualSettings)report.passed=report.passed&&report.manualSettings?.status==='applied'&&report.manualJudgeEffort==='medium'&&report.audit.some(x=>x.kind==='external_settings'&&x.status==='applied');
   if(inspectCacheContext){
     const initial=inputSnapshots[0];

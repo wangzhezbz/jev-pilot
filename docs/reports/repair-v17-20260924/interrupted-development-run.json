@@ -1,0 +1,9 @@
+{
+  "reason": "Development audit found the same evidence rubric repeated in every batch question. Campaign intentionally interrupted before any candidate model run; not a quality failure or complete A/B.",
+  "completedPairs": 0,
+  "partialBareRuns": 1,
+  "partialGptTokens": 86988,
+  "partialWallMs": 166307,
+  "retained": true,
+  "useForSavingsClaims": false
+}

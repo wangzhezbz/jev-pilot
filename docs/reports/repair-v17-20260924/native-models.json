@@ -1,0 +1,1286 @@
+[
+  {
+    "model": "gpt-6-astra",
+    "passed": true,
+    "requests": [
+      {
+        "number": 1,
+        "model": "gpt-6-astra",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "model": "gpt-6-astra",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "model": "gpt-6-astra",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 4,
+        "model": "gpt-6-astra",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "model": "gpt-6-astra",
+        "effort": "high",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ]
+      },
+      {
+        "number": 6,
+        "model": "gpt-6-astra",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 7,
+        "model": "gpt-6-astra",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 8,
+        "model": "gpt-6-astra",
+        "effort": "high",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ]
+      }
+    ],
+    "cacheContext": {
+      "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+      "cachePreservingEffort": true,
+      "topLevelEffortStable": true,
+      "toolsStable": null,
+      "instructionsStable": null,
+      "promptCacheKeyStable": true,
+      "appendOnly": true,
+      "initialItems": 8,
+      "perRequest": [
+        {
+          "request": 1,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 2,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 3,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 4,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 5,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 6,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 7,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 8,
+          "initialPrefixPreserved": true
+        }
+      ]
+    },
+    "decisions": 6,
+    "baselineRestores": 2,
+    "paidGptCalls": 0,
+    "paidJevCalls": 0
+  },
+  {
+    "model": "gpt-6-sol",
+    "passed": true,
+    "requests": [
+      {
+        "number": 1,
+        "model": "gpt-6-sol",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "model": "gpt-6-sol",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "model": "gpt-6-sol",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 4,
+        "model": "gpt-6-sol",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "model": "gpt-6-sol",
+        "effort": "high",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ]
+      },
+      {
+        "number": 6,
+        "model": "gpt-6-sol",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 7,
+        "model": "gpt-6-sol",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 8,
+        "model": "gpt-6-sol",
+        "effort": "high",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ]
+      }
+    ],
+    "cacheContext": {
+      "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+      "cachePreservingEffort": true,
+      "topLevelEffortStable": true,
+      "toolsStable": null,
+      "instructionsStable": null,
+      "promptCacheKeyStable": true,
+      "appendOnly": true,
+      "initialItems": 8,
+      "perRequest": [
+        {
+          "request": 1,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 2,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 3,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 4,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 5,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 6,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 7,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 8,
+          "initialPrefixPreserved": true
+        }
+      ]
+    },
+    "decisions": 6,
+    "baselineRestores": 2,
+    "paidGptCalls": 0,
+    "paidJevCalls": 0
+  },
+  {
+    "model": "gpt-6-luna",
+    "passed": true,
+    "requests": [
+      {
+        "number": 1,
+        "model": "gpt-6-luna",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "model": "gpt-6-luna",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "model": "gpt-6-luna",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 4,
+        "model": "gpt-6-luna",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "model": "gpt-6-luna",
+        "effort": "high",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ]
+      },
+      {
+        "number": 6,
+        "model": "gpt-6-luna",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 7,
+        "model": "gpt-6-luna",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 8,
+        "model": "gpt-6-luna",
+        "effort": "high",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ]
+      }
+    ],
+    "cacheContext": {
+      "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+      "cachePreservingEffort": true,
+      "topLevelEffortStable": true,
+      "toolsStable": null,
+      "instructionsStable": null,
+      "promptCacheKeyStable": true,
+      "appendOnly": true,
+      "initialItems": 8,
+      "perRequest": [
+        {
+          "request": 1,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 2,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 3,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 4,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 5,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 6,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 7,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 8,
+          "initialPrefixPreserved": true
+        }
+      ]
+    },
+    "decisions": 6,
+    "baselineRestores": 2,
+    "paidGptCalls": 0,
+    "paidJevCalls": 0
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "passed": true,
+    "requests": [
+      {
+        "number": 1,
+        "model": "gpt-5.6-sol",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "model": "gpt-5.6-sol",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "model": "gpt-5.6-sol",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 4,
+        "model": "gpt-5.6-sol",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "model": "gpt-5.6-sol",
+        "effort": "high",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ]
+      },
+      {
+        "number": 6,
+        "model": "gpt-5.6-sol",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 7,
+        "model": "gpt-5.6-sol",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 8,
+        "model": "gpt-5.6-sol",
+        "effort": "high",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ]
+      }
+    ],
+    "cacheContext": {
+      "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+      "cachePreservingEffort": true,
+      "topLevelEffortStable": true,
+      "toolsStable": null,
+      "instructionsStable": null,
+      "promptCacheKeyStable": true,
+      "appendOnly": true,
+      "initialItems": 8,
+      "perRequest": [
+        {
+          "request": 1,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 2,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 3,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 4,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 5,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 6,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 7,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 8,
+          "initialPrefixPreserved": true
+        }
+      ]
+    },
+    "decisions": 6,
+    "baselineRestores": 2,
+    "paidGptCalls": 0,
+    "paidJevCalls": 0
+  },
+  {
+    "model": "gpt-5.6-terra",
+    "passed": true,
+    "requests": [
+      {
+        "number": 1,
+        "model": "gpt-5.6-terra",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "model": "gpt-5.6-terra",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "model": "gpt-5.6-terra",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 4,
+        "model": "gpt-5.6-terra",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "model": "gpt-5.6-terra",
+        "effort": "high",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ]
+      },
+      {
+        "number": 6,
+        "model": "gpt-5.6-terra",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 7,
+        "model": "gpt-5.6-terra",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 8,
+        "model": "gpt-5.6-terra",
+        "effort": "high",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ]
+      }
+    ],
+    "cacheContext": {
+      "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+      "cachePreservingEffort": true,
+      "topLevelEffortStable": true,
+      "toolsStable": null,
+      "instructionsStable": null,
+      "promptCacheKeyStable": true,
+      "appendOnly": true,
+      "initialItems": 8,
+      "perRequest": [
+        {
+          "request": 1,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 2,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 3,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 4,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 5,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 6,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 7,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 8,
+          "initialPrefixPreserved": true
+        }
+      ]
+    },
+    "decisions": 6,
+    "baselineRestores": 2,
+    "paidGptCalls": 0,
+    "paidJevCalls": 0
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "passed": true,
+    "requests": [
+      {
+        "number": 1,
+        "model": "gpt-5.6-luna",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "model": "gpt-5.6-luna",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "model": "gpt-5.6-luna",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 4,
+        "model": "gpt-5.6-luna",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "model": "gpt-5.6-luna",
+        "effort": "high",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ]
+      },
+      {
+        "number": 6,
+        "model": "gpt-5.6-luna",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 7,
+        "model": "gpt-5.6-luna",
+        "effort": "low",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          }
+        ]
+      },
+      {
+        "number": 8,
+        "model": "gpt-5.6-luna",
+        "effort": "high",
+        "requestEffort": "low",
+        "configurationUpdates": [
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "low"
+            }
+          },
+          {
+            "type": "configuration_update",
+            "reasoning": {
+              "effort": "high"
+            }
+          }
+        ]
+      }
+    ],
+    "cacheContext": {
+      "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+      "cachePreservingEffort": true,
+      "topLevelEffortStable": true,
+      "toolsStable": null,
+      "instructionsStable": null,
+      "promptCacheKeyStable": true,
+      "appendOnly": true,
+      "initialItems": 6,
+      "perRequest": [
+        {
+          "request": 1,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 2,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 3,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 4,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 5,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 6,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 7,
+          "initialPrefixPreserved": true
+        },
+        {
+          "request": 8,
+          "initialPrefixPreserved": true
+        }
+      ]
+    },
+    "decisions": 6,
+    "baselineRestores": 2,
+    "paidGptCalls": 0,
+    "paidJevCalls": 0
+  }
+]

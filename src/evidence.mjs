@@ -6,11 +6,43 @@ import { randomUUID } from 'node:crypto';
 import { records, array, text, requireValue, readSource, byteBudget, hash, now, classificationPlan } from './core.mjs';
 import { protectedEvidence, exclusionDecision, EVIDENCE_POLICY } from './policy.mjs';
 const exec = promisify(execFile);
-const relevant = { keep: 'Relevant evidence including contradictions or unresolved errors.', review: 'Unclear; retain for Codex review.', exclude: 'Clearly unrelated or superseded evidence.' };
+const relevant = {
+  keep: 'Matches the task inclusion conditions, or contains necessary supporting context, a competing explanation, contradictory observation, or unresolved uncertainty needed to answer the task.',
+  review: 'The relationship to the requested subject is genuinely ambiguous; retain for inspection.',
+  exclude: 'Clearly fails the task inclusion conditions, or contains only an unrelated subject or routine observations with no facts needed for the answer. A source ID, timestamp, or generic shared word alone is not a relevant fact.',
+};
 const terms = s => new Set(s.toLowerCase().match(/[\p{L}\p{N}_]+/gu) || []);
 export function chunks(source, linesPerChunk = 30) {
   const lines = source.text.split('\n'), out = [];
-  for (let i = 0; i < lines.length; i += linesPerChunk) out.push({ id: 's' + i, text: lines.slice(i, i + linesPerChunk).join('\n'), source: source.path, startLine: i + 1, endLine: Math.min(i + linesPerChunk, lines.length), sourceHash: source.hash });
+  const add=(start,end,pin=false)=>out.push({id:'s'+start,text:lines.slice(start,end).join('\n'),source:source.path,startLine:start+1,endLine:end,sourceHash:source.hash,...(pin?{pin:true}:{})});
+  // Keep Markdown records intact. Ignore headings inside fenced code and keep
+  // shared preambles pinned; nested subsections belong to their parent record.
+  let fence=null;const headings=[];
+  for(const [i,line] of lines.entries()){
+    const marker=line.match(/^ {0,3}(`{3,}|~{3,})/);
+    if(marker){if(!fence)fence=marker[1];else if(marker[1][0]===fence[0]&&marker[1].length>=fence.length)fence=null;continue;}
+    if(fence)continue;const heading=line.match(/^ {0,3}(#{1,6})\s+\S/);
+    if(heading)headings.push({line:i,level:heading[1].length});
+  }
+  const level=[...new Set(headings.map(h=>h.level))].sort().find(n=>{
+    const peers=headings.filter(h=>h.level===n);
+    return peers.length>=4&&!headings.some(h=>h.level<n&&h.line>peers[0].line);
+  });
+  const starts=headings.filter(h=>h.level===level).map(h=>h.line);
+  if(!fence&&starts.length>=4&&starts.length+(starts[0]>0?1:0)<=512){
+    if(starts[0]>0)add(0,starts[0],true);
+    starts.forEach((start,i)=>add(start,starts[i+1]??lines.length));
+  }else{
+    // Timestamped or line-numbered logs have explicit event starts. Keep any
+    // continuation lines with their event and bound the number of groups, so
+    // one failure does not protect thirty unrelated neighboring observations.
+    const events=lines.flatMap((line,i)=>/^(?:L\d{3,}\b|\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}|\[\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2})/.test(line)?[i]:[]);
+    if(events.length>=12&&events.length>=lines.filter(x=>x.trim()).length*.8){
+      if(events[0]>0)add(0,events[0],true);
+      const group=Math.ceil(events.length/120);
+      for(let i=0;i<events.length;i+=group)add(events[i],events[i+group]??lines.length);
+    }else for (let i = 0; i < lines.length; i += linesPerChunk) add(i,Math.min(i+linesPerChunk,lines.length));
+  }
   return out;
 }
 // Relevance/diversity selection; uncertain evidence is never discarded.
@@ -28,7 +60,7 @@ export async function selectEvidence(ctx, { goal, items, budget = 16000, against
     seen.add(key); unique.push(item);
   }
   const judged = unique.filter(item => !protectedEvidence(item));
-  const instructions=`Task: ${goal}. Should this item be included as task evidence?`;
+  const instructions=`Task: ${goal}\nSelect source evidence by its factual content. The task describes the final deliverable, not a request to retain every source identifier. Does this item itself contain evidence needed for that task? Never exclude a relevant contradiction or uncertainty merely because it complicates the answer.`;
   if(requireCompleteJudgment){
     const plan=classificationPlan(ctx.config.model,judged,instructions,relevant);
     const reason=plan.oversized.length?'REQUEST_LIMIT':plan.batches.length>ctx.judge.config.maxCalls-ctx.judge.calls?'CALL_BUDGET':null;
