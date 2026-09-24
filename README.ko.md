@@ -45,7 +45,7 @@
 
 컨텍스트 인계는 원래 대화 기록을 바꾸거나 이미 사용한 토큰을 회수하지 않습니다. 일정한 속도·토큰·사용 한도 절약률을 보장하지 않습니다. [검증 보고서](docs/reports/ACCEPTANCE.md), [기능 범위](docs/FEATURES.md), [로드맵](docs/ROADMAP.md)을 참고하세요.
 
-최신 진단: [2026년 9월 24일, 12회 비교(영어)](docs/reports/factorial-20260924/README.md). 모든 작업이 검증을 통과했습니다. 두 기능을 켠 그룹의 관측 시간은 −6.36%, GPT 토큰은 −18.90%였지만 캐시되지 않은 입력은 +67.83%였습니다. 사용 한도 절감은 입증되지 않았습니다. [이전 보고서](docs/reports/validation-20260923/README.md)도 유지합니다.
+주 모델은 사용자가 선택한 모델을 유지하며, 더 작은 모델로 자동 교체하는 기능은 활성화하지 않았습니다. [모델 유지 정책](docs/MODEL-PRESERVATION.md)을 참고하세요. 최신 [동일 조건 추론 강도 비교](docs/reports/matched-routing-20260924/README.zh-CN.md)는 4회 시도 중 3회 통과, 1회 제한 시간 도달로 라우팅의 이득을 입증하지 못했습니다. [고정 모델 위임 비교](docs/reports/delegation-ab-20260924/README.zh-CN.md)는 4/4 통과했으며, Jev를 포함한 알려진 총 토큰 −9.74%, 시간 +12.60%, GPT의 캐시되지 않은 입력 +43.77%였습니다. 구성 요소 시험이므로 데스크톱 속도 향상이나 사용 한도 절감을 입증하지 않습니다. 새 보고서는 중국어로 제공하며 [이전 비교](docs/reports/factorial-20260924/README.md)도 유지합니다.
 
 JevPilot은 [MIT 라이선스](LICENSE)로 배포됩니다. OpenAI 또는 TypeSafe의 공식 제품이 아닌 독립 커뮤니티 프로젝트입니다.
 

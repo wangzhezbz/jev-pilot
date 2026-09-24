@@ -1,0 +1,5 @@
+id,arm,repeat,model,status,passed,error,nativeMs,preparationMs,endToEndMs,startupMs,generations,inputTokens,cachedInputTokens,outputTokens,reasoningOutputTokens,totalTokens,uncachedInputTokens,jevCalls,jevInputTokens,jevOutputTokens,jevUnknownUsage,jevFailures,routerDecisions,actualSwitches,routerMs,evidenceOperations,knownAllTokens,jevInputUsdEstimate
+gpt-6-astra-retry_contract-0-fixed_high,fixed_high,0,gpt-6-astra,completed,True,,165369,0,165369,241,6,112433,70528,5005,272,117438,41905,0,0,0,0,0,0,0,0,0,117438,0.0
+gpt-6-astra-retry_contract-0-fixed_medium,fixed_medium,0,gpt-6-astra,completed,True,,194300,0,194300,201,10,200715,174848,5167,356,205882,25867,0,0,0,0,0,0,0,0,0,205882,0.0
+gpt-6-astra-retry_contract-0-adaptive,adaptive,0,gpt-6-astra,completed,True,,174272,0,174272,206,6,113370,70912,4732,285,118102,42458,5,9542,530,0,0,5,1,5357,0,128174,0.000400764
+gpt-6-astra-retry_contract-1-adaptive,adaptive,1,gpt-6-astra,interrupted,False,,240002,0,240002,207,5,85570,66048,4908,534,90478,19522,4,6369,424,0,0,4,0,2804,0,97271,0.00026749799999999997

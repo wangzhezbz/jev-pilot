@@ -1,0 +1,5 @@
+id,arm,repeat,model,status,passed,error,nativeMs,preparationMs,endToEndMs,startupMs,generations,inputTokens,cachedInputTokens,outputTokens,reasoningOutputTokens,totalTokens,uncachedInputTokens,jevCalls,jevInputTokens,jevOutputTokens,jevUnknownUsage,jevFailures,routerDecisions,actualSwitches,routerMs,evidenceOperations,knownAllTokens,jevInputUsdEstimate
+offline-0-full,full,0,gpt-6-astra,completed,True,,61938.300042,0,61938.300042,65.66475,5,89171,67328,1579,78,90750,21843,0,0,0,0,0,0,0,0,0,90750,0.0
+offline-0-delegated,delegated,0,gpt-6-astra,completed,True,,126596.066542,1964.9680420000004,128561.03458400001,65.10204199999862,5,88053,66560,1572,92,89625,21493,2,11504,1762,0,0,0,0,0,1,102891,0.000483168
+offline-1-delegated,delegated,1,gpt-6-astra,completed,True,,61863.029209,1375.2532920000085,63238.28250100001,63.967124999995576,5,86801,55808,1554,88,88355,30993,2,11504,1762,0,0,0,0,0,1,101621,0.000483168
+offline-1-full,full,1,gpt-6-astra,completed,True,,108401.83179200001,0,108401.83179200001,64.49579200000153,7,133063,118400,2773,95,135836,14663,0,0,0,0,0,0,0,0,0,135836,0.0

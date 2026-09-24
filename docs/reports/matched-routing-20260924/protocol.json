@@ -1,0 +1,81 @@
+{
+  "at": "2026-09-24T06:14:28.692Z",
+  "jobs": [
+    {
+      "model": "gpt-6-astra",
+      "task": "retry_contract",
+      "repeat": 0,
+      "arms": [
+        "fixed_high",
+        "fixed_medium",
+        "adaptive"
+      ]
+    },
+    {
+      "model": "gpt-6-astra",
+      "task": "retry_contract",
+      "repeat": 1,
+      "arms": [
+        "adaptive",
+        "fixed_medium",
+        "fixed_high"
+      ]
+    }
+  ],
+  "runs": 6,
+  "models": [
+    "gpt-6-astra"
+  ],
+  "initialEffort": "high except fixed_medium",
+  "concurrency": 1,
+  "hashes": {
+    "src/core.mjs": "09989cab5a162f33c1daa19eec16674b0874b2ae90b88b43504736ab7e7532fe",
+    "src/request-guard.mjs": "ebe0a0f2262b2846de814a141e095add69b984b3a10e92a528a5ce02ce521f76",
+    "src/automation.mjs": "8a43440fba428299004cbff66dec7623a74ecbc367e8cedbefb01166476a8f3c",
+    "src/evidence.mjs": "c1e8b679be15bdc6fb22dd5fb5c62bbc1dfb8a827545dceacda21cd2d06272e4",
+    "src/policy.mjs": "4f29ab06c3f91509aa260247165d12a2e48e37b507b2c5f726f95e5b291582de",
+    "runtime/desktop/router.mjs": "095d5c8fbc400b7a4deee253ed41a1fdc96a41b884298678951a68d6a1912cdb",
+    "runtime/desktop/bridge.mjs": "7360145816317f03cb9cb6ac03ff432ff0e3ccd41bce415db21179ed6dd2f3a4",
+    "skills/jev-pilot/SKILL.md": "dbe766247153102eee733e51ff86f2cb613d35dc10c58d2e878457aae9dc4b71",
+    "skills/jev-pilot/references/operations.md": "3ffe04b32ee869f87daa6a995e1836fc8610cc329b4353a19a39e8b442b87808",
+    "scripts/benchmark/tasks.mjs": "a205373e2b1f6bd9b7ced8eb8ed85093802d9f4f1babf0902ae2d1fbe6a60d29",
+    "scripts/acceptance/tasks.mjs": "ad1c528e00822d3d501ca001998d55493b854c56cc9167f480c4aa6faa6c1f52",
+    "scripts/acceptance/factorial-run.mjs": "79c52559fe97d3b4e4daca389be15416849985a62e5b7aa594e5f5dcbada0a37",
+    "scripts/acceptance/factorial-tasks.mjs": "80c710fc9a4cf2514990e817973a0cad7462422a22d680a99294787677d6d9ed",
+    "src/prepare-output.mjs": "e29bf209171614f212783b34492f83e9630b186d4fd1b57b4aa2bbe6d9408032",
+    "src/evidence-tool.mjs": "9e9c7d785ae97135a25e94ce7ddede890311beeb2f1acd87ebd57bdb022c2157",
+    "src/server.mjs": "c45107da6205e7a710e4e90ec485c8e30c4844233504aea96e03b2b600c94327",
+    "src/runtime-compatibility.mjs": "b298c0b2b252980e8131ea5dc90a6ba666ae665e95f9e269279b7b67a7086ae4",
+    "skills/jev-pilot/references/evidence.md": "480e009b71691b9ca88e458dc2f5eadccc5fe8c2bd478c1b25a57b229f69face",
+    "scripts/acceptance/timeline.mjs": "f8794e32a0bc3044ee2e8ce07ee0324be42118106301c146a831c1c810e1c49b",
+    "src/distribution.mjs": "1ceba37ba94ea6ca1f036e7195f24e996c08ae4004c0fa67f7bea55a87cdc5a3",
+    "scripts/acceptance/semantic-task.mjs": "a167b7cdd94cea2bf0bc13be01d30ad28a9364b657aedf73c989ad03fe258efa",
+    "scripts/acceptance/retry-task.mjs": "e04ae4bf878a83901dacc9aa8869a66beb0abbfde8ade5ed4a902e9f1fec7255"
+  },
+  "config": {
+    "features.apps": false,
+    "features.multi_agent": false,
+    "web_search": "disabled",
+    "hooks.Stop": []
+  },
+  "quality": "Frozen independent oracle after inference; protected fixtures unchanged; failed attempts retained.",
+  "stopRule": "Stop after infrastructure failure, timeout, interruption or provider limit; retain all prior and failed runs. No reruns or mid-test product changes.",
+  "timeLimitMs": 240000,
+  "nativeVersion": "codex-cli 0.155.0-alpha.16.3",
+  "revision": "6750473672ebb239db5b76a0fe5e3841fc2b9617",
+  "expectedPluginVersion": "0.2.0+codex.20260924124913",
+  "scope": "Six matched-entry runs on a new retry-contract task: fixed high, fixed medium, adaptive high, reverse order on repeat. Same model, installed plugin, tool descriptions, automation and instructions. Only initial effort/routing differs; evidence calls remain possible and must be accounted. No forced delegation. Two repetitions are exploratory, not stable speed or quality proof.",
+  "tasks": [
+    {
+      "id": "retry_contract",
+      "prompt": "Repair the retry client according to SPEC.md. Inspect src/, fix the implementation, add and run regression tests along with smoke.mjs, and write diagnosis.md explaining the failure modes and verification. Preserve SPEC.md, smoke.mjs and the public export. Use injected fake transport and time; do not contact external services.",
+      "files": {
+        "SPEC.md": "989bffabeba80e7d726fe7c06ba22e809768218e0a4277d92b938214ced08750",
+        "src/delay.mjs": "225baa8a087e7e82e212344eea2ede9b23f9786aea0385019f51966e03a7f21d",
+        "src/retry.mjs": "ed8fb4245693138e2b332ca35d420700bc01c1e47c9bf26aed4cff1cb3515cf0",
+        "smoke.mjs": "67e88a2c824b02b6c1eb99270ac89b811baa8622da93b757d25ffb3b5aebdddb"
+      }
+    }
+  ],
+  "sourceMode": "isolated staged candidate plugin plus matching workspace bridge"
+}

@@ -45,7 +45,7 @@ macOS、Windows、Linux 的核心自动检查已通过。macOS 原版引擎切�
 
 上下文功能提供可恢复的精简交接，不会改写原生历史或回收已经消耗的 token。不承诺固定的提速、省 token 或省额度比例。详见[整体验收报告](docs/reports/ACCEPTANCE.md)、[功能边界](docs/FEATURES.md)和[后续路线](docs/ROADMAP.md)。
 
-最新诊断：[2026-09-24 十二次对照报告](docs/reports/factorial-20260924/README.zh-CN.md)。12/12 任务通过；两项开启组观察耗时 −6.36%、GPT 总 token −18.90%，但未缓存输入 +67.83%，尚不能宣称节省额度。历史[功能与性能报告](docs/reports/validation-20260923/README.zh-CN.md)继续保留。
+主模型保持为用户所选模型，不自动替换为更小模型；详见[模型保持策略](docs/MODEL-PRESERVATION.md)。最新[同入口档位对照](docs/reports/matched-routing-20260924/README.zh-CN.md)尝试 4 次、完成 3 次，另一次达到截止，未证明判档收益。[固定模型语义委派对照](docs/reports/delegation-ab-20260924/README.zh-CN.md)4/4 通过：计入 Jev 的已知总 token −9.74%，时间 +12.60%，未缓存 GPT 输入 +43.77%。这是组件试验，尚不能宣称桌面加速或节省额度。[此前十二次对照](docs/reports/factorial-20260924/README.zh-CN.md)继续保留。
 
 JevPilot 采用 [MIT 许可证](LICENSE)。这是独立社区项目，并非 OpenAI 或 TypeSafe 官方产品。
 

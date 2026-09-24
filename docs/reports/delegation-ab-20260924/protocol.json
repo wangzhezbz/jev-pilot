@@ -1,0 +1,37 @@
+{
+  "at": "2026-09-24T06:28:11.948Z",
+  "runs": 4,
+  "jobs": [
+    {
+      "repeat": 0,
+      "arm": "full"
+    },
+    {
+      "repeat": 0,
+      "arm": "delegated"
+    },
+    {
+      "repeat": 1,
+      "arm": "delegated"
+    },
+    {
+      "repeat": 1,
+      "arm": "full"
+    }
+  ],
+  "model": "gpt-6-astra",
+  "effort": "high",
+  "sourceHashes": {
+    "scripts/acceptance/delegation-run.mjs": "e95395c6bf96261f0f6c62d09b4e98435c14361e6bae121d3c34fd3887e194b1",
+    "scripts/acceptance/offline-task.mjs": "6eba0a22e829ecb85f98feb079719b592f6c21389fd54c26555def5b6e6c9b10",
+    "src/evidence.mjs": "d1efb7ff1b09517e74436e3dfb876ee7a5f79dc00f49126a72b5815680ef70b8",
+    "src/core.mjs": "c686472d40dbf4b8c58c1b80b75af44f671fb2f50e7873fea45042aba79fc561",
+    "src/policy.mjs": "f0a9d1f5291f39d6b61273fa1af59ed5d5d5361508a1105d4a6f008c137e0e64"
+  },
+  "sourceHash": "c9765f4ad88825de3758d22c713562e21fb8d2d6c0010296f7be66245f96dd8f",
+  "prompt": "Review review-evidence.md for this product requirement: Find requests that explicitly need users to create or modify application records on a device while disconnected AND later send/synchronize those changes to a shared service. Exclude read-only caching, always-connected workflows and deliberately local-only records. Retain ambiguous records for review rather than assuming missing requirements. Write findings.data as JSON with exactly two arrays, include and review, containing the corresponding REQ identifiers. Write findings.md with one short source-grounded reason for each included or review case. Source identifiers are arbitrary. The full source archive is source-archive.md if evidence is missing; preserve both input files. Excluded requests need not appear in the report. Use evidence, not assumptions.",
+  "records": 48,
+  "scope": "Mechanism-only paired AB/BA, same native model high and identical instructions. No plugin loaded and no routing. Delegated arm uses actual existing Jev select before GPT starts; full arm supplies all records. Complete archive available to both. Total end-to-end includes preparation and native task, startup reported separately. Independent include/review oracle; no forced raw reread. Synthetic English cases, two repeats, not an ordinary desktop adoption or billing measurement.",
+  "stopRule": "Stop on first preparation safety failure, task quality failure, interruption, timeout or infrastructure/provider failure. Retain all attempts; never retry to select winners.",
+  "timeLimitMs": 240000
+}

@@ -1,0 +1,83 @@
+// Component A/B: fixed native GPT, raw evidence versus Jev-prepared evidence.
+// This deliberately isolates delegation; it does NOT prove automatic tool adoption.
+import {mkdtemp,mkdir,writeFile,readFile,symlink} from 'node:fs/promises';
+import {tmpdir,homedir} from 'node:os';
+import {join,resolve} from 'node:path';
+import {spawn,spawnSync} from 'node:child_process';
+import {createInterface} from 'node:readline';
+import {Store,hash,loadKey} from '../../src/core.mjs';
+import {Pilot} from '../../src/pilot.mjs';
+import {installHome,discoverCodex} from '../../src/setup.mjs';
+import {offlineTask,offlineGoal,offlineItems,offlineExpected,validateOffline} from './offline-task.mjs';
+import {timelineEntry} from './timeline.mjs';
+import {stopTask,nativeTerminal} from './terminal-state.mjs';
+
+const execute=process.argv.includes('--run');if(!execute&&!process.argv.includes('--plan'))throw Error('EXPLICIT_RUN_OR_PLAN_REQUIRED');
+const out=resolve(process.argv.find(x=>x.startsWith('--out='))?.slice(6)??'dist/delegation-ab-20260924');
+const sourcePaths=['scripts/acceptance/delegation-run.mjs','scripts/acceptance/offline-task.mjs','src/evidence.mjs','src/core.mjs','src/policy.mjs','scripts/acceptance/terminal-state.mjs'];
+const sourceHashes=Object.fromEntries(await Promise.all(sourcePaths.map(async p=>[p,hash(await readFile(p,'utf8'))])));
+const jobs=[{repeat:0,arm:'full'},{repeat:0,arm:'delegated'},{repeat:1,arm:'delegated'},{repeat:1,arm:'full'}];
+const protocol={at:new Date().toISOString(),runs:4,jobs,model:'gpt-6-astra',effort:'high',sourceHashes,sourceHash:hash(offlineTask.files['source-archive.md']),prompt:offlineTask.prompt,records:offlineItems.length,scope:'Mechanism-only paired AB/BA, same native model high and identical instructions. No plugin loaded and no routing. Delegated arm uses actual existing Jev select before GPT starts; full arm supplies all records. Complete archive available to both. Total end-to-end includes preparation and native task, startup reported separately. Independent include/review oracle; no forced raw reread. Synthetic English cases, two repeats, not an ordinary desktop adoption or billing measurement.',stopRule:'Stop on first preparation safety failure, task quality failure, interruption, timeout or infrastructure/provider failure. Retain all attempts; never retry to select winners.',timeLimitMs:240000};
+if(!execute){console.log(JSON.stringify(protocol,null,2));process.exit(0);}
+await mkdir(out,{recursive:true});await writeFile(join(out,'protocol.json'),JSON.stringify(protocol,null,2),{flag:'wx'});
+const bin=discoverCodex(),key=loadKey(installHome());if(!key)throw Error('MISSING_KEY');
+let stopping=false,cancel=()=>{};for(const sig of ['SIGINT','SIGTERM'])process.on(sig,()=>{stopping=true;cancel();});
+const records=[];
+for(const job of jobs){
+  if(stopping)break;
+  const id=`offline-${job.repeat}-${job.arm}`,dir=join(out,id);await mkdir(dir);
+  const cwd=await mkdtemp(join(tmpdir(),'jev-delegation-case-')),home=await mkdtemp(join(tmpdir(),'jev-delegation-native-'));
+  const task={...offlineTask,files:{...offlineTask.files}},record={id,...job,startedAt:new Date().toISOString(),usage:[],timeline:[],completedItems:[],errors:[],status:'starting',preparationMs:0,model:protocol.model};
+  for(const [name,value]of Object.entries(task.files))await writeFile(join(cwd,name),value);
+  const store=new Store({home:join(dir,'private')}),pilot=new Pilot({store,key});
+  let child,lines,timer,t0,client,finished,preparationStart;
+  try{
+    if(job.arm==='delegated'){
+      const start=performance.now();preparationStart=start;
+      const selected=await pilot.call({workspace:cwd,operation:'select',input:{goal:offlineGoal,items:offlineItems,budget:500000,requireCompleteJudgment:true,taskId:id}});
+      const kept=selected.items.map(x=>x.id),must=[...offlineExpected.include,...offlineExpected.review];
+      const raw=await pilot.call({workspace:cwd,operation:'recall',input:{artifactId:selected.artifactId}});
+      record.preparation={retained:kept,excluded:selected.excludedIds,deferred:selected.deferredIds,completeCoverage:selected.completeCoverage,degraded:selected.degraded,missingRequired:must.filter(x=>!kept.includes(x)),recallExact:JSON.stringify(raw.items)===JSON.stringify(offlineItems),originalBytes:Buffer.byteLength(task.files['review-evidence.md']),retainedBytes:Buffer.byteLength(selected.context)};
+      record.preparationMs=performance.now()-start;
+      if(record.preparation.missingRequired.length||!record.preparation.recallExact||!selected.completeCoverage||selected.degraded)throw Error('PREPARATION_QUALITY_FAILED');
+      task.files['review-evidence.md']=selected.context;await writeFile(join(cwd,'review-evidence.md'),selected.context);
+    }
+    await symlink(join(homedir(),'.codex/auth.json'),join(home,'auth.json'));
+    const catalog=JSON.parse(await readFile(join(homedir(),'.codex/models_cache.json'),'utf8'));await writeFile(join(home,'models.json'),JSON.stringify({models:catalog.models}));
+    const env={...process.env,CODEX_HOME:home};for(const k of ['CODEX_THREAD_ID','CODEX_SESSION_ID','CODEX_CLI_PATH','TYPESAFE_API_KEY','JEV_PILOT_HOME'])delete env[k];
+    const startup=performance.now();child=spawn(bin,['app-server','-c',`model_catalog_json=${JSON.stringify(join(home,'models.json'))}`],{env,stdio:['pipe','pipe','pipe']});child.stderr.resume();
+    let serial=0;const pending=new Map();let resolveDone;const done=new Promise(r=>resolveDone=r);
+    client={request:(method,params)=>new Promise((yes,no)=>{const id=++serial;const wait=setTimeout(()=>{pending.delete(id);no(Error('RPC_TIMEOUT'));},30000);pending.set(id,{yes,no,wait});child.stdin.write(JSON.stringify({id,method,params})+'\n');})};
+    lines=createInterface({input:child.stdout});
+    lines.on('line',s=>{let m;try{m=JSON.parse(s);}catch{return;}
+      if(m.id!==undefined&&!m.method){const p=pending.get(m.id);if(p){clearTimeout(p.wait);pending.delete(m.id);m.error?p.no(Error('RPC_ERROR')):p.yes(m.result);}return;}
+      if(m.id!==undefined){child.stdin.write(JSON.stringify({id:m.id,error:{code:-32601,message:'Unexpected interaction'}})+'\n');return;}
+      if(m.params?.threadId!==record.threadId)return;
+      const entry=timelineEntry(m,performance.now()-t0);if(entry)record.timeline.push(entry);
+      if(m.method==='turn/started')record.turnId=m.params.turn.id;
+      if(m.method==='item/completed')record.completedItems.push(m.params.item);
+      if(m.method==='thread/tokenUsage/updated'){record.usage.push(m.params.tokenUsage);void writeFile(join(dir,'usage-latest.json'),JSON.stringify(m.params.tokenUsage));}
+      if(m.method==='error')record.errors.push(m.params.error?.message??'runtime error');
+      if(m.method==='turn/completed'){nativeTerminal(record,m.params.turn.status);resolveDone();}
+    });
+    child.on('exit',()=>{for(const p of pending.values()){clearTimeout(p.wait);p.no(Error('NATIVE_EXIT'));}pending.clear();if(!finished){record.status='native_exit';resolveDone();}});
+    await client.request('initialize',{clientInfo:{name:'jev_delegation_benchmark',version:'1'},capabilities:{experimentalApi:true}});child.stdin.write(JSON.stringify({method:'initialized'})+'\n');
+    const thread=await client.request('thread/start',{model:protocol.model,cwd,runtimeWorkspaceRoots:[cwd],ephemeral:true,sandbox:'workspace-write',approvalPolicy:'never',config:{'features.apps':false,'features.multi_agent':false,web_search:'disabled','hooks.Stop':[]},developerInstructions:'Complete the task inside this workspace. Use local file and shell tools. No browsing, other projects, credentials, subagents, deletion or questions. Preserve source files. Write the requested deliverables and verify them. Final reply should be concise.'});
+    record.threadId=thread.thread.id;record.returnedModel=thread.model;if(thread.model!==protocol.model)throw Error('MODEL_CHANGED');
+    const status=await client.request('mcpServerStatus/list',{threadId:record.threadId,limit:100});if((status.data??[]).some(x=>Object.keys(x.tools??{}).length))throw Error('UNEXPECTED_MCP');
+    record.startupMs=performance.now()-startup;
+    cancel=()=>{stopTask(record,'signal');if(record.turnId)void client.request('turn/interrupt',{threadId:record.threadId,turnId:record.turnId}).catch(()=>{});resolveDone();};
+    t0=performance.now();timer=setTimeout(()=>{stopTask(record,'deadline');cancel();},protocol.timeLimitMs);
+    record.timeline.push({method:'turn/start:sent',elapsedMs:0});await client.request('turn/start',{threadId:record.threadId,model:protocol.model,effort:protocol.effort,input:[{type:'text',text:task.prompt}]});
+    await done;clearTimeout(timer);record.nativeMs=performance.now()-t0;record.endToEndMs=record.preparationMs+record.nativeMs;record.quality=await validateOffline(task,cwd);record.passed=record.status==='completed'&&record.quality.pass;
+    record.artifacts={};for(const name of ['findings.data','findings.md'])record.artifacts[name]=await readFile(join(cwd,name),'utf8').catch(()=>'');
+  }catch(e){if(preparationStart!==undefined&&!record.preparationMs)record.preparationMs=performance.now()-preparationStart;record.status='failed';record.error=e.code??e.message;record.passed=false;record.nativeMs=t0?performance.now()-t0:null;record.endToEndMs=record.nativeMs===null?null:record.preparationMs+record.nativeMs;}
+  finally{
+    finished=true;clearTimeout(timer);cancel=()=>{};lines?.close();
+    if(child&&child.exitCode===null&&child.signalCode===null){const closed=new Promise(r=>child.once('close',r));child.kill();let wait;await Promise.race([closed,new Promise(r=>wait=setTimeout(()=>{child.kill('SIGKILL');r();},3000))]);clearTimeout(wait);}
+    record.tokens=record.usage.at(-1)?.total??null;record.jevEvents=store.events(store.project(cwd),10000);pilot.close();
+    const body=JSON.stringify(record,null,2);if(body.includes(key))throw Error('SECRET_IN_RECORD');await writeFile(join(dir,'run.json'),body);
+  }
+  records.push(record);await writeFile(join(out,'results.json'),JSON.stringify({protocol,records},null,2));console.log(JSON.stringify({id,passed:record.passed,status:record.status,error:record.error,nativeMs:record.nativeMs,preparationMs:record.preparationMs,tokens:record.tokens?.totalTokens}));
+  if(!record.passed||record.errors.length){await writeFile(join(out,'stop.json'),JSON.stringify({id,reason:record.error??record.status}));process.exitCode=2;break;}
+}

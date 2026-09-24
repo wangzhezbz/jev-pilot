@@ -1,0 +1,480 @@
+{
+  "method": "Read-only reanalysis; no new model calls; cohorts are not pooled. Decomposition is accounting, not causal attribution.",
+  "cohorts": {
+    "entry-ab-20260924": {
+      "sourceHashes": {
+        "summary.json": "665fb0e3825fa012b42745d127558a93afff6676892022dacd2aade5b9d27d42",
+        "runs.json": "b5b6076e24158b15a81912fc01a53ed49db2d0b850656cf8fb0b4087764dad1b",
+        "runs.csv": "a68804d21a041d0886db11eb52caabd4051f6dba3464a599c568b3c002820d2d",
+        "token-decomposition.csv": "96c7d78dad10adf7963ee6d56156f70b5ddf022503aedfba55e3c3e099195af6"
+      },
+      "arms": {
+        "bare": {
+          "runs": 4,
+          "passed": 4,
+          "wallMs": 212188,
+          "startupMs": 283,
+          "totalMs": 212471,
+          "inputTokens": 457101,
+          "cachedInputTokens": 373120,
+          "uncachedInputTokens": 83981,
+          "outputTokens": 4983,
+          "reasoningOutputTokens": 99,
+          "totalTokens": 462084,
+          "generations": 21,
+          "jevCalls": 0,
+          "jevFailures": 0,
+          "jevUnknownUsage": 0,
+          "jevInputTokens": 0,
+          "jevOutputTokens": 0,
+          "jevRequestMs": 0,
+          "routerDecisions": 0,
+          "routerDecisionMs": 0,
+          "recommendedChanges": 0,
+          "budgetHeldDecisions": 0,
+          "startChanges": 0,
+          "nativeAppliedChanges": 0,
+          "nativeRestores": 0,
+          "preparedOutputs": 0,
+          "evidenceOperations": 0,
+          "recalls": 0,
+          "hookSubmissions": 0,
+          "knownAllModelTokens": 462084,
+          "knownJevInputUsdEstimate": 0,
+          "commands": 17,
+          "identicalCommandRepeats": 0,
+          "observedToolSpanUnionMs": 361.106
+        },
+        "combined": {
+          "runs": 4,
+          "passed": 4,
+          "wallMs": 220737,
+          "startupMs": 822,
+          "totalMs": 221559,
+          "inputTokens": 408281,
+          "cachedInputTokens": 335488,
+          "uncachedInputTokens": 72793,
+          "outputTokens": 4569,
+          "reasoningOutputTokens": 56,
+          "totalTokens": 412850,
+          "generations": 22,
+          "jevCalls": 16,
+          "jevFailures": 0,
+          "jevUnknownUsage": 0,
+          "jevInputTokens": 27061,
+          "jevOutputTokens": 1696,
+          "jevRequestMs": 12134,
+          "routerDecisions": 16,
+          "routerDecisionMs": 12767,
+          "recommendedChanges": 2,
+          "budgetHeldDecisions": 0,
+          "startChanges": 0,
+          "nativeAppliedChanges": 2,
+          "nativeRestores": 0,
+          "preparedOutputs": 0,
+          "evidenceOperations": 0,
+          "recalls": 0,
+          "hookSubmissions": 0,
+          "knownAllModelTokens": 441607,
+          "knownJevInputUsdEstimate": 0.0011365620000000002,
+          "commands": 18,
+          "identicalCommandRepeats": 0,
+          "observedToolSpanUnionMs": 323.975
+        }
+      },
+      "tokenAccounting": {
+        "totalDelta": -49234,
+        "extraGenerationBase": 15157,
+        "repeatedFirstInputDifference": 20154,
+        "historyGrowthDifference": -84131,
+        "outputDifference": -414
+      },
+      "runs": [
+        {
+          "id": "gpt-6-astra-incident-0-bare",
+          "decisions": 0,
+          "decisionMs": 0,
+          "recommendedHigh": 0,
+          "changesApplied": 0,
+          "horizons": [],
+          "lastUsageToFileChangeStartGapsMs": [
+            32304.566
+          ],
+          "gapMeaning": "Observed interval includes generation, transport and event delivery; cannot isolate server inference or network."
+        },
+        {
+          "id": "gpt-6-astra-incident-0-combined",
+          "decisions": 4,
+          "decisionMs": 3259,
+          "recommendedHigh": 2,
+          "changesApplied": 1,
+          "horizons": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "lastUsageToFileChangeStartGapsMs": [
+            29628.907
+          ],
+          "gapMeaning": "Observed interval includes generation, transport and event delivery; cannot isolate server inference or network."
+        },
+        {
+          "id": "gpt-6-astra-semantic-0-combined",
+          "decisions": 4,
+          "decisionMs": 3040,
+          "recommendedHigh": 4,
+          "changesApplied": 0,
+          "horizons": [
+            1,
+            2,
+            2,
+            2
+          ],
+          "lastUsageToFileChangeStartGapsMs": [
+            18685.242
+          ],
+          "gapMeaning": "Observed interval includes generation, transport and event delivery; cannot isolate server inference or network."
+        },
+        {
+          "id": "gpt-6-astra-semantic-0-bare",
+          "decisions": 0,
+          "decisionMs": 0,
+          "recommendedHigh": 0,
+          "changesApplied": 0,
+          "horizons": [],
+          "lastUsageToFileChangeStartGapsMs": [
+            20481.778
+          ],
+          "gapMeaning": "Observed interval includes generation, transport and event delivery; cannot isolate server inference or network."
+        },
+        {
+          "id": "gpt-6-astra-incident-1-combined",
+          "decisions": 4,
+          "decisionMs": 2936,
+          "recommendedHigh": 2,
+          "changesApplied": 1,
+          "horizons": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "lastUsageToFileChangeStartGapsMs": [
+            43098.542
+          ],
+          "gapMeaning": "Observed interval includes generation, transport and event delivery; cannot isolate server inference or network."
+        },
+        {
+          "id": "gpt-6-astra-incident-1-bare",
+          "decisions": 0,
+          "decisionMs": 0,
+          "recommendedHigh": 0,
+          "changesApplied": 0,
+          "horizons": [],
+          "lastUsageToFileChangeStartGapsMs": [
+            32152.19
+          ],
+          "gapMeaning": "Observed interval includes generation, transport and event delivery; cannot isolate server inference or network."
+        },
+        {
+          "id": "gpt-6-astra-semantic-1-bare",
+          "decisions": 0,
+          "decisionMs": 0,
+          "recommendedHigh": 0,
+          "changesApplied": 0,
+          "horizons": [],
+          "lastUsageToFileChangeStartGapsMs": [
+            21840.66
+          ],
+          "gapMeaning": "Observed interval includes generation, transport and event delivery; cannot isolate server inference or network."
+        },
+        {
+          "id": "gpt-6-astra-semantic-1-combined",
+          "decisions": 4,
+          "decisionMs": 3532,
+          "recommendedHigh": 4,
+          "changesApplied": 0,
+          "horizons": [
+            1,
+            2,
+            2,
+            2
+          ],
+          "lastUsageToFileChangeStartGapsMs": [],
+          "gapMeaning": "Observed interval includes generation, transport and event delivery; cannot isolate server inference or network."
+        }
+      ]
+    },
+    "repair-v17-20260924": {
+      "sourceHashes": {
+        "summary.json": "289bacb23a72b4f0b572b073a08d86900e1798c5110e352a4eebe2fc2d1904fd",
+        "runs.json": "708a275c1598c6eabf8479403e89f2f32a9cd52be988645dd3f7f4c2b10c6a6b",
+        "runs.csv": "5955915937d89a19b27088708e3993617c6e3e2a918376d2b7904db029e18fd2",
+        "token-decomposition.csv": "91fb0893836cbd806dac1cf689be7ee96ac7377d47ab6503d7a1243c9e3225ec"
+      },
+      "arms": {
+        "bare": {
+          "runs": 6,
+          "passed": 6,
+          "wallMs": 557347,
+          "startupMs": 439,
+          "totalMs": 557786,
+          "inputTokens": 732491,
+          "cachedInputTokens": 573056,
+          "uncachedInputTokens": 159435,
+          "outputTokens": 15402,
+          "reasoningOutputTokens": 910,
+          "totalTokens": 747893,
+          "generations": 35,
+          "jevCalls": 0,
+          "jevFailures": 0,
+          "jevUnknownUsage": 0,
+          "jevInputTokens": 0,
+          "jevOutputTokens": 0,
+          "jevRequestMs": 0,
+          "routerDecisions": 0,
+          "routerDecisionMs": 0,
+          "recommendedChanges": 0,
+          "budgetHeldDecisions": 0,
+          "startChanges": 0,
+          "nativeAppliedChanges": 0,
+          "nativeRestores": 0,
+          "preparedOutputs": 0,
+          "evidenceOperations": 0,
+          "recalls": 0,
+          "hookSubmissions": 0,
+          "knownAllModelTokens": 747893,
+          "knownJevInputUsdEstimate": 0,
+          "commands": 32,
+          "identicalCommandRepeats": 0,
+          "observedToolSpanUnionMs": 962.7739999999999
+        },
+        "combined": {
+          "runs": 6,
+          "passed": 6,
+          "wallMs": 596370,
+          "startupMs": 1217,
+          "totalMs": 597587,
+          "inputTokens": 785535,
+          "cachedInputTokens": 595968,
+          "uncachedInputTokens": 189567,
+          "outputTokens": 12985,
+          "reasoningOutputTokens": 459,
+          "totalTokens": 798520,
+          "generations": 36,
+          "jevCalls": 51,
+          "jevFailures": 0,
+          "jevUnknownUsage": 0,
+          "jevInputTokens": 259589,
+          "jevOutputTokens": 20754,
+          "jevRequestMs": 36326,
+          "routerDecisions": 29,
+          "routerDecisionMs": 20450,
+          "recommendedChanges": 4,
+          "budgetHeldDecisions": 0,
+          "startChanges": 0,
+          "nativeAppliedChanges": 4,
+          "nativeRestores": 1,
+          "preparedOutputs": 4,
+          "evidenceOperations": 4,
+          "recalls": 0,
+          "hookSubmissions": 0,
+          "knownAllModelTokens": 1078863,
+          "knownJevInputUsdEstimate": 0.010902738000000002,
+          "commands": 31,
+          "identicalCommandRepeats": 0,
+          "observedToolSpanUnionMs": 10161.884
+        }
+      },
+      "tokenAccounting": {
+        "totalDelta": 50627,
+        "extraGenerationBase": 15270,
+        "repeatedFirstInputDifference": 33312,
+        "historyGrowthDifference": 4462,
+        "outputDifference": -2417
+      },
+      "runs": [
+        {
+          "id": "gpt-6-astra-cross_file-0-bare",
+          "decisions": 0,
+          "decisionMs": 0,
+          "recommendedHigh": 0,
+          "changesApplied": 0,
+          "horizons": [],
+          "lastUsageToFileChangeStartGapsMs": [
+            89291.408,
+            23353.464,
+            29776.497
+          ],
+          "gapMeaning": "Observed interval includes generation, transport and event delivery; cannot isolate server inference or network."
+        },
+        {
+          "id": "gpt-6-astra-cross_file-0-combined",
+          "decisions": 4,
+          "decisionMs": 2652,
+          "recommendedHigh": 3,
+          "changesApplied": 1,
+          "horizons": [
+            1,
+            2,
+            2,
+            5
+          ],
+          "lastUsageToFileChangeStartGapsMs": [
+            24798.008
+          ],
+          "gapMeaning": "Observed interval includes generation, transport and event delivery; cannot isolate server inference or network."
+        },
+        {
+          "id": "gpt-6-astra-incident-0-combined",
+          "decisions": 4,
+          "decisionMs": 2911,
+          "recommendedHigh": 4,
+          "changesApplied": 0,
+          "horizons": [
+            1,
+            2,
+            2,
+            2
+          ],
+          "lastUsageToFileChangeStartGapsMs": [],
+          "gapMeaning": "Observed interval includes generation, transport and event delivery; cannot isolate server inference or network."
+        },
+        {
+          "id": "gpt-6-astra-incident-0-bare",
+          "decisions": 0,
+          "decisionMs": 0,
+          "recommendedHigh": 0,
+          "changesApplied": 0,
+          "horizons": [],
+          "lastUsageToFileChangeStartGapsMs": [
+            41354.755
+          ],
+          "gapMeaning": "Observed interval includes generation, transport and event delivery; cannot isolate server inference or network."
+        },
+        {
+          "id": "gpt-6-astra-semantic-0-bare",
+          "decisions": 0,
+          "decisionMs": 0,
+          "recommendedHigh": 0,
+          "changesApplied": 0,
+          "horizons": [],
+          "lastUsageToFileChangeStartGapsMs": [
+            21983.91
+          ],
+          "gapMeaning": "Observed interval includes generation, transport and event delivery; cannot isolate server inference or network."
+        },
+        {
+          "id": "gpt-6-astra-semantic-0-combined",
+          "decisions": 6,
+          "decisionMs": 4585,
+          "recommendedHigh": 5,
+          "changesApplied": 1,
+          "horizons": [
+            1,
+            2,
+            2,
+            2,
+            2,
+            5
+          ],
+          "lastUsageToFileChangeStartGapsMs": [],
+          "gapMeaning": "Observed interval includes generation, transport and event delivery; cannot isolate server inference or network."
+        },
+        {
+          "id": "gpt-6-astra-cross_file-1-combined",
+          "decisions": 5,
+          "decisionMs": 3274,
+          "recommendedHigh": 4,
+          "changesApplied": 1,
+          "horizons": [
+            1,
+            2,
+            2,
+            2,
+            2
+          ],
+          "lastUsageToFileChangeStartGapsMs": [
+            26791.964
+          ],
+          "gapMeaning": "Observed interval includes generation, transport and event delivery; cannot isolate server inference or network."
+        },
+        {
+          "id": "gpt-6-astra-cross_file-1-bare",
+          "decisions": 0,
+          "decisionMs": 0,
+          "recommendedHigh": 0,
+          "changesApplied": 0,
+          "horizons": [],
+          "lastUsageToFileChangeStartGapsMs": [
+            64574.333,
+            19697.381,
+            32863.269
+          ],
+          "gapMeaning": "Observed interval includes generation, transport and event delivery; cannot isolate server inference or network."
+        },
+        {
+          "id": "gpt-6-astra-incident-1-bare",
+          "decisions": 0,
+          "decisionMs": 0,
+          "recommendedHigh": 0,
+          "changesApplied": 0,
+          "horizons": [],
+          "lastUsageToFileChangeStartGapsMs": [
+            32087.178
+          ],
+          "gapMeaning": "Observed interval includes generation, transport and event delivery; cannot isolate server inference or network."
+        },
+        {
+          "id": "gpt-6-astra-incident-1-combined",
+          "decisions": 4,
+          "decisionMs": 2789,
+          "recommendedHigh": 4,
+          "changesApplied": 0,
+          "horizons": [
+            1,
+            2,
+            2,
+            2
+          ],
+          "lastUsageToFileChangeStartGapsMs": [
+            33257.899
+          ],
+          "gapMeaning": "Observed interval includes generation, transport and event delivery; cannot isolate server inference or network."
+        },
+        {
+          "id": "gpt-6-astra-semantic-1-combined",
+          "decisions": 6,
+          "decisionMs": 4239,
+          "recommendedHigh": 5,
+          "changesApplied": 1,
+          "horizons": [
+            1,
+            2,
+            2,
+            2,
+            2,
+            1
+          ],
+          "lastUsageToFileChangeStartGapsMs": [
+            28006.809
+          ],
+          "gapMeaning": "Observed interval includes generation, transport and event delivery; cannot isolate server inference or network."
+        },
+        {
+          "id": "gpt-6-astra-semantic-1-bare",
+          "decisions": 0,
+          "decisionMs": 0,
+          "recommendedHigh": 0,
+          "changesApplied": 0,
+          "horizons": [],
+          "lastUsageToFileChangeStartGapsMs": [
+            22246.858
+          ],
+          "gapMeaning": "Observed interval includes generation, transport and event delivery; cannot isolate server inference or network."
+        }
+      ]
+    }
+  }
+}

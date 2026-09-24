@@ -1,0 +1,11 @@
+{
+  "rawSha256": "7f46af4cd48bdeabe34d62b13bf391f8b0a9d64045188425b54321e9c1c59117",
+  "files": {
+    "README.zh-CN.md": "bebf902ab96466ded01c47549bde1e7d57434e27b7a12c8a04a880e981a4091f",
+    "measured-harness.txt": "90db43690dfa2827f1e56890fc51a418e4d667fb1bf2dce44ab710b6023043d5",
+    "protocol.json": "183e1c4f95097e61422ee6d85e97913c12a1f051a4de7adfa772813a1ac4b2e8",
+    "runs.csv": "db48538dfc5f4cfa319d2618e5997c7cb0c9398c5879cdc76e53c66000d67a47",
+    "runs.json": "a9f2a0ca5e3238ffce753a215260d083bbe1e7957e398c1bb54eb9b3023d9a79",
+    "summary.json": "48f66c82e6a8e2f68833cc98eecd7d023e7c4baa1fd591f15c953a2fd344f8ea"
+  }
+}
