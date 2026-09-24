@@ -1,0 +1,22 @@
+{
+  "at": "2026-09-24T12:24:04.146Z",
+  "driver": "chrome-extension",
+  "passed": true,
+  "timings": [
+    {
+      "step": "nameSession",
+      "ms": 571.6584169999996
+    },
+    {
+      "step": "navigate",
+      "ms": 631.9813330000006
+    },
+    {
+      "step": "click_and_observe",
+      "ms": 1356.9510420000006
+    }
+  ],
+  "url": "https://www.iana.org/help/example-domains",
+  "title": "Example Domains",
+  "scope": "Connection recovery acceptance; not a GPT performance or billing comparison"
+}

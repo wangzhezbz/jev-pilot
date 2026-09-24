@@ -1,0 +1,75 @@
+{
+  "at": "2026-09-24T12:37:31.937307+00:00",
+  "config": {
+    "proxyVariableNamesPresent": [
+      "HTTP_PROXY",
+      "HTTPS_PROXY",
+      "ALL_PROXY",
+      "NO_PROXY",
+      "http_proxy",
+      "https_proxy",
+      "all_proxy",
+      "no_proxy"
+    ],
+    "nodeUseEnvProxy": true
+  },
+  "processes": [
+    {
+      "pid": 32166,
+      "proxyVariableNamesPresent": [
+        "HTTP_PROXY",
+        "HTTPS_PROXY",
+        "ALL_PROXY",
+        "NO_PROXY",
+        "http_proxy",
+        "https_proxy",
+        "all_proxy",
+        "no_proxy"
+      ],
+      "nodeUseEnvProxy": false
+    },
+    {
+      "pid": 32171,
+      "proxyVariableNamesPresent": [
+        "HTTP_PROXY",
+        "HTTPS_PROXY",
+        "ALL_PROXY",
+        "NO_PROXY",
+        "http_proxy",
+        "https_proxy",
+        "all_proxy",
+        "no_proxy"
+      ],
+      "nodeUseEnvProxy": false
+    },
+    {
+      "pid": 32400,
+      "proxyVariableNamesPresent": [
+        "HTTP_PROXY",
+        "HTTPS_PROXY",
+        "ALL_PROXY",
+        "NO_PROXY",
+        "http_proxy",
+        "https_proxy",
+        "all_proxy",
+        "no_proxy"
+      ],
+      "nodeUseEnvProxy": true
+    },
+    {
+      "pid": 33065,
+      "proxyVariableNamesPresent": [
+        "HTTP_PROXY",
+        "HTTPS_PROXY",
+        "ALL_PROXY",
+        "NO_PROXY",
+        "http_proxy",
+        "https_proxy",
+        "all_proxy",
+        "no_proxy"
+      ],
+      "nodeUseEnvProxy": true
+    }
+  ],
+  "scope": "Configuration and selected live processes; no proxy values or credentials recorded. Browser UI acceptance is recorded separately."
+}

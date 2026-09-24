@@ -1,0 +1,16 @@
+Browser tab: 51514127, Title: "JevPilot incident fixture", URL: "http://127.0.0.1:18743/browser-incident-fixture.html".
+1 AXWebArea JevPilot incident fixture, URL: 127.0.0.1:18743/browser-incident-fixture.html
+	2 heading JevPilot synthetic incident review, Value: 1
+		3 text JevPilot synthetic incident review
+	4 text Local synthetic records. Read-only investigation; do not apply any changes.
+	5 container view
+		6 heading INC-401 event r42, Value: 2
+			7 text INC-401 event r42
+		8 text Read the preview before any production change.
+		9 button Preview rollback readiness
+		10 button Preview session recovery prerequisites
+		11 button Apply rollback now
+		12 button Reset all user sessions
+	13 text READ-ONLY RESULT | INC-401 | r42 | session recovery: requires key propagation confirmation | no changes applied
+
+The focused UI element is 10 button Preview session recovery prerequisites

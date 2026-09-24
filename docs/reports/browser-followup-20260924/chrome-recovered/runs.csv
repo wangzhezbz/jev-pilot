@@ -1,0 +1,7 @@
+run,arm,caseId,passed,elapsedMs,clicks,jevCalls,inputTokens,outputTokens,jevWaitMs,error,gptUsage
+1,legacy,checkout-rollback,True,3103.246417000002,6,6,6132,702,1923,,not_measured
+2,choice,checkout-rollback,True,2850.6808340000134,6,6,4722,282,1676,,not_measured
+3,choice,checkout-rollback,True,2989.385834000015,6,6,4722,282,1832,,not_measured
+4,legacy,checkout-rollback,True,2864.7434170000197,6,6,6132,702,1708,,not_measured
+5,legacy,identity-recovery,True,3001.6338749999995,6,6,6161,702,1829,,not_measured
+6,choice,identity-recovery,False,3526.490542000014,7,8,6254,359,2157,no_safe_candidate,not_measured

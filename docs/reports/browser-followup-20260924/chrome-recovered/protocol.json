@@ -1,0 +1,20 @@
+{
+  "at": "2026-09-24T12:24:21.468Z",
+  "baseline": "d3f4b471f15dd14d4d2480bd4287d5cb74191d1d",
+  "candidateHash": "640e557e6fc834c0f7ee7132126316ab907c373156f1de1dbf1922b98727feaf",
+  "driver": "computer-use",
+  "order": [
+    "direct",
+    "legacy",
+    "choice",
+    "choice",
+    "legacy"
+  ],
+  "cases": [
+    "checkout-rollback",
+    "identity-recovery"
+  ],
+  "maxPaidRequests": 48,
+  "gptTasks": 0,
+  "scope": "Actual official host UI operations. Direct is a scripted lower bound, NOT a GPT task baseline. Cold request cache. No retries."
+}

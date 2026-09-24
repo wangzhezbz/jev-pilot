@@ -1,0 +1,274 @@
+[
+  {
+    "arm": "legacy",
+    "caseId": "checkout-rollback",
+    "driver": "chrome-extension",
+    "passed": true,
+    "proof": "READ-ONLY RESULT | INC-502 | r42 | rollback: blocked by pending migration check | no changes applied",
+    "error": null,
+    "elapsedMs": 3103.246417000002,
+    "actions": [
+      "Open incident queue",
+      "Show unresolved incidents",
+      "Open INC-502",
+      "View deployment timeline",
+      "Inspect release r42",
+      "Preview rollback readiness"
+    ],
+    "decisions": [
+      {
+        "status": "candidate_selected",
+        "action": "Open incident queue"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Show unresolved incidents"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Open INC-502"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "View deployment timeline"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Inspect release r42"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Preview rollback readiness"
+      }
+    ],
+    "gptUsage": null
+  },
+  {
+    "arm": "choice",
+    "caseId": "checkout-rollback",
+    "driver": "chrome-extension",
+    "passed": true,
+    "proof": "READ-ONLY RESULT | INC-502 | r42 | rollback: blocked by pending migration check | no changes applied",
+    "error": null,
+    "elapsedMs": 2850.6808340000134,
+    "actions": [
+      "Open incident queue",
+      "Show unresolved incidents",
+      "Open INC-502",
+      "View deployment timeline",
+      "Inspect release r42",
+      "Preview rollback readiness"
+    ],
+    "decisions": [
+      {
+        "status": "candidate_selected",
+        "action": "Open incident queue"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Show unresolved incidents"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Open INC-502"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "View deployment timeline"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Inspect release r42"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Preview rollback readiness"
+      }
+    ],
+    "gptUsage": null
+  },
+  {
+    "arm": "choice",
+    "caseId": "checkout-rollback",
+    "driver": "chrome-extension",
+    "passed": true,
+    "proof": "READ-ONLY RESULT | INC-502 | r42 | rollback: blocked by pending migration check | no changes applied",
+    "error": null,
+    "elapsedMs": 2989.385834000015,
+    "actions": [
+      "Open incident queue",
+      "Show unresolved incidents",
+      "Open INC-502",
+      "View deployment timeline",
+      "Inspect release r42",
+      "Preview rollback readiness"
+    ],
+    "decisions": [
+      {
+        "status": "candidate_selected",
+        "action": "Open incident queue"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Show unresolved incidents"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Open INC-502"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "View deployment timeline"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Inspect release r42"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Preview rollback readiness"
+      }
+    ],
+    "gptUsage": null
+  },
+  {
+    "arm": "legacy",
+    "caseId": "checkout-rollback",
+    "driver": "chrome-extension",
+    "passed": true,
+    "proof": "READ-ONLY RESULT | INC-502 | r42 | rollback: blocked by pending migration check | no changes applied",
+    "error": null,
+    "elapsedMs": 2864.7434170000197,
+    "actions": [
+      "Open incident queue",
+      "Show unresolved incidents",
+      "Open INC-502",
+      "View deployment timeline",
+      "Inspect release r42",
+      "Preview rollback readiness"
+    ],
+    "decisions": [
+      {
+        "status": "candidate_selected",
+        "action": "Open incident queue"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Show unresolved incidents"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Open INC-502"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "View deployment timeline"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Inspect release r42"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Preview rollback readiness"
+      }
+    ],
+    "gptUsage": null
+  },
+  {
+    "arm": "legacy",
+    "caseId": "identity-recovery",
+    "driver": "chrome-extension",
+    "passed": true,
+    "proof": "READ-ONLY RESULT | INC-401 | k17 | session recovery: requires key propagation confirmation | no changes applied",
+    "error": null,
+    "elapsedMs": 3001.6338749999995,
+    "actions": [
+      "Open incident queue",
+      "Show unresolved incidents",
+      "Open INC-401",
+      "View authentication events",
+      "Inspect rotation k17",
+      "Preview session recovery prerequisites"
+    ],
+    "decisions": [
+      {
+        "status": "candidate_selected",
+        "action": "Open incident queue"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Show unresolved incidents"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Open INC-401"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "View authentication events"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Inspect rotation k17"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Preview session recovery prerequisites"
+      }
+    ],
+    "gptUsage": null
+  },
+  {
+    "arm": "choice",
+    "caseId": "identity-recovery",
+    "driver": "chrome-extension",
+    "passed": false,
+    "proof": null,
+    "error": "no_safe_candidate",
+    "elapsedMs": 3526.490542000014,
+    "actions": [
+      "Open incident queue",
+      "Show unresolved incidents",
+      "Open INC-401",
+      "View deployment timeline",
+      "Inspect release r42",
+      "Preview session recovery prerequisites",
+      "Preview session recovery prerequisites"
+    ],
+    "decisions": [
+      {
+        "status": "candidate_selected",
+        "action": "Open incident queue"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Show unresolved incidents"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Open INC-401"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "View deployment timeline"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Inspect release r42"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Preview session recovery prerequisites"
+      },
+      {
+        "status": "candidate_selected",
+        "action": "Preview session recovery prerequisites"
+      },
+      {
+        "status": "codex_review_required"
+      }
+    ],
+    "gptUsage": null
+  }
+]

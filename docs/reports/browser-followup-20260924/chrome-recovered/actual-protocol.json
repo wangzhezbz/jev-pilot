@@ -1,0 +1,44 @@
+{
+  "driver": "chrome-extension",
+  "actualOrder": [
+    {
+      "arm": "legacy",
+      "caseId": "checkout-rollback"
+    },
+    {
+      "arm": "choice",
+      "caseId": "checkout-rollback"
+    },
+    {
+      "arm": "choice",
+      "caseId": "checkout-rollback"
+    },
+    {
+      "arm": "legacy",
+      "caseId": "checkout-rollback"
+    },
+    {
+      "arm": "legacy",
+      "caseId": "identity-recovery"
+    },
+    {
+      "arm": "choice",
+      "caseId": "identity-recovery"
+    }
+  ],
+  "sourceCommit": "60fef661b3ddd282e0b6e16d411521bac1549e5c",
+  "model": "jev-1.13.0",
+  "actualPaidCalls": 38,
+  "stoppingRuleObserved": "Stopped after first new-strategy task failure; no remaining identity ABBA runs",
+  "originalMetadataError": "protocol.json was emitted by a helper defaulting to computer-use and planned order; retained unmodified. Actual driver and order are recorded here and in ui-runs.json.",
+  "tokenAttribution": "Serial Jev call event order grouped by decision count [6,6,6,6,6,8]. All 38 calls succeeded; final review was a paid decision, not a free local rejection.",
+  "setupExcluded": true,
+  "gptUsage": null,
+  "limitations": [
+    "No paired full GPT task or billing baseline",
+    "Only two checkout repetitions per arm and one identity pair",
+    "Old host closure did not preserve intermediate snapshots or decision probability distributions",
+    "Manual recovery separate from original failed task; excluded from A/B timing"
+  ],
+  "measurementMethod": "host-runner-original.js captures the actual closure used. New trace-capable probe was added only after these runs."
+}

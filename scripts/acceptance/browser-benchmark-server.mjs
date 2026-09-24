@@ -20,14 +20,16 @@ const legacy = await import(pathToFileURL(join(base, 'legacy.mjs')));
 const store = new Store({ home: join(base, 'state') }), project = 'synthetic-browser', key = loadKey(installHome());
 if (!key) throw Error('MISSING_KEY');
 const incident = process.argv.includes('--incident');
-const protocol = { at: new Date().toISOString(), baseline: revision, candidateHash: hash(readFileSync(new URL('../../src/browser.mjs', import.meta.url), 'utf8')), driver: 'computer-use', order: incident ? ['direct','legacy','choice','choice','legacy'] : ['direct','legacy','choice','choice','legacy','legacy','choice','choice','legacy','direct'], cases: incident ? ['checkout-rollback','identity-recovery'] : ['invoice-preview'], maxPaidRequests: incident ? 48 : 24, gptTasks: 0, scope: 'Actual official host UI operations. Direct is a scripted lower bound, NOT a GPT task baseline. Cold request cache. No retries.' };
+const driver = process.argv.find(x => x.startsWith('--driver='))?.slice(9) || 'computer-use';
+if (!['computer-use', 'chrome'].includes(driver)) throw Error('UNKNOWN_DRIVER');
+const protocol = { at: new Date().toISOString(), baseline: revision, candidateHash: hash(readFileSync(new URL('../../src/browser.mjs', import.meta.url), 'utf8')), driver, order: incident ? ['direct','legacy','choice','choice','legacy'] : ['direct','legacy','choice','choice','legacy','legacy','choice','choice','legacy','direct'], cases: incident ? ['checkout-rollback','identity-recovery'] : ['invoice-preview'], maxPaidRequests: incident ? 48 : 24, gptTasks: 0, scope: 'Planned order only; ui-runs.json records actual execution order. Actual official host UI operations. Direct is a scripted lower bound, NOT a GPT task baseline. Cold request cache. No retries.' };
 writeFileSync(join(out, 'protocol.json'), JSON.stringify(protocol, null, 2), { flag: 'wx' });
 let calls = 0;
 const server = createServer(async (req, res) => {
   res.setHeader('content-type', 'application/json');
   if (req.headers.origin || req.headers['x-jev-benchmark'] !== 'synthetic' || req.method !== 'POST') { res.writeHead(403).end('{}'); return; }
   try {
-    let raw = ''; for await (const chunk of req) { raw += chunk; if (raw.length > 100000) throw Error('BODY_LIMIT'); }
+    let raw = ''; for await (const chunk of req) { raw += chunk; if (raw.length > (req.url === '/save' ? 4000000 : 100000)) throw Error('BODY_LIMIT'); }
     const input = JSON.parse(raw), arm = input.arm, api = arm === 'legacy' ? legacy : current;
     const config = { ...loadConfig(store, project), cacheMs: 0, maxCalls: 2, taskMaxCalls: protocol.maxPaidRequests + 2, taskMaxWaitMs: 30000 };
     const judge = new Judge({ store, project, config, key, send: async (...args) => {
@@ -38,6 +40,7 @@ const server = createServer(async (req, res) => {
     let result;
     if (req.url === '/step') {
       if (!['legacy','choice'].includes(arm) || !input.observation.snapshot.includes(incident ? 'JevPilot synthetic incident review' : 'JevPilot synthetic invoice review')) throw Error('SYNTHETIC_ONLY');
+      if (input.observation.driver !== driver) throw Error('DRIVER_MISMATCH');
       result = await api.browserStep(ctx, input.observation);
     } else if (req.url === '/consume') result = api.consumeBrowserTicket(ctx, input.observation);
     else if (req.url === '/save') {
