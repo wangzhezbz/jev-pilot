@@ -1,0 +1,568 @@
+{
+  "plan": {
+    "at": "2026-09-24T17:00:26.924Z",
+    "baseline": "b8189c063aab5b152127711103a30b071e2adcba",
+    "kind": "real_component_suite",
+    "live": true,
+    "maxPaidCalls": 15,
+    "gptCalls": 0,
+    "delayMs": null,
+    "repetitions": 1,
+    "cases": [
+      "required-tools",
+      "review",
+      "quality",
+      "shifted-context"
+    ],
+    "boundary": "Function execution only; excludes Codex planning, tool dispatch and final answer. Offline times are synthetic, not provider speed. Required-tools is a known-decision case, not general task savings. No quota overrides."
+  },
+  "rows": [
+    {
+      "case": "required-tools",
+      "repetition": 0,
+      "variant": "baseline",
+      "elapsedMs": 4035.084,
+      "passed": true,
+      "calls": 1,
+      "questions": 12,
+      "requestBytes": 4029,
+      "peakConcurrent": 1,
+      "requests": [
+        {
+          "requestHash": "10399a776ca82e2b2c0e20a79d8e5fb62cc1441df7f63cc04494299b80a27ed9",
+          "requestBytes": 4029,
+          "questions": 12,
+          "status": "success",
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 1653,
+            "output_tokens": 437
+          },
+          "elapsedMs": 4032.771416
+        }
+      ],
+      "capacityBefore": {
+        "calls": 38,
+        "bytes": 400000,
+        "waitMs": 16000,
+        "cooldown": false,
+        "windowEndsAt": 1790272800000
+      },
+      "paid": true,
+      "inputTokens": 1653,
+      "outputTokens": 437,
+      "missingUsage": 0,
+      "results": [
+        {
+          "selected": [
+            "t0",
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "judgmentSources": [
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "required-tools",
+      "repetition": 0,
+      "variant": "optimized",
+      "elapsedMs": 0.23337499999979627,
+      "passed": true,
+      "calls": 0,
+      "questions": 0,
+      "requestBytes": 0,
+      "peakConcurrent": 0,
+      "requests": [],
+      "capacityBefore": {
+        "calls": 37,
+        "bytes": 395971,
+        "waitMs": 11967.031916,
+        "cooldown": false,
+        "windowEndsAt": 1790272800000
+      },
+      "paid": true,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "missingUsage": 0,
+      "results": [
+        {
+          "selected": [
+            "t0",
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "judgmentSources": [
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "review",
+      "repetition": 0,
+      "variant": "baseline",
+      "elapsedMs": 913.6423329999998,
+      "passed": true,
+      "calls": 2,
+      "questions": 13,
+      "requestBytes": 5384,
+      "peakConcurrent": 1,
+      "requests": [
+        {
+          "requestHash": "88840db47d6dd4b0a8933a9b3d59ae7a1e87aaa0563911bcde8ca78064d678e3",
+          "requestBytes": 607,
+          "questions": 1,
+          "status": "success",
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 424,
+            "output_tokens": 39
+          },
+          "elapsedMs": 338.7593750000001
+        },
+        {
+          "requestHash": "57ce74c8dbb58f2fc96d7f4055173e4d3ca075e380ead78f3827261e3944bb59",
+          "requestBytes": 4777,
+          "questions": 12,
+          "status": "success",
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 1846,
+            "output_tokens": 452
+          },
+          "elapsedMs": 573.0990419999998
+        }
+      ],
+      "capacityBefore": {
+        "calls": 37,
+        "bytes": 395971,
+        "waitMs": 11967.031916,
+        "cooldown": false,
+        "windowEndsAt": 1790272800000
+      },
+      "paid": true,
+      "inputTokens": 2270,
+      "outputTokens": 491,
+      "missingUsage": 0,
+      "results": [
+        {
+          "run": [
+            "t0",
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8"
+          ],
+          "judgmentSources": [
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "review",
+      "repetition": 0,
+      "variant": "optimized",
+      "elapsedMs": 706.3304579999995,
+      "passed": true,
+      "calls": 2,
+      "questions": 4,
+      "requestBytes": 2014,
+      "peakConcurrent": 2,
+      "requests": [
+        {
+          "requestHash": "88840db47d6dd4b0a8933a9b3d59ae7a1e87aaa0563911bcde8ca78064d678e3",
+          "requestBytes": 607,
+          "questions": 1,
+          "status": "success",
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 424,
+            "output_tokens": 39
+          },
+          "elapsedMs": 297.4131670000006
+        },
+        {
+          "requestHash": "78e1b70d8fc253a61932dd1f96d2d3da9f45b759abd7546eac19019bee507d96",
+          "requestBytes": 1407,
+          "questions": 3,
+          "status": "success",
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 692,
+            "output_tokens": 117
+          },
+          "elapsedMs": 705.0655000000006
+        }
+      ],
+      "capacityBefore": {
+        "calls": 35,
+        "bytes": 390587,
+        "waitMs": 11055.088124,
+        "cooldown": false,
+        "windowEndsAt": 1790272800000
+      },
+      "paid": true,
+      "inputTokens": 1116,
+      "outputTokens": 156,
+      "missingUsage": 0,
+      "results": [
+        {
+          "run": [
+            "t0",
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8"
+          ],
+          "judgmentSources": [
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "jev",
+            "jev",
+            "jev"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "quality",
+      "repetition": 0,
+      "variant": "baseline",
+      "elapsedMs": 1006.1059169999999,
+      "passed": true,
+      "calls": 2,
+      "questions": 2,
+      "requestBytes": 1056,
+      "peakConcurrent": 1,
+      "requests": [
+        {
+          "requestHash": "cbfdd5040d32ba84e2d39d2b0c5c5d8ead42a88d9110e7cbd1884ded38b3ea82",
+          "requestBytes": 511,
+          "questions": 1,
+          "status": "success",
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 406,
+            "output_tokens": 39
+          },
+          "elapsedMs": 397.0905840000005
+        },
+        {
+          "requestHash": "badae6c69f25c70a06c07d77abc0013c90e35997857425734989dc05b4178518",
+          "requestBytes": 545,
+          "questions": 1,
+          "status": "success",
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 414,
+            "output_tokens": 39
+          },
+          "elapsedMs": 607.3472080000001
+        }
+      ],
+      "capacityBefore": {
+        "calls": 33,
+        "bytes": 388573,
+        "waitMs": 10052.113375,
+        "cooldown": false,
+        "windowEndsAt": 1790272800000
+      },
+      "paid": true,
+      "inputTokens": 820,
+      "outputTokens": 78,
+      "missingUsage": 0,
+      "results": [
+        {
+          "verdict": "passed"
+        }
+      ]
+    },
+    {
+      "case": "quality",
+      "repetition": 0,
+      "variant": "optimized",
+      "elapsedMs": 623.9958749999996,
+      "passed": true,
+      "calls": 2,
+      "questions": 2,
+      "requestBytes": 1056,
+      "peakConcurrent": 1,
+      "requests": [
+        {
+          "requestHash": "cbfdd5040d32ba84e2d39d2b0c5c5d8ead42a88d9110e7cbd1884ded38b3ea82",
+          "requestBytes": 511,
+          "questions": 1,
+          "status": "success",
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 406,
+            "output_tokens": 39
+          },
+          "elapsedMs": 334.9142090000005
+        },
+        {
+          "requestHash": "badae6c69f25c70a06c07d77abc0013c90e35997857425734989dc05b4178518",
+          "requestBytes": 545,
+          "questions": 1,
+          "status": "success",
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 414,
+            "output_tokens": 39
+          },
+          "elapsedMs": 287.74808399999984
+        }
+      ],
+      "capacityBefore": {
+        "calls": 31,
+        "bytes": 387517,
+        "waitMs": 9047.611208000002,
+        "cooldown": false,
+        "windowEndsAt": 1790272800000
+      },
+      "paid": true,
+      "inputTokens": 820,
+      "outputTokens": 78,
+      "missingUsage": 0,
+      "results": [
+        {
+          "verdict": "passed"
+        }
+      ]
+    },
+    {
+      "case": "shifted-context",
+      "repetition": 0,
+      "variant": "baseline",
+      "elapsedMs": 4467.426041,
+      "passed": false,
+      "calls": 5,
+      "questions": 5,
+      "requestBytes": 5645,
+      "peakConcurrent": 1,
+      "requests": [
+        {
+          "requestHash": "7d7ff6fb793ab460a84fc698ebc80c4ffca71160be72116814724443ee443ecd",
+          "requestBytes": 1129,
+          "questions": 1,
+          "status": "success",
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 523,
+            "output_tokens": 39
+          },
+          "elapsedMs": 934.2501659999998
+        },
+        {
+          "requestHash": "896dc3830ca26ac26a07d998a8f5dc8746d90bc041f628cefd807896884a1e12",
+          "requestBytes": 1129,
+          "questions": 1,
+          "status": "success",
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 523,
+            "output_tokens": 39
+          },
+          "elapsedMs": 1147.2102919999998
+        },
+        {
+          "requestHash": "3ac6f1946eb7c42c662fd1a5f67cc3d24475f312211b10631f1be4fe28ccafdb",
+          "requestBytes": 1129,
+          "questions": 1,
+          "status": "success",
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 523,
+            "output_tokens": 39
+          },
+          "elapsedMs": 1422.7926669999997
+        },
+        {
+          "requestHash": "d01ef14f0ebe5faa67e5aaf8de5b155d2ae09d224b30187acf4d641fe8144571",
+          "requestBytes": 1129,
+          "questions": 1,
+          "status": "success",
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 523,
+            "output_tokens": 39
+          },
+          "elapsedMs": 637.5524160000004
+        },
+        {
+          "requestHash": "2d3bad0240fc9cde41813c30130720b3ef37c8ce7eb3441e4269b28c0899bf8d",
+          "requestBytes": 1129,
+          "questions": 1,
+          "status": "success",
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 523,
+            "output_tokens": 39
+          },
+          "elapsedMs": 319.65541699999994
+        }
+      ],
+      "capacityBefore": {
+        "calls": 29,
+        "bytes": 386461,
+        "waitMs": 8424.895957,
+        "cooldown": false,
+        "windowEndsAt": 1790272800000
+      },
+      "paid": true,
+      "inputTokens": 2615,
+      "outputTokens": 195,
+      "missingUsage": 0,
+      "results": [
+        {
+          "omittedCallIds": [],
+          "reusedJudgments": 0
+        },
+        {
+          "omittedCallIds": [],
+          "reusedJudgments": 0
+        },
+        {
+          "omittedCallIds": [],
+          "reusedJudgments": 0
+        },
+        {
+          "omittedCallIds": [],
+          "reusedJudgments": 0
+        },
+        {
+          "omittedCallIds": [],
+          "reusedJudgments": 0
+        }
+      ]
+    },
+    {
+      "case": "shifted-context",
+      "repetition": 0,
+      "variant": "optimized",
+      "elapsedMs": 981.1735000000008,
+      "passed": false,
+      "calls": 1,
+      "questions": 1,
+      "requestBytes": 1105,
+      "peakConcurrent": 1,
+      "requests": [
+        {
+          "requestHash": "d81cf16fabea3d12ce02c3c763d3587bca6e8289ad93262a9df32b167d09e36c",
+          "requestBytes": 1105,
+          "questions": 1,
+          "status": "success",
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 516,
+            "output_tokens": 39
+          },
+          "elapsedMs": 978.7331250000007
+        }
+      ],
+      "capacityBefore": {
+        "calls": 24,
+        "bytes": 380816,
+        "waitMs": 3963.294998000001,
+        "cooldown": false,
+        "windowEndsAt": 1790272800000
+      },
+      "paid": true,
+      "inputTokens": 516,
+      "outputTokens": 39,
+      "missingUsage": 0,
+      "results": [
+        {
+          "omittedCallIds": [],
+          "reusedJudgments": 0
+        },
+        {
+          "omittedCallIds": [],
+          "reusedJudgments": 1
+        },
+        {
+          "omittedCallIds": [],
+          "reusedJudgments": 1
+        },
+        {
+          "omittedCallIds": [],
+          "reusedJudgments": 1
+        },
+        {
+          "omittedCallIds": [],
+          "reusedJudgments": 1
+        }
+      ]
+    }
+  ]
+}

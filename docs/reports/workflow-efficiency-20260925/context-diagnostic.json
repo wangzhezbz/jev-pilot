@@ -1,0 +1,22 @@
+{
+  "threshold": 0.9,
+  "baselineFinalDecision": {
+    "choice": "exclude",
+    "probabilities": {
+      "keep": 0.16,
+      "exclude": 0.74,
+      "review": 0.1
+    }
+  },
+  "optimizedDecision": {
+    "choice": "exclude",
+    "probabilities": {
+      "review": 0.05,
+      "keep": 0.06,
+      "exclude": 0.89
+    }
+  },
+  "appliedExclusions": 0,
+  "predeclaredCompressionAcceptance": "failed in both arms",
+  "comparison": "No information was lost in either arm; repeated unchanged retention decisions were cached. Reduced Jev work does not establish reduced GPT context."
+}

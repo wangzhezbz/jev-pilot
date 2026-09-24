@@ -1,5 +1,6 @@
 // Default is offline. --live spends at most one real Jev request using the
-// current task's unmodified shared guard. Never resets task budgets.
+// current task's unmodified shared guard. --live-suite spends at most 15 requests.
+// Neither mode resets task budgets.
 import {execFileSync} from 'node:child_process';
 import {mkdtempSync,mkdirSync,writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
@@ -24,10 +25,15 @@ const cases=[
  {id:'quality',operation:'quality',input:{content:'The total is unknown',rules:[{id:'r',text:'Preserve uncertainty'}],translations:[{id:'zh',text:'总数未知'}]},accept:r=>r.verdict==='passed'},
  {id:'shifted-context',operation:'compactContext',input:{goal:'Current billing task',session:'fixture',preserveRecent:1,blocks:[{id:'a',role:'tool_call',callId:'exchange',content:'Read old catalog',readOnly:true,verified:true},{id:'b',role:'tool_result',callId:'exchange',content:'Completed unrelated catalog'},{id:'u',role:'user',content:'Current billing task'}]},accept:r=>r.omittedCallIds.length===1}
 ];
-const live=process.argv.includes('--live'),rows=[];
-const plan={at:new Date().toISOString(),baseline,kind:live?'one_request_required_tool_probe':'offline_component_AB',live,maxPaidCalls:live?1:0,gptCalls:0,delayMs:live?null:40,repetitions:live?1:3,cases:live?['required-tools']:cases.map(x=>x.id),boundary:'Function execution only; excludes Codex planning, tool dispatch and final answer. Offline times are synthetic, not provider speed. Required-tools is a known-decision case, not general task savings. No quota overrides.'};
-writeFileSync(join(out,live?'live-plan.json':'offline-plan.json'),JSON.stringify(plan,null,2)+'\n');
-for(let repetition=0;repetition<plan.repetitions;repetition++)for(const spec of live?cases.slice(0,1):cases){
+const suite=process.argv.includes('--live-suite'),live=process.argv.includes('--live')||suite,rows=[];
+if(suite){
+ const review=cases.find(c=>c.id==='review');
+ review.input.tests=review.input.tests.map((t,i)=>({...t,text:i<9?`Required parser regression ${i}: reject malformed integers`:`Marketing color screenshot ${i}: isolated landing-page styles, no parser or integer dependency`}));
+}
+const prefix=suite?'live-suite':live?'live':'offline';
+const plan={at:new Date().toISOString(),baseline,kind:suite?'real_component_suite':live?'one_request_required_tool_probe':'offline_component_AB',live,maxPaidCalls:suite?15:live?1:0,gptCalls:0,delayMs:live?null:40,repetitions:live?1:3,cases:live&&!suite?['required-tools']:cases.map(x=>x.id),boundary:'Function execution only; excludes Codex planning, tool dispatch and final answer. Offline times are synthetic, not provider speed. Required-tools is a known-decision case, not general task savings. No quota overrides.'};
+writeFileSync(join(out,prefix+'-plan.json'),JSON.stringify(plan,null,2)+'\n');
+for(let repetition=0;repetition<plan.repetitions;repetition++)for(const spec of live&&!suite?cases.slice(0,1):cases){
  for(const variant of repetition%2?['optimized','baseline']:['baseline','optimized']){
   const store=live?new Store():new Store({home:mkdtempSync(join(tmpdir(),'jev-efficiency-bench-'))});
   const project=store.project(root),config={...loadConfig(store,project),cacheMs:spec.id==='shifted-context'?600000:0};
@@ -58,5 +64,5 @@ for(let repetition=0;repetition<plan.repetitions;repetition++)for(const spec of 
   }finally{store.close();}
  }
 }
-writeFileSync(join(out,live?'live-results.json':'offline-results.json'),JSON.stringify({plan,rows},null,2)+'\n');
+writeFileSync(join(out,prefix+'-results.json'),JSON.stringify({plan,rows},null,2)+'\n');
 if(rows.some(r=>!r.passed))process.exitCode=1;

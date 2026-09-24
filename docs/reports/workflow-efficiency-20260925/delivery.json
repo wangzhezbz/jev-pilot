@@ -75,5 +75,41 @@
       ]
     },
     "response": "Build before tests with matching production Go flags and CGO mode; limit CI test file concurrency to 2. No assertions removed and no timeouts increased."
+  },
+  "ciFollowup": {
+    "commit": "ea2ab397fa0d9cc087094ecb545cd12c5efcc054",
+    "url": "https://github.com/wangzhezbz/jev-pilot/actions/runs/36030994970",
+    "result": "success",
+    "jobs": {
+      "macOS": "success",
+      "Linux": "success",
+      "Windows": "success"
+    },
+    "windows": {
+      "total": 329,
+      "passed": 327,
+      "failed": 0,
+      "cancelled": 0,
+      "platformSkipped": 2,
+      "elapsedMs": 53360.6344,
+      "launcherTestMs": 1680.6627,
+      "bridgeCancellationTestMs": 2054.4882
+    },
+    "scope": "Checks, complete applicable test suite, native build and package. OS CI is not interactive Windows/Linux desktop acceptance."
+  },
+  "liveSuite": {
+    "calls": 15,
+    "inputTokens": 9810,
+    "outputTokens": 1474,
+    "rows": 8,
+    "passed": 6,
+    "failed": 2,
+    "failedCase": "shifted-context in both arms: exclude probability below 0.9"
+  },
+  "allExplicitLiveExperiments": {
+    "calls": 17,
+    "inputTokens": 11870,
+    "outputTokens": 1950,
+    "includes": "Initial paired component, current-old-MCP probe, and 15-call suite. Excludes development GPT usage and background routing."
   }
 }

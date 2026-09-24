@@ -1,0 +1,21 @@
+{
+  "commit": "ea2ab397fa0d9cc087094ecb545cd12c5efcc054",
+  "url": "https://github.com/wangzhezbz/jev-pilot/actions/runs/36030994970",
+  "result": "success",
+  "jobs": {
+    "macOS": "success",
+    "Linux": "success",
+    "Windows": "success"
+  },
+  "windows": {
+    "total": 329,
+    "passed": 327,
+    "failed": 0,
+    "cancelled": 0,
+    "platformSkipped": 2,
+    "elapsedMs": 53360.6344,
+    "launcherTestMs": 1680.6627,
+    "bridgeCancellationTestMs": 2054.4882
+  },
+  "scope": "Checks, complete applicable test suite, native build and package. OS CI is not interactive Windows/Linux desktop acceptance."
+}

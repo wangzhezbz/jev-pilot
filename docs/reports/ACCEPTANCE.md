@@ -2,7 +2,7 @@
 
 **Status: all 14 shared modules implemented; runnable development preview. Full cross-platform desktop release acceptance is not complete.**
 
-Current optimization follow-up: [2026-09-25 whole-workflow audit](workflow-efficiency-20260925/README.zh-CN.md) — 329 local tests pass; one real required-tool case removes an unnecessary 2,090 Jev tokens. Component and offline results are separated; this is not a general end-to-end savings claim. Earlier counts below are historical batches.
+Current optimization follow-up: [2026-09-25 whole-workflow audit](workflow-efficiency-20260925/README.zh-CN.md) — 329 local tests pass and the code passes three-OS CI. A real review/test-selection pair uses 53.93% fewer Jev tokens and takes 22.69% less time; a context pair saves repeated judgments but fails its predeclared compression target. Component, failure and offline results are separated; this is not a general end-to-end savings claim. Earlier counts below are historical batches.
 
 Latest follow-up: [2026-09-22 hardening and Chrome diagnosis](HARDENING.md) — 64 local tests pass after eight reliability fixes. The earlier live-call counts below describe the original acceptance batch, not cumulative usage.
 

@@ -25,3 +25,11 @@ offline,shifted-context,2,baseline,213.50604099999987,5,5,5645,1,True,,,5
 offline,shifted-context,2,optimized,44.06079199999999,1,1,1105,1,True,,,1
 live,required-tools,0,baseline,661.1664159999999,1,12,4029,1,True,1653,437,0
 live,required-tools,0,optimized,0.24370799999996962,0,0,0,0,True,0,0,0
+live-suite,required-tools,0,baseline,4035.084,1,12,4029,1,True,1653,437,0
+live-suite,required-tools,0,optimized,0.23337499999979627,0,0,0,0,True,0,0,0
+live-suite,review,0,baseline,913.6423329999998,2,13,5384,1,True,2270,491,0
+live-suite,review,0,optimized,706.3304579999995,2,4,2014,2,True,1116,156,0
+live-suite,quality,0,baseline,1006.1059169999999,2,2,1056,1,True,820,78,0
+live-suite,quality,0,optimized,623.9958749999996,2,2,1056,1,True,820,78,0
+live-suite,shifted-context,0,baseline,4467.426041,5,5,5645,1,False,2615,195,0
+live-suite,shifted-context,0,optimized,981.1735000000008,1,1,1105,1,False,516,39,0
