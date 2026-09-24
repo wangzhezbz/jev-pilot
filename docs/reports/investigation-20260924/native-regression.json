@@ -1,0 +1,2676 @@
+{
+  "at": "2026-09-24T07:53:12.666Z",
+  "kind": "real_native_engine_synthetic_model",
+  "paidModelCalls": 0,
+  "rows": [
+    {
+      "id": "code-mode-select",
+      "args": [
+        "--code-mode-select"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "low"
+          },
+          {
+            "number": 2,
+            "effort": "low"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        }
+      ],
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": "start_parameter_forwarded",
+          "horizon": 5,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 1
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 213
+        }
+      ]
+    },
+    {
+      "id": "code-mode-chain",
+      "args": [
+        "--code-mode-chain"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "low"
+          },
+          {
+            "number": 2,
+            "effort": "low"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        }
+      ],
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": "start_parameter_forwarded",
+          "horizon": 5,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 213
+        }
+      ]
+    },
+    {
+      "id": "code-mode-failure",
+      "args": [
+        "--code-mode-chain-failure"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "low"
+          },
+          {
+            "number": 2,
+            "effort": "low"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        }
+      ],
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": "start_parameter_forwarded",
+          "horizon": 5,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 219
+        }
+      ]
+    },
+    {
+      "id": "code-mode-passthrough",
+      "args": [
+        "--code-mode-output"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "low"
+          },
+          {
+            "number": 2,
+            "effort": "low"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        }
+      ],
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": "start_parameter_forwarded",
+          "horizon": 5,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 175
+        }
+      ]
+    },
+    {
+      "id": "steer-context",
+      "args": [
+        "--steer-context"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "low"
+          },
+          {
+            "number": 2,
+            "effort": "low"
+          },
+          {
+            "number": 3,
+            "effort": "low"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 3,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        }
+      ],
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": "start_parameter_forwarded",
+          "horizon": 5,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "low",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": null,
+          "horizon": 5,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 304
+        }
+      ]
+    },
+    {
+      "id": "phase-reevaluation",
+      "args": [
+        "--phase-reevaluation"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "high"
+          },
+          {
+            "number": 2,
+            "effort": "high"
+          },
+          {
+            "number": 3,
+            "effort": "medium"
+          },
+          {
+            "number": 4,
+            "effort": "medium"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "high"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "high"
+        },
+        {
+          "number": 3,
+          "model": "gpt-6-astra",
+          "effort": "medium"
+        },
+        {
+          "number": 4,
+          "model": "gpt-6-astra",
+          "effort": "medium"
+        }
+      ],
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "high",
+          "published": "high",
+          "recommended": "high",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "high",
+          "published": "high",
+          "recommended": "high",
+          "confirmation": null,
+          "horizon": 2,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "decision",
+          "status": "applied",
+          "from": "high",
+          "published": "medium",
+          "recommended": "medium",
+          "confirmation": "native_settings_published",
+          "horizon": 1,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 52
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "medium",
+          "published": "medium",
+          "recommended": "medium",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 426
+        }
+      ]
+    },
+    {
+      "id": "astra",
+      "args": [
+        "--routing-budget",
+        "--model=gpt-6-astra"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "low"
+          },
+          {
+            "number": 2,
+            "effort": "low"
+          },
+          {
+            "number": 3,
+            "effort": "low"
+          },
+          {
+            "number": 4,
+            "effort": "low"
+          },
+          {
+            "number": 5,
+            "effort": "high"
+          },
+          {
+            "number": 6,
+            "effort": "low"
+          },
+          {
+            "number": 7,
+            "effort": "low"
+          },
+          {
+            "number": 8,
+            "effort": "high"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 3,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 4,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 5,
+          "model": "gpt-6-astra",
+          "effort": "high"
+        },
+        {
+          "number": 6,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 7,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 8,
+          "model": "gpt-6-astra",
+          "effort": "high"
+        }
+      ],
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": "start_parameter_forwarded",
+          "horizon": 1,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "low",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "low",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "low",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "effort_restore",
+          "status": "applied",
+          "from": "low",
+          "published": "high",
+          "confirmation": "native_settings_published",
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 1
+        },
+        {
+          "kind": "decision",
+          "status": "applied",
+          "from": "high",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": "native_settings_published",
+          "horizon": 1,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 52
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "low",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "effort_restore",
+          "status": "applied",
+          "from": "low",
+          "published": "high",
+          "confirmation": "native_settings_published",
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 1
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 924
+        }
+      ]
+    },
+    {
+      "id": "sol",
+      "args": [
+        "--routing-budget",
+        "--model=gpt-6-sol",
+        "--use-local-catalog"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "low"
+          },
+          {
+            "number": 2,
+            "effort": "low"
+          },
+          {
+            "number": 3,
+            "effort": "low"
+          },
+          {
+            "number": 4,
+            "effort": "low"
+          },
+          {
+            "number": 5,
+            "effort": "high"
+          },
+          {
+            "number": 6,
+            "effort": "low"
+          },
+          {
+            "number": 7,
+            "effort": "low"
+          },
+          {
+            "number": 8,
+            "effort": "high"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-sol",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-sol",
+          "effort": "low"
+        },
+        {
+          "number": 3,
+          "model": "gpt-6-sol",
+          "effort": "low"
+        },
+        {
+          "number": 4,
+          "model": "gpt-6-sol",
+          "effort": "low"
+        },
+        {
+          "number": 5,
+          "model": "gpt-6-sol",
+          "effort": "high"
+        },
+        {
+          "number": 6,
+          "model": "gpt-6-sol",
+          "effort": "low"
+        },
+        {
+          "number": 7,
+          "model": "gpt-6-sol",
+          "effort": "low"
+        },
+        {
+          "number": 8,
+          "model": "gpt-6-sol",
+          "effort": "high"
+        }
+      ],
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": "start_parameter_forwarded",
+          "horizon": 1,
+          "targetModel": "gpt-6-sol",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "low",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-6-sol",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "low",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-6-sol",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "low",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-6-sol",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "effort_restore",
+          "status": "applied",
+          "from": "low",
+          "published": "high",
+          "confirmation": "native_settings_published",
+          "targetModel": "gpt-6-sol",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "decision",
+          "status": "applied",
+          "from": "high",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": "native_settings_published",
+          "horizon": 1,
+          "targetModel": "gpt-6-sol",
+          "elapsedMs": 52
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "low",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-6-sol",
+          "elapsedMs": 50
+        },
+        {
+          "kind": "effort_restore",
+          "status": "applied",
+          "from": "low",
+          "published": "high",
+          "confirmation": "native_settings_published",
+          "targetModel": "gpt-6-sol",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-6-sol",
+          "elapsedMs": 808
+        }
+      ]
+    },
+    {
+      "id": "luna",
+      "args": [
+        "--routing-budget",
+        "--model=gpt-6-luna",
+        "--use-local-catalog"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "low"
+          },
+          {
+            "number": 2,
+            "effort": "low"
+          },
+          {
+            "number": 3,
+            "effort": "low"
+          },
+          {
+            "number": 4,
+            "effort": "low"
+          },
+          {
+            "number": 5,
+            "effort": "high"
+          },
+          {
+            "number": 6,
+            "effort": "low"
+          },
+          {
+            "number": 7,
+            "effort": "low"
+          },
+          {
+            "number": 8,
+            "effort": "high"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-luna",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-luna",
+          "effort": "low"
+        },
+        {
+          "number": 3,
+          "model": "gpt-6-luna",
+          "effort": "low"
+        },
+        {
+          "number": 4,
+          "model": "gpt-6-luna",
+          "effort": "low"
+        },
+        {
+          "number": 5,
+          "model": "gpt-6-luna",
+          "effort": "high"
+        },
+        {
+          "number": 6,
+          "model": "gpt-6-luna",
+          "effort": "low"
+        },
+        {
+          "number": 7,
+          "model": "gpt-6-luna",
+          "effort": "low"
+        },
+        {
+          "number": 8,
+          "model": "gpt-6-luna",
+          "effort": "high"
+        }
+      ],
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": "start_parameter_forwarded",
+          "horizon": 1,
+          "targetModel": "gpt-6-luna",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "low",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-6-luna",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "low",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-6-luna",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "low",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-6-luna",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "effort_restore",
+          "status": "applied",
+          "from": "low",
+          "published": "high",
+          "confirmation": "native_settings_published",
+          "targetModel": "gpt-6-luna",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "decision",
+          "status": "applied",
+          "from": "high",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": "native_settings_published",
+          "horizon": 1,
+          "targetModel": "gpt-6-luna",
+          "elapsedMs": 52
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "low",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-6-luna",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "effort_restore",
+          "status": "applied",
+          "from": "low",
+          "published": "high",
+          "confirmation": "native_settings_published",
+          "targetModel": "gpt-6-luna",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-6-luna",
+          "elapsedMs": 842
+        }
+      ]
+    },
+    {
+      "id": "56sol",
+      "args": [
+        "--reassess",
+        "--model=gpt-5.6-sol",
+        "--use-local-catalog"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "low"
+          },
+          {
+            "number": 2,
+            "effort": "low"
+          },
+          {
+            "number": 3,
+            "effort": "low"
+          },
+          {
+            "number": 4,
+            "effort": "low"
+          },
+          {
+            "number": 5,
+            "effort": "medium"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        },
+        {
+          "number": 3,
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        },
+        {
+          "number": 4,
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        },
+        {
+          "number": 5,
+          "model": "gpt-5.6-sol",
+          "effort": "medium"
+        }
+      ],
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": "start_parameter_forwarded",
+          "horizon": 5,
+          "targetModel": "gpt-5.6-sol",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "decision",
+          "status": "applied",
+          "from": "low",
+          "published": "medium",
+          "recommended": "medium",
+          "confirmation": "native_settings_published",
+          "horizon": 5,
+          "targetModel": "gpt-5.6-sol",
+          "elapsedMs": 52
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-5.6-sol",
+          "elapsedMs": 410
+        }
+      ]
+    },
+    {
+      "id": "56terra",
+      "args": [
+        "--reassess",
+        "--model=gpt-5.6-terra",
+        "--use-local-catalog"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "low"
+          },
+          {
+            "number": 2,
+            "effort": "low"
+          },
+          {
+            "number": 3,
+            "effort": "low"
+          },
+          {
+            "number": 4,
+            "effort": "low"
+          },
+          {
+            "number": 5,
+            "effort": "medium"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-5.6-terra",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-5.6-terra",
+          "effort": "low"
+        },
+        {
+          "number": 3,
+          "model": "gpt-5.6-terra",
+          "effort": "low"
+        },
+        {
+          "number": 4,
+          "model": "gpt-5.6-terra",
+          "effort": "low"
+        },
+        {
+          "number": 5,
+          "model": "gpt-5.6-terra",
+          "effort": "medium"
+        }
+      ],
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": "start_parameter_forwarded",
+          "horizon": 5,
+          "targetModel": "gpt-5.6-terra",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "decision",
+          "status": "applied",
+          "from": "low",
+          "published": "medium",
+          "recommended": "medium",
+          "confirmation": "native_settings_published",
+          "horizon": 5,
+          "targetModel": "gpt-5.6-terra",
+          "elapsedMs": 52
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-5.6-terra",
+          "elapsedMs": 394
+        }
+      ]
+    },
+    {
+      "id": "56luna",
+      "args": [
+        "--reassess",
+        "--model=gpt-5.6-luna",
+        "--use-local-catalog"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "low"
+          },
+          {
+            "number": 2,
+            "effort": "low"
+          },
+          {
+            "number": 3,
+            "effort": "low"
+          },
+          {
+            "number": 4,
+            "effort": "low"
+          },
+          {
+            "number": 5,
+            "effort": "medium"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-5.6-luna",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-5.6-luna",
+          "effort": "low"
+        },
+        {
+          "number": 3,
+          "model": "gpt-5.6-luna",
+          "effort": "low"
+        },
+        {
+          "number": 4,
+          "model": "gpt-5.6-luna",
+          "effort": "low"
+        },
+        {
+          "number": 5,
+          "model": "gpt-5.6-luna",
+          "effort": "medium"
+        }
+      ],
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": "start_parameter_forwarded",
+          "horizon": 5,
+          "targetModel": "gpt-5.6-luna",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "decision",
+          "status": "applied",
+          "from": "low",
+          "published": "medium",
+          "recommended": "medium",
+          "confirmation": "native_settings_published",
+          "horizon": 5,
+          "targetModel": "gpt-5.6-luna",
+          "elapsedMs": 52
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-5.6-luna",
+          "elapsedMs": 392
+        }
+      ]
+    },
+    {
+      "id": "manual",
+      "args": [
+        "--manual-settings"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "low"
+          },
+          {
+            "number": 2,
+            "effort": "medium"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "medium"
+        }
+      ],
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": "start_parameter_forwarded",
+          "horizon": 5,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "external_settings",
+          "status": "applied",
+          "targetModel": "gpt-6-astra"
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "medium",
+          "published": "medium",
+          "recommended": "medium",
+          "confirmation": null,
+          "horizon": 5,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 187
+        }
+      ]
+    },
+    {
+      "id": "recovery",
+      "args": [
+        "--recover-timeout"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "high"
+          },
+          {
+            "number": 2,
+            "effort": "low"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "high"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        }
+      ],
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "fallback",
+          "code": "JEV_TIMEOUT",
+          "recoveryScheduled": true,
+          "retryAfterMs": 15000,
+          "elapsedMs": 0
+        },
+        {
+          "kind": "routing_recovery",
+          "status": "admitted"
+        },
+        {
+          "kind": "decision",
+          "status": "applied",
+          "from": "high",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": "native_settings_published",
+          "horizon": 5,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 52
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 15272
+        }
+      ]
+    },
+    {
+      "id": "context",
+      "args": [
+        "--resume-context"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "low"
+          },
+          {
+            "number": 2,
+            "effort": "low"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        }
+      ],
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "resume_context"
+        },
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": "start_parameter_forwarded",
+          "horizon": 5,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 136
+        }
+      ]
+    },
+    {
+      "id": "parallel",
+      "args": [
+        "--parallel-tools"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "low"
+          },
+          {
+            "number": 2,
+            "effort": "low"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        }
+      ],
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": "start_parameter_forwarded",
+          "horizon": 5,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 287
+        }
+      ]
+    },
+    {
+      "id": "mcp-filter",
+      "args": [
+        "--filter-mcp"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "low"
+          },
+          {
+            "number": 2,
+            "effort": "low"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        }
+      ],
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": "start_parameter_forwarded",
+          "horizon": 5,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 110
+        }
+      ]
+    },
+    {
+      "id": "no-benefit",
+      "args": [
+        "--no-benefit-filter"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "low"
+          },
+          {
+            "number": 2,
+            "effort": "low"
+          },
+          {
+            "number": 3,
+            "effort": "low"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        },
+        {
+          "number": 3,
+          "model": "gpt-6-astra",
+          "effort": "low"
+        }
+      ],
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "decision",
+          "status": "start_forwarded",
+          "from": "high",
+          "published": "low",
+          "recommended": "low",
+          "confirmation": "start_parameter_forwarded",
+          "horizon": 5,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 217
+        }
+      ]
+    },
+    {
+      "id": "unavailable",
+      "args": [
+        "--unavailable-jev"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "high"
+          },
+          {
+            "number": 2,
+            "effort": "high"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "high"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "high"
+        }
+      ],
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "fallback",
+          "code": "TIMEOUT",
+          "recoveryScheduled": false,
+          "retryAfterMs": null,
+          "elapsedMs": 0
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 134
+        }
+      ]
+    },
+    {
+      "id": "disabled",
+      "args": [
+        "--disabled"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "high"
+          },
+          {
+            "number": 2,
+            "effort": "high"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "high"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "high"
+        }
+      ],
+      "events": [
+        {
+          "kind": "compatibility_fallback"
+        }
+      ]
+    },
+    {
+      "id": "incompatible",
+      "args": [
+        "--incompatible"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "high"
+          },
+          {
+            "number": 2,
+            "effort": "high"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "high"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "high"
+        }
+      ],
+      "events": [
+        {
+          "kind": "compatibility_fallback"
+        }
+      ]
+    },
+    {
+      "id": "cache-gpt-6-astra",
+      "args": [
+        "--phase-reevaluation",
+        "--model=gpt-6-astra",
+        "--use-local-catalog",
+        "--inspect-cache-context",
+        "--adapter-cache-default",
+        "--openai-provider-fixture"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "high"
+          },
+          {
+            "number": 2,
+            "effort": "high"
+          },
+          {
+            "number": 3,
+            "effort": "medium"
+          },
+          {
+            "number": 4,
+            "effort": "medium"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-astra",
+          "effort": "high"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-astra",
+          "effort": "high"
+        },
+        {
+          "number": 3,
+          "model": "gpt-6-astra",
+          "effort": "medium"
+        },
+        {
+          "number": 4,
+          "model": "gpt-6-astra",
+          "effort": "medium"
+        }
+      ],
+      "cacheContext": {
+        "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+        "cachePreservingEffort": true,
+        "topLevelEffortStable": true,
+        "toolsStable": null,
+        "instructionsStable": null,
+        "promptCacheKeyStable": true,
+        "appendOnly": true,
+        "initialItems": 8,
+        "perRequest": [
+          {
+            "request": 1,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 2,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 3,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 4,
+            "initialPrefixPreserved": true
+          }
+        ]
+      },
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "high",
+          "published": "high",
+          "recommended": "high",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "high",
+          "published": "high",
+          "recommended": "high",
+          "confirmation": null,
+          "horizon": 2,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "decision",
+          "status": "applied",
+          "from": "high",
+          "published": "medium",
+          "recommended": "medium",
+          "confirmation": "native_settings_published",
+          "horizon": 1,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 53
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "medium",
+          "published": "medium",
+          "recommended": "medium",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-6-astra",
+          "elapsedMs": 469
+        }
+      ]
+    },
+    {
+      "id": "cache-gpt-6-sol",
+      "args": [
+        "--phase-reevaluation",
+        "--model=gpt-6-sol",
+        "--use-local-catalog",
+        "--inspect-cache-context",
+        "--adapter-cache-default",
+        "--openai-provider-fixture"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "high"
+          },
+          {
+            "number": 2,
+            "effort": "high"
+          },
+          {
+            "number": 3,
+            "effort": "medium"
+          },
+          {
+            "number": 4,
+            "effort": "medium"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-sol",
+          "effort": "high"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-sol",
+          "effort": "high"
+        },
+        {
+          "number": 3,
+          "model": "gpt-6-sol",
+          "effort": "medium"
+        },
+        {
+          "number": 4,
+          "model": "gpt-6-sol",
+          "effort": "medium"
+        }
+      ],
+      "cacheContext": {
+        "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+        "cachePreservingEffort": true,
+        "topLevelEffortStable": true,
+        "toolsStable": null,
+        "instructionsStable": null,
+        "promptCacheKeyStable": true,
+        "appendOnly": true,
+        "initialItems": 8,
+        "perRequest": [
+          {
+            "request": 1,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 2,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 3,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 4,
+            "initialPrefixPreserved": true
+          }
+        ]
+      },
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "high",
+          "published": "high",
+          "recommended": "high",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-6-sol",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "high",
+          "published": "high",
+          "recommended": "high",
+          "confirmation": null,
+          "horizon": 2,
+          "targetModel": "gpt-6-sol",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "decision",
+          "status": "applied",
+          "from": "high",
+          "published": "medium",
+          "recommended": "medium",
+          "confirmation": "native_settings_published",
+          "horizon": 1,
+          "targetModel": "gpt-6-sol",
+          "elapsedMs": 52
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "medium",
+          "published": "medium",
+          "recommended": "medium",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-6-sol",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-6-sol",
+          "elapsedMs": 465
+        }
+      ]
+    },
+    {
+      "id": "cache-gpt-6-luna",
+      "args": [
+        "--phase-reevaluation",
+        "--model=gpt-6-luna",
+        "--use-local-catalog",
+        "--inspect-cache-context",
+        "--adapter-cache-default",
+        "--openai-provider-fixture"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "high"
+          },
+          {
+            "number": 2,
+            "effort": "high"
+          },
+          {
+            "number": 3,
+            "effort": "medium"
+          },
+          {
+            "number": 4,
+            "effort": "medium"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-6-luna",
+          "effort": "high"
+        },
+        {
+          "number": 2,
+          "model": "gpt-6-luna",
+          "effort": "high"
+        },
+        {
+          "number": 3,
+          "model": "gpt-6-luna",
+          "effort": "medium"
+        },
+        {
+          "number": 4,
+          "model": "gpt-6-luna",
+          "effort": "medium"
+        }
+      ],
+      "cacheContext": {
+        "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+        "cachePreservingEffort": true,
+        "topLevelEffortStable": true,
+        "toolsStable": null,
+        "instructionsStable": null,
+        "promptCacheKeyStable": true,
+        "appendOnly": true,
+        "initialItems": 8,
+        "perRequest": [
+          {
+            "request": 1,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 2,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 3,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 4,
+            "initialPrefixPreserved": true
+          }
+        ]
+      },
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "high",
+          "published": "high",
+          "recommended": "high",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-6-luna",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "high",
+          "published": "high",
+          "recommended": "high",
+          "confirmation": null,
+          "horizon": 2,
+          "targetModel": "gpt-6-luna",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "decision",
+          "status": "applied",
+          "from": "high",
+          "published": "medium",
+          "recommended": "medium",
+          "confirmation": "native_settings_published",
+          "horizon": 1,
+          "targetModel": "gpt-6-luna",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "medium",
+          "published": "medium",
+          "recommended": "medium",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-6-luna",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-6-luna",
+          "elapsedMs": 440
+        }
+      ]
+    },
+    {
+      "id": "cache-gpt-5.6-sol",
+      "args": [
+        "--phase-reevaluation",
+        "--model=gpt-5.6-sol",
+        "--use-local-catalog",
+        "--inspect-cache-context",
+        "--adapter-cache-default",
+        "--openai-provider-fixture"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "high"
+          },
+          {
+            "number": 2,
+            "effort": "high"
+          },
+          {
+            "number": 3,
+            "effort": "medium"
+          },
+          {
+            "number": 4,
+            "effort": "medium"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-5.6-sol",
+          "effort": "high"
+        },
+        {
+          "number": 2,
+          "model": "gpt-5.6-sol",
+          "effort": "high"
+        },
+        {
+          "number": 3,
+          "model": "gpt-5.6-sol",
+          "effort": "medium"
+        },
+        {
+          "number": 4,
+          "model": "gpt-5.6-sol",
+          "effort": "medium"
+        }
+      ],
+      "cacheContext": {
+        "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+        "cachePreservingEffort": true,
+        "topLevelEffortStable": true,
+        "toolsStable": null,
+        "instructionsStable": null,
+        "promptCacheKeyStable": true,
+        "appendOnly": true,
+        "initialItems": 8,
+        "perRequest": [
+          {
+            "request": 1,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 2,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 3,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 4,
+            "initialPrefixPreserved": true
+          }
+        ]
+      },
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "high",
+          "published": "high",
+          "recommended": "high",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-5.6-sol",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "high",
+          "published": "high",
+          "recommended": "high",
+          "confirmation": null,
+          "horizon": 2,
+          "targetModel": "gpt-5.6-sol",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "decision",
+          "status": "applied",
+          "from": "high",
+          "published": "medium",
+          "recommended": "medium",
+          "confirmation": "native_settings_published",
+          "horizon": 1,
+          "targetModel": "gpt-5.6-sol",
+          "elapsedMs": 52
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "medium",
+          "published": "medium",
+          "recommended": "medium",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-5.6-sol",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-5.6-sol",
+          "elapsedMs": 449
+        }
+      ]
+    },
+    {
+      "id": "cache-gpt-5.6-terra",
+      "args": [
+        "--phase-reevaluation",
+        "--model=gpt-5.6-terra",
+        "--use-local-catalog",
+        "--inspect-cache-context",
+        "--adapter-cache-default",
+        "--openai-provider-fixture"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "high"
+          },
+          {
+            "number": 2,
+            "effort": "high"
+          },
+          {
+            "number": 3,
+            "effort": "medium"
+          },
+          {
+            "number": 4,
+            "effort": "medium"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-5.6-terra",
+          "effort": "high"
+        },
+        {
+          "number": 2,
+          "model": "gpt-5.6-terra",
+          "effort": "high"
+        },
+        {
+          "number": 3,
+          "model": "gpt-5.6-terra",
+          "effort": "medium"
+        },
+        {
+          "number": 4,
+          "model": "gpt-5.6-terra",
+          "effort": "medium"
+        }
+      ],
+      "cacheContext": {
+        "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+        "cachePreservingEffort": true,
+        "topLevelEffortStable": true,
+        "toolsStable": null,
+        "instructionsStable": null,
+        "promptCacheKeyStable": true,
+        "appendOnly": true,
+        "initialItems": 8,
+        "perRequest": [
+          {
+            "request": 1,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 2,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 3,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 4,
+            "initialPrefixPreserved": true
+          }
+        ]
+      },
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "high",
+          "published": "high",
+          "recommended": "high",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-5.6-terra",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "high",
+          "published": "high",
+          "recommended": "high",
+          "confirmation": null,
+          "horizon": 2,
+          "targetModel": "gpt-5.6-terra",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "decision",
+          "status": "applied",
+          "from": "high",
+          "published": "medium",
+          "recommended": "medium",
+          "confirmation": "native_settings_published",
+          "horizon": 1,
+          "targetModel": "gpt-5.6-terra",
+          "elapsedMs": 52
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "medium",
+          "published": "medium",
+          "recommended": "medium",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-5.6-terra",
+          "elapsedMs": 50
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-5.6-terra",
+          "elapsedMs": 441
+        }
+      ]
+    },
+    {
+      "id": "cache-gpt-5.6-luna",
+      "args": [
+        "--phase-reevaluation",
+        "--model=gpt-5.6-luna",
+        "--use-local-catalog",
+        "--inspect-cache-context",
+        "--adapter-cache-default",
+        "--openai-provider-fixture"
+      ],
+      "exitCode": 0,
+      "passed": true,
+      "result": {
+        "status": "passed",
+        "passed": true,
+        "requests": [
+          {
+            "number": 1,
+            "effort": "high"
+          },
+          {
+            "number": 2,
+            "effort": "high"
+          },
+          {
+            "number": 3,
+            "effort": "medium"
+          },
+          {
+            "number": 4,
+            "effort": "medium"
+          }
+        ]
+      },
+      "requests": [
+        {
+          "number": 1,
+          "model": "gpt-5.6-luna",
+          "effort": "high"
+        },
+        {
+          "number": 2,
+          "model": "gpt-5.6-luna",
+          "effort": "high"
+        },
+        {
+          "number": 3,
+          "model": "gpt-5.6-luna",
+          "effort": "medium"
+        },
+        {
+          "number": 4,
+          "model": "gpt-5.6-luna",
+          "effort": "medium"
+        }
+      ],
+      "cacheContext": {
+        "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+        "cachePreservingEffort": true,
+        "topLevelEffortStable": true,
+        "toolsStable": null,
+        "instructionsStable": null,
+        "promptCacheKeyStable": true,
+        "appendOnly": true,
+        "initialItems": 6,
+        "perRequest": [
+          {
+            "request": 1,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 2,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 3,
+            "initialPrefixPreserved": true
+          },
+          {
+            "request": 4,
+            "initialPrefixPreserved": true
+          }
+        ]
+      },
+      "events": [
+        {
+          "kind": "bridge_started"
+        },
+        {
+          "kind": "metadata_loaded"
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "high",
+          "published": "high",
+          "recommended": "high",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-5.6-luna",
+          "elapsedMs": 0
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "high",
+          "published": "high",
+          "recommended": "high",
+          "confirmation": null,
+          "horizon": 2,
+          "targetModel": "gpt-5.6-luna",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "decision",
+          "status": "applied",
+          "from": "high",
+          "published": "medium",
+          "recommended": "medium",
+          "confirmation": "native_settings_published",
+          "horizon": 1,
+          "targetModel": "gpt-5.6-luna",
+          "elapsedMs": 52
+        },
+        {
+          "kind": "decision",
+          "status": "unchanged",
+          "from": "medium",
+          "published": "medium",
+          "recommended": "medium",
+          "confirmation": null,
+          "horizon": 1,
+          "targetModel": "gpt-5.6-luna",
+          "elapsedMs": 51
+        },
+        {
+          "kind": "turn_usage",
+          "status": "completed",
+          "targetModel": "gpt-5.6-luna",
+          "elapsedMs": 441
+        }
+      ]
+    }
+  ]
+}

@@ -25,7 +25,8 @@ const noBenefitFiltering=process.argv.includes('--no-benefit-filter');
 const mcpFiltering=process.argv.includes('--filter-mcp');
 const codeModeSelect=process.argv.includes('--code-mode-select');
 const codeModeChainFailure=process.argv.includes('--code-mode-chain-failure');
-const codeModeChain=process.argv.includes('--code-mode-chain')||codeModeChainFailure||codeModeSelect;
+const investigationHint=process.argv.includes('--investigation-hint');
+const codeModeChain=process.argv.includes('--code-mode-chain')||codeModeChainFailure||codeModeSelect||investigationHint;
 const codeModeOutput=process.argv.includes('--code-mode-output')||codeModeChain;
 const filtering=process.argv.includes('--filter-output')||mcpFiltering||noBenefitFiltering||process.argv.includes('--steer-context')||codeModeOutput;
 const steerContext=process.argv.includes('--steer-context');
@@ -38,6 +39,7 @@ const inputSnapshots=[];
 const steps=routingBudget?7:phaseReevaluation?3:steerContext?2:reassess?4:noBenefitFiltering?2:1;
 const realBin=process.env.JEV_PILOT_CODEX??'/Applications/ChatGPT.app/Contents/Resources/codex';
 const work=await mkdtemp(join(tmpdir(),'jev-desktop-verification-'));
+if(investigationHint)for(let i=0;i<8;i++)await writeFile(join(work,`note-${i}.md`),'Synthetic investigation material '+('x'.repeat(2500)));
 const codexHome=join(work,'home');await mkdir(codexHome);
 const report={kind:'bundled_runtime_with_synthetic_model',work,openaiPaidCalls:0,requests:[],events:[],status:'running'};
 const env={...process.env,CODEX_HOME:codexHome,JEV_PILOT_MEASUREMENT:'synthetic'};
@@ -247,6 +249,7 @@ try{
       :report.codeModeBoundary.noiseLines===350);
     report.testMeaning=codeModeChain?'Real evidence implementation and native runtime with synthetic judgments; not a paid-model performance measurement.':'Nested hook passes original result through without paying for a discarded replacement.';
   }
+  if(investigationHint){report.investigationHint={modelVisible:report.requests[0]?.inputText?.includes('For broad workspace investigation'),submissions:report.automaticEvents?.filter(e=>e.kind==='investigation_hint').length??0};report.passed=report.passed&&report.investigationHint.modelVisible&&report.investigationHint.submissions===1;}
   report.status=report.passed?'passed':'failed';
   if(!report.passed)process.exitCode=1;
 }catch(error){report.status='failed';report.error=String(error.message);process.exitCode=1;}

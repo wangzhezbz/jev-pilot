@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {spawn} from 'node:child_process';
-import {mkdtempSync} from 'node:fs';
+import {mkdtempSync,writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -24,6 +24,10 @@ test('real MCP server returns coverage text and serves targeted/full recall with
   const targeted=await call('jev_evidence','recall',{artifactId:selected.artifactId,query:'battery'});
   assert.deepEqual(targeted.items,[items[0]]);assert.equal(targeted.nextOffset,null);
   const full=await call('jev_evidence','recall',{artifactId:selected.artifactId});assert.deepEqual(full.items,items);
+  writeFileSync(join(home,'fixture.md'),'Quota checkpoint\nExact surrounding evidence');
+  const investigation=await call('jev_evidence','investigate',{goal:'Find quota policy',queries:['Quota'],paths:['fixture.md']});
+  assert.equal(investigation.selection.method,'local');assert(investigation.context.includes('Exact surrounding evidence'));
+  assert.equal(investigation.search.matchedFiles,1);assert(!Object.hasOwn(investigation.items[0],'text'));
   const advanced=await call('jev_pilot','select',{goal:'Review both observations',items});assert(!advanced.context.includes('JevPilot evidence:'));
   const metrics=await call('jev_pilot','metrics',{});assert.equal(metrics.jev.calls,0);
 });

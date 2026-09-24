@@ -19,7 +19,13 @@ try {
         data += chunk;
         if (data.length > 120000) return done();
         if (!data.includes('\n')) return;
-        try { const r = JSON.parse(data); if (payload.hook_event_name === 'PostToolUse' && r.continue === false && typeof r.stopReason === 'string') result = { continue: false, stopReason: r.stopReason }; } catch {}
+        try {
+          const r = JSON.parse(data);
+          if (payload.hook_event_name === 'PostToolUse' && r.continue === false && typeof r.stopReason === 'string') result = { continue: false, stopReason: r.stopReason };
+          const hint=r.hookSpecificOutput;
+          if(payload.hook_event_name==='UserPromptSubmit'&&hint?.hookEventName==='UserPromptSubmit'&&typeof hint.additionalContext==='string'&&hint.additionalContext.length<=1000)
+            result={hookSpecificOutput:{hookEventName:'UserPromptSubmit',additionalContext:hint.additionalContext}};
+        } catch {}
         done();
       });
       socket.on('connect', () => socket.write(JSON.stringify(payload) + '\n'));

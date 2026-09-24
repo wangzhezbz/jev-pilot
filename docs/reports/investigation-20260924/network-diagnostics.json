@@ -1,0 +1,54 @@
+{
+  "authenticated-timing": {
+    "authenticated": true,
+    "modelInvoked": true,
+    "input": "one exact color choice",
+    "timeoutMs": 5000,
+    "connectTimeoutMs": 2000,
+    "timing": {
+      "dnsSeconds": 6.5e-05,
+      "tcpSeconds": 0.000191,
+      "tlsSeconds": 0.273187,
+      "firstByteSeconds": 0.575493,
+      "totalSeconds": 0.575521,
+      "httpCode": 200
+    },
+    "model": "jev-1.13.0",
+    "usage": {
+      "input_tokens": 315,
+      "output_tokens": 31
+    },
+    "correct": true,
+    "elapsedMs": 585.8299579999999
+  },
+  "results": [
+    {
+      "url": "https://api.typesafe.ai/v1/systemone",
+      "exitCode": 0,
+      "networkMode": "environment_proxy",
+      "httpCode": 405,
+      "dnsSeconds": 6.6e-05,
+      "tcpSeconds": 0.000232,
+      "tlsSeconds": 0.386408,
+      "firstByteSeconds": 0.649275,
+      "totalSeconds": 0.649351,
+      "proxyUsed": 1,
+      "authenticated": false,
+      "modelInvoked": false
+    },
+    {
+      "url": "https://docs.typesafe.ai/api",
+      "exitCode": 0,
+      "networkMode": "environment_proxy",
+      "httpCode": 200,
+      "dnsSeconds": 4.9e-05,
+      "tcpSeconds": 0.000165,
+      "tlsSeconds": 0.365751,
+      "firstByteSeconds": 0.627499,
+      "totalSeconds": 1.505074,
+      "proxyUsed": 1,
+      "authenticated": false,
+      "modelInvoked": false
+    }
+  ]
+}

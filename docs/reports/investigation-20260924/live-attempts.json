@@ -1,0 +1,401 @@
+{
+  "investigation-live-20260924": {
+    "protocol": {
+      "at": "2026-09-24T07:58:58.607Z",
+      "sourceHash": "3270883a72ae9e974ff8aa3879df24906f3a38d4fc77573e1dc81a808926dfd5",
+      "sourceLabelsAdded": true,
+      "maxJevCalls": 2,
+      "gptCalls": 0,
+      "scope": "Single live integration/retention check on a source-labelled development fixture; not task latency, token savings or natural adoption evidence."
+    },
+    "elapsedMs": 1830.399208,
+    "selection": {
+      "method": "local",
+      "reason": "judgment_unavailable"
+    },
+    "retainedSources": [
+      "notes/n00.md",
+      "notes/n01.md",
+      "notes/n02.md",
+      "notes/n03.md"
+    ],
+    "excluded": 0,
+    "missingRequired": [
+      "notes/n06.md",
+      "notes/n09.md"
+    ],
+    "deferred": [
+      "i4",
+      "i5",
+      "i6",
+      "i7",
+      "i8",
+      "i9",
+      "i10",
+      "i11"
+    ],
+    "completeCoverage": false,
+    "degraded": true,
+    "recallMatchesSnapshots": true,
+    "calls": [
+      {
+        "at": "2026-09-24T07:59:00.436Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "elapsedMs": 1813,
+        "status": "failed",
+        "code": "JEV_TIMEOUT"
+      },
+      {
+        "at": "2026-09-24T07:59:00.434Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "elapsedMs": 1812,
+        "status": "failed",
+        "code": "JEV_TIMEOUT"
+      }
+    ],
+    "passed": false
+  },
+  "investigation-live-atomic-20260924": {
+    "protocol": {
+      "at": "2026-09-24T08:06:32.722Z",
+      "sourceHash": "3270883a72ae9e974ff8aa3879df24906f3a38d4fc77573e1dc81a808926dfd5",
+      "sourceLabelsAdded": true,
+      "maxJevCalls": 2,
+      "gptCalls": 0,
+      "scope": "Single live integration/retention check on a source-labelled development fixture; not task latency, token savings or natural adoption evidence."
+    },
+    "elapsedMs": 1831.426042,
+    "selection": {
+      "method": "local",
+      "reason": "judgment_unavailable"
+    },
+    "retainedSources": [
+      "notes/n00.md",
+      "notes/n01.md",
+      "notes/n02.md",
+      "notes/n03.md"
+    ],
+    "excluded": 0,
+    "missingRequired": [
+      "notes/n06.md",
+      "notes/n09.md"
+    ],
+    "deferred": [
+      "i4",
+      "i5",
+      "i6",
+      "i7",
+      "i8",
+      "i9",
+      "i10",
+      "i11"
+    ],
+    "completeCoverage": false,
+    "degraded": true,
+    "recallMatchesSnapshots": true,
+    "calls": [
+      {
+        "at": "2026-09-24T08:06:34.552Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "elapsedMs": 1814,
+        "status": "failed",
+        "code": "JEV_TIMEOUT"
+      },
+      {
+        "at": "2026-09-24T08:06:34.552Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "elapsedMs": 1814,
+        "status": "failed",
+        "code": "JEV_TIMEOUT"
+      }
+    ],
+    "passed": false
+  },
+  "investigation-live-atomic-fixed-20260924": {
+    "protocol": {
+      "at": "2026-09-24T08:08:21.465Z",
+      "sourceHash": "3270883a72ae9e974ff8aa3879df24906f3a38d4fc77573e1dc81a808926dfd5",
+      "sourceHashes": {
+        "src/core.mjs": "86f70c73f28bf9e84a5e2e6b7d4dbfa3c8cdef67677bf11412f8e7bf3ef095ad",
+        "src/evidence.mjs": "36e14f8df678f32eb3bf9bfbc3a70ed1be9b190436c56d501d8a88cb204cc142",
+        "src/investigate.mjs": "fd1a5957d898f0105308a59156c3ecb1671514ed8c8d780645fb28c3922073d7",
+        "scripts/acceptance/investigation-live.mjs": "8dab48cf00b14a6f0c4975a987b83f5a223e64363b4998893c4698fa703ff7e9"
+      },
+      "sourceLabelsAdded": true,
+      "maxJevCalls": 2,
+      "gptCalls": 0,
+      "scope": "Single live integration/retention check on a source-labelled development fixture; not task latency, token savings or natural adoption evidence."
+    },
+    "elapsedMs": 1834.940916,
+    "selection": {
+      "method": "local",
+      "reason": "judgment_unavailable"
+    },
+    "retainedSources": [
+      "notes/n00.md",
+      "notes/n01.md",
+      "notes/n02.md",
+      "notes/n03.md"
+    ],
+    "excluded": 0,
+    "missingRequired": [
+      "notes/n06.md",
+      "notes/n09.md"
+    ],
+    "deferred": [
+      "i4",
+      "i5",
+      "i6",
+      "i7",
+      "i8",
+      "i9",
+      "i10",
+      "i11"
+    ],
+    "completeCoverage": false,
+    "degraded": true,
+    "recallMatchesSnapshots": true,
+    "profiles": [
+      {
+        "at": "2026-09-24T08:08:21.481Z",
+        "kind": "classification_batches",
+        "purpose": "evidence",
+        "batches": 1,
+        "concurrency": 1,
+        "inputProfile": "candidate_in_question_v1"
+      }
+    ],
+    "calls": [
+      {
+        "at": "2026-09-24T08:08:23.298Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "elapsedMs": 1816,
+        "status": "failed",
+        "code": "JEV_TIMEOUT"
+      }
+    ],
+    "passed": false
+  },
+  "investigation-live-bounded-20260924": {
+    "protocol": {
+      "at": "2026-09-24T08:09:47.386Z",
+      "sourceHash": "3270883a72ae9e974ff8aa3879df24906f3a38d4fc77573e1dc81a808926dfd5",
+      "sourceHashes": {
+        "src/core.mjs": "86f70c73f28bf9e84a5e2e6b7d4dbfa3c8cdef67677bf11412f8e7bf3ef095ad",
+        "src/evidence.mjs": "36e14f8df678f32eb3bf9bfbc3a70ed1be9b190436c56d501d8a88cb204cc142",
+        "src/investigate.mjs": "b156aca81b4b429fd84002eb76702d62fe3c897b84da9333638ecc8472756d51",
+        "scripts/acceptance/investigation-live.mjs": "8dab48cf00b14a6f0c4975a987b83f5a223e64363b4998893c4698fa703ff7e9"
+      },
+      "sourceLabelsAdded": true,
+      "maxJevCalls": 2,
+      "gptCalls": 0,
+      "scope": "Single live integration/retention check on a source-labelled development fixture; not task latency, token savings or natural adoption evidence."
+    },
+    "elapsedMs": 2034.3919580000002,
+    "selection": {
+      "method": "local",
+      "reason": "judgment_unavailable"
+    },
+    "retainedSources": [
+      "notes/n00.md",
+      "notes/n01.md",
+      "notes/n02.md",
+      "notes/n03.md"
+    ],
+    "excluded": 0,
+    "missingRequired": [
+      "notes/n06.md",
+      "notes/n09.md"
+    ],
+    "deferred": [
+      "i4",
+      "i5",
+      "i6",
+      "i7",
+      "i8",
+      "i9",
+      "i10",
+      "i11"
+    ],
+    "completeCoverage": false,
+    "degraded": true,
+    "recallMatchesSnapshots": true,
+    "profiles": [
+      {
+        "at": "2026-09-24T08:09:47.404Z",
+        "kind": "classification_batches",
+        "purpose": "evidence",
+        "batches": 1,
+        "concurrency": 1,
+        "inputProfile": "candidate_in_question_v1"
+      }
+    ],
+    "calls": [
+      {
+        "at": "2026-09-24T08:09:49.419Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "elapsedMs": 2014,
+        "status": "failed",
+        "code": "JEV_TIMEOUT"
+      }
+    ],
+    "passed": false
+  },
+  "investigation-live-timed-20260924": {
+    "protocol": {
+      "at": "2026-09-24T08:15:03.871Z",
+      "sourceHash": "3270883a72ae9e974ff8aa3879df24906f3a38d4fc77573e1dc81a808926dfd5",
+      "sourceHashes": {
+        "src/core.mjs": "86f70c73f28bf9e84a5e2e6b7d4dbfa3c8cdef67677bf11412f8e7bf3ef095ad",
+        "src/evidence.mjs": "36e14f8df678f32eb3bf9bfbc3a70ed1be9b190436c56d501d8a88cb204cc142",
+        "src/investigate.mjs": "b156aca81b4b429fd84002eb76702d62fe3c897b84da9333638ecc8472756d51",
+        "scripts/acceptance/investigation-live.mjs": "0a9087c26b15c87df5594c327b03cb808b0cfb45ba6bff9f229f34b5447a52a1"
+      },
+      "sourceLabelsAdded": true,
+      "maxJevCalls": 2,
+      "gptCalls": 0,
+      "scope": "Single live integration/retention check on a source-labelled development fixture; not task latency, token savings or natural adoption evidence."
+    },
+    "elapsedMs": 785.276667,
+    "selection": {
+      "method": "jev",
+      "reason": "large_semantic_candidates"
+    },
+    "retainedSources": [
+      "notes/n00.md",
+      "notes/n02.md",
+      "notes/n04.md",
+      "notes/n05.md"
+    ],
+    "excluded": 5,
+    "missingRequired": [
+      "notes/n01.md",
+      "notes/n06.md",
+      "notes/n09.md"
+    ],
+    "deferred": [
+      "i1",
+      "i6",
+      "i9"
+    ],
+    "completeCoverage": false,
+    "degraded": false,
+    "recallMatchesSnapshots": true,
+    "profiles": [
+      {
+        "at": "2026-09-24T08:15:03.889Z",
+        "kind": "classification_batches",
+        "purpose": "evidence",
+        "batches": 1,
+        "concurrency": 1,
+        "inputProfile": "candidate_in_question_v1"
+      }
+    ],
+    "calls": [
+      {
+        "at": "2026-09-24T08:15:04.656Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "model": "jev-1.13.0",
+        "elapsedMs": 765,
+        "inputTokens": 11498,
+        "outputTokens": 437,
+        "questions": 12,
+        "status": "success"
+      }
+    ],
+    "passed": false,
+    "timings": [
+      {
+        "dnsSeconds": 6.4e-05,
+        "tcpSeconds": 0.000172,
+        "tlsSeconds": 0.34208,
+        "firstByteSeconds": 0.755422,
+        "totalSeconds": 0.755446,
+        "httpCode": 200
+      }
+    ]
+  },
+  "investigation-live-retention-fixed-20260924": {
+    "protocol": {
+      "at": "2026-09-24T08:20:09.133Z",
+      "sourceHash": "3270883a72ae9e974ff8aa3879df24906f3a38d4fc77573e1dc81a808926dfd5",
+      "sourceHashes": {
+        "src/core.mjs": "86f70c73f28bf9e84a5e2e6b7d4dbfa3c8cdef67677bf11412f8e7bf3ef095ad",
+        "src/evidence.mjs": "36e14f8df678f32eb3bf9bfbc3a70ed1be9b190436c56d501d8a88cb204cc142",
+        "src/investigate.mjs": "029bf617980adccb4d68cf47bbf620a6ddbdc5e6ba6f82cb2c488ed53265b9cd",
+        "scripts/acceptance/investigation-live.mjs": "0a9087c26b15c87df5594c327b03cb808b0cfb45ba6bff9f229f34b5447a52a1"
+      },
+      "sourceLabelsAdded": true,
+      "maxJevCalls": 2,
+      "gptCalls": 0,
+      "scope": "Single live integration/retention check on a source-labelled development fixture; not task latency, token savings or natural adoption evidence."
+    },
+    "elapsedMs": 2034.581459,
+    "selection": {
+      "method": "local",
+      "reason": "judgment_unavailable"
+    },
+    "retainedSources": [
+      "notes/n00.md",
+      "notes/n01.md",
+      "notes/n02.md",
+      "notes/n03.md"
+    ],
+    "excluded": 0,
+    "missingRequired": [
+      "notes/n06.md",
+      "notes/n09.md"
+    ],
+    "deferred": [
+      "i4",
+      "i5",
+      "i6",
+      "i7",
+      "i8",
+      "i9",
+      "i10",
+      "i11"
+    ],
+    "completeCoverage": false,
+    "degraded": true,
+    "recallMatchesSnapshots": true,
+    "profiles": [
+      {
+        "at": "2026-09-24T08:20:09.155Z",
+        "kind": "classification_batches",
+        "purpose": "evidence",
+        "batches": 1,
+        "concurrency": 1,
+        "inputProfile": "candidate_in_question_v1"
+      }
+    ],
+    "calls": [
+      {
+        "at": "2026-09-24T08:20:11.167Z",
+        "kind": "jev_call",
+        "purpose": "evidence",
+        "elapsedMs": 2011,
+        "status": "failed",
+        "code": "JEV_TIMEOUT"
+      }
+    ],
+    "passed": false,
+    "timings": [
+      {
+        "dnsSeconds": 7e-05,
+        "tcpSeconds": 0.000248,
+        "tlsSeconds": 0,
+        "firstByteSeconds": 0,
+        "totalSeconds": 2.002236,
+        "httpCode": 0
+      }
+    ]
+  }
+}

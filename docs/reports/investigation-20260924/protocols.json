@@ -1,0 +1,171 @@
+{
+  "tool_only": {
+    "at": "2026-09-24T07:43:24.989Z",
+    "runs": 6,
+    "jobs": [
+      {
+        "task": "policy",
+        "arm": "bare"
+      },
+      {
+        "task": "policy",
+        "arm": "jev"
+      },
+      {
+        "task": "policy",
+        "arm": "local"
+      },
+      {
+        "task": "cursor",
+        "arm": "local"
+      },
+      {
+        "task": "cursor",
+        "arm": "jev"
+      },
+      {
+        "task": "cursor",
+        "arm": "bare"
+      }
+    ],
+    "model": "gpt-6-astra",
+    "effort": "high",
+    "sourceHashes": {
+      "scripts/acceptance/investigation-run.mjs": "0b62b5562c95c855e83c554a29b18b105bc834a266e63141d3e98166db6b541d",
+      "scripts/acceptance/investigation-tasks.mjs": "d9c31add1f92ef350fa17205155d1abe7a04f2adf94316ed10a5b45938bb6e69",
+      "src/investigate.mjs": "63c16b27718f4a43e09c3d5923c9e5eb8d708a04045af65274687573425d2de9",
+      "src/evidence.mjs": "c285499ebaee7c4eeba8f3bf4c8739161a98503cd4d2fcafd8a040f1246d529b",
+      "src/evidence-tool.mjs": "362132aaf5bfb4823b63151a1ac480b2dff76c4dc209443cafdfafda5dc26daa",
+      "src/model-result.mjs": "4ff4e96989aeb2f5997ad617088ab3bca127fd7b08f179d7663a755743679b24",
+      "src/core.mjs": "09989cab5a162f33c1daa19eec16674b0874b2ae90b88b43504736ab7e7532fe",
+      "src/policy.mjs": "4f29ab06c3f91509aa260247165d12a2e48e37b507b2c5f726f95e5b291582de",
+      "src/pilot.mjs": "b3cb38e1c07b50106b43b4993e25f36cb2d7bb55da0ecc21679b8db7ea68917e",
+      "src/server.mjs": "2bdd808c970cf1c7b9a8204381aa266a059d414a2f50a721f7074a7cc4f5e315",
+      "scripts/acceptance/terminal-state.mjs": "431a65f5c59a2ed68f9415b8601cf69790e7eb220a612731a89bee2d03934489"
+    },
+    "fixtures": [
+      {
+        "id": "policy",
+        "prompt": "Inspect notes/ and reconcile the current Atlas outbound webhook retry policy, including its production correction and superseded design. Write answer.json with retryableStatuses (sorted integers), maximumTotalAttempts, delayBaseMs, delayMultiplier, retryAfterCapSeconds, permanentHeaderValue, archivedMaximumAttempts and sourceIds (only the production contract, production correction and archived design IDs). Write answer.md explaining precedence and the Retry-After fallback, citing source IDs. Do not modify the source notes. Use current evidence rather than guessing from other Atlas components.",
+        "hash": "1b6f793a3220b68e5c915efb1e565cca2784aeb6ef1264e07af88a36d9e4c0aa"
+      },
+      {
+        "id": "cursor",
+        "prompt": "Fix src/poller.mjs according to SPEC.md. Add regression.test.mjs using node:test, run it, and write diagnosis.md explaining the bug and validation. Preserve SPEC.md and the public interface. Use fake dependencies; do not contact services.",
+        "hash": "c532f280864a477cef8010c51cffe09763f6367a2074b8ab7939ffbbc50d1441"
+      }
+    ],
+    "scope": "Two new synthetic tasks, three arms, one execution per cell. Fixed Astra high to isolate read-only investigation; no desktop routing, forced MCP use or skill-read prerequisite. Local and Jev arms have identical tool definitions; local disables semantic judgments. Tool adoption, source rereads, model generations, Jev usage and native task time are observed. Not stable speed, desktop UI latency, full-combination acceptance or subscription billing proof.",
+    "stopRule": "Stop on first functional, infrastructure, timeout or model error. No retries, replacements or excluded runs. Preserve every attempt. At most six paid native tasks, 120 seconds each; each investigation at most two Jev requests under existing operation/task guards.",
+    "timeLimitMs": 120000
+  },
+  "guided": {
+    "at": "2026-09-24T07:51:57.795Z",
+    "runs": 3,
+    "jobs": [
+      {
+        "task": "policy",
+        "arm": "local"
+      },
+      {
+        "task": "policy",
+        "arm": "bare"
+      },
+      {
+        "task": "policy",
+        "arm": "jev"
+      }
+    ],
+    "model": "gpt-6-astra",
+    "effort": "high",
+    "sourceHashes": {
+      "scripts/acceptance/investigation-run.mjs": "71fb275ef2cfb24a58c92631603bcb1f51408b57f2b221246b4a3aea2c842ddc",
+      "scripts/acceptance/investigation-tasks.mjs": "d9c31add1f92ef350fa17205155d1abe7a04f2adf94316ed10a5b45938bb6e69",
+      "src/investigate.mjs": "563e31ff38355c2518cdd571584e916a663f871ca86a24cecac65f057049efce",
+      "src/evidence.mjs": "c285499ebaee7c4eeba8f3bf4c8739161a98503cd4d2fcafd8a040f1246d529b",
+      "src/evidence-tool.mjs": "362132aaf5bfb4823b63151a1ac480b2dff76c4dc209443cafdfafda5dc26daa",
+      "src/model-result.mjs": "4ff4e96989aeb2f5997ad617088ab3bca127fd7b08f179d7663a755743679b24",
+      "src/core.mjs": "09989cab5a162f33c1daa19eec16674b0874b2ae90b88b43504736ab7e7532fe",
+      "src/policy.mjs": "4f29ab06c3f91509aa260247165d12a2e48e37b507b2c5f726f95e5b291582de",
+      "src/pilot.mjs": "b3cb38e1c07b50106b43b4993e25f36cb2d7bb55da0ecc21679b8db7ea68917e",
+      "src/server.mjs": "2bdd808c970cf1c7b9a8204381aa266a059d414a2f50a721f7074a7cc4f5e315",
+      "scripts/acceptance/terminal-state.mjs": "431a65f5c59a2ed68f9415b8601cf69790e7eb220a612731a89bee2d03934489",
+      "src/investigation-hint.mjs": "40bd5f291c113e9248e91ace4fd675726352c1e80a7248a82e8dcfa083021e37",
+      "scripts/acceptance/investigation-guidance-hook.mjs": "2188a25fa34e37824eebcc2406f720229ab372219980ac140dac4fade732423b"
+    },
+    "fixtures": [
+      {
+        "id": "policy",
+        "prompt": "Inspect notes/ and reconcile the current Atlas outbound webhook retry policy, including its production correction and superseded design. Write answer.json with retryableStatuses (sorted integers), maximumTotalAttempts, delayBaseMs, delayMultiplier, retryAfterCapSeconds, permanentHeaderValue, archivedMaximumAttempts and sourceIds (only the production contract, production correction and archived design IDs). Write answer.md explaining precedence and the Retry-After fallback, citing source IDs. Do not modify the source notes. Use current evidence rather than guessing from other Atlas components.",
+        "hash": "1b6f793a3220b68e5c915efb1e565cca2784aeb6ef1264e07af88a36d9e4c0aa"
+      },
+      {
+        "id": "cursor",
+        "prompt": "Fix src/poller.mjs according to SPEC.md. Add regression.test.mjs using node:test, run it, and write diagnosis.md explaining the bug and validation. Preserve SPEC.md and the public interface. Use fake dependencies; do not contact services.",
+        "hash": "c532f280864a477cef8010c51cffe09763f6367a2074b8ab7939ffbbc50d1441"
+      }
+    ],
+    "scope": "Development follow-up after tool-only non-adoption: same previously used policy fixture, three arms, one execution per arm, fixed Astra high. Assisted arms receive the actual production metadata-gated hint through a native UserPromptSubmit hook; task prompt is identical and no evidence is precomputed or injected. Hint transport is a benchmark wrapper; production bridge capability check was separately validated. No desktop effort routing. Not held-out, stable speed, full-combination acceptance or billing proof.",
+    "stopRule": "At most three native tasks, 120 seconds each. Stop at first functional, model, infrastructure or timeout failure. Keep all prior unsuccessful/non-adopting runs separate; no replacement.",
+    "timeLimitMs": 120000
+  },
+  "packed": {
+    "at": "2026-09-24T07:57:53.029Z",
+    "runs": 4,
+    "jobs": [
+      {
+        "task": "policy",
+        "arm": "bare",
+        "repeat": 0
+      },
+      {
+        "task": "policy",
+        "arm": "jev",
+        "repeat": 0
+      },
+      {
+        "task": "policy",
+        "arm": "jev",
+        "repeat": 1
+      },
+      {
+        "task": "policy",
+        "arm": "bare",
+        "repeat": 1
+      }
+    ],
+    "model": "gpt-6-astra",
+    "effort": "high",
+    "sourceHashes": {
+      "scripts/acceptance/investigation-run.mjs": "a5e3ddf243a65261638cb5f2c70f822393577a6d77624cab04543e2e5b5bf56b",
+      "scripts/acceptance/investigation-tasks.mjs": "d9c31add1f92ef350fa17205155d1abe7a04f2adf94316ed10a5b45938bb6e69",
+      "src/investigate.mjs": "1c627721f0fe9679c2577cd89d5f33f5b5fd5feddd6050d3eb38964966d5312e",
+      "src/evidence.mjs": "c285499ebaee7c4eeba8f3bf4c8739161a98503cd4d2fcafd8a040f1246d529b",
+      "src/evidence-tool.mjs": "362132aaf5bfb4823b63151a1ac480b2dff76c4dc209443cafdfafda5dc26daa",
+      "src/model-result.mjs": "4ff4e96989aeb2f5997ad617088ab3bca127fd7b08f179d7663a755743679b24",
+      "src/core.mjs": "09989cab5a162f33c1daa19eec16674b0874b2ae90b88b43504736ab7e7532fe",
+      "src/policy.mjs": "4f29ab06c3f91509aa260247165d12a2e48e37b507b2c5f726f95e5b291582de",
+      "src/pilot.mjs": "b3cb38e1c07b50106b43b4993e25f36cb2d7bb55da0ecc21679b8db7ea68917e",
+      "src/server.mjs": "2bdd808c970cf1c7b9a8204381aa266a059d414a2f50a721f7074a7cc4f5e315",
+      "scripts/acceptance/terminal-state.mjs": "431a65f5c59a2ed68f9415b8601cf69790e7eb220a612731a89bee2d03934489",
+      "src/evidence-projection.mjs": "b78442402fa3b6e4eee818e4914c45c88c25c7faf167ccb5ecc878fd7a325294",
+      "src/investigation-hint.mjs": "40bd5f291c113e9248e91ace4fd675726352c1e80a7248a82e8dcfa083021e37",
+      "scripts/acceptance/investigation-guidance-hook.mjs": "2188a25fa34e37824eebcc2406f720229ab372219980ac140dac4fade732423b"
+    },
+    "fixtures": [
+      {
+        "id": "policy",
+        "prompt": "Inspect notes/ and reconcile the current Atlas outbound webhook retry policy, including its production correction and superseded design. Write answer.json with retryableStatuses (sorted integers), maximumTotalAttempts, delayBaseMs, delayMultiplier, retryAfterCapSeconds, permanentHeaderValue, archivedMaximumAttempts and sourceIds (only the production contract, production correction and archived design IDs). Write answer.md explaining precedence and the Retry-After fallback, citing source IDs. Do not modify the source notes. Use current evidence rather than guessing from other Atlas components.",
+        "hash": "1b6f793a3220b68e5c915efb1e565cca2784aeb6ef1264e07af88a36d9e4c0aa"
+      },
+      {
+        "id": "cursor",
+        "prompt": "Fix src/poller.mjs according to SPEC.md. Add regression.test.mjs using node:test, run it, and write diagnosis.md explaining the bug and validation. Preserve SPEC.md and the public interface. Use fake dependencies; do not contact services.",
+        "hash": "c532f280864a477cef8010c51cffe09763f6367a2074b8ab7939ffbbc50d1441"
+      }
+    ],
+    "scope": "Development AB/BA after reversible shared-line projection. Same previously used policy fixture and evaluator; two repeats, fixed Astra high, sequential. Candidate uses the real native prompt hook and MCP investigation; no forced calls or precomputed evidence. No desktop effort routing. Prior non-adoption, timeout and negative guided results remain separate. Not held-out or stable/general/full-combination savings evidence.",
+    "stopRule": "At most four native tasks, 120 seconds each. Stop at first functional, infrastructure, model or timeout failure, retain all attempts, no replacement.",
+    "timeLimitMs": 120000
+  }
+}

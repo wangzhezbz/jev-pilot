@@ -1,0 +1,13 @@
+{
+  "dist/investigation-ab-20260924/policy-bare/run.json": "5438bbea6350942266aa966c3c95abe3f41d5b0dd8e957d9292b4d3e6d7bfc94",
+  "dist/investigation-ab-20260924/policy-jev/run.json": "d1723536c99ec15cddfb84c6322d4a14c725d3c971518caee7273debed134ced",
+  "dist/investigation-ab-20260924/policy-local/run.json": "8241b09579e76be1944cf29d36b3d302761ba5fcd7e53fefe5cac5446cded526",
+  "dist/investigation-ab-20260924/cursor-local/run.json": "990d2fdb65a5517be4249e999db2509c10db04965c697d532b9513c12d93dfcd",
+  "dist/investigation-guided-20260924/policy-local/run.json": "61d6ee87689e4a69d0f46190898e4eda9ab30d5b9895682efe9abcaa851b7d0a",
+  "dist/investigation-guided-20260924/policy-bare/run.json": "ac7ca4a899168912f6ddab33a90edecec67c7745dee5b3b53a0f13cb87107acc",
+  "dist/investigation-guided-20260924/policy-jev/run.json": "3834375f677d796d9acc0bac3321d9b5eaad3020d44f355c2f24c6f4fe9a702b",
+  "dist/investigation-packed-20260924/policy-bare-0/run.json": "d1e285471fbad25c3277968affcc869e70cfe5f23f1122db679cfaa5bc92656e",
+  "dist/investigation-packed-20260924/policy-jev-0/run.json": "400fb011a6038c3ee0dc8cc192685f1b9dd6a8c19cd322c7c7c9cd32ce5b8121",
+  "dist/investigation-packed-20260924/policy-jev-1/run.json": "681e2d2f6e1fdd8dacfd13b7cc03aa7806550dc10edfdd31fe9e5a9870774d6f",
+  "dist/investigation-packed-20260924/policy-bare-1/run.json": "eb969cea0dcb8c2911d0c9723571832a17e71e3ff9b39ec17e5d9457f76ace35"
+}

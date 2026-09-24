@@ -4,9 +4,10 @@ import {outputAdapter} from './output-adapters.mjs';
 import { filterOutput } from './evidence.mjs';
 import {EVIDENCE_POLICY} from './policy.mjs';
 import {nestedNativeOutput,exactEvidenceRequest} from './prepare-output.mjs';
+import {investigationHint} from './investigation-hint.mjs';
 // Runs inside the existing desktop bridge, before releasing a supported tool boundary.
 // Only text responses are eligible. Structured outputs retain their contract unchanged.
-export function createAutomation({ store = new Store(), key, send, clock=Date.now, batchConcurrency=2 } = {}) {
+export function createAutomation({ store = new Store(), key, send, clock=Date.now, batchConcurrency=2, evidenceAvailable=async()=>false } = {}) {
   const observe=checkpointObserver(store),active=new Set(),blocked=new Set();let closed=false;
   const cancel=threadId=>{blocked.add(threadId);for(const job of active)if(job.threadId===threadId)job.controller.abort();};
   return {
@@ -23,7 +24,13 @@ export function createAutomation({ store = new Store(), key, send, clock=Date.no
       if (payload.hook_event_name === 'UserPromptSubmit') {
         cancel(payload.session_id);blocked.delete(payload.session_id);
         state.goal = redact(String(payload.prompt || '')).slice(0, 10000); state.count = 0; state.recent = [];state.filteredSources=[];state.turnId=payload.turn_id;
-        store.put(project, 'automatic_task', state, id); return {};
+        store.put(project, 'automatic_task', state, id);
+        const hint=await investigationHint(payload.cwd,state.goal);
+        if(hint&&await evidenceAvailable(payload.session_id)){
+          store.event(project,'investigation_hint',{eligibleFiles:hint.eligibleFiles,observedBytes:hint.observedBytes,submitted:true,modelReceipt:'unconfirmed'});
+          return {hookSpecificOutput:{hookEventName:'UserPromptSubmit',additionalContext:hint.context}};
+        }
+        return {};
       }
       if (payload.hook_event_name !== 'PostToolUse' || !state.goal) return {};
       if(blocked.has(payload.session_id) || (state.turnId && state.turnId!==payload.turn_id))return {};

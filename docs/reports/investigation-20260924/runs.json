@@ -1,0 +1,4816 @@
+[
+  {
+    "metrics": {
+      "phase": "tool_only",
+      "id": "policy-bare",
+      "arm": "bare",
+      "repeat": null,
+      "status": "completed",
+      "passed": true,
+      "endToEndMs": 77166.451875,
+      "startupMs": 66.998209,
+      "generationsWithUsage": 6,
+      "inputTokens": 126344,
+      "cachedInputTokens": 108928,
+      "outputTokens": 2001,
+      "gptTokens": 128345,
+      "uncachedInputTokens": 17416,
+      "jevCalls": 0,
+      "jevInputTokens": 0,
+      "jevOutputTokens": 0,
+      "jevUnknownUsage": 0,
+      "knownAllTokens": 128345,
+      "usageComplete": true,
+      "investigations": 0,
+      "recalls": 0,
+      "hintSubmissions": 0,
+      "observedToolIntervalUnionMs": 0.3250000000152795
+    },
+    "quality": {
+      "pass": true,
+      "checks": [
+        [
+          "notes/n00.md unchanged",
+          true
+        ],
+        [
+          "notes/n01.md unchanged",
+          true
+        ],
+        [
+          "notes/n02.md unchanged",
+          true
+        ],
+        [
+          "notes/n03.md unchanged",
+          true
+        ],
+        [
+          "notes/n04.md unchanged",
+          true
+        ],
+        [
+          "notes/n05.md unchanged",
+          true
+        ],
+        [
+          "notes/n06.md unchanged",
+          true
+        ],
+        [
+          "notes/n07.md unchanged",
+          true
+        ],
+        [
+          "notes/n08.md unchanged",
+          true
+        ],
+        [
+          "notes/n09.md unchanged",
+          true
+        ],
+        [
+          "notes/n10.md unchanged",
+          true
+        ],
+        [
+          "notes/n11.md unchanged",
+          true
+        ],
+        [
+          "retryableStatuses",
+          true
+        ],
+        [
+          "maximumTotalAttempts",
+          true
+        ],
+        [
+          "delayBaseMs",
+          true
+        ],
+        [
+          "delayMultiplier",
+          true
+        ],
+        [
+          "retryAfterCapSeconds",
+          true
+        ],
+        [
+          "permanentHeaderValue",
+          true
+        ],
+        [
+          "archivedMaximumAttempts",
+          true
+        ],
+        [
+          "sourceIds",
+          true
+        ],
+        [
+          "citations",
+          true
+        ]
+      ]
+    },
+    "artifacts": {
+      "answer.json": "{\n  \"retryableStatuses\": [429, 500, 503],\n  \"maximumTotalAttempts\": 4,\n  \"delayBaseMs\": 250,\n  \"delayMultiplier\": 2,\n  \"retryAfterCapSeconds\": 30,\n  \"permanentHeaderValue\": \"permanent\",\n  \"archivedMaximumAttempts\": 2,\n  \"sourceIds\": [\"N84\", \"N45\", \"N59\"]\n}\n",
+      "answer.md": "The current Atlas outbound webhook policy is the production contract [N84](notes/n01.md), amended by the production incident correction [N45](notes/n06.md). N84 makes 429 and 503 retryable; N45 adds 500. N45 takes precedence over the general retry rule: a response with `X-Atlas-Delivery: permanent` must never be retried, regardless of status.\n\nThe correction leaves the attempt limit and delay rules unchanged: at most **4 total attempts**, including the first attempt (up to 3 retries). The computed delay is `250 ms × 2^retryIndex`, starting at index 0, giving delays of 250, 500, and 1000 ms before the successive retries. An integer `Retry-After` header specifies seconds and overrides the computed delay, capped at 30 seconds. If the header is absent or noninteger, the computed exponential delay remains unchanged; the fallback is not 30 seconds. These timing rules apply only when a retry is permitted. [N84](notes/n01.md), [N45](notes/n06.md)\n\nThe archived design [N59](notes/n09.md) proposed a maximum of **2 attempts** and retrying every non-2xx response. It was never released and is explicitly superseded by N84 and N45. Its attempt limit is recorded only as `archivedMaximumAttempts`, not as current behavior. Notes about other Atlas components do not establish the outbound webhook delivery policy.\n"
+    },
+    "commands": [
+      {
+        "command": "/bin/zsh -lc \"pwd; rg --files -g 'AGENTS.md' -g 'notes/**' -g 'answer.*'\"",
+        "exitCode": 0,
+        "outputBytes": 240,
+        "outputSha256": "357ad705947aeb92328efc83f064aa7738c650e951dbe5707276a61246844748",
+        "outputPreview": "<TMP>/jev-delegation-case-bXnfTS\nnotes/n05.md\nnotes/n11.md\nnotes/n01.md\nnotes/n10.md\nnotes/n00.md\nnotes/n04.md\nnotes/n03.md\nnotes/n07.md\nnotes/n06.md\nnotes/n02.md\nnotes/n09.md\nnotes/n08.md\n"
+      },
+      {
+        "command": "/bin/zsh -lc \"rg -n '.' notes\"",
+        "exitCode": 0,
+        "outputBytes": 48313,
+        "outputSha256": "f6950173a9859035aebea784b9b3441c6206d89996a142b8de49143be94cd041",
+        "outputPreview": "notes/n05.md:1:# N90 Atlas ingest tutorial\nnotes/n05.md:2:Background note 1: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nnotes/n05.md:3:Background note 2: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nnotes/n05.md:4:Background note 3: Atlas operates several independent facilities. Examples describe only the component named in th"
+      },
+      {
+        "command": "/bin/zsh -lc \"rg -n -v '\"'^Background note '\"' notes\"",
+        "exitCode": 0,
+        "outputBytes": 3013,
+        "outputSha256": "f813e9841cfa1f20e78c18493e1368ae72a0c8b6434370deb763271a792fd261",
+        "outputPreview": "notes/n05.md:1:# N90 Atlas ingest tutorial\nnotes/n05.md:14:This tutorial describes clients sending records into Atlas. Client retry examples are illustrative. Inbound ingest and outbound webhook delivery have independent contracts.\nnotes/n11.md:1:# N71 Atlas pagination guide\nnotes/n11.md:14:The webhook events list is paginated with an opaque cursor. Page size and refresh interval govern viewing history only.\nnotes/n01.md:1:# N84 Atlas outbound webhook contract\nnotes/n01.md:14:Current production contract: retry transient delivery responses 429 and 503. There are four total delivery attempts, including the first attempt. Before each retry use 250 ms multiplied by 2 to the power of the retry index, starting at zero. An integer Retry-After header in seconds overrides the computed delay, capped"
+      },
+      {
+        "command": "/bin/zsh -lc \"python3 - <<'PY'\nfrom pathlib import Path\nimport hashlib, json\nsnapshot = {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in Path('notes').rglob('*') if p.is_file()}\nPath('<TMP>/atlas-notes-bXnfTS-sha256.json').write_text(json.dumps(snapshot))\nprint(f'Captured hashes for {len(snapshot)} source notes.')\nPY\"",
+        "exitCode": 0,
+        "outputBytes": 37,
+        "outputSha256": "22c7784ee689ccc642acedd83d8b62f58479185c264bf45dd6fdc35ef4ccdbe7",
+        "outputPreview": "Captured hashes for 12 source notes.\n"
+      },
+      {
+        "command": "/bin/zsh -lc \"python3 - <<'PY'\nfrom pathlib import Path\nimport hashlib, json\nexpected = {'retryableStatuses': [429, 500, 503], 'maximumTotalAttempts': 4, 'delayBaseMs': 250, 'delayMultiplier': 2, 'retryAfterCapSeconds': 30, 'permanentHeaderValue': 'permanent', 'archivedMaximumAttempts': 2, 'sourceIds': ['N84', 'N45', 'N59']}\nactual = json.loads(Path('answer.json').read_text())\nassert actual == expected\nassert all(type(s) is int for s in actual['retryableStatuses'])\nassert actual['retryableStatuses'] == sorted(actual['retryableStatuses'])\nmd = Path('answer.md').read_text()\nfor source, filename in [('N84', 'n01.md'), ('N45', 'n06.md'), ('N59', 'n09.md')]:\n    assert f'[{source}](notes/{filename})' in md\n    assert Path('notes', filename).read_text().startswith(f'# {source} ')\noriginal = json.loads(Path('<TMP>/atlas-notes-bXnfTS-sha256.json').read_text())\ncurrent = {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in Path('notes').rglob('*') if p.is_file()}\nassert original == current\nprint('Verified answer.json values, sorted integer statuses, source citations, and unchanged source notes.')\nPY\"",
+        "exitCode": 0,
+        "outputBytes": 100,
+        "outputSha256": "0f501017f2933ae038783c24a45bb8d705fba0c0e51742c5455193a20e18ff49",
+        "outputPreview": "Verified answer.json values, sorted integer statuses, source citations, and unchanged source notes.\n"
+      }
+    ],
+    "mcp": [],
+    "usage": [
+      {
+        "total": {
+          "totalTokens": 15252,
+          "inputTokens": 15170,
+          "cachedInputTokens": 8832,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 82,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 15252,
+          "inputTokens": 15170,
+          "cachedInputTokens": 8832,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 82,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 30690,
+          "inputTokens": 30577,
+          "cachedInputTokens": 23808,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 113,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 15438,
+          "inputTokens": 15407,
+          "cachedInputTokens": 14976,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 31,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 53418,
+          "inputTokens": 53161,
+          "cachedInputTokens": 39040,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 257,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 22728,
+          "inputTokens": 22584,
+          "cachedInputTokens": 15232,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 144,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 77784,
+          "inputTokens": 76641,
+          "cachedInputTokens": 61440,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1143,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 24366,
+          "inputTokens": 23480,
+          "cachedInputTokens": 22400,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 886,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 103006,
+          "inputTokens": 101047,
+          "cachedInputTokens": 84736,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1959,
+          "reasoningOutputTokens": 8
+        },
+        "last": {
+          "totalTokens": 25222,
+          "inputTokens": 24406,
+          "cachedInputTokens": 23296,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 816,
+          "reasoningOutputTokens": 8
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 128345,
+          "inputTokens": 126344,
+          "cachedInputTokens": 108928,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 2001,
+          "reasoningOutputTokens": 8
+        },
+        "last": {
+          "totalTokens": 25339,
+          "inputTokens": 25297,
+          "cachedInputTokens": 24192,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 42,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      }
+    ],
+    "timeline": [
+      {
+        "method": "turn/start:sent",
+        "elapsedMs": 0
+      },
+      {
+        "elapsedMs": 2.255,
+        "method": "turn/started",
+        "status": "inProgress"
+      },
+      {
+        "elapsedMs": 2641.124,
+        "method": "item/started",
+        "itemId": "01a0d25e-8fd8-7881-b4c9-d5139c9f54f6",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 2641.183,
+        "method": "item/completed",
+        "itemId": "01a0d25e-8fd8-7881-b4c9-d5139c9f54f6",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 4728.462,
+        "method": "item/started",
+        "itemId": "msg_063e584ce5cba5e0016ab4d4a19ad087d08b02bec7d9cea667",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 5728.823,
+        "method": "item/completed",
+        "itemId": "msg_063e584ce5cba5e0016ab4d4a19ad087d08b02bec7d9cea667",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 7086.32,
+        "method": "item/started",
+        "itemId": "exec-137e6c26-57c2-453a-9c72-61801bf8930a",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 7086.374,
+        "method": "item/completed",
+        "itemId": "exec-137e6c26-57c2-453a-9c72-61801bf8930a",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 7086.385,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 15252
+      },
+      {
+        "elapsedMs": 9977.672,
+        "method": "item/started",
+        "itemId": "exec-d0b418f2-b1db-4793-a2dc-704069414fc1",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 9977.881,
+        "method": "item/completed",
+        "itemId": "exec-d0b418f2-b1db-4793-a2dc-704069414fc1",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 9978.644,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 30690
+      },
+      {
+        "elapsedMs": 16386.873,
+        "method": "item/started",
+        "itemId": "exec-24e25bc8-dcf2-4862-a8b1-f5dcb4251abe",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 16386.917,
+        "method": "item/completed",
+        "itemId": "exec-24e25bc8-dcf2-4862-a8b1-f5dcb4251abe",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 16459.028,
+        "method": "item/started",
+        "itemId": "exec-82921d3e-fb9f-49bd-ab7d-2eb785d6408d",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 16459.035,
+        "method": "item/completed",
+        "itemId": "exec-82921d3e-fb9f-49bd-ab7d-2eb785d6408d",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 16459.473,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 53418
+      },
+      {
+        "elapsedMs": 45464.385,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 77784
+      },
+      {
+        "elapsedMs": 49656.985,
+        "method": "item/started",
+        "itemId": "rs_063e584ce5cba5e0016ab4d4ce9b7887d09fc357e3e8407172",
+        "itemType": "reasoning"
+      },
+      {
+        "elapsedMs": 50122.684,
+        "method": "item/completed",
+        "itemId": "rs_063e584ce5cba5e0016ab4d4ce9b7887d09fc357e3e8407172",
+        "itemType": "reasoning"
+      },
+      {
+        "elapsedMs": 74035.462,
+        "method": "item/started",
+        "itemId": "exec-e7473581-4f3a-4cf0-9127-ea5937fc09a5",
+        "itemType": "fileChange"
+      },
+      {
+        "elapsedMs": 74167.78,
+        "method": "item/completed",
+        "itemId": "exec-e7473581-4f3a-4cf0-9127-ea5937fc09a5",
+        "itemType": "fileChange"
+      },
+      {
+        "elapsedMs": 74244.915,
+        "method": "item/started",
+        "itemId": "exec-ee10bede-3d15-4dcf-888e-72b385613a4e",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 74244.926,
+        "method": "item/completed",
+        "itemId": "exec-ee10bede-3d15-4dcf-888e-72b385613a4e",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 74245.249,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 103006
+      },
+      {
+        "elapsedMs": 75914.171,
+        "method": "item/started",
+        "itemId": "msg_063e584ce5cba5e0016ab4d4e8e7bc87d097ef963d12439cf1",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 77152.903,
+        "method": "item/completed",
+        "itemId": "msg_063e584ce5cba5e0016ab4d4e8e7bc87d097ef963d12439cf1",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 77166.245,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 128345
+      },
+      {
+        "elapsedMs": 77166.382,
+        "method": "turn/completed",
+        "status": "completed"
+      }
+    ],
+    "jevEvents": []
+  },
+  {
+    "metrics": {
+      "phase": "tool_only",
+      "id": "policy-jev",
+      "arm": "jev",
+      "repeat": null,
+      "status": "completed",
+      "passed": true,
+      "endToEndMs": 41335.338084,
+      "startupMs": 108.93324999998731,
+      "generationsWithUsage": 5,
+      "inputTokens": 100402,
+      "cachedInputTokens": 85632,
+      "outputTokens": 877,
+      "gptTokens": 101279,
+      "uncachedInputTokens": 14770,
+      "jevCalls": 0,
+      "jevInputTokens": 0,
+      "jevOutputTokens": 0,
+      "jevUnknownUsage": 0,
+      "knownAllTokens": 101279,
+      "usageComplete": true,
+      "investigations": 0,
+      "recalls": 0,
+      "hintSubmissions": 0,
+      "observedToolIntervalUnionMs": 0.2799999999933789
+    },
+    "quality": {
+      "pass": true,
+      "checks": [
+        [
+          "notes/n00.md unchanged",
+          true
+        ],
+        [
+          "notes/n01.md unchanged",
+          true
+        ],
+        [
+          "notes/n02.md unchanged",
+          true
+        ],
+        [
+          "notes/n03.md unchanged",
+          true
+        ],
+        [
+          "notes/n04.md unchanged",
+          true
+        ],
+        [
+          "notes/n05.md unchanged",
+          true
+        ],
+        [
+          "notes/n06.md unchanged",
+          true
+        ],
+        [
+          "notes/n07.md unchanged",
+          true
+        ],
+        [
+          "notes/n08.md unchanged",
+          true
+        ],
+        [
+          "notes/n09.md unchanged",
+          true
+        ],
+        [
+          "notes/n10.md unchanged",
+          true
+        ],
+        [
+          "notes/n11.md unchanged",
+          true
+        ],
+        [
+          "retryableStatuses",
+          true
+        ],
+        [
+          "maximumTotalAttempts",
+          true
+        ],
+        [
+          "delayBaseMs",
+          true
+        ],
+        [
+          "delayMultiplier",
+          true
+        ],
+        [
+          "retryAfterCapSeconds",
+          true
+        ],
+        [
+          "permanentHeaderValue",
+          true
+        ],
+        [
+          "archivedMaximumAttempts",
+          true
+        ],
+        [
+          "sourceIds",
+          true
+        ],
+        [
+          "citations",
+          true
+        ]
+      ]
+    },
+    "artifacts": {
+      "answer.json": "{\n  \"retryableStatuses\": [\n    429,\n    500,\n    503\n  ],\n  \"maximumTotalAttempts\": 4,\n  \"delayBaseMs\": 250,\n  \"delayMultiplier\": 2,\n  \"retryAfterCapSeconds\": 30,\n  \"permanentHeaderValue\": \"permanent\",\n  \"archivedMaximumAttempts\": 2,\n  \"sourceIds\": [\n    \"N84\",\n    \"N45\",\n    \"N59\"\n  ]\n}\n",
+      "answer.md": "# Atlas outbound webhook retry policy\n\nThe current policy combines the production contract **N84** with its production correction **N45**. Retryable statuses are **429, 500, and 503**: N84 specifies 429 and 503, and N45 adds 500. N45 takes precedence over the general retry rule: a response with `X-Atlas-Delivery: permanent` must never be retried, regardless of status.\n\nN45 leaves N84's attempt limit and delay rules unchanged. There are at most **4 total attempts**, including the initial attempt (up to 3 retries). The computed delay before retry index `i`, starting at zero, is `250 ms × 2^i`, giving delays of **250, 500, and 1000 ms**. An integer `Retry-After` header in seconds overrides the computed delay, capped at **30 seconds**. If the header is absent or noninteger, the computed delay remains unchanged; the cap is not the fallback delay. [N84, N45]\n\nThe archived design **N59** proposed **2 attempts** and retrying any non-2xx response. It was never released and is explicitly superseded by the production contract and correction. Its attempt count is recorded only as `archivedMaximumAttempts`; it does not govern current delivery. [N59]\n\nThese conclusions use the outbound webhook sources N84, N45, and N59; unrelated Atlas components do not establish delivery retry behavior.\n"
+    },
+    "commands": [
+      {
+        "command": "/bin/zsh -lc \"pwd && rg --files -g 'AGENTS.md' -g 'notes/**'\"",
+        "exitCode": 0,
+        "outputBytes": 240,
+        "outputSha256": "f9d226c648f65137d07d195911d034d7c6b9b782f5dad38e029029733cbcefc6",
+        "outputPreview": "<TMP>/jev-delegation-case-0Rg0a2\nnotes/n05.md\nnotes/n11.md\nnotes/n01.md\nnotes/n10.md\nnotes/n00.md\nnotes/n04.md\nnotes/n03.md\nnotes/n07.md\nnotes/n06.md\nnotes/n02.md\nnotes/n09.md\nnotes/n08.md\n"
+      },
+      {
+        "command": "/bin/zsh -lc 'rg -n . notes'",
+        "exitCode": 0,
+        "outputBytes": 48313,
+        "outputSha256": "f6950173a9859035aebea784b9b3441c6206d89996a142b8de49143be94cd041",
+        "outputPreview": "notes/n05.md:1:# N90 Atlas ingest tutorial\nnotes/n05.md:2:Background note 1: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nnotes/n05.md:3:Background note 2: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nnotes/n05.md:4:Background note 3: Atlas operates several independent facilities. Examples describe only the component named in th"
+      },
+      {
+        "command": "/bin/zsh -lc \"rg -n -v '\"'^Background note'\"' notes\"",
+        "exitCode": 0,
+        "outputBytes": 3013,
+        "outputSha256": "66af2106f8827255078bb06b4e66327796e6ac6a73a588a903d8744a65d45b1b",
+        "outputPreview": "notes/n04.md:1:# N32 Atlas billing export\nnotes/n04.md:14:Webhook subscriptions appear as export rows. Currency rounding happens at the invoice boundary and does not control delivery retry behavior.\nnotes/n05.md:1:# N90 Atlas ingest tutorial\nnotes/n05.md:14:This tutorial describes clients sending records into Atlas. Client retry examples are illustrative. Inbound ingest and outbound webhook delivery have independent contracts.\nnotes/n03.md:1:# N67 Atlas display accessibility\nnotes/n03.md:14:The webhook panel obeys reduced motion preferences. Screen reader names come from visible labels. This note concerns controls and has no transport contract.\nnotes/n10.md:1:# N26 Atlas endpoint editor\nnotes/n10.md:14:The webhook URL editor validates URL syntax before saving. It does not infer endpoint re"
+      },
+      {
+        "command": "/bin/zsh -lc \"python3 - <<'PY'\nfrom pathlib import Path\nimport hashlib\nimport json\n\nbefore = {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in Path('notes').rglob('*') if p.is_file()}\nanswer = {\n    'retryableStatuses': [429, 500, 503],\n    'maximumTotalAttempts': 4,\n    'delayBaseMs': 250,\n    'delayMultiplier': 2,\n    'retryAfterCapSeconds': 30,\n    'permanentHeaderValue': 'permanent',\n    'archivedMaximumAttempts': 2,\n    'sourceIds': ['N84', 'N45', 'N59'],\n}\nPath('answer.json').write_text(json.dumps(answer, indent=2) + '\\\\n')\nPath('answer.md').write_text('''# Atlas outbound webhook retry policy\n\nThe current policy combines the production contract **N84** with its production correction **N45**. Retryable statuses are **429, 500, and 503**: N84 specifies 429 and 503, and N45 adds 500. N45 takes precedence over the general retry rule: a response with \"'`X-Atlas-Delivery: permanent` must never be retried, regardless of status.\n\nN45 leaves N84'\"'s attempt limit and delay rules unchanged. There are at most **4 total attempts**, including the initial attempt (up to 3 retries). The computed delay before retry index \"'`i`, starting at zero, is `250 ms × 2''^i`, giving delays of **250, 500, and 1000 ms**. An integer `Retry-After` header in seconds overrides the computed delay, capped at **30 seconds**. If the header is absent or noninteger, the computed delay remains unchanged; the cap is not the fallback delay. [N84, N45]\n\nThe archived design **N59** proposed **2 attempts** and retrying any non-2xx response. It was never released and is explicitly superseded by the production contract and correction. Its attempt count is recorded only as `archivedMaximumAttempts`; it does not govern current delivery. [N59]\n\nThese conclusions use the outbound webhook sources N84, N45, and N59; unrelated Atlas components do not establish delivery retry behavior.\n'\"''')\n\nactual = json.loads(Path('answer.json').read_text())\nassert actual == answer\nassert actual['retryableStatuses'] == sorted(actual['retryableStatuses'])\nassert all(type(v) is int for v in actual['retryableStatuses'])\nassert set(actual['sourceIds']) == {'N84', 'N45', 'N59'}\nmd = Path('answer.md').read_text()\nassert all(source in md for source in actual['sourceIds'])\nafter = {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in Path('notes').rglob('*') if p.is_file()}\nassert before == after\nprint('Verified answer.json values and schema, answer.md citations, and unchanged source notes.')\nPY\"",
+        "exitCode": 0,
+        "outputBytes": 89,
+        "outputSha256": "ca3b8c5935255a0dff5e62b390b2fd492c6099f0a1a832aa0a82a9313cc1f32d",
+        "outputPreview": "Verified answer.json values and schema, answer.md citations, and unchanged source notes.\n"
+      }
+    ],
+    "mcp": [],
+    "usage": [
+      {
+        "total": {
+          "totalTokens": 16039,
+          "inputTokens": 15963,
+          "cachedInputTokens": 9600,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 76,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 16039,
+          "inputTokens": 15963,
+          "cachedInputTokens": 9600,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 76,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 32266,
+          "inputTokens": 32159,
+          "cachedInputTokens": 25344,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 107,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 16227,
+          "inputTokens": 16196,
+          "cachedInputTokens": 15744,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 31,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 54295,
+          "inputTokens": 54152,
+          "cachedInputTokens": 41344,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 143,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 22029,
+          "inputTokens": 21993,
+          "cachedInputTokens": 16000,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 36,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 77731,
+          "inputTokens": 76894,
+          "cachedInputTokens": 63104,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 837,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 23436,
+          "inputTokens": 22742,
+          "cachedInputTokens": 21760,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 694,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 101279,
+          "inputTokens": 100402,
+          "cachedInputTokens": 85632,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 877,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 23548,
+          "inputTokens": 23508,
+          "cachedInputTokens": 22528,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 40,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      }
+    ],
+    "timeline": [
+      {
+        "method": "turn/start:sent",
+        "elapsedMs": 0
+      },
+      {
+        "elapsedMs": 2.415,
+        "method": "turn/started",
+        "status": "inProgress"
+      },
+      {
+        "elapsedMs": 2033.972,
+        "method": "item/started",
+        "itemId": "01a0d25f-bb64-77e1-b007-7b8272b9ecdf",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 2034.015,
+        "method": "item/completed",
+        "itemId": "01a0d25f-bb64-77e1-b007-7b8272b9ecdf",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 5695.913,
+        "method": "item/started",
+        "itemId": "msg_0bb5a0b34e0f3721016ab4d4efb07887d0932e7b168c192163",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 6563.451,
+        "method": "item/completed",
+        "itemId": "msg_0bb5a0b34e0f3721016ab4d4efb07887d0932e7b168c192163",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 7720.867,
+        "method": "item/started",
+        "itemId": "exec-59b39eb4-262f-4515-a032-f044067fddbe",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 7720.875,
+        "method": "item/completed",
+        "itemId": "exec-59b39eb4-262f-4515-a032-f044067fddbe",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 7720.91,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 16039
+      },
+      {
+        "elapsedMs": 10799.379,
+        "method": "item/started",
+        "itemId": "exec-8d8353ea-04ac-4e40-92ec-59e10fe2b7ac",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 10799.598,
+        "method": "item/completed",
+        "itemId": "exec-8d8353ea-04ac-4e40-92ec-59e10fe2b7ac",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 10800.211,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 32266
+      },
+      {
+        "elapsedMs": 14163.772,
+        "method": "item/started",
+        "itemId": "exec-b39e3687-67ca-4293-9064-c3a892c27d12",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 14163.815,
+        "method": "item/completed",
+        "itemId": "exec-b39e3687-67ca-4293-9064-c3a892c27d12",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 14164.085,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 54295
+      },
+      {
+        "elapsedMs": 36557.819,
+        "method": "item/started",
+        "itemId": "exec-b1b9739b-ce99-4add-be24-62f9cebfb026",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 36557.829,
+        "method": "item/completed",
+        "itemId": "exec-b1b9739b-ce99-4add-be24-62f9cebfb026",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 36558.06,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 77731
+      },
+      {
+        "elapsedMs": 40172.366,
+        "method": "item/started",
+        "itemId": "msg_0bb5a0b34e0f3721016ab4d512712087d0ba37880f8f8f3128",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 41315.079,
+        "method": "item/completed",
+        "itemId": "msg_0bb5a0b34e0f3721016ab4d512712087d0ba37880f8f8f3128",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 41335.212,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 101279
+      },
+      {
+        "elapsedMs": 41335.313,
+        "method": "turn/completed",
+        "status": "completed"
+      }
+    ],
+    "jevEvents": []
+  },
+  {
+    "metrics": {
+      "phase": "tool_only",
+      "id": "policy-local",
+      "arm": "local",
+      "repeat": null,
+      "status": "completed",
+      "passed": true,
+      "endToEndMs": 44515.88529199999,
+      "startupMs": 107.83108400000492,
+      "generationsWithUsage": 5,
+      "inputTokens": 104454,
+      "cachedInputTokens": 78848,
+      "outputTokens": 870,
+      "gptTokens": 105324,
+      "uncachedInputTokens": 25606,
+      "jevCalls": 0,
+      "jevInputTokens": 0,
+      "jevOutputTokens": 0,
+      "jevUnknownUsage": 0,
+      "knownAllTokens": 105324,
+      "usageComplete": true,
+      "investigations": 0,
+      "recalls": 0,
+      "hintSubmissions": 0,
+      "observedToolIntervalUnionMs": 0.33100000000558794
+    },
+    "quality": {
+      "pass": true,
+      "checks": [
+        [
+          "notes/n00.md unchanged",
+          true
+        ],
+        [
+          "notes/n01.md unchanged",
+          true
+        ],
+        [
+          "notes/n02.md unchanged",
+          true
+        ],
+        [
+          "notes/n03.md unchanged",
+          true
+        ],
+        [
+          "notes/n04.md unchanged",
+          true
+        ],
+        [
+          "notes/n05.md unchanged",
+          true
+        ],
+        [
+          "notes/n06.md unchanged",
+          true
+        ],
+        [
+          "notes/n07.md unchanged",
+          true
+        ],
+        [
+          "notes/n08.md unchanged",
+          true
+        ],
+        [
+          "notes/n09.md unchanged",
+          true
+        ],
+        [
+          "notes/n10.md unchanged",
+          true
+        ],
+        [
+          "notes/n11.md unchanged",
+          true
+        ],
+        [
+          "retryableStatuses",
+          true
+        ],
+        [
+          "maximumTotalAttempts",
+          true
+        ],
+        [
+          "delayBaseMs",
+          true
+        ],
+        [
+          "delayMultiplier",
+          true
+        ],
+        [
+          "retryAfterCapSeconds",
+          true
+        ],
+        [
+          "permanentHeaderValue",
+          true
+        ],
+        [
+          "archivedMaximumAttempts",
+          true
+        ],
+        [
+          "sourceIds",
+          true
+        ],
+        [
+          "citations",
+          true
+        ]
+      ]
+    },
+    "artifacts": {
+      "answer.json": "{\n  \"retryableStatuses\": [\n    429,\n    500,\n    503\n  ],\n  \"maximumTotalAttempts\": 4,\n  \"delayBaseMs\": 250,\n  \"delayMultiplier\": 2,\n  \"retryAfterCapSeconds\": 30,\n  \"permanentHeaderValue\": \"permanent\",\n  \"archivedMaximumAttempts\": 2,\n  \"sourceIds\": [\n    \"N84\",\n    \"N45\",\n    \"N59\"\n  ]\n}\n",
+      "answer.md": "The current Atlas outbound webhook policy combines the production contract [N84](notes/n01.md) with its production correction [N45](notes/n06.md). N84 makes 429 and 503 retryable; N45 adds 500, yielding **429, 500, 503**. N45 takes precedence over the general retry rule: a response with `X-Atlas-Delivery: permanent` must never be retried, regardless of status.\n\nThe correction leaves the attempt limit and delay rules unchanged: at most **4 total attempts**, including the initial attempt (up to 3 retries). The computed delay is `250 ms × 2^i`, with retry index `i` starting at zero: 250, 500, then 1000 ms [N84, N45].\n\nFor an eligible retry, an integer `Retry-After` value in seconds overrides the computed delay, capped at **30 seconds**. If the header is absent or noninteger, fall back to the computed exponential delay unchanged [N84]. `Retry-After` does not override the permanent-response prohibition [N45].\n\nThe archived design [N59](notes/n09.md) proposed **2 attempts** and retries for any non-2xx response. It was never released and is explicitly superseded by N84 and N45; its attempt count is recorded only as `archivedMaximumAttempts`. Current values come from the outbound production evidence, without inferring policy from other Atlas components.\n"
+    },
+    "commands": [
+      {
+        "command": "/bin/zsh -lc \"pwd && rg --files -g 'AGENTS.md' -g 'notes/**'\"",
+        "exitCode": 0,
+        "outputBytes": 240,
+        "outputSha256": "4a3f3b0fbca470229a0723498278bb3fde63628712eedcb0606f67fbef9e11a8",
+        "outputPreview": "<TMP>/jev-delegation-case-EV8AIe\nnotes/n05.md\nnotes/n11.md\nnotes/n01.md\nnotes/n10.md\nnotes/n00.md\nnotes/n04.md\nnotes/n03.md\nnotes/n07.md\nnotes/n06.md\nnotes/n02.md\nnotes/n09.md\nnotes/n08.md\n"
+      },
+      {
+        "command": "/bin/zsh -lc 'rg -n . notes'",
+        "exitCode": 0,
+        "outputBytes": 48313,
+        "outputSha256": "f6950173a9859035aebea784b9b3441c6206d89996a142b8de49143be94cd041",
+        "outputPreview": "notes/n05.md:1:# N90 Atlas ingest tutorial\nnotes/n05.md:2:Background note 1: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nnotes/n05.md:3:Background note 2: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nnotes/n05.md:4:Background note 3: Atlas operates several independent facilities. Examples describe only the component named in th"
+      },
+      {
+        "command": "/bin/zsh -lc \"rg -n -v '\"'^Background note '\"' notes\"",
+        "exitCode": 0,
+        "outputBytes": 3013,
+        "outputSha256": "1c9f0c7719b3cd7bae42ef88c48bd43809c3879a38f4227ebbe962e9fe578a30",
+        "outputPreview": "notes/n03.md:1:# N67 Atlas display accessibility\nnotes/n03.md:14:The webhook panel obeys reduced motion preferences. Screen reader names come from visible labels. This note concerns controls and has no transport contract.\nnotes/n05.md:1:# N90 Atlas ingest tutorial\nnotes/n05.md:14:This tutorial describes clients sending records into Atlas. Client retry examples are illustrative. Inbound ingest and outbound webhook delivery have independent contracts.\nnotes/n11.md:1:# N71 Atlas pagination guide\nnotes/n11.md:14:The webhook events list is paginated with an opaque cursor. Page size and refresh interval govern viewing history only.\nnotes/n07.md:1:# N76 Atlas report layout\nnotes/n07.md:14:The report lists webhook endpoints alphabetically. A delivery history table is sortable but does not alter de"
+      },
+      {
+        "command": "/bin/zsh -lc \"python3 - <<'PY'\nfrom pathlib import Path\nimport hashlib, json\nnotes = {p: hashlib.sha256(p.read_bytes()).hexdigest() for p in Path('notes').rglob('*') if p.is_file()}\nanswer = {\n    'retryableStatuses': [429, 500, 503],\n    'maximumTotalAttempts': 4,\n    'delayBaseMs': 250,\n    'delayMultiplier': 2,\n    'retryAfterCapSeconds': 30,\n    'permanentHeaderValue': 'permanent',\n    'archivedMaximumAttempts': 2,\n    'sourceIds': ['N84', 'N45', 'N59'],\n}\nPath('answer.json').write_text(json.dumps(answer, indent=2) + '\\\\n')\nPath('answer.md').write_text('''The current Atlas outbound webhook policy combines the production contract [N84](notes/n01.md) with its production correction [N45](notes/n06.md). N84 makes 429 and 503 retryable; N45 adds 500, yielding **429, 500, 503**. N45 takes precedence over the general retry rule: a response with \"'`X-Atlas-Delivery: permanent` must never be retried, regardless of status.\n\nThe correction leaves the attempt limit and delay rules unchanged: at most **4 total attempts**, including the initial attempt (up to 3 retries). The computed delay is `250 ms × 2''^i`, with retry index `i` starting at zero: 250, 500, then 1000 ms [N84, N45].\n\nFor an eligible retry, an integer `Retry-After` value in seconds overrides the computed delay, capped at **30 seconds**. If the header is absent or noninteger, fall back to the computed exponential delay unchanged [N84]. `Retry-After` does not override the permanent-response prohibition [N45].\n\nThe archived design [N59](notes/n09.md) proposed **2 attempts** and retries for any non-2xx response. It was never released and is explicitly superseded by N84 and N45; its attempt count is recorded only as `archivedMaximumAttempts`. Current values come from the outbound production evidence, without inferring policy from other Atlas components.\n'\"''')\nloaded = json.loads(Path('answer.json').read_text())\nassert loaded == answer\nassert loaded['retryableStatuses'] == sorted(loaded['retryableStatuses'])\nassert all(type(x) is int for x in loaded['retryableStatuses'])\nassert set(loaded['sourceIds']) == {'N84', 'N45', 'N59'}\nmd = Path('answer.md').read_text()\nassert all(source in md for source in loaded['sourceIds'])\nassert notes == {p: hashlib.sha256(p.read_bytes()).hexdigest() for p in Path('notes').rglob('*') if p.is_file()}\nprint('Verified answer.json values and schema, answer.md citations, and unchanged source notes.')\nPY\"",
+        "exitCode": 0,
+        "outputBytes": 89,
+        "outputSha256": "ca3b8c5935255a0dff5e62b390b2fd492c6099f0a1a832aa0a82a9313cc1f32d",
+        "outputPreview": "Verified answer.json values and schema, answer.md citations, and unchanged source notes.\n"
+      }
+    ],
+    "mcp": [],
+    "usage": [
+      {
+        "total": {
+          "totalTokens": 16029,
+          "inputTokens": 15956,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 73,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 16029,
+          "inputTokens": 15956,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 73,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 32244,
+          "inputTokens": 32140,
+          "cachedInputTokens": 15744,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 104,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 16215,
+          "inputTokens": 16184,
+          "cachedInputTokens": 15744,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 31,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 55634,
+          "inputTokens": 55494,
+          "cachedInputTokens": 31744,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 140,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 23390,
+          "inputTokens": 23354,
+          "cachedInputTokens": 16000,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 36,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 80420,
+          "inputTokens": 79595,
+          "cachedInputTokens": 54912,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 825,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 24786,
+          "inputTokens": 24101,
+          "cachedInputTokens": 23168,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 685,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 105324,
+          "inputTokens": 104454,
+          "cachedInputTokens": 78848,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 870,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 24904,
+          "inputTokens": 24859,
+          "cachedInputTokens": 23936,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 45,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      }
+    ],
+    "timeline": [
+      {
+        "method": "turn/start:sent",
+        "elapsedMs": 0
+      },
+      {
+        "elapsedMs": 2.131,
+        "method": "turn/started",
+        "status": "inProgress"
+      },
+      {
+        "elapsedMs": 2761.363,
+        "method": "item/started",
+        "itemId": "01a0d260-602e-7573-ab21-9fe95249b450",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 2761.371,
+        "method": "item/completed",
+        "itemId": "01a0d260-602e-7573-ab21-9fe95249b450",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 7762.107,
+        "method": "item/started",
+        "itemId": "msg_00dcd38990d2a391016ab4d519f83487d098e99e055f0bec07",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 7762.759,
+        "method": "item/completed",
+        "itemId": "msg_00dcd38990d2a391016ab4d519f83487d098e99e055f0bec07",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 8552.936,
+        "method": "item/started",
+        "itemId": "exec-6423142c-d3f4-4506-9e3f-a160d3fa7d29",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 8552.944,
+        "method": "item/completed",
+        "itemId": "exec-6423142c-d3f4-4506-9e3f-a160d3fa7d29",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 8552.982,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 16029
+      },
+      {
+        "elapsedMs": 13766.028,
+        "method": "item/started",
+        "itemId": "exec-e0f62a00-49f8-411b-bbec-d5f94e61fa89",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 13766.232,
+        "method": "item/completed",
+        "itemId": "exec-e0f62a00-49f8-411b-bbec-d5f94e61fa89",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 13766.765,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 32244
+      },
+      {
+        "elapsedMs": 17452.352,
+        "method": "item/started",
+        "itemId": "exec-0b8ae5e0-f429-4195-916f-3281e04c76f7",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 17452.419,
+        "method": "item/completed",
+        "itemId": "exec-0b8ae5e0-f429-4195-916f-3281e04c76f7",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 17452.74,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 55634
+      },
+      {
+        "elapsedMs": 41851.945,
+        "method": "item/started",
+        "itemId": "exec-bd0d738c-1caa-4a5e-b854-3ce5d254f30c",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 41851.997,
+        "method": "item/completed",
+        "itemId": "exec-bd0d738c-1caa-4a5e-b854-3ce5d254f30c",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 41852.245,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 80420
+      },
+      {
+        "elapsedMs": 43182.497,
+        "method": "item/started",
+        "itemId": "msg_00dcd38990d2a391016ab4d53eefec87d08724461926c38cba",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 44475.474,
+        "method": "item/completed",
+        "itemId": "msg_00dcd38990d2a391016ab4d53eefec87d08724461926c38cba",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 44515.769,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 105324
+      },
+      {
+        "elapsedMs": 44515.867,
+        "method": "turn/completed",
+        "status": "completed"
+      }
+    ],
+    "jevEvents": []
+  },
+  {
+    "metrics": {
+      "phase": "tool_only",
+      "id": "cursor-local",
+      "arm": "local",
+      "repeat": null,
+      "status": "timeout",
+      "passed": false,
+      "endToEndMs": 120001.251625,
+      "startupMs": 109.86337499998626,
+      "generationsWithUsage": 3,
+      "inputTokens": 48507,
+      "cachedInputTokens": 31616,
+      "outputTokens": 1958,
+      "gptTokens": 50465,
+      "uncachedInputTokens": 16891,
+      "jevCalls": 0,
+      "jevInputTokens": 0,
+      "jevOutputTokens": 0,
+      "jevUnknownUsage": 0,
+      "knownAllTokens": 50465,
+      "usageComplete": false,
+      "investigations": 0,
+      "recalls": 0,
+      "hintSubmissions": 0,
+      "observedToolIntervalUnionMs": 0.10399999999935972
+    },
+    "quality": {
+      "pass": false,
+      "checks": [
+        [
+          "SPEC.md unchanged",
+          true
+        ],
+        [
+          "patch exists",
+          false
+        ],
+        [
+          "tests exist",
+          false
+        ],
+        [
+          "independent behavior oracle",
+          false
+        ],
+        [
+          "submitted tests pass",
+          false
+        ],
+        [
+          "submitted tests reject original",
+          false
+        ],
+        [
+          "diagnosis",
+          false
+        ]
+      ]
+    },
+    "artifacts": {
+      "src/poller.mjs": "export async function pollOnce({store, transport, apply}) {\n  const cursor = await store.get('cursor');\n  const page = await transport.fetch(cursor);\n  await store.set('cursor', page.next);\n  for (const event of page.events) await apply(event);\n  return page.events.length;\n}\n",
+      "regression.test.mjs": "",
+      "diagnosis.md": ""
+    },
+    "commands": [
+      {
+        "command": "/bin/zsh -lc \"pwd && rg --files -g 'AGENTS.md' -g 'SPEC.md' -g 'src/poller.mjs' -g 'package.json' -g '*test*'\"",
+        "exitCode": 0,
+        "outputBytes": 107,
+        "outputSha256": "34687fb48604fe8e431005bc92f0c76aa0ba035aac34686f39518937f79d3dd9",
+        "outputPreview": "<TMP>/jev-delegation-case-jNpOws\nsrc/poller.mjs\nSPEC.md\n"
+      },
+      {
+        "command": "/bin/zsh -lc 'cat src/poller.mjs'",
+        "exitCode": 0,
+        "outputBytes": 276,
+        "outputSha256": "7af2402a38f521af5dc8353bab00b1db692fde33ee698b3033ffc8b7e79fe6ae",
+        "outputPreview": "export async function pollOnce({store, transport, apply}) {\n  const cursor = await store.get('cursor');\n  const page = await transport.fetch(cursor);\n  await store.set('cursor', page.next);\n  for (const event of page.events) await apply(event);\n  return page.events.length;\n}\n"
+      },
+      {
+        "command": "/bin/zsh -lc 'cat SPEC.md'",
+        "exitCode": 0,
+        "outputBytes": 360,
+        "outputSha256": "0d428ebced917fe2815b307431d2794a9508f4b89c9761b1354e97d8c31dba82",
+        "outputPreview": "pollOnce must fetch using the stored cursor, apply page events sequentially in order, and save page.next only after every apply resolves. If fetch or apply rejects, propagate that rejection and keep the prior cursor. An empty page still advances the cursor. Propagate a save rejection. Return the event count. Preserve the public export and caller interfaces.\n"
+      },
+      {
+        "command": "/bin/zsh -lc \"rg --files --hidden -g '\"'! .git'\"' -g '\"'!node_modules'\"' -g 'AGENTS.md' -g 'package.json' -g '.gitignore'\"",
+        "exitCode": 1,
+        "outputBytes": null,
+        "outputSha256": null,
+        "outputPreview": null
+      }
+    ],
+    "mcp": [],
+    "usage": [
+      {
+        "total": {
+          "totalTokens": 15995,
+          "inputTokens": 15894,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 101,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 15995,
+          "inputTokens": 15894,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 101,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 32216,
+          "inputTokens": 31995,
+          "cachedInputTokens": 15744,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 221,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 16221,
+          "inputTokens": 16101,
+          "cachedInputTokens": 15744,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 120,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 50465,
+          "inputTokens": 48507,
+          "cachedInputTokens": 31616,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1958,
+          "reasoningOutputTokens": 161
+        },
+        "last": {
+          "totalTokens": 18249,
+          "inputTokens": 16512,
+          "cachedInputTokens": 15872,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1737,
+          "reasoningOutputTokens": 161
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 50465,
+          "inputTokens": 48507,
+          "cachedInputTokens": 31616,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1958,
+          "reasoningOutputTokens": 161
+        },
+        "last": {
+          "totalTokens": 18249,
+          "inputTokens": 16512,
+          "cachedInputTokens": 15872,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1737,
+          "reasoningOutputTokens": 161
+        },
+        "modelContextWindow": 258400
+      }
+    ],
+    "timeline": [
+      {
+        "method": "turn/start:sent",
+        "elapsedMs": 0
+      },
+      {
+        "elapsedMs": 2.243,
+        "method": "turn/started",
+        "status": "inProgress"
+      },
+      {
+        "elapsedMs": 2164.202,
+        "method": "item/started",
+        "itemId": "01a0d261-0c39-7dc2-a931-50c313d47045",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 2164.238,
+        "method": "item/completed",
+        "itemId": "01a0d261-0c39-7dc2-a931-50c313d47045",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 4866.2,
+        "method": "item/started",
+        "itemId": "msg_0587100fc575856f016ab4d5453f2c87d0b90807d9c0ecb84d",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 6181.115,
+        "method": "item/completed",
+        "itemId": "msg_0587100fc575856f016ab4d5453f2c87d0b90807d9c0ecb84d",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 7984.367,
+        "method": "item/started",
+        "itemId": "exec-8ac1c646-4bda-4c82-8558-983e2d93c5da",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 7984.376,
+        "method": "item/completed",
+        "itemId": "exec-8ac1c646-4bda-4c82-8558-983e2d93c5da",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 7984.413,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 15995
+      },
+      {
+        "elapsedMs": 15704.818,
+        "method": "item/started",
+        "itemId": "exec-dd51f70c-ac4d-495b-9961-b96187700d30",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 15704.826,
+        "method": "item/started",
+        "itemId": "exec-543bcaea-e6d9-4791-a13d-982e401c23db",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 15704.862,
+        "method": "item/completed",
+        "itemId": "exec-dd51f70c-ac4d-495b-9961-b96187700d30",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 15704.865,
+        "method": "item/completed",
+        "itemId": "exec-543bcaea-e6d9-4791-a13d-982e401c23db",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 15708.575,
+        "method": "item/started",
+        "itemId": "exec-87a7d18c-1a9a-44af-be8a-060dd4e78b9c",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 15708.623,
+        "method": "item/completed",
+        "itemId": "exec-87a7d18c-1a9a-44af-be8a-060dd4e78b9c",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 15709.054,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 32216
+      },
+      {
+        "elapsedMs": 19028.196,
+        "method": "item/started",
+        "itemId": "rs_0587100fc575856f016ab4d55366c487d092bab78d8bcd253e",
+        "itemType": "reasoning"
+      },
+      {
+        "elapsedMs": 24794.369,
+        "method": "item/completed",
+        "itemId": "rs_0587100fc575856f016ab4d55366c487d092bab78d8bcd253e",
+        "itemType": "reasoning"
+      },
+      {
+        "elapsedMs": 24794.377,
+        "method": "item/started",
+        "itemId": "msg_0587100fc575856f016ab4d55923e487d0864ebfc3d18fa8a5",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 25879.859,
+        "method": "item/completed",
+        "itemId": "msg_0587100fc575856f016ab4d55923e487d0864ebfc3d18fa8a5",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 71123.667,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 50465
+      },
+      {
+        "elapsedMs": 75788.41,
+        "method": "item/started",
+        "itemId": "rs_0587100fc575856f016ab4d58c287087d0914ff1fed119dffc",
+        "itemType": "reasoning"
+      },
+      {
+        "elapsedMs": 76340.752,
+        "method": "item/completed",
+        "itemId": "rs_0587100fc575856f016ab4d58c287087d0914ff1fed119dffc",
+        "itemType": "reasoning"
+      },
+      {
+        "elapsedMs": 120003.163,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 50465
+      },
+      {
+        "elapsedMs": 120003.273,
+        "method": "turn/completed",
+        "status": "interrupted"
+      }
+    ],
+    "jevEvents": []
+  },
+  {
+    "metrics": {
+      "phase": "guided",
+      "id": "policy-local",
+      "arm": "local",
+      "repeat": null,
+      "status": "completed",
+      "passed": true,
+      "endToEndMs": 45233.783792,
+      "startupMs": 82.587416,
+      "generationsWithUsage": 5,
+      "inputTokens": 109017,
+      "cachedInputTokens": 81920,
+      "outputTokens": 1121,
+      "gptTokens": 110138,
+      "uncachedInputTokens": 27097,
+      "jevCalls": 0,
+      "jevInputTokens": 0,
+      "jevOutputTokens": 0,
+      "jevUnknownUsage": 0,
+      "knownAllTokens": 110138,
+      "usageComplete": true,
+      "investigations": 1,
+      "recalls": 1,
+      "hintSubmissions": 1,
+      "observedToolIntervalUnionMs": 18.06199999999535
+    },
+    "quality": {
+      "pass": true,
+      "checks": [
+        [
+          "notes/n00.md unchanged",
+          true
+        ],
+        [
+          "notes/n01.md unchanged",
+          true
+        ],
+        [
+          "notes/n02.md unchanged",
+          true
+        ],
+        [
+          "notes/n03.md unchanged",
+          true
+        ],
+        [
+          "notes/n04.md unchanged",
+          true
+        ],
+        [
+          "notes/n05.md unchanged",
+          true
+        ],
+        [
+          "notes/n06.md unchanged",
+          true
+        ],
+        [
+          "notes/n07.md unchanged",
+          true
+        ],
+        [
+          "notes/n08.md unchanged",
+          true
+        ],
+        [
+          "notes/n09.md unchanged",
+          true
+        ],
+        [
+          "notes/n10.md unchanged",
+          true
+        ],
+        [
+          "notes/n11.md unchanged",
+          true
+        ],
+        [
+          "retryableStatuses",
+          true
+        ],
+        [
+          "maximumTotalAttempts",
+          true
+        ],
+        [
+          "delayBaseMs",
+          true
+        ],
+        [
+          "delayMultiplier",
+          true
+        ],
+        [
+          "retryAfterCapSeconds",
+          true
+        ],
+        [
+          "permanentHeaderValue",
+          true
+        ],
+        [
+          "archivedMaximumAttempts",
+          true
+        ],
+        [
+          "sourceIds",
+          true
+        ],
+        [
+          "citations",
+          true
+        ]
+      ]
+    },
+    "artifacts": {
+      "answer.json": "{\n  \"retryableStatuses\": [\n    429,\n    500,\n    503\n  ],\n  \"maximumTotalAttempts\": 4,\n  \"delayBaseMs\": 250,\n  \"delayMultiplier\": 2,\n  \"retryAfterCapSeconds\": 30,\n  \"permanentHeaderValue\": \"permanent\",\n  \"archivedMaximumAttempts\": 2,\n  \"sourceIds\": [\n    \"N84\",\n    \"N45\",\n    \"N59\"\n  ]\n}\n",
+      "answer.md": "The current outbound webhook policy is production contract **N84**, amended by production correction **N45**. Retryable statuses are **429, 500, and 503**: N45 adds 500 to N84’s 429 and 503. A response with `X-Atlas-Delivery: permanent` must never be retried, regardless of status; this N45 override takes precedence over the general retry rule.\n\nN45 leaves N84’s attempt limit and timing unchanged: at most **4 total attempts**, including the initial attempt, with up to 3 retries. The computed delay is `250 ms × 2^retryIndex`, starting at index 0, so the retry delays are **250, 500, and 1000 ms** (N84, N45).\n\nFor an eligible retry, an integer `Retry-After` header specifies seconds and overrides the computed delay, capped at **30 seconds**. If the header is absent or noninteger, retain the computed exponential delay; the fallback is not the cap (N84).\n\nArchived design **N59** proposed **2 attempts** and retrying any non-2xx response. It was never released and explicitly states that N84 and N45 supersede it. Its attempt count is recorded only as `archivedMaximumAttempts`. Other Atlas components do not establish this outbound delivery policy.\n"
+    },
+    "commands": [
+      {
+        "command": "/bin/zsh -lc 'pwd; rg --files notes'",
+        "exitCode": 0,
+        "outputBytes": 240,
+        "outputSha256": "30139767a19578a2860df69868efbc364bb680c90ce2c6715071a0620a35465d",
+        "outputPreview": "<TMP>/jev-delegation-case-mS3OCC\nnotes/n05.md\nnotes/n11.md\nnotes/n01.md\nnotes/n10.md\nnotes/n00.md\nnotes/n04.md\nnotes/n03.md\nnotes/n07.md\nnotes/n06.md\nnotes/n02.md\nnotes/n09.md\nnotes/n08.md\n"
+      },
+      {
+        "command": "/bin/zsh -lc \"rg -n -v '\"'^Background note|''^$'\"' notes\"",
+        "exitCode": 0,
+        "outputBytes": 3013,
+        "outputSha256": "f813e9841cfa1f20e78c18493e1368ae72a0c8b6434370deb763271a792fd261",
+        "outputPreview": "notes/n05.md:1:# N90 Atlas ingest tutorial\nnotes/n05.md:14:This tutorial describes clients sending records into Atlas. Client retry examples are illustrative. Inbound ingest and outbound webhook delivery have independent contracts.\nnotes/n11.md:1:# N71 Atlas pagination guide\nnotes/n11.md:14:The webhook events list is paginated with an opaque cursor. Page size and refresh interval govern viewing history only.\nnotes/n01.md:1:# N84 Atlas outbound webhook contract\nnotes/n01.md:14:Current production contract: retry transient delivery responses 429 and 503. There are four total delivery attempts, including the first attempt. Before each retry use 250 ms multiplied by 2 to the power of the retry index, starting at zero. An integer Retry-After header in seconds overrides the computed delay, capped"
+      },
+      {
+        "command": "/bin/zsh -lc \"python3 - <<'PY'\nimport hashlib, json\nfrom pathlib import Path\nnotes = {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in Path('notes').rglob('*') if p.is_file()}\nanswer = {\n    'retryableStatuses': [429, 500, 503],\n    'maximumTotalAttempts': 4,\n    'delayBaseMs': 250,\n    'delayMultiplier': 2,\n    'retryAfterCapSeconds': 30,\n    'permanentHeaderValue': 'permanent',\n    'archivedMaximumAttempts': 2,\n    'sourceIds': ['N84', 'N45', 'N59']\n}\nPath('answer.json').write_text(json.dumps(answer, indent=2) + '\\\\n')\nPath('answer.md').write_text('''The current outbound webhook policy is production contract **N84**, amended by production correction **N45**. Retryable statuses are **429, 500, and 503**: N45 adds 500 to N84’s 429 and 503. A response with \"'`X-Atlas-Delivery: permanent` must never be retried, regardless of status; this N45 override takes precedence over the general retry rule.\n\nN45 leaves N84’s attempt limit and timing unchanged: at most **4 total attempts**, including the initial attempt, with up to 3 retries. The computed delay is `250 ms × 2''^retryIndex`, starting at index 0, so the retry delays are **250, 500, and 1000 ms** (N84, N45).\n\nFor an eligible retry, an integer `Retry-After` header specifies seconds and overrides the computed delay, capped at **30 seconds**. If the header is absent or noninteger, retain the computed exponential delay; the fallback is not the cap (N84).\n\nArchived design **N59** proposed **2 attempts** and retrying any non-2xx response. It was never released and explicitly states that N84 and N45 supersede it. Its attempt count is recorded only as `archivedMaximumAttempts`. Other Atlas components do not establish this outbound delivery policy.\n'\"''')\nactual = json.loads(Path('answer.json').read_text())\nassert actual == answer\nassert actual['retryableStatuses'] == sorted(actual['retryableStatuses'])\nassert all(type(v) is int for v in actual['retryableStatuses'])\nassert set(actual['sourceIds']) == {'N84', 'N45', 'N59'}\nassert all(s in Path('answer.md').read_text() for s in actual['sourceIds'])\nassert notes == {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in Path('notes').rglob('*') if p.is_file()}\nprint('Verified answer.json fields, sorted integer statuses, source IDs, Markdown citations, and unchanged source notes.')\nPY\"",
+        "exitCode": 0,
+        "outputBytes": 114,
+        "outputSha256": "04446a980c4dc21f3ba9ba147089eeec0cd9a2b3d3b0741e2576d4db6160fe8c",
+        "outputPreview": "Verified answer.json fields, sorted integer statuses, source IDs, Markdown citations, and unchanged source notes.\n"
+      }
+    ],
+    "mcp": [
+      {
+        "tool": "jev_evidence",
+        "arguments": {
+          "operation": "investigate",
+          "workspace": "<TMP>/jev-delegation-case-mS3OCC",
+          "input": {
+            "goal": "Reconcile Atlas outbound webhook retry production contract, production correction, and superseded archived design. Identify retryable statuses, total attempts, delay base and multiplier, Retry-After cap and fallback, permanent header, archived maximum, and source IDs.",
+            "queries": [
+              "outbound",
+              "Retry-After",
+              "superseded",
+              "production correction"
+            ],
+            "paths": [
+              "notes"
+            ]
+          }
+        },
+        "status": "completed",
+        "error": null,
+        "resultSummary": {
+          "artifactId": "03cfb7eb-2989-46f5-bced-5bbf31de0159",
+          "excludedIds": [],
+          "duplicateIds": [],
+          "deferredIds": [
+            "i5"
+          ],
+          "coverage": {
+            "total": 6,
+            "retained": 5,
+            "excluded": 0,
+            "duplicates": 0,
+            "deferred": 1
+          },
+          "completeCoverage": false,
+          "degraded": false,
+          "budget": 16000,
+          "usedBytes": 15777,
+          "protectedOverflow": false,
+          "recovery": {
+            "operation": "recall",
+            "artifactId": "03cfb7eb-2989-46f5-bced-5bbf31de0159"
+          },
+          "selection": {
+            "method": "local",
+            "reason": "disabled"
+          },
+          "search": {
+            "queries": [
+              "outbound",
+              "Retry-After",
+              "superseded",
+              "production correction"
+            ],
+            "paths": [
+              "notes"
+            ],
+            "matchedLines": 9,
+            "mergedCandidates": 6,
+            "scannedFiles": 12,
+            "enumeratedFiles": 12,
+            "readBytes": 45733,
+            "candidateBytes": 19672,
+            "limited": false,
+            "skippedFileCount": 0,
+            "matchedFiles": 6,
+            "scope": "Case-insensitive literal OR search in rg-visible text files only. Context windows are merged within a source snapshot. Not an exhaustive semantic review of the workspace.",
+            "recallScope": "Saved retrieved windows only; a recall miss does not prove absence elsewhere in a file or workspace."
+          },
+          "textLocation": "context"
+        },
+        "items": [
+          {
+            "id": "i0",
+            "source": "notes/n00.md",
+            "sourceHash": "b97387729e3d2f9fe5167ce3a9c9970b441f18198b0fb2932ead701c6f6382c4",
+            "startLine": 6,
+            "endLine": 15
+          },
+          {
+            "id": "i1",
+            "source": "notes/n01.md",
+            "sourceHash": "808e1b54dff75e83ac6a60150a3f90747a83eb2a9028d32f9add61ce0356c156",
+            "startLine": 1,
+            "endLine": 15
+          },
+          {
+            "id": "i2",
+            "source": "notes/n02.md",
+            "sourceHash": "d89712985e7c56655eaff3fbc87fc5ccd399467d26b0b4b8195d5a3626d57aaf",
+            "startLine": 6,
+            "endLine": 15
+          },
+          {
+            "id": "i3",
+            "source": "notes/n05.md",
+            "sourceHash": "c8a08bf921484748b651f137e54baf9bbff4c86a28e65e0244d407156aa84121",
+            "startLine": 6,
+            "endLine": 15
+          },
+          {
+            "id": "i4",
+            "source": "notes/n06.md",
+            "sourceHash": "561787cc028fa12aba2ae1db74d2ddc33e39a94597c450527d6899331b756281",
+            "startLine": 1,
+            "endLine": 15
+          }
+        ],
+        "contextBytes": 16395,
+        "contextSha256": "7e307d46d8020624eaab6348b263a2b9737c5e2dd7bc81ff3d4664bf75ccb116",
+        "contextPreview": "JevPilot evidence: 5/6 records retained; 0 judged unrelated, 1 budget-deferred, 0 duplicates/already read; incomplete.\nRelevance judgments can be wrong; this is not proof that all relevant evidence is present. Use retained evidence first. For a concrete gap or contradiction, recall by IDs or a literal query; full recall remains available when required. artifactId=03cfb7eb-2989-46f5-bced-5bbf31de0159.\nSearch: 9 matching lines → 6 windows in 6 files; within limits; 0 files skipped. Literal query scope only, not exhaustive semantic coverage. Recall searches saved windows; use native reads for gaps outside them.\n[i0 notes/n00.md:6-15]\nBackground note 5: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across c"
+      },
+      {
+        "tool": "jev_evidence",
+        "arguments": {
+          "operation": "recall",
+          "workspace": "<TMP>/jev-delegation-case-mS3OCC",
+          "input": {
+            "artifactId": "03cfb7eb-2989-46f5-bced-5bbf31de0159",
+            "ids": [
+              "i5"
+            ]
+          }
+        },
+        "status": "completed",
+        "error": null,
+        "resultSummary": {
+          "artifactId": "03cfb7eb-2989-46f5-bced-5bbf31de0159",
+          "original": true,
+          "missingIds": []
+        },
+        "items": [
+          {
+            "id": "i5",
+            "source": "notes/n09.md",
+            "sourceHash": "12d46ca261edad17af8bd7850c31519edaedf101ba4f35c6caaf326f9c21b153",
+            "startLine": 1,
+            "endLine": 15,
+            "text": "# N59 Atlas outbound webhook archived design\nBackground note 1: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nBackground note 2: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nBackground note 3: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nBackground note 4: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nBackground note 5: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nBackground note 6: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nBackground note 7: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nBackground note 8: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nBackground note 9: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nBackground note 10: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nBackground note 11: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nBackground note 12: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nArchived, never released: an early proposal limited delivery to two attempts and retried any non-2xx response. This proposal is superseded by the production contract and incident correction. Do not use its values for current delivery.\n"
+          }
+        ],
+        "contextBytes": 0,
+        "contextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "contextPreview": ""
+      }
+    ],
+    "usage": [
+      {
+        "total": {
+          "totalTokens": 16129,
+          "inputTokens": 16042,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 87,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 16129,
+          "inputTokens": 16042,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 87,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 33274,
+          "inputTokens": 33041,
+          "cachedInputTokens": 15872,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 233,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 17145,
+          "inputTokens": 16999,
+          "cachedInputTokens": 15872,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 146,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 57444,
+          "inputTokens": 57029,
+          "cachedInputTokens": 32640,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 415,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 24170,
+          "inputTokens": 23988,
+          "cachedInputTokens": 16768,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 182,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 83729,
+          "inputTokens": 82656,
+          "cachedInputTokens": 56448,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1073,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 26285,
+          "inputTokens": 25627,
+          "cachedInputTokens": 23808,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 658,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 110138,
+          "inputTokens": 109017,
+          "cachedInputTokens": 81920,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1121,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 26409,
+          "inputTokens": 26361,
+          "cachedInputTokens": 25472,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 48,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      }
+    ],
+    "timeline": [
+      {
+        "method": "turn/start:sent",
+        "elapsedMs": 0
+      },
+      {
+        "elapsedMs": 2.114,
+        "method": "turn/started",
+        "status": "inProgress"
+      },
+      {
+        "elapsedMs": 2123.763,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 2169.825,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 2169.88,
+        "method": "item/started",
+        "itemId": "01a0d266-6163-7d81-9c68-c5137be43f30",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 2169.89,
+        "method": "item/completed",
+        "itemId": "01a0d266-6163-7d81-9c68-c5137be43f30",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 6303.57,
+        "method": "item/started",
+        "itemId": "msg_097c6d66f5a07346016ab4d6a224e087d0ad19c7642886fd29",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 6303.906,
+        "method": "item/completed",
+        "itemId": "msg_097c6d66f5a07346016ab4d6a224e087d0ad19c7642886fd29",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 6949.839,
+        "method": "item/started",
+        "itemId": "exec-737e6c28-4369-4e05-b043-4e9c0398143b",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 6949.863,
+        "method": "item/completed",
+        "itemId": "exec-737e6c28-4369-4e05-b043-4e9c0398143b",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 6949.913,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 16129
+      },
+      {
+        "elapsedMs": 13116.895,
+        "method": "item/started",
+        "itemId": "exec-889f1a47-776a-4f02-93e8-547476944c9d",
+        "itemType": "mcpToolCall"
+      },
+      {
+        "elapsedMs": 13130.777,
+        "method": "item/completed",
+        "itemId": "exec-889f1a47-776a-4f02-93e8-547476944c9d",
+        "itemType": "mcpToolCall"
+      },
+      {
+        "elapsedMs": 13131.238,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 33274
+      },
+      {
+        "elapsedMs": 20301.337,
+        "method": "item/started",
+        "itemId": "exec-d2f1ee1f-20c2-4409-afc7-350b84ad7a9b",
+        "itemType": "mcpToolCall"
+      },
+      {
+        "elapsedMs": 20305.422,
+        "method": "item/completed",
+        "itemId": "exec-d2f1ee1f-20c2-4409-afc7-350b84ad7a9b",
+        "itemType": "mcpToolCall"
+      },
+      {
+        "elapsedMs": 20357.137,
+        "method": "item/started",
+        "itemId": "exec-5cf4bb52-5110-4650-a1d3-83d508ac490a",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 20357.187,
+        "method": "item/completed",
+        "itemId": "exec-5cf4bb52-5110-4650-a1d3-83d508ac490a",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 20357.535,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 57444
+      },
+      {
+        "elapsedMs": 42125.372,
+        "method": "item/started",
+        "itemId": "exec-52ff8f44-7bf7-48b8-9fc6-db059b18259c",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 42125.393,
+        "method": "item/completed",
+        "itemId": "exec-52ff8f44-7bf7-48b8-9fc6-db059b18259c",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 42125.993,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 83729
+      },
+      {
+        "elapsedMs": 43788.931,
+        "method": "item/started",
+        "itemId": "msg_097c6d66f5a07346016ab4d6c9ac9087d0874f411f8ff60a7c",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 45215.408,
+        "method": "item/completed",
+        "itemId": "msg_097c6d66f5a07346016ab4d6c9ac9087d0874f411f8ff60a7c",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 45233.522,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 110138
+      },
+      {
+        "elapsedMs": 45233.733,
+        "method": "turn/completed",
+        "status": "completed"
+      }
+    ],
+    "jevEvents": [
+      {
+        "at": "2026-09-24T07:52:18.233Z",
+        "kind": "operation",
+        "operation": "recall_output",
+        "elapsedMs": 0,
+        "calls": 0
+      },
+      {
+        "at": "2026-09-24T07:52:11.060Z",
+        "kind": "operation",
+        "operation": "investigate",
+        "elapsedMs": 12,
+        "calls": 0
+      },
+      {
+        "at": "2026-09-24T07:52:11.060Z",
+        "kind": "investigation",
+        "selection": {
+          "method": "local",
+          "reason": "disabled"
+        },
+        "matchedLines": 9,
+        "candidates": 6,
+        "scannedFiles": 12,
+        "candidateBytes": 19672,
+        "limited": false,
+        "skippedFiles": 0
+      },
+      {
+        "at": "2026-09-24T07:52:00.096Z",
+        "kind": "investigation_hint",
+        "submitted": true,
+        "eligibleFiles": 8,
+        "observedBytes": 30373,
+        "modelReceipt": "unconfirmed"
+      }
+    ]
+  },
+  {
+    "metrics": {
+      "phase": "guided",
+      "id": "policy-bare",
+      "arm": "bare",
+      "repeat": null,
+      "status": "completed",
+      "passed": true,
+      "endToEndMs": 45516.975583,
+      "startupMs": 79.07429199999751,
+      "generationsWithUsage": 5,
+      "inputTokens": 100593,
+      "cachedInputTokens": 75776,
+      "outputTokens": 842,
+      "gptTokens": 101435,
+      "uncachedInputTokens": 24817,
+      "jevCalls": 0,
+      "jevInputTokens": 0,
+      "jevOutputTokens": 0,
+      "jevUnknownUsage": 0,
+      "knownAllTokens": 101435,
+      "usageComplete": true,
+      "investigations": 0,
+      "recalls": 0,
+      "hintSubmissions": 0,
+      "observedToolIntervalUnionMs": 0.36499999999796273
+    },
+    "quality": {
+      "pass": true,
+      "checks": [
+        [
+          "notes/n00.md unchanged",
+          true
+        ],
+        [
+          "notes/n01.md unchanged",
+          true
+        ],
+        [
+          "notes/n02.md unchanged",
+          true
+        ],
+        [
+          "notes/n03.md unchanged",
+          true
+        ],
+        [
+          "notes/n04.md unchanged",
+          true
+        ],
+        [
+          "notes/n05.md unchanged",
+          true
+        ],
+        [
+          "notes/n06.md unchanged",
+          true
+        ],
+        [
+          "notes/n07.md unchanged",
+          true
+        ],
+        [
+          "notes/n08.md unchanged",
+          true
+        ],
+        [
+          "notes/n09.md unchanged",
+          true
+        ],
+        [
+          "notes/n10.md unchanged",
+          true
+        ],
+        [
+          "notes/n11.md unchanged",
+          true
+        ],
+        [
+          "retryableStatuses",
+          true
+        ],
+        [
+          "maximumTotalAttempts",
+          true
+        ],
+        [
+          "delayBaseMs",
+          true
+        ],
+        [
+          "delayMultiplier",
+          true
+        ],
+        [
+          "retryAfterCapSeconds",
+          true
+        ],
+        [
+          "permanentHeaderValue",
+          true
+        ],
+        [
+          "archivedMaximumAttempts",
+          true
+        ],
+        [
+          "sourceIds",
+          true
+        ],
+        [
+          "citations",
+          true
+        ]
+      ]
+    },
+    "artifacts": {
+      "answer.json": "{\n  \"retryableStatuses\": [\n    429,\n    500,\n    503\n  ],\n  \"maximumTotalAttempts\": 4,\n  \"delayBaseMs\": 250,\n  \"delayMultiplier\": 2,\n  \"retryAfterCapSeconds\": 30,\n  \"permanentHeaderValue\": \"permanent\",\n  \"archivedMaximumAttempts\": 2,\n  \"sourceIds\": [\n    \"N84\",\n    \"N45\",\n    \"N59\"\n  ]\n}\n",
+      "answer.md": "The current outbound webhook policy is the production contract **N84**, as amended by production correction **N45**. N84 makes 429 and 503 retryable; N45 adds 500, giving **429, 500, 503**. N45 takes precedence over the general status rule: a response with `X-Atlas-Delivery: permanent` must never be retried, regardless of status.\n\nN45 leaves N84’s attempt limit and delay rules unchanged: **four total attempts**, including the initial attempt (at most three retries). The computed delay is `250 ms × 2^retryIndex`, with the index starting at zero, so the retry delays are **250, 500, and 1,000 ms**. An integer `Retry-After` value in seconds overrides that computed delay, capped at **30 seconds**. If the header is absent or noninteger, retain the computed exponential delay for that retry; there is no separate fallback delay. [N84, N45]\n\nThe archived design **N59** proposed **two attempts** and retries for any non-2xx response. It was never released and is explicitly superseded by N84 and N45. Its attempt limit is recorded only as `archivedMaximumAttempts`; it does not govern production. These conclusions use the outbound delivery sources, without importing settings from other Atlas components. [N59]\n"
+    },
+    "commands": [
+      {
+        "command": "/bin/zsh -lc \"pwd && rg --files notes -g '*'\"",
+        "exitCode": 0,
+        "outputBytes": 240,
+        "outputSha256": "c4852db350c2927dc4bcd0d96391f2bf6e02e8de249e32efd1a8e9df6548480c",
+        "outputPreview": "<TMP>/jev-delegation-case-4YthYF\nnotes/n05.md\nnotes/n11.md\nnotes/n01.md\nnotes/n10.md\nnotes/n00.md\nnotes/n04.md\nnotes/n03.md\nnotes/n07.md\nnotes/n06.md\nnotes/n02.md\nnotes/n09.md\nnotes/n08.md\n"
+      },
+      {
+        "command": "/bin/zsh -lc 'rg -n . notes'",
+        "exitCode": 0,
+        "outputBytes": 48313,
+        "outputSha256": "f6950173a9859035aebea784b9b3441c6206d89996a142b8de49143be94cd041",
+        "outputPreview": "notes/n05.md:1:# N90 Atlas ingest tutorial\nnotes/n05.md:2:Background note 1: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nnotes/n05.md:3:Background note 2: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nnotes/n05.md:4:Background note 3: Atlas operates several independent facilities. Examples describe only the component named in th"
+      },
+      {
+        "command": "/bin/zsh -lc \"rg -n -v '\"'^Background note'\"' notes\"",
+        "exitCode": 0,
+        "outputBytes": 3013,
+        "outputSha256": "f813e9841cfa1f20e78c18493e1368ae72a0c8b6434370deb763271a792fd261",
+        "outputPreview": "notes/n05.md:1:# N90 Atlas ingest tutorial\nnotes/n05.md:14:This tutorial describes clients sending records into Atlas. Client retry examples are illustrative. Inbound ingest and outbound webhook delivery have independent contracts.\nnotes/n11.md:1:# N71 Atlas pagination guide\nnotes/n11.md:14:The webhook events list is paginated with an opaque cursor. Page size and refresh interval govern viewing history only.\nnotes/n01.md:1:# N84 Atlas outbound webhook contract\nnotes/n01.md:14:Current production contract: retry transient delivery responses 429 and 503. There are four total delivery attempts, including the first attempt. Before each retry use 250 ms multiplied by 2 to the power of the retry index, starting at zero. An integer Retry-After header in seconds overrides the computed delay, capped"
+      },
+      {
+        "command": "/bin/zsh -lc \"python3 - <<'PY'\nfrom pathlib import Path\nimport hashlib, json\nnotes = {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in Path('notes').glob('*') if p.is_file()}\nanswer = {\n    'retryableStatuses': [429, 500, 503],\n    'maximumTotalAttempts': 4,\n    'delayBaseMs': 250,\n    'delayMultiplier': 2,\n    'retryAfterCapSeconds': 30,\n    'permanentHeaderValue': 'permanent',\n    'archivedMaximumAttempts': 2,\n    'sourceIds': ['N84', 'N45', 'N59'],\n}\nPath('answer.json').write_text(json.dumps(answer, indent=2) + '\\\\n')\nPath('answer.md').write_text('''The current outbound webhook policy is the production contract **N84**, as amended by production correction **N45**. N84 makes 429 and 503 retryable; N45 adds 500, giving **429, 500, 503**. N45 takes precedence over the general status rule: a response with \"'`X-Atlas-Delivery: permanent` must never be retried, regardless of status.\n\nN45 leaves N84’s attempt limit and delay rules unchanged: **four total attempts**, including the initial attempt (at most three retries). The computed delay is `250 ms × 2''^retryIndex`, with the index starting at zero, so the retry delays are **250, 500, and 1,000 ms**. An integer `Retry-After` value in seconds overrides that computed delay, capped at **30 seconds**. If the header is absent or noninteger, retain the computed exponential delay for that retry; there is no separate fallback delay. [N84, N45]\n\nThe archived design **N59** proposed **two attempts** and retries for any non-2xx response. It was never released and is explicitly superseded by N84 and N45. Its attempt limit is recorded only as `archivedMaximumAttempts`; it does not govern production. These conclusions use the outbound delivery sources, without importing settings from other Atlas components. [N59]\n'\"''')\nactual = json.loads(Path('answer.json').read_text())\nassert actual == answer\nassert all(type(x) is int for x in actual['retryableStatuses'])\nassert actual['retryableStatuses'] == sorted(actual['retryableStatuses'])\nassert set(actual['sourceIds']) == {'N84', 'N45', 'N59'}\nassert all(source in Path('answer.md').read_text() for source in actual['sourceIds'])\nassert notes == {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in Path('notes').glob('*') if p.is_file()}\nprint('Verified answer.json values, sorted integer statuses, source IDs, Markdown citations, and unchanged source notes.')\nPY\"",
+        "exitCode": 0,
+        "outputBytes": 114,
+        "outputSha256": "7f2165365a6fb0a75ee23887a02086bea0501d45e4836e13707edeb8f1965ff6",
+        "outputPreview": "Verified answer.json values, sorted integer statuses, source IDs, Markdown citations, and unchanged source notes.\n"
+      }
+    ],
+    "mcp": [],
+    "usage": [
+      {
+        "total": {
+          "totalTokens": 15252,
+          "inputTokens": 15185,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 67,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 15252,
+          "inputTokens": 15185,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 67,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 30692,
+          "inputTokens": 30594,
+          "cachedInputTokens": 14976,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 98,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 15440,
+          "inputTokens": 15409,
+          "cachedInputTokens": 14976,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 31,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 53316,
+          "inputTokens": 53182,
+          "cachedInputTokens": 30208,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 134,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 22624,
+          "inputTokens": 22588,
+          "cachedInputTokens": 15232,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 36,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 77313,
+          "inputTokens": 76518,
+          "cachedInputTokens": 52608,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 795,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 23997,
+          "inputTokens": 23336,
+          "cachedInputTokens": 22400,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 661,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 101435,
+          "inputTokens": 100593,
+          "cachedInputTokens": 75776,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 842,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 24122,
+          "inputTokens": 24075,
+          "cachedInputTokens": 23168,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 47,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      }
+    ],
+    "timeline": [
+      {
+        "method": "turn/start:sent",
+        "elapsedMs": 0
+      },
+      {
+        "elapsedMs": 1.975,
+        "method": "turn/started",
+        "status": "inProgress"
+      },
+      {
+        "elapsedMs": 2160.68,
+        "method": "item/started",
+        "itemId": "01a0d267-126e-7ba2-83d9-8452844bad7a",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 2160.692,
+        "method": "item/completed",
+        "itemId": "01a0d267-126e-7ba2-83d9-8452844bad7a",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 4551.456,
+        "method": "item/started",
+        "itemId": "msg_01cb91589981612e016ab4d6cfbd5c87d0be595645fd663fff",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 5696.498,
+        "method": "item/completed",
+        "itemId": "msg_01cb91589981612e016ab4d6cfbd5c87d0be595645fd663fff",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 6659.529,
+        "method": "item/started",
+        "itemId": "exec-c01d93ac-6fa7-44e6-8fed-8209949d025d",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 6659.643,
+        "method": "item/completed",
+        "itemId": "exec-c01d93ac-6fa7-44e6-8fed-8209949d025d",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 6659.648,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 15252
+      },
+      {
+        "elapsedMs": 10610.247,
+        "method": "item/started",
+        "itemId": "exec-aa5b976c-75e0-4c41-ba7d-c1e064d71d5b",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 10610.443,
+        "method": "item/completed",
+        "itemId": "exec-aa5b976c-75e0-4c41-ba7d-c1e064d71d5b",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 10611.082,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 30692
+      },
+      {
+        "elapsedMs": 13785.977,
+        "method": "item/started",
+        "itemId": "exec-d1a8d7b5-0514-44dd-a814-9118639b9d47",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 13786.019,
+        "method": "item/completed",
+        "itemId": "exec-d1a8d7b5-0514-44dd-a814-9118639b9d47",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 13786.329,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 53316
+      },
+      {
+        "elapsedMs": 35575.944,
+        "method": "item/started",
+        "itemId": "exec-067d1af0-3d6e-4f14-8e86-11cad0692099",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 35575.957,
+        "method": "item/completed",
+        "itemId": "exec-067d1af0-3d6e-4f14-8e86-11cad0692099",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 35576.239,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 77313
+      },
+      {
+        "elapsedMs": 43542.428,
+        "method": "item/started",
+        "itemId": "msg_01cb91589981612e016ab4d6f6becc87d0b5d073fc37f2cbe2",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 45493.374,
+        "method": "item/completed",
+        "itemId": "msg_01cb91589981612e016ab4d6f6becc87d0b5d073fc37f2cbe2",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 45516.706,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 101435
+      },
+      {
+        "elapsedMs": 45516.956,
+        "method": "turn/completed",
+        "status": "completed"
+      }
+    ],
+    "jevEvents": []
+  },
+  {
+    "metrics": {
+      "phase": "guided",
+      "id": "policy-jev",
+      "arm": "jev",
+      "repeat": null,
+      "status": "completed",
+      "passed": true,
+      "endToEndMs": 72802.330875,
+      "startupMs": 80.41045799999847,
+      "generationsWithUsage": 5,
+      "inputTokens": 109404,
+      "cachedInputTokens": 81920,
+      "outputTokens": 1636,
+      "gptTokens": 111040,
+      "uncachedInputTokens": 27484,
+      "jevCalls": 0,
+      "jevInputTokens": 0,
+      "jevOutputTokens": 0,
+      "jevUnknownUsage": 0,
+      "knownAllTokens": 111040,
+      "usageComplete": true,
+      "investigations": 1,
+      "recalls": 0,
+      "hintSubmissions": 1,
+      "observedToolIntervalUnionMs": 14.210999999992055
+    },
+    "quality": {
+      "pass": true,
+      "checks": [
+        [
+          "notes/n00.md unchanged",
+          true
+        ],
+        [
+          "notes/n01.md unchanged",
+          true
+        ],
+        [
+          "notes/n02.md unchanged",
+          true
+        ],
+        [
+          "notes/n03.md unchanged",
+          true
+        ],
+        [
+          "notes/n04.md unchanged",
+          true
+        ],
+        [
+          "notes/n05.md unchanged",
+          true
+        ],
+        [
+          "notes/n06.md unchanged",
+          true
+        ],
+        [
+          "notes/n07.md unchanged",
+          true
+        ],
+        [
+          "notes/n08.md unchanged",
+          true
+        ],
+        [
+          "notes/n09.md unchanged",
+          true
+        ],
+        [
+          "notes/n10.md unchanged",
+          true
+        ],
+        [
+          "notes/n11.md unchanged",
+          true
+        ],
+        [
+          "retryableStatuses",
+          true
+        ],
+        [
+          "maximumTotalAttempts",
+          true
+        ],
+        [
+          "delayBaseMs",
+          true
+        ],
+        [
+          "delayMultiplier",
+          true
+        ],
+        [
+          "retryAfterCapSeconds",
+          true
+        ],
+        [
+          "permanentHeaderValue",
+          true
+        ],
+        [
+          "archivedMaximumAttempts",
+          true
+        ],
+        [
+          "sourceIds",
+          true
+        ],
+        [
+          "citations",
+          true
+        ]
+      ]
+    },
+    "artifacts": {
+      "answer.json": "{\n  \"retryableStatuses\": [429, 500, 503],\n  \"maximumTotalAttempts\": 4,\n  \"delayBaseMs\": 250,\n  \"delayMultiplier\": 2,\n  \"retryAfterCapSeconds\": 30,\n  \"permanentHeaderValue\": \"permanent\",\n  \"archivedMaximumAttempts\": 2,\n  \"sourceIds\": [\"N84\", \"N45\", \"N59\"]\n}\n",
+      "answer.md": "The current Atlas outbound webhook policy combines the production contract **N84** with its production correction **N45**. N84 makes statuses 429 and 503 retryable; N45 adds 500. N45 takes precedence: a response with `X-Atlas-Delivery: permanent` must never be retried, regardless of status. The correction leaves the attempt limit and delay rules unchanged.\n\nUnder **N84**, delivery has at most **4 total attempts**, including the initial attempt, so at most 3 retries. Retry delays are `250 ms × 2^i`, with retry index `i` starting at zero: 250, 500, then 1,000 ms. An integer `Retry-After` header specifies seconds and overrides the computed delay, capped at **30 seconds**. If the header is absent or noninteger, the computed exponential delay remains unchanged. This timing override does not override N45's permanent-response prohibition.\n\nThe archived design **N59** proposed **2 attempts** and retrying every non-2xx response. It was never released and is explicitly superseded by N84 and N45. Its attempt limit is recorded only as `archivedMaximumAttempts`; it does not govern current delivery. Notes about other Atlas components do not establish outbound webhook retry semantics.\n\nSources: [N84 — production contract](notes/n01.md), [N45 — production correction](notes/n06.md), [N59 — archived design](notes/n09.md).\n"
+    },
+    "commands": [
+      {
+        "command": "/bin/zsh -lc \"pwd; rg --files notes -g 'AGENTS.md' -g '*'\"",
+        "exitCode": 0,
+        "outputBytes": 240,
+        "outputSha256": "b907a84bccbf21e8a400f4c31838ee7b5139a27352008b420f4b33879a86cae0",
+        "outputPreview": "<TMP>/jev-delegation-case-JKeC0y\nnotes/n05.md\nnotes/n11.md\nnotes/n01.md\nnotes/n10.md\nnotes/n00.md\nnotes/n04.md\nnotes/n03.md\nnotes/n07.md\nnotes/n06.md\nnotes/n02.md\nnotes/n09.md\nnotes/n08.md\n"
+      },
+      {
+        "command": "/bin/zsh -lc \"rg --files -g 'AGENTS.md' -g '\"'!notes/**'\"' -g '\"'!**/.git/**'\"' -g '\"'!**/.agents/**'\"' -g '\"'!**/.codex/**'\"'\"",
+        "exitCode": 1,
+        "outputBytes": null,
+        "outputSha256": null,
+        "outputPreview": null
+      },
+      {
+        "command": "/bin/zsh -lc \"rg -n -v '\"'^Background note|''^$'\"' notes\"",
+        "exitCode": 0,
+        "outputBytes": 3013,
+        "outputSha256": "f813e9841cfa1f20e78c18493e1368ae72a0c8b6434370deb763271a792fd261",
+        "outputPreview": "notes/n05.md:1:# N90 Atlas ingest tutorial\nnotes/n05.md:14:This tutorial describes clients sending records into Atlas. Client retry examples are illustrative. Inbound ingest and outbound webhook delivery have independent contracts.\nnotes/n11.md:1:# N71 Atlas pagination guide\nnotes/n11.md:14:The webhook events list is paginated with an opaque cursor. Page size and refresh interval govern viewing history only.\nnotes/n01.md:1:# N84 Atlas outbound webhook contract\nnotes/n01.md:14:Current production contract: retry transient delivery responses 429 and 503. There are four total delivery attempts, including the first attempt. Before each retry use 250 ms multiplied by 2 to the power of the retry index, starting at zero. An integer Retry-After header in seconds overrides the computed delay, capped"
+      },
+      {
+        "command": "/bin/zsh -lc 'shasum -a 256 notes/*'",
+        "exitCode": 0,
+        "outputBytes": 948,
+        "outputSha256": "d863af8a344be67ba9df0b75dd79386281d72383145ee4f5a6481bee770e1b73",
+        "outputPreview": "b97387729e3d2f9fe5167ce3a9c9970b441f18198b0fb2932ead701c6f6382c4  notes/n00.md\n808e1b54dff75e83ac6a60150a3f90747a83eb2a9028d32f9add61ce0356c156  notes/n01.md\nd89712985e7c56655eaff3fbc87fc5ccd399467d26b0b4b8195d5a3626d57aaf  notes/n02.md\n535a597adb4b1b090699c7c2bb1364dc2e3f0f344f701acf083c18ba95b9e996  notes/n03.md\n27348a7150e61b578f6a05b8434d080c83ff8e3c4deec2476c51ca65be5b6e17  notes/n04.md\nc8a08bf921484748b651f137e54baf9bbff4c86a28e65e0244d407156aa84121  notes/n05.md\n561787cc028fa12aba2ae1db74d2ddc33e39a94597c450527d6899331b756281  notes/n06.md\n09aa4fe3a52249a814b1bff07791f0afe9ab6479758c7c1e701c8e51d06cd4be  notes/n07.md\n39bdc427bd1e1b11307755225bd5d6dc74dee1f889866440e7263135a78b03f4  notes/n08.md\n12d46ca261edad17af8bd7850c31519edaedf101ba4f35c6caaf326f9c21b153  notes/n09.md\n16ee426709"
+      },
+      {
+        "command": "/bin/zsh -lc \"python3 - <<'PY'\nimport json\nfrom pathlib import Path\nimport hashlib\nexpected = {'retryableStatuses': [429, 500, 503], 'maximumTotalAttempts': 4, 'delayBaseMs': 250, 'delayMultiplier': 2, 'retryAfterCapSeconds': 30, 'permanentHeaderValue': 'permanent', 'archivedMaximumAttempts': 2, 'sourceIds': ['N84', 'N45', 'N59']}\nassert json.loads(Path('answer.json').read_text()) == expected\nmd = Path('answer.md').read_text()\nfor source in expected['sourceIds']:\n    assert source in md\nassert 'absent or noninteger' in md\nhashes = ['b97387729e3d2f9fe5167ce3a9c9970b441f18198b0fb2932ead701c6f6382c4','808e1b54dff75e83ac6a60150a3f90747a83eb2a9028d32f9add61ce0356c156','d89712985e7c56655eaff3fbc87fc5ccd399467d26b0b4b8195d5a3626d57aaf','535a597adb4b1b090699c7c2bb1364dc2e3f0f344f701acf083c18ba95b9e996','27348a7150e61b578f6a05b8434d080c83ff8e3c4deec2476c51ca65be5b6e17','c8a08bf921484748b651f137e54baf9bbff4c86a28e65e0244d407156aa84121','561787cc028fa12aba2ae1db74d2ddc33e39a94597c450527d6899331b756281','09aa4fe3a52249a814b1bff07791f0afe9ab6479758c7c1e701c8e51d06cd4be','39bdc427bd1e1b11307755225bd5d6dc74dee1f889866440e7263135a78b03f4','12d46ca261edad17af8bd7850c31519edaedf101ba4f35c6caaf326f9c21b153','16ee4267095b6303a03feadfaa9405376a5ee1e5b49a3285f1c2456afd967248','9766d63ac131b8ca60b815d55e6c3304090f861f21d69ca6e16691f6c74829ee']\nfor i, digest in enumerate(hashes):\n    assert hashlib.sha256(Path(f'notes/n{i:02d}.md').read_bytes()).hexdigest() == digest\nprint('Verified answer.json values, Markdown citations and fallback, and all 12 unchanged source notes.')\nPY\"",
+        "exitCode": 0,
+        "outputBytes": 97,
+        "outputSha256": "51c67327640b66637375a16aa83db6c7c130b3c0adbc673007b6615dea79222f",
+        "outputPreview": "Verified answer.json values, Markdown citations and fallback, and all 12 unchanged source notes.\n"
+      }
+    ],
+    "mcp": [
+      {
+        "tool": "jev_evidence",
+        "arguments": {
+          "operation": "investigate",
+          "workspace": "<TMP>/jev-delegation-case-JKeC0y",
+          "input": {
+            "goal": "Reconcile current Atlas outbound webhook retry policy with production correction and superseded archived design; identify exact values and source IDs.",
+            "queries": [
+              "outbound",
+              "production correction",
+              "Retry-After",
+              "archived"
+            ],
+            "paths": [
+              "notes"
+            ]
+          }
+        },
+        "status": "completed",
+        "error": null,
+        "resultSummary": {
+          "artifactId": "a165d6bd-d1f7-4aa7-9afc-901df1792d9a",
+          "excludedIds": [],
+          "duplicateIds": [],
+          "deferredIds": [
+            "i5"
+          ],
+          "coverage": {
+            "total": 6,
+            "retained": 5,
+            "excluded": 0,
+            "duplicates": 0,
+            "deferred": 1
+          },
+          "completeCoverage": false,
+          "degraded": false,
+          "budget": 16000,
+          "usedBytes": 15777,
+          "protectedOverflow": false,
+          "recovery": {
+            "operation": "recall",
+            "artifactId": "a165d6bd-d1f7-4aa7-9afc-901df1792d9a"
+          },
+          "selection": {
+            "method": "local",
+            "reason": "small_candidate_set"
+          },
+          "search": {
+            "queries": [
+              "outbound",
+              "production correction",
+              "Retry-After",
+              "archived"
+            ],
+            "paths": [
+              "notes"
+            ],
+            "matchedLines": 9,
+            "mergedCandidates": 6,
+            "scannedFiles": 12,
+            "enumeratedFiles": 12,
+            "readBytes": 45733,
+            "candidateBytes": 19672,
+            "limited": false,
+            "skippedFileCount": 0,
+            "matchedFiles": 6,
+            "scope": "Case-insensitive literal OR search in rg-visible text files only. Context windows are merged within a source snapshot. Not an exhaustive semantic review of the workspace.",
+            "recallScope": "Saved retrieved windows only; a recall miss does not prove absence elsewhere in a file or workspace."
+          },
+          "textLocation": "context"
+        },
+        "items": [
+          {
+            "id": "i0",
+            "source": "notes/n00.md",
+            "sourceHash": "b97387729e3d2f9fe5167ce3a9c9970b441f18198b0fb2932ead701c6f6382c4",
+            "startLine": 6,
+            "endLine": 15
+          },
+          {
+            "id": "i1",
+            "source": "notes/n01.md",
+            "sourceHash": "808e1b54dff75e83ac6a60150a3f90747a83eb2a9028d32f9add61ce0356c156",
+            "startLine": 1,
+            "endLine": 15
+          },
+          {
+            "id": "i2",
+            "source": "notes/n02.md",
+            "sourceHash": "d89712985e7c56655eaff3fbc87fc5ccd399467d26b0b4b8195d5a3626d57aaf",
+            "startLine": 6,
+            "endLine": 15
+          },
+          {
+            "id": "i3",
+            "source": "notes/n05.md",
+            "sourceHash": "c8a08bf921484748b651f137e54baf9bbff4c86a28e65e0244d407156aa84121",
+            "startLine": 6,
+            "endLine": 15
+          },
+          {
+            "id": "i4",
+            "source": "notes/n06.md",
+            "sourceHash": "561787cc028fa12aba2ae1db74d2ddc33e39a94597c450527d6899331b756281",
+            "startLine": 1,
+            "endLine": 15
+          }
+        ],
+        "contextBytes": 16395,
+        "contextSha256": "3800e17d975bdae5c1bbede3adf8dc2e299ad0177768f465789ce52cff4a3a6e",
+        "contextPreview": "JevPilot evidence: 5/6 records retained; 0 judged unrelated, 1 budget-deferred, 0 duplicates/already read; incomplete.\nRelevance judgments can be wrong; this is not proof that all relevant evidence is present. Use retained evidence first. For a concrete gap or contradiction, recall by IDs or a literal query; full recall remains available when required. artifactId=a165d6bd-d1f7-4aa7-9afc-901df1792d9a.\nSearch: 9 matching lines → 6 windows in 6 files; within limits; 0 files skipped. Literal query scope only, not exhaustive semantic coverage. Recall searches saved windows; use native reads for gaps outside them.\n[i0 notes/n00.md:6-15]\nBackground note 5: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across c"
+      }
+    ],
+    "usage": [
+      {
+        "total": {
+          "totalTokens": 16140,
+          "inputTokens": 16044,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 96,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 16140,
+          "inputTokens": 16044,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 96,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 33353,
+          "inputTokens": 33056,
+          "cachedInputTokens": 15872,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 297,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 17213,
+          "inputTokens": 17012,
+          "cachedInputTokens": 15872,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 201,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 57551,
+          "inputTokens": 57190,
+          "cachedInputTokens": 32768,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 361,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 24198,
+          "inputTokens": 24134,
+          "cachedInputTokens": 16896,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 64,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 84236,
+          "inputTokens": 82643,
+          "cachedInputTokens": 56704,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1593,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 26685,
+          "inputTokens": 25453,
+          "cachedInputTokens": 23936,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1232,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 111040,
+          "inputTokens": 109404,
+          "cachedInputTokens": 81920,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1636,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 26804,
+          "inputTokens": 26761,
+          "cachedInputTokens": 25216,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 43,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      }
+    ],
+    "timeline": [
+      {
+        "method": "turn/start:sent",
+        "elapsedMs": 0
+      },
+      {
+        "elapsedMs": 2.439,
+        "method": "turn/started",
+        "status": "inProgress"
+      },
+      {
+        "elapsedMs": 7010.733,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 7055.844,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 7055.884,
+        "method": "item/started",
+        "itemId": "01a0d267-d7e8-7c01-aa72-fbe196316341",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 7055.886,
+        "method": "item/completed",
+        "itemId": "01a0d267-d7e8-7c01-aa72-fbe196316341",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 9516.047,
+        "method": "item/started",
+        "itemId": "msg_05433a981da5de25016ab4d7025c4c87d09a75a9512011564f",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 10678.929,
+        "method": "item/completed",
+        "itemId": "msg_05433a981da5de25016ab4d7025c4c87d09a75a9512011564f",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 12997.14,
+        "method": "item/started",
+        "itemId": "exec-8fc5fe7b-75c8-4514-8fa3-9a622cf070be",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 12997.147,
+        "method": "item/completed",
+        "itemId": "exec-8fc5fe7b-75c8-4514-8fa3-9a622cf070be",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 12997.179,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 16140
+      },
+      {
+        "elapsedMs": 20480.028,
+        "method": "item/started",
+        "itemId": "exec-83426be6-af4e-4c3f-9c0e-875d63faa336",
+        "itemType": "mcpToolCall"
+      },
+      {
+        "elapsedMs": 20494.103,
+        "method": "item/completed",
+        "itemId": "exec-83426be6-af4e-4c3f-9c0e-875d63faa336",
+        "itemType": "mcpToolCall"
+      },
+      {
+        "elapsedMs": 20531.806,
+        "method": "item/started",
+        "itemId": "exec-2719ccf4-b56e-4bbd-8021-a08226d7b448",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 20531.842,
+        "method": "item/completed",
+        "itemId": "exec-2719ccf4-b56e-4bbd-8021-a08226d7b448",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 20532.363,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 33353
+      },
+      {
+        "elapsedMs": 27668.722,
+        "method": "item/started",
+        "itemId": "exec-e0576548-7f2a-4e3e-8486-0b219bd2950e",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 27668.765,
+        "method": "item/completed",
+        "itemId": "exec-e0576548-7f2a-4e3e-8486-0b219bd2950e",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 27746.006,
+        "method": "item/started",
+        "itemId": "exec-a7902d34-ae70-41f5-9181-1796496f8d07",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 27746.046,
+        "method": "item/completed",
+        "itemId": "exec-a7902d34-ae70-41f5-9181-1796496f8d07",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 27746.35,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 57551
+      },
+      {
+        "elapsedMs": 66486.369,
+        "method": "item/started",
+        "itemId": "exec-f85d7e73-90bf-4019-9c92-85f7427bfb25",
+        "itemType": "fileChange"
+      },
+      {
+        "elapsedMs": 66600.748,
+        "method": "item/completed",
+        "itemId": "exec-f85d7e73-90bf-4019-9c92-85f7427bfb25",
+        "itemType": "fileChange"
+      },
+      {
+        "elapsedMs": 66674.035,
+        "method": "item/started",
+        "itemId": "exec-721be718-ee94-4896-b6fa-29b54d8d84b3",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 66674.045,
+        "method": "item/completed",
+        "itemId": "exec-721be718-ee94-4896-b6fa-29b54d8d84b3",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 66674.57,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 84236
+      },
+      {
+        "elapsedMs": 71392.405,
+        "method": "item/started",
+        "itemId": "msg_05433a981da5de25016ab4d740447487d0864f5f99bf7015ac",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 72783.445,
+        "method": "item/completed",
+        "itemId": "msg_05433a981da5de25016ab4d740447487d0864f5f99bf7015ac",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 72802.202,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 111040
+      },
+      {
+        "elapsedMs": 72802.312,
+        "method": "turn/completed",
+        "status": "completed"
+      }
+    ],
+    "jevEvents": [
+      {
+        "at": "2026-09-24T07:53:49.415Z",
+        "kind": "operation",
+        "operation": "investigate",
+        "elapsedMs": 12,
+        "calls": 0
+      },
+      {
+        "at": "2026-09-24T07:53:49.414Z",
+        "kind": "investigation",
+        "selection": {
+          "method": "local",
+          "reason": "small_candidate_set"
+        },
+        "matchedLines": 9,
+        "candidates": 6,
+        "scannedFiles": 12,
+        "candidateBytes": 19672,
+        "limited": false,
+        "skippedFiles": 0
+      },
+      {
+        "at": "2026-09-24T07:53:35.973Z",
+        "kind": "investigation_hint",
+        "submitted": true,
+        "eligibleFiles": 8,
+        "observedBytes": 30373,
+        "modelReceipt": "unconfirmed"
+      }
+    ]
+  },
+  {
+    "metrics": {
+      "phase": "packed",
+      "id": "policy-bare-0",
+      "arm": "bare",
+      "repeat": 0,
+      "status": "completed",
+      "passed": true,
+      "endToEndMs": 98094.776583,
+      "startupMs": 73.331375,
+      "generationsWithUsage": 5,
+      "inputTokens": 100732,
+      "cachedInputTokens": 84736,
+      "outputTokens": 879,
+      "gptTokens": 101611,
+      "uncachedInputTokens": 15996,
+      "jevCalls": 0,
+      "jevInputTokens": 0,
+      "jevOutputTokens": 0,
+      "jevUnknownUsage": 0,
+      "knownAllTokens": 101611,
+      "usageComplete": true,
+      "investigations": 0,
+      "recalls": 0,
+      "hintSubmissions": 0,
+      "observedToolIntervalUnionMs": 0.17099999998754356
+    },
+    "quality": {
+      "pass": true,
+      "checks": [
+        [
+          "notes/n00.md unchanged",
+          true
+        ],
+        [
+          "notes/n01.md unchanged",
+          true
+        ],
+        [
+          "notes/n02.md unchanged",
+          true
+        ],
+        [
+          "notes/n03.md unchanged",
+          true
+        ],
+        [
+          "notes/n04.md unchanged",
+          true
+        ],
+        [
+          "notes/n05.md unchanged",
+          true
+        ],
+        [
+          "notes/n06.md unchanged",
+          true
+        ],
+        [
+          "notes/n07.md unchanged",
+          true
+        ],
+        [
+          "notes/n08.md unchanged",
+          true
+        ],
+        [
+          "notes/n09.md unchanged",
+          true
+        ],
+        [
+          "notes/n10.md unchanged",
+          true
+        ],
+        [
+          "notes/n11.md unchanged",
+          true
+        ],
+        [
+          "retryableStatuses",
+          true
+        ],
+        [
+          "maximumTotalAttempts",
+          true
+        ],
+        [
+          "delayBaseMs",
+          true
+        ],
+        [
+          "delayMultiplier",
+          true
+        ],
+        [
+          "retryAfterCapSeconds",
+          true
+        ],
+        [
+          "permanentHeaderValue",
+          true
+        ],
+        [
+          "archivedMaximumAttempts",
+          true
+        ],
+        [
+          "sourceIds",
+          true
+        ],
+        [
+          "citations",
+          true
+        ]
+      ]
+    },
+    "artifacts": {
+      "answer.json": "{\n  \"retryableStatuses\": [\n    429,\n    500,\n    503\n  ],\n  \"maximumTotalAttempts\": 4,\n  \"delayBaseMs\": 250,\n  \"delayMultiplier\": 2,\n  \"retryAfterCapSeconds\": 30,\n  \"permanentHeaderValue\": \"permanent\",\n  \"archivedMaximumAttempts\": 2,\n  \"sourceIds\": [\n    \"N84\",\n    \"N45\",\n    \"N59\"\n  ]\n}\n",
+      "answer.md": "The current outbound webhook policy combines the production contract **N84** with its production correction **N45**. N84 makes statuses 429 and 503 retryable; N45 adds 500, producing **429, 500, 503**. N45 takes precedence over the general retry rule: a response with `X-Atlas-Delivery: permanent` must never be retried, regardless of status.\n\nN45 leaves N84’s attempt limit and delays unchanged: **four total attempts**, including the initial delivery (at most three retries). The computed delay is `250 ms × 2^retryIndex`, with the index starting at zero, yielding 250, 500, and 1000 ms before successive retries. An integer `Retry-After` header in seconds overrides that computed delay, capped at **30 seconds**. If the header is absent or noninteger, the computed delay remains unchanged; it does not fall back to the cap. [N84, N45]\n\nThe archived design **N59** proposed **two attempts** and retries for any non-2xx response. It was never released and is explicitly superseded by N84 and N45. Its attempt count is recorded only as `archivedMaximumAttempts`, not as current policy. Notes about other Atlas components do not establish outbound delivery behavior. [N59]\n"
+    },
+    "commands": [
+      {
+        "command": "/bin/zsh -lc \"pwd && rg --files notes -g '*'\"",
+        "exitCode": 0,
+        "outputBytes": 240,
+        "outputSha256": "98dd99d86f7c6f74ce1c678401f222125aea7186fdd33a4a8d6021843606f567",
+        "outputPreview": "<TMP>/jev-delegation-case-rxjTgG\nnotes/n05.md\nnotes/n11.md\nnotes/n01.md\nnotes/n10.md\nnotes/n00.md\nnotes/n04.md\nnotes/n03.md\nnotes/n07.md\nnotes/n06.md\nnotes/n02.md\nnotes/n09.md\nnotes/n08.md\n"
+      },
+      {
+        "command": "/bin/zsh -lc 'rg -n . notes'",
+        "exitCode": 0,
+        "outputBytes": 48313,
+        "outputSha256": "f6950173a9859035aebea784b9b3441c6206d89996a142b8de49143be94cd041",
+        "outputPreview": "notes/n05.md:1:# N90 Atlas ingest tutorial\nnotes/n05.md:2:Background note 1: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nnotes/n05.md:3:Background note 2: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nnotes/n05.md:4:Background note 3: Atlas operates several independent facilities. Examples describe only the component named in th"
+      },
+      {
+        "command": "/bin/zsh -lc \"rg -n -v '\"'^Background note '\"' notes\"",
+        "exitCode": 0,
+        "outputBytes": 3013,
+        "outputSha256": "f813e9841cfa1f20e78c18493e1368ae72a0c8b6434370deb763271a792fd261",
+        "outputPreview": "notes/n05.md:1:# N90 Atlas ingest tutorial\nnotes/n05.md:14:This tutorial describes clients sending records into Atlas. Client retry examples are illustrative. Inbound ingest and outbound webhook delivery have independent contracts.\nnotes/n11.md:1:# N71 Atlas pagination guide\nnotes/n11.md:14:The webhook events list is paginated with an opaque cursor. Page size and refresh interval govern viewing history only.\nnotes/n01.md:1:# N84 Atlas outbound webhook contract\nnotes/n01.md:14:Current production contract: retry transient delivery responses 429 and 503. There are four total delivery attempts, including the first attempt. Before each retry use 250 ms multiplied by 2 to the power of the retry index, starting at zero. An integer Retry-After header in seconds overrides the computed delay, capped"
+      },
+      {
+        "command": "/bin/zsh -lc \"rg --files -g AGENTS.md -g answer.json -g answer.md -g '\"'!notes/**'\"' -g '\"'!.git/**'\"'\"",
+        "exitCode": 1,
+        "outputBytes": null,
+        "outputSha256": null,
+        "outputPreview": null
+      },
+      {
+        "command": "/bin/zsh -lc \"python3 - <<'PY'\nfrom pathlib import Path\nimport hashlib\nimport json\n\nnotes = {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in Path('notes').rglob('*') if p.is_file()}\nanswer = {\n    'retryableStatuses': [429, 500, 503],\n    'maximumTotalAttempts': 4,\n    'delayBaseMs': 250,\n    'delayMultiplier': 2,\n    'retryAfterCapSeconds': 30,\n    'permanentHeaderValue': 'permanent',\n    'archivedMaximumAttempts': 2,\n    'sourceIds': ['N84', 'N45', 'N59'],\n}\nPath('answer.json').write_text(json.dumps(answer, indent=2) + '\\\\n')\nPath('answer.md').write_text('''The current outbound webhook policy combines the production contract **N84** with its production correction **N45**. N84 makes statuses 429 and 503 retryable; N45 adds 500, producing **429, 500, 503**. N45 takes precedence over the general retry rule: a response with \"'`X-Atlas-Delivery: permanent` must never be retried, regardless of status.\n\nN45 leaves N84’s attempt limit and delays unchanged: **four total attempts**, including the initial delivery (at most three retries). The computed delay is `250 ms × 2''^retryIndex`, with the index starting at zero, yielding 250, 500, and 1000 ms before successive retries. An integer `Retry-After` header in seconds overrides that computed delay, capped at **30 seconds**. If the header is absent or noninteger, the computed delay remains unchanged; it does not fall back to the cap. [N84, N45]\n\nThe archived design **N59** proposed **two attempts** and retries for any non-2xx response. It was never released and is explicitly superseded by N84 and N45. Its attempt count is recorded only as `archivedMaximumAttempts`, not as current policy. Notes about other Atlas components do not establish outbound delivery behavior. [N59]\n'\"''')\n\nactual = json.loads(Path('answer.json').read_text())\nassert actual == answer\nassert actual['retryableStatuses'] == sorted(actual['retryableStatuses'])\nassert all(type(status) is int for status in actual['retryableStatuses'])\nassert set(actual['sourceIds']) == {'N84', 'N45', 'N59'}\nassert all(source in Path('answer.md').read_text() for source in actual['sourceIds'])\nassert notes == {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in Path('notes').rglob('*') if p.is_file()}\nprint('Verified answer.json values and types, answer.md citations, and unchanged source notes.')\nPY\"",
+        "exitCode": 0,
+        "outputBytes": 88,
+        "outputSha256": "829b04ab018a3dceede36cc2133a9f640a7a3166726827b01d1bedfdfb368ea2",
+        "outputPreview": "Verified answer.json values and types, answer.md citations, and unchanged source notes.\n"
+      }
+    ],
+    "mcp": [],
+    "usage": [
+      {
+        "total": {
+          "totalTokens": 15250,
+          "inputTokens": 15183,
+          "cachedInputTokens": 8832,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 67,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 15250,
+          "inputTokens": 15183,
+          "cachedInputTokens": 8832,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 67,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 30688,
+          "inputTokens": 30590,
+          "cachedInputTokens": 23808,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 98,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 15438,
+          "inputTokens": 15407,
+          "cachedInputTokens": 14976,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 31,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 53356,
+          "inputTokens": 53177,
+          "cachedInputTokens": 39040,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 179,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 22668,
+          "inputTokens": 22587,
+          "cachedInputTokens": 15232,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 81,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 77424,
+          "inputTokens": 76593,
+          "cachedInputTokens": 61440,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 831,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 24068,
+          "inputTokens": 23416,
+          "cachedInputTokens": 22400,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 652,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 101611,
+          "inputTokens": 100732,
+          "cachedInputTokens": 84736,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 879,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 24187,
+          "inputTokens": 24139,
+          "cachedInputTokens": 23296,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 48,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      }
+    ],
+    "timeline": [
+      {
+        "method": "turn/start:sent",
+        "elapsedMs": 0
+      },
+      {
+        "elapsedMs": 2.507,
+        "method": "turn/started",
+        "status": "inProgress"
+      },
+      {
+        "elapsedMs": 20026.044,
+        "method": "item/started",
+        "itemId": "01a0d26c-1290-7b92-8824-e4fbb2fa6b7f",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 20026.07,
+        "method": "item/completed",
+        "itemId": "01a0d26c-1290-7b92-8824-e4fbb2fa6b7f",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 32681.228,
+        "method": "item/started",
+        "itemId": "msg_0d78a6c755d05c1b016ab4d81fad5487d0963540e85237468c",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 37440.238,
+        "method": "item/completed",
+        "itemId": "msg_0d78a6c755d05c1b016ab4d81fad5487d0963540e85237468c",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 37580.935,
+        "method": "item/started",
+        "itemId": "exec-d0bf8edf-6bbd-408f-8f73-26e0ff1d8fd3",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 37580.954,
+        "method": "item/completed",
+        "itemId": "exec-d0bf8edf-6bbd-408f-8f73-26e0ff1d8fd3",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 37580.997,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 15250
+      },
+      {
+        "elapsedMs": 41579.8,
+        "method": "item/started",
+        "itemId": "exec-206aeeb7-d57e-46cc-82a4-676010d6f588",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 41579.892,
+        "method": "item/completed",
+        "itemId": "exec-206aeeb7-d57e-46cc-82a4-676010d6f588",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 42721.038,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 30688
+      },
+      {
+        "elapsedMs": 65281.887,
+        "method": "item/started",
+        "itemId": "exec-e411bc66-1104-4e50-a13d-945209195d6e",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 65281.896,
+        "method": "item/completed",
+        "itemId": "exec-e411bc66-1104-4e50-a13d-945209195d6e",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 65336.11,
+        "method": "item/started",
+        "itemId": "exec-03abeeca-1d84-4117-9f64-092567419aac",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 65336.148,
+        "method": "item/completed",
+        "itemId": "exec-03abeeca-1d84-4117-9f64-092567419aac",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 66469.594,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 53356
+      },
+      {
+        "elapsedMs": 94607.566,
+        "method": "item/started",
+        "itemId": "exec-0b08abfe-12dd-40a7-a019-70ac27e408ea",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 94607.579,
+        "method": "item/completed",
+        "itemId": "exec-0b08abfe-12dd-40a7-a019-70ac27e408ea",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 94607.895,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 77424
+      },
+      {
+        "elapsedMs": 97081.197,
+        "method": "item/started",
+        "itemId": "msg_0d78a6c755d05c1b016ab4d861a20487d09de8b97da972a0c6",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 98015.726,
+        "method": "item/completed",
+        "itemId": "msg_0d78a6c755d05c1b016ab4d861a20487d09de8b97da972a0c6",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 98094.603,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 101611
+      },
+      {
+        "elapsedMs": 98094.708,
+        "method": "turn/completed",
+        "status": "completed"
+      }
+    ],
+    "jevEvents": []
+  },
+  {
+    "metrics": {
+      "phase": "packed",
+      "id": "policy-jev-0",
+      "arm": "jev",
+      "repeat": 0,
+      "status": "completed",
+      "passed": true,
+      "endToEndMs": 92370.727416,
+      "startupMs": 81.09704200000851,
+      "generationsWithUsage": 4,
+      "inputTokens": 77293,
+      "cachedInputTokens": 54272,
+      "outputTokens": 1037,
+      "gptTokens": 78330,
+      "uncachedInputTokens": 23021,
+      "jevCalls": 0,
+      "jevInputTokens": 0,
+      "jevOutputTokens": 0,
+      "jevUnknownUsage": 0,
+      "knownAllTokens": 78330,
+      "usageComplete": true,
+      "investigations": 1,
+      "recalls": 0,
+      "hintSubmissions": 1,
+      "observedToolIntervalUnionMs": 15.103000000002794
+    },
+    "quality": {
+      "pass": true,
+      "checks": [
+        [
+          "notes/n00.md unchanged",
+          true
+        ],
+        [
+          "notes/n01.md unchanged",
+          true
+        ],
+        [
+          "notes/n02.md unchanged",
+          true
+        ],
+        [
+          "notes/n03.md unchanged",
+          true
+        ],
+        [
+          "notes/n04.md unchanged",
+          true
+        ],
+        [
+          "notes/n05.md unchanged",
+          true
+        ],
+        [
+          "notes/n06.md unchanged",
+          true
+        ],
+        [
+          "notes/n07.md unchanged",
+          true
+        ],
+        [
+          "notes/n08.md unchanged",
+          true
+        ],
+        [
+          "notes/n09.md unchanged",
+          true
+        ],
+        [
+          "notes/n10.md unchanged",
+          true
+        ],
+        [
+          "notes/n11.md unchanged",
+          true
+        ],
+        [
+          "retryableStatuses",
+          true
+        ],
+        [
+          "maximumTotalAttempts",
+          true
+        ],
+        [
+          "delayBaseMs",
+          true
+        ],
+        [
+          "delayMultiplier",
+          true
+        ],
+        [
+          "retryAfterCapSeconds",
+          true
+        ],
+        [
+          "permanentHeaderValue",
+          true
+        ],
+        [
+          "archivedMaximumAttempts",
+          true
+        ],
+        [
+          "sourceIds",
+          true
+        ],
+        [
+          "citations",
+          true
+        ]
+      ]
+    },
+    "artifacts": {
+      "answer.json": "{\n  \"retryableStatuses\": [\n    429,\n    500,\n    503\n  ],\n  \"maximumTotalAttempts\": 4,\n  \"delayBaseMs\": 250,\n  \"delayMultiplier\": 2,\n  \"retryAfterCapSeconds\": 30,\n  \"permanentHeaderValue\": \"permanent\",\n  \"archivedMaximumAttempts\": 2,\n  \"sourceIds\": [\n    \"N84\",\n    \"N45\",\n    \"N59\"\n  ]\n}\n",
+      "answer.md": "The current Atlas outbound webhook policy is the production contract **N84**, amended by the production correction **N45**. N84 makes 429 and 503 retryable; N45 adds 500, giving **429, 500, 503**. N45 also requires that a response with `X-Atlas-Delivery: permanent` never be retried, regardless of status. This permanent-response rule takes precedence over status-based retries. [N84, N45]\n\nThe correction preserves the contract’s limit of **four total attempts**, including the initial attempt (at most three retries), and its delay rules. Before retry index `i`, starting at zero, the computed delay is `250 ms × 2^i`: 250, 500, then 1,000 ms. An integer `Retry-After` header expressed in seconds overrides that computed delay, capped at **30 seconds**. If the header is absent or noninteger, the computed exponential delay remains unchanged; a noninteger value does not trigger a separate default delay. [N84, N45]\n\nThe archived design **N59** proposed **two attempts** and retries for any non-2xx response. It was never released and is explicitly superseded by N84 and N45. Its attempt limit is recorded only as `archivedMaximumAttempts`; neither archived rule governs current production delivery. No settings from other Atlas components are used. [N59]\n\nSources: [N84 — production contract](notes/n01.md), [N45 — production correction](notes/n06.md), [N59 — archived design](notes/n09.md).\n"
+    },
+    "commands": [
+      {
+        "command": "/bin/zsh -lc 'pwd; rg --files notes'",
+        "exitCode": 0,
+        "outputBytes": 240,
+        "outputSha256": "44df8b61d3ae55613258af83a1ef362f44d32f25e93372bb552d6a740980eb95",
+        "outputPreview": "<TMP>/jev-delegation-case-7Q5PkT\nnotes/n05.md\nnotes/n11.md\nnotes/n01.md\nnotes/n10.md\nnotes/n00.md\nnotes/n04.md\nnotes/n03.md\nnotes/n07.md\nnotes/n06.md\nnotes/n02.md\nnotes/n09.md\nnotes/n08.md\n"
+      },
+      {
+        "command": "/bin/zsh -lc \"python3 - <<'PY'\nimport json, hashlib\nfrom pathlib import Path\nnotes = {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in Path('notes').rglob('*') if p.is_file()}\nanswer = {\n    'retryableStatuses': [429, 500, 503],\n    'maximumTotalAttempts': 4,\n    'delayBaseMs': 250,\n    'delayMultiplier': 2,\n    'retryAfterCapSeconds': 30,\n    'permanentHeaderValue': 'permanent',\n    'archivedMaximumAttempts': 2,\n    'sourceIds': ['N84', 'N45', 'N59'],\n}\nPath('answer.json').write_text(json.dumps(answer, indent=2) + '\\\\n')\nPath('answer.md').write_text('''The current Atlas outbound webhook policy is the production contract **N84**, amended by the production correction **N45**. N84 makes 429 and 503 retryable; N45 adds 500, giving **429, 500, 503**. N45 also requires that a response with \"'`X-Atlas-Delivery: permanent` never be retried, regardless of status. This permanent-response rule takes precedence over status-based retries. [N84, N45]\n\nThe correction preserves the contract’s limit of **four total attempts**, including the initial attempt (at most three retries), and its delay rules. Before retry index `i`, starting at zero, the computed delay is `250 ms × 2''^i`: 250, 500, then 1,000 ms. An integer `Retry-After` header expressed in seconds overrides that computed delay, capped at **30 seconds**. If the header is absent or noninteger, the computed exponential delay remains unchanged; a noninteger value does not trigger a separate default delay. [N84, N45]\n\nThe archived design **N59** proposed **two attempts** and retries for any non-2xx response. It was never released and is explicitly superseded by N84 and N45. Its attempt limit is recorded only as `archivedMaximumAttempts`; neither archived rule governs current production delivery. No settings from other Atlas components are used. [N59]\n\nSources: [N84 — production contract](notes/n01.md), [N45 — production correction](notes/n06.md), [N59 — archived design](notes/n09.md).\n'\"''')\nloaded = json.loads(Path('answer.json').read_text())\nassert loaded == answer\nassert loaded['retryableStatuses'] == sorted(loaded['retryableStatuses'])\nassert all(type(x) is int for x in loaded['retryableStatuses'])\nassert set(loaded['sourceIds']) == {'N84', 'N45', 'N59'}\nfor source_id, path in [('N84', 'notes/n01.md'), ('N45', 'notes/n06.md'), ('N59', 'notes/n09.md')]:\n    assert source_id in Path(path).read_text().splitlines()[0]\n    assert source_id in Path('answer.md').read_text()\nassert notes == {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in Path('notes').rglob('*') if p.is_file()}\nprint('Verified answer.json values and schema, answer.md citations, and unchanged source notes.')\nPY\"",
+        "exitCode": 0,
+        "outputBytes": 89,
+        "outputSha256": "ca3b8c5935255a0dff5e62b390b2fd492c6099f0a1a832aa0a82a9313cc1f32d",
+        "outputPreview": "Verified answer.json values and schema, answer.md citations, and unchanged source notes.\n"
+      }
+    ],
+    "mcp": [
+      {
+        "tool": "jev_evidence",
+        "arguments": {
+          "operation": "investigate",
+          "workspace": "<TMP>/jev-delegation-case-7Q5PkT",
+          "input": {
+            "goal": "Reconcile current Atlas outbound webhook retry production contract and correction, Retry-After fallback and superseded archived design; extract exact requested values and three source IDs, exclude other Atlas components.",
+            "queries": [
+              "outbound",
+              "Retry-After",
+              "superseded",
+              "production correction"
+            ],
+            "paths": [
+              "notes"
+            ]
+          }
+        },
+        "status": "completed",
+        "error": null,
+        "resultSummary": {
+          "artifactId": "f3825cb8-cb61-43b7-b1ad-9e4e3bbbb4a3",
+          "excludedIds": [],
+          "duplicateIds": [],
+          "deferredIds": [],
+          "coverage": {
+            "total": 6,
+            "retained": 6,
+            "excluded": 0,
+            "duplicates": 0,
+            "deferred": 0
+          },
+          "completeCoverage": true,
+          "degraded": false,
+          "budget": 16000,
+          "usedBytes": 5870,
+          "protectedOverflow": false,
+          "recovery": {
+            "operation": "recall",
+            "artifactId": "f3825cb8-cb61-43b7-b1ad-9e4e3bbbb4a3"
+          },
+          "selection": {
+            "method": "local",
+            "reason": "lossless_projection_fits"
+          },
+          "projection": {
+            "kind": "shared_lines",
+            "rawBytes": 19672,
+            "displayBytes": 5870,
+            "dictionaryLines": 12,
+            "lossless": true
+          },
+          "search": {
+            "queries": [
+              "outbound",
+              "Retry-After",
+              "superseded",
+              "production correction"
+            ],
+            "paths": [
+              "notes"
+            ],
+            "matchedLines": 9,
+            "mergedCandidates": 6,
+            "scannedFiles": 12,
+            "enumeratedFiles": 12,
+            "readBytes": 45733,
+            "candidateBytes": 19672,
+            "limited": false,
+            "skippedFileCount": 0,
+            "matchedFiles": 6,
+            "scope": "Case-insensitive literal OR search in rg-visible text files only. Context windows are merged within a source snapshot. Not an exhaustive semantic review of the workspace.",
+            "recallScope": "Saved retrieved windows only; a recall miss does not prove absence elsewhere in a file or workspace."
+          },
+          "textLocation": "context"
+        },
+        "items": [
+          {
+            "id": "i0",
+            "source": "notes/n00.md",
+            "sourceHash": "b97387729e3d2f9fe5167ce3a9c9970b441f18198b0fb2932ead701c6f6382c4",
+            "startLine": 6,
+            "endLine": 15
+          },
+          {
+            "id": "i1",
+            "source": "notes/n01.md",
+            "sourceHash": "808e1b54dff75e83ac6a60150a3f90747a83eb2a9028d32f9add61ce0356c156",
+            "startLine": 1,
+            "endLine": 15
+          },
+          {
+            "id": "i2",
+            "source": "notes/n02.md",
+            "sourceHash": "d89712985e7c56655eaff3fbc87fc5ccd399467d26b0b4b8195d5a3626d57aaf",
+            "startLine": 6,
+            "endLine": 15
+          },
+          {
+            "id": "i3",
+            "source": "notes/n05.md",
+            "sourceHash": "c8a08bf921484748b651f137e54baf9bbff4c86a28e65e0244d407156aa84121",
+            "startLine": 6,
+            "endLine": 15
+          },
+          {
+            "id": "i4",
+            "source": "notes/n06.md",
+            "sourceHash": "561787cc028fa12aba2ae1db74d2ddc33e39a94597c450527d6899331b756281",
+            "startLine": 1,
+            "endLine": 15
+          },
+          {
+            "id": "i5",
+            "source": "notes/n09.md",
+            "sourceHash": "12d46ca261edad17af8bd7850c31519edaedf101ba4f35c6caaf326f9c21b153",
+            "startLine": 1,
+            "endLine": 15
+          }
+        ],
+        "contextBytes": 6413,
+        "contextSha256": "7d8bfa3cb7266ba43b01f0a5e4ef57e6afb72db3c9fbcb7d98fca6ce3b668db8",
+        "contextPreview": "JevPilot evidence: 6/6 records retained; 0 judged unrelated, 0 budget-deferred, 0 duplicates/already read; no budget-deferred records.\nUse retained evidence first. For a concrete gap or contradiction, recall by IDs or a literal query; full recall remains available when required. artifactId=f3825cb8-cb61-43b7-b1ad-9e4e3bbbb4a3.\nSearch: 9 matching lines → 6 windows in 6 files; within limits; 0 files skipped. Literal query scope only, not exhaustive semantic coverage. Recall searches saved windows; use native reads for gaps outside them.\nShared source lines (each [=S#] reference below occupies one original line; every occurrence is preserved):\n[=S0] Background note 10: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names m"
+      }
+    ],
+    "usage": [
+      {
+        "total": {
+          "totalTokens": 16139,
+          "inputTokens": 16052,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 87,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 16139,
+          "inputTokens": 16052,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 87,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 33286,
+          "inputTokens": 33064,
+          "cachedInputTokens": 15872,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 222,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 17147,
+          "inputTokens": 17012,
+          "cachedInputTokens": 15872,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 135,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 55742,
+          "inputTokens": 54763,
+          "cachedInputTokens": 32768,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 979,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 22456,
+          "inputTokens": 21699,
+          "cachedInputTokens": 16896,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 757,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 78330,
+          "inputTokens": 77293,
+          "cachedInputTokens": 54272,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1037,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 22588,
+          "inputTokens": 22530,
+          "cachedInputTokens": 21504,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 58,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      }
+    ],
+    "timeline": [
+      {
+        "method": "turn/start:sent",
+        "elapsedMs": 0
+      },
+      {
+        "elapsedMs": 2.299,
+        "method": "turn/started",
+        "status": "inProgress"
+      },
+      {
+        "elapsedMs": 19989.923,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 20033.962,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 20034.02,
+        "method": "item/started",
+        "itemId": "01a0d26d-9256-7db2-a00b-5642d2b0a439",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 20034.026,
+        "method": "item/completed",
+        "itemId": "01a0d26d-9256-7db2-a00b-5642d2b0a439",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 38730.203,
+        "method": "item/started",
+        "itemId": "msg_0133c63a8a400beb016ab4d88a01b087d0ba9e7f54849f8417",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 38951.551,
+        "method": "item/completed",
+        "itemId": "msg_0133c63a8a400beb016ab4d88a01b087d0ba9e7f54849f8417",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 39645.14,
+        "method": "item/started",
+        "itemId": "exec-20e87c83-3bf7-4550-9351-040f4c5046e9",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 39645.147,
+        "method": "item/completed",
+        "itemId": "exec-20e87c83-3bf7-4550-9351-040f4c5046e9",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 39851.276,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 16139
+      },
+      {
+        "elapsedMs": 50659.362,
+        "method": "item/started",
+        "itemId": "exec-2695bdbf-494b-4fbd-893e-a4951bd6d9dc",
+        "itemType": "mcpToolCall"
+      },
+      {
+        "elapsedMs": 50674.408,
+        "method": "item/completed",
+        "itemId": "exec-2695bdbf-494b-4fbd-893e-a4951bd6d9dc",
+        "itemType": "mcpToolCall"
+      },
+      {
+        "elapsedMs": 50848.277,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 33286
+      },
+      {
+        "elapsedMs": 82530.972,
+        "method": "item/started",
+        "itemId": "exec-8be0a060-4a7d-401c-a3f7-a82308adb5fd",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 82531.022,
+        "method": "item/completed",
+        "itemId": "exec-8be0a060-4a7d-401c-a3f7-a82308adb5fd",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 82531.245,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 55742
+      },
+      {
+        "elapsedMs": 90553.953,
+        "method": "item/started",
+        "itemId": "msg_0133c63a8a400beb016ab4d8bdd20c87d0a2232e090cf7d54d",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 92287.326,
+        "method": "item/completed",
+        "itemId": "msg_0133c63a8a400beb016ab4d8bdd20c87d0a2232e090cf7d54d",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 92370.454,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 78330
+      },
+      {
+        "elapsedMs": 92370.707,
+        "method": "turn/completed",
+        "status": "completed"
+      }
+    ],
+    "jevEvents": [
+      {
+        "at": "2026-09-24T08:00:22.022Z",
+        "kind": "operation",
+        "operation": "investigate",
+        "elapsedMs": 13,
+        "calls": 0
+      },
+      {
+        "at": "2026-09-24T08:00:22.022Z",
+        "kind": "investigation",
+        "selection": {
+          "method": "local",
+          "reason": "lossless_projection_fits"
+        },
+        "matchedLines": 9,
+        "candidates": 6,
+        "scannedFiles": 12,
+        "candidateBytes": 19672,
+        "limited": false,
+        "skippedFiles": 0
+      },
+      {
+        "at": "2026-09-24T07:59:51.379Z",
+        "kind": "investigation_hint",
+        "submitted": true,
+        "eligibleFiles": 8,
+        "observedBytes": 30373,
+        "modelReceipt": "unconfirmed"
+      }
+    ]
+  },
+  {
+    "metrics": {
+      "phase": "packed",
+      "id": "policy-jev-1",
+      "arm": "jev",
+      "repeat": 1,
+      "status": "completed",
+      "passed": true,
+      "endToEndMs": 107103.009292,
+      "startupMs": 89.01083400001517,
+      "generationsWithUsage": 4,
+      "inputTokens": 80481,
+      "cachedInputTokens": 55808,
+      "outputTokens": 882,
+      "gptTokens": 81363,
+      "uncachedInputTokens": 24673,
+      "jevCalls": 0,
+      "jevInputTokens": 0,
+      "jevOutputTokens": 0,
+      "jevUnknownUsage": 0,
+      "knownAllTokens": 81363,
+      "usageComplete": true,
+      "investigations": 1,
+      "recalls": 0,
+      "hintSubmissions": 1,
+      "observedToolIntervalUnionMs": 17.662999999996828
+    },
+    "quality": {
+      "pass": true,
+      "checks": [
+        [
+          "notes/n00.md unchanged",
+          true
+        ],
+        [
+          "notes/n01.md unchanged",
+          true
+        ],
+        [
+          "notes/n02.md unchanged",
+          true
+        ],
+        [
+          "notes/n03.md unchanged",
+          true
+        ],
+        [
+          "notes/n04.md unchanged",
+          true
+        ],
+        [
+          "notes/n05.md unchanged",
+          true
+        ],
+        [
+          "notes/n06.md unchanged",
+          true
+        ],
+        [
+          "notes/n07.md unchanged",
+          true
+        ],
+        [
+          "notes/n08.md unchanged",
+          true
+        ],
+        [
+          "notes/n09.md unchanged",
+          true
+        ],
+        [
+          "notes/n10.md unchanged",
+          true
+        ],
+        [
+          "notes/n11.md unchanged",
+          true
+        ],
+        [
+          "retryableStatuses",
+          true
+        ],
+        [
+          "maximumTotalAttempts",
+          true
+        ],
+        [
+          "delayBaseMs",
+          true
+        ],
+        [
+          "delayMultiplier",
+          true
+        ],
+        [
+          "retryAfterCapSeconds",
+          true
+        ],
+        [
+          "permanentHeaderValue",
+          true
+        ],
+        [
+          "archivedMaximumAttempts",
+          true
+        ],
+        [
+          "sourceIds",
+          true
+        ],
+        [
+          "citations",
+          true
+        ]
+      ]
+    },
+    "artifacts": {
+      "answer.json": "{\n  \"retryableStatuses\": [\n    429,\n    500,\n    503\n  ],\n  \"maximumTotalAttempts\": 4,\n  \"delayBaseMs\": 250,\n  \"delayMultiplier\": 2,\n  \"retryAfterCapSeconds\": 30,\n  \"permanentHeaderValue\": \"permanent\",\n  \"archivedMaximumAttempts\": 2,\n  \"sourceIds\": [\n    \"N84\",\n    \"N45\",\n    \"N59\"\n  ]\n}\n",
+      "answer.md": "The current Atlas outbound webhook policy is the production contract [N84](notes/n01.md), as amended by the production correction [N45](notes/n06.md). N84 makes 429 and 503 retryable; N45 adds 500. N45 also gives `X-Atlas-Delivery: permanent` precedence over every status: a response with that header must never be retried.\n\nN45 leaves N84’s attempt limit and delay rules unchanged: at most four total attempts, including the initial attempt, with retry delays computed as `250 ms × 2^i`, where the first retry has index `i = 0`. Thus the three computed retry delays are 250, 500, and 1000 ms. An integer `Retry-After` header expressed in seconds overrides the computed delay, capped at 30 seconds. If the header is absent or noninteger, the computed exponential delay remains unchanged; 30 seconds is the override cap, not the fallback delay. [N84, N45]\n\nThe archived design [N59](notes/n09.md) proposed two attempts and retries for any non-2xx response. It was never released and is explicitly superseded by N84 and N45. Its two-attempt limit is recorded only as `archivedMaximumAttempts`, not as current policy. These conclusions use the outbound webhook sources themselves, without importing behavior from other Atlas components. [N59]\n"
+    },
+    "commands": [
+      {
+        "command": "/bin/zsh -lc 'rg --files notes'",
+        "exitCode": 0,
+        "outputBytes": 156,
+        "outputSha256": "822b8f9308bdb1b78be5891ce6c031e0fbd3d249db0f70444670529045d7df5f",
+        "outputPreview": "notes/n05.md\nnotes/n11.md\nnotes/n01.md\nnotes/n10.md\nnotes/n00.md\nnotes/n04.md\nnotes/n03.md\nnotes/n07.md\nnotes/n06.md\nnotes/n02.md\nnotes/n09.md\nnotes/n08.md\n"
+      },
+      {
+        "command": "/bin/zsh -lc \"python3 - <<'PY'\nfrom pathlib import Path\nimport hashlib, json\nnotes = {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in Path('notes').rglob('*') if p.is_file()}\ndata = {\n    'retryableStatuses': [429, 500, 503],\n    'maximumTotalAttempts': 4,\n    'delayBaseMs': 250,\n    'delayMultiplier': 2,\n    'retryAfterCapSeconds': 30,\n    'permanentHeaderValue': 'permanent',\n    'archivedMaximumAttempts': 2,\n    'sourceIds': ['N84', 'N45', 'N59'],\n}\nPath('answer.json').write_text(json.dumps(data, indent=2) + '\\\\n')\nPath('answer.md').write_text('''The current Atlas outbound webhook policy is the production contract [N84](notes/n01.md), as amended by the production correction [N45](notes/n06.md). N84 makes 429 and 503 retryable; N45 adds 500. N45 also gives \"'`X-Atlas-Delivery: permanent` precedence over every status: a response with that header must never be retried.\n\nN45 leaves N84’s attempt limit and delay rules unchanged: at most four total attempts, including the initial attempt, with retry delays computed as `250 ms × 2''^i`, where the first retry has index `i = 0`. Thus the three computed retry delays are 250, 500, and 1000 ms. An integer `Retry-After` header expressed in seconds overrides the computed delay, capped at 30 seconds. If the header is absent or noninteger, the computed exponential delay remains unchanged; 30 seconds is the override cap, not the fallback delay. [N84, N45]\n\nThe archived design [N59](notes/n09.md) proposed two attempts and retries for any non-2xx response. It was never released and is explicitly superseded by N84 and N45. Its two-attempt limit is recorded only as `archivedMaximumAttempts`, not as current policy. These conclusions use the outbound webhook sources themselves, without importing behavior from other Atlas components. [N59]\n'\"''')\nassert json.loads(Path('answer.json').read_text()) == data\nassert data['retryableStatuses'] == sorted(data['retryableStatuses'])\nassert all(type(v) is int for v in data['retryableStatuses'])\nassert all(s in Path('answer.md').read_text() for s in data['sourceIds'])\nassert notes == {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in Path('notes').rglob('*') if p.is_file()}\nprint('Verified answer.json, answer.md, source citations, and unchanged source notes.')\nPY\"",
+        "exitCode": 0,
+        "outputBytes": 79,
+        "outputSha256": "7d846e0645e93b7102c5d0a50991b43e7c699e83f9e460d205b151c36fa3fcf8",
+        "outputPreview": "Verified answer.json, answer.md, source citations, and unchanged source notes.\n"
+      }
+    ],
+    "mcp": [
+      {
+        "tool": "jev_evidence",
+        "arguments": {
+          "operation": "investigate",
+          "workspace": "<TMP>/jev-delegation-case-erxRoA",
+          "input": {
+            "goal": "Reconcile current Atlas outbound webhook retry production contract, production correction, superseded archived design; identify exact policy values and source IDs, excluding other Atlas components.",
+            "queries": [
+              "outbound",
+              "webhook",
+              "Retry-After",
+              "archived"
+            ],
+            "paths": [
+              "notes"
+            ]
+          }
+        },
+        "status": "completed",
+        "error": null,
+        "resultSummary": {
+          "artifactId": "21f7aaab-ce65-401c-86f8-bc764a4e0121",
+          "excludedIds": [],
+          "duplicateIds": [],
+          "deferredIds": [],
+          "coverage": {
+            "total": 12,
+            "retained": 12,
+            "excluded": 0,
+            "duplicates": 0,
+            "deferred": 0
+          },
+          "completeCoverage": true,
+          "degraded": false,
+          "budget": 16000,
+          "usedBytes": 7109,
+          "protectedOverflow": false,
+          "recovery": {
+            "operation": "recall",
+            "artifactId": "21f7aaab-ce65-401c-86f8-bc764a4e0121"
+          },
+          "selection": {
+            "method": "local",
+            "reason": "lossless_projection_fits"
+          },
+          "projection": {
+            "kind": "shared_lines",
+            "rawBytes": 34993,
+            "displayBytes": 7109,
+            "dictionaryLines": 12,
+            "lossless": true
+          },
+          "search": {
+            "queries": [
+              "outbound",
+              "webhook",
+              "Retry-After",
+              "archived"
+            ],
+            "paths": [
+              "notes"
+            ],
+            "matchedLines": 15,
+            "mergedCandidates": 12,
+            "scannedFiles": 12,
+            "enumeratedFiles": 12,
+            "readBytes": 45733,
+            "candidateBytes": 34993,
+            "limited": false,
+            "skippedFileCount": 0,
+            "matchedFiles": 12,
+            "scope": "Case-insensitive literal OR search in rg-visible text files only. Context windows are merged within a source snapshot. Not an exhaustive semantic review of the workspace.",
+            "recallScope": "Saved retrieved windows only; a recall miss does not prove absence elsewhere in a file or workspace."
+          },
+          "textLocation": "context"
+        },
+        "items": [
+          {
+            "id": "i0",
+            "source": "notes/n00.md",
+            "sourceHash": "b97387729e3d2f9fe5167ce3a9c9970b441f18198b0fb2932ead701c6f6382c4",
+            "startLine": 6,
+            "endLine": 15
+          },
+          {
+            "id": "i1",
+            "source": "notes/n01.md",
+            "sourceHash": "808e1b54dff75e83ac6a60150a3f90747a83eb2a9028d32f9add61ce0356c156",
+            "startLine": 1,
+            "endLine": 15
+          },
+          {
+            "id": "i2",
+            "source": "notes/n02.md",
+            "sourceHash": "d89712985e7c56655eaff3fbc87fc5ccd399467d26b0b4b8195d5a3626d57aaf",
+            "startLine": 6,
+            "endLine": 15
+          },
+          {
+            "id": "i3",
+            "source": "notes/n03.md",
+            "sourceHash": "535a597adb4b1b090699c7c2bb1364dc2e3f0f344f701acf083c18ba95b9e996",
+            "startLine": 6,
+            "endLine": 15
+          },
+          {
+            "id": "i4",
+            "source": "notes/n04.md",
+            "sourceHash": "27348a7150e61b578f6a05b8434d080c83ff8e3c4deec2476c51ca65be5b6e17",
+            "startLine": 6,
+            "endLine": 15
+          },
+          {
+            "id": "i5",
+            "source": "notes/n05.md",
+            "sourceHash": "c8a08bf921484748b651f137e54baf9bbff4c86a28e65e0244d407156aa84121",
+            "startLine": 6,
+            "endLine": 15
+          },
+          {
+            "id": "i6",
+            "source": "notes/n06.md",
+            "sourceHash": "561787cc028fa12aba2ae1db74d2ddc33e39a94597c450527d6899331b756281",
+            "startLine": 1,
+            "endLine": 15
+          },
+          {
+            "id": "i7",
+            "source": "notes/n07.md",
+            "sourceHash": "09aa4fe3a52249a814b1bff07791f0afe9ab6479758c7c1e701c8e51d06cd4be",
+            "startLine": 6,
+            "endLine": 15
+          },
+          {
+            "id": "i8",
+            "source": "notes/n08.md",
+            "sourceHash": "39bdc427bd1e1b11307755225bd5d6dc74dee1f889866440e7263135a78b03f4",
+            "startLine": 6,
+            "endLine": 15
+          },
+          {
+            "id": "i9",
+            "source": "notes/n09.md",
+            "sourceHash": "12d46ca261edad17af8bd7850c31519edaedf101ba4f35c6caaf326f9c21b153",
+            "startLine": 1,
+            "endLine": 15
+          },
+          {
+            "id": "i10",
+            "source": "notes/n10.md",
+            "sourceHash": "16ee4267095b6303a03feadfaa9405376a5ee1e5b49a3285f1c2456afd967248",
+            "startLine": 6,
+            "endLine": 15
+          },
+          {
+            "id": "i11",
+            "source": "notes/n11.md",
+            "sourceHash": "9766d63ac131b8ca60b815d55e6c3304090f861f21d69ca6e16691f6c74829ee",
+            "startLine": 6,
+            "endLine": 15
+          }
+        ],
+        "contextBytes": 7657,
+        "contextSha256": "6ac7a96551c5492ba2dcdbf76f18439afe41f48f17f4b68dca44e5c1be3dd6c5",
+        "contextPreview": "JevPilot evidence: 12/12 records retained; 0 judged unrelated, 0 budget-deferred, 0 duplicates/already read; no budget-deferred records.\nUse retained evidence first. For a concrete gap or contradiction, recall by IDs or a literal query; full recall remains available when required. artifactId=21f7aaab-ce65-401c-86f8-bc764a4e0121.\nSearch: 15 matching lines → 12 windows in 12 files; within limits; 0 files skipped. Literal query scope only, not exhaustive semantic coverage. Recall searches saved windows; use native reads for gaps outside them.\nShared source lines (each [=S#] reference below occupies one original line; every occurrence is preserved):\n[=S0] Background note 10: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration na"
+      }
+    ],
+    "usage": [
+      {
+        "total": {
+          "totalTokens": 16114,
+          "inputTokens": 16036,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 78,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 16114,
+          "inputTokens": 16036,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 78,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 33184,
+          "inputTokens": 32981,
+          "cachedInputTokens": 15872,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 203,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 17070,
+          "inputTokens": 16945,
+          "cachedInputTokens": 15872,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 125,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 57217,
+          "inputTokens": 56377,
+          "cachedInputTokens": 32640,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 840,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 24033,
+          "inputTokens": 23396,
+          "cachedInputTokens": 16768,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 637,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 81363,
+          "inputTokens": 80481,
+          "cachedInputTokens": 55808,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 882,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 24146,
+          "inputTokens": 24104,
+          "cachedInputTokens": 23168,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 42,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      }
+    ],
+    "timeline": [
+      {
+        "method": "turn/start:sent",
+        "elapsedMs": 0
+      },
+      {
+        "elapsedMs": 2.142,
+        "method": "turn/started",
+        "status": "inProgress"
+      },
+      {
+        "elapsedMs": 19985.217,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 20032.624,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 20032.662,
+        "method": "item/started",
+        "itemId": "01a0d26e-fbc4-7672-bcda-450a4941d635",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 20032.665,
+        "method": "item/completed",
+        "itemId": "01a0d26e-fbc4-7672-bcda-450a4941d635",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 32124.29,
+        "method": "item/started",
+        "itemId": "msg_0f7c285e59eed362016ab4d8db8ff887d080156fb35099390c",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 32128.1,
+        "method": "item/completed",
+        "itemId": "msg_0f7c285e59eed362016ab4d8db8ff887d080156fb35099390c",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 32229.489,
+        "method": "item/started",
+        "itemId": "exec-e4330bce-4f0a-466e-bc5a-74809e2575f6",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 32229.529,
+        "method": "item/completed",
+        "itemId": "exec-e4330bce-4f0a-466e-bc5a-74809e2575f6",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 32229.533,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 16114
+      },
+      {
+        "elapsedMs": 48267.073,
+        "method": "item/started",
+        "itemId": "exec-f2b49eee-33a6-48e5-a36a-6dc4386bb83d",
+        "itemType": "mcpToolCall"
+      },
+      {
+        "elapsedMs": 48284.686,
+        "method": "item/completed",
+        "itemId": "exec-f2b49eee-33a6-48e5-a36a-6dc4386bb83d",
+        "itemType": "mcpToolCall"
+      },
+      {
+        "elapsedMs": 48285.112,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 33184
+      },
+      {
+        "elapsedMs": 99462.464,
+        "method": "item/started",
+        "itemId": "exec-a725da52-bb90-4bfa-956a-8cde6948f458",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 99462.474,
+        "method": "item/completed",
+        "itemId": "exec-a725da52-bb90-4bfa-956a-8cde6948f458",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 99462.972,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 57217
+      },
+      {
+        "elapsedMs": 107100.956,
+        "method": "item/started",
+        "itemId": "msg_0f7c285e59eed362016ab4d927835c87d095fa0c1dbfb2d402",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 107102.923,
+        "method": "item/completed",
+        "itemId": "msg_0f7c285e59eed362016ab4d927835c87d095fa0c1dbfb2d402",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 107102.933,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 81363
+      },
+      {
+        "elapsedMs": 107102.992,
+        "method": "turn/completed",
+        "status": "completed"
+      }
+    ],
+    "jevEvents": [
+      {
+        "at": "2026-09-24T08:01:52.161Z",
+        "kind": "operation",
+        "operation": "investigate",
+        "elapsedMs": 16,
+        "calls": 0
+      },
+      {
+        "at": "2026-09-24T08:01:52.161Z",
+        "kind": "investigation",
+        "selection": {
+          "method": "local",
+          "reason": "lossless_projection_fits"
+        },
+        "matchedLines": 15,
+        "candidates": 12,
+        "scannedFiles": 12,
+        "candidateBytes": 34993,
+        "limited": false,
+        "skippedFiles": 0
+      },
+      {
+        "at": "2026-09-24T08:01:23.905Z",
+        "kind": "investigation_hint",
+        "submitted": true,
+        "eligibleFiles": 8,
+        "observedBytes": 30373,
+        "modelReceipt": "unconfirmed"
+      }
+    ]
+  },
+  {
+    "metrics": {
+      "phase": "packed",
+      "id": "policy-bare-1",
+      "arm": "bare",
+      "repeat": 1,
+      "status": "completed",
+      "passed": true,
+      "endToEndMs": 74253.02629100002,
+      "startupMs": 73.53845799999544,
+      "generationsWithUsage": 5,
+      "inputTokens": 96533,
+      "cachedInputTokens": 72960,
+      "outputTokens": 887,
+      "gptTokens": 97420,
+      "uncachedInputTokens": 23573,
+      "jevCalls": 0,
+      "jevInputTokens": 0,
+      "jevOutputTokens": 0,
+      "jevUnknownUsage": 0,
+      "knownAllTokens": 97420,
+      "usageComplete": true,
+      "investigations": 0,
+      "recalls": 0,
+      "hintSubmissions": 0,
+      "observedToolIntervalUnionMs": 0.2630000000062864
+    },
+    "quality": {
+      "pass": true,
+      "checks": [
+        [
+          "notes/n00.md unchanged",
+          true
+        ],
+        [
+          "notes/n01.md unchanged",
+          true
+        ],
+        [
+          "notes/n02.md unchanged",
+          true
+        ],
+        [
+          "notes/n03.md unchanged",
+          true
+        ],
+        [
+          "notes/n04.md unchanged",
+          true
+        ],
+        [
+          "notes/n05.md unchanged",
+          true
+        ],
+        [
+          "notes/n06.md unchanged",
+          true
+        ],
+        [
+          "notes/n07.md unchanged",
+          true
+        ],
+        [
+          "notes/n08.md unchanged",
+          true
+        ],
+        [
+          "notes/n09.md unchanged",
+          true
+        ],
+        [
+          "notes/n10.md unchanged",
+          true
+        ],
+        [
+          "notes/n11.md unchanged",
+          true
+        ],
+        [
+          "retryableStatuses",
+          true
+        ],
+        [
+          "maximumTotalAttempts",
+          true
+        ],
+        [
+          "delayBaseMs",
+          true
+        ],
+        [
+          "delayMultiplier",
+          true
+        ],
+        [
+          "retryAfterCapSeconds",
+          true
+        ],
+        [
+          "permanentHeaderValue",
+          true
+        ],
+        [
+          "archivedMaximumAttempts",
+          true
+        ],
+        [
+          "sourceIds",
+          true
+        ],
+        [
+          "citations",
+          true
+        ]
+      ]
+    },
+    "artifacts": {
+      "answer.json": "{\n  \"retryableStatuses\": [\n    429,\n    500,\n    503\n  ],\n  \"maximumTotalAttempts\": 4,\n  \"delayBaseMs\": 250,\n  \"delayMultiplier\": 2,\n  \"retryAfterCapSeconds\": 30,\n  \"permanentHeaderValue\": \"permanent\",\n  \"archivedMaximumAttempts\": 2,\n  \"sourceIds\": [\n    \"N84\",\n    \"N45\",\n    \"N59\"\n  ]\n}\n",
+      "answer.md": "# Atlas outbound webhook retry policy\n\nThe production contract **N84** governs current outbound delivery, as amended by production correction **N45**. Together they make HTTP **429, 500, and 503** retryable. The correction adds 500 and gives `X-Atlas-Delivery: permanent` precedence over every status-based retry rule: such a response must never be retried, regardless of status. It leaves the attempt limit and delay rules unchanged [N84, N45].\n\nThere are **four total attempts**, including the initial attempt (at most three retries). Computed retry delays are `250 ms × 2^i`, with retry index `i` starting at zero: **250, 500, and 1000 ms**. An integer `Retry-After` header, interpreted in seconds and capped at **30 seconds**, overrides the computed delay. If the header is absent or noninteger, the computed delay remains unchanged. This delay override does not override the permanent-response prohibition or attempt limit [N84, N45].\n\nThe archived design **N59** proposed **two attempts** and retries for any non-2xx response. It was never released and is explicitly superseded by N84 and N45; its attempt count is recorded only as `archivedMaximumAttempts`, not as current policy. Notes about other Atlas components do not establish outbound delivery behavior [N59].\n\nSources: [N84 — production contract](notes/n01.md), [N45 — production correction](notes/n06.md), [N59 — archived design](notes/n09.md).\n"
+    },
+    "commands": [
+      {
+        "command": "/bin/zsh -lc \"pwd && rg --files notes -g '*'\"",
+        "exitCode": 0,
+        "outputBytes": 240,
+        "outputSha256": "88f206c4c91aa3a5bb69bf3a0a52d24853a2b04006014e4bae9acbdbeca93427",
+        "outputPreview": "<TMP>/jev-delegation-case-2N8W1i\nnotes/n05.md\nnotes/n11.md\nnotes/n01.md\nnotes/n10.md\nnotes/n00.md\nnotes/n04.md\nnotes/n03.md\nnotes/n07.md\nnotes/n06.md\nnotes/n02.md\nnotes/n09.md\nnotes/n08.md\n"
+      },
+      {
+        "command": "/bin/zsh -lc \"rg -n '.' notes\"",
+        "exitCode": 0,
+        "outputBytes": 48313,
+        "outputSha256": "4f00929921145b7fd3fe2974469bce687b9d1afbea07ea8f069222180134d5b3",
+        "outputPreview": "notes/n02.md:1:# N13 Atlas schema storage\nnotes/n02.md:2:Background note 1: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nnotes/n02.md:3:Background note 2: Atlas operates several independent facilities. Examples describe only the component named in this note. Configuration names may recur across components; ownership and release status determine which contract applies. Do not infer delivery semantics from an administrative display.\nnotes/n02.md:4:Background note 3: Atlas operates several independent facilities. Examples describe only the component named in thi"
+      },
+      {
+        "command": "/bin/zsh -lc \"rg -n -v '\"'^Background note'\"' notes\"",
+        "exitCode": 0,
+        "outputBytes": 3013,
+        "outputSha256": "7a4c74258e90570d6b03fab6298da0e888822e87ec6cbafdabd158acd38cbbe6",
+        "outputPreview": "notes/n05.md:1:# N90 Atlas ingest tutorial\nnotes/n05.md:14:This tutorial describes clients sending records into Atlas. Client retry examples are illustrative. Inbound ingest and outbound webhook delivery have independent contracts.\nnotes/n03.md:1:# N67 Atlas display accessibility\nnotes/n03.md:14:The webhook panel obeys reduced motion preferences. Screen reader names come from visible labels. This note concerns controls and has no transport contract.\nnotes/n10.md:1:# N26 Atlas endpoint editor\nnotes/n10.md:14:The webhook URL editor validates URL syntax before saving. It does not infer endpoint response classes or modify transport policy.\nnotes/n11.md:1:# N71 Atlas pagination guide\nnotes/n11.md:14:The webhook events list is paginated with an opaque cursor. Page size and refresh interval gover"
+      },
+      {
+        "command": "/bin/zsh -lc \"python3 - <<'PY'\nimport hashlib, json\nfrom pathlib import Path\nnotes = {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in Path('notes').glob('*') if p.is_file()}\nanswer = {\n    'retryableStatuses': [429, 500, 503],\n    'maximumTotalAttempts': 4,\n    'delayBaseMs': 250,\n    'delayMultiplier': 2,\n    'retryAfterCapSeconds': 30,\n    'permanentHeaderValue': 'permanent',\n    'archivedMaximumAttempts': 2,\n    'sourceIds': ['N84', 'N45', 'N59'],\n}\nPath('answer.json').write_text(json.dumps(answer, indent=2) + '\\\\n')\nPath('answer.md').write_text('''# Atlas outbound webhook retry policy\n\nThe production contract **N84** governs current outbound delivery, as amended by production correction **N45**. Together they make HTTP **429, 500, and 503** retryable. The correction adds 500 and gives \"'`X-Atlas-Delivery: permanent` precedence over every status-based retry rule: such a response must never be retried, regardless of status. It leaves the attempt limit and delay rules unchanged [N84, N45].\n\nThere are **four total attempts**, including the initial attempt (at most three retries). Computed retry delays are `250 ms × 2''^i`, with retry index `i` starting at zero: **250, 500, and 1000 ms**. An integer `Retry-After` header, interpreted in seconds and capped at **30 seconds**, overrides the computed delay. If the header is absent or noninteger, the computed delay remains unchanged. This delay override does not override the permanent-response prohibition or attempt limit [N84, N45].\n\nThe archived design **N59** proposed **two attempts** and retries for any non-2xx response. It was never released and is explicitly superseded by N84 and N45; its attempt count is recorded only as `archivedMaximumAttempts`, not as current policy. Notes about other Atlas components do not establish outbound delivery behavior [N59].\n\nSources: [N84 — production contract](notes/n01.md), [N45 — production correction](notes/n06.md), [N59 — archived design](notes/n09.md).\n'\"''')\nloaded = json.loads(Path('answer.json').read_text())\nassert loaded == answer\nassert loaded['retryableStatuses'] == sorted(loaded['retryableStatuses'])\nassert all(type(x) is int for x in loaded['retryableStatuses'])\nassert set(loaded['sourceIds']) == {'N84', 'N45', 'N59'}\nassert all(source in Path('answer.md').read_text() for source in loaded['sourceIds'])\nassert notes == {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in Path('notes').glob('*') if p.is_file()}\nprint('Verified answer.json values and types, answer.md source citations, and unchanged source notes.')\nPY\"",
+        "exitCode": 0,
+        "outputBytes": 95,
+        "outputSha256": "d50e9fb34d9fbceab2c121094176a44ecc7c8208c899ea136a730811428d2c03",
+        "outputPreview": "Verified answer.json values and types, answer.md source citations, and unchanged source notes.\n"
+      }
+    ],
+    "mcp": [],
+    "usage": [
+      {
+        "total": {
+          "totalTokens": 15258,
+          "inputTokens": 15191,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 67,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 15258,
+          "inputTokens": 15191,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 67,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 30707,
+          "inputTokens": 30609,
+          "cachedInputTokens": 14976,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 98,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 15449,
+          "inputTokens": 15418,
+          "cachedInputTokens": 14976,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 31,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 51960,
+          "inputTokens": 51826,
+          "cachedInputTokens": 30208,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 134,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 21253,
+          "inputTokens": 21217,
+          "cachedInputTokens": 15232,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 36,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 74630,
+          "inputTokens": 73791,
+          "cachedInputTokens": 51200,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 839,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 22670,
+          "inputTokens": 21965,
+          "cachedInputTokens": 20992,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 705,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 97420,
+          "inputTokens": 96533,
+          "cachedInputTokens": 72960,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 887,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 22790,
+          "inputTokens": 22742,
+          "cachedInputTokens": 21760,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 48,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      }
+    ],
+    "timeline": [
+      {
+        "method": "turn/start:sent",
+        "elapsedMs": 0
+      },
+      {
+        "elapsedMs": 2.149,
+        "method": "turn/started",
+        "status": "inProgress"
+      },
+      {
+        "elapsedMs": 8795.643,
+        "method": "item/started",
+        "itemId": "01a0d270-729a-7513-a248-cf9217d4235c",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 8795.681,
+        "method": "item/completed",
+        "itemId": "01a0d270-729a-7513-a248-cf9217d4235c",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 17132.017,
+        "method": "item/started",
+        "itemId": "msg_06ecad642a2e3e79016ab4d93bf72887d093894a869d41f005",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 18094.138,
+        "method": "item/completed",
+        "itemId": "msg_06ecad642a2e3e79016ab4d93bf72887d093894a869d41f005",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 19244.437,
+        "method": "item/started",
+        "itemId": "exec-5f213bec-1187-45c2-a4a3-6948607db342",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 19244.48,
+        "method": "item/completed",
+        "itemId": "exec-5f213bec-1187-45c2-a4a3-6948607db342",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 20703.079,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 15258
+      },
+      {
+        "elapsedMs": 30294.206,
+        "method": "item/started",
+        "itemId": "exec-8a8bd551-ab1f-4d85-bb83-f1e55a997b62",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 30294.403,
+        "method": "item/completed",
+        "itemId": "exec-8a8bd551-ab1f-4d85-bb83-f1e55a997b62",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 30294.991,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 30707
+      },
+      {
+        "elapsedMs": 36948.568,
+        "method": "item/started",
+        "itemId": "exec-24661e1a-721e-47fa-9dd5-d9c69646cb17",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 36948.578,
+        "method": "item/completed",
+        "itemId": "exec-24661e1a-721e-47fa-9dd5-d9c69646cb17",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 36948.974,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 51960
+      },
+      {
+        "elapsedMs": 65894.973,
+        "method": "item/started",
+        "itemId": "exec-02ab5ece-405c-451a-9b81-3f1680ab9970",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 65894.986,
+        "method": "item/completed",
+        "itemId": "exec-02ab5ece-405c-451a-9b81-3f1680ab9970",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 66469.13,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 74630
+      },
+      {
+        "elapsedMs": 72775.985,
+        "method": "item/started",
+        "itemId": "msg_06ecad642a2e3e79016ab4d973c63887d08f6f09a166a7a73b",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 74138.199,
+        "method": "item/completed",
+        "itemId": "msg_06ecad642a2e3e79016ab4d973c63887d08f6f09a166a7a73b",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 74252.908,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 97420
+      },
+      {
+        "elapsedMs": 74253.007,
+        "method": "turn/completed",
+        "status": "completed"
+      }
+    ],
+    "jevEvents": []
+  }
+]

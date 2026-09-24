@@ -1,11 +1,16 @@
 // Closed-world evidence processing only: no execution, configuration, memory,
-// browser actions or external retrieval. Jev evaluates the supplied material.
+// browser actions or external retrieval. Workspace retrieval remains bounded and read-only.
 export const evidenceTool={
   name:'jev_evidence',
-  description:'Self-contained read-only semantic evidence tool; no skill read or status call needed. Prefer native exact searches and local grouping for repetitive templates. If these resolve the evidence, continue without Jev. Use only for many still-unresolved semantic candidates: select {goal,items,budget?}, or prepare {goal,path} before full file display. For an existing result, prepare {goal,value,source} in the same exec cell. Emit returned value/context only; it includes coverage and recovery. Preserve raw data for computation. Recall {artifactId,ids?} or {artifactId,query} for a concrete evidence gap; follow nextOffset for more matches. Full recall remains available when needed. On failure use the original. Skip small, exact, code, structured/media, failed/unfinished or already-read material. Unknown/deferred evidence prevents exhaustive claims. No execution authority.',
+  description:'Read-only evidence in one call; no skill/status prerequisite. For repository investigation before broad reads, investigate {goal,queries,paths?}: retrieves literal matches with surrounding lines, merges overlaps, uses Jev only for large semantic candidate sets, and returns original excerpts with scope and recovery. Use native tools for small/exact lookups. For exhaustive semantic review use prepare {goal,path} or select {goal,items}; query-based investigation cannot prove all cases found. For an existing result prepare {goal,value,source} in the same exec cell; preserve raw data for computation, emit returned value/context. Recall {artifactId,ids?} or {artifactId,query} for gaps; follow nextOffset. Full recall is available, covering saved evidence only. On failure use native tools/original. Do not filter exact code/JSON, media, unfinished output or already-read material. No execution authority.',
   annotations:{readOnlyHint:true,destructiveHint:false,openWorldHint:false},
-  inputSchema:{type:'object',properties:{workspace:{type:'string'},operation:{type:'string',enum:['prepare','select','recall']},input:{type:'object',properties:{
+  inputSchema:{type:'object',properties:{workspace:{type:'string'},operation:{type:'string',enum:['prepare','select','recall','investigate']},input:{type:'object',properties:{
     goal:{type:'string',description:'What evidence is needed for the current task (prepare).'},
+    queries:{type:'array',items:{type:'string'},minItems:1,maxItems:6,description:'Investigate: discriminating literal terms (OR, case-insensitive), not shell/regex. Up to six.'},
+    paths:{type:'array',items:{type:'string'},maxItems:20,description:'Investigate: workspace files/directories, default ["."]. Respects rg ignored/hidden paths.'},
+    contextLines:{type:'integer',minimum:0,maximum:40,description:'Investigate: surrounding lines per match (default 8); overlapping windows merged.'},
+    maxMatches:{type:'integer',minimum:1,maximum:400,description:'Investigate: bounded literal matching lines (default 200). Limits are disclosed.'},
+    selection:{type:'string',enum:['auto','local'],description:'Investigate: auto admission (default), or deterministic local evidence only.'},
     path:{type:'string',description:'Workspace text file to prepare directly, instead of first reading it in full. Use path OR value.'},
     value:{description:'Original completed tool result or text to prepare. Keep the raw value unchanged.'},
     items:{type:'array',items:{type:'object',properties:{id:{type:'string'},text:{type:'string'}},required:['id','text'],additionalProperties:true},description:'Candidates for select, retaining source identity and any status metadata.'},
@@ -21,6 +26,6 @@ export const evidenceTool={
   },additionalProperties:true}},required:['workspace','operation','input'],additionalProperties:false},
 };
 export function evidenceArguments(args){
-  if(!args||!Object.hasOwn({prepare:1,select:1,recall:1},args.operation))throw Object.assign(new Error('READ_ONLY_OPERATION_REQUIRED'),{code:'READ_ONLY_OPERATION_REQUIRED'});
-  return{workspace:args.workspace,operation:args.operation==='prepare'?'prepare_output':args.operation==='select'?'select':'recall_output',input:args.input};
+  if(!args||!Object.hasOwn({prepare:1,select:1,recall:1,investigate:1},args.operation))throw Object.assign(new Error('READ_ONLY_OPERATION_REQUIRED'),{code:'READ_ONLY_OPERATION_REQUIRED'});
+  return{workspace:args.workspace,operation:({prepare:'prepare_output',recall:'recall_output'})[args.operation]??args.operation,input:args.input};
 }

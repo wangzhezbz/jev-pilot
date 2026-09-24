@@ -62,7 +62,7 @@ export async function selectEvidence(ctx, { goal, items, budget = 16000, against
   const judged = unique.filter(item => !protectedEvidence(item));
   const instructions=`Task: ${goal}\nSelect source evidence by its factual content. The task describes the final deliverable, not a request to retain every source identifier. Does this item itself contain evidence needed for that task? Never exclude a relevant contradiction or uncertainty merely because it complicates the answer.`;
   if(requireCompleteJudgment){
-    const plan=classificationPlan(ctx.config.model,judged,instructions,relevant);
+    const plan=classificationPlan(ctx.config.model,judged,instructions,relevant,{},ctx.judge.isolateItems===true);
     const reason=plan.oversized.length?'REQUEST_LIMIT':plan.batches.length>ctx.judge.config.maxCalls-ctx.judge.calls?'CALL_BUDGET':null;
     if(reason){ctx.store.event(ctx.project,'evidence_admission',{reason,batches:plan.batches.length,oversizedItems:plan.oversized.length,calls:0});throw Object.assign(new Error(reason),{code:reason});}
   }

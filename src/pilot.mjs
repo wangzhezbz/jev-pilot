@@ -10,12 +10,13 @@ import {installationPlan,compatibilityProbe} from './installation.mjs';
 import {activity} from './activity.mjs';
 import { diagnostics } from './diagnostics.mjs';
 import {prepareOutput,recallOutput} from './prepare-output.mjs';
+import {investigate} from './investigate.mjs';
 
 export const operations = {
   installation_plan:()=>installationPlan(),compatibility_probe:()=>compatibilityProbe(),activity, diagnostics, evaluate_policy: evaluatePolicy,
   desktop_status: desktopStatus, desktop_metrics: desktopMetrics,
   browser_network: (ctx, input) => browserNetwork({ repair: input.repair === true }),
-  decide: workflow.decide, select: evidence.selectEvidence, search: evidence.search,
+  decide: workflow.decide, select: evidence.selectEvidence, search: evidence.search, investigate,
   filter_output: evidence.filterOutput, recall: evidence.recall, select_tools: workflow.selectTools,
   prepare_output: prepareOutput, recall_output: recallOutput,
   recover: workflow.recoverFailure, quality: workflow.quality, run_checks: evidence.runChecks,

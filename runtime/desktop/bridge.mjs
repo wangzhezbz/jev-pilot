@@ -64,7 +64,9 @@ export async function runBridge({realBin,args,nativeVersion=null,trust={},keyPat
   const dir=await mkdtemp(join(tmpdir(),'jev-bridge-'));await chmod(dir,0o700);
   const socketPath=process.platform==='win32'?`\\\\.\\pipe\\jev-pilot-${randomUUID()}`:join(dir,'hook.sock');
   let assistant=null;
-  if(automation)try{const {createAutomation}=await import('../../src/automation.mjs');assistant=createAutomation(typeof automation==='object'?automation:{});}catch{}
+  if(automation)try{const {createAutomation}=await import('../../src/automation.mjs');assistant=createAutomation({...(typeof automation==='object'?automation:{}),evidenceAvailable:async threadId=>{
+    try{const status=await request('mcpServerStatus/list',{threadId,limit:100},150);return status.data?.some(s=>Object.keys(s.tools??{}).some(name=>/(?:^|__)jev_evidence$/.test(name)))===true;}catch{return false;}
+  }});}catch{}
   const prefix=`jev:${randomUUID()}:`;
   const pending=new Map(),clientRequests=new Map();let counter=0,closed=false;
   let logPending=Promise.resolve();

@@ -1,0 +1,33 @@
+{
+  "date": "2026-09-24",
+  "unitTests": {
+    "command": "npm test",
+    "passed": 253,
+    "failed": 0
+  },
+  "sourceChecks": {
+    "command": "node scripts/check.mjs",
+    "passed": true,
+    "checkedFiles": 499,
+    "checkedModules": 123
+  },
+  "nativeHint": {
+    "kind": "bundled_runtime_with_synthetic_model",
+    "passed": true,
+    "investigationHint": {
+      "modelVisible": true,
+      "submissions": 1
+    },
+    "paidGptCalls": 0,
+    "paidJevCalls": 0
+  },
+  "deployment": {
+    "installedCandidate": false,
+    "installedVersionUnchanged": "0.2.0+codex.20260924150300",
+    "restartRequired": false
+  },
+  "limitations": [
+    "The paid packed task source predates the final API profile, hint narrowing, five-second evidence timeout and survivor-budget changes.",
+    "Final live semantic retention check timed out during TLS setup; no successful live retention acceptance after the fix."
+  ]
+}
