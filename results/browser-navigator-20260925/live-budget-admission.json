@@ -1,0 +1,35 @@
+{
+  "result": {
+    "status": "codex_review_required",
+    "reason": "HOST_INSUFFICIENT_TASK_BUDGET",
+    "budget": {
+      "calls": 8,
+      "bytes": 347267,
+      "waitMs": 2552.51829200238,
+      "cooldown": false,
+      "windowEndsAt": 1790269200000
+    },
+    "admission": {
+      "expectedSteps": 6,
+      "samples": 20,
+      "estimatedStepMs": 963,
+      "requiredWaitMs": 5815
+    },
+    "metrics": {
+      "runs": 0,
+      "actions": 0,
+      "jevRequests": 0,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "unknownUsage": 0,
+      "apiMs": 0,
+      "elapsedMs": 0,
+      "handoffs": 0
+    },
+    "instruction": "Continue natively. No browser action or paid request was made. Do not change task identity or budget to retry."
+  },
+  "hostCalls": {
+    "observations": 0,
+    "actions": 0
+  }
+}

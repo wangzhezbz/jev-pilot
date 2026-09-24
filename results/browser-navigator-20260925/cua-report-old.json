@@ -1,0 +1,197 @@
+{
+  "id": "cua-report-old",
+  "host": "cua",
+  "caseId": "report",
+  "arm": "old",
+  "startedAt": "2026-09-24T16:10:46.053Z",
+  "goal": "Open the approved version v3 of the Orion Retail report for Europe, 2026 Q3. Read its preview and report the reference and approval state. Do not publish or change anything.",
+  "elapsedMs": 30873.48041700013,
+  "answer": "RPT-OR-EU-Q3-v3; Orion Retail, Europe, 2026 Q3, v3 Approved; read-only preview verified",
+  "loop": {
+    "status": "needs_verification",
+    "reason": null,
+    "evidence": "RPT-OR-EU-Q3-v3 | Approved | Read-only preview",
+    "stageIndex": 1,
+    "lastDecision": {
+      "stage": "preview",
+      "action": "Preview report",
+      "decision": {
+        "type": "choice",
+        "choice": "action_0",
+        "confidence": 0.99,
+        "probabilities": {
+          "review": 0.01,
+          "action_0": 0.99
+        }
+      },
+      "reason": null
+    },
+    "history": [
+      {
+        "action": "Analytics",
+        "stage": "report",
+        "progress": true,
+        "probability": 0.79
+      },
+      {
+        "action": "Europe",
+        "stage": "report",
+        "progress": true,
+        "probability": 0.97
+      },
+      {
+        "action": "2026 Q3",
+        "stage": "report",
+        "progress": true,
+        "probability": 0.99
+      },
+      {
+        "action": "Orion Retail",
+        "stage": "report",
+        "progress": true,
+        "probability": 0.99
+      },
+      {
+        "action": "Version v3 — approved",
+        "stage": "preview",
+        "progress": true,
+        "probability": 0.98
+      },
+      {
+        "action": "Preview report",
+        "stage": "preview",
+        "progress": true,
+        "probability": 0.99
+      }
+    ],
+    "snapshot": "\t\t\t\t5 HTML内容 Description: JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=report&variant=a\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 Report preview, Value: 1\n\t\t\t\t\t\t\t8 文本 Report preview\n\t\t\t\t\t\t9 文本 Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview",
+    "stateMayHaveChanged": false,
+    "metrics": {
+      "runs": 1,
+      "actions": 6,
+      "jevRequests": 6,
+      "inputTokens": 4903,
+      "outputTokens": 282,
+      "unknownUsage": 0,
+      "apiMs": 2246.267080999911,
+      "elapsedMs": 7946.815790999681,
+      "handoffs": 0
+    },
+    "sessionMetrics": {
+      "runs": 1,
+      "actions": 6,
+      "jevRequests": 6,
+      "inputTokens": 4903,
+      "outputTokens": 282,
+      "unknownUsage": 0,
+      "apiMs": 2246.267080999911,
+      "elapsedMs": 7946.815790999681,
+      "handoffs": 0
+    },
+    "phases": [
+      {
+        "phase": "observe",
+        "ms": 56.51004100032151
+      },
+      {
+        "phase": "decision",
+        "ms": 946.7950829993933
+      },
+      {
+        "phase": "revalidate",
+        "ms": 77.8953339997679
+      },
+      {
+        "phase": "execute",
+        "ms": 55.76862500049174
+      },
+      {
+        "phase": "observe",
+        "ms": 854.2467909995466
+      },
+      {
+        "phase": "decision",
+        "ms": 277.76541700027883
+      },
+      {
+        "phase": "revalidate",
+        "ms": 76.58887499943376
+      },
+      {
+        "phase": "execute",
+        "ms": 51.45791699923575
+      },
+      {
+        "phase": "observe",
+        "ms": 901.3695410005748
+      },
+      {
+        "phase": "decision",
+        "ms": 244.6198330000043
+      },
+      {
+        "phase": "revalidate",
+        "ms": 106.83799999952316
+      },
+      {
+        "phase": "execute",
+        "ms": 57.21587499976158
+      },
+      {
+        "phase": "observe",
+        "ms": 862.4729580003768
+      },
+      {
+        "phase": "decision",
+        "ms": 259.28920800052583
+      },
+      {
+        "phase": "revalidate",
+        "ms": 65.7603749986738
+      },
+      {
+        "phase": "execute",
+        "ms": 76.05879200063646
+      },
+      {
+        "phase": "observe",
+        "ms": 637.2814579997212
+      },
+      {
+        "phase": "decision",
+        "ms": 273.13275000080466
+      },
+      {
+        "phase": "revalidate",
+        "ms": 66.50441600009799
+      },
+      {
+        "phase": "execute",
+        "ms": 126.35349999926984
+      },
+      {
+        "phase": "observe",
+        "ms": 590.0717089995742
+      },
+      {
+        "phase": "decision",
+        "ms": 249.57908299937844
+      },
+      {
+        "phase": "revalidate",
+        "ms": 83.8737500011921
+      },
+      {
+        "phase": "execute",
+        "ms": 72.79454200156033
+      },
+      {
+        "phase": "observe",
+        "ms": 874.5581670012325
+      }
+    ],
+    "instruction": "Codex must independently verify the final observed outcome."
+  },
+  "observed": "\t\t\t\t5 HTML内容 Description: JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=report&variant=a\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 Report preview, Value: 1\n\t\t\t\t\t\t\t8 文本 Report preview\n\t\t\t\t\t\t9 文本 Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview",
+  "passed": true
+}

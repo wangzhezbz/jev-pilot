@@ -19,27 +19,31 @@ The single-step tools above remain available. Prefer the continuous session belo
 
 Inside the existing official `node_repl` runtime, import `<plugin-root>/src/host-browser-session.mjs`. Reuse the already initialized Chrome tab or `sky` handle. This helper calls the existing host API; it needs no HTTP bridge, extra browser, CDP connection, extension or user-created task file. Use the actual Codex task ID (obtain `CODEX_THREAD_ID` through an ordinary environment tool if needed). Do not invent task IDs, use an isolated store or raise a budget merely to continue a denied task.
 
-The agent constructs this contract in the tool, not the user:
+Bind a navigator once per authorized surface; reuse it for later goals. The agent does this inside the host, not the user. Before any Computer Use navigation or key press in a newly active task, acquire current app state with the official `get_app_state`; an old JavaScript binding does not prove the application is still active.
 
 ```js
-var host = await import('/absolute/installed/plugin/root/src/host-browser-session.mjs');
-var driver = host.createChromeDriver({
-  tab, allowedOrigins: ['https://the-authorized-site.example'],
-  policy: { allowNames: [/* exact names or bounded patterns for approved navigation */] },
+var host = await import('/absolute/installed/plugin/root/src/host-browser-navigator.mjs');
+var nav = host.createNavigator({ workspace, taskId,
+  driver: host.createChromeDriver({ tab, allowedOrigins: ['https://the-authorized-site.example'],
+    policy: { allowNames: [/* scoped navigation names or patterns */] } }),
 });
-var session = host.createSession({ workspace, taskId, driver, maxSteps: 8 });
-var task = host.defineTask({
-  goal: userGoal,
+nodeRepl.write(await nav.run({
+  goal: userGoal, expectedSteps: 6,
   stages: [
     { goal: 'Find unresolved incident INC-502', until: ['Incident INC-502'] },
     { goal: 'Read the read-only readiness preview for release r42' },
   ],
-  proof: ['INC-502', 'r42', 'READ-ONLY RESULT'],
-  reject: ['Wrong record'],
-});
-var result = await session.run(task);
-nodeRepl.write(host.summarizeHostResult(result));
+  proof: ['INC-502', 'r42', 'READ-ONLY RESULT'], reject: ['Wrong record'],
+}));
 ```
+
+`nav.result` retains the full result, task and session internally. On handoff, inspect the reason and observe natively; after resolving the branch use `nav.resume()` without rebuilding the task. `nav.close()` releases the bound store. An obvious single action stays native. Rebinding to a different page/app requires a new navigator and explicit scope/policy.
+
+`expectedSteps` is the estimated number of delegated actions, not an answer sequence. Admission reads the unchanged task quota before any browser observation or paid request. It checks call capacity and estimates wait capacity using recent matching browser-call latency (75th percentile × 1.5, with a final-request allowance); without samples it uses a conservative allowance per step. This is a forecast, not a reservation or guarantee. Every actual call still obeys the original atomic budget and circuit breaker. A refusal means continue natively, never reset quotas or falsify the estimate to force admission.
+
+On `needs_verification`, the receipt contains a **separate fresh official host read** in `finalObservation`. Codex must inspect that text against the user request before answering. If it proves the result and is current, no extra identical read-only tool call is needed. If truncated, changed, insufficient or absent, inspect natively again. `finalObservationError` never authorizes a success claim. Final observation time is separate from loop metrics; include both plus planning and answer time in performance claims.
+
+For complex callbacks or custom control, the original `src/host-browser-session.mjs` API remains supported: `createSession`, `defineTask`, `summarizeHostResult`, `session.run(task)` and `session.close()`.
 
 Keep `result` in the persistent host and emit the compact receipt by default. It preserves actual usage, failure and uncertain-execution flags; long handoff excerpts are explicitly marked in `truncatedFields`. Inspect the full `result` if needed and always make a fresh native observation for final verification or recovery. The compact receipt is not a substitute for evidence. Control names ignore AX `Value`/`ID`/`Help` metadata for allow-list matching, while duplicate names are excluded and full metadata remains subject to denial/risk checks. A generic “Preview” prefix does not authorize a consequential action.
 

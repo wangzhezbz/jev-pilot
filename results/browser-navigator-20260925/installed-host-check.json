@@ -1,0 +1,21 @@
+{
+  "status": "codex_review_required",
+  "reason": "HOST_INSUFFICIENT_TASK_BUDGET",
+  "metrics": {
+    "runs": 0,
+    "actions": 0,
+    "jevRequests": 0,
+    "inputTokens": 0,
+    "outputTokens": 0,
+    "unknownUsage": 0,
+    "apiMs": 0,
+    "elapsedMs": 0,
+    "handoffs": 0
+  },
+  "admission": {
+    "expectedSteps": 6,
+    "samples": 20,
+    "estimatedStepMs": 963,
+    "requiredWaitMs": 5815
+  }
+}

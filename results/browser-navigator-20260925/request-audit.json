@@ -1,0 +1,361 @@
+{
+  "browserRequests": [
+    {
+      "at": "2026-09-24T16:08:39.547Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 936,
+      "inputTokens": 906,
+      "outputTokens": 44,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:08:39.995Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 266,
+      "inputTokens": 783,
+      "outputTokens": 44,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:08:40.462Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 293,
+      "inputTokens": 908,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:08:40.904Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 265,
+      "inputTokens": 921,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:08:41.331Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 251,
+      "inputTokens": 984,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:08:41.792Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 286,
+      "inputTokens": 841,
+      "outputTokens": 35,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:09:07.591Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 722,
+      "inputTokens": 906,
+      "outputTokens": 44,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:09:08.057Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 291,
+      "inputTokens": 785,
+      "outputTokens": 44,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:09:08.484Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 254,
+      "inputTokens": 912,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:09:08.904Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 244,
+      "inputTokens": 927,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:09:09.358Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 271,
+      "inputTokens": 992,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:09:09.787Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 252,
+      "inputTokens": 851,
+      "outputTokens": 35,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:10:06.238Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 2006,
+      "inputTokens": 818,
+      "outputTokens": 44,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:10:07.613Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 301,
+      "inputTokens": 701,
+      "outputTokens": 44,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:10:09.307Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 774,
+      "inputTokens": 856,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:10:10.529Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 271,
+      "inputTokens": 864,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:10:11.715Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 250,
+      "inputTokens": 922,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:10:12.956Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 263,
+      "inputTokens": 772,
+      "outputTokens": 35,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:11:00.235Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 946,
+      "inputTokens": 818,
+      "outputTokens": 44,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:11:01.501Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 277,
+      "inputTokens": 699,
+      "outputTokens": 44,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:11:02.776Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 244,
+      "inputTokens": 852,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:11:04.062Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 259,
+      "inputTokens": 858,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:11:05.114Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 273,
+      "inputTokens": 914,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:11:06.147Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 249,
+      "inputTokens": 762,
+      "outputTokens": 35,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:12:53.794Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 642,
+      "inputTokens": 818,
+      "outputTokens": 44,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:12:55.541Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 798,
+      "inputTokens": 701,
+      "outputTokens": 44,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:12:57.303Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 794,
+      "inputTokens": 856,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:12:58.506Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 232,
+      "inputTokens": 864,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:12:59.773Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 273,
+      "inputTokens": 922,
+      "outputTokens": 53,
+      "questions": 1,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:13:01.056Z",
+      "purpose": "browser",
+      "model": "jev-1.13.0",
+      "elapsedMs": 269,
+      "inputTokens": 772,
+      "outputTokens": 35,
+      "questions": 1,
+      "status": "success"
+    }
+  ],
+  "browserInputTokens": 25485,
+  "browserOutputTokens": 1410,
+  "backgroundKinds": {
+    "generation_usage": 20,
+    "decision": 1
+  },
+  "efforts": {
+    "high": 20
+  },
+  "currentTaskBackgroundRequests": [
+    {
+      "at": "2026-09-24T16:09:42.800Z",
+      "model": "jev-1.13.0",
+      "inputTokens": 4151,
+      "outputTokens": 106,
+      "elapsedMs": 554,
+      "from": "high",
+      "recommended": "high",
+      "published": "high",
+      "status": "unchanged"
+    }
+  ],
+  "otherTaskOrUnattributedCalls": [
+    {
+      "at": "2026-09-24T16:09:37.013Z",
+      "purpose": "effort",
+      "model": "jev-1.13.0",
+      "elapsedMs": 544,
+      "inputTokens": 1358,
+      "outputTokens": 106,
+      "questions": 2,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:10:39.944Z",
+      "purpose": "effort",
+      "model": "jev-1.13.0",
+      "elapsedMs": 549,
+      "inputTokens": 1707,
+      "outputTokens": 106,
+      "questions": 2,
+      "status": "success"
+    },
+    {
+      "at": "2026-09-24T16:11:12.694Z",
+      "purpose": "effort",
+      "model": "jev-1.13.0",
+      "elapsedMs": 611,
+      "inputTokens": 5531,
+      "outputTokens": 106,
+      "questions": 2,
+      "status": "success"
+    }
+  ],
+  "totalAttributedJevRequests": 31,
+  "totalAttributedJevInputTokens": 29636,
+  "totalAttributedJevOutputTokens": 1516
+}

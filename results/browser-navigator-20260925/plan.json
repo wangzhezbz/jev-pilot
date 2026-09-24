@@ -1,0 +1,12 @@
+{
+  "order": [
+    "chrome/document/old",
+    "chrome/document/new",
+    "cua/report/new",
+    "cua/report/old"
+  ],
+  "baselineCommit": "47708645060ddbfddbeb4202174f79678542d12c",
+  "fixtureSha256": "020d94b5d03ed3c29c14bbea9c4d0e989a231907fa395d937527a33660e9cc67",
+  "scope": "Four complete navigation tasks comparing previous callback entry vs reusable navigator entry. Same fixture, goals and positive policies within each host pair. Planning/session construction, navigation, recovery, independent fresh final observation and answer included. Shared harness and official browser bootstrap excluded equally. New version returns the fresh final observation in its receipt; Codex still inspects it before answering. No budget resets. One observation per arm, nonblinded familiar synthetic tasks; not a stable speed or billing claim.",
+  "followup": "Preserve the original CUA new-entry run including host activation recovery. After both original CUA arms, run one additional warmed CUA new-entry observation with adaptive admission, unchanged request quotas and same task identity. Report separately; no replacement of original result."
+}

@@ -1,0 +1,36 @@
+{
+  "version": "0.2.0+codex.20260925001732",
+  "installation": "Native app-server plugin/install",
+  "fileHashes": [
+    {
+      "path": "src/host-browser-navigator.mjs",
+      "sha256": "a8ef23e89eebfc2afd5937bb5ce8ca6fcb82f0efe71086db7db2d9346c6afbca"
+    },
+    {
+      "path": "src/request-guard.mjs",
+      "sha256": "6b18ae893c5c0fea7634abff127942f1a55bb8552937db779bd3d2b919b09d24"
+    },
+    {
+      "path": "skills/jev-pilot/SKILL.md",
+      "sha256": "e7c8ea763f42dbe53d152cd4eb2b30ee7e68e0be0a02bb6c924570b46bed41e4"
+    },
+    {
+      "path": "skills/jev-pilot/references/browser.md",
+      "sha256": "4fc0029a9234576a594da7f74b7a6c4fd77a04ce75195fe65f4120e4b20025ab"
+    },
+    {
+      "path": ".codex-plugin/plugin.json",
+      "sha256": "ba21fe248e268ce1527d9e7d290d9be82ff780eb294e8b9a67e90ca4a0bd0544"
+    },
+    {
+      "path": "plugin.json",
+      "sha256": "5bbbbd23b4fb98e7c587d79d583b836db7dd41dfbb5cda0f0ce9835b5a6c1b47"
+    }
+  ],
+  "backgroundRuntime": {
+    "installedFingerprint": "8bedc24904a4d5830b46ee5ca4611481c25436e6d1ad039b44fdbbe39ea329a7",
+    "loadedRevisionMatches": true,
+    "modifiedThisTurn": false
+  },
+  "liveHostCheck": "Installed navigator imported in the existing official JS host and real quota preflight returned a no-charge refusal. Paid navigation acceptance used the identical candidate implementation; no background binary replacement or desktop restart."
+}

@@ -1,0 +1,459 @@
+{
+  "runs": [
+    {
+      "id": "chrome-document-old",
+      "elapsedMs": 28344.440749999136,
+      "passed": true,
+      "hostRecovery": null,
+      "gptCalls": 4,
+      "gpt": {
+        "input_tokens": 635240,
+        "cached_input_tokens": 631424,
+        "output_tokens": 562,
+        "reasoning_output_tokens": 29,
+        "total_tokens": 635802,
+        "uncached_input_tokens": 3816
+      },
+      "jev": {
+        "runs": 1,
+        "actions": 6,
+        "jevRequests": 6,
+        "inputTokens": 5343,
+        "outputTokens": 282,
+        "unknownUsage": 0,
+        "apiMs": 2294.522206997499,
+        "elapsedMs": 3377.6980000007898,
+        "handoffs": 0
+      },
+      "cells": [
+        {
+          "marker": "nav-chrome-document-old-start",
+          "at": "2026-09-24T16:08:23.980Z",
+          "usage": {
+            "input_tokens": 158053,
+            "cached_input_tokens": 155904,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 82,
+            "reasoning_output_tokens": 29,
+            "total_tokens": 158135
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "nav-chrome-document-old-planrun",
+          "at": "2026-09-24T16:08:38.580Z",
+          "usage": {
+            "input_tokens": 158532,
+            "cached_input_tokens": 157952,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 333,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 158865
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "nav-chrome-document-old-verify",
+          "at": "2026-09-24T16:08:47.354Z",
+          "usage": {
+            "input_tokens": 159185,
+            "cached_input_tokens": 158464,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 61,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 159246
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "nav-chrome-document-old-finish",
+          "at": "2026-09-24T16:08:52.324Z",
+          "usage": {
+            "input_tokens": 159470,
+            "cached_input_tokens": 159104,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 86,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 159556
+          },
+          "model": "gpt-6-astra"
+        }
+      ],
+      "backgroundJev": {
+        "requests": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "events": []
+      }
+    },
+    {
+      "id": "chrome-document-new",
+      "elapsedMs": 20152.85283399932,
+      "passed": true,
+      "hostRecovery": null,
+      "gptCalls": 3,
+      "gpt": {
+        "input_tokens": 480633,
+        "cached_input_tokens": 478848,
+        "output_tokens": 376,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 481009,
+        "uncached_input_tokens": 1785
+      },
+      "jev": {
+        "runs": 1,
+        "actions": 6,
+        "jevRequests": 6,
+        "inputTokens": 5373,
+        "outputTokens": 282,
+        "unknownUsage": 0,
+        "apiMs": 2032.8280410002917,
+        "elapsedMs": 3119.4108750000596,
+        "handoffs": 0
+      },
+      "cells": [
+        {
+          "marker": "nav-chrome-document-new-start",
+          "at": "2026-09-24T16:08:56.525Z",
+          "usage": {
+            "input_tokens": 159628,
+            "cached_input_tokens": 159360,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 51,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 159679
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "nav-chrome-document-new-planrun",
+          "at": "2026-09-24T16:09:06.836Z",
+          "usage": {
+            "input_tokens": 160076,
+            "cached_input_tokens": 159488,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 233,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 160309
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "nav-chrome-document-new-finish",
+          "at": "2026-09-24T16:09:16.678Z",
+          "usage": {
+            "input_tokens": 160929,
+            "cached_input_tokens": 160000,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 92,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 161021
+          },
+          "model": "gpt-6-astra"
+        }
+      ],
+      "backgroundJev": {
+        "requests": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "events": []
+      }
+    },
+    {
+      "id": "cua-report-new",
+      "elapsedMs": 53397.158416001126,
+      "passed": true,
+      "hostRecovery": "Computer Use was inactive at task start; fresh application state acquired before navigation. Recovery included in elapsed time.",
+      "gptCalls": 5,
+      "gpt": {
+        "input_tokens": 816366,
+        "cached_input_tokens": 811520,
+        "output_tokens": 957,
+        "reasoning_output_tokens": 257,
+        "total_tokens": 817323,
+        "uncached_input_tokens": 4846
+      },
+      "jev": {
+        "runs": 1,
+        "actions": 6,
+        "jevRequests": 6,
+        "inputTokens": 4933,
+        "outputTokens": 282,
+        "unknownUsage": 0,
+        "apiMs": 3864.5015010014176,
+        "elapsedMs": 9710.315708000213,
+        "handoffs": 0
+      },
+      "cells": [
+        {
+          "marker": "nav-cua-report-new-start",
+          "at": "2026-09-24T16:09:25.990Z",
+          "usage": {
+            "input_tokens": 161093,
+            "cached_input_tokens": 160896,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 188,
+            "reasoning_output_tokens": 45,
+            "total_tokens": 161281
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "nav-cua-report-new-recoverhost",
+          "at": "2026-09-24T16:09:41.550Z",
+          "usage": {
+            "input_tokens": 161390,
+            "cached_input_tokens": 161024,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 273,
+            "reasoning_output_tokens": 202,
+            "total_tokens": 161663
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "nav-cua-report-new-recovernav",
+          "at": "2026-09-24T16:09:52.951Z",
+          "usage": {
+            "input_tokens": 164107,
+            "cached_input_tokens": 161280,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 167,
+            "reasoning_output_tokens": 10,
+            "total_tokens": 164274
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "nav-cua-report-new-planrun",
+          "at": "2026-09-24T16:10:04.169Z",
+          "usage": {
+            "input_tokens": 164495,
+            "cached_input_tokens": 163968,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 233,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 164728
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "nav-cua-report-new-finish",
+          "at": "2026-09-24T16:10:19.387Z",
+          "usage": {
+            "input_tokens": 165281,
+            "cached_input_tokens": 164352,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 96,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 165377
+          },
+          "model": "gpt-6-astra"
+        }
+      ],
+      "backgroundJev": {
+        "requests": 1,
+        "inputTokens": 4151,
+        "outputTokens": 106,
+        "events": [
+          {
+            "at": "2026-09-24T16:09:42.800Z",
+            "model": "jev-1.13.0",
+            "inputTokens": 4151,
+            "outputTokens": 106,
+            "elapsedMs": 554,
+            "from": "high",
+            "recommended": "high",
+            "published": "high",
+            "status": "unchanged"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cua-report-old",
+      "elapsedMs": 30873.48041700013,
+      "passed": true,
+      "hostRecovery": null,
+      "gptCalls": 4,
+      "gpt": {
+        "input_tokens": 666696,
+        "cached_input_tokens": 664320,
+        "output_tokens": 1271,
+        "reasoning_output_tokens": 731,
+        "total_tokens": 667967,
+        "uncached_input_tokens": 2376
+      },
+      "jev": {
+        "runs": 1,
+        "actions": 6,
+        "jevRequests": 6,
+        "inputTokens": 4903,
+        "outputTokens": 282,
+        "unknownUsage": 0,
+        "apiMs": 2246.267080999911,
+        "elapsedMs": 7946.815790999681,
+        "handoffs": 0
+      },
+      "cells": [
+        {
+          "marker": "nav-cua-report-old-start",
+          "at": "2026-09-24T16:10:46.047Z",
+          "usage": {
+            "input_tokens": 165442,
+            "cached_input_tokens": 165248,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 787,
+            "reasoning_output_tokens": 731,
+            "total_tokens": 166229
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "nav-cua-report-old-planrun",
+          "at": "2026-09-24T16:10:59.225Z",
+          "usage": {
+            "input_tokens": 166577,
+            "cached_input_tokens": 165376,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 333,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 166910
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "nav-cua-report-old-verify",
+          "at": "2026-09-24T16:11:10.894Z",
+          "usage": {
+            "input_tokens": 167228,
+            "cached_input_tokens": 166528,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 60,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 167288
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "nav-cua-report-old-finish",
+          "at": "2026-09-24T16:11:16.921Z",
+          "usage": {
+            "input_tokens": 167449,
+            "cached_input_tokens": 167168,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 91,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 167540
+          },
+          "model": "gpt-6-astra"
+        }
+      ],
+      "backgroundJev": {
+        "requests": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "events": []
+      }
+    },
+    {
+      "id": "cua-report-followup",
+      "elapsedMs": 25292.540374999866,
+      "passed": true,
+      "hostRecovery": null,
+      "gptCalls": 3,
+      "gpt": {
+        "input_tokens": 513019,
+        "cached_input_tokens": 510976,
+        "output_tokens": 400,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 513419,
+        "uncached_input_tokens": 2043
+      },
+      "jev": {
+        "runs": 1,
+        "actions": 6,
+        "jevRequests": 6,
+        "inputTokens": 4933,
+        "outputTokens": 282,
+        "unknownUsage": 0,
+        "apiMs": 3008.0896240007132,
+        "elapsedMs": 9025.092166999355,
+        "handoffs": 0
+      },
+      "cells": [
+        {
+          "marker": "nav-cua-report-followup-start",
+          "at": "2026-09-24T16:12:41.956Z",
+          "usage": {
+            "input_tokens": 170455,
+            "cached_input_tokens": 169856,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 59,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 170514
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "nav-cua-report-followup-planrun",
+          "at": "2026-09-24T16:12:53.051Z",
+          "usage": {
+            "input_tokens": 170862,
+            "cached_input_tokens": 170368,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 241,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 171103
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "nav-cua-report-followup-finish",
+          "at": "2026-09-24T16:13:07.248Z",
+          "usage": {
+            "input_tokens": 171702,
+            "cached_input_tokens": 170752,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 100,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 171802
+          },
+          "model": "gpt-6-astra"
+        }
+      ],
+      "backgroundJev": {
+        "requests": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "events": []
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "old": "chrome-document-old",
+      "new": "chrome-document-new",
+      "timeReductionPct": 28.90015713575179,
+      "gptTotalReductionPct": 24.34610145925933,
+      "gptOutputReductionPct": 33.09608540925267,
+      "gptUncachedInputReductionPct": 53.22327044025157
+    },
+    {
+      "old": "cua-report-old",
+      "new": "cua-report-new",
+      "timeReductionPct": -72.95477443676415,
+      "gptTotalReductionPct": -22.35978723499814,
+      "gptOutputReductionPct": 24.704956726986627,
+      "gptUncachedInputReductionPct": -103.95622895622894
+    },
+    {
+      "old": "cua-report-old",
+      "new": "cua-report-followup",
+      "timeReductionPct": 18.076808855431736,
+      "gptTotalReductionPct": 23.137071142736097,
+      "gptOutputReductionPct": 68.52871754523997,
+      "gptUncachedInputReductionPct": 14.015151515151514
+    }
+  ]
+}

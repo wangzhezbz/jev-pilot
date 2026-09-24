@@ -1,0 +1,202 @@
+{
+  "id": "chrome-document-new",
+  "host": "chrome",
+  "caseId": "document",
+  "arm": "new",
+  "startedAt": "2026-09-24T16:08:56.531Z",
+  "goal": "Open the published Vega operations runbook, English version v2.4. Read its preview and report the reference and publication state. Do not delete or change anything.",
+  "elapsedMs": 20152.85283399932,
+  "answer": "DOC-VEGA-EN-2.4; published Vega operations runbook, English v2.4; read-only preview verified",
+  "loop": {
+    "status": "needs_verification",
+    "reason": null,
+    "evidence": "DOC-VEGA-EN-2.4 | Published | Read-only preview",
+    "stageIndex": 1,
+    "lastDecision": {
+      "stage": "stage_1",
+      "action": "Preview document",
+      "decision": {
+        "type": "choice",
+        "choice": "action_0",
+        "confidence": 0.99,
+        "probabilities": {
+          "review": 0,
+          "action_0": 1
+        }
+      },
+      "reason": null
+    },
+    "history": [
+      {
+        "action": "Document library",
+        "stage": "stage_0",
+        "progress": true,
+        "probability": 0.96
+      },
+      {
+        "action": "Published documents",
+        "stage": "stage_0",
+        "progress": true,
+        "probability": 0.99
+      },
+      {
+        "action": "Vega operations runbook",
+        "stage": "stage_0",
+        "progress": true,
+        "probability": 1
+      },
+      {
+        "action": "English",
+        "stage": "stage_1",
+        "progress": true,
+        "probability": 0.98
+      },
+      {
+        "action": "Version v2.4",
+        "stage": "stage_1",
+        "progress": true,
+        "probability": 1
+      },
+      {
+        "action": "Preview document",
+        "stage": "stage_1",
+        "progress": true,
+        "probability": 1
+      }
+    ],
+    "snapshot": "Browser tab: 51514151, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18743/browser-workflow-fixture.html?case=document&variant=b\".\n1 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=document&variant=b\n\t2 container view\n\t\t3 heading Document preview, Value: 1\n\t\t\t4 text Document preview\n\t\t5 text Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview\n\nThe focused UI element is 1 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=document&variant=b",
+    "stateMayHaveChanged": false,
+    "metrics": {
+      "runs": 1,
+      "actions": 6,
+      "jevRequests": 6,
+      "inputTokens": 5373,
+      "outputTokens": 282,
+      "unknownUsage": 0,
+      "apiMs": 2032.8280410002917,
+      "elapsedMs": 3119.4108750000596,
+      "handoffs": 0
+    },
+    "sessionMetrics": {
+      "runs": 1,
+      "actions": 6,
+      "jevRequests": 6,
+      "inputTokens": 5373,
+      "outputTokens": 282,
+      "unknownUsage": 0,
+      "apiMs": 2032.8280410002917,
+      "elapsedMs": 3119.4108750000596,
+      "handoffs": 0
+    },
+    "phases": [
+      {
+        "phase": "observe",
+        "ms": 24.468541000038385
+      },
+      {
+        "phase": "decision",
+        "ms": 723.0517090000212
+      },
+      {
+        "phase": "revalidate",
+        "ms": 13.717458000406623
+      },
+      {
+        "phase": "execute",
+        "ms": 11.714999999850988
+      },
+      {
+        "phase": "observe",
+        "ms": 149.24854199960828
+      },
+      {
+        "phase": "decision",
+        "ms": 291.1389589998871
+      },
+      {
+        "phase": "revalidate",
+        "ms": 13.470750000327826
+      },
+      {
+        "phase": "execute",
+        "ms": 10.524250000715256
+      },
+      {
+        "phase": "observe",
+        "ms": 148.48925000056624
+      },
+      {
+        "phase": "decision",
+        "ms": 254.7465420011431
+      },
+      {
+        "phase": "revalidate",
+        "ms": 13.633249999955297
+      },
+      {
+        "phase": "execute",
+        "ms": 9.987041000276804
+      },
+      {
+        "phase": "observe",
+        "ms": 150.69891599938273
+      },
+      {
+        "phase": "decision",
+        "ms": 244.83129199966788
+      },
+      {
+        "phase": "revalidate",
+        "ms": 14.530417000874877
+      },
+      {
+        "phase": "execute",
+        "ms": 13.071666998788714
+      },
+      {
+        "phase": "observe",
+        "ms": 153.7816249988973
+      },
+      {
+        "phase": "decision",
+        "ms": 272.20320799946785
+      },
+      {
+        "phase": "revalidate",
+        "ms": 14.021457999944687
+      },
+      {
+        "phase": "execute",
+        "ms": 11.184666000306606
+      },
+      {
+        "phase": "observe",
+        "ms": 150.15079199895263
+      },
+      {
+        "phase": "decision",
+        "ms": 253.02916599996388
+      },
+      {
+        "phase": "revalidate",
+        "ms": 13.530625000596046
+      },
+      {
+        "phase": "execute",
+        "ms": 11.853958999738097
+      },
+      {
+        "phase": "observe",
+        "ms": 149.89816699922085
+      }
+    ],
+    "instruction": "Codex must independently verify the final observed outcome.",
+    "finalObservation": {
+      "snapshot": "Browser tab: 51514151, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18743/browser-workflow-fixture.html?case=document&variant=b\".\n1 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=document&variant=b\n\t2 container view\n\t\t3 heading Document preview, Value: 1\n\t\t\t4 text Document preview\n\t\t5 text Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview\n\nThe focused UI element is 1 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=document&variant=b",
+      "observedAt": 1790266149974
+    },
+    "finalObservationMs": 11.099124999716878
+  },
+  "observed": "Browser tab: 51514151, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18743/browser-workflow-fixture.html?case=document&variant=b\".\n1 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=document&variant=b\n\t2 container view\n\t\t3 heading Document preview, Value: 1\n\t\t\t4 text Document preview\n\t\t5 text Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview\n\nThe focused UI element is 1 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18743/browser-workflow-fixture.html?case=document&variant=b",
+  "passed": true
+}

@@ -10,6 +10,24 @@ export class RequestGuard {
     Object.assign(this, { store, project, taskId, clock });
     this.config = { ...GUARD_DEFAULTS, ...config };
   }
+  // A read-only admission hint, not a reservation. Actual requests still reserve
+  // transactionally; another caller can consume capacity after this snapshot.
+  capacity({ model, priority = 'routine' }) {
+    const now = this.clock(), cfg = this.config, urgent = priority === 'urgent';
+    const scope = this.taskId ? 'task' : 'workspace-window';
+    const id = keyOf({ scope, task: this.taskId || this.project, window: Math.floor(now / cfg.budgetWindowMs) });
+    const state = this.store.get(this.project, 'task_budget', id) || { calls: 0, bytes: 0, elapsedMs: 0, reservations: {} };
+    const circuit = this.store.get(this.project, 'circuit', keyOf({ model })) || {};
+    const pendingMs = Object.values(state.reservations).reduce((sum, p) => sum + p.allowance, 0);
+    const reserved = (value, total) => urgent ? 0 : Math.min(value || 0, Math.floor(total * .2));
+    return {
+      calls: Math.max(0, cfg.taskMaxCalls - state.calls - reserved(cfg.taskReservedCalls, cfg.taskMaxCalls)),
+      bytes: Math.max(0, cfg.taskMaxBytes - state.bytes - reserved(cfg.taskReservedBytes, cfg.taskMaxBytes)),
+      waitMs: Math.max(0, cfg.taskMaxWaitMs - state.elapsedMs - pendingMs - reserved(cfg.taskReservedWaitMs, cfg.taskMaxWaitMs)),
+      cooldown: circuit.openUntil > now || circuit.probeUntil > now,
+      windowEndsAt: (Math.floor(now / cfg.budgetWindowMs) + 1) * cfg.budgetWindowMs,
+    };
+  }
   reserve({ bytes, timeoutMs, model, priority='routine' }) {
     const now = this.clock(), cfg = this.config;
     const scope = this.taskId ? 'task' : 'workspace-window';
