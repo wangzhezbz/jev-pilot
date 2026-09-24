@@ -87,3 +87,5 @@ v18 在同一阶段连续三次有效确认维持用户原档位后，最多间�
 已安装 `0.2.0+codex.20260925020515`，仓库、发布目录和插件缓存三处关键文件哈希一致，静态扫描通过。后台修复配置为下次正常重启加载；当前进程仍为 v17，未强制退出桌面或 Chrome。安装与加载证据见 [deployment.json](deployment.json)。当前任务日志中的切档仍属于此前加载的 v17；不会用磁盘上的 v18 冒充已经热切换。当前会话已创建的 MCP 进程也可能继续使用旧代码。
 
 本轮核对官方 [API 合约](https://docs.typesafe.ai/api) 与 [coding agents 用法](https://docs.typesafe.ai/introduction/coding-agents)：判断应嵌入受控流程并按实际用量验收。没有复制新的上游代码。
+
+实现提交 `ef70df2` 的 [三系统 CI](https://github.com/wangzhezbz/jev-pilot/actions/runs/36039008365) 已全部成功，涵盖检查、构建、测试和打包；[结果快照](ci.json)。这不替代跨平台桌面实机验收。

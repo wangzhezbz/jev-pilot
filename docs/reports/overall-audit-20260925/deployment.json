@@ -45,5 +45,11 @@
     "failed": 0
   },
   "staticScan": "passed",
-  "githubCi": "pending_publication"
+  "githubCi": {
+    "codeCommit": "ef70df2d92b22e043feac06818e6e47ad2c9e1c7",
+    "runId": 36039008365,
+    "windows": "success",
+    "macos": "success",
+    "linux": "success"
+  }
 }
