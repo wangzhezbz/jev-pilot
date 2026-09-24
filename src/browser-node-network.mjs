@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync, mkdirSync, lstatSync, realpathSync, renameSync } from 'node:fs';
-import { join, dirname } from 'node:path';
+import { join, posix } from 'node:path';
 import { createHash, randomUUID } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 
@@ -31,7 +31,7 @@ export function planNodeProxy(text, names) {
   const command = entry(server, 'command')?.value;
   if (typeof command !== 'string' || !/^\/Applications\/(?:ChatGPT|Codex)\.app\/Contents\/Resources\/cua_node\/bin\/node_repl$/.test(command)) throw Error('UNSUPPORTED_RUNTIME');
   const nodePath = entry(env, 'NODE_REPL_NODE_PATH')?.value;
-  if (nodePath !== join(dirname(command), 'node')) throw Error('UNSUPPORTED_RUNTIME');
+  if (nodePath !== posix.join(posix.dirname(command), 'node')) throw Error('UNSUPPORTED_RUNTIME');
   const allow = entry(server, 'env_vars');
   const existing = allow?.value ?? [];
   if (!Array.isArray(existing) || !existing.every(x => typeof x === 'string')) throw Error('UNSUPPORTED_CONFIG');
