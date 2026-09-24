@@ -1,0 +1,17 @@
+{
+  "at": "2026-09-24T16:42:49.549Z",
+  "baseline": "b8189c063aab5b152127711103a30b071e2adcba",
+  "kind": "offline_component_AB",
+  "live": false,
+  "maxPaidCalls": 0,
+  "gptCalls": 0,
+  "delayMs": 40,
+  "repetitions": 3,
+  "cases": [
+    "required-tools",
+    "review",
+    "quality",
+    "shifted-context"
+  ],
+  "boundary": "Function execution only; excludes Codex planning, tool dispatch and final answer. Offline times are synthetic, not provider speed. Required-tools is a known-decision case, not general task savings. No quota overrides."
+}

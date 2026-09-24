@@ -2,13 +2,28 @@ import { records, array, text, requireValue, readSource, hash, now, classificati
 import { extractSpans } from '../vendor/jeveryword/extract.mjs';
 import { mayOmit } from './policy.mjs';
 
+// Independent checks overlap only when two full requests fit the shared budget.
+// Each branch remains serial, so large classifications never fan out beyond two.
+async function independentChecks(ctx, first, second) {
+  const capacity = ctx.judge.guard.capacity({ model: ctx.config.model, priority: ctx.judge.priority });
+  const parallel = !capacity.cooldown && capacity.calls >= 2
+    && ctx.config.maxCalls - ctx.judge.calls >= 2
+    && capacity.waitMs >= 2 * (ctx.config.timeoutMs || 5000);
+  ctx.judge.concurrency = 1;
+  if (parallel) return Promise.all([ctx.judge.classify(...first), ctx.judge.classify(...second)]);
+  return [await ctx.judge.classify(...first), await ctx.judge.classify(...second)];
+}
+
 export async function decide(ctx, { items, question, choices }) {
   records(items); text(question, 10000); requireValue(choices && Object.keys(choices).length >= 2 && Object.keys(choices).length <= 255);
   return { decisions: await ctx.judge.classify(items, question, choices), fallbackOwner: 'Codex' };
 }
 export async function selectTools(ctx, { goal, tools, required = [] }) {
   records(tools, 255); array(required, 255); requireValue(required.every(id => tools.some(t => t.id === id)), 'UNKNOWN_REQUIRED_TOOL');
-  const judgments = await ctx.judge.classify(tools, `Task: ${text(goal, 10000)}. Is this tool or skill useful for the next step?`, { use: 'Useful capability.', review: 'Potentially useful or uncertain.', skip: 'Clearly unrelated.' }, 'tool_selection');
+  const optional = tools.filter(t => !required.includes(t.id));
+  const judged = await ctx.judge.classify(optional, `Task: ${text(goal, 10000)}. Is this tool or skill useful for the next step?`, { use: 'Useful capability.', review: 'Potentially useful or uncertain.', skip: 'Clearly unrelated.' }, 'tool_selection');
+  const byId = new Map(judged.map(j => [j.id, j]));
+  const judgments = tools.map(t => byId.get(t.id) || { id: t.id, choice: 'use', source: 'policy', reason: 'REQUIRED_TOOL' });
   const selected = tools.filter((t, i) => required.includes(t.id) || !mayOmit(judgments[i], 'skip', ctx.config));
   return { selected, judgments, nativeToolsRemoved: false, recoverableCandidates: tools.map(t => t.id) };
 }
@@ -32,15 +47,20 @@ export async function quality(ctx, { content, rules, translations = [] }) {
     ctx.store.event(ctx.project,'quality_admission',{reason:'input_too_large',inputBytes:byteBudget(content),calls:0});
     return {verdict:'not_evaluated',evaluated:false,reason:'INPUT_TOO_LARGE',checks:[],translations:[],inputBytes:byteBudget(content),stateAndQuestionByteLimit:STATE_QUESTION_BYTES,fallbackOwner:'Codex',nextAction:'Use bounded passages only for local rules. Keep document-wide rules with Codex; do not retry this unchanged input.'};
   }
-  const checks=await ctx.judge.classify(rules,rubric,criteria,'quality',context);
-  const languages=await ctx.judge.classify(translations,translationRubric,criteria,'translation',context);
+  const [checks,languages]=await independentChecks(ctx,
+    [rules,rubric,criteria,'quality',context],
+    [translations,translationRubric,criteria,'translation',context]);
   return {checks,translations:languages,evaluated:[...checks,...languages].length>0&&[...checks,...languages].every(x=>x.source==='jev'),verdict:[...checks,...languages].length&&[...checks,...languages].every(x=>x.choice==='pass'&&x.source==='jev')?'passed':'needs_review'};
 }
 export async function reviewChanges(ctx, { goal, changes, tests, required = [] }) {
   records(changes, 100); records(tests, 100); array(required, 100);
   requireValue(required.every(id => tests.some(t => t.id === id)), 'UNKNOWN_REQUIRED_TEST');
-  const risks = await ctx.judge.classify(changes, `Review change for task: ${text(goal, 10000)}. Flag concrete correctness, security, compatibility or data-loss concerns. This is triage, not final code review.`, { inspect: 'Potential defect warrants Codex review.', routine: 'No obvious concern in this excerpt.', review: 'Insufficient context.' }, 'review');
-  const judgments = await ctx.judge.classify(tests, `Which tests cover these changes? ${JSON.stringify(changes)}. Never skip an uncertain test.`, { run: 'Relevant or changed test.', review: 'Uncertain dependency; run.', defer: 'Clearly unrelated optional test.' }, 'test_priority');
+  const optional = tests.filter(t => !t.required && !t.changed && !required.includes(t.id));
+  const [risks, judged] = await independentChecks(ctx,
+    [changes, `Review change for task: ${text(goal, 10000)}. Flag concrete correctness, security, compatibility or data-loss concerns. This is triage, not final code review.`, { inspect: 'Potential defect warrants Codex review.', routine: 'No obvious concern in this excerpt.', review: 'Insufficient context.' }, 'review'],
+    [optional, `Which tests cover these changes? ${JSON.stringify(changes)}. Never skip an uncertain test.`, { run: 'Relevant or changed test.', review: 'Uncertain dependency; run.', defer: 'Clearly unrelated optional test.' }, 'test_priority']);
+  const byId = new Map(judged.map(j => [j.id, j]));
+  const judgments = tests.map(t => byId.get(t.id) || { id: t.id, choice: 'run', source: 'policy', reason: 'REQUIRED_OR_CHANGED_TEST' });
   return { risks, run: tests.filter((t, i) => t.required || t.changed || required.includes(t.id) || !mayOmit(judgments[i], 'defer', ctx.config)).map(t => t.id), deferred: tests.filter((t, i) => !t.required && !t.changed && !required.includes(t.id) && mayOmit(judgments[i], 'defer', ctx.config)).map(t => t.id), judgments, finalReviewOwner: 'Codex' };
 }
 const snapshot = (ctx, files) => Object.fromEntries(array(files, 100).map(p => [p, readSource(ctx.root, p).hash]));

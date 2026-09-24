@@ -151,14 +151,26 @@ export async function compactContext(ctx, { goal, blocks, session = 'default', p
   array(blocks, 512); requireValue(Number.isInteger(preserveRecent) && preserveRecent >= 1 && preserveRecent <= 50);
   const ids = new Set(); for (const b of blocks) { text(b.id, 128); text(b.content); requireValue(!ids.has(b.id), 'DUPLICATE_ID'); ids.add(b.id); }
   const originalId = ctx.store.put(ctx.project, 'artifact', { items: blocks.map(b => ({ ...b, text: b.content })), goal });
-  const pairs = new Map(); blocks.forEach((b, i) => { if (b.callId) { const group = pairs.get(b.callId) || []; group.push({ ...b, index: i }); pairs.set(b.callId, group); } });
+  const positions = new Map(blocks.map((b, i) => [b.id, i]));
+  const pairs = new Map(); blocks.forEach(b => { if (b.callId) { const group = pairs.get(b.callId) || []; group.push(b); pairs.set(b.callId, group); } });
   const eligible = [...pairs].filter(([, group]) => group.length === 2 && group.some(b => b.role === 'tool_call' && b.readOnly === true && b.verified === true)
-    && group.some(b => b.role === 'tool_result') && group.every(b => !protectedEvidence(b, { paths: true }) && (!b.status || ['completed', 'success', 'succeeded', 'passed'].includes(b.status)) && b.verified !== false && b.index < blocks.length - preserveRecent));
-  const cacheId = hash({ session, goal, policy: EVIDENCE_POLICY }), previous = ctx.store.get(ctx.project, 'compaction', cacheId) || { decisions: {} };
-  const pending = eligible.filter(([id, group]) => previous.decisions[id]?.hash !== hash(group));
+    && group.some(b => b.role === 'tool_result') && group.every(b => !protectedEvidence(b, { paths: true }) && (!b.status || ['completed', 'success', 'succeeded', 'passed'].includes(b.status)) && b.verified !== false && positions.get(b.id) < blocks.length - preserveRecent));
+  // Position controls eligibility, not the meaning of an unchanged exchange.
+  // Keep content, order within the exchange and all caller metadata in the identity.
+  const cacheId = hash({ session, goal, model: ctx.config.model, policy: EVIDENCE_POLICY, cache: 'exchange-v2' });
+  const previous = ctx.store.get(ctx.project, 'compaction', cacheId) || { decisions: {} };
+  const canReuse = ctx.config.enabled && ctx.judge.key && ctx.config.cacheMs > 0 && !ctx.judge.signal?.aborted;
+  const fresh = ([id, group]) => {
+    const saved = previous.decisions[id];
+    return canReuse && saved?.hash === hash(group) && saved.expiresAt > Date.now()
+      && saved.createdAt + ctx.config.cacheMs > Date.now();
+  };
+  const pending = eligible.filter(pair => !fresh(pair));
+  // A failed reevaluation must never revive the previous exclusion.
+  for (const [id] of pending) delete previous.decisions[id];
   const decisions = await ctx.judge.classify(pending.map(([id, group], i) => ({ id: 'p' + i, text: JSON.stringify(group) })), `Goal: ${goal}. Is this completed read-only tool exchange still useful?`, relevant, 'context');
   const failed = decisions.some(d => d.source === 'fallback');
-  pending.forEach(([id, group], i) => { if (decisions[i].source === 'jev') previous.decisions[id] = { hash: hash(group), ...decisions[i] }; });
+  pending.forEach(([id, group], i) => { if (decisions[i].source === 'jev') previous.decisions[id] = { hash: hash(group), ...decisions[i], createdAt: Date.now(), expiresAt: Date.now() + ctx.config.cacheMs }; });
   const proposed = eligible.filter(([id]) => exclusionDecision(previous.decisions[id], ctx.config).proposed).map(([id]) => id);
   const remove = new Set(failed || ctx.config?.evidenceMode === 'shadow' ? [] : proposed);
   const retained = blocks.filter(b => !remove.has(b.callId)); ctx.store.put(ctx.project, 'compaction', previous, cacheId);

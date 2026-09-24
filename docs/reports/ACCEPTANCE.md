@@ -2,6 +2,8 @@
 
 **Status: all 14 shared modules implemented; runnable development preview. Full cross-platform desktop release acceptance is not complete.**
 
+Current optimization follow-up: [2026-09-25 whole-workflow audit](workflow-efficiency-20260925/README.zh-CN.md) — 329 local tests pass; one real required-tool case removes an unnecessary 2,090 Jev tokens. Component and offline results are separated; this is not a general end-to-end savings claim. Earlier counts below are historical batches.
+
 Latest follow-up: [2026-09-22 hardening and Chrome diagnosis](HARDENING.md) — 64 local tests pass after eight reliability fixes. The earlier live-call counts below describe the original acceptance batch, not cumulative usage.
 
 Further follow-up: [credential, startup and Chrome fallback acceptance](FOLLOWUP.md) — 67 tests pass; Computer Use successfully operates the user's Chrome on a synthetic local page while the Chrome extension command path remained blocked at that time. The newer [real Chrome acceptance](CHROME-ACCEPTANCE.md) resolves that gate.

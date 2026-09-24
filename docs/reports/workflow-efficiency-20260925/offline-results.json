@@ -1,0 +1,1419 @@
+{
+  "plan": {
+    "at": "2026-09-24T16:42:49.549Z",
+    "baseline": "b8189c063aab5b152127711103a30b071e2adcba",
+    "kind": "offline_component_AB",
+    "live": false,
+    "maxPaidCalls": 0,
+    "gptCalls": 0,
+    "delayMs": 40,
+    "repetitions": 3,
+    "cases": [
+      "required-tools",
+      "review",
+      "quality",
+      "shifted-context"
+    ],
+    "boundary": "Function execution only; excludes Codex planning, tool dispatch and final answer. Offline times are synthetic, not provider speed. Required-tools is a known-decision case, not general task savings. No quota overrides."
+  },
+  "rows": [
+    {
+      "case": "required-tools",
+      "repetition": 0,
+      "variant": "baseline",
+      "elapsedMs": 44.997625,
+      "passed": true,
+      "calls": 1,
+      "questions": 12,
+      "requestBytes": 4029,
+      "peakConcurrent": 1,
+      "requests": [
+        {
+          "requestHash": "10399a776ca82e2b2c0e20a79d8e5fb62cc1441df7f63cc04494299b80a27ed9",
+          "requestBytes": 4029,
+          "questions": 12,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.295625
+        }
+      ],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 1,
+      "results": [
+        {
+          "selected": [
+            "t0",
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "judgmentSources": [
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "required-tools",
+      "repetition": 0,
+      "variant": "optimized",
+      "elapsedMs": 0.24562499999998977,
+      "passed": true,
+      "calls": 0,
+      "questions": 0,
+      "requestBytes": 0,
+      "peakConcurrent": 0,
+      "requests": [],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 0,
+      "results": [
+        {
+          "selected": [
+            "t0",
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "judgmentSources": [
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "review",
+      "repetition": 0,
+      "variant": "baseline",
+      "elapsedMs": 86.477458,
+      "passed": true,
+      "calls": 2,
+      "questions": 13,
+      "requestBytes": 4760,
+      "peakConcurrent": 1,
+      "requests": [
+        {
+          "requestHash": "88840db47d6dd4b0a8933a9b3d59ae7a1e87aaa0563911bcde8ca78064d678e3",
+          "requestBytes": 607,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.26233300000001
+        },
+        {
+          "requestHash": "4707db395329d390771f5a764ec1d7c4e2f0ba961f8e954d2cc57b3639590ae9",
+          "requestBytes": 4153,
+          "questions": 12,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.131541999999996
+        }
+      ],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 2,
+      "results": [
+        {
+          "run": [
+            "t0",
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8"
+          ],
+          "judgmentSources": [
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "review",
+      "repetition": 0,
+      "variant": "optimized",
+      "elapsedMs": 43.76558300000002,
+      "passed": true,
+      "calls": 2,
+      "questions": 4,
+      "requestBytes": 1777,
+      "peakConcurrent": 2,
+      "requests": [
+        {
+          "requestHash": "88840db47d6dd4b0a8933a9b3d59ae7a1e87aaa0563911bcde8ca78064d678e3",
+          "requestBytes": 607,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.148167
+        },
+        {
+          "requestHash": "3d0b8295537356373d5d9dab7f53f2406c6f8796f49ee3611a6f75f5f48c24c6",
+          "requestBytes": 1170,
+          "questions": 3,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.62704200000002
+        }
+      ],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 2,
+      "results": [
+        {
+          "run": [
+            "t0",
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8"
+          ],
+          "judgmentSources": [
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "jev",
+            "jev",
+            "jev"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "quality",
+      "repetition": 0,
+      "variant": "baseline",
+      "elapsedMs": 85.90545799999998,
+      "passed": true,
+      "calls": 2,
+      "questions": 2,
+      "requestBytes": 1056,
+      "peakConcurrent": 1,
+      "requests": [
+        {
+          "requestHash": "cbfdd5040d32ba84e2d39d2b0c5c5d8ead42a88d9110e7cbd1884ded38b3ea82",
+          "requestBytes": 511,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.15420799999998
+        },
+        {
+          "requestHash": "badae6c69f25c70a06c07d77abc0013c90e35997857425734989dc05b4178518",
+          "requestBytes": 545,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.13425000000001
+        }
+      ],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 2,
+      "results": [
+        {
+          "verdict": "passed"
+        }
+      ]
+    },
+    {
+      "case": "quality",
+      "repetition": 0,
+      "variant": "optimized",
+      "elapsedMs": 42.97641699999997,
+      "passed": true,
+      "calls": 2,
+      "questions": 2,
+      "requestBytes": 1056,
+      "peakConcurrent": 2,
+      "requests": [
+        {
+          "requestHash": "cbfdd5040d32ba84e2d39d2b0c5c5d8ead42a88d9110e7cbd1884ded38b3ea82",
+          "requestBytes": 511,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 41.368667000000016
+        },
+        {
+          "requestHash": "badae6c69f25c70a06c07d77abc0013c90e35997857425734989dc05b4178518",
+          "requestBytes": 545,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 41.87216699999999
+        }
+      ],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 2,
+      "results": [
+        {
+          "verdict": "passed"
+        }
+      ]
+    },
+    {
+      "case": "shifted-context",
+      "repetition": 0,
+      "variant": "baseline",
+      "elapsedMs": 216.14616600000005,
+      "passed": true,
+      "calls": 5,
+      "questions": 5,
+      "requestBytes": 5645,
+      "peakConcurrent": 1,
+      "requests": [
+        {
+          "requestHash": "7d7ff6fb793ab460a84fc698ebc80c4ffca71160be72116814724443ee443ecd",
+          "requestBytes": 1129,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.12549999999999
+        },
+        {
+          "requestHash": "896dc3830ca26ac26a07d998a8f5dc8746d90bc041f628cefd807896884a1e12",
+          "requestBytes": 1129,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.110874999999965
+        },
+        {
+          "requestHash": "3ac6f1946eb7c42c662fd1a5f67cc3d24475f312211b10631f1be4fe28ccafdb",
+          "requestBytes": 1129,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.12812500000001
+        },
+        {
+          "requestHash": "d01ef14f0ebe5faa67e5aaf8de5b155d2ae09d224b30187acf4d641fe8144571",
+          "requestBytes": 1129,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 41.791083000000015
+        },
+        {
+          "requestHash": "2d3bad0240fc9cde41813c30130720b3ef37c8ce7eb3441e4269b28c0899bf8d",
+          "requestBytes": 1129,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.115125000000035
+        }
+      ],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 5,
+      "results": [
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 0
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 0
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 0
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 0
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 0
+        }
+      ]
+    },
+    {
+      "case": "shifted-context",
+      "repetition": 0,
+      "variant": "optimized",
+      "elapsedMs": 44.59220800000003,
+      "passed": true,
+      "calls": 1,
+      "questions": 1,
+      "requestBytes": 1105,
+      "peakConcurrent": 1,
+      "requests": [
+        {
+          "requestHash": "d81cf16fabea3d12ce02c3c763d3587bca6e8289ad93262a9df32b167d09e36c",
+          "requestBytes": 1105,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.101084000000014
+        }
+      ],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 1,
+      "results": [
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 0
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 1
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 1
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 1
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 1
+        }
+      ]
+    },
+    {
+      "case": "required-tools",
+      "repetition": 1,
+      "variant": "optimized",
+      "elapsedMs": 0.10312499999997726,
+      "passed": true,
+      "calls": 0,
+      "questions": 0,
+      "requestBytes": 0,
+      "peakConcurrent": 0,
+      "requests": [],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 0,
+      "results": [
+        {
+          "selected": [
+            "t0",
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "judgmentSources": [
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "required-tools",
+      "repetition": 1,
+      "variant": "baseline",
+      "elapsedMs": 43.011041999999975,
+      "passed": true,
+      "calls": 1,
+      "questions": 12,
+      "requestBytes": 4029,
+      "peakConcurrent": 1,
+      "requests": [
+        {
+          "requestHash": "10399a776ca82e2b2c0e20a79d8e5fb62cc1441df7f63cc04494299b80a27ed9",
+          "requestBytes": 4029,
+          "questions": 12,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.11058300000002
+        }
+      ],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 1,
+      "results": [
+        {
+          "selected": [
+            "t0",
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "judgmentSources": [
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "review",
+      "repetition": 1,
+      "variant": "optimized",
+      "elapsedMs": 43.40529199999992,
+      "passed": true,
+      "calls": 2,
+      "questions": 4,
+      "requestBytes": 1777,
+      "peakConcurrent": 2,
+      "requests": [
+        {
+          "requestHash": "88840db47d6dd4b0a8933a9b3d59ae7a1e87aaa0563911bcde8ca78064d678e3",
+          "requestBytes": 607,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.28020900000001
+        },
+        {
+          "requestHash": "3d0b8295537356373d5d9dab7f53f2406c6f8796f49ee3611a6f75f5f48c24c6",
+          "requestBytes": 1170,
+          "questions": 3,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.63712500000008
+        }
+      ],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 2,
+      "results": [
+        {
+          "run": [
+            "t0",
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8"
+          ],
+          "judgmentSources": [
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "jev",
+            "jev",
+            "jev"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "review",
+      "repetition": 1,
+      "variant": "baseline",
+      "elapsedMs": 85.848209,
+      "passed": true,
+      "calls": 2,
+      "questions": 13,
+      "requestBytes": 4760,
+      "peakConcurrent": 1,
+      "requests": [
+        {
+          "requestHash": "88840db47d6dd4b0a8933a9b3d59ae7a1e87aaa0563911bcde8ca78064d678e3",
+          "requestBytes": 607,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.11424999999997
+        },
+        {
+          "requestHash": "4707db395329d390771f5a764ec1d7c4e2f0ba961f8e954d2cc57b3639590ae9",
+          "requestBytes": 4153,
+          "questions": 12,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.09508400000004
+        }
+      ],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 2,
+      "results": [
+        {
+          "run": [
+            "t0",
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8"
+          ],
+          "judgmentSources": [
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "quality",
+      "repetition": 1,
+      "variant": "optimized",
+      "elapsedMs": 43.289333000000056,
+      "passed": true,
+      "calls": 2,
+      "questions": 2,
+      "requestBytes": 1056,
+      "peakConcurrent": 2,
+      "requests": [
+        {
+          "requestHash": "cbfdd5040d32ba84e2d39d2b0c5c5d8ead42a88d9110e7cbd1884ded38b3ea82",
+          "requestBytes": 511,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.12937499999998
+        },
+        {
+          "requestHash": "badae6c69f25c70a06c07d77abc0013c90e35997857425734989dc05b4178518",
+          "requestBytes": 545,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.52145800000005
+        }
+      ],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 2,
+      "results": [
+        {
+          "verdict": "passed"
+        }
+      ]
+    },
+    {
+      "case": "quality",
+      "repetition": 1,
+      "variant": "baseline",
+      "elapsedMs": 85.49558400000001,
+      "passed": true,
+      "calls": 2,
+      "questions": 2,
+      "requestBytes": 1056,
+      "peakConcurrent": 1,
+      "requests": [
+        {
+          "requestHash": "cbfdd5040d32ba84e2d39d2b0c5c5d8ead42a88d9110e7cbd1884ded38b3ea82",
+          "requestBytes": 511,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.096624999999904
+        },
+        {
+          "requestHash": "badae6c69f25c70a06c07d77abc0013c90e35997857425734989dc05b4178518",
+          "requestBytes": 545,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.08912499999997
+        }
+      ],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 2,
+      "results": [
+        {
+          "verdict": "passed"
+        }
+      ]
+    },
+    {
+      "case": "shifted-context",
+      "repetition": 1,
+      "variant": "optimized",
+      "elapsedMs": 44.30366600000002,
+      "passed": true,
+      "calls": 1,
+      "questions": 1,
+      "requestBytes": 1105,
+      "peakConcurrent": 1,
+      "requests": [
+        {
+          "requestHash": "d81cf16fabea3d12ce02c3c763d3587bca6e8289ad93262a9df32b167d09e36c",
+          "requestBytes": 1105,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 41.877792
+        }
+      ],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 1,
+      "results": [
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 0
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 1
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 1
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 1
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 1
+        }
+      ]
+    },
+    {
+      "case": "shifted-context",
+      "repetition": 1,
+      "variant": "baseline",
+      "elapsedMs": 212.67108400000006,
+      "passed": true,
+      "calls": 5,
+      "questions": 5,
+      "requestBytes": 5645,
+      "peakConcurrent": 1,
+      "requests": [
+        {
+          "requestHash": "7d7ff6fb793ab460a84fc698ebc80c4ffca71160be72116814724443ee443ecd",
+          "requestBytes": 1129,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 40.47662500000001
+        },
+        {
+          "requestHash": "896dc3830ca26ac26a07d998a8f5dc8746d90bc041f628cefd807896884a1e12",
+          "requestBytes": 1129,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.262750000000096
+        },
+        {
+          "requestHash": "3ac6f1946eb7c42c662fd1a5f67cc3d24475f312211b10631f1be4fe28ccafdb",
+          "requestBytes": 1129,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 40.39670799999999
+        },
+        {
+          "requestHash": "d01ef14f0ebe5faa67e5aaf8de5b155d2ae09d224b30187acf4d641fe8144571",
+          "requestBytes": 1129,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.08316599999989
+        },
+        {
+          "requestHash": "2d3bad0240fc9cde41813c30130720b3ef37c8ce7eb3441e4269b28c0899bf8d",
+          "requestBytes": 1129,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.09191699999997
+        }
+      ],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 5,
+      "results": [
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 0
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 0
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 0
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 0
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 0
+        }
+      ]
+    },
+    {
+      "case": "required-tools",
+      "repetition": 2,
+      "variant": "baseline",
+      "elapsedMs": 43.11029099999996,
+      "passed": true,
+      "calls": 1,
+      "questions": 12,
+      "requestBytes": 4029,
+      "peakConcurrent": 1,
+      "requests": [
+        {
+          "requestHash": "10399a776ca82e2b2c0e20a79d8e5fb62cc1441df7f63cc04494299b80a27ed9",
+          "requestBytes": 4029,
+          "questions": 12,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.131832999999915
+        }
+      ],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 1,
+      "results": [
+        {
+          "selected": [
+            "t0",
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "judgmentSources": [
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "required-tools",
+      "repetition": 2,
+      "variant": "optimized",
+      "elapsedMs": 0.08629199999995762,
+      "passed": true,
+      "calls": 0,
+      "questions": 0,
+      "requestBytes": 0,
+      "peakConcurrent": 0,
+      "requests": [],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 0,
+      "results": [
+        {
+          "selected": [
+            "t0",
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "judgmentSources": [
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "review",
+      "repetition": 2,
+      "variant": "baseline",
+      "elapsedMs": 85.72187499999995,
+      "passed": true,
+      "calls": 2,
+      "questions": 13,
+      "requestBytes": 4760,
+      "peakConcurrent": 1,
+      "requests": [
+        {
+          "requestHash": "88840db47d6dd4b0a8933a9b3d59ae7a1e87aaa0563911bcde8ca78064d678e3",
+          "requestBytes": 607,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 41.94604199999981
+        },
+        {
+          "requestHash": "4707db395329d390771f5a764ec1d7c4e2f0ba961f8e954d2cc57b3639590ae9",
+          "requestBytes": 4153,
+          "questions": 12,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.20104200000014
+        }
+      ],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 2,
+      "results": [
+        {
+          "run": [
+            "t0",
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8"
+          ],
+          "judgmentSources": [
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "review",
+      "repetition": 2,
+      "variant": "optimized",
+      "elapsedMs": 41.83941700000014,
+      "passed": true,
+      "calls": 2,
+      "questions": 4,
+      "requestBytes": 1777,
+      "peakConcurrent": 2,
+      "requests": [
+        {
+          "requestHash": "88840db47d6dd4b0a8933a9b3d59ae7a1e87aaa0563911bcde8ca78064d678e3",
+          "requestBytes": 607,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 40.85204099999987
+        },
+        {
+          "requestHash": "3d0b8295537356373d5d9dab7f53f2406c6f8796f49ee3611a6f75f5f48c24c6",
+          "requestBytes": 1170,
+          "questions": 3,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 41.181375000000116
+        }
+      ],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 2,
+      "results": [
+        {
+          "run": [
+            "t0",
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8"
+          ],
+          "judgmentSources": [
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "jev",
+            "jev",
+            "jev"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "quality",
+      "repetition": 2,
+      "variant": "baseline",
+      "elapsedMs": 85.51812500000005,
+      "passed": true,
+      "calls": 2,
+      "questions": 2,
+      "requestBytes": 1056,
+      "peakConcurrent": 1,
+      "requests": [
+        {
+          "requestHash": "cbfdd5040d32ba84e2d39d2b0c5c5d8ead42a88d9110e7cbd1884ded38b3ea82",
+          "requestBytes": 511,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.11666699999978
+        },
+        {
+          "requestHash": "badae6c69f25c70a06c07d77abc0013c90e35997857425734989dc05b4178518",
+          "requestBytes": 545,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.109874999999874
+        }
+      ],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 2,
+      "results": [
+        {
+          "verdict": "passed"
+        }
+      ]
+    },
+    {
+      "case": "quality",
+      "repetition": 2,
+      "variant": "optimized",
+      "elapsedMs": 41.82079099999987,
+      "passed": true,
+      "calls": 2,
+      "questions": 2,
+      "requestBytes": 1056,
+      "peakConcurrent": 2,
+      "requests": [
+        {
+          "requestHash": "cbfdd5040d32ba84e2d39d2b0c5c5d8ead42a88d9110e7cbd1884ded38b3ea82",
+          "requestBytes": 511,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 40.671833000000106
+        },
+        {
+          "requestHash": "badae6c69f25c70a06c07d77abc0013c90e35997857425734989dc05b4178518",
+          "requestBytes": 545,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 41.04087500000014
+        }
+      ],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 2,
+      "results": [
+        {
+          "verdict": "passed"
+        }
+      ]
+    },
+    {
+      "case": "shifted-context",
+      "repetition": 2,
+      "variant": "baseline",
+      "elapsedMs": 213.50604099999987,
+      "passed": true,
+      "calls": 5,
+      "questions": 5,
+      "requestBytes": 5645,
+      "peakConcurrent": 1,
+      "requests": [
+        {
+          "requestHash": "7d7ff6fb793ab460a84fc698ebc80c4ffca71160be72116814724443ee443ecd",
+          "requestBytes": 1129,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.09637500000008
+        },
+        {
+          "requestHash": "896dc3830ca26ac26a07d998a8f5dc8746d90bc041f628cefd807896884a1e12",
+          "requestBytes": 1129,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 41.35674999999992
+        },
+        {
+          "requestHash": "3ac6f1946eb7c42c662fd1a5f67cc3d24475f312211b10631f1be4fe28ccafdb",
+          "requestBytes": 1129,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 40.63333299999999
+        },
+        {
+          "requestHash": "d01ef14f0ebe5faa67e5aaf8de5b155d2ae09d224b30187acf4d641fe8144571",
+          "requestBytes": 1129,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.16616699999986
+        },
+        {
+          "requestHash": "2d3bad0240fc9cde41813c30130720b3ef37c8ce7eb3441e4269b28c0899bf8d",
+          "requestBytes": 1129,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.087958999999955
+        }
+      ],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 5,
+      "results": [
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 0
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 0
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 0
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 0
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 0
+        }
+      ]
+    },
+    {
+      "case": "shifted-context",
+      "repetition": 2,
+      "variant": "optimized",
+      "elapsedMs": 44.06079199999999,
+      "passed": true,
+      "calls": 1,
+      "questions": 1,
+      "requestBytes": 1105,
+      "peakConcurrent": 1,
+      "requests": [
+        {
+          "requestHash": "d81cf16fabea3d12ce02c3c763d3587bca6e8289ad93262a9df32b167d09e36c",
+          "requestBytes": 1105,
+          "questions": 1,
+          "status": "success",
+          "model": "offline-fixture",
+          "usage": null,
+          "elapsedMs": 42.13237499999991
+        }
+      ],
+      "paid": false,
+      "inputTokens": null,
+      "outputTokens": null,
+      "missingUsage": 1,
+      "results": [
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 0
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 1
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 1
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 1
+        },
+        {
+          "omittedCallIds": [
+            "exchange"
+          ],
+          "reusedJudgments": 1
+        }
+      ]
+    }
+  ]
+}

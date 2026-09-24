@@ -1,0 +1,141 @@
+{
+  "plan": {
+    "at": "2026-09-24T16:42:58.274Z",
+    "baseline": "b8189c063aab5b152127711103a30b071e2adcba",
+    "kind": "one_request_required_tool_probe",
+    "live": true,
+    "maxPaidCalls": 1,
+    "gptCalls": 0,
+    "delayMs": null,
+    "repetitions": 1,
+    "cases": [
+      "required-tools"
+    ],
+    "boundary": "Function execution only; excludes Codex planning, tool dispatch and final answer. Offline times are synthetic, not provider speed. Required-tools is a known-decision case, not general task savings. No quota overrides."
+  },
+  "rows": [
+    {
+      "case": "required-tools",
+      "repetition": 0,
+      "variant": "baseline",
+      "elapsedMs": 661.1664159999999,
+      "passed": true,
+      "calls": 1,
+      "questions": 12,
+      "requestBytes": 4029,
+      "peakConcurrent": 1,
+      "requests": [
+        {
+          "requestHash": "10399a776ca82e2b2c0e20a79d8e5fb62cc1441df7f63cc04494299b80a27ed9",
+          "requestBytes": 4029,
+          "questions": 12,
+          "status": "success",
+          "model": "jev-1.13.0",
+          "usage": {
+            "input_tokens": 1653,
+            "output_tokens": 437
+          },
+          "elapsedMs": 658.189792
+        }
+      ],
+      "capacityBefore": {
+        "calls": 8,
+        "bytes": 347267,
+        "waitMs": 2552.51829200238,
+        "cooldown": false,
+        "windowEndsAt": 1790269200000
+      },
+      "paid": true,
+      "inputTokens": 1653,
+      "outputTokens": 437,
+      "missingUsage": 0,
+      "results": [
+        {
+          "selected": [
+            "t0",
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "judgmentSources": [
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev",
+            "jev"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "required-tools",
+      "repetition": 0,
+      "variant": "optimized",
+      "elapsedMs": 0.24370799999996962,
+      "passed": true,
+      "calls": 0,
+      "questions": 0,
+      "requestBytes": 0,
+      "peakConcurrent": 0,
+      "requests": [],
+      "capacityBefore": {
+        "calls": 7,
+        "bytes": 343238,
+        "waitMs": 1894.1224590023794,
+        "cooldown": false,
+        "windowEndsAt": 1790269200000
+      },
+      "paid": true,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "missingUsage": 0,
+      "results": [
+        {
+          "selected": [
+            "t0",
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "judgmentSources": [
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy",
+            "policy"
+          ]
+        }
+      ]
+    }
+  ]
+}

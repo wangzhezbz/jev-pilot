@@ -1,0 +1,62 @@
+{
+  "at": "2026-09-24T16:50:02.145150+00:00",
+  "pluginVersion": "0.2.0+codex.20260925004457",
+  "sourceReleaseCacheHashes": {
+    "src/workflows.mjs": "aa16ee2c2ae951b53e18281dc7f0a778919f96b112857459880fc121e1e6577d",
+    "src/evidence.mjs": "00e057c2063a28fe9b0171d49427cdd741f28a9ed20ee18a574f4b2caf0e13ba",
+    ".codex-plugin/plugin.json": "1ead185f9ec8de7600cc2c5df20624dd77616c26e95afc40625fc1719f5f0316",
+    "plugin.json": "92ff9ebd7079676045804a3c414632f5496d26753b7842289837efe4bd195a56",
+    "skills/jev-pilot/references/workflow.md": "e79e22ca464382b96eedb3dfc069c78fe5d99264776fdf9d18b7e924cd2b277f",
+    "skills/jev-pilot/references/state.md": "61146b3c87015dcb0d43bea753d1f4f42e48d22fb7e59e65f30493a735c81058"
+  },
+  "tests": {
+    "passed": 329,
+    "failed": 0
+  },
+  "staticAndSecretScan": "passed",
+  "localBuild": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "passed": true
+  },
+  "backgroundRuntime": {
+    "installed": true,
+    "compatible": true,
+    "disabled": false,
+    "bridgeProcessAlive": true,
+    "installedFingerprint": "8bedc24904a4d5830b46ee5ca4611481c25436e6d1ad039b44fdbbe39ea329a7",
+    "loadedRevisionMatches": true
+  },
+  "freshInstalledMcpProbe": {
+    "passed": true,
+    "judgmentSource": "policy",
+    "paidCalls": 0
+  },
+  "currentConversationMcpProbe": {
+    "judgmentSource": "jev",
+    "currentProcessStillOld": true,
+    "paidCalls": 1,
+    "inputTokens": 407,
+    "outputTokens": 39,
+    "elapsedMs": 860
+  },
+  "allExplicitLiveProbeCalls": [
+    {
+      "at": "2026-09-24T16:46:47.881Z",
+      "status": "success",
+      "model": "jev-1.13.0",
+      "inputTokens": 407,
+      "outputTokens": 39,
+      "elapsedMs": 860
+    },
+    {
+      "at": "2026-09-24T16:42:58.937Z",
+      "status": "success",
+      "model": "jev-1.13.0",
+      "inputTokens": 1653,
+      "outputTokens": 437,
+      "elapsedMs": 659
+    }
+  ],
+  "activation": "Installed package verified through a new standard MCP process. Current conversation still uses its old MCP process; reload not confirmed. No desktop process killed and no background runtime overwritten. Default official control socket is unavailable."
+}

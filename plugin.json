@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "jev-pilot",
-  "version": "0.2.0+codex.20260925001732",
+  "version": "0.2.0+codex.20260925004457",
   "description": "Automatic Jev assistance and reasoning-effort routing for ordinary Codex workflows",
   "author": {
     "name": "wangzhezbz",
