@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-24T07:28:09.155061+00:00",
+  "evidence": "Running MCP server command paths, allowlisted PID/parent/version only; proves loaded plugin version, not any particular Jev call or effort switch.",
+  "processes": [
+    {
+      "pid": 94234,
+      "parent": 93999,
+      "version": "0.2.0+codex.20260924150300"
+    },
+    {
+      "pid": 94908,
+      "parent": 93999,
+      "version": "0.2.0+codex.20260924150300"
+    },
+    {
+      "pid": 96259,
+      "parent": 93999,
+      "version": "0.2.0+codex.20260924150300"
+    }
+  ],
+  "expectedVersion": "0.2.0+codex.20260924150300",
+  "allObservedMatch": true
+}

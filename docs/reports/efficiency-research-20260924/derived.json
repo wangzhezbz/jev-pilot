@@ -1,0 +1,179 @@
+{
+  "sourceHashes": [
+    {
+      "path": "docs/reports/matched-routing-20260924/runs.json",
+      "sha256": "b9d5a348f6ba481f6b4f7ce6f7f1b6ccca2a5dada8b7bbeb301e2be4534c3ce1"
+    },
+    {
+      "path": "docs/reports/matched-routing-20260924/runs.csv",
+      "sha256": "cb89b6dd1abcf3ba59868c5b3120112a0372301fff61656a0df68d680f023909"
+    },
+    {
+      "path": "docs/reports/delegation-ab-20260924/runs.json",
+      "sha256": "a9f2a0ca5e3238ffce753a215260d083bbe1e7957e398c1bb54eb9b3023d9a79"
+    },
+    {
+      "path": "docs/reports/delegation-ab-20260924/runs.csv",
+      "sha256": "db48538dfc5f4cfa319d2618e5997c7cb0c9398c5879cdc76e53c66000d67a47"
+    }
+  ],
+  "rows": [
+    {
+      "sourceReport": "matched-routing-20260924",
+      "id": "gpt-6-astra-retry_contract-0-fixed_high",
+      "arm": "fixed_high",
+      "repeat": 0,
+      "qualityPassed": true,
+      "status": "completed",
+      "generations": 6,
+      "firstRequestInputTokens": 16062,
+      "gptTotalTokens": 117438,
+      "jevTotalTokens": 0,
+      "allKnownTokens": 117438,
+      "endToEndMs": 165369.0,
+      "preparationMs": 0.0,
+      "routerMs": 0.0,
+      "actualSwitches": 0
+    },
+    {
+      "sourceReport": "matched-routing-20260924",
+      "id": "gpt-6-astra-retry_contract-0-fixed_medium",
+      "arm": "fixed_medium",
+      "repeat": 0,
+      "qualityPassed": true,
+      "status": "completed",
+      "generations": 10,
+      "firstRequestInputTokens": 16051,
+      "gptTotalTokens": 205882,
+      "jevTotalTokens": 0,
+      "allKnownTokens": 205882,
+      "endToEndMs": 194300.0,
+      "preparationMs": 0.0,
+      "routerMs": 0.0,
+      "actualSwitches": 0
+    },
+    {
+      "sourceReport": "matched-routing-20260924",
+      "id": "gpt-6-astra-retry_contract-0-adaptive",
+      "arm": "adaptive",
+      "repeat": 0,
+      "qualityPassed": true,
+      "status": "completed",
+      "generations": 6,
+      "firstRequestInputTokens": 16055,
+      "gptTotalTokens": 118102,
+      "jevTotalTokens": 10072,
+      "allKnownTokens": 128174,
+      "endToEndMs": 174272.0,
+      "preparationMs": 0.0,
+      "routerMs": 5357.0,
+      "actualSwitches": 1
+    },
+    {
+      "sourceReport": "matched-routing-20260924",
+      "id": "gpt-6-astra-retry_contract-1-adaptive",
+      "arm": "adaptive",
+      "repeat": 1,
+      "qualityPassed": false,
+      "status": "interrupted",
+      "generations": 5,
+      "firstRequestInputTokens": 16062,
+      "gptTotalTokens": 90478,
+      "jevTotalTokens": 6793,
+      "allKnownTokens": 97271,
+      "endToEndMs": 240002.0,
+      "preparationMs": 0.0,
+      "routerMs": 2804.0,
+      "actualSwitches": 0
+    },
+    {
+      "sourceReport": "delegation-ab-20260924",
+      "id": "offline-0-full",
+      "arm": "full",
+      "repeat": 0,
+      "qualityPassed": true,
+      "status": "completed",
+      "generations": 5,
+      "firstRequestInputTokens": 15204,
+      "gptTotalTokens": 90750,
+      "jevTotalTokens": 0,
+      "allKnownTokens": 90750,
+      "endToEndMs": 61938.300042,
+      "preparationMs": 0.0,
+      "routerMs": 0.0,
+      "actualSwitches": 0
+    },
+    {
+      "sourceReport": "delegation-ab-20260924",
+      "id": "offline-0-delegated",
+      "arm": "delegated",
+      "repeat": 0,
+      "qualityPassed": true,
+      "status": "completed",
+      "generations": 5,
+      "firstRequestInputTokens": 15218,
+      "gptTotalTokens": 89625,
+      "jevTotalTokens": 13266,
+      "allKnownTokens": 102891,
+      "endToEndMs": 128561.03458400001,
+      "preparationMs": 1964.9680420000004,
+      "routerMs": 0.0,
+      "actualSwitches": 0
+    },
+    {
+      "sourceReport": "delegation-ab-20260924",
+      "id": "offline-1-delegated",
+      "arm": "delegated",
+      "repeat": 1,
+      "qualityPassed": true,
+      "status": "completed",
+      "generations": 5,
+      "firstRequestInputTokens": 15213,
+      "gptTotalTokens": 88355,
+      "jevTotalTokens": 13266,
+      "allKnownTokens": 101621,
+      "endToEndMs": 63238.28250100001,
+      "preparationMs": 1375.2532920000085,
+      "routerMs": 0.0,
+      "actualSwitches": 0
+    },
+    {
+      "sourceReport": "delegation-ab-20260924",
+      "id": "offline-1-full",
+      "arm": "full",
+      "repeat": 1,
+      "qualityPassed": true,
+      "status": "completed",
+      "generations": 7,
+      "firstRequestInputTokens": 15205,
+      "gptTotalTokens": 135836,
+      "jevTotalTokens": 0,
+      "allKnownTokens": 135836,
+      "endToEndMs": 108401.83179200001,
+      "preparationMs": 0.0,
+      "routerMs": 0.0,
+      "actualSwitches": 0
+    }
+  ],
+  "delegationPairs": [
+    {
+      "repeat": 0,
+      "gptTokensSaved": 1125,
+      "addedJevTokens": 13266,
+      "netTokensSaved": -12141,
+      "millisecondsSaved": -66622.734542,
+      "baselineGenerations": 5,
+      "delegatedGenerations": 5
+    },
+    {
+      "repeat": 1,
+      "gptTokensSaved": 47481,
+      "addedJevTokens": 13266,
+      "netTokensSaved": 34215,
+      "millisecondsSaved": 45163.549291,
+      "baselineGenerations": 7,
+      "delegatedGenerations": 5
+    }
+  ],
+  "boundary": "Reanalysis only; no new paid runs. Counts include reported cached tokens. Across-model token sums do not represent billing or quota. First input is an accounting anchor, not an attributable plugin overhead or causal saving."
+}

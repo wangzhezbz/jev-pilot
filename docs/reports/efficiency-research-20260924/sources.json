@@ -1,0 +1,44 @@
+[
+  {
+    "repository": "rtk-ai/rtk",
+    "commit": "005eb9c54ca659d8c2df3004a218f3f025ee254a",
+    "url": "https://github.com/rtk-ai/rtk/tree/005eb9c54ca659d8c2df3004a218f3f025ee254a",
+    "method": "Read-only shallow clone and source/document inspection; upstream programs not executed"
+  },
+  {
+    "repository": "mksglu/context-mode",
+    "commit": "5a92b7caaf0086d04b87cc03a82505c891aa8254",
+    "url": "https://github.com/mksglu/context-mode/tree/5a92b7caaf0086d04b87cc03a82505c891aa8254",
+    "method": "Read-only shallow clone and source/document inspection; upstream programs not executed"
+  },
+  {
+    "repository": "contextlimit/cx",
+    "commit": "b7c81334e63ba3c1adaafbd2773ca2b8049ae7ae",
+    "url": "https://github.com/contextlimit/cx/tree/b7c81334e63ba3c1adaafbd2773ca2b8049ae7ae",
+    "method": "Read-only shallow clone and source/document inspection; upstream programs not executed"
+  },
+  {
+    "repository": "jcressler/jev-codex-token-saver",
+    "commit": "1e1214bd7a1d7b2d3ee32bf1b8a88bbf9cd9d820",
+    "url": "https://github.com/jcressler/jev-codex-token-saver/tree/1e1214bd7a1d7b2d3ee32bf1b8a88bbf9cd9d820",
+    "method": "Read-only shallow clone and source/document inspection; upstream programs not executed"
+  },
+  {
+    "repository": "konstantinosbotonakis/codex-context-diet",
+    "commit": "79670b247dbdc37203454675b8fb7a5269440e75",
+    "url": "https://github.com/konstantinosbotonakis/codex-context-diet/tree/79670b247dbdc37203454675b8fb7a5269440e75",
+    "method": "Read-only shallow clone and source/document inspection; upstream programs not executed"
+  },
+  {
+    "repository": "miuuyy/Astra-Ares",
+    "commit": "b2011446d88202329dcdc5163500ca818aba9dbb",
+    "url": "https://github.com/miuuyy/Astra-Ares/tree/b2011446d88202329dcdc5163500ca818aba9dbb",
+    "method": "Read-only shallow clone and source/document inspection; upstream programs not executed"
+  },
+  {
+    "repository": "yannip1234/codex-jev",
+    "commit": "ff35965bba78ac9502424c1d9bc7877f382499a2",
+    "url": "https://github.com/yannip1234/codex-jev/tree/ff35965bba78ac9502424c1d9bc7877f382499a2",
+    "method": "Read-only shallow clone and source/document inspection; upstream programs not executed"
+  }
+]

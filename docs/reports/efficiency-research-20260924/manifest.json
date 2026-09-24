@@ -1,0 +1,18 @@
+{
+  "scope": "Research and synthetic native protocol proof only; no production runtime modifications.",
+  "checks": {
+    "repositoryCheck": "475 files / 111 modules, JSON and secret scan passed",
+    "nativeStudy": "4 hypotheses confirmed; unsafe raw-consumer branch deliberately fails its functional check",
+    "newPaidGptCalls": 0,
+    "newPaidJevCalls": 0
+  },
+  "sha256": {
+    "docs/reports/efficiency-research-20260924/README.zh-CN.md": "5d7fa2dbf7420a68568a320295eea140cdcdf100f16581ecfc99b86e740f36cc",
+    "docs/reports/efficiency-research-20260924/activation.json": "91e27491981b016c566b17feb386f075e75dec97133a4f0877f66b61830618f8",
+    "docs/reports/efficiency-research-20260924/derived.json": "f35e8c8e7991d8e2163f1be967787224dcf9a6c49f985f430c0d68c91fa8a02c",
+    "docs/reports/efficiency-research-20260924/exploratory-probes.json": "0e73e0e279a3acfc0c548783b05d80269ee3f9b7f8639828f50e2e4e5cf6cb89",
+    "docs/reports/efficiency-research-20260924/protocol-results.json": "0796f11acbc1fd7e115a3834c85d6dd29f6936cd5566c4db02aeeedb27f99e39",
+    "docs/reports/efficiency-research-20260924/sources.json": "ba08ccbbcca527fc8e884576df2f6346ec6096ff9c5ce98f77ff490a1f2649bc",
+    "scripts/acceptance/pretool-rewrite-study.mjs": "2558690ffd5e10c32df57c4262a19258af5d995595aeb32d10cbfd91c916e56b"
+  }
+}

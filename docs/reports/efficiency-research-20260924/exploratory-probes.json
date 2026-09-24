@@ -1,0 +1,49 @@
+{
+  "scope": "Four initial protocol explorations before the reusable study. All attempts recorded; no paid model calls. The expected raw-consumer failure is a rejected implementation, not a quality success.",
+  "results": [
+    {
+      "variant": "pretool_display",
+      "hypothesisConfirmed": true,
+      "modelVisibleBytes": 252,
+      "noiseLines": 0,
+      "modelRequests": 2,
+      "rawConsumerFailed": false,
+      "recallExact": null,
+      "paidGptCalls": 0,
+      "paidJevCalls": 0
+    },
+    {
+      "variant": "pretool_raw_consumer",
+      "hypothesisConfirmed": true,
+      "modelVisibleBytes": 302,
+      "noiseLines": 0,
+      "modelRequests": 2,
+      "rawConsumerFailed": true,
+      "recallExact": null,
+      "paidGptCalls": 0,
+      "paidJevCalls": 0
+    },
+    {
+      "variant": "baseline",
+      "hypothesisConfirmed": true,
+      "modelVisibleBytes": 25452,
+      "noiseLines": 350,
+      "modelRequests": 2,
+      "rawConsumerFailed": false,
+      "recallExact": null,
+      "paidGptCalls": 0,
+      "paidJevCalls": 0
+    },
+    {
+      "variant": "same_cell_projection",
+      "hypothesisConfirmed": true,
+      "modelVisibleBytes": 2939,
+      "noiseLines": 29,
+      "modelRequests": 2,
+      "rawConsumerFailed": false,
+      "recallExact": true,
+      "paidGptCalls": 0,
+      "paidJevCalls": 0
+    }
+  ]
+}
