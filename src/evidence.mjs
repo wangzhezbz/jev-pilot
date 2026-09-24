@@ -65,7 +65,8 @@ export async function selectEvidence(ctx, { goal, items, budget = 16000, against
   ctx.judge.isolateItems=true;
   if(requireCompleteJudgment){
     const plan=ctx.judge.classificationWork?ctx.judge.classificationWork(judged,instructions,relevant):classificationPlan(ctx.config.model,judged,instructions,relevant,{},true);
-    const reason=plan.oversized.length?'REQUEST_LIMIT':plan.batches.length>ctx.judge.config.maxCalls-ctx.judge.calls?'CALL_BUDGET':null;
+    const reason=ctx.judge.classificationAdmission?ctx.judge.classificationAdmission(plan,instructions,relevant).reason:
+      plan.oversized.length?'REQUEST_LIMIT':plan.batches.length>ctx.judge.config.maxCalls-ctx.judge.calls?'CALL_BUDGET':null;
     if(reason){ctx.store.event(ctx.project,'evidence_admission',{reason,batches:plan.batches.length,oversizedItems:plan.oversized.length,calls:0});throw Object.assign(new Error(reason),{code:reason});}
   }
   // Independent evidence batches share no answers. Use the existing bounded

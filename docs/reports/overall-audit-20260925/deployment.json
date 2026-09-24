@@ -1,0 +1,49 @@
+{
+  "version": "0.2.0+codex.20260925020515",
+  "policy": "effort-v18-baseline-spacing",
+  "files": [
+    {
+      "file": "src/core.mjs",
+      "hashes": {
+        "repo": "cda08042db20371524af6e2fa043af7f6c021bb22acb6644f2d596d35c8b0bb0",
+        "release": "cda08042db20371524af6e2fa043af7f6c021bb22acb6644f2d596d35c8b0bb0",
+        "cache": "cda08042db20371524af6e2fa043af7f6c021bb22acb6644f2d596d35c8b0bb0"
+      }
+    },
+    {
+      "file": "src/evidence.mjs",
+      "hashes": {
+        "repo": "8d94a56302084c1771d6297c213436451330ed618c0a5e25177847f0876259bd",
+        "release": "8d94a56302084c1771d6297c213436451330ed618c0a5e25177847f0876259bd",
+        "cache": "8d94a56302084c1771d6297c213436451330ed618c0a5e25177847f0876259bd"
+      }
+    },
+    {
+      "file": "runtime/desktop/router.mjs",
+      "hashes": {
+        "repo": "5b793462d36a0ef3b6283122a91109387bc8fc525b178040e35d911bacad5e70",
+        "release": "5b793462d36a0ef3b6283122a91109387bc8fc525b178040e35d911bacad5e70",
+        "cache": "5b793462d36a0ef3b6283122a91109387bc8fc525b178040e35d911bacad5e70"
+      }
+    }
+  ],
+  "doctor": {
+    "runtimeVersion": "codex-cli 0.155.0-alpha.16.4",
+    "compatible": true,
+    "bridgeProcessAlive": true,
+    "loadedRevisionMatches": false,
+    "installedFingerprint": "81f9f84d6c5d1f7ad3e9971fe20827591b1cf1adc3bd7a967a0bf2f36f822be2"
+  },
+  "loadedPolicy": "effort-v17-bounded-final-lease",
+  "activation": "installed_for_next_normal_restart_current_process_not_hot_replaced",
+  "tests": {
+    "passed": 340,
+    "failed": 0
+  },
+  "native": {
+    "passed": 27,
+    "failed": 0
+  },
+  "staticScan": "passed",
+  "githubCi": "pending_publication"
+}

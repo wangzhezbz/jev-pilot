@@ -1,0 +1,72 @@
+{
+  "measurement": "offline_deterministic_mechanism_comparison",
+  "paidJevRequests": 0,
+  "paidGptTasks": 0,
+  "developmentConversationExcluded": true,
+  "wallTimeSavings": null,
+  "tokenSavings": null,
+  "results": [
+    {
+      "arm": "baseline",
+      "scenario": "stable-six-boundaries",
+      "evaluatorCalls": 4,
+      "finalEffort": "high",
+      "mockAppliedUpdates": []
+    },
+    {
+      "arm": "baseline",
+      "scenario": "later-simple-step",
+      "evaluatorCalls": 4,
+      "finalEffort": "high",
+      "mockAppliedUpdates": []
+    },
+    {
+      "arm": "baseline",
+      "scenario": "insufficient-shared-calls",
+      "evaluatorCalls": 1,
+      "exactOriginalPreserved": true,
+      "status": "original",
+      "reason": "degraded"
+    },
+    {
+      "arm": "baseline",
+      "scenario": "insufficient-shared-bytes",
+      "evaluatorCalls": 1,
+      "exactOriginalPreserved": true,
+      "status": "original",
+      "reason": "degraded"
+    },
+    {
+      "arm": "candidate",
+      "scenario": "stable-six-boundaries",
+      "evaluatorCalls": 3,
+      "finalEffort": "high",
+      "mockAppliedUpdates": []
+    },
+    {
+      "arm": "candidate",
+      "scenario": "later-simple-step",
+      "evaluatorCalls": 4,
+      "finalEffort": "low",
+      "mockAppliedUpdates": [
+        "low"
+      ]
+    },
+    {
+      "arm": "candidate",
+      "scenario": "insufficient-shared-calls",
+      "evaluatorCalls": 0,
+      "exactOriginalPreserved": true,
+      "status": "original",
+      "reason": "filter_unavailable"
+    },
+    {
+      "arm": "candidate",
+      "scenario": "insufficient-shared-bytes",
+      "evaluatorCalls": 0,
+      "exactOriginalPreserved": true,
+      "status": "original",
+      "reason": "filter_unavailable"
+    }
+  ]
+}

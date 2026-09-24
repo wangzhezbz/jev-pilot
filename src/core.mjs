@@ -180,12 +180,17 @@ export class Judge {
     this.calls++;
     const started = performance.now();
     const task = Promise.resolve().then(async () => {
+      let received;
+      const usage = () => ({ model: typeof received?.model === 'string' ? received.model : payload.model,
+        ...Object.fromEntries([['inputTokens','input_tokens'],['outputTokens','output_tokens']].map(([key,wire]) =>
+          [key, Number.isSafeInteger(received?.usage?.[wire]) && received.usage[wire] >= 0 ? received.usage[wire] : null])) });
       try {
-        const result = validateAnswers(questions, await this.send(payload, this.key, { timeoutMs: reservation.allowance, signal: this.signal, onTiming: timing=>this.store.event(this.project,'transport_timing',{purpose,...timing}) }));
+        received = await this.send(payload, this.key, { timeoutMs: reservation.allowance, signal: this.signal, onTiming: timing=>this.store.event(this.project,'transport_timing',{purpose,...timing}) });
+        const result = validateAnswers(questions, received);
         this.guard.finish(reservation, { status: 'success', elapsedMs: performance.now() - started });
-        this.store.event(this.project, 'jev_call', { purpose, model: result.model, elapsedMs: Math.round(performance.now() - started), inputTokens: result.usage?.input_tokens ?? null, outputTokens: result.usage?.output_tokens ?? null, questions: ids.length, status: 'success' });
+        this.store.event(this.project, 'jev_call', { purpose, ...usage(), elapsedMs: Math.round(performance.now() - started), questions: ids.length, status: 'success' });
         if (this.config.cacheMs > 0) this.store.cachePut(key, result, this.config.cacheMs); return result;
-      } catch (e) { const status=e.code === 'CANCELLED' ? 'cancelled' : 'failed';this.guard.finish(reservation, { status, elapsedMs: performance.now() - started }); this.store.event(this.project, 'jev_call', { purpose, elapsedMs: Math.round(performance.now() - started), status, code: e.code || 'UNAVAILABLE' }); throw e; }
+      } catch (e) { const status=e.code === 'CANCELLED' ? 'cancelled' : 'failed';this.guard.finish(reservation, { status, elapsedMs: performance.now() - started }); this.store.event(this.project, 'jev_call', { purpose, ...usage(), questions: ids.length, elapsedMs: Math.round(performance.now() - started), status, code: e.code || 'UNAVAILABLE' }); throw e; }
       finally { this.inflight.delete(key); }
     }); this.inflight.set(key, task); return task;
   }
@@ -200,6 +205,19 @@ export class Judge {
       pending.push(item);
     }
     return {...classificationPlan(this.config.model,pending,instructions,criteria,context,this.isolateItems===true),cached,keys};
+  }
+  classificationAdmission(plan,instructions,criteria,context={}) {
+    const calls=plan.batches.length;
+    if(plan.oversized.length)return {reason:'REQUEST_LIMIT',calls};
+    if(calls>this.config.maxCalls-this.calls)return {reason:'CALL_BUDGET',calls};
+    if(!calls)return {reason:null,calls,bytes:0};
+    const bytes=plan.batches.reduce((sum,batch)=>sum+byteBudget(JSON.stringify(redact(classificationPayload(this.config.model,batch,instructions,criteria,context,this.isolateItems===true)))),0);
+    const available=this.guard.capacity({model:this.config.model,priority:this.priority});
+    const minimum=Math.max(100,Number.isFinite(this.config.minimumRequestAllowanceMs)?this.config.minimumRequestAllowanceMs:100);
+    // Reject only known impossibility. This read-only snapshot is not a
+    // reservation or a latency promise; each actual request still reserves.
+    const reason=available.cooldown?'JEV_COOLDOWN':calls>available.calls?'TASK_CALL_BUDGET':bytes>available.bytes?'TASK_INPUT_BUDGET':calls*minimum>available.waitMs?'TASK_WAIT_BUDGET':null;
+    return {reason,calls,bytes};
   }
   async classify(items, instructions, criteria, purpose = 'classify', context = {}) {
     records(items); text(instructions, 60000); const out = [];

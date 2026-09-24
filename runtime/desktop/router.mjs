@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { parseEnv } from 'node:util';
 import { postTypeSafe } from './transport.mjs';
 
-export const POLICY_VERSION = 'effort-v17-bounded-final-lease';
+export const POLICY_VERSION = 'effort-v18-baseline-spacing';
 const effortOrder=['none','minimal','low','medium','high','xhigh','max','ultra'];
 export const LEASE_UNIT = 'observed_tool_batch_or_boundary';
 export const SUPPORTED_MODELS = ['gpt-6-astra','gpt-6-sol','gpt-6-luna','gpt-5.6-sol','gpt-5.6-terra','gpt-5.6-luna'];
@@ -180,7 +180,9 @@ export class Router {
   renew(t,result,applied=true,snapshot={progress:t.progressVersion,urgent:t.urgentVersion}) {
     const validEffort=result?.answer?.choice!=='keep' && select(result?.answer,'invalid',this.supported.get(t.model)??[])!=='invalid';
     const requested=selectedHorizon(result?.horizon,null);
+    if(snapshot.progress!==t.judgedProgress || snapshot.urgent!==t.judgedUrgent)t.noBenefitHits=0;
     if(applied && validChoice(result?.answer,effortQuestion))t.noBenefitHits=t.current===t.baseline?t.noBenefitHits+1:0;
+    else t.noBenefitHits=0;
     // An explicit stability judgment may briefly reuse keep only at or above
     // the user's baseline. It must never prolong an uncertain auto-downgrade.
     const baselineKeep=result?.answer?.choice==='keep' && validChoice(result.answer,effortQuestion)
@@ -191,6 +193,13 @@ export class Router {
     // never extends an automatic downgrade or overrides urgent invalidation.
     if(applied && validEffort && requested===1 && t.current===t.baseline && t.noBenefitHits>=2){
       t.horizon=2;t.horizonReason='baseline_budget_spacing';
+    }
+    // Three repeated baseline judgments in the same phase warrant a bounded
+    // five-boundary spacing. Do not extend a downgrade, an invalid horizon,
+    // or carry the streak across changed progress, failures or user controls.
+    if(applied && (validEffort||baselineKeep) && requested!==null && requested<=2
+      && t.current===t.baseline && t.noBenefitHits>=3){
+      t.horizon=5;t.horizonReason='stable_baseline_spacing';
     }
     t.reusedBatch=null;t.lease=t.horizon-1;t.leaseUntil=Date.now()+this.leaseMs;
     t.judgedProgress=snapshot.progress;t.judgedUrgent=snapshot.urgent;t.forceRecheck=false;

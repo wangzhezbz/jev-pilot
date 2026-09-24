@@ -1,0 +1,100 @@
+{
+  "runtimeVersion": "codex-cli 0.155.0-alpha.16.4",
+  "compatible": true,
+  "disabled": false,
+  "bridgeProcessAlive": true,
+  "loadedRevisionMatches": true,
+  "installedFingerprint": "e8ff223c4953b3c3ffad474473845dccfa84bcd6dc718906996fb983c95f2296",
+  "activeBridges": [
+    {
+      "at": "2026-09-24T17:21:12.628Z",
+      "bridgeId": "jev:fb0cf0f0-4d33-48a9-ab39-f93d3eca047a:",
+      "pid": 95776,
+      "measurementSource": "runtime",
+      "kind": "bridge_started",
+      "nativeEffortOverrideRequested": true,
+      "policyVersion": "effort-v17-bounded-final-lease",
+      "leaseUnit": "observed_tool_batch_or_boundary",
+      "runtimeFingerprint": "e8ff223c4953b3c3ffad474473845dccfa84bcd6dc718906996fb983c95f2296",
+      "backendPid": 95781,
+      "networkMode": "environment_proxy"
+    }
+  ],
+  "currentTaskDecisions": [
+    {
+      "at": "2026-09-24T17:21:28.407Z",
+      "kind": "decision",
+      "measurementSource": "runtime",
+      "event": "BeforeTurnStart",
+      "targetModel": "gpt-6-astra",
+      "from": "high",
+      "recommended": "keep",
+      "status": "unchanged",
+      "confirmation": null,
+      "horizon": 1,
+      "elapsedMs": 336,
+      "inputTokens": 925,
+      "outputTokens": 106
+    },
+    {
+      "at": "2026-09-24T17:21:43.006Z",
+      "kind": "decision",
+      "measurementSource": "runtime",
+      "event": "PostToolUse",
+      "targetModel": "gpt-6-astra",
+      "from": "high",
+      "recommended": "high",
+      "status": "unchanged",
+      "confirmation": null,
+      "horizon": 2,
+      "elapsedMs": 309,
+      "inputTokens": 1586,
+      "outputTokens": 106
+    },
+    {
+      "at": "2026-09-24T17:25:01.765Z",
+      "kind": "decision",
+      "measurementSource": "runtime",
+      "event": "PostToolUse",
+      "targetModel": "gpt-6-astra",
+      "from": "high",
+      "recommended": "high",
+      "status": "unchanged",
+      "confirmation": null,
+      "horizon": 2,
+      "elapsedMs": 314,
+      "inputTokens": 1619,
+      "outputTokens": 106
+    },
+    {
+      "at": "2026-09-24T17:25:10.399Z",
+      "kind": "decision",
+      "measurementSource": "runtime",
+      "event": "PostToolUse",
+      "targetModel": "gpt-6-astra",
+      "from": "high",
+      "recommended": "high",
+      "status": "unchanged",
+      "confirmation": null,
+      "horizon": 2,
+      "elapsedMs": 346,
+      "inputTokens": 3020,
+      "outputTokens": 106
+    },
+    {
+      "at": "2026-09-24T17:25:55.291Z",
+      "kind": "decision",
+      "measurementSource": "runtime",
+      "event": "PostToolUse",
+      "targetModel": "gpt-6-astra",
+      "from": "high",
+      "recommended": "low",
+      "status": "applied",
+      "confirmation": "native_settings_published",
+      "horizon": 2,
+      "elapsedMs": 595,
+      "inputTokens": 3259,
+      "outputTokens": 106
+    }
+  ]
+}

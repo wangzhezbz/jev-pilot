@@ -7,7 +7,7 @@ macOS delivery candidate; final evidence is tracked in [delivery ledger](DELIVER
 | 1 | Automatic judgments | One implicit skill and MCP tool; batched choices, caching, limits and fallback | Codex invokes eligible semantic work; deterministic work stays local |
 | 2 | Actual effort routing | First-request parameters and acknowledged native updates; adaptive leases; model preserved | Real macOS engine tested with synthetic inference; new installation needs a new app process |
 | 3 | Search/file screening | rg candidates, exact source lines/hashes, relevance/diversity | Candidate limits and omitted evidence reported |
-| 4 | Recoverable output filtering | Saved logs; automatic large-text filtering at tool boundaries; original recall | Structured data and exact-output tasks bypass filtering; native hook replacement verified on the original macOS engine |
+| 4 | Recoverable output filtering | Saved logs; direct-hook filtering and same-cell evidence preparation; original recall | Nested code-mode results need same-cell preparation: inner hook replacements do not reach the outer result. Structured data and exact-output tasks bypass filtering |
 | 5 | Tool/skill selection | Required and uncertain candidates remain available | Does not rewrite the native tool registry |
 | 6 | Failure recovery | Fingerprinted failures, bounded suggestions, unchanged-retry guard | No execution of unchecked recovery actions |
 | 7 | Evidence/content quality | Subprocess receipts, source freshness, requirement/rule/translation checks | Codex performs final acceptance |
@@ -20,6 +20,8 @@ macOS delivery candidate; final evidence is tracked in [delivery ledger](DELIVER
 | 14 | Exact-source extraction | Verified original offsets, missing/ambiguous states | Source occurrence is not proof of correct entity or factual truth |
 
 One shared private SQLite store and TypeSafe client serve these modules. The desktop bridge reaches the actual runtime; semantic recommendations alone do not change effort.
+
+Current gaps, integration boundaries and the latest fixes: [2026-09-25 overall audit](reports/overall-audit-20260925/README.zh-CN.md). Feature availability is not proof of automatic use in every task or of per-feature savings.
 
 Models: `gpt-6-astra`, `gpt-6-sol`, `gpt-6-luna`, `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna`. Effort choices are checked against each model's live runtime metadata; automatic routing does not select `ultra`. Unknown models preserve current settings. Initial verified Codex wire version: `0.155.0-alpha.9.2`. Unknown versions pass through until verified.
 

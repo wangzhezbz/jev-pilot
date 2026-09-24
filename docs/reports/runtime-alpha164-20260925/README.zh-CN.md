@@ -18,8 +18,14 @@
 - 独立启动明确标记 `synthetic`，不计为当前桌面已激活；测试进程已结束。
 - 这些兼容性测试 **额外付费 Jev/GPT 请求均为 0**（不包含本次开发对话用量）。这些是兼容性验证，不是新的省时、省 token 或账户额度对照。
 
-## 当前生效边界
+## 重启后的现场确认
 
-工作流优化已经生效。后台调档修复已安装，但本次桌面是在兼容回退后以原版进程启动的，无法通过修改磁盘文件让当前运行中的原版进程自动变成适配层。**仍需一次正常重启加载修复后的调档桥。** 没有强制退出桌面、Chrome 或其他任务。
+2026-09-25（北京时间）用户正常重启后，现场 doctor 确认 alpha.16.4 兼容、调档桥进程存活、加载指纹与安装指纹一致。真实运行桥于 `2026-09-24T17:21:12.628Z` 启动，PID 95776，原版后端 PID 95781，`nativeEffortOverrideRequested=true`，策略为 `effort-v17-bounded-final-lease`。本次加载确认后无需再次重启。
 
-原始证据：[修复前协议结果](native-before.json)、[修复后协议结果](native.json)、[验证汇总](validation.json)、[安装与独立启动](deployment.json)。Windows/Linux 的交互式桌面运行仍需各平台独立验收。
+当前任务已产生真实 Jev 判档，建议 keep/high，状态 unchanged；原版用量记录中的 effort 为 high。证明自动判档已经恢复，但本次没有实际改档回执，不能把启动开关当作当前任务已经降档。
+
+当前会话直接调用必选工具选择入口，结果为 `source: policy`、`reason: REQUIRED_TOOL`，保留必选工具，无需 Jev 判断。GitHub Actions 第 36033351093 次运行的 Windows、macOS、Linux 检查、构建、测试和打包均成功。CI 通过不等于 Windows/Linux 的交互式桌面验收。
+
+此次仅验证重启生效，不新增性能 A/B，不据此声称节省时间、GPT token 或账户额度。自动判档自身用量单独记录在现场证据中。
+
+原始证据：[修复前协议结果](native-before.json)、[修复后协议结果](native.json)、[验证汇总](validation.json)、[安装与独立启动](deployment.json)、[真实重启与当前任务判档](restart-activation.json)、[工作流入口与三系统 CI](restart-checks.json)。

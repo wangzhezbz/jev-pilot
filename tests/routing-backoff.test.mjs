@@ -21,6 +21,32 @@ test('baseline spacing never hides elapsed leases or new user input',async()=>{
  f.select('low');await hook(f,'urgent');assert.equal(f.calls,3);assert.equal(t.current,'low');}
 });
 
+async function stableBaseline(f){const t=await start(f);await hook(f,'a');await hook(f,'b');await hook(f,'c');assert.equal(f.calls,3);return t;}
+test('stable baseline reduces short-run calls and preserves a later useful downgrade',async()=>{
+ const f=fixture(),t=await stableBaseline(f);assert.equal(t.horizon,5);assert.equal(t.horizonReason,'stable_baseline_spacing');
+ for(let i=0;i<4;i++)await hook(f,'stable'+i);
+ assert.equal(f.calls,3);assert.equal(t.current,'medium');
+ f.select('low');await hook(f,'later-easy-step');assert.equal(f.calls,4);assert.equal(t.current,'low');assert.equal(t.horizon,1);
+ await hook(f,'expired-downgrade');assert.equal(t.current,'medium');
+});
+test('stable baseline spacing is interrupted by failure, new phase, input or expiry',async()=>{
+ for(const kind of ['failure','phase','input','expiry']){
+  const f=fixture(),t=await stableBaseline(f);
+  if(kind==='phase')f.r.observe({method:'item/completed',params:{threadId:'t',item:{type:'agentMessage',text:'New phase: independently verify the changed behavior.'}}});
+  if(kind==='input')f.r.invalidate('t',[{type:'text',text:'Inspect a different requirement'}]);
+  if(kind==='expiry')t.leaseUntil=Date.now()-1;
+  await hook(f,'changed',kind==='failure'?{exit_code:1}:'observed result');
+  assert.equal(f.calls,4,kind);
+  if(kind!=='expiry')assert.equal(t.noBenefitHits,1,kind);
+ }
+});
+test('keep at baseline can space but invalid horizon and manual changes cannot inherit the streak',async()=>{
+ const f=fixture(),t=await stableBaseline(f);f.select('keep');t.leaseUntil=0;await hook(f,'keep');assert.equal(t.horizon,5);
+ f.r.renew(t,{answer:choice(effortQuestion,'keep'),horizon:{}});assert.equal(t.horizon,1);
+ const control=f.r.beginSettingsUpdate({threadId:'t',turnId:t.turnId,effort:'high'});f.r.finishSettingsUpdate(control,{status:'applied'});
+ assert.equal(t.noBenefitHits,0);assert.equal(t.baseline,'high');assert.equal(t.lease,0);
+});
+
 import{effortTransportFlags}from'../runtime/desktop/bridge.mjs';
 test('native cache transport is version bounded and respects explicit feature configuration',()=>{
  for(const version of ['codex-cli 0.155.0-alpha.16.3','codex-cli 0.155.0-alpha.16.4']) {

@@ -1,0 +1,60 @@
+{
+  "startInclusiveUtc": "2026-09-24T00:00:00.000Z",
+  "endInclusiveUtc": "2026-09-24T18:02:38.031Z",
+  "scope": "runtime-tagged local development and experiments, not representative user-task A/B; SQLite includes experiments and cannot be equated to production coverage",
+  "routing": {
+    "decisions": 304,
+    "statuses": {
+      "unchanged": 290,
+      "superseded": 3,
+      "applied": 10,
+      "start_forwarded": 1
+    },
+    "decisionElapsedMs": 197994,
+    "knownInputTokens": 831843,
+    "unknownInputUsage": 0,
+    "horizonReasons": {
+      "jev_selected": 89,
+      "baseline_budget_spacing": 147,
+      "not_applied": 3,
+      "keep_at_baseline": 64,
+      "invalid_horizon": 1
+    },
+    "fallbacks": {
+      "JEV_TLS": 1,
+      "JEV_TIMEOUT": 13,
+      "TASK_URGENT_RESERVE": 5,
+      "JEV_COOLDOWN": 1
+    }
+  },
+  "currentTaskSinceRestart": {
+    "decisions": 11,
+    "statuses": {
+      "unchanged": 9,
+      "applied": 1,
+      "superseded": 1
+    },
+    "decisionElapsedMs": 4131,
+    "knownInputTokens": 29065,
+    "unknownInputUsage": 0,
+    "horizonReasons": {
+      "keep_at_baseline": 2,
+      "baseline_budget_spacing": 7,
+      "jev_selected": 1,
+      "not_applied": 1
+    },
+    "fallbacks": {}
+  },
+  "outputAdmissionReasons": {
+    "nested_native_result": 1530,
+    "structured": 443,
+    "small": 219,
+    "eligible": 1
+  },
+  "preparedOutputs": {
+    "reduced": 5,
+    "degraded": 1
+  },
+  "costSavings": null,
+  "timeSavings": null
+}
