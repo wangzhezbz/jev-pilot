@@ -63,3 +63,16 @@ test('candidate metadata remains available for semantic disambiguation', async t
   await browserStep(f.ctx, f.input);
   assert.deepEqual(f.requests[0].questions.next.criteria.action_0, f.input.candidates[0]);
 });
+test('long candidate sets retain the established batched path instead of losing functionality', async t => {
+  const f = fixture(t), batches = [];
+  f.input.candidates = Array.from({length: 40}, (_, i) => ({id: 'row' + i, text: 'Visible record '.repeat(70) + i}));
+  f.ctx.judge.send = async payload => {
+    batches.push(payload);
+    return {model: 'fixture', answers: Object.fromEntries(Object.entries(payload.questions).map(([id, q]) => [id, {type: 'choice', choice: 'use', probabilities: Object.fromEntries(Object.keys(q.criteria).map(k => [k, k === 'use' ? 1 : 0]))}]))};
+  };
+  const result = await browserStep(f.ctx, f.input);
+  assert.equal(result.status, 'candidate_selected');
+  assert.equal(result.action.id, 'row0'); assert.equal(batches.length, 2);
+  assert.equal(batches.reduce((sum, p) => sum + Object.keys(p.questions).length, 0), 40);
+  assert.equal(result.judgments.every(j => j.source === 'jev'), true);
+});
