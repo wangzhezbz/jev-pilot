@@ -12,6 +12,8 @@ Latest Chrome follow-up: [real extension acceptance](CHROME-ACCEPTANCE.md) — 7
 
 Further boundary review: [ticket expiry, concurrency, proxy status and CLI dispatch](BOUNDARY-AUDIT.md) — 78 tests pass.
 
+Runtime upgrade follow-up: [alpha.16.4 compatibility validation](runtime-alpha164-20260925/README.zh-CN.md) — 27/27 native fixtures and 329/329 local tests pass after updating exact-version gates. Workflow MCP verified active; desktop effort bridge installed but awaits normal restart after the runtime upgrade fallback.
+
 ## What was exercised
 
 | Layer | Result | Evidence |

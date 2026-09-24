@@ -1,0 +1,29 @@
+{
+  "at": "2026-09-24T17:16:21.646660+00:00",
+  "runtime": "codex-cli 0.155.0-alpha.16.4",
+  "compatible": true,
+  "installedFingerprint": "e8ff223c4953b3c3ffad474473845dccfa84bcd6dc718906996fb983c95f2296",
+  "isolatedLauncherProbe": {
+    "passed": true,
+    "runtime": "codex-cli 0.155.0-alpha.16.4",
+    "launcherPid": 94064,
+    "bridgePid": 94065,
+    "measurementSource": "synthetic",
+    "runtimeFingerprint": "e8ff223c4953b3c3ffad474473845dccfa84bcd6dc718906996fb983c95f2296",
+    "nativeEffortOverrideRequested": true,
+    "trustedHookCount": 2,
+    "paidModelCalls": 0,
+    "currentDesktopActivation": false
+  },
+  "probeHarnessCorrection": "Initial probe compared bridge PID to the parent Go launcher PID. Corrected to verify the direct parent-child relationship; repeated launch passed. Initial child processes exited.",
+  "currentDesktopActiveBridges": [],
+  "normalRestartRequired": true,
+  "paidModelCalls": 0,
+  "pluginVersion": "0.2.0+codex.20260925011414",
+  "sourceReleaseCacheHashes": {
+    "src/runtime-compatibility.mjs": "18505824a2d33fe0b4bc5ca6f0171959d116d12ec700fc8ef00de0b863b04436",
+    "runtime/desktop/bridge.mjs": "8a4d74f01a3939cb7178924416f8f17e7e5bfaf4dd02d0dae87f56fc9a80997f",
+    ".codex-plugin/plugin.json": "d443f39f057cb7488b69330ede670a9d616d96db383c6d5e47ea81adc4c4757a",
+    "plugin.json": "1a6685563c09c17b86c8ec23733f44cb11ceb4c2ddacc8f115307c4aaf410ca9"
+  }
+}

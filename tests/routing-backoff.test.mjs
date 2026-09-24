@@ -23,7 +23,9 @@ test('baseline spacing never hides elapsed leases or new user input',async()=>{
 
 import{effortTransportFlags}from'../runtime/desktop/bridge.mjs';
 test('native cache transport is version bounded and respects explicit feature configuration',()=>{
- assert.deepEqual(effortTransportFlags('codex-cli 0.155.0-alpha.16.3'),['--enable','reasoning_effort_override']);
- for(const v of [null,'codex-cli 0.155.0-alpha.9.2','codex-cli 0.156.0'])assert.deepEqual(effortTransportFlags(v),[]);
- for(const args of [['--disable','reasoning_effort_override'],['-c','features.reasoning_effort_override=false'],['--enable','reasoning_effort_override'],['--disable=reasoning_effort_override'],['-c','features.reasoning_effort_override = false'],['--disable','code_mode,reasoning_effort_override']])assert.deepEqual(effortTransportFlags('codex-cli 0.155.0-alpha.16.3',args),[]);
+ for(const version of ['codex-cli 0.155.0-alpha.16.3','codex-cli 0.155.0-alpha.16.4']) {
+  assert.deepEqual(effortTransportFlags(version),['--enable','reasoning_effort_override']);
+  for(const args of [['--disable','reasoning_effort_override'],['-c','features.reasoning_effort_override=false'],['--enable','reasoning_effort_override'],['--disable=reasoning_effort_override'],['-c','features.reasoning_effort_override = false'],['--disable','code_mode,reasoning_effort_override']])assert.deepEqual(effortTransportFlags(version,args),[]);
+ }
+ for(const v of [null,'codex-cli 0.155.0-alpha.9.2','codex-cli 0.155.0-alpha.16.5','codex-cli 0.156.0'])assert.deepEqual(effortTransportFlags(v),[]);
 });

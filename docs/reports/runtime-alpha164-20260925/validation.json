@@ -1,0 +1,39 @@
+{
+  "at": "2026-09-24T17:14:14.051641+00:00",
+  "runtime": "codex-cli 0.155.0-alpha.16.4",
+  "pluginVersion": "0.2.0+codex.20260925011414",
+  "beforeRestartVerification": {
+    "compatible": false,
+    "bridgeProcessAlive": false,
+    "loadedRevisionMatches": null,
+    "installedFingerprint": "8bedc24904a4d5830b46ee5ca4611481c25436e6d1ad039b44fdbbe39ea329a7"
+  },
+  "currentConversationWorkflowProbe": {
+    "operation": "select_tools",
+    "requiredToolPreserved": true,
+    "judgmentSource": "policy",
+    "paidJevCalls": 0
+  },
+  "beforeFixNative": {
+    "passed": 21,
+    "total": 27,
+    "failed": [
+      "cache-gpt-6-astra",
+      "cache-gpt-6-sol",
+      "cache-gpt-6-luna",
+      "cache-gpt-5.6-sol",
+      "cache-gpt-5.6-terra",
+      "cache-gpt-5.6-luna"
+    ]
+  },
+  "afterFixNative": {
+    "passed": 27,
+    "total": 27
+  },
+  "localTests": {
+    "passed": 329,
+    "failed": 0
+  },
+  "paidModelCalls": 0,
+  "limit": "Real bundled runtime with synthetic model responses; does not establish paid-model savings or activation of the current desktop process."
+}

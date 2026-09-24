@@ -57,7 +57,7 @@ export function metadataLoader({request,accept,log,clock=Date.now}) {
 // Native Codex still decides provider/model support and owns history updates.
 export function effortTransportFlags(version,args=[]) {
   const explicit=args.some(x=>typeof x==='string' && /(?:^|[=,\s])(?:features\.)?reasoning_effort_override(?:[=,\s]|$)/.test(x));
-  return version==='codex-cli 0.155.0-alpha.16.3'&&!explicit?['--enable','reasoning_effort_override']:[];
+  return ['codex-cli 0.155.0-alpha.16.3','codex-cli 0.155.0-alpha.16.4'].includes(version)&&!explicit?['--enable','reasoning_effort_override']:[];
 }
 export async function runBridge({realBin,args,nativeVersion=null,trust={},keyPath,logPath,judge,automation=false,runtimeIdentity=null,input=process.stdin,output=process.stdout,env=process.env}={}) {
   const home=dirname(fileURLToPath(import.meta.url));

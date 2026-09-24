@@ -10,10 +10,10 @@ import {installationPlan} from '../src/installation.mjs';
 
 test('installer accepts only exactly verified runtimes, including the desktop upgrade',()=>{
  const state={nodeSupported:true,curl:'curl',rg:'rg',realBin:'/fixture',credentialsConfigured:true};
- for(const version of ['codex-cli 0.155.0-alpha.9.2','codex-cli 0.155.0-alpha.16.3']){
+  for(const version of ['codex-cli 0.155.0-alpha.9.2','codex-cli 0.155.0-alpha.16.3','codex-cli 0.155.0-alpha.16.4']){
   assert.equal(verifiedRuntime(version),true);assert.equal(installationPlan({...state,runtimeVersion:version}).canSetup,true);
  }
- for(const version of ['codex-cli 0.155.0-alpha.16.4','codex-cli 0.156.0','0.155.0-alpha.16.3',undefined]){
+  for(const version of ['codex-cli 0.155.0-alpha.16.5','codex-cli 0.156.0','0.155.0-alpha.16.3',undefined]){
   assert.equal(verifiedRuntime(version),false);assert.equal(installationPlan({...state,runtimeVersion:version}).canSetup,false);
  }
 });
