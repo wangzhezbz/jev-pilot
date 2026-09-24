@@ -1,10 +1,10 @@
 {
   "actualJevTotals": {
-    "jevRequests": 36,
-    "inputTokens": 29597,
-    "outputTokens": 1540,
+    "jevRequests": 42,
+    "inputTokens": 34451,
+    "outputTokens": 1804,
     "unknownUsage": 1,
-    "actions": 33
+    "actions": 39
   },
   "paidRunsIncluded": [
     "chrome-initial-failed",
@@ -14,7 +14,8 @@
     "cua-identity",
     "cua-identity-resumed",
     "auto-chrome",
-    "auto-cua"
+    "auto-cua",
+    "auto-cua-fresh"
   ],
   "regressionTests": 304,
   "regressionPassed": 304,
@@ -29,5 +30,15 @@
     "held-out paired end-to-end task benchmark",
     "actual account charges"
   ],
-  "baseCommit": "260a3c65c36ca62ca0116a2f7ef9f17240603a1a"
+  "baseCommit": "260a3c65c36ca62ca0116a2f7ef9f17240603a1a",
+  "implementationCi": {
+    "runId": 36016509226,
+    "commit": "9de8b257ad0539197b9b9751869227e962967215",
+    "platforms": [
+      "macos-latest",
+      "ubuntu-latest",
+      "windows-latest"
+    ],
+    "conclusion": "success"
+  }
 }

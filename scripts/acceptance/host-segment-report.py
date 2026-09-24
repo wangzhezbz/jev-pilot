@@ -13,7 +13,7 @@ p.add_argument('--rollout', required=True)
 p.add_argument('--results', required=True)
 p.add_argument('--out', required=True)
 a = p.parse_args()
-marker = re.compile(r'title:"((?:native|auto)-(?:chrome|cua)-(?:recovery-)?[1-6])：')
+marker = re.compile(r'title:"((?:native|auto)-(?:chrome|cua)-(?:fresh-|recovery-)?[1-6])：')
 records = []
 pending = None
 models = {}
@@ -38,8 +38,8 @@ with open(a.rollout) as f:
 
 root = Path(a.results)
 groups = []
-for arm, driver, filename, expected in [('native', 'chrome', 'native-chrome', 6), ('auto', 'chrome', 'auto-chrome', 1), ('native', 'cua', 'native-cua', 4), ('auto', 'cua', 'auto-cua-recovered', 3)]:
-    selected = [r for r in records if r['marker'].startswith(f'{arm}-{driver}-')]
+for arm, driver, filename, expected in [('native', 'chrome', 'native-chrome', 6), ('auto', 'chrome', 'auto-chrome', 1), ('native', 'cua', 'native-cua', 4), ('auto', 'cua', 'auto-cua-recovered', 3), ('native', 'cua-fresh', 'native-cua-fresh', 6), ('auto', 'cua-fresh', 'auto-cua-fresh', 1)]:
+    selected = [r for r in records if re.fullmatch(f'{arm}-{driver}-(?:recovery-)?[1-6]', r['marker'])]
     assert len(selected) == expected, (arm, driver, len(selected))
     result = json.loads((root / (filename + '.json')).read_text())
     usage = {key: sum(r['usage'].get(key, 0) for r in selected) for key in ('input_tokens', 'cached_input_tokens', 'output_tokens', 'reasoning_output_tokens', 'total_tokens')}
@@ -47,12 +47,12 @@ for arm, driver, filename, expected in [('native', 'chrome', 'native-chrome', 6)
     groups.append({'arm': arm, 'driver': driver, 'segmentMs': result['elapsedMs'], 'decisionCalls': len(selected),
         'nativeUsage': usage, 'jev': result.get('loop', {}).get('metrics'), 'passed': result.get('passed', result.get('loop', {}).get('status') == 'needs_verification'), 'cells': selected})
 comparisons = []
-for driver in ('chrome', 'cua'):
+for driver in ('chrome', 'cua', 'cua-fresh'):
     base, auto = [g for g in groups if g['driver'] == driver]
     comparisons.append({'driver': driver, 'timeReductionPct': 100 * (1 - auto['segmentMs'] / base['segmentMs']),
         'gptTotalTokenReductionPct': 100 * (1 - auto['nativeUsage']['total_tokens'] / base['nativeUsage']['total_tokens']),
         'gptUncachedInputReductionPct': 100 * (1 - auto['nativeUsage']['uncached_input_tokens'] / base['nativeUsage']['uncached_input_tokens'])})
 out = Path(a.out)
 out.mkdir(parents=True, exist_ok=True)
-(out / 'segment-usage.json').write_text(json.dumps({'scope': 'One nonblinded pair per host in an existing long desktop conversation. Native usage is from real token_usage_record entries for the marked decision tool cells, including recovery. Setup, planning and final verification are excluded; no stable speed or account-billing claim. Input includes cached context. CUA automatic arm exhausted shared test wait budget and needed native recovery; not a balanced fresh-budget comparison.', 'groups': groups, 'comparisons': comparisons}, indent=2) + '\n')
+(out / 'segment-usage.json').write_text(json.dumps({'scope': 'One Chrome pair and two different-length Computer Use pairs in an existing long desktop conversation. Nonblinded known fixture, native-first order. Native usage is from real token_usage_record entries for the marked decision tool cells, including recovery. Setup, planning and final verification are excluded; no stable speed or account-billing claim. Input includes cached context. Four-step CUA automatic arm exhausted shared test wait budget and needed native recovery; not a balanced fresh-budget comparison. Six-step CUA follow-up used the next natural budget window without changing task ID or limits.', 'groups': groups, 'comparisons': comparisons}, indent=2) + '\n')
 print(json.dumps({'groups': [{k: v for k, v in g.items() if k != 'cells'} for g in groups], 'comparisons': comparisons}, indent=2))

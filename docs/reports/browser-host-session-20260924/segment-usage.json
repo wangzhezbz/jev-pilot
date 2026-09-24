@@ -1,5 +1,5 @@
 {
-  "scope": "One nonblinded pair per host in an existing long desktop conversation. Native usage is from real token_usage_record entries for the marked decision tool cells, including recovery. Setup, planning and final verification are excluded; no stable speed or account-billing claim. Input includes cached context. CUA automatic arm exhausted shared test wait budget and needed native recovery; not a balanced fresh-budget comparison.",
+  "scope": "One Chrome pair and two different-length Computer Use pairs in an existing long desktop conversation. Nonblinded known fixture, native-first order. Native usage is from real token_usage_record entries for the marked decision tool cells, including recovery. Setup, planning and final verification are excluded; no stable speed or account-billing claim. Input includes cached context. Four-step CUA automatic arm exhausted shared test wait budget and needed native recovery; not a balanced fresh-budget comparison. Six-step CUA follow-up used the next natural budget window without changing task ID or limits.",
   "groups": [
     {
       "arm": "native",
@@ -288,6 +288,150 @@
           "model": "gpt-6-astra"
         }
       ]
+    },
+    {
+      "arm": "native",
+      "driver": "cua-fresh",
+      "segmentMs": 40466.95554099977,
+      "decisionCalls": 6,
+      "nativeUsage": {
+        "input_tokens": 999717,
+        "cached_input_tokens": 996608,
+        "output_tokens": 719,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 1000436,
+        "uncached_input_tokens": 3109
+      },
+      "jev": null,
+      "passed": true,
+      "cells": [
+        {
+          "marker": "native-cua-fresh-1",
+          "timestamp": "2026-09-24T14:59:09.159Z",
+          "usageTimestamp": "2026-09-24T14:59:09.669Z",
+          "usage": {
+            "input_tokens": 165762,
+            "cached_input_tokens": 164864,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 91,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 165853
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "native-cua-fresh-2",
+          "timestamp": "2026-09-24T14:59:14.554Z",
+          "usageTimestamp": "2026-09-24T14:59:14.970Z",
+          "usage": {
+            "input_tokens": 166067,
+            "cached_input_tokens": 165632,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 92,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 166159
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "native-cua-fresh-3",
+          "timestamp": "2026-09-24T14:59:20.824Z",
+          "usageTimestamp": "2026-09-24T14:59:21.217Z",
+          "usage": {
+            "input_tokens": 166454,
+            "cached_input_tokens": 166016,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 94,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 166548
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "native-cua-fresh-4",
+          "timestamp": "2026-09-24T14:59:27.163Z",
+          "usageTimestamp": "2026-09-24T14:59:27.555Z",
+          "usage": {
+            "input_tokens": 166794,
+            "cached_input_tokens": 166400,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 90,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 166884
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "native-cua-fresh-5",
+          "timestamp": "2026-09-24T14:59:32.799Z",
+          "usageTimestamp": "2026-09-24T14:59:33.332Z",
+          "usage": {
+            "input_tokens": 167146,
+            "cached_input_tokens": 166656,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 92,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 167238
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "native-cua-fresh-6",
+          "timestamp": "2026-09-24T14:59:44.061Z",
+          "usageTimestamp": "2026-09-24T14:59:44.482Z",
+          "usage": {
+            "input_tokens": 167494,
+            "cached_input_tokens": 167040,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 260,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 167754
+          },
+          "model": "gpt-6-astra"
+        }
+      ]
+    },
+    {
+      "arm": "auto",
+      "driver": "cua-fresh",
+      "segmentMs": 28872.550708999857,
+      "decisionCalls": 1,
+      "nativeUsage": {
+        "input_tokens": 169260,
+        "cached_input_tokens": 168576,
+        "output_tokens": 223,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 169483,
+        "uncached_input_tokens": 684
+      },
+      "jev": {
+        "runs": 1,
+        "actions": 6,
+        "jevRequests": 6,
+        "inputTokens": 4854,
+        "outputTokens": 264,
+        "unknownUsage": 0,
+        "apiMs": 2378.447416000068,
+        "elapsedMs": 5288.342458000407,
+        "handoffs": 0
+      },
+      "passed": true,
+      "cells": [
+        {
+          "marker": "auto-cua-fresh-1",
+          "timestamp": "2026-09-24T15:00:33.629Z",
+          "usageTimestamp": "2026-09-24T15:00:33.726Z",
+          "usage": {
+            "input_tokens": 169260,
+            "cached_input_tokens": 168576,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 223,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 169483
+          },
+          "model": "gpt-6-astra"
+        }
+      ]
     }
   ],
   "comparisons": [
@@ -302,6 +446,12 @@
       "timeReductionPct": -25.840054984546157,
       "gptTotalTokenReductionPct": 23.152854249343225,
       "gptUncachedInputReductionPct": 11.34417808219178
+    },
+    {
+      "driver": "cua-fresh",
+      "timeReductionPct": 28.651537228326575,
+      "gptTotalTokenReductionPct": 83.05908623840006,
+      "gptUncachedInputReductionPct": 77.99935670633644
     }
   ]
 }
