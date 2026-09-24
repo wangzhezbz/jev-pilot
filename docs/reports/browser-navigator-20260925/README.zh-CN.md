@@ -57,3 +57,5 @@ CUA 宿主就绪后的补充观察相对旧入口：耗时少 **18.08%**、GPT �
 接口与不确定性语义核对了官方 [API 文档](https://docs.typesafe.ai/api) 和 [Confidence 文档](https://docs.typesafe.ai/confidence)。本轮没有降低概率门槛来减少接管。
 
 已通过原生插件安装入口更新为 `0.2.0+codex.20260925001732`，无需重启桌面。[安装与文件哈希](../../../results/browser-navigator-20260925/deployment.json) · [当前宿主加载证据](../../../results/browser-navigator-20260925/installed-host-check.json)。后台路由运行时未替换。
+
+实现提交 `771ab17` 的 [macOS / Windows / Linux CI](https://github.com/wangzhezbz/jev-pilot/actions/runs/36026750604) 全部通过：[结果快照](../../../results/browser-navigator-20260925/ci.json)。
