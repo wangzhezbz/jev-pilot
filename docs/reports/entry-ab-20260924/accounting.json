@@ -1,0 +1,46 @@
+[
+  {
+    "model": "gpt-6-astra",
+    "task": "incident",
+    "repeat": 0,
+    "arm": "combined",
+    "totalTokenDelta": -19405,
+    "extraGenerationBase": 0,
+    "repeatedFirstInputDifference": 4550,
+    "historyGrowthDifference": -23887,
+    "outputDifference": -68
+  },
+  {
+    "model": "gpt-6-astra",
+    "task": "semantic",
+    "repeat": 0,
+    "arm": "combined",
+    "totalTokenDelta": -17636,
+    "extraGenerationBase": 0,
+    "repeatedFirstInputDifference": 5520,
+    "historyGrowthDifference": -22986,
+    "outputDifference": -170
+  },
+  {
+    "model": "gpt-6-astra",
+    "task": "incident",
+    "repeat": 1,
+    "arm": "combined",
+    "totalTokenDelta": -19304,
+    "extraGenerationBase": 0,
+    "repeatedFirstInputDifference": 4540,
+    "historyGrowthDifference": -23814,
+    "outputDifference": -30
+  },
+  {
+    "model": "gpt-6-astra",
+    "task": "semantic",
+    "repeat": 1,
+    "arm": "combined",
+    "totalTokenDelta": 7111,
+    "extraGenerationBase": 15157,
+    "repeatedFirstInputDifference": 5544,
+    "historyGrowthDifference": -13444,
+    "outputDifference": -146
+  }
+]

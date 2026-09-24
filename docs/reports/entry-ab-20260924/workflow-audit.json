@@ -1,0 +1,9 @@
+{
+  "completed": 8,
+  "accepted": 8,
+  "candidateSkillReads": 0,
+  "candidateEvidenceOperations": 0,
+  "actualAppliedChanges": 2,
+  "unknownJevUsage": 0,
+  "interpretation": "Plugin triggered real routing but avoided evidence delegation for these locally resolvable fixtures. Do not attribute all observed savings to Jev classification or all timing differences to routing."
+}

@@ -1,9 +1,11 @@
 ---
 name: jev-pilot
-description: Use Jev automatically for large unresolved semantic evidence, bounded classification and routing in ordinary Codex work. Browser coordination, recovery, memory and handoff are also available. Codex owns complex reasoning, implementation and final acceptance.
+description: Configure or diagnose JevPilot itself, or use advanced browser coordination, authorized memory, checkpoints and handoffs. Ordinary evidence selection uses the self-contained jev_evidence tool; background effort routing does not require reading this skill.
 ---
 
 # JevPilot
+
+Ordinary evidence selection needs only the `jev_evidence` tool description and schema. Read this reference for configuration or advanced operations, not as a prerequisite for every task.
 
 Keep the normal conversation and chosen Codex model. Invoke bundled tools yourself when they replace substantial work; no special prompt, task file or separate runner. Do not judge the same evidence again through an older jev-assistant integration.
 

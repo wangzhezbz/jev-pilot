@@ -11,6 +11,7 @@ import { hookOverrides, runtimeFingerprint } from '../runtime/desktop/bridge.mjs
 import { summarize } from '../runtime/desktop/report.mjs';
 import { withLaunchAgent } from './launch-agent.mjs';
 import { maintainBrowserNetwork } from './browser-network.mjs';
+import {migrateLegacyHelper} from './legacy-helper.mjs';
 import {verifiedRuntime} from './runtime-compatibility.mjs';
 export const packageRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 export const installHome = () => process.env.JEV_PILOT_HOME || join(homedir(), '.codex', 'jev-pilot');
@@ -109,7 +110,7 @@ async function prepareSetup({ activate = false, source = packageRoot } = {}) {
   writeFileSync(configPath, JSON.stringify(config, null, 2), { mode: 0o600 });
   const key = loadKey(home); if (key && !existsSync(config.keyPath)) writeFileSync(config.keyPath, 'TYPESAFE_API_KEY=' + key + '\n', { mode: 0o600 });
   if (activate) {activateDesktop(config, home, launcher);config.activated=true;}
-  return { installed: home, launcher, configuredForNextLaunch: config.activated, restartRequired: config.activated, currentTaskChanged: false, credentialsConfigured: Boolean(key), browserNetwork: maintainBrowserNetwork() };
+  return { installed: home, launcher, configuredForNextLaunch: config.activated, restartRequired: config.activated, currentTaskChanged: false, credentialsConfigured: Boolean(key), legacyHelper:migrateLegacyHelper(), browserNetwork: maintainBrowserNetwork() };
 }
 function setOverride(value) {
   if (process.platform === 'darwin') execFileSync('/bin/launchctl', value ? ['setenv', 'CODEX_CLI_PATH', value] : ['unsetenv', 'CODEX_CLI_PATH']);

@@ -1,0 +1,5 @@
+model,task,repeat,arm,totalTokenDelta,extraGenerationBase,repeatedFirstInputDifference,historyGrowthDifference,outputDifference
+gpt-6-astra,incident,0,combined,-19405,0,4550,-23887,-68
+gpt-6-astra,semantic,0,combined,-17636,0,5520,-22986,-170
+gpt-6-astra,incident,1,combined,-19304,0,4540,-23814,-30
+gpt-6-astra,semantic,1,combined,7111,15157,5544,-13444,-146

@@ -2,7 +2,7 @@
 // browser actions or external retrieval. Jev evaluates the supplied material.
 export const evidenceTool={
   name:'jev_evidence',
-  description:'Select supplied candidates with select {goal,items,budget?}, or read and select task-relevant evidence from a large unresolved text file using prepare with input {goal,path}, before reading the full file. For an existing tool result use {goal,value,source} in the same exec cell and emit returned value. Recall exact omitted material with {artifactId,ids?}. Preserve raw results for computation; on failure use the original. Skip small, exact, code or already understood material.',
+  description:'Self-contained read-only semantic evidence tool; no skill read or status call needed. Prefer native exact searches and local grouping for repetitive templates. If these resolve the evidence, continue without Jev. Use only for many still-unresolved semantic candidates: select {goal,items,budget?}, or prepare {goal,path} before full file display. For an existing result, prepare {goal,value,source} in the same exec cell. Emit returned value/context only, not the whole MCP envelope; preserve raw data for computation. Recall {artifactId,ids?} for missing evidence, not an automatic full reread. On failure use the original. Skip small, exact, code, structured/media, failed/unfinished or already-read material. Unknown/deferred evidence prevents exhaustive claims. No execution authority.',
   annotations:{readOnlyHint:true,destructiveHint:false,openWorldHint:false},
   inputSchema:{type:'object',properties:{workspace:{type:'string'},operation:{type:'string',enum:['prepare','select','recall']},input:{type:'object',properties:{
     goal:{type:'string',description:'What evidence is needed for the current task (prepare).'},
