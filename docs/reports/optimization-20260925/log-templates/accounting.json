@@ -1,0 +1,24 @@
+[
+  {
+    "model": "gpt-6-astra",
+    "task": "incident",
+    "repeat": 0,
+    "arm": "combined",
+    "totalTokenDelta": 5344,
+    "extraGenerationBase": -15262,
+    "repeatedFirstInputDifference": 4108,
+    "historyGrowthDifference": 16578,
+    "outputDifference": -80
+  },
+  {
+    "model": "gpt-6-astra",
+    "task": "incident",
+    "repeat": 1,
+    "arm": "combined",
+    "totalTokenDelta": 5120,
+    "extraGenerationBase": -15262,
+    "repeatedFirstInputDifference": 4100,
+    "historyGrowthDifference": 16454,
+    "outputDifference": -172
+  }
+]

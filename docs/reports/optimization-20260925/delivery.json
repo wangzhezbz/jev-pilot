@@ -1,0 +1,25 @@
+{
+  "sourceCommit": "43202f4d660c4818c7c3d3ce3c3367453710fcc0",
+  "pluginVersion": "0.2.0+codex.20260925184500",
+  "ciUrl": "https://github.com/wangzhezbz/jev-pilot/actions/runs/36125397557",
+  "installedFingerprint": "5b0ee4d047a7b5386a39df809825e3324ef4477fb62501ac59f2ce5d6283be01",
+  "loadedRevisionMatches": false,
+  "restartRequired": true,
+  "currentTaskChanged": false,
+  "installedModulesMatch": true,
+  "modules": {
+    "src/server.mjs": "84d8de4baff3c3ac4e824a206ce0a123bddf56c8f5fa4033395dd4d49a728a5d",
+    "src/log-projection.mjs": "e57bfff82eb69af1574165b6b83c26f5d555b9dfe031a01599e7fd1785e2239a",
+    "src/prepare-output.mjs": "52e86dee817196e3659f6059c01da18904958ccc598e73570764b9ac6636dcf2",
+    "src/investigation-hint.mjs": "9978cea073d9f0edfac6244a279aff69749cf86a690d4593fa90d33b45d2dd2a",
+    "src/host-browser-navigator.mjs": "3eb9c2bdc4e973dc7841d8c302e17e3b693db164e428819ac049c6f066474a1e",
+    "src/host-browser-session.mjs": "baebae9a9ca80835ae704d7db0299dc8130087b8bbc4cfafedcc8ebbd7dd4dcc",
+    "src/host-browser-drivers.mjs": "1f0577ac50bb375e9250aebbf49c290a56e9986537dcd1a5b07dae82c69c3475",
+    "src/browser.mjs": "7b1cc4e10faf964a2b9cb3a4761a46ab346e8dc9b19e292c320748da5b8a5f87"
+  },
+  "ci": {
+    "ubuntu-latest": "success",
+    "macos-latest": "success",
+    "windows-latest": "success"
+  }
+}

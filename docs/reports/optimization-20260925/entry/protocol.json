@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "id": "report",
+      "expected": "candidate0"
+    },
+    {
+      "id": "document",
+      "expected": "candidate0"
+    },
+    {
+      "id": "ambiguous",
+      "expected": null
+    },
+    {
+      "id": "unrelated",
+      "expected": null
+    }
+  ],
+  "repetitions": 2,
+  "order": "old/new then new/old with candidate order reversed",
+  "maxRequests": 16,
+  "minProbability": 0.7,
+  "scope": "Synthetic choice probe only; not end-to-end GPT or UI savings. Uncertain choices are handed off, never forced."
+}

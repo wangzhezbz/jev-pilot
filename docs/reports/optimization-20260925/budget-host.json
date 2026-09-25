@@ -1,0 +1,46 @@
+{
+  "scope": "Fault injection: test-only isolated store with taskMaxCalls=1; production quotas unchanged. Actual Chrome read and one native click, not an end-to-end speed comparison.",
+  "passed": true,
+  "receipt": {
+    "status": "codex_review_required",
+    "reason": "HOST_INSUFFICIENT_TASK_BUDGET",
+    "budget": {
+      "calls": 1,
+      "bytes": 400000,
+      "waitMs": 16000,
+      "cooldown": false,
+      "windowEndsAt": 1790334000000
+    },
+    "admission": {
+      "expectedSteps": 6,
+      "samples": 0,
+      "estimatedStepMs": 1000,
+      "requiredWaitMs": 6000
+    },
+    "nextDelegation": {
+      "maxAffordableSteps": 1,
+      "windowEndsAt": 1790334000000,
+      "advisoryOnly": true,
+      "instruction": "Use native tools when the next goal exceeds this estimate. No status/diagnostic call or retry is needed for ordinary budget refusal. Capacity is not reserved; admission is rechecked on run."
+    },
+    "metrics": {
+      "runs": 0,
+      "actions": 0,
+      "jevRequests": 0,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "unknownUsage": 0,
+      "apiMs": 0,
+      "elapsedMs": 0,
+      "handoffs": 0
+    },
+    "instruction": "Continue natively; this is an expected admission refusal, not a service failure. Do not run diagnostics, retry delegation, or change task identity/budget. No action or paid request was made. Inspect nativeObservation and choose the next native action. Observe again only if stale, truncated or insufficient; do not resume this refused session.",
+    "nativeObservation": {
+      "snapshot": "Browser tab: 51514220, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=a\".\n0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=a\n\t1 container view\n\t\t2 heading Analytics workspace, Value: 1\n\t\t\t3 text Analytics workspace\n\t\t4 text Choose the matching item. This synthetic workspace supports read-only preview.\n\t\t5 link Description: Analytics, Value: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=a#region\n\t\t6 link Description: Document library, Value: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=a#wrong\n\nThe focused UI element is 0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=a",
+      "observedAt": 1790332574376,
+      "truncated": false
+    },
+    "nativeObservationMs": 28.312833000003593
+  },
+  "after": "Browser tab: 51514220, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=a\".\n0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=a\n\t1 container view\n\t\t2 heading Analytics regions, Value: 1\n\t\t\t3 text Analytics regions\n\t\t4 text Choose the matching item. This synthetic workspace supports read-only preview.\n\t\t5 button Europe\n\t\t6 button North America\n\nThe focused UI element is 0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=a"
+}

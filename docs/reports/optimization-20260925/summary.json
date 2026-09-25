@@ -1,0 +1,169 @@
+{
+  "sourceCommit": "43202f4d660c4818c7c3d3ce3c3367453710fcc0",
+  "nativeRuns": 8,
+  "nativePassed": 8,
+  "regressionPassed": 359,
+  "nativeProtocolPassed": 27,
+  "phases": {
+    "log-templates": {
+      "arms": {
+        "bare": {
+          "runs": 2,
+          "passed": 2,
+          "complete": true,
+          "wallMs": 105218,
+          "totalMs": 105366,
+          "totalTokens": 223676,
+          "cachedInputTokens": 173440,
+          "outputTokens": 2657,
+          "gptStandardUsd": 0.78208,
+          "jevKnownUsd": 0,
+          "totalStandardKnownUsd": 0.78208,
+          "totalFastKnownUsd": 1.56416,
+          "unknownCalls": 0,
+          "jevCalls": 0,
+          "jevInputTokens": 0,
+          "changes": 0
+        },
+        "combined": {
+          "runs": 2,
+          "passed": 2,
+          "complete": true,
+          "wallMs": 95772,
+          "totalMs": 96379,
+          "totalTokens": 234140,
+          "cachedInputTokens": 156800,
+          "outputTokens": 2405,
+          "gptStandardUsd": 1.0264,
+          "jevKnownUsd": 0.0004953480000000001,
+          "totalStandardKnownUsd": 1.026895348,
+          "totalFastKnownUsd": 2.053295348,
+          "unknownCalls": 0,
+          "jevCalls": 7,
+          "jevInputTokens": 11794,
+          "changes": 1
+        }
+      },
+      "changePercent": {
+        "wallMs": -8.97755136953753,
+        "totalTokens": 4.678195246696104,
+        "totalStandardKnownUsd": 31.303108121931267
+      },
+      "pairs": [
+        {
+          "task": "incident",
+          "repeat": 0,
+          "bothPassed": true,
+          "costComplete": true,
+          "timeIncreasePercent": -11.768543168955725,
+          "knownCostIncreasePercent": 29.691543838147403
+        },
+        {
+          "task": "incident",
+          "repeat": 1,
+          "bothPassed": true,
+          "costComplete": true,
+          "timeIncreasePercent": -5.713519866388994,
+          "knownCostIncreasePercent": 33.31324057631191
+        }
+      ]
+    },
+    "single-copy": {
+      "arms": {
+        "bare": {
+          "runs": 2,
+          "passed": 2,
+          "complete": true,
+          "wallMs": 107079,
+          "totalMs": 107222,
+          "totalTokens": 223773,
+          "cachedInputTokens": 182272,
+          "outputTokens": 2725,
+          "gptStandardUsd": 0.7062820000000001,
+          "jevKnownUsd": 0,
+          "totalStandardKnownUsd": 0.7062820000000001,
+          "totalFastKnownUsd": 1.4125640000000002,
+          "unknownCalls": 0,
+          "jevCalls": 0,
+          "jevInputTokens": 0,
+          "changes": 0
+        },
+        "combined": {
+          "runs": 2,
+          "passed": 2,
+          "complete": true,
+          "wallMs": 99791,
+          "totalMs": 100348,
+          "totalTokens": 188200,
+          "cachedInputTokens": 104704,
+          "outputTokens": 2568,
+          "gptStandardUsd": 1.042384,
+          "jevKnownUsd": 0.000605514,
+          "totalStandardKnownUsd": 1.042989514,
+          "totalFastKnownUsd": 2.085373514,
+          "unknownCalls": 0,
+          "jevCalls": 8,
+          "jevInputTokens": 14417,
+          "changes": 0
+        }
+      },
+      "changePercent": {
+        "wallMs": -6.806189822467523,
+        "totalTokens": -15.896913389908518,
+        "totalStandardKnownUsd": 47.67324015053476
+      },
+      "pairs": [
+        {
+          "task": "incident",
+          "repeat": 0,
+          "bothPassed": true,
+          "costComplete": true,
+          "timeIncreasePercent": -11.766280584655476,
+          "knownCostIncreasePercent": 95.65217564400189
+        },
+        {
+          "task": "incident",
+          "repeat": 1,
+          "bothPassed": true,
+          "costComplete": true,
+          "timeIncreasePercent": -1.3615170630411733,
+          "knownCostIncreasePercent": -1.2759620830306129
+        }
+      ]
+    }
+  },
+  "browser": [
+    {
+      "id": "chrome-staged",
+      "passed": true,
+      "metrics": {
+        "runs": 1,
+        "actions": 6,
+        "jevRequests": 6,
+        "inputTokens": 5460,
+        "outputTokens": 282,
+        "unknownUsage": 0,
+        "apiMs": 2000.2877100000114,
+        "elapsedMs": 3130.994584,
+        "handoffs": 0
+      },
+      "loopAndFinalObservationMs": 3146.479917000004
+    },
+    {
+      "id": "computer-use-staged",
+      "passed": true,
+      "metrics": {
+        "runs": 1,
+        "actions": 6,
+        "jevRequests": 6,
+        "inputTokens": 4944,
+        "outputTokens": 282,
+        "unknownUsage": 0,
+        "apiMs": 2411.1772070000297,
+        "elapsedMs": 8638.975583000007,
+        "handoffs": 0
+      },
+      "loopAndFinalObservationMs": 8756.938957999999
+    }
+  ]
+}

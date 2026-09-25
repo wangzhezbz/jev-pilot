@@ -1,0 +1,5 @@
+id,task,repeat,arm,passed,status,wallMs,totalMs,totalTokens,inputTokens,cachedInputTokens,cacheWriteInputTokens,outputTokens,reasoningOutputTokens,generations,gptStandardUsd,jevKnownUsd,totalStandardKnownUsd,totalFastKnownUsd,unknownCalls,complete,jevCalls,jevInputTokens,changes
+"gpt-6-astra-incident-0-bare","incident","0","bare","true","completed","56719","56794","111941","110556","82304","0","1385","0","5","0.434074","0","0.434074","0.868148","0","true","0","0","0"
+"gpt-6-astra-incident-0-combined","incident","0","combined","true","completed","50044","50317","117285","115980","73600","0","1305","0","4","0.56265","0.00030727200000000004","0.562957272","1.1256072719999999","0","true","4","7316","1"
+"gpt-6-astra-incident-1-combined","incident","1","combined","true","completed","45728","46062","116855","115755","83200","0","1100","0","4","0.46375","0.00018807600000000002","0.463938076","0.927688076","0","true","3","4478","0"
+"gpt-6-astra-incident-1-bare","incident","1","bare","true","completed","48499","48572","111735","110463","91136","0","1272","0","5","0.348006","0","0.348006","0.696012","0","true","0","0","0"

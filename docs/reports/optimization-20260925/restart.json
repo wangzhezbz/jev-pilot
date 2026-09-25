@@ -1,0 +1,22 @@
+{
+  "runtimeVersion": "codex-cli 0.155.0-alpha.16.4",
+  "installedFingerprint": "f7aef38d0cabaed8b33718d1038d1714bbaf1cd2ffb800f129c2bbc48bc9399c",
+  "loadedRevisionMatches": true,
+  "compatible": true,
+  "disabled": false,
+  "activeBridges": [
+    {
+      "at": "2026-09-25T10:24:28.311Z",
+      "bridgeId": "jev:26e027cf-aee5-4e2f-87db-936834a9c817:",
+      "pid": 24424,
+      "measurementSource": "runtime",
+      "kind": "bridge_started",
+      "nativeEffortOverrideRequested": true,
+      "policyVersion": "effort-v18-baseline-spacing",
+      "leaseUnit": "observed_tool_batch_or_boundary",
+      "runtimeFingerprint": "f7aef38d0cabaed8b33718d1038d1714bbaf1cd2ffb800f129c2bbc48bc9399c",
+      "backendPid": 24429,
+      "networkMode": "environment_proxy"
+    }
+  ]
+}

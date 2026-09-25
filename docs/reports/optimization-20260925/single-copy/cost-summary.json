@@ -1,0 +1,103 @@
+{
+  "planned": 4,
+  "attempted": 4,
+  "prices": {
+    "date": "2026-09-24",
+    "currency": "USD",
+    "unit": "per million tokens",
+    "sources": [
+      "https://developers.openai.com/api/docs/pricing",
+      "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "https://docs.typesafe.ai/models"
+    ],
+    "models": {
+      "gpt-6-astra": {
+        "input": 10,
+        "cached": 1,
+        "write": 12.5,
+        "output": 50
+      },
+      "gpt-6-sol": {
+        "input": 2,
+        "cached": 0.2,
+        "write": 2.5,
+        "output": 10
+      },
+      "gpt-6-luna": {
+        "input": 0.1,
+        "cached": 0.01,
+        "write": 0.125,
+        "output": 0.5
+      },
+      "gpt-5.6-sol": {
+        "input": 4,
+        "cached": 0.4,
+        "write": 5,
+        "output": 20
+      }
+    },
+    "jev": {
+      "jev-1.13.0": {
+        "input": 0.042,
+        "output": 0
+      }
+    }
+  },
+  "serviceTier": "Not observed; standard and fast are separate API-equivalent scenarios, never subscription debits.",
+  "arms": {
+    "bare": {
+      "runs": 2,
+      "passed": 2,
+      "complete": true,
+      "wallMs": 107079,
+      "totalMs": 107222,
+      "totalTokens": 223773,
+      "cachedInputTokens": 182272,
+      "outputTokens": 2725,
+      "gptStandardUsd": 0.7062820000000001,
+      "jevKnownUsd": 0,
+      "totalStandardKnownUsd": 0.7062820000000001,
+      "totalFastKnownUsd": 1.4125640000000002,
+      "unknownCalls": 0,
+      "jevCalls": 0,
+      "jevInputTokens": 0,
+      "changes": 0
+    },
+    "combined": {
+      "runs": 2,
+      "passed": 2,
+      "complete": true,
+      "wallMs": 99791,
+      "totalMs": 100348,
+      "totalTokens": 188200,
+      "cachedInputTokens": 104704,
+      "outputTokens": 2568,
+      "gptStandardUsd": 1.042384,
+      "jevKnownUsd": 0.000605514,
+      "totalStandardKnownUsd": 1.042989514,
+      "totalFastKnownUsd": 2.085373514,
+      "unknownCalls": 0,
+      "jevCalls": 8,
+      "jevInputTokens": 14417,
+      "changes": 0
+    }
+  },
+  "pairs": [
+    {
+      "task": "incident",
+      "repeat": 0,
+      "bothPassed": true,
+      "costComplete": true,
+      "timeIncreasePercent": -11.766280584655476,
+      "knownCostIncreasePercent": 95.65217564400189
+    },
+    {
+      "task": "incident",
+      "repeat": 1,
+      "bothPassed": true,
+      "costComplete": true,
+      "timeIncreasePercent": -1.3615170630411733,
+      "knownCostIncreasePercent": -1.2759620830306129
+    }
+  ]
+}
