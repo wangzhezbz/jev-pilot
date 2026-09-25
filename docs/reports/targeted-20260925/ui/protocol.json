@@ -1,0 +1,18 @@
+{
+  "at": "2026-09-25T12:54:55.969440+00:00",
+  "fixtureSha256": "fd57de377222e0833c4d410fad20ad1cdb1b0e97c11de0a19ad956937ff7826f",
+  "order": [
+    "cua-bare-0",
+    "cua-pilot-0",
+    "cua-pilot-1",
+    "cua-bare-1"
+  ],
+  "case": "Verified maintenance runbook for Cedar / EU West / r18 approved; scope, precondition, owner, production changes.",
+  "scope": "Targeted regression on a known fixture; same root Astra high task, native versus staged candidate navigator with createWebScope. Not independent full plugin on/off tasks.",
+  "timing": "First observation to GPT verified result; bootstrap, host construction, benchmark/report bookkeeping excluded. Include handoffs.",
+  "budgets": "Real current task ID and unchanged store quotas; no replacement attempts or quota resets.",
+  "sourceHashes": {
+    "src/host-browser-drivers.mjs": "ad389f878f6a2d8d9df61eff058cf174196dab4091847b44a155a7fed50e9a53",
+    "src/host-browser-navigator.mjs": "a91e31bc7b7d197d4d1e7828571e8a3508d7a125195129e32f57a5e13a534d6b"
+  }
+}

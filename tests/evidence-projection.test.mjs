@@ -19,3 +19,12 @@ test('inline prose dictionary preserves arbitrary whitespace, occurrences and co
  const p=projectEvidence(items,{fragments:true});assert.equal(p.kind,'shared_fragments');assert.deepEqual(expandEvidenceProjection(p),items);assert(p.context.includes('Correction: settlement was later confirmed.'));
  const collision=items.map((x,i)=>({...x,text:x.text+(i===0?'[=S1]':'')}));assert.equal(projectEvidence(collision,{fragments:true}).kind,'original');
 });
+test('whole repeated paragraphs replace overlapping sentence dictionaries without unused entries',()=>{
+ const a='This record preserves the identity and the source relationship exactly as originally recorded.';
+ const b='The request remains unresolved and has never been executed by the downstream service.';
+ const items=Array.from({length:40},(_,i)=>({id:'s'+i,source:'records.md',startLine:i*3+1,endLine:i*3+3,text:`## CASE-${i}\n${a} ${b}\n`}));
+ const r=projectEvidence(items,{fragments:true});assert.equal(r.kind,'shared_fragments');
+ assert.deepEqual(expandEvidenceProjection(r),items);assert(Object.values(r.dictionary).includes(a+' '+b));
+ for(const id of Object.keys(r.dictionary))assert(r.projected.some(x=>x.text.includes(`[=${id}]`)));
+ assert(r.displayBytes<r.rawBytes*.4);
+});

@@ -13,6 +13,29 @@ const match = (name, pattern) => {
   if (pattern instanceof RegExp) { pattern.lastIndex = 0; return pattern.test(name); }
   return false;
 };
+// Bind to an identity observed through the official host. Select an exact
+// subtree, not a footer string: AX may merge text or localize role names.
+export function createWebScope({title, url}) {
+  requireValue(typeof title==='string'&&title.trim().length>0&&typeof url==='string'&&url.trim().length>0,'HOST_WEB_IDENTITY_REQUIRED');
+  requireValue(!/[\r\n]/.test(title+url),'INVALID_HOST_WEB_IDENTITY');
+  return raw=>{
+    requireValue(typeof raw==='string','INVALID_HOST_OBSERVATION');
+    const lines=raw.split('\n'),roots=[];
+    for(let i=0;i<lines.length;i++){
+      const m=lines[i].match(/^([ \t]*)\d+ (?:HTML内容|HTML content|AXWebArea|WebArea|web area)(?: Description:)? (.*), URL: (.*?)\r?$/);
+      if(m)roots.push({index:i,indent:m[1],title:m[2],url:m[3]});
+    }
+    requireValue(roots.length===1,'HOST_WEB_SCOPE_AMBIGUOUS');
+    const root=roots[0];requireValue(root.title===title&&root.url===url,'HOST_WEB_IDENTITY_CHANGED');
+    let end=root.index+1;
+    for(;end<lines.length;end++){
+      if(!lines[end].trim())continue;
+      const indent=lines[end].match(/^[ \t]*/)[0];
+      if(!indent.startsWith(root.indent)||indent.length<=root.indent.length)break;
+    }
+    return lines.slice(root.index,end).join('\n');
+  };
+}
 export function semanticState(snapshot) {
   return snapshot.split('\n').filter(line => !/^The focused UI element is /.test(line))
     .map(line => line.replace(/^(\s*)\d+ /, '$1')).join('\n').trim();
@@ -22,7 +45,7 @@ function observation(raw, policy, scope) {
   const snapshot = scope ? scope(raw) : raw;
   requireValue(typeof snapshot === 'string' && snapshot.length > 0 && raw.includes(snapshot), 'INVALID_HOST_SCOPE');
   requireValue(snapshot.length <= 50000, 'HOST_OBSERVATION_TOO_LARGE');
-  const entries = snapshot.split('\n').filter(line => !/\((?:disabled|unavailable)\)/i.test(line)).map(line => line.match(control)).filter(Boolean)
+  const entries = snapshot.split('\n').filter(line => !/\((?:disabled|unavailable)\)/i.test(line)).map(line => line.replace(/\r$/,'').match(control)).filter(Boolean)
     .map(m => ({ id: 'ax_' + m[1], text: accessibleName(m[3]), description: m[3].trim(), role: m[2], target: Number(m[1]), op: 'click' }));
   const counts = new Map(); for (const entry of entries) counts.set(entry.text, (counts.get(entry.text) || 0) + 1);
   const candidates = entries.filter(c => counts.get(c.text) === 1 && !/\b(disabled|unavailable)\b|已停用|不可用/i.test(c.text))

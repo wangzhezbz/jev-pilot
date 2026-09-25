@@ -1,0 +1,13 @@
+{
+  "localTests": 373,
+  "failures": 0,
+  "offlineRoundTrips": 160,
+  "nativeTasksPassed": 4,
+  "uiEpisodesPassed": 4,
+  "uiPilotHandoffs": 0,
+  "chromeSmoke": "completed with native fallback after page translation; not an autonomous pass or timing comparison",
+  "macOSLauncherBuild": "passed",
+  "installedPluginCoreFilesVerified": 52,
+  "loadedRevisionMatches": false,
+  "restartRequired": true
+}

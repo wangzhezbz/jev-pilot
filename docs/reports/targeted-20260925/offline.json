@@ -1,0 +1,25 @@
+{
+  "scope": "Offline exact-byte preservation and presentation size only, not measured GPT tokens or latency.",
+  "roundTrips": 160,
+  "rows": [
+    {
+      "label": "frozen_v19",
+      "originalWireBytes": 26563,
+      "preparedWireBytes": 17653,
+      "completeCoverage": true,
+      "excludedItems": 0,
+      "lossless": true,
+      "paidAttempts": 0
+    },
+    {
+      "label": "candidate",
+      "originalWireBytes": 26563,
+      "preparedWireBytes": 4641,
+      "completeCoverage": true,
+      "excludedItems": 0,
+      "lossless": true,
+      "paidAttempts": 0
+    }
+  ],
+  "reductionVsV19Percent": 73.70985101682433
+}

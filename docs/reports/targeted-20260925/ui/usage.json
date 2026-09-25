@@ -1,0 +1,634 @@
+{
+  "runs": [
+    {
+      "id": "cua-bare-0",
+      "elapsedMs": 43744,
+      "passed": true,
+      "answer": {
+        "service": "Cedar",
+        "region": "EU West",
+        "revision": "r18 approved",
+        "maintenance": "diagnostic only",
+        "precondition": "backup verified",
+        "owner": "Pavel",
+        "production": "none"
+      },
+      "finalObservation": "\t\t\t\t5 HTML内容 Description: JevPilot Holdout Lab, URL: 127.0.0.1:8876/holdout-browser.html\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 JevPilot Holdout Lab, Value: 1\n\t\t\t\t\t\t\t8 文本 JevPilot Holdout Lab\n\t\t\t\t\t\t9 标题 VERIFIED READ-ONLY RECORD, Value: 2\n\t\t\t\t\t\t\t10 文本 VERIFIED READ-ONLY RECORD\n\t\t\t\t\t\t11 text Maintenance runbooks | Service: Cedar | Region: EU West | Revision: r18 — approved | Maintenance: diagnostic only; Precondition: backup verified; Owner: Pavel; Production changes: none Synthetic read-only fixture — no production action",
+      "actions": 5,
+      "cells": [
+        {
+          "marker": "targeted-cua-bare-0-start",
+          "at": "2026-09-25T12:58:48.676Z",
+          "usage": {
+            "input_tokens": 200766,
+            "cached_input_tokens": 200448,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 143,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 200909
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "targeted-cua-bare-0-a",
+          "at": "2026-09-25T12:58:55.118Z",
+          "usage": {
+            "input_tokens": 201119,
+            "cached_input_tokens": 200704,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 84,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 201203
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "targeted-cua-bare-0-b",
+          "at": "2026-09-25T12:59:01.203Z",
+          "usage": {
+            "input_tokens": 201411,
+            "cached_input_tokens": 200960,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 84,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 201495
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "targeted-cua-bare-0-c",
+          "at": "2026-09-25T12:59:07.609Z",
+          "usage": {
+            "input_tokens": 201709,
+            "cached_input_tokens": 201344,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 84,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 201793
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "targeted-cua-bare-0-d",
+          "at": "2026-09-25T12:59:12.948Z",
+          "usage": {
+            "input_tokens": 202019,
+            "cached_input_tokens": 201600,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 84,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 202103
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "targeted-cua-bare-0-e",
+          "at": "2026-09-25T12:59:22.164Z",
+          "usage": {
+            "input_tokens": 202335,
+            "cached_input_tokens": 201984,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 91,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 202426
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "targeted-cua-bare-0-finish",
+          "at": "2026-09-25T12:59:32.420Z",
+          "usage": {
+            "input_tokens": 202639,
+            "cached_input_tokens": 202240,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 152,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 202791
+          },
+          "model": "gpt-6-astra"
+        }
+      ],
+      "gptCalls": 7,
+      "gpt": {
+        "input_tokens": 1411998,
+        "cached_input_tokens": 1409280,
+        "output_tokens": 722,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 1412720,
+        "uncached_input_tokens": 2718
+      },
+      "allObservedJevCalls": []
+    },
+    {
+      "id": "cua-pilot-0",
+      "elapsedMs": 29438,
+      "passed": true,
+      "answer": {
+        "service": "Cedar",
+        "region": "EU West",
+        "revision": "r18 approved",
+        "maintenance": "diagnostic only",
+        "precondition": "backup verified",
+        "owner": "Pavel",
+        "production": "none"
+      },
+      "receipt": {
+        "status": "needs_verification",
+        "reason": null,
+        "stageIndex": 2,
+        "evidence": "VERIFIED READ-ONLY RECORD | Service: Cedar | Region: EU West | Revision: r18 — approved",
+        "stateMayHaveChanged": false,
+        "metrics": {
+          "runs": 1,
+          "actions": 5,
+          "jevRequests": 5,
+          "inputTokens": 4233,
+          "outputTokens": 265,
+          "unknownUsage": 0,
+          "apiMs": 1752.2348330002278,
+          "elapsedMs": 7024.178125000093,
+          "handoffs": 0
+        },
+        "sessionMetrics": {
+          "runs": 1,
+          "actions": 5,
+          "jevRequests": 5,
+          "inputTokens": 4233,
+          "outputTokens": 265,
+          "unknownUsage": 0,
+          "apiMs": 1752.2348330002278,
+          "elapsedMs": 7024.178125000093,
+          "handoffs": 0
+        },
+        "instruction": "Codex must inspect this fresh finalObservation against the user request before claiming completion. If inadequate, observe natively again.",
+        "fullResultRetainedInHost": true,
+        "truncatedFields": [],
+        "finalObservation": {
+          "snapshot": "\t\t\t\t5 HTML内容 Description: JevPilot Holdout Lab, URL: 127.0.0.1:8876/holdout-browser.html\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 JevPilot Holdout Lab, Value: 1\n\t\t\t\t\t\t\t8 文本 JevPilot Holdout Lab\n\t\t\t\t\t\t9 标题 VERIFIED READ-ONLY RECORD, Value: 2\n\t\t\t\t\t\t\t10 文本 VERIFIED READ-ONLY RECORD\n\t\t\t\t\t\t11 text Maintenance runbooks | Service: Cedar | Region: EU West | Revision: r18 — approved | Maintenance: diagnostic only; Precondition: backup verified; Owner: Pavel; Production changes: none Synthetic read-only fixture — no production action",
+          "observedAt": 1790341202378,
+          "truncated": false
+        },
+        "finalObservationMs": 63.23574999999255,
+        "nextDelegation": {
+          "maxAffordableSteps": 12,
+          "windowEndsAt": 1790344800000,
+          "advisoryOnly": true,
+          "instruction": "Use native tools when the next goal exceeds this estimate. No status/diagnostic call or retry is needed for ordinary budget refusal. Capacity is not reserved; admission is rechecked on run."
+        },
+        "admission": {
+          "expectedSteps": 5,
+          "samples": 10,
+          "estimatedStepMs": 990,
+          "requiredWaitMs": 4960
+        }
+      },
+      "jev": {
+        "runs": 1,
+        "actions": 5,
+        "jevRequests": 5,
+        "inputTokens": 4233,
+        "outputTokens": 265,
+        "unknownUsage": 0,
+        "apiMs": 1752.2348330002278,
+        "elapsedMs": 7024.178125000093,
+        "handoffs": 0
+      },
+      "actions": 5,
+      "cells": [
+        {
+          "marker": "targeted-cua-pilot-0-start",
+          "at": "2026-09-25T12:59:46.208Z",
+          "usage": {
+            "input_tokens": 203037,
+            "cached_input_tokens": 202752,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 74,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 203111
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "targeted-cua-pilot-0-run",
+          "at": "2026-09-25T12:59:55.282Z",
+          "usage": {
+            "input_tokens": 203321,
+            "cached_input_tokens": 202880,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 191,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 203512
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "targeted-cua-pilot-0-finish",
+          "at": "2026-09-25T13:00:15.646Z",
+          "usage": {
+            "input_tokens": 204274,
+            "cached_input_tokens": 203264,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 155,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 204429
+          },
+          "model": "gpt-6-astra"
+        }
+      ],
+      "gptCalls": 3,
+      "gpt": {
+        "input_tokens": 610632,
+        "cached_input_tokens": 608896,
+        "output_tokens": 420,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 611052,
+        "uncached_input_tokens": 1736
+      },
+      "allObservedJevCalls": [
+        {
+          "at": "2026-09-25T12:59:56.024Z",
+          "purpose": "browser",
+          "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+          "requestId": "adfc31da-5fe3-40a9-9e14-0a5645c60742",
+          "model": "jev-1.13.0",
+          "inputTokens": 780,
+          "outputTokens": 53,
+          "elapsedMs": 676,
+          "questions": 1,
+          "status": "success"
+        },
+        {
+          "at": "2026-09-25T12:59:57.248Z",
+          "purpose": "browser",
+          "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+          "requestId": "e01be0f4-eb45-43ec-9af8-e138873cd597",
+          "model": "jev-1.13.0",
+          "inputTokens": 805,
+          "outputTokens": 53,
+          "elapsedMs": 269,
+          "questions": 1,
+          "status": "success"
+        },
+        {
+          "at": "2026-09-25T12:59:58.722Z",
+          "purpose": "browser",
+          "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+          "requestId": "8612cd4e-a92d-444c-88e5-39bb0c321532",
+          "model": "jev-1.13.0",
+          "inputTokens": 838,
+          "outputTokens": 53,
+          "elapsedMs": 265,
+          "questions": 1,
+          "status": "success"
+        },
+        {
+          "at": "2026-09-25T12:59:59.991Z",
+          "purpose": "browser",
+          "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+          "requestId": "d16418da-07b0-455d-b43a-807fbbc20da7",
+          "model": "jev-1.13.0",
+          "inputTokens": 898,
+          "outputTokens": 53,
+          "elapsedMs": 276,
+          "questions": 1,
+          "status": "success"
+        },
+        {
+          "at": "2026-09-25T13:00:01.382Z",
+          "purpose": "browser",
+          "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+          "requestId": "a849527c-ad3f-41ee-87f9-6422b8cf7f87",
+          "model": "jev-1.13.0",
+          "inputTokens": 912,
+          "outputTokens": 53,
+          "elapsedMs": 266,
+          "questions": 1,
+          "status": "success"
+        }
+      ]
+    },
+    {
+      "id": "cua-pilot-1",
+      "elapsedMs": 25712,
+      "passed": true,
+      "answer": {
+        "service": "Cedar",
+        "region": "EU West",
+        "revision": "r18 approved",
+        "maintenance": "diagnostic only",
+        "precondition": "backup verified",
+        "owner": "Pavel",
+        "production": "none"
+      },
+      "receipt": {
+        "status": "needs_verification",
+        "reason": null,
+        "stageIndex": 2,
+        "evidence": "VERIFIED READ-ONLY RECORD | Service: Cedar | Region: EU West | Revision: r18 — approved",
+        "stateMayHaveChanged": false,
+        "metrics": {
+          "runs": 1,
+          "actions": 5,
+          "jevRequests": 5,
+          "inputTokens": 4233,
+          "outputTokens": 265,
+          "unknownUsage": 0,
+          "apiMs": 1738.171374999918,
+          "elapsedMs": 6782.145957999863,
+          "handoffs": 0
+        },
+        "sessionMetrics": {
+          "runs": 1,
+          "actions": 5,
+          "jevRequests": 5,
+          "inputTokens": 4233,
+          "outputTokens": 265,
+          "unknownUsage": 0,
+          "apiMs": 1738.171374999918,
+          "elapsedMs": 6782.145957999863,
+          "handoffs": 0
+        },
+        "instruction": "Codex must inspect this fresh finalObservation against the user request before claiming completion. If inadequate, observe natively again.",
+        "fullResultRetainedInHost": true,
+        "truncatedFields": [],
+        "finalObservation": {
+          "snapshot": "\t\t\t\t5 HTML内容 Description: JevPilot Holdout Lab, URL: 127.0.0.1:8876/holdout-browser.html\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 JevPilot Holdout Lab, Value: 1\n\t\t\t\t\t\t\t8 文本 JevPilot Holdout Lab\n\t\t\t\t\t\t9 标题 VERIFIED READ-ONLY RECORD, Value: 2\n\t\t\t\t\t\t\t10 文本 VERIFIED READ-ONLY RECORD\n\t\t\t\t\t\t11 text Maintenance runbooks | Service: Cedar | Region: EU West | Revision: r18 — approved | Maintenance: diagnostic only; Precondition: backup verified; Owner: Pavel; Production changes: none Synthetic read-only fixture — no production action",
+          "observedAt": 1790341256311,
+          "truncated": false
+        },
+        "finalObservationMs": 54.06233299989253,
+        "nextDelegation": {
+          "maxAffordableSteps": 12,
+          "windowEndsAt": 1790344800000,
+          "advisoryOnly": true,
+          "instruction": "Use native tools when the next goal exceeds this estimate. No status/diagnostic call or retry is needed for ordinary budget refusal. Capacity is not reserved; admission is rechecked on run."
+        },
+        "admission": {
+          "expectedSteps": 5,
+          "samples": 15,
+          "estimatedStepMs": 990,
+          "requiredWaitMs": 4960
+        }
+      },
+      "jev": {
+        "runs": 1,
+        "actions": 5,
+        "jevRequests": 5,
+        "inputTokens": 4233,
+        "outputTokens": 265,
+        "unknownUsage": 0,
+        "apiMs": 1738.171374999918,
+        "elapsedMs": 6782.145957999863,
+        "handoffs": 0
+      },
+      "actions": 5,
+      "cells": [
+        {
+          "marker": "targeted-cua-pilot-1-start",
+          "at": "2026-09-25T13:00:40.162Z",
+          "usage": {
+            "input_tokens": 204956,
+            "cached_input_tokens": 204416,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 74,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 205030
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "targeted-cua-pilot-1-run",
+          "at": "2026-09-25T13:00:49.468Z",
+          "usage": {
+            "input_tokens": 205240,
+            "cached_input_tokens": 204800,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 63,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 205303
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "targeted-cua-pilot-1-finish",
+          "at": "2026-09-25T13:01:05.874Z",
+          "usage": {
+            "input_tokens": 206063,
+            "cached_input_tokens": 205184,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 155,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 206218
+          },
+          "model": "gpt-6-astra"
+        }
+      ],
+      "gptCalls": 3,
+      "gpt": {
+        "input_tokens": 616259,
+        "cached_input_tokens": 614400,
+        "output_tokens": 292,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 616551,
+        "uncached_input_tokens": 1859
+      },
+      "allObservedJevCalls": [
+        {
+          "at": "2026-09-25T13:00:50.234Z",
+          "purpose": "browser",
+          "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+          "requestId": "974238c7-8dd4-47c0-8a1a-badcd8488f24",
+          "model": "jev-1.13.0",
+          "inputTokens": 780,
+          "outputTokens": 53,
+          "elapsedMs": 703,
+          "questions": 1,
+          "status": "success"
+        },
+        {
+          "at": "2026-09-25T13:00:51.512Z",
+          "purpose": "browser",
+          "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+          "requestId": "3a91535a-d2d4-4779-9894-bd5e00d896d9",
+          "model": "jev-1.13.0",
+          "inputTokens": 805,
+          "outputTokens": 53,
+          "elapsedMs": 282,
+          "questions": 1,
+          "status": "success"
+        },
+        {
+          "at": "2026-09-25T13:00:52.721Z",
+          "purpose": "browser",
+          "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+          "requestId": "518c8789-12db-4276-a04a-5a59d692243a",
+          "model": "jev-1.13.0",
+          "inputTokens": 838,
+          "outputTokens": 53,
+          "elapsedMs": 242,
+          "questions": 1,
+          "status": "success"
+        },
+        {
+          "at": "2026-09-25T13:00:53.878Z",
+          "purpose": "browser",
+          "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+          "requestId": "341d152a-bd6e-4f4c-9631-e89689532950",
+          "model": "jev-1.13.0",
+          "inputTokens": 898,
+          "outputTokens": 53,
+          "elapsedMs": 248,
+          "questions": 1,
+          "status": "success"
+        },
+        {
+          "at": "2026-09-25T13:00:55.262Z",
+          "purpose": "browser",
+          "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+          "requestId": "c4285429-31b7-4742-95a5-64d5e08c931b",
+          "model": "jev-1.13.0",
+          "inputTokens": 912,
+          "outputTokens": 53,
+          "elapsedMs": 263,
+          "questions": 1,
+          "status": "success"
+        }
+      ]
+    },
+    {
+      "id": "cua-bare-1",
+      "elapsedMs": 61581,
+      "passed": true,
+      "answer": {
+        "service": "Cedar",
+        "region": "EU West",
+        "revision": "r18 approved",
+        "maintenance": "diagnostic only",
+        "precondition": "backup verified",
+        "owner": "Pavel",
+        "production": "none"
+      },
+      "finalObservation": "\t\t\t\t5 HTML内容 Description: JevPilot Holdout Lab, URL: 127.0.0.1:8876/holdout-browser.html\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 JevPilot Holdout Lab, Value: 1\n\t\t\t\t\t\t\t8 文本 JevPilot Holdout Lab\n\t\t\t\t\t\t9 标题 VERIFIED READ-ONLY RECORD, Value: 2\n\t\t\t\t\t\t\t10 文本 VERIFIED READ-ONLY RECORD\n\t\t\t\t\t\t11 text Maintenance runbooks | Service: Cedar | Region: EU West | Revision: r18 — approved | Maintenance: diagnostic only; Precondition: backup verified; Owner: Pavel; Production changes: none Synthetic read-only fixture — no production action",
+      "actions": 5,
+      "cells": [
+        {
+          "marker": "targeted-cua-bare-1-start",
+          "at": "2026-09-25T13:01:19.642Z",
+          "usage": {
+            "input_tokens": 206380,
+            "cached_input_tokens": 206208,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 74,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 206454
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "targeted-cua-bare-1-a",
+          "at": "2026-09-25T13:01:26.248Z",
+          "usage": {
+            "input_tokens": 206664,
+            "cached_input_tokens": 206336,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 84,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 206748
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "targeted-cua-bare-1-b",
+          "at": "2026-09-25T13:01:38.608Z",
+          "usage": {
+            "input_tokens": 206956,
+            "cached_input_tokens": 206592,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 84,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 207040
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "targeted-cua-bare-1-c",
+          "at": "2026-09-25T13:01:46.873Z",
+          "usage": {
+            "input_tokens": 207254,
+            "cached_input_tokens": 206848,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 84,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 207338
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "targeted-cua-bare-1-d",
+          "at": "2026-09-25T13:01:57.180Z",
+          "usage": {
+            "input_tokens": 207564,
+            "cached_input_tokens": 207104,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 84,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 207648
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "targeted-cua-bare-1-e",
+          "at": "2026-09-25T13:02:10.645Z",
+          "usage": {
+            "input_tokens": 207880,
+            "cached_input_tokens": 207488,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 91,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 207971
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "targeted-cua-bare-1-finish",
+          "at": "2026-09-25T13:02:21.223Z",
+          "usage": {
+            "input_tokens": 208184,
+            "cached_input_tokens": 207744,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 143,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 208327
+          },
+          "model": "gpt-6-astra"
+        }
+      ],
+      "gptCalls": 7,
+      "gpt": {
+        "input_tokens": 1450882,
+        "cached_input_tokens": 1448320,
+        "output_tokens": 644,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 1451526,
+        "uncached_input_tokens": 2562
+      },
+      "allObservedJevCalls": []
+    }
+  ],
+  "pairs": [
+    {
+      "baseline": "cua-bare-0",
+      "candidate": "cua-pilot-0",
+      "bothPassed": true,
+      "timePercent": -32.70391367959034,
+      "gptPercent": -56.74641825697944
+    },
+    {
+      "baseline": "cua-bare-1",
+      "candidate": "cua-pilot-1",
+      "bothPassed": true,
+      "timePercent": -58.246861856741525,
+      "gptPercent": -57.52394376676684
+    }
+  ]
+}

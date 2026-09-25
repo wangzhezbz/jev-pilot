@@ -1,6 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {mkdtempSync} from 'node:fs';import {tmpdir} from 'node:os';import {join} from 'node:path';
 import {Store} from '../src/core.mjs';import {Pilot} from '../src/pilot.mjs';
+import {holdoutTasks} from '../scripts/acceptance/holdout-tasks.mjs';
 test('prepare locally packs all repeated prose, recalls exact original, and still respects disabled/exact gates',async t=>{
  const root=mkdtempSync(join(tmpdir(),'jev-prose-')),store=new Store({home:join(root,'private')});let calls=0;
  const pilot=new Pilot({store,key:'fixture',send:async()=>{calls++;throw Error('unexpected paid call');}});t.after(()=>pilot.close());
@@ -13,4 +14,17 @@ test('prepare locally packs all repeated prose, recalls exact original, and stil
  assert.equal((await call('recall_output',{artifactId:r.selection.artifactId})).value,value);
  assert.equal((await call('prepare_output',{goal:'Review',value,source:'notes.md',exact:true})).value,value);
  await call('configure',{enabled:false});assert.equal((await call('prepare_output',{goal:'Review',value,source:'notes.md'})).value,value);assert.equal(calls,0);
+});
+test('90-record regression preserves every ID and exact recall with net presentation gain',async t=>{
+ const root=mkdtempSync(join(tmpdir(),'jev-prose-net-')),store=new Store({home:join(root,'private')});
+ const pilot=new Pilot({store,key:'fixture',send:async()=>assert.fail('lossless view must stay local')});t.after(()=>pilot.close());
+ const value=holdoutTasks.find(t=>t.id==='holdout_eligibility').files['requests.md'];
+ const result=await pilot.call({workspace:root,operation:'prepare_output',input:{goal:'Review eligibility and cite exclusions',value,source:'requests.md'}});
+ assert.equal(result.selection.reason,'lossless_projection');assert.equal(result.selection.excludedItems,0);
+ assert(Buffer.byteLength(JSON.stringify(result))+2048<Buffer.byteLength(value)*.5);
+ for(let i=0;i<90;i++)assert(result.value.includes('CASE-'+String(i).padStart(3,'0')));
+ const recalled=await pilot.call({workspace:root,operation:'recall_output',input:{artifactId:result.selection.artifactId}});
+ assert.equal(recalled.value,value);
+ const parts=store.get(store.project(root),'artifact',result.selection.artifactId).items;
+ assert.equal(parts.map(x=>x.text).join('\n'),value);assert.equal(parts.length,3);
 });

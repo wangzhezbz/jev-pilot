@@ -21,6 +21,9 @@ const out=resolve(process.argv.find(x=>x.startsWith('--out='))?.slice(6)||'dist/
 await mkdir(out,{recursive:true});
 const bin=discoverCodex(),key=loadKey(installHome());if(!key)throw Error('MISSING_KEY');
 const holdout=process.argv.includes('--holdout');
+const holdoutCase=process.argv.find(x=>x.startsWith('--holdout-case='))?.slice(15);
+const holdoutRepeats=Number(process.argv.find(x=>x.startsWith('--holdout-repeats='))?.slice(18)??1);
+if((holdoutCase&&!holdoutTasks.some(t=>t.id===holdoutCase))||![1,2].includes(holdoutRepeats)||(!holdout&&(holdoutCase||holdoutRepeats!==1)))throw Error('INVALID_HOLDOUT_SELECTION');
 const matched=process.argv.includes('--matched-routing');
 const releaseAB=process.argv.includes('--release-ab')||matched;
 const candidateRoot=process.argv.find(x=>x.startsWith('--candidate-root='))?.slice(17);
@@ -32,10 +35,10 @@ const models=[modelOverride||(releaseAB?'gpt-6-astra':'gpt-6-sol')],jobs=[];
 const semantic=process.argv.includes('--semantic-local');
 const caseIds=process.argv.find(x=>x.startsWith('--case-ids='))?.slice(11).split(',');
 if(caseIds&&(!releaseAB||!caseIds.length||caseIds.some(id=>!['cross_file','incident','semantic','repository'].includes(id))||new Set(caseIds).size!==caseIds.length))throw Error('INVALID_CASE_IDS');
-const selectedTasks=holdout?holdoutTasks:matched?[retryTask]:(releaseAB?[...tasks.filter(t=>['cross_file','incident'].includes(t.id)||caseIds?.includes(t.id)),semanticTask]:semantic?[semanticTask]:tasks).filter(t=>!caseIds||caseIds.includes(t.id));
+const selectedTasks=holdout?holdoutTasks.filter(t=>!holdoutCase||t.id===holdoutCase):matched?[retryTask]:(releaseAB?[...tasks.filter(t=>['cross_file','incident'].includes(t.id)||caseIds?.includes(t.id)),semanticTask]:semantic?[semanticTask]:tasks).filter(t=>!caseIds||caseIds.includes(t.id));
 const orders=[['bare','routing','evidence','combined'],['evidence','bare','combined','routing'],['combined','evidence','routing','bare']];
 if(matched){for(let repeat=0;repeat<2;repeat++)jobs.push({model:models[0],task:'retry_contract',repeat,arms:repeat?['adaptive','fixed_medium','fixed_high']:['fixed_high','fixed_medium','adaptive']});}
-else if(releaseAB){for(let repeat=0;repeat<(holdout?1:2);repeat++)for(const [i,task]of selectedTasks.entries())jobs.push({model:models[0],task:task.id,repeat,arms:(repeat+i)%2?['combined','bare']:['bare','combined']});}
+else if(releaseAB){for(let repeat=0;repeat<(holdout?holdoutRepeats:2);repeat++)for(const [i,task]of selectedTasks.entries())jobs.push({model:models[0],task:task.id,repeat,arms:(repeat+i)%2?['combined','bare']:['bare','combined']});}
 else for(const task of selectedTasks)jobs.push({model:models[0],task:task.id,repeat:0,arms:semantic?(process.argv.includes('--candidate-only')?['evidence']:['bare','evidence']):orders[jobs.length]});
 const runCount=jobs.reduce((n,j)=>n+j.arms.length,0);
 const evidenceArm=arm=>['evidence','combined','fixed_high','fixed_medium','adaptive'].includes(arm);
@@ -52,6 +55,7 @@ if(matched){if(!candidateRoot||caseIds)throw Error('MATCHED_REQUIRES_CANDIDATE_N
 if(modelOverride){protocol.scope=protocol.scope.replaceAll('GPT-6 Astra','GPT-6 '+modelOverride.slice(6));}
 if(candidateRoot){protocol.candidateRoot=candidateRoot;protocol.policyVersion=(await import('../../runtime/desktop/router.mjs')).POLICY_VERSION??null;protocol.scope=protocol.scope.replace(/candidate v17|installed v16/g,'candidate '+candidateVersion);}
 if(holdout){if(!releaseAB||matched||caseIds||semantic)throw Error('HOLDOUT_REQUIRES_PLAIN_RELEASE_AB');protocol.hashes['scripts/acceptance/holdout-tasks.mjs']=hash(await readFile('scripts/acceptance/holdout-tasks.mjs','utf8'));protocol.scope='Frozen v19 holdout: four previously unused synthetic code/document tasks, one pair each, balanced AB/BA across cases, eight sequential paid native tasks. Same Astra high baseline and independent oracle. No strategy edits, retries or post-result task replacement. Exploratory, no stable or account-billing claim.';}
+if(holdout&&(holdoutCase||holdoutRepeats!==1)){protocol.scope=`Targeted regression follow-up on ${selectedTasks.length} existing holdout case(s), ${holdoutRepeats} repeats, ${runCount} sequential paid tasks, AB/BA. These cases are now known optimization fixtures, not a fresh holdout. Native bare versus frozen candidate, same initial model effort and independent oracle. Previous negative results remain separate; no reruns, substitutions, quota resets or product edits during this campaign. Exploratory, not a stable savings or billing claim.`;}
 if(process.argv.includes('--plan')){console.log(JSON.stringify(protocol,null,2));process.exit(0);}
 if(semantic)protocol.scope='Exploratory natural semantic tasks (arms listed in jobs): native bare vs local candidate skill and MCP with fixed high routing control. No mandated Jev calls or full reads; no performance significance or billing claim.';
 await writeFile(join(out,'protocol.json'),JSON.stringify(protocol,null,2),{flag:'wx'});

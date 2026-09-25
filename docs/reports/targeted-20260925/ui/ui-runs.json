@@ -1,0 +1,186 @@
+[
+  {
+    "id": "cua-bare-0",
+    "elapsedMs": 43744,
+    "passed": true,
+    "answer": {
+      "service": "Cedar",
+      "region": "EU West",
+      "revision": "r18 approved",
+      "maintenance": "diagnostic only",
+      "precondition": "backup verified",
+      "owner": "Pavel",
+      "production": "none"
+    },
+    "finalObservation": "\t\t\t\t5 HTML内容 Description: JevPilot Holdout Lab, URL: 127.0.0.1:8876/holdout-browser.html\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 JevPilot Holdout Lab, Value: 1\n\t\t\t\t\t\t\t8 文本 JevPilot Holdout Lab\n\t\t\t\t\t\t9 标题 VERIFIED READ-ONLY RECORD, Value: 2\n\t\t\t\t\t\t\t10 文本 VERIFIED READ-ONLY RECORD\n\t\t\t\t\t\t11 text Maintenance runbooks | Service: Cedar | Region: EU West | Revision: r18 — approved | Maintenance: diagnostic only; Precondition: backup verified; Owner: Pavel; Production changes: none Synthetic read-only fixture — no production action",
+    "actions": 5
+  },
+  {
+    "id": "cua-pilot-0",
+    "elapsedMs": 29438,
+    "passed": true,
+    "answer": {
+      "service": "Cedar",
+      "region": "EU West",
+      "revision": "r18 approved",
+      "maintenance": "diagnostic only",
+      "precondition": "backup verified",
+      "owner": "Pavel",
+      "production": "none"
+    },
+    "receipt": {
+      "status": "needs_verification",
+      "reason": null,
+      "stageIndex": 2,
+      "evidence": "VERIFIED READ-ONLY RECORD | Service: Cedar | Region: EU West | Revision: r18 — approved",
+      "stateMayHaveChanged": false,
+      "metrics": {
+        "runs": 1,
+        "actions": 5,
+        "jevRequests": 5,
+        "inputTokens": 4233,
+        "outputTokens": 265,
+        "unknownUsage": 0,
+        "apiMs": 1752.2348330002278,
+        "elapsedMs": 7024.178125000093,
+        "handoffs": 0
+      },
+      "sessionMetrics": {
+        "runs": 1,
+        "actions": 5,
+        "jevRequests": 5,
+        "inputTokens": 4233,
+        "outputTokens": 265,
+        "unknownUsage": 0,
+        "apiMs": 1752.2348330002278,
+        "elapsedMs": 7024.178125000093,
+        "handoffs": 0
+      },
+      "instruction": "Codex must inspect this fresh finalObservation against the user request before claiming completion. If inadequate, observe natively again.",
+      "fullResultRetainedInHost": true,
+      "truncatedFields": [],
+      "finalObservation": {
+        "snapshot": "\t\t\t\t5 HTML内容 Description: JevPilot Holdout Lab, URL: 127.0.0.1:8876/holdout-browser.html\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 JevPilot Holdout Lab, Value: 1\n\t\t\t\t\t\t\t8 文本 JevPilot Holdout Lab\n\t\t\t\t\t\t9 标题 VERIFIED READ-ONLY RECORD, Value: 2\n\t\t\t\t\t\t\t10 文本 VERIFIED READ-ONLY RECORD\n\t\t\t\t\t\t11 text Maintenance runbooks | Service: Cedar | Region: EU West | Revision: r18 — approved | Maintenance: diagnostic only; Precondition: backup verified; Owner: Pavel; Production changes: none Synthetic read-only fixture — no production action",
+        "observedAt": 1790341202378,
+        "truncated": false
+      },
+      "finalObservationMs": 63.23574999999255,
+      "nextDelegation": {
+        "maxAffordableSteps": 12,
+        "windowEndsAt": 1790344800000,
+        "advisoryOnly": true,
+        "instruction": "Use native tools when the next goal exceeds this estimate. No status/diagnostic call or retry is needed for ordinary budget refusal. Capacity is not reserved; admission is rechecked on run."
+      },
+      "admission": {
+        "expectedSteps": 5,
+        "samples": 10,
+        "estimatedStepMs": 990,
+        "requiredWaitMs": 4960
+      }
+    },
+    "jev": {
+      "runs": 1,
+      "actions": 5,
+      "jevRequests": 5,
+      "inputTokens": 4233,
+      "outputTokens": 265,
+      "unknownUsage": 0,
+      "apiMs": 1752.2348330002278,
+      "elapsedMs": 7024.178125000093,
+      "handoffs": 0
+    },
+    "actions": 5
+  },
+  {
+    "id": "cua-pilot-1",
+    "elapsedMs": 25712,
+    "passed": true,
+    "answer": {
+      "service": "Cedar",
+      "region": "EU West",
+      "revision": "r18 approved",
+      "maintenance": "diagnostic only",
+      "precondition": "backup verified",
+      "owner": "Pavel",
+      "production": "none"
+    },
+    "receipt": {
+      "status": "needs_verification",
+      "reason": null,
+      "stageIndex": 2,
+      "evidence": "VERIFIED READ-ONLY RECORD | Service: Cedar | Region: EU West | Revision: r18 — approved",
+      "stateMayHaveChanged": false,
+      "metrics": {
+        "runs": 1,
+        "actions": 5,
+        "jevRequests": 5,
+        "inputTokens": 4233,
+        "outputTokens": 265,
+        "unknownUsage": 0,
+        "apiMs": 1738.171374999918,
+        "elapsedMs": 6782.145957999863,
+        "handoffs": 0
+      },
+      "sessionMetrics": {
+        "runs": 1,
+        "actions": 5,
+        "jevRequests": 5,
+        "inputTokens": 4233,
+        "outputTokens": 265,
+        "unknownUsage": 0,
+        "apiMs": 1738.171374999918,
+        "elapsedMs": 6782.145957999863,
+        "handoffs": 0
+      },
+      "instruction": "Codex must inspect this fresh finalObservation against the user request before claiming completion. If inadequate, observe natively again.",
+      "fullResultRetainedInHost": true,
+      "truncatedFields": [],
+      "finalObservation": {
+        "snapshot": "\t\t\t\t5 HTML内容 Description: JevPilot Holdout Lab, URL: 127.0.0.1:8876/holdout-browser.html\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 JevPilot Holdout Lab, Value: 1\n\t\t\t\t\t\t\t8 文本 JevPilot Holdout Lab\n\t\t\t\t\t\t9 标题 VERIFIED READ-ONLY RECORD, Value: 2\n\t\t\t\t\t\t\t10 文本 VERIFIED READ-ONLY RECORD\n\t\t\t\t\t\t11 text Maintenance runbooks | Service: Cedar | Region: EU West | Revision: r18 — approved | Maintenance: diagnostic only; Precondition: backup verified; Owner: Pavel; Production changes: none Synthetic read-only fixture — no production action",
+        "observedAt": 1790341256311,
+        "truncated": false
+      },
+      "finalObservationMs": 54.06233299989253,
+      "nextDelegation": {
+        "maxAffordableSteps": 12,
+        "windowEndsAt": 1790344800000,
+        "advisoryOnly": true,
+        "instruction": "Use native tools when the next goal exceeds this estimate. No status/diagnostic call or retry is needed for ordinary budget refusal. Capacity is not reserved; admission is rechecked on run."
+      },
+      "admission": {
+        "expectedSteps": 5,
+        "samples": 15,
+        "estimatedStepMs": 990,
+        "requiredWaitMs": 4960
+      }
+    },
+    "jev": {
+      "runs": 1,
+      "actions": 5,
+      "jevRequests": 5,
+      "inputTokens": 4233,
+      "outputTokens": 265,
+      "unknownUsage": 0,
+      "apiMs": 1738.171374999918,
+      "elapsedMs": 6782.145957999863,
+      "handoffs": 0
+    },
+    "actions": 5
+  },
+  {
+    "id": "cua-bare-1",
+    "elapsedMs": 61581,
+    "passed": true,
+    "answer": {
+      "service": "Cedar",
+      "region": "EU West",
+      "revision": "r18 approved",
+      "maintenance": "diagnostic only",
+      "precondition": "backup verified",
+      "owner": "Pavel",
+      "production": "none"
+    },
+    "finalObservation": "\t\t\t\t5 HTML内容 Description: JevPilot Holdout Lab, URL: 127.0.0.1:8876/holdout-browser.html\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 JevPilot Holdout Lab, Value: 1\n\t\t\t\t\t\t\t8 文本 JevPilot Holdout Lab\n\t\t\t\t\t\t9 标题 VERIFIED READ-ONLY RECORD, Value: 2\n\t\t\t\t\t\t\t10 文本 VERIFIED READ-ONLY RECORD\n\t\t\t\t\t\t11 text Maintenance runbooks | Service: Cedar | Region: EU West | Revision: r18 — approved | Maintenance: diagnostic only; Precondition: backup verified; Owner: Pavel; Production changes: none Synthetic read-only fixture — no production action",
+    "actions": 5
+  }
+]
