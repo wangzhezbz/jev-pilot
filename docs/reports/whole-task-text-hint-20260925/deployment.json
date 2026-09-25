@@ -1,8 +1,7 @@
 {
-  "version": "0.2.0+codex.20260925131617",
+  "version": "0.2.0+codex.20260925132359",
   "measuredCandidateVersion": "0.2.0+codex.20260925130941",
-  "taskBehaviorHashesUnchangedAfterBenchmark": true,
-  "postBenchmarkChange": "Installer now fingerprints src/investigation-hint.mjs; package version and reports updated.",
+  "postBenchmarkChange": "Installer fingerprints hint module; Windows background checkpoint Git deadline raised from 500 to 2000 ms with failure diagnostics. Paid benchmark was on macOS before this delivery-only follow-up.",
   "files": [
     {
       "file": "src/investigation-hint.mjs",
@@ -20,6 +19,15 @@
         "release": "981c25d9d750a5606012d203c1d20da1261633036d40c156f921a3a438fa410a",
         "cache": "981c25d9d750a5606012d203c1d20da1261633036d40c156f921a3a438fa410a",
         "runtime": "981c25d9d750a5606012d203c1d20da1261633036d40c156f921a3a438fa410a"
+      }
+    },
+    {
+      "file": "src/checkpoints.mjs",
+      "hashes": {
+        "repo": "a3946855a17b317ddb5954a605028b3d4e1d0caa5cbba577639f35d88230b9ff",
+        "release": "a3946855a17b317ddb5954a605028b3d4e1d0caa5cbba577639f35d88230b9ff",
+        "cache": "a3946855a17b317ddb5954a605028b3d4e1d0caa5cbba577639f35d88230b9ff",
+        "runtime": "a3946855a17b317ddb5954a605028b3d4e1d0caa5cbba577639f35d88230b9ff"
       }
     },
     {
@@ -46,7 +54,7 @@
     "compatible": true,
     "bridgeProcessAlive": true,
     "loadedRevisionMatches": false,
-    "installedFingerprint": "97d2e8e4cca74c9304478b127e69f3e6ed37120116aee04d65121017202fdbb1"
+    "installedFingerprint": "46e1ec9f3a6e8e2ce04cae8834a762ab2dae82419af263243e387df413d2a3ff"
   },
   "liveFingerprint": "81f9f84d6c5d1f7ad3e9971fe20827591b1cf1adc3bd7a967a0bf2f36f822be2",
   "restartRequired": true,
@@ -55,6 +63,18 @@
     "fullSuitePassed": 349,
     "fullSuiteFailed": 0,
     "postInstallerChangeTargetedPassed": 79,
-    "postInstallerChangeTargetedFailed": 0
+    "postInstallerChangeTargetedFailed": 0,
+    "finalFullSuitePassed": 351,
+    "finalFullSuiteFailed": 0
+  },
+  "measuredHintAutomationAndRouterHashesUnchanged": true,
+  "initialCi": {
+    "runId": 36097992347,
+    "macos": "success",
+    "linux": "success",
+    "windows": "failure",
+    "windowsTest": "automatic checkpoint records observed progress and changed files without asserting completion",
+    "observedFailure": "Missing file.txt source hash; previous implementation swallowed Git error details.",
+    "rootCauseCertainty": "500 ms Git timeout suspected, not proven by the old diagnostic-free failure."
   }
 }

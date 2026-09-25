@@ -54,6 +54,10 @@
 
 本轮产品回归 349/349 通过。仅修正提示入口；原模型保持，effort-v18 调度、上下文恢复和功能权限保持。另在交付阶段把提示模块加入运行时哈希，避免“文件更新了但旧进程还没加载”被错误报告为已生效；该安装诊断改动不参与以上任务耗时。真实桌面激活状态见 [deployment.json](deployment.json)。
 
+## 交付阶段的 Windows 回归修复
+
+首次 CI：macOS/Linux 通过，Windows 的自动检查点用例缺失文件哈希。旧实现吞掉了 Git 查询失败原因，因此不能确认超时是唯一根因。已将 Windows 后台 Git 查询时限从 500 ms 调整为 2 s，保留其他平台 500 ms；工作仍在任务完成后异步执行，不增加模型生成前的等待。增加 timeout/output-limit/unavailable 诊断与两项回归，最终本机 351/351 通过。此改动晚于上述付费对照，不冒充它已经经过新的 Windows 桌面性能测量。
+
 ## 数据与复现
 
 [逐次 CSV](runs.csv) · [逐生成用量](generations.csv) · [费用与 unknown](costs.json) · [完整脱敏轨迹](runs.json) · [协议与哈希](protocol.json) · [汇总](summary.json) · [文件校验](manifest.json)

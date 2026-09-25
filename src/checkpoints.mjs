@@ -15,14 +15,16 @@ async function sourceHash(root,path) {
   return hash(new TextDecoder('utf-8',{fatal:true}).decode(data.subarray(0,length)));
  }finally{await file.close();}
 }
-export async function worktreeSnapshot(root) {
+export async function worktreeSnapshot(root,{execute=exec,platform=process.platform}={}) {
  const sourceHashes={},skipped=[];let paths;
  try {
-  const run=async args=>(await exec('git',['-C',root,...args],{encoding:'utf8',timeout:500,maxBuffer:128000,windowsHide:true})).stdout.split('\0').filter(Boolean);
+  // This runs after turn completion, outside the model/tool critical path.
+  // Windows Git startup under load can exceed the former 500 ms deadline.
+  const run=async args=>(await execute('git',['-C',root,...args],{encoding:'utf8',timeout:platform==='win32'?2000:500,maxBuffer:128000,windowsHide:true})).stdout.split('\0').filter(Boolean);
   paths=[...new Set((await Promise.all([run(['diff','--relative','--name-only','-z','HEAD','--','.']),run(['ls-files','--others','--exclude-standard','-z','--','.'])])).flat())];
- }catch{return{sourceHashes,coverage:'unavailable',skippedCount:null};}
+ }catch(error){return{sourceHashes,coverage:'unavailable',skippedCount:null,snapshotError:error.killed||error.code==='ETIMEDOUT'?'git_timeout':error.code==='ERR_CHILD_PROCESS_STDIO_MAXBUFFER'?'git_output_limit':'git_unavailable'};}
  for(const path of paths.slice(0,40))try{sourceHashes[path]=await sourceHash(root,path);}catch{skipped.push(path);}
- return{sourceHashes,coverage:paths.length>40||skipped.length?'partial':'worktree_changes',skippedCount:skipped.length+Math.max(0,paths.length-40)};
+ return{sourceHashes,coverage:paths.length>40||skipped.length?'partial':'worktree_changes',skippedCount:skipped.length+Math.max(0,paths.length-40),snapshotError:null};
 }
 export function checkpointRelevant(message) {
  const p=message?.params;
