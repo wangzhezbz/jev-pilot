@@ -1,0 +1,452 @@
+{
+  "basis": "API-equivalent estimate, not subscription debit; standard tier assumed, fast sensitivity retained; completed usage only, failures not zero",
+  "priceSnapshot": {
+    "date": "2026-09-24",
+    "currency": "USD",
+    "unit": "per million tokens",
+    "sources": [
+      "https://developers.openai.com/api/docs/pricing",
+      "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "https://docs.typesafe.ai/models"
+    ],
+    "models": {
+      "gpt-6-astra": {
+        "input": 10,
+        "cached": 1,
+        "write": 12.5,
+        "output": 50
+      },
+      "gpt-6-sol": {
+        "input": 2,
+        "cached": 0.2,
+        "write": 2.5,
+        "output": 10
+      },
+      "gpt-6-luna": {
+        "input": 0.1,
+        "cached": 0.01,
+        "write": 0.125,
+        "output": 0.5
+      },
+      "gpt-5.6-sol": {
+        "input": 4,
+        "cached": 0.4,
+        "write": 5,
+        "output": 20
+      }
+    },
+    "jev": {
+      "jev-1.13.0": {
+        "input": 0.042,
+        "output": 0
+      }
+    }
+  },
+  "priceVerifiedAt": "2026-09-25",
+  "runs": [
+    {
+      "id": "gpt-6-astra-cross_file-0-bare",
+      "task": "cross_file",
+      "repeat": 0,
+      "arm": "bare",
+      "status": "completed",
+      "passed": true,
+      "wallMs": 138718,
+      "startupMs": 71,
+      "cost": {
+        "knownUsd": 0.450558,
+        "gptKnownUsd": 0.450558,
+        "jevKnownUsd": 0,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 6,
+        "tier": "standard",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "fastCost": {
+        "knownUsd": 0.901116,
+        "gptKnownUsd": 0.901116,
+        "jevKnownUsd": 0,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 6,
+        "tier": "fast",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "tokens": {
+        "totalTokens": 115067,
+        "inputTokens": 110941,
+        "cachedInputTokens": 96128,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 4126,
+        "reasoningOutputTokens": 390
+      },
+      "jevCalls": 0
+    },
+    {
+      "id": "gpt-6-astra-cross_file-0-combined",
+      "task": "cross_file",
+      "repeat": 0,
+      "arm": "combined",
+      "status": "completed",
+      "passed": true,
+      "wallMs": 212813,
+      "startupMs": 269,
+      "cost": {
+        "knownUsd": 0.6411001140000001,
+        "gptKnownUsd": 0.640776,
+        "jevKnownUsd": 0.000324114,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 7,
+        "tier": "standard",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "fastCost": {
+        "knownUsd": 1.281876114,
+        "gptKnownUsd": 1.281552,
+        "jevKnownUsd": 0.000324114,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 7,
+        "tier": "fast",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "tokens": {
+        "totalTokens": 141428,
+        "inputTokens": 135652,
+        "cachedInputTokens": 111616,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 5776,
+        "reasoningOutputTokens": 186
+      },
+      "jevCalls": 5
+    },
+    {
+      "id": "gpt-6-astra-incident-0-combined",
+      "task": "incident",
+      "repeat": 0,
+      "arm": "combined",
+      "status": "completed",
+      "passed": true,
+      "wallMs": 88852,
+      "startupMs": 251,
+      "cost": {
+        "knownUsd": 0.394708862,
+        "gptKnownUsd": 0.39226400000000006,
+        "jevKnownUsd": 0.0024448620000000003,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 5,
+        "tier": "standard",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "fastCost": {
+        "knownUsd": 0.7869728620000002,
+        "gptKnownUsd": 0.7845280000000001,
+        "jevKnownUsd": 0.0024448620000000003,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 5,
+        "tier": "fast",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "tokens": {
+        "totalTokens": 103272,
+        "inputTokens": 101773,
+        "cachedInputTokens": 77824,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 1499,
+        "reasoningOutputTokens": 18
+      },
+      "jevCalls": 9
+    },
+    {
+      "id": "gpt-6-astra-incident-0-bare",
+      "task": "incident",
+      "repeat": 0,
+      "arm": "bare",
+      "status": "completed",
+      "passed": true,
+      "wallMs": 56721,
+      "startupMs": 71,
+      "cost": {
+        "knownUsd": 0.433976,
+        "gptKnownUsd": 0.433976,
+        "jevKnownUsd": 0,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 5,
+        "tier": "standard",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "fastCost": {
+        "knownUsd": 0.867952,
+        "gptKnownUsd": 0.867952,
+        "jevKnownUsd": 0,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 5,
+        "tier": "fast",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "tokens": {
+        "totalTokens": 111780,
+        "inputTokens": 110386,
+        "cachedInputTokens": 82176,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 1394,
+        "reasoningOutputTokens": 0
+      },
+      "jevCalls": 0
+    },
+    {
+      "id": "gpt-6-astra-cross_file-1-combined",
+      "task": "cross_file",
+      "repeat": 1,
+      "arm": "combined",
+      "status": "completed",
+      "passed": true,
+      "wallMs": 212150,
+      "startupMs": 263,
+      "cost": {
+        "knownUsd": 0.6377580479999999,
+        "gptKnownUsd": 0.637416,
+        "jevKnownUsd": 0.000342048,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 6,
+        "tier": "standard",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "fastCost": {
+        "knownUsd": 1.2751740480000002,
+        "gptKnownUsd": 1.274832,
+        "jevKnownUsd": 0.000342048,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 6,
+        "tier": "fast",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "tokens": {
+        "totalTokens": 111448,
+        "inputTokens": 107765,
+        "cachedInputTokens": 69376,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 3683,
+        "reasoningOutputTokens": 142
+      },
+      "jevCalls": 5
+    },
+    {
+      "id": "gpt-6-astra-cross_file-1-bare",
+      "task": "cross_file",
+      "repeat": 1,
+      "arm": "bare",
+      "status": "completed",
+      "passed": true,
+      "wallMs": 132280,
+      "startupMs": 71,
+      "cost": {
+        "knownUsd": 0.489714,
+        "gptKnownUsd": 0.489714,
+        "jevKnownUsd": 0,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 6,
+        "tier": "standard",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "fastCost": {
+        "knownUsd": 0.979428,
+        "gptKnownUsd": 0.979428,
+        "jevKnownUsd": 0,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 6,
+        "tier": "fast",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "tokens": {
+        "totalTokens": 108533,
+        "inputTokens": 104617,
+        "cachedInputTokens": 83584,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 3916,
+        "reasoningOutputTokens": 161
+      },
+      "jevCalls": 0
+    },
+    {
+      "id": "gpt-6-astra-incident-1-bare",
+      "task": "incident",
+      "repeat": 1,
+      "arm": "bare",
+      "status": "completed",
+      "passed": true,
+      "wallMs": 56297,
+      "startupMs": 93,
+      "cost": {
+        "knownUsd": 0.44063599999999997,
+        "gptKnownUsd": 0.44063599999999997,
+        "jevKnownUsd": 0,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 5,
+        "tier": "standard",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "fastCost": {
+        "knownUsd": 0.8812719999999999,
+        "gptKnownUsd": 0.8812719999999999,
+        "jevKnownUsd": 0,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 5,
+        "tier": "fast",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "tokens": {
+        "totalTokens": 112074,
+        "inputTokens": 110587,
+        "cachedInputTokens": 82176,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 1487,
+        "reasoningOutputTokens": 0
+      },
+      "jevCalls": 0
+    },
+    {
+      "id": "gpt-6-astra-incident-1-combined",
+      "task": "incident",
+      "repeat": 1,
+      "arm": "combined",
+      "status": "completed",
+      "passed": true,
+      "wallMs": 58656,
+      "startupMs": 380,
+      "cost": {
+        "knownUsd": 0.6412480859999999,
+        "gptKnownUsd": 0.6388379999999999,
+        "jevKnownUsd": 0.002410086,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 5,
+        "tier": "standard",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "fastCost": {
+        "knownUsd": 1.2800860859999998,
+        "gptKnownUsd": 1.2776759999999998,
+        "jevKnownUsd": 0.002410086,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 5,
+        "tier": "fast",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "tokens": {
+        "totalTokens": 125223,
+        "inputTokens": 123825,
+        "cachedInputTokens": 74368,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 1398,
+        "reasoningOutputTokens": 0
+      },
+      "jevCalls": 9
+    }
+  ],
+  "arms": {
+    "bare": {
+      "runs": 4,
+      "passed": 4,
+      "wallMs": 384016,
+      "startupMs": 306,
+      "knownUsd": 1.814884,
+      "gptKnownUsd": 1.814884,
+      "jevKnownUsd": 0,
+      "complete": true,
+      "totalTokens": 447454
+    },
+    "combined": {
+      "runs": 4,
+      "passed": 4,
+      "wallMs": 572471,
+      "startupMs": 1163,
+      "knownUsd": 2.31481511,
+      "gptKnownUsd": 2.309294,
+      "jevKnownUsd": 0.005521110000000001,
+      "complete": true,
+      "totalTokens": 481371
+    }
+  },
+  "pairs": [
+    {
+      "task": "cross_file",
+      "repeat": 0,
+      "bareId": "gpt-6-astra-cross_file-0-bare",
+      "combinedId": "gpt-6-astra-cross_file-0-combined",
+      "bothPassed": true,
+      "timePercent": 53.414120734151304,
+      "knownCostPercent": 42.29025208741164,
+      "costPercent": 42.29025208741164,
+      "complete": true
+    },
+    {
+      "task": "incident",
+      "repeat": 0,
+      "bareId": "gpt-6-astra-incident-0-bare",
+      "combinedId": "gpt-6-astra-incident-0-combined",
+      "bothPassed": true,
+      "timePercent": 56.647449798134716,
+      "knownCostPercent": -9.048228012608984,
+      "costPercent": -9.048228012608984,
+      "complete": true
+    },
+    {
+      "task": "cross_file",
+      "repeat": 1,
+      "bareId": "gpt-6-astra-cross_file-1-bare",
+      "combinedId": "gpt-6-astra-cross_file-1-combined",
+      "bothPassed": true,
+      "timePercent": 60.379498034472334,
+      "knownCostPercent": 30.23071588723212,
+      "costPercent": 30.23071588723212,
+      "complete": true
+    },
+    {
+      "task": "incident",
+      "repeat": 1,
+      "bareId": "gpt-6-astra-incident-1-bare",
+      "combinedId": "gpt-6-astra-incident-1-combined",
+      "bothPassed": true,
+      "timePercent": 4.190276568911311,
+      "knownCostPercent": 45.527847475013395,
+      "costPercent": 45.527847475013395,
+      "complete": true
+    }
+  ],
+  "comparison": {
+    "timePercent": 49.07477813424441,
+    "knownCostPercent": 27.546174300947058,
+    "costPercent": 27.546174300947058,
+    "gptTokensPercent": 7.579997049976095
+  }
+}

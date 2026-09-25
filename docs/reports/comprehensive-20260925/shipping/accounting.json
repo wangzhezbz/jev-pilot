@@ -1,0 +1,24 @@
+[
+  {
+    "model": "gpt-6-sol",
+    "task": "repository",
+    "repeat": 0,
+    "arm": "combined",
+    "totalTokenDelta": -21839,
+    "extraGenerationBase": -14781,
+    "repeatedFirstInputDifference": 7464,
+    "historyGrowthDifference": -12714,
+    "outputDifference": -1808
+  },
+  {
+    "model": "gpt-6-sol",
+    "task": "repository",
+    "repeat": 1,
+    "arm": "combined",
+    "totalTokenDelta": -50209,
+    "extraGenerationBase": -14780,
+    "repeatedFirstInputDifference": 6391,
+    "historyGrowthDifference": -40537,
+    "outputDifference": -1283
+  }
+]

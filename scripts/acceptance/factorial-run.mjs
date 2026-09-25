@@ -29,8 +29,8 @@ if(modelOverride&&!['gpt-6-astra','gpt-6-sol','gpt-6-luna'].includes(modelOverri
 const models=[modelOverride||(releaseAB?'gpt-6-astra':'gpt-6-sol')],jobs=[];
 const semantic=process.argv.includes('--semantic-local');
 const caseIds=process.argv.find(x=>x.startsWith('--case-ids='))?.slice(11).split(',');
-if(caseIds&&(!releaseAB||!caseIds.length||caseIds.some(id=>!['cross_file','incident','semantic'].includes(id))||new Set(caseIds).size!==caseIds.length))throw Error('INVALID_CASE_IDS');
-const selectedTasks=matched?[retryTask]:(releaseAB?[...tasks.filter(t=>['cross_file','incident'].includes(t.id)),semanticTask]:semantic?[semanticTask]:tasks).filter(t=>!caseIds||caseIds.includes(t.id));
+if(caseIds&&(!releaseAB||!caseIds.length||caseIds.some(id=>!['cross_file','incident','semantic','repository'].includes(id))||new Set(caseIds).size!==caseIds.length))throw Error('INVALID_CASE_IDS');
+const selectedTasks=matched?[retryTask]:(releaseAB?[...tasks.filter(t=>['cross_file','incident'].includes(t.id)||caseIds?.includes(t.id)),semanticTask]:semantic?[semanticTask]:tasks).filter(t=>!caseIds||caseIds.includes(t.id));
 const orders=[['bare','routing','evidence','combined'],['evidence','bare','combined','routing'],['combined','evidence','routing','bare']];
 if(matched){for(let repeat=0;repeat<2;repeat++)jobs.push({model:models[0],task:'retry_contract',repeat,arms:repeat?['adaptive','fixed_medium','fixed_high']:['fixed_high','fixed_medium','adaptive']});}
 else if(releaseAB){for(let repeat=0;repeat<2;repeat++)for(const [i,task]of selectedTasks.entries())jobs.push({model:models[0],task:task.id,repeat,arms:(repeat+i)%2?['combined','bare']:['bare','combined']});}

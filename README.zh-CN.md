@@ -14,6 +14,8 @@
 
 当前是可运行的开发预览版。14 项模块共用一个 MCP 入口、一个自动调用的 Skill 和桌面适配层。Codex 负责计划、实施和验收，Jev 负责有明确范围的小判断。
 
+最新[全面实测报告](docs/reports/comprehensive-20260925/README.zh-CN.md)：36 次原生模型任务、10 次真实界面任务，最终功能验收全部通过。收益因模型和场景而异；Astra 的负向结果、浏览器交接和预算回退与正向结果一并公开，附 CSV、原生用量和复核协议。
+
 ## 全部 14 项功能
 
 | # | 能力 | 作用 |
@@ -43,11 +45,11 @@ macOS、Windows、Linux 的核心自动检查已通过。macOS 原版引擎切�
 
 ## 验证与边界
 
-最新[成本与耗时优化实测](docs/reports/cost-20260924/README.zh-CN.md)：按 GPT 与 Jev 合计费用验收，公开全部成功与失败；包含单项判断缓存、无损文本处理和安装状态，尚不承诺稳定省时省钱。
+此前[成本与耗时优化实测](docs/reports/cost-20260924/README.zh-CN.md)：按 GPT 与 Jev 合计费用验收，公开全部成功与失败；包含单项判断缓存、无损文本处理和安装状态，尚不承诺稳定省时省钱。
 
 上下文功能提供可恢复的精简交接，不会改写原生历史或回收已经消耗的 token。不承诺固定的提速、省 token 或省额度比例。详见[整体验收报告](docs/reports/ACCEPTANCE.md)、[功能边界](docs/FEATURES.md)和[后续路线](docs/ROADMAP.md)。
 
-主模型保持为用户所选模型，不自动替换为更小模型；详见[模型保持策略](docs/MODEL-PRESERVATION.md)。最新[同入口档位对照](docs/reports/matched-routing-20260924/README.zh-CN.md)尝试 4 次、完成 3 次，另一次达到截止，未证明判档收益。[固定模型语义委派对照](docs/reports/delegation-ab-20260924/README.zh-CN.md)4/4 通过：计入 Jev 的已知总 token −9.74%，时间 +12.60%，未缓存 GPT 输入 +43.77%。这是组件试验，尚不能宣称桌面加速或节省额度。[此前十二次对照](docs/reports/factorial-20260924/README.zh-CN.md)继续保留。
+主模型保持为用户所选模型，不自动替换为更小模型；详见[模型保持策略](docs/MODEL-PRESERVATION.md)。此前[同入口档位对照](docs/reports/matched-routing-20260924/README.zh-CN.md)尝试 4 次、完成 3 次，另一次达到截止，未证明判档收益。[固定模型语义委派对照](docs/reports/delegation-ab-20260924/README.zh-CN.md)4/4 通过：计入 Jev 的已知总 token −9.74%，时间 +12.60%，未缓存 GPT 输入 +43.77%。这是组件试验，尚不能宣称桌面加速或节省额度。[此前十二次对照](docs/reports/factorial-20260924/README.zh-CN.md)继续保留。
 
 新增[证据筛选与交接优化报告](docs/reports/evidence-handoff-20260924/README.zh-CN.md)：四次组件对照全部通过，筛选平均耗时 −50.17%，两组 Jev token 相同；这不等于整个 Codex 任务提速。覆盖说明、定向回读和精简输出已实现。
 

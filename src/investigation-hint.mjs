@@ -7,10 +7,10 @@ import {basename} from 'node:path';
 import {inside} from './core.mjs';
 const exec=promisify(execFile);
 export const INVESTIGATION_HINT='For broad workspace investigation, prefer one read-only jev_evidence call with operation="investigate" and input={goal,queries:[discriminating literal terms],paths:[relevant directories]} before broad file reads. It returns source excerpts, scope and recovery; no skill/status call needed. Skip this for small or exact lookups. Query matches are not exhaustive semantic coverage; read additional source context when needed.';
-export const LARGE_TEXT_HINT='A text file named in this task exceeds 16 kB. Before displaying it in full, use discriminating native searches when sufficient; otherwise use read-only jev_evidence operation="prepare" with input={goal,path}. No skill/status call needed. Read coverage and recovery metadata, recall missing or contradictory evidence, and use the original on failure. Do not claim exhaustive coverage from literal search alone. Exact output and code/structured data stay on native tools.';
+export const LARGE_TEXT_HINT='A text file named in this task exceeds 16 kB. Before displaying it in full, search distinctive task terms with bounded surrounding context; avoid universal line IDs or timestamps. If semantic coverage is needed, use read-only jev_evidence operation="prepare" with input={goal,path}. No skill/status call needed. Check coverage, recall missing or contradictory evidence, and use the original on failure. Literal matches alone are not exhaustive. Exact output and code/structured data stay on native tools.';
 const mentioned=(prompt,path)=>[path,basename(path)].some(name=>{
   const escaped=name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-  return new RegExp('(?:^|[^\\w./\\\\-])'+escaped+'(?=$|[^\\w./\\\\-])','i').test(prompt);
+  return new RegExp('(?:^|[^\\w./\\\\-])'+escaped+'(?=$|[^\\w./\\\\-]|\\.(?=$|\\s))','i').test(prompt);
 });
 export async function investigationHint(root,prompt){
   if(typeof prompt!=='string'||prompt.length>10000||!/(?:\b(?:inspect|review|analy[sz]e|investigat\w*|diagnos\w*|locate|reconcile|find|debug)\b|分析|排查|调查|检索|查找|梳理|核对|查明|研究)/i.test(prompt)
@@ -18,13 +18,28 @@ export async function investigationHint(root,prompt){
   if(!/\b(?:workspace|repository|repo|files?|logs?|code|documents?|policy)\b|\.(?:md|txt|log)\b|\b(?:notes|docs|src)\/|目录|仓库|文件|代码|项目文档|本地文档/i.test(prompt))return null;
   const start=performance.now();let stdout;
   try{({stdout}=await exec('rg',['--no-config','--files','--null'],{cwd:root,timeout:150,maxBuffer:512000,windowsHide:true}));}catch{return null;}
+  const paths=stdout.split('\0').filter(Boolean);
+  // Named prose takes priority over the generic workspace hint, even when rg
+  // lists it after the metadata sample. This scans names only, never file bodies.
+  const namesProse=/\.(?:md|txt|log)(?:$|[^\w])/i.test(prompt);
+  for(const path of namesProse?paths:[]){
+    if(performance.now()-start>200)return null;
+    if(!/\.(?:md|txt|log)$/i.test(path)||!mentioned(prompt,path))continue;
+    try{const s=statSync(inside(root,path));if(s.isFile()&&s.size>16000&&s.size<=100000)
+      return{context:LARGE_TEXT_HINT,eligibleFiles:1,observedBytes:s.size};}catch{continue;}
+  }
+  // A focused lookup can usually begin with one cheap native search. Keep the
+  // evidence tool available, but do not add a broad-investigation detour merely
+  // because its repository is large. Named large prose was handled above.
+  if(/^(?:find|locate|trace)\b|^(?:查找|定位|追踪|找到)/i.test(prompt.trim()))return null;
   let files=0,bytes=0;
-  for(const path of stdout.split('\0').filter(Boolean).slice(0,80)){
+  // Spread the same bounded stat budget over the listing: a code directory
+  // at the front must not hide a large documentation subtree at the end.
+  const sample=paths.length<=80?paths:Array.from({length:80},(_,i)=>paths[Math.floor(i*(paths.length-1)/79)]);
+  for(const path of sample){
     if(performance.now()-start>200)return null;
     if(!/\.(?:md|txt|log|[cm]?[jt]sx?|py|rs|go|java|c|cpp|h)$/i.test(path))continue;
     try{const s=statSync(inside(root,path));if(!s.isFile()||s.size>1000000)continue;
-      if(/\.(?:md|txt|log)$/i.test(path)&&s.size>16000&&s.size<=100000&&mentioned(prompt,path))
-        return{context:LARGE_TEXT_HINT,eligibleFiles:1,observedBytes:s.size};
       files++;bytes+=s.size;}catch{continue;}
     if(files>=8&&bytes>16000)return{context:INVESTIGATION_HINT,eligibleFiles:files,observedBytes:bytes};
   }

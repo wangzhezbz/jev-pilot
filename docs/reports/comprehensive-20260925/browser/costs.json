@@ -1,0 +1,128 @@
+{
+  "basis": "Standard public API equivalent, not account debit. Current long-task episodes; shared bootstrap excluded.",
+  "priceSnapshot": {
+    "date": "2026-09-24",
+    "currency": "USD",
+    "unit": "per million tokens",
+    "sources": [
+      "https://developers.openai.com/api/docs/pricing",
+      "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "https://docs.typesafe.ai/models"
+    ],
+    "models": {
+      "gpt-6-astra": {
+        "input": 10,
+        "cached": 1,
+        "write": 12.5,
+        "output": 50
+      },
+      "gpt-6-sol": {
+        "input": 2,
+        "cached": 0.2,
+        "write": 2.5,
+        "output": 10
+      },
+      "gpt-6-luna": {
+        "input": 0.1,
+        "cached": 0.01,
+        "write": 0.125,
+        "output": 0.5
+      },
+      "gpt-5.6-sol": {
+        "input": 4,
+        "cached": 0.4,
+        "write": 5,
+        "output": 20
+      }
+    },
+    "jev": {
+      "jev-1.13.0": {
+        "input": 0.042,
+        "output": 0
+      }
+    }
+  },
+  "priceVerifiedAt": "2026-09-25",
+  "runs": [
+    {
+      "id": "chrome-document-bare",
+      "gptKnownUsd": 1.604444,
+      "jevKnownUsd": 0,
+      "backgroundJevKnownUsd": 0,
+      "unknownCalls": 0,
+      "knownUsd": 1.604444
+    },
+    {
+      "id": "chrome-document-pilot",
+      "gptKnownUsd": 0.5496859999999999,
+      "jevKnownUsd": 0.00022856400000000003,
+      "backgroundJevKnownUsd": 0,
+      "unknownCalls": 0,
+      "knownUsd": 0.5499145639999999
+    },
+    {
+      "id": "chrome-report-pilot",
+      "gptKnownUsd": 1.089556,
+      "jevKnownUsd": 0.0002268,
+      "backgroundJevKnownUsd": 0,
+      "unknownCalls": 0,
+      "knownUsd": 1.0897828
+    },
+    {
+      "id": "chrome-report-bare",
+      "gptKnownUsd": 1.438226,
+      "jevKnownUsd": 0,
+      "backgroundJevKnownUsd": 0,
+      "unknownCalls": 0,
+      "knownUsd": 1.438226
+    },
+    {
+      "id": "cua-report-bare",
+      "gptKnownUsd": 1.6688759999999998,
+      "jevKnownUsd": 0,
+      "backgroundJevKnownUsd": 0,
+      "unknownCalls": 0,
+      "knownUsd": 1.6688759999999998
+    },
+    {
+      "id": "cua-report-pilot",
+      "gptKnownUsd": 1.3074879999999998,
+      "jevKnownUsd": 0.000205128,
+      "backgroundJevKnownUsd": 0,
+      "unknownCalls": 0,
+      "knownUsd": 1.3076931279999997
+    },
+    {
+      "id": "cua-document-pilot",
+      "gptKnownUsd": 0.7972199999999999,
+      "jevKnownUsd": 0.00020739600000000002,
+      "backgroundJevKnownUsd": 0,
+      "unknownCalls": 0,
+      "knownUsd": 0.7974273959999999
+    },
+    {
+      "id": "cua-document-bare",
+      "gptKnownUsd": 1.6989660000000002,
+      "jevKnownUsd": 0,
+      "backgroundJevKnownUsd": 0,
+      "unknownCalls": 0,
+      "knownUsd": 1.6989660000000002
+    },
+    {
+      "id": "chrome-document2-bare",
+      "gptKnownUsd": 1.53487,
+      "jevKnownUsd": 0,
+      "backgroundJevKnownUsd": 0,
+      "unknownCalls": 0,
+      "knownUsd": 1.53487
+    },
+    {
+      "id": "chrome-document2-pilot",
+      "gptKnownUsd": 2.009198,
+      "jevKnownUsd": 0,
+      "backgroundJevKnownUsd": 0,
+      "unknownCalls": 0,
+      "knownUsd": 2.009198
+    }
+  ]
+}

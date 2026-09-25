@@ -1,0 +1,266 @@
+{
+  "basis": "API-equivalent estimate, not subscription debit; standard tier assumed, fast sensitivity retained; completed usage only, failures not zero",
+  "priceSnapshot": {
+    "date": "2026-09-24",
+    "currency": "USD",
+    "unit": "per million tokens",
+    "sources": [
+      "https://developers.openai.com/api/docs/pricing",
+      "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "https://docs.typesafe.ai/models"
+    ],
+    "models": {
+      "gpt-6-astra": {
+        "input": 10,
+        "cached": 1,
+        "write": 12.5,
+        "output": 50
+      },
+      "gpt-6-sol": {
+        "input": 2,
+        "cached": 0.2,
+        "write": 2.5,
+        "output": 10
+      },
+      "gpt-6-luna": {
+        "input": 0.1,
+        "cached": 0.01,
+        "write": 0.125,
+        "output": 0.5
+      },
+      "gpt-5.6-sol": {
+        "input": 4,
+        "cached": 0.4,
+        "write": 5,
+        "output": 20
+      }
+    },
+    "jev": {
+      "jev-1.13.0": {
+        "input": 0.042,
+        "output": 0
+      }
+    }
+  },
+  "priceVerifiedAt": "2026-09-25",
+  "runs": [
+    {
+      "id": "gpt-6-sol-repository-0-bare",
+      "task": "repository",
+      "repeat": 0,
+      "arm": "bare",
+      "status": "completed",
+      "passed": true,
+      "wallMs": 74235,
+      "startupMs": 87,
+      "cost": {
+        "knownUsd": 0.1108632,
+        "gptKnownUsd": 0.1108632,
+        "jevKnownUsd": 0,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 9,
+        "tier": "standard",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "fastCost": {
+        "knownUsd": 0.2217264,
+        "gptKnownUsd": 0.2217264,
+        "jevKnownUsd": 0,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 9,
+        "tier": "fast",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "tokens": {
+        "totalTokens": 164366,
+        "inputTokens": 161014,
+        "cachedInputTokens": 135936,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 3352,
+        "reasoningOutputTokens": 545
+      },
+      "jevCalls": 0
+    },
+    {
+      "id": "gpt-6-sol-repository-0-combined",
+      "task": "repository",
+      "repeat": 0,
+      "arm": "combined",
+      "status": "completed",
+      "passed": true,
+      "wallMs": 47548,
+      "startupMs": 281,
+      "cost": {
+        "knownUsd": 0.06438968199999999,
+        "gptKnownUsd": 0.0640108,
+        "jevKnownUsd": 0.000378882,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 8,
+        "tier": "standard",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "fastCost": {
+        "knownUsd": 0.12840048200000004,
+        "gptKnownUsd": 0.1280216,
+        "jevKnownUsd": 0.000378882,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 8,
+        "tier": "fast",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "tokens": {
+        "totalTokens": 142527,
+        "inputTokens": 140983,
+        "cachedInputTokens": 129664,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 1544,
+        "reasoningOutputTokens": 78
+      },
+      "jevCalls": 5
+    },
+    {
+      "id": "gpt-6-sol-repository-1-combined",
+      "task": "repository",
+      "repeat": 1,
+      "arm": "combined",
+      "status": "completed",
+      "passed": true,
+      "wallMs": 42302,
+      "startupMs": 278,
+      "cost": {
+        "knownUsd": 0.08104044799999997,
+        "gptKnownUsd": 0.08057239999999999,
+        "jevKnownUsd": 0.00046804800000000004,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 7,
+        "tier": "standard",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "fastCost": {
+        "knownUsd": 0.16161284799999998,
+        "gptKnownUsd": 0.16114479999999998,
+        "jevKnownUsd": 0.00046804800000000004,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 7,
+        "tier": "fast",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "tokens": {
+        "totalTokens": 129083,
+        "inputTokens": 127551,
+        "cachedInputTokens": 105472,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 1532,
+        "reasoningOutputTokens": 50
+      },
+      "jevCalls": 5
+    },
+    {
+      "id": "gpt-6-sol-repository-1-bare",
+      "task": "repository",
+      "repeat": 1,
+      "arm": "bare",
+      "status": "completed",
+      "passed": true,
+      "wallMs": 66149,
+      "startupMs": 73,
+      "cost": {
+        "knownUsd": 0.0979424,
+        "gptKnownUsd": 0.0979424,
+        "jevKnownUsd": 0,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 8,
+        "tier": "standard",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "fastCost": {
+        "knownUsd": 0.1958848,
+        "gptKnownUsd": 0.1958848,
+        "jevKnownUsd": 0,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 8,
+        "tier": "fast",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "tokens": {
+        "totalTokens": 179292,
+        "inputTokens": 176477,
+        "cachedInputTokens": 157312,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 2815,
+        "reasoningOutputTokens": 537
+      },
+      "jevCalls": 0
+    }
+  ],
+  "arms": {
+    "bare": {
+      "runs": 2,
+      "passed": 2,
+      "wallMs": 140384,
+      "startupMs": 160,
+      "knownUsd": 0.20880559999999998,
+      "gptKnownUsd": 0.20880559999999998,
+      "jevKnownUsd": 0,
+      "complete": true,
+      "totalTokens": 343658
+    },
+    "combined": {
+      "runs": 2,
+      "passed": 2,
+      "wallMs": 89850,
+      "startupMs": 559,
+      "knownUsd": 0.14543012999999996,
+      "gptKnownUsd": 0.1445832,
+      "jevKnownUsd": 0.0008469300000000001,
+      "complete": true,
+      "totalTokens": 271610
+    }
+  },
+  "pairs": [
+    {
+      "task": "repository",
+      "repeat": 0,
+      "bareId": "gpt-6-sol-repository-0-bare",
+      "combinedId": "gpt-6-sol-repository-0-combined",
+      "bothPassed": true,
+      "timePercent": -35.949350037044525,
+      "knownCostPercent": -41.919697428903376,
+      "costPercent": -41.919697428903376,
+      "complete": true
+    },
+    {
+      "task": "repository",
+      "repeat": 1,
+      "bareId": "gpt-6-sol-repository-1-bare",
+      "combinedId": "gpt-6-sol-repository-1-combined",
+      "bothPassed": true,
+      "timePercent": -36.05043160138476,
+      "knownCostPercent": -17.257032704936805,
+      "costPercent": -17.257032704936805,
+      "complete": true
+    }
+  ],
+  "comparison": {
+    "timePercent": -35.99697971278778,
+    "knownCostPercent": -30.35142256721085,
+    "costPercent": -30.35142256721085,
+    "gptTokensPercent": -20.965029185993057
+  }
+}

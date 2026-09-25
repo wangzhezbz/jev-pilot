@@ -1,0 +1,11 @@
+id,seconds,passed,gpt_calls,gpt_input,gpt_cached,gpt_uncached,gpt_output,gpt_total,jev_requests,jev_input,jev_output,jev_unknown,fallback
+chrome-document-bare,85.3017592910002,True,9,1464682,1460864,3818,2108,1466790,0,0,0,0,
+chrome-document-pilot,20.427964416000062,True,3,498022,494976,3046,485,498507,6,5442,282,0,
+chrome-report-pilot,42.62885212500021,True,6,1008341,1005056,3285,1033,1009374,6,5400,280,0,no_safe_candidate at initial Analytics branch
+chrome-report-bare,43.70350758300023,True,8,1366067,1362816,3251,858,1366925,0,0,0,0,
+cua-report-bare,57.478153916999695,True,9,1560831,1557376,3455,1539,1562370,0,0,0,0,
+cua-report-pilot,49.07478633300029,True,7,1230131,1227008,3123,985,1231116,6,4884,280,0,no_safe_candidate at initial Analytics branch
+cua-document-pilot,30.094816292000004,True,4,712176,709760,2416,1266,713442,6,4938,282,0,
+cua-document-bare,61.551097250000105,True,9,1620003,1616896,3107,1020,1621023,0,0,0,0,
+chrome-document2-bare,45.22751087500015,True,8,1464785,1461120,3665,742,1465527,0,0,0,0,
+chrome-document2-pilot,92.96758949999978,True,10,1864891,1859968,4923,2000,1866891,0,0,0,0,HOST_INSUFFICIENT_TASK_BUDGET

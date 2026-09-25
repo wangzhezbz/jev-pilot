@@ -1,0 +1,13 @@
+{
+  "sourceSha256": "fb13a2e76dbfd76f23ea47f1728798aa91c842db47ece521b3ae8bdeb61c161a",
+  "complete": true,
+  "reportFiles": {
+    "accounting.json": "daf0cebcea7698c93d08d3021f630ba51992384c11e52ed37aefd71c7bb3e3dc",
+    "generations.csv": "fa879a9d142623da361b493f4b16c30683764e5ebcd237de3e50356737065a0a",
+    "protocol.json": "2b71b5cc1dadd192cbca393bc28cbbdcb00f2532c86ce3e6c9353344efa83a26",
+    "runs.csv": "38034a072318e0930171ff6f52d8b2ac3069ff98fd038b77cf1217d701212ccb",
+    "runs.json": "9217a626b7f76e87b91ee1f2f9367addc493941a607cf0bbb46e313a8df2a439",
+    "summary.json": "e657624ae1d03b9a3321d1a9ee32727c9cc2f4d854159f69702a8a5115c0dc35",
+    "token-decomposition.csv": "ff0c2f3d11331ee62b285b5125e3619469d10f1c68eba50dcdb53c6ef3a837d3"
+  }
+}

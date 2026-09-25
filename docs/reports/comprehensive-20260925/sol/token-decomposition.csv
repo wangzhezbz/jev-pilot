@@ -1,0 +1,9 @@
+model,task,repeat,arm,totalTokenDelta,extraGenerationBase,repeatedFirstInputDifference,historyGrowthDifference,outputDifference
+gpt-6-sol,cross_file,0,combined,-5405,0,7440,-11369,-1476
+gpt-6-sol,incident,0,combined,-67688,-29596,4180,-41621,-651
+gpt-6-sol,repository,0,combined,-69522,-29560,5616,-44965,-613
+gpt-6-sol,semantic,0,combined,43968,14701,8248,21454,-435
+gpt-6-sol,cross_file,1,combined,94,0,7424,-6225,-1105
+gpt-6-sol,incident,1,combined,-43163,-14803,6228,-33843,-745
+gpt-6-sol,repository,1,combined,-148297,-59068,5628,-92196,-2661
+gpt-6-sol,semantic,1,combined,-44019,-14715,8176,-36573,-907

@@ -17,6 +17,11 @@ test('real MCP server returns coverage text and serves targeted/full recall with
   await rpc('initialize',{protocolVersion:'2025-06-18',capabilities:{},clientInfo:{name:'test',version:'1'}});
   const tools=(await rpc('tools/list',{})).result.tools;
   assert(tools.find(x=>x.name==='jev_evidence').inputSchema.properties.input.properties.query);
+  assert.match(tools.find(x=>x.name==='jev_evidence').inputSchema.properties.workspace.description,/Absolute task working directory/);
+  const relative=await rpc('tools/call',{name:'jev_evidence',arguments:{workspace:'.',operation:'prepare',input:{goal:'Read the task file',path:'fixture.md'}}});
+  assert.equal(relative.result.isError,true);
+  const failure=JSON.parse(relative.result.content[0].text);
+  assert.equal(failure.error,'WORKSPACE_ABSOLUTE_REQUIRED');assert.match(failure.fallback,/absolute task cwd/);
   const items=[{id:'a',text:'Battery observation',pin:true},{id:'b',text:'Radio observation',status:'pending'}];
   const call=async(name,operation,input)=>{const response=await rpc('tools/call',{name,arguments:{workspace:home,operation,input}});assert.equal(response.result.isError,undefined);assert.deepEqual(JSON.parse(response.result.content[0].text),response.result.structuredContent);return response.result.structuredContent;};
   const selected=await call('jev_evidence','select',{goal:'Review both observations',items});

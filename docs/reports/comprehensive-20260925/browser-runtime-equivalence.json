@@ -1,0 +1,43 @@
+{
+  "browserTestVersion": "0.2.0+codex.20260925164800",
+  "finalVersion": "0.2.0+codex.20260925175000",
+  "byteIdentical": [
+    {
+      "path": "src/host-browser-navigator.mjs",
+      "sha256": "a8ef23e89eebfc2afd5937bb5ce8ca6fcb82f0efe71086db7db2d9346c6afbca"
+    },
+    {
+      "path": "src/host-browser-session.mjs",
+      "sha256": "baebae9a9ca80835ae704d7db0299dc8130087b8bbc4cfafedcc8ebbd7dd4dcc"
+    },
+    {
+      "path": "src/host-browser-drivers.mjs",
+      "sha256": "1f0577ac50bb375e9250aebbf49c290a56e9986537dcd1a5b07dae82c69c3475"
+    },
+    {
+      "path": "src/host-browser-transport.mjs",
+      "sha256": "be3a971821d93125472aa26fdec85514de120e7f62fe151b589d47c93f2f616d"
+    },
+    {
+      "path": "src/browser.mjs",
+      "sha256": "7b1cc4e10faf964a2b9cb3a4761a46ab346e8dc9b19e292c320748da5b8a5f87"
+    },
+    {
+      "path": "src/core.mjs",
+      "sha256": "130e1d67b841e99771dc18885e50e5afd66a7a003d77403b0412eb2d4cde3938"
+    },
+    {
+      "path": "src/policy.mjs",
+      "sha256": "4f29ab06c3f91509aa260247165d12a2e48e37b507b2c5f726f95e5b291582de"
+    },
+    {
+      "path": "src/request-guard.mjs",
+      "sha256": "6b18ae893c5c0fea7634abff127942f1a55bb8552937db779bd3d2b919b09d24"
+    },
+    {
+      "path": "skills/jev-pilot/references/browser.md",
+      "sha256": "4fc0029a9234576a594da7f74b7a6c4fd77a04ce75195fe65f4120e4b20025ab"
+    }
+  ],
+  "scope": "Browser modules and official-host usage reference are unchanged; this does not make whole-model-task results from previous variants final-version evidence."
+}

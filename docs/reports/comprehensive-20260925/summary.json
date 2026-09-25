@@ -1,0 +1,200 @@
+{
+  "date": "2026-09-25",
+  "finalCandidate": "0.2.0+codex.20260925175000",
+  "regression": {
+    "passed": 354,
+    "total": 354
+  },
+  "nativeProtocol": {
+    "passed": 27,
+    "total": 27,
+    "paidModel": false
+  },
+  "liveFunctional": {
+    "passed": 12,
+    "total": 12
+  },
+  "nativeTaskRuns": 36,
+  "nativeTaskPassed": 36,
+  "uiRuns": 10,
+  "uiPassed": 10,
+  "uiMeasurementInvalid": 1,
+  "campaigns": [
+    {
+      "id": "sol",
+      "label": "首次冻结 · GPT-6 Sol",
+      "arms": {
+        "bare": {
+          "runs": 8,
+          "passed": 8,
+          "wallMs": 601717,
+          "startupMs": 620,
+          "knownUsd": 0.9016219999999999,
+          "gptKnownUsd": 0.9016219999999999,
+          "jevKnownUsd": 0,
+          "complete": true,
+          "totalTokens": 1402955
+        },
+        "combined": {
+          "runs": 8,
+          "passed": 8,
+          "wallMs": 424397,
+          "startupMs": 2078,
+          "knownUsd": 0.6827804639999999,
+          "gptKnownUsd": 0.6802188,
+          "jevKnownUsd": 0.002561664,
+          "complete": true,
+          "totalTokens": 1068923
+        }
+      },
+      "timePercent": -29.469002870120008,
+      "knownCostPercent": -24.27198271559479,
+      "costPercent": -24.27198271559479,
+      "gptTokensPercent": -23.809174207298167
+    },
+    {
+      "id": "astra",
+      "label": "首次冻结 · GPT-6 Astra",
+      "arms": {
+        "bare": {
+          "runs": 4,
+          "passed": 4,
+          "wallMs": 384016,
+          "startupMs": 306,
+          "knownUsd": 1.814884,
+          "gptKnownUsd": 1.814884,
+          "jevKnownUsd": 0,
+          "complete": true,
+          "totalTokens": 447454
+        },
+        "combined": {
+          "runs": 4,
+          "passed": 4,
+          "wallMs": 572471,
+          "startupMs": 1163,
+          "knownUsd": 2.31481511,
+          "gptKnownUsd": 2.309294,
+          "jevKnownUsd": 0.005521110000000001,
+          "complete": true,
+          "totalTokens": 481371
+        }
+      },
+      "timePercent": 49.07477813424441,
+      "knownCostPercent": 27.546174300947058,
+      "costPercent": 27.546174300947058,
+      "gptTokensPercent": 7.579997049976095
+    },
+    {
+      "id": "repair",
+      "label": "入口修复追加 · GPT-6 Sol",
+      "arms": {
+        "bare": {
+          "runs": 4,
+          "passed": 4,
+          "wallMs": 308251,
+          "startupMs": 314,
+          "knownUsd": 0.42338560000000003,
+          "gptKnownUsd": 0.42338560000000003,
+          "jevKnownUsd": 0,
+          "complete": true,
+          "totalTokens": 683100
+        },
+        "combined": {
+          "runs": 4,
+          "passed": 4,
+          "wallMs": 287793,
+          "startupMs": 1079,
+          "knownUsd": 0.41003329999999993,
+          "gptKnownUsd": 0.408116,
+          "jevKnownUsd": 0.0019173000000000003,
+          "complete": false,
+          "totalTokens": 729086
+        }
+      },
+      "timePercent": -6.636799231794866,
+      "knownCostPercent": -3.1536972443087508,
+      "costPercent": null,
+      "gptTokensPercent": 6.7319572536963745
+    },
+    {
+      "id": "shipping",
+      "label": "最终收窄入口 · GPT-6 Sol",
+      "arms": {
+        "bare": {
+          "runs": 2,
+          "passed": 2,
+          "wallMs": 140384,
+          "startupMs": 160,
+          "knownUsd": 0.20880559999999998,
+          "gptKnownUsd": 0.20880559999999998,
+          "jevKnownUsd": 0,
+          "complete": true,
+          "totalTokens": 343658
+        },
+        "combined": {
+          "runs": 2,
+          "passed": 2,
+          "wallMs": 89850,
+          "startupMs": 559,
+          "knownUsd": 0.14543012999999996,
+          "gptKnownUsd": 0.1445832,
+          "jevKnownUsd": 0.0008469300000000001,
+          "complete": true,
+          "totalTokens": 271610
+        }
+      },
+      "timePercent": -35.99697971278778,
+      "knownCostPercent": -30.35142256721085,
+      "costPercent": -30.35142256721085,
+      "gptTokensPercent": -20.965029185993057
+    }
+  ],
+  "uiPairs": [
+    {
+      "platform": "chrome",
+      "task": "document",
+      "bothPassed": true,
+      "measurementValid": false,
+      "timePercent": null,
+      "gptTotalPercent": null,
+      "gptUncachedPercent": null
+    },
+    {
+      "platform": "chrome",
+      "task": "report",
+      "bothPassed": true,
+      "measurementValid": true,
+      "timePercent": -2.4589684385379673,
+      "gptTotalPercent": -26.157323920478447,
+      "gptUncachedPercent": 1.0458320516764097
+    },
+    {
+      "platform": "chrome",
+      "task": "document2",
+      "bothPassed": true,
+      "measurementValid": true,
+      "timePercent": 105.55539692852807,
+      "gptTotalPercent": 27.387008222980548,
+      "gptUncachedPercent": 34.324693042291955
+    },
+    {
+      "platform": "cua",
+      "task": "document",
+      "bothPassed": true,
+      "measurementValid": true,
+      "timePercent": -51.105962953406234,
+      "gptTotalPercent": -55.988163030382665,
+      "gptUncachedPercent": -22.240102993241074
+    },
+    {
+      "platform": "cua",
+      "task": "report",
+      "bothPassed": true,
+      "measurementValid": true,
+      "timePercent": -14.62010696469852,
+      "gptTotalPercent": -21.20202000806467,
+      "gptUncachedPercent": -9.609261939218527
+    }
+  ],
+  "scope": "Separate versions, workloads and models; do not pool into a universal saving claim. Previously used synthetic fixtures; native backend tasks and current-desktop UI episodes have different timing boundaries. All negative results retained."
+}

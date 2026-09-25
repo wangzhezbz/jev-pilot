@@ -1,0 +1,245 @@
+{
+  "scope": "all projects for exact actual task ID, UI interval only",
+  "events": [
+    {
+      "at": "2026-09-25T09:26:24.183Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 922,
+      "outputTokens": 44,
+      "elapsedMs": 1335
+    },
+    {
+      "at": "2026-09-25T09:26:25.231Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 801,
+      "outputTokens": 44,
+      "elapsedMs": 862
+    },
+    {
+      "at": "2026-09-25T09:26:25.678Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 928,
+      "outputTokens": 53,
+      "elapsedMs": 264
+    },
+    {
+      "at": "2026-09-25T09:26:26.111Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 934,
+      "outputTokens": 53,
+      "elapsedMs": 251
+    },
+    {
+      "at": "2026-09-25T09:26:26.541Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 999,
+      "outputTokens": 53,
+      "elapsedMs": 250
+    },
+    {
+      "at": "2026-09-25T09:26:27.811Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 858,
+      "outputTokens": 35,
+      "elapsedMs": 1094
+    },
+    {
+      "at": "2026-09-25T09:26:54.498Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 928,
+      "outputTokens": 42,
+      "elapsedMs": 671
+    },
+    {
+      "at": "2026-09-25T09:27:21.700Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 776,
+      "outputTokens": 44,
+      "elapsedMs": 631
+    },
+    {
+      "at": "2026-09-25T09:27:22.124Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 924,
+      "outputTokens": 53,
+      "elapsedMs": 242
+    },
+    {
+      "at": "2026-09-25T09:27:22.541Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 932,
+      "outputTokens": 53,
+      "elapsedMs": 235
+    },
+    {
+      "at": "2026-09-25T09:27:22.971Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 991,
+      "outputTokens": 53,
+      "elapsedMs": 248
+    },
+    {
+      "at": "2026-09-25T09:27:23.638Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 849,
+      "outputTokens": 35,
+      "elapsedMs": 272
+    },
+    {
+      "at": "2026-09-25T09:30:13.531Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 831,
+      "outputTokens": 42,
+      "elapsedMs": 645
+    },
+    {
+      "at": "2026-09-25T09:30:32.448Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 689,
+      "outputTokens": 44,
+      "elapsedMs": 693
+    },
+    {
+      "at": "2026-09-25T09:30:33.698Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 843,
+      "outputTokens": 53,
+      "elapsedMs": 272
+    },
+    {
+      "at": "2026-09-25T09:30:35.087Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 851,
+      "outputTokens": 53,
+      "elapsedMs": 258
+    },
+    {
+      "at": "2026-09-25T09:30:36.347Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 910,
+      "outputTokens": 53,
+      "elapsedMs": 242
+    },
+    {
+      "at": "2026-09-25T09:30:37.595Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 760,
+      "outputTokens": 35,
+      "elapsedMs": 237
+    },
+    {
+      "at": "2026-09-25T09:31:32.039Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 827,
+      "outputTokens": 44,
+      "elapsedMs": 651
+    },
+    {
+      "at": "2026-09-25T09:31:33.373Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 716,
+      "outputTokens": 44,
+      "elapsedMs": 252
+    },
+    {
+      "at": "2026-09-25T09:31:34.579Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 849,
+      "outputTokens": 53,
+      "elapsedMs": 255
+    },
+    {
+      "at": "2026-09-25T09:31:35.775Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 855,
+      "outputTokens": 53,
+      "elapsedMs": 227
+    },
+    {
+      "at": "2026-09-25T09:31:37.101Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 920,
+      "outputTokens": 53,
+      "elapsedMs": 277
+    },
+    {
+      "at": "2026-09-25T09:31:38.380Z",
+      "purpose": "browser",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "inputTokens": 771,
+      "outputTokens": 35,
+      "elapsedMs": 238
+    }
+  ]
+}

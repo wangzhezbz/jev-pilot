@@ -1,0 +1,90 @@
+[
+  {
+    "model": "gpt-6-sol",
+    "task": "cross_file",
+    "repeat": 0,
+    "arm": "combined",
+    "totalTokenDelta": -5405,
+    "extraGenerationBase": 0,
+    "repeatedFirstInputDifference": 7440,
+    "historyGrowthDifference": -11369,
+    "outputDifference": -1476
+  },
+  {
+    "model": "gpt-6-sol",
+    "task": "incident",
+    "repeat": 0,
+    "arm": "combined",
+    "totalTokenDelta": -67688,
+    "extraGenerationBase": -29596,
+    "repeatedFirstInputDifference": 4180,
+    "historyGrowthDifference": -41621,
+    "outputDifference": -651
+  },
+  {
+    "model": "gpt-6-sol",
+    "task": "repository",
+    "repeat": 0,
+    "arm": "combined",
+    "totalTokenDelta": -69522,
+    "extraGenerationBase": -29560,
+    "repeatedFirstInputDifference": 5616,
+    "historyGrowthDifference": -44965,
+    "outputDifference": -613
+  },
+  {
+    "model": "gpt-6-sol",
+    "task": "semantic",
+    "repeat": 0,
+    "arm": "combined",
+    "totalTokenDelta": 43968,
+    "extraGenerationBase": 14701,
+    "repeatedFirstInputDifference": 8248,
+    "historyGrowthDifference": 21454,
+    "outputDifference": -435
+  },
+  {
+    "model": "gpt-6-sol",
+    "task": "cross_file",
+    "repeat": 1,
+    "arm": "combined",
+    "totalTokenDelta": 94,
+    "extraGenerationBase": 0,
+    "repeatedFirstInputDifference": 7424,
+    "historyGrowthDifference": -6225,
+    "outputDifference": -1105
+  },
+  {
+    "model": "gpt-6-sol",
+    "task": "incident",
+    "repeat": 1,
+    "arm": "combined",
+    "totalTokenDelta": -43163,
+    "extraGenerationBase": -14803,
+    "repeatedFirstInputDifference": 6228,
+    "historyGrowthDifference": -33843,
+    "outputDifference": -745
+  },
+  {
+    "model": "gpt-6-sol",
+    "task": "repository",
+    "repeat": 1,
+    "arm": "combined",
+    "totalTokenDelta": -148297,
+    "extraGenerationBase": -59068,
+    "repeatedFirstInputDifference": 5628,
+    "historyGrowthDifference": -92196,
+    "outputDifference": -2661
+  },
+  {
+    "model": "gpt-6-sol",
+    "task": "semantic",
+    "repeat": 1,
+    "arm": "combined",
+    "totalTokenDelta": -44019,
+    "extraGenerationBase": -14715,
+    "repeatedFirstInputDifference": 8176,
+    "historyGrowthDifference": -36573,
+    "outputDifference": -907
+  }
+]

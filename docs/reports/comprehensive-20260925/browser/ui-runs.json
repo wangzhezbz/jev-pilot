@@ -1,0 +1,349 @@
+[
+  {
+    "id": "chrome-document-bare",
+    "startedAt": "2026-09-25T09:24:39.053Z",
+    "finalObservation": "Browser tab: 51514174, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\".\n0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\n\t1 container view\n\t\t2 heading Document preview, Value: 1\n\t\t\t3 text Document preview\n\t\t4 text Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview\n\nThe focused UI element is 0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a",
+    "actions": 6,
+    "elapsedMs": 85301.7592910002,
+    "passed": true,
+    "measurementValid": false,
+    "harnessError": "finish helper captured an undefined REPL binding; recovery time included, excluded from performance comparisons"
+  },
+  {
+    "id": "chrome-document-pilot",
+    "startedAt": "2026-09-25T09:26:15.306Z",
+    "measurementValid": true,
+    "receipt": {
+      "status": "needs_verification",
+      "reason": null,
+      "stageIndex": 0,
+      "evidence": "DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview",
+      "stateMayHaveChanged": false,
+      "metrics": {
+        "runs": 1,
+        "actions": 6,
+        "jevRequests": 6,
+        "inputTokens": 5442,
+        "outputTokens": 282,
+        "unknownUsage": 0,
+        "apiMs": 4054.0251670009457,
+        "elapsedMs": 5164.759041999932,
+        "handoffs": 0
+      },
+      "sessionMetrics": {
+        "runs": 1,
+        "actions": 6,
+        "jevRequests": 6,
+        "inputTokens": 5442,
+        "outputTokens": 282,
+        "unknownUsage": 0,
+        "apiMs": 4054.0251670009457,
+        "elapsedMs": 5164.759041999932,
+        "handoffs": 0
+      },
+      "instruction": "Codex must inspect this fresh finalObservation against the user request before claiming completion. If inadequate, observe natively again.",
+      "fullResultRetainedInHost": true,
+      "truncatedFields": [],
+      "finalObservation": {
+        "snapshot": "Browser tab: 51514178, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\".\n0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\n\t1 container view\n\t\t2 heading Document preview, Value: 1\n\t\t\t3 text Document preview\n\t\t4 text Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview\n\nThe focused UI element is 0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a",
+        "observedAt": 1790328387996,
+        "truncated": false
+      },
+      "finalObservationMs": 12.862749999854714,
+      "admission": {
+        "expectedSteps": 6,
+        "samples": 0,
+        "estimatedStepMs": 1000,
+        "requiredWaitMs": 6000
+      }
+    },
+    "jev": {
+      "runs": 1,
+      "actions": 6,
+      "jevRequests": 6,
+      "inputTokens": 5442,
+      "outputTokens": 282,
+      "unknownUsage": 0,
+      "apiMs": 4054.0251670009457,
+      "elapsedMs": 5164.759041999932,
+      "handoffs": 0
+    },
+    "finalObservation": "Browser tab: 51514178, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\".\n0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\n\t1 container view\n\t\t2 heading Document preview, Value: 1\n\t\t\t3 text Document preview\n\t\t4 text Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview\n\nThe focused UI element is 0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a",
+    "elapsedMs": 20427.96441600006,
+    "passed": true,
+    "actions": 6
+  },
+  {
+    "id": "chrome-report-pilot",
+    "startedAt": "2026-09-25T09:26:47.966Z",
+    "measurementValid": true,
+    "receipt": {
+      "status": "needs_verification",
+      "reason": null,
+      "stageIndex": 0,
+      "evidence": "RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview",
+      "stateMayHaveChanged": false,
+      "metrics": {
+        "runs": 1,
+        "actions": 5,
+        "jevRequests": 5,
+        "inputTokens": 4472,
+        "outputTokens": 238,
+        "unknownUsage": 0,
+        "apiMs": 1627.5667489995249,
+        "elapsedMs": 2771.169625000097,
+        "handoffs": 0
+      },
+      "sessionMetrics": {
+        "runs": 2,
+        "actions": 5,
+        "jevRequests": 6,
+        "inputTokens": 5400,
+        "outputTokens": 280,
+        "unknownUsage": 0,
+        "apiMs": 2298.331373999361,
+        "elapsedMs": 3466.018875000067,
+        "handoffs": 1
+      },
+      "instruction": "Codex must inspect this fresh finalObservation against the user request before claiming completion. If inadequate, observe natively again.",
+      "fullResultRetainedInHost": true,
+      "truncatedFields": [],
+      "finalObservation": {
+        "snapshot": "Browser tab: 51514182, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b\".\n0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b\n\t1 container view\n\t\t2 heading Report preview, Value: 1\n\t\t\t3 text Report preview\n\t\t4 text Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview\n\nThe focused UI element is 0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b",
+        "observedAt": 1790328443831,
+        "truncated": false
+      },
+      "finalObservationMs": 15.697916999924928
+    },
+    "jev": {
+      "runs": 2,
+      "actions": 5,
+      "jevRequests": 6,
+      "inputTokens": 5400,
+      "outputTokens": 280,
+      "unknownUsage": 0,
+      "apiMs": 2298.331373999361,
+      "elapsedMs": 3466.018875000067,
+      "handoffs": 1
+    },
+    "finalObservation": "Browser tab: 51514182, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b\".\n0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b\n\t1 container view\n\t\t2 heading Report preview, Value: 1\n\t\t\t3 text Report preview\n\t\t4 text Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview\n\nThe focused UI element is 0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b",
+    "fallback": "no_safe_candidate at initial Analytics branch",
+    "nativeActions": 1,
+    "elapsedMs": 42628.85212500021,
+    "passed": true,
+    "actions": 6
+  },
+  {
+    "id": "chrome-report-bare",
+    "startedAt": "2026-09-25T09:27:45.416Z",
+    "measurementValid": true,
+    "finalObservation": "Browser tab: 51514186, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b\".\n0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b\n\t1 container view\n\t\t2 heading Report preview, Value: 1\n\t\t\t3 text Report preview\n\t\t4 text Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview\n\nThe focused UI element is 0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b",
+    "elapsedMs": 43703.50758300023,
+    "passed": true,
+    "actions": 6
+  },
+  {
+    "id": "cua-report-bare",
+    "startedAt": "2026-09-25T09:28:50.457Z",
+    "measurementValid": true,
+    "finalObservation": "\t\t\t\t5 HTML内容 Description: JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 Report preview, Value: 1\n\t\t\t\t\t\t\t8 文本 Report preview\n\t\t\t\t\t\t9 文本 Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview",
+    "elapsedMs": 57478.1539169997,
+    "passed": true,
+    "actions": 6
+  },
+  {
+    "id": "cua-report-pilot",
+    "startedAt": "2026-09-25T09:29:56.593Z",
+    "measurementValid": true,
+    "receipt": {
+      "status": "needs_verification",
+      "reason": null,
+      "stageIndex": 0,
+      "evidence": "RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview",
+      "stateMayHaveChanged": false,
+      "metrics": {
+        "runs": 1,
+        "actions": 5,
+        "jevRequests": 5,
+        "inputTokens": 4053,
+        "outputTokens": 238,
+        "unknownUsage": 0,
+        "apiMs": 1701.0587909999304,
+        "elapsedMs": 6919.064750000369,
+        "handoffs": 0
+      },
+      "sessionMetrics": {
+        "runs": 2,
+        "actions": 5,
+        "jevRequests": 6,
+        "inputTokens": 4884,
+        "outputTokens": 280,
+        "unknownUsage": 0,
+        "apiMs": 2346.2061660001054,
+        "elapsedMs": 7639.343958000187,
+        "handoffs": 1
+      },
+      "instruction": "Codex must inspect this fresh finalObservation against the user request before claiming completion. If inadequate, observe natively again.",
+      "fullResultRetainedInHost": true,
+      "truncatedFields": [],
+      "finalObservation": {
+        "snapshot": "\t\t\t\t5 HTML内容 Description: JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 Report preview, Value: 1\n\t\t\t\t\t\t\t8 文本 Report preview\n\t\t\t\t\t\t9 文本 Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview",
+        "observedAt": 1790328638688,
+        "truncated": false
+      },
+      "finalObservationMs": 90.31158300023526
+    },
+    "jev": {
+      "runs": 2,
+      "actions": 5,
+      "jevRequests": 6,
+      "inputTokens": 4884,
+      "outputTokens": 280,
+      "unknownUsage": 0,
+      "apiMs": 2346.2061660001054,
+      "elapsedMs": 7639.343958000187,
+      "handoffs": 1
+    },
+    "finalObservation": "\t\t\t\t5 HTML内容 Description: JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 Report preview, Value: 1\n\t\t\t\t\t\t\t8 文本 Report preview\n\t\t\t\t\t\t9 文本 Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview",
+    "fallback": "no_safe_candidate at initial Analytics branch",
+    "nativeActions": 1,
+    "elapsedMs": 49074.78633300029,
+    "passed": true,
+    "actions": 6
+  },
+  {
+    "id": "cua-document-pilot",
+    "startedAt": "2026-09-25T09:31:15.616Z",
+    "measurementValid": true,
+    "receipt": {
+      "status": "needs_verification",
+      "reason": null,
+      "stageIndex": 0,
+      "evidence": "DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview",
+      "stateMayHaveChanged": false,
+      "metrics": {
+        "runs": 1,
+        "actions": 6,
+        "jevRequests": 6,
+        "inputTokens": 4938,
+        "outputTokens": 282,
+        "unknownUsage": 0,
+        "apiMs": 1897.1020009987988,
+        "elapsedMs": 8049.547250000294,
+        "handoffs": 0
+      },
+      "sessionMetrics": {
+        "runs": 1,
+        "actions": 6,
+        "jevRequests": 6,
+        "inputTokens": 4938,
+        "outputTokens": 282,
+        "unknownUsage": 0,
+        "apiMs": 1897.1020009987988,
+        "elapsedMs": 8049.547250000294,
+        "handoffs": 0
+      },
+      "instruction": "Codex must inspect this fresh finalObservation against the user request before claiming completion. If inadequate, observe natively again.",
+      "fullResultRetainedInHost": true,
+      "truncatedFields": [],
+      "finalObservation": {
+        "snapshot": "\t\t\t\t5 HTML内容 Description: JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 Document preview, Value: 1\n\t\t\t\t\t\t\t8 文本 Document preview\n\t\t\t\t\t\t9 文本 Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview",
+        "observedAt": 1790328699439,
+        "truncated": false
+      },
+      "finalObservationMs": 68.51929099997506,
+      "admission": {
+        "expectedSteps": 6,
+        "samples": 18,
+        "estimatedStepMs": 1006.5,
+        "requiredWaitMs": 6032.5
+      }
+    },
+    "jev": {
+      "runs": 1,
+      "actions": 6,
+      "jevRequests": 6,
+      "inputTokens": 4938,
+      "outputTokens": 282,
+      "unknownUsage": 0,
+      "apiMs": 1897.1020009987988,
+      "elapsedMs": 8049.547250000294,
+      "handoffs": 0
+    },
+    "finalObservation": "\t\t\t\t5 HTML内容 Description: JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 Document preview, Value: 1\n\t\t\t\t\t\t\t8 文本 Document preview\n\t\t\t\t\t\t9 文本 Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview",
+    "elapsedMs": 30094.816292000003,
+    "passed": true,
+    "actions": 6
+  },
+  {
+    "id": "cua-document-bare",
+    "startedAt": "2026-09-25T09:31:51.256Z",
+    "measurementValid": true,
+    "finalObservation": "\t\t\t\t5 HTML内容 Description: JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 Document preview, Value: 1\n\t\t\t\t\t\t\t8 文本 Document preview\n\t\t\t\t\t\t9 文本 Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview",
+    "elapsedMs": 61551.09725000011,
+    "passed": true,
+    "actions": 6
+  },
+  {
+    "id": "chrome-document2-bare",
+    "startedAt": "2026-09-25T09:33:24.434Z",
+    "measurementValid": true,
+    "supplement": true,
+    "finalObservation": "Browser tab: 51514190, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\".\n0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\n\t1 container view\n\t\t2 heading Document preview, Value: 1\n\t\t\t3 text Document preview\n\t\t4 text Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview\n\nThe focused UI element is 0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a",
+    "elapsedMs": 45227.51087500015,
+    "passed": true,
+    "actions": 6
+  },
+  {
+    "id": "chrome-document2-pilot",
+    "startedAt": "2026-09-25T09:34:18.915Z",
+    "measurementValid": true,
+    "supplement": true,
+    "receipt": {
+      "status": "codex_review_required",
+      "reason": "HOST_INSUFFICIENT_TASK_BUDGET",
+      "budget": {
+        "calls": 14,
+        "bytes": 356542,
+        "waitMs": 5403.772957000416,
+        "cooldown": false,
+        "windowEndsAt": 1790330400000
+      },
+      "admission": {
+        "expectedSteps": 6,
+        "samples": 20,
+        "estimatedStepMs": 946.5,
+        "requiredWaitMs": 5732.5
+      },
+      "metrics": {
+        "runs": 0,
+        "actions": 0,
+        "jevRequests": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "unknownUsage": 0,
+        "apiMs": 0,
+        "elapsedMs": 0,
+        "handoffs": 0
+      },
+      "instruction": "Continue natively. No browser action or paid request was made. Do not change task identity or budget to retry."
+    },
+    "jev": {
+      "runs": 0,
+      "actions": 0,
+      "jevRequests": 0,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "unknownUsage": 0,
+      "apiMs": 0,
+      "elapsedMs": 0,
+      "handoffs": 0
+    },
+    "finalObservation": "Browser tab: 51514194, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\".\n0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\n\t1 container view\n\t\t2 heading Document preview, Value: 1\n\t\t\t3 text Document preview\n\t\t4 text Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview\n\nThe focused UI element is 0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a",
+    "fallback": "HOST_INSUFFICIENT_TASK_BUDGET",
+    "elapsedMs": 92967.58949999977,
+    "passed": true,
+    "actions": 6,
+    "nativeActions": 6
+  }
+]

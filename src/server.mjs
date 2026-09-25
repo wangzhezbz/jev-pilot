@@ -31,7 +31,7 @@ async function handle(msg) {
         if (['status', 'browser_step'].includes(msg.params.arguments?.operation)) data.browserNetwork = browserNetworkRepair;
         result = { content: [{ type: 'text', text: JSON.stringify(data) }], structuredContent: data };
       }
-      catch (e) { result = { isError: true, content: [{ type: 'text', text: JSON.stringify({ error: typeof e.code === 'string' ? e.code : 'OPERATION_FAILED', fallback: 'Continue using native Codex tools; do not claim Jev success.' }) }] }; }
+      catch (e) { result = { isError: true, content: [{ type: 'text', text: JSON.stringify({ error: typeof e.code === 'string' ? e.code : 'OPERATION_FAILED', fallback: e.code === 'WORKSPACE_ABSOLUTE_REQUIRED' ? "Retry once with the absolute task cwd as workspace and input.path relative to it. Do not use the plugin directory. If unavailable, continue natively." : 'Continue using native Codex tools; do not claim Jev success.' }) }] }; }
     } else { output({ jsonrpc: '2.0', id: msg.id, error: { code: -32601, message: 'Method not found' } }); return; }
     output({ jsonrpc: '2.0', id: msg.id, result });
   } catch { output({ jsonrpc: '2.0', id: msg.id, error: { code: -32602, message: 'Invalid request' } }); }

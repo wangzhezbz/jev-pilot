@@ -1,0 +1,1517 @@
+{
+  "runs": [
+    {
+      "id": "chrome-document-bare",
+      "startedAt": "2026-09-25T09:24:39.053Z",
+      "finalObservation": "Browser tab: 51514174, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\".\n0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\n\t1 container view\n\t\t2 heading Document preview, Value: 1\n\t\t\t3 text Document preview\n\t\t4 text Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview\n\nThe focused UI element is 0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a",
+      "actions": 6,
+      "elapsedMs": 85301.7592910002,
+      "passed": true,
+      "measurementValid": false,
+      "harnessError": "finish helper captured an undefined REPL binding; recovery time included, excluded from performance comparisons",
+      "cells": [
+        {
+          "marker": "bench-chrome-document-bare-start",
+          "at": "2026-09-25T09:24:39.048Z",
+          "usage": {
+            "input_tokens": 161519,
+            "cached_input_tokens": 160640,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 128,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 161647
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document-bare-step1",
+          "at": "2026-09-25T09:24:44.202Z",
+          "usage": {
+            "input_tokens": 161906,
+            "cached_input_tokens": 161408,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 77,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 161983
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document-bare-step2",
+          "at": "2026-09-25T09:24:48.796Z",
+          "usage": {
+            "input_tokens": 162185,
+            "cached_input_tokens": 161792,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 77,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 162262
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document-bare-step3",
+          "at": "2026-09-25T09:24:53.478Z",
+          "usage": {
+            "input_tokens": 162476,
+            "cached_input_tokens": 162048,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 77,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 162553
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document-bare-step4",
+          "at": "2026-09-25T09:24:58.403Z",
+          "usage": {
+            "input_tokens": 162763,
+            "cached_input_tokens": 162432,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 77,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 162840
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document-bare-step5",
+          "at": "2026-09-25T09:25:04.628Z",
+          "usage": {
+            "input_tokens": 163065,
+            "cached_input_tokens": 162688,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 77,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 163142
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document-bare-step6",
+          "at": "2026-09-25T09:25:09.325Z",
+          "usage": {
+            "input_tokens": 163360,
+            "cached_input_tokens": 162944,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 88,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 163448
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document-bare-finish",
+          "at": "2026-09-25T09:25:14.120Z",
+          "usage": {
+            "input_tokens": 163651,
+            "cached_input_tokens": 163328,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 72,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 163723
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document-bare-finish2",
+          "at": "2026-09-25T09:26:04.350Z",
+          "usage": {
+            "input_tokens": 163757,
+            "cached_input_tokens": 163584,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1435,
+            "reasoning_output_tokens": 1223,
+            "total_tokens": 165192
+          },
+          "model": "gpt-6-astra"
+        }
+      ],
+      "gptCalls": 9,
+      "gpt": {
+        "input_tokens": 1464682,
+        "cached_input_tokens": 1460864,
+        "output_tokens": 2108,
+        "reasoning_output_tokens": 1223,
+        "total_tokens": 1466790,
+        "uncached_input_tokens": 3818
+      },
+      "backgroundJev": {
+        "requests": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "events": []
+      }
+    },
+    {
+      "id": "chrome-document-pilot",
+      "startedAt": "2026-09-25T09:26:15.306Z",
+      "measurementValid": true,
+      "receipt": {
+        "status": "needs_verification",
+        "reason": null,
+        "stageIndex": 0,
+        "evidence": "DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview",
+        "stateMayHaveChanged": false,
+        "metrics": {
+          "runs": 1,
+          "actions": 6,
+          "jevRequests": 6,
+          "inputTokens": 5442,
+          "outputTokens": 282,
+          "unknownUsage": 0,
+          "apiMs": 4054.0251670009457,
+          "elapsedMs": 5164.759041999932,
+          "handoffs": 0
+        },
+        "sessionMetrics": {
+          "runs": 1,
+          "actions": 6,
+          "jevRequests": 6,
+          "inputTokens": 5442,
+          "outputTokens": 282,
+          "unknownUsage": 0,
+          "apiMs": 4054.0251670009457,
+          "elapsedMs": 5164.759041999932,
+          "handoffs": 0
+        },
+        "instruction": "Codex must inspect this fresh finalObservation against the user request before claiming completion. If inadequate, observe natively again.",
+        "fullResultRetainedInHost": true,
+        "truncatedFields": [],
+        "finalObservation": {
+          "snapshot": "Browser tab: 51514178, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\".\n0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\n\t1 container view\n\t\t2 heading Document preview, Value: 1\n\t\t\t3 text Document preview\n\t\t4 text Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview\n\nThe focused UI element is 0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a",
+          "observedAt": 1790328387996,
+          "truncated": false
+        },
+        "finalObservationMs": 12.862749999854714,
+        "admission": {
+          "expectedSteps": 6,
+          "samples": 0,
+          "estimatedStepMs": 1000,
+          "requiredWaitMs": 6000
+        }
+      },
+      "jev": {
+        "runs": 1,
+        "actions": 6,
+        "jevRequests": 6,
+        "inputTokens": 5442,
+        "outputTokens": 282,
+        "unknownUsage": 0,
+        "apiMs": 4054.0251670009457,
+        "elapsedMs": 5164.759041999932,
+        "handoffs": 0
+      },
+      "finalObservation": "Browser tab: 51514178, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\".\n0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\n\t1 container view\n\t\t2 heading Document preview, Value: 1\n\t\t\t3 text Document preview\n\t\t4 text Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview\n\nThe focused UI element is 0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a",
+      "elapsedMs": 20427.96441600006,
+      "passed": true,
+      "actions": 6,
+      "cells": [
+        {
+          "marker": "bench-chrome-document-pilot-start",
+          "at": "2026-09-25T09:26:15.300Z",
+          "usage": {
+            "input_tokens": 165476,
+            "cached_input_tokens": 163712,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 244,
+            "reasoning_output_tokens": 66,
+            "total_tokens": 165720
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document-pilot-run",
+          "at": "2026-09-25T09:26:22.812Z",
+          "usage": {
+            "input_tokens": 165979,
+            "cached_input_tokens": 165376,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 108,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 166087
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document-pilot-finish",
+          "at": "2026-09-25T09:26:35.729Z",
+          "usage": {
+            "input_tokens": 166567,
+            "cached_input_tokens": 165888,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 133,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 166700
+          },
+          "model": "gpt-6-astra"
+        }
+      ],
+      "gptCalls": 3,
+      "gpt": {
+        "input_tokens": 498022,
+        "cached_input_tokens": 494976,
+        "output_tokens": 485,
+        "reasoning_output_tokens": 66,
+        "total_tokens": 498507,
+        "uncached_input_tokens": 3046
+      },
+      "backgroundJev": {
+        "requests": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "events": []
+      }
+    },
+    {
+      "id": "chrome-report-pilot",
+      "startedAt": "2026-09-25T09:26:47.966Z",
+      "measurementValid": true,
+      "receipt": {
+        "status": "needs_verification",
+        "reason": null,
+        "stageIndex": 0,
+        "evidence": "RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview",
+        "stateMayHaveChanged": false,
+        "metrics": {
+          "runs": 1,
+          "actions": 5,
+          "jevRequests": 5,
+          "inputTokens": 4472,
+          "outputTokens": 238,
+          "unknownUsage": 0,
+          "apiMs": 1627.5667489995249,
+          "elapsedMs": 2771.169625000097,
+          "handoffs": 0
+        },
+        "sessionMetrics": {
+          "runs": 2,
+          "actions": 5,
+          "jevRequests": 6,
+          "inputTokens": 5400,
+          "outputTokens": 280,
+          "unknownUsage": 0,
+          "apiMs": 2298.331373999361,
+          "elapsedMs": 3466.018875000067,
+          "handoffs": 1
+        },
+        "instruction": "Codex must inspect this fresh finalObservation against the user request before claiming completion. If inadequate, observe natively again.",
+        "fullResultRetainedInHost": true,
+        "truncatedFields": [],
+        "finalObservation": {
+          "snapshot": "Browser tab: 51514182, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b\".\n0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b\n\t1 container view\n\t\t2 heading Report preview, Value: 1\n\t\t\t3 text Report preview\n\t\t4 text Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview\n\nThe focused UI element is 0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b",
+          "observedAt": 1790328443831,
+          "truncated": false
+        },
+        "finalObservationMs": 15.697916999924928
+      },
+      "jev": {
+        "runs": 2,
+        "actions": 5,
+        "jevRequests": 6,
+        "inputTokens": 5400,
+        "outputTokens": 280,
+        "unknownUsage": 0,
+        "apiMs": 2298.331373999361,
+        "elapsedMs": 3466.018875000067,
+        "handoffs": 1
+      },
+      "finalObservation": "Browser tab: 51514182, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b\".\n0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b\n\t1 container view\n\t\t2 heading Report preview, Value: 1\n\t\t\t3 text Report preview\n\t\t4 text Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview\n\nThe focused UI element is 0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b",
+      "fallback": "no_safe_candidate at initial Analytics branch",
+      "nativeActions": 1,
+      "elapsedMs": 42628.85212500021,
+      "passed": true,
+      "actions": 6,
+      "cells": [
+        {
+          "marker": "bench-chrome-report-pilot-start",
+          "at": "2026-09-25T09:26:47.960Z",
+          "usage": {
+            "input_tokens": 166746,
+            "cached_input_tokens": 166528,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 177,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 166923
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-report-pilot-run",
+          "at": "2026-09-25T09:26:53.797Z",
+          "usage": {
+            "input_tokens": 167186,
+            "cached_input_tokens": 166656,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 108,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 167294
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-report-pilot-fallback1",
+          "at": "2026-09-25T09:27:08.583Z",
+          "usage": {
+            "input_tokens": 167807,
+            "cached_input_tokens": 167040,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 418,
+            "reasoning_output_tokens": 327,
+            "total_tokens": 168225
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-report-pilot-fallback2",
+          "at": "2026-09-25T09:27:14.179Z",
+          "usage": {
+            "input_tokens": 168488,
+            "cached_input_tokens": 167680,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 84,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 168572
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-report-pilot-resume",
+          "at": "2026-09-25T09:27:21.037Z",
+          "usage": {
+            "input_tokens": 168774,
+            "cached_input_tokens": 168448,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 106,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 168880
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-report-pilot-finish",
+          "at": "2026-09-25T09:27:30.589Z",
+          "usage": {
+            "input_tokens": 169340,
+            "cached_input_tokens": 168704,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 140,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 169480
+          },
+          "model": "gpt-6-astra"
+        }
+      ],
+      "gptCalls": 6,
+      "gpt": {
+        "input_tokens": 1008341,
+        "cached_input_tokens": 1005056,
+        "output_tokens": 1033,
+        "reasoning_output_tokens": 327,
+        "total_tokens": 1009374,
+        "uncached_input_tokens": 3285
+      },
+      "backgroundJev": {
+        "requests": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "events": []
+      }
+    },
+    {
+      "id": "chrome-report-bare",
+      "startedAt": "2026-09-25T09:27:45.416Z",
+      "measurementValid": true,
+      "finalObservation": "Browser tab: 51514186, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b\".\n0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b\n\t1 container view\n\t\t2 heading Report preview, Value: 1\n\t\t\t3 text Report preview\n\t\t4 text Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview\n\nThe focused UI element is 0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b",
+      "elapsedMs": 43703.50758300023,
+      "passed": true,
+      "actions": 6,
+      "cells": [
+        {
+          "marker": "bench-chrome-report-bare-start",
+          "at": "2026-09-25T09:27:45.410Z",
+          "usage": {
+            "input_tokens": 169526,
+            "cached_input_tokens": 169216,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 260,
+            "reasoning_output_tokens": 44,
+            "total_tokens": 169786
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-report-bare-step1",
+          "at": "2026-09-25T09:27:49.842Z",
+          "usage": {
+            "input_tokens": 170049,
+            "cached_input_tokens": 169472,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 77,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 170126
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-report-bare-step2",
+          "at": "2026-09-25T09:27:54.679Z",
+          "usage": {
+            "input_tokens": 170328,
+            "cached_input_tokens": 169984,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 77,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 170405
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-report-bare-step3",
+          "at": "2026-09-25T09:28:00.332Z",
+          "usage": {
+            "input_tokens": 170626,
+            "cached_input_tokens": 170240,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 77,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 170703
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-report-bare-step4",
+          "at": "2026-09-25T09:28:08.641Z",
+          "usage": {
+            "input_tokens": 170923,
+            "cached_input_tokens": 170496,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 77,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 171000
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-report-bare-step5",
+          "at": "2026-09-25T09:28:15.068Z",
+          "usage": {
+            "input_tokens": 171237,
+            "cached_input_tokens": 170880,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 77,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 171314
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-report-bare-step6",
+          "at": "2026-09-25T09:28:22.175Z",
+          "usage": {
+            "input_tokens": 171541,
+            "cached_input_tokens": 171136,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 88,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 171629
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-report-bare-finish",
+          "at": "2026-09-25T09:28:29.113Z",
+          "usage": {
+            "input_tokens": 171837,
+            "cached_input_tokens": 171392,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 125,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 171962
+          },
+          "model": "gpt-6-astra"
+        }
+      ],
+      "gptCalls": 8,
+      "gpt": {
+        "input_tokens": 1366067,
+        "cached_input_tokens": 1362816,
+        "output_tokens": 858,
+        "reasoning_output_tokens": 44,
+        "total_tokens": 1366925,
+        "uncached_input_tokens": 3251
+      },
+      "backgroundJev": {
+        "requests": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "events": []
+      }
+    },
+    {
+      "id": "cua-report-bare",
+      "startedAt": "2026-09-25T09:28:50.457Z",
+      "measurementValid": true,
+      "finalObservation": "\t\t\t\t5 HTML内容 Description: JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 Report preview, Value: 1\n\t\t\t\t\t\t\t8 文本 Report preview\n\t\t\t\t\t\t9 文本 Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview",
+      "elapsedMs": 57478.1539169997,
+      "passed": true,
+      "actions": 6,
+      "cells": [
+        {
+          "marker": "bench-cua-report-bare-start",
+          "at": "2026-09-25T09:28:50.451Z",
+          "usage": {
+            "input_tokens": 172008,
+            "cached_input_tokens": 171776,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 634,
+            "reasoning_output_tokens": 516,
+            "total_tokens": 172642
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-report-bare-open",
+          "at": "2026-09-25T09:28:57.330Z",
+          "usage": {
+            "input_tokens": 172684,
+            "cached_input_tokens": 171904,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 151,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 172835
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-report-bare-step1",
+          "at": "2026-09-25T09:29:05.788Z",
+          "usage": {
+            "input_tokens": 173011,
+            "cached_input_tokens": 172544,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 101,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 173112
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-report-bare-step2",
+          "at": "2026-09-25T09:29:14.549Z",
+          "usage": {
+            "input_tokens": 173235,
+            "cached_input_tokens": 172928,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 101,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 173336
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-report-bare-step3",
+          "at": "2026-09-25T09:29:20.407Z",
+          "usage": {
+            "input_tokens": 173480,
+            "cached_input_tokens": 173184,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 101,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 173581
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-report-bare-step4",
+          "at": "2026-09-25T09:29:29.844Z",
+          "usage": {
+            "input_tokens": 173724,
+            "cached_input_tokens": 173440,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 101,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 173825
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-report-bare-step5",
+          "at": "2026-09-25T09:29:35.676Z",
+          "usage": {
+            "input_tokens": 173985,
+            "cached_input_tokens": 173568,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 101,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 174086
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-report-bare-step6",
+          "at": "2026-09-25T09:29:41.492Z",
+          "usage": {
+            "input_tokens": 174234,
+            "cached_input_tokens": 173952,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 111,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 174345
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-report-bare-finish",
+          "at": "2026-09-25T09:29:47.930Z",
+          "usage": {
+            "input_tokens": 174470,
+            "cached_input_tokens": 174080,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 138,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 174608
+          },
+          "model": "gpt-6-astra"
+        }
+      ],
+      "gptCalls": 9,
+      "gpt": {
+        "input_tokens": 1560831,
+        "cached_input_tokens": 1557376,
+        "output_tokens": 1539,
+        "reasoning_output_tokens": 516,
+        "total_tokens": 1562370,
+        "uncached_input_tokens": 3455
+      },
+      "backgroundJev": {
+        "requests": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "events": []
+      }
+    },
+    {
+      "id": "cua-report-pilot",
+      "startedAt": "2026-09-25T09:29:56.593Z",
+      "measurementValid": true,
+      "receipt": {
+        "status": "needs_verification",
+        "reason": null,
+        "stageIndex": 0,
+        "evidence": "RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview",
+        "stateMayHaveChanged": false,
+        "metrics": {
+          "runs": 1,
+          "actions": 5,
+          "jevRequests": 5,
+          "inputTokens": 4053,
+          "outputTokens": 238,
+          "unknownUsage": 0,
+          "apiMs": 1701.0587909999304,
+          "elapsedMs": 6919.064750000369,
+          "handoffs": 0
+        },
+        "sessionMetrics": {
+          "runs": 2,
+          "actions": 5,
+          "jevRequests": 6,
+          "inputTokens": 4884,
+          "outputTokens": 280,
+          "unknownUsage": 0,
+          "apiMs": 2346.2061660001054,
+          "elapsedMs": 7639.343958000187,
+          "handoffs": 1
+        },
+        "instruction": "Codex must inspect this fresh finalObservation against the user request before claiming completion. If inadequate, observe natively again.",
+        "fullResultRetainedInHost": true,
+        "truncatedFields": [],
+        "finalObservation": {
+          "snapshot": "\t\t\t\t5 HTML内容 Description: JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 Report preview, Value: 1\n\t\t\t\t\t\t\t8 文本 Report preview\n\t\t\t\t\t\t9 文本 Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview",
+          "observedAt": 1790328638688,
+          "truncated": false
+        },
+        "finalObservationMs": 90.31158300023526
+      },
+      "jev": {
+        "runs": 2,
+        "actions": 5,
+        "jevRequests": 6,
+        "inputTokens": 4884,
+        "outputTokens": 280,
+        "unknownUsage": 0,
+        "apiMs": 2346.2061660001054,
+        "elapsedMs": 7639.343958000187,
+        "handoffs": 1
+      },
+      "finalObservation": "\t\t\t\t5 HTML内容 Description: JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=report&variant=b\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 Report preview, Value: 1\n\t\t\t\t\t\t\t8 文本 Report preview\n\t\t\t\t\t\t9 文本 Reference RPT-OR-EU-Q3-v3 | Orion Retail | Europe | 2026 Q3 | v3 | Approved | Read-only preview",
+      "fallback": "no_safe_candidate at initial Analytics branch",
+      "nativeActions": 1,
+      "elapsedMs": 49074.78633300029,
+      "passed": true,
+      "actions": 6,
+      "cells": [
+        {
+          "marker": "bench-cua-report-pilot-start",
+          "at": "2026-09-25T09:29:56.588Z",
+          "usage": {
+            "input_tokens": 174655,
+            "cached_input_tokens": 174336,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 211,
+            "reasoning_output_tokens": 29,
+            "total_tokens": 174866
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-report-pilot-open",
+          "at": "2026-09-25T09:30:05.011Z",
+          "usage": {
+            "input_tokens": 174929,
+            "cached_input_tokens": 174592,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 200,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 175129
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-report-pilot-run",
+          "at": "2026-09-25T09:30:12.806Z",
+          "usage": {
+            "input_tokens": 175305,
+            "cached_input_tokens": 174848,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 108,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 175413
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-report-pilot-fallback1",
+          "at": "2026-09-25T09:30:19.962Z",
+          "usage": {
+            "input_tokens": 175864,
+            "cached_input_tokens": 175232,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 99,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 175963
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-report-pilot-fallback2",
+          "at": "2026-09-25T09:30:25.582Z",
+          "usage": {
+            "input_tokens": 176139,
+            "cached_input_tokens": 175744,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 108,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 176247
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-report-pilot-resume",
+          "at": "2026-09-25T09:30:31.673Z",
+          "usage": {
+            "input_tokens": 176370,
+            "cached_input_tokens": 176000,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 106,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 176476
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-report-pilot-finish",
+          "at": "2026-09-25T09:30:45.663Z",
+          "usage": {
+            "input_tokens": 176869,
+            "cached_input_tokens": 176256,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 153,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 177022
+          },
+          "model": "gpt-6-astra"
+        }
+      ],
+      "gptCalls": 7,
+      "gpt": {
+        "input_tokens": 1230131,
+        "cached_input_tokens": 1227008,
+        "output_tokens": 985,
+        "reasoning_output_tokens": 29,
+        "total_tokens": 1231116,
+        "uncached_input_tokens": 3123
+      },
+      "backgroundJev": {
+        "requests": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "events": []
+      }
+    },
+    {
+      "id": "cua-document-pilot",
+      "startedAt": "2026-09-25T09:31:15.616Z",
+      "measurementValid": true,
+      "receipt": {
+        "status": "needs_verification",
+        "reason": null,
+        "stageIndex": 0,
+        "evidence": "DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview",
+        "stateMayHaveChanged": false,
+        "metrics": {
+          "runs": 1,
+          "actions": 6,
+          "jevRequests": 6,
+          "inputTokens": 4938,
+          "outputTokens": 282,
+          "unknownUsage": 0,
+          "apiMs": 1897.1020009987988,
+          "elapsedMs": 8049.547250000294,
+          "handoffs": 0
+        },
+        "sessionMetrics": {
+          "runs": 1,
+          "actions": 6,
+          "jevRequests": 6,
+          "inputTokens": 4938,
+          "outputTokens": 282,
+          "unknownUsage": 0,
+          "apiMs": 1897.1020009987988,
+          "elapsedMs": 8049.547250000294,
+          "handoffs": 0
+        },
+        "instruction": "Codex must inspect this fresh finalObservation against the user request before claiming completion. If inadequate, observe natively again.",
+        "fullResultRetainedInHost": true,
+        "truncatedFields": [],
+        "finalObservation": {
+          "snapshot": "\t\t\t\t5 HTML内容 Description: JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 Document preview, Value: 1\n\t\t\t\t\t\t\t8 文本 Document preview\n\t\t\t\t\t\t9 文本 Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview",
+          "observedAt": 1790328699439,
+          "truncated": false
+        },
+        "finalObservationMs": 68.51929099997506,
+        "admission": {
+          "expectedSteps": 6,
+          "samples": 18,
+          "estimatedStepMs": 1006.5,
+          "requiredWaitMs": 6032.5
+        }
+      },
+      "jev": {
+        "runs": 1,
+        "actions": 6,
+        "jevRequests": 6,
+        "inputTokens": 4938,
+        "outputTokens": 282,
+        "unknownUsage": 0,
+        "apiMs": 1897.1020009987988,
+        "elapsedMs": 8049.547250000294,
+        "handoffs": 0
+      },
+      "finalObservation": "\t\t\t\t5 HTML内容 Description: JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 Document preview, Value: 1\n\t\t\t\t\t\t\t8 文本 Document preview\n\t\t\t\t\t\t9 文本 Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview",
+      "elapsedMs": 30094.816292000003,
+      "passed": true,
+      "actions": 6,
+      "cells": [
+        {
+          "marker": "bench-cua-document-pilot-start",
+          "at": "2026-09-25T09:31:15.610Z",
+          "usage": {
+            "input_tokens": 177069,
+            "cached_input_tokens": 176768,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 813,
+            "reasoning_output_tokens": 619,
+            "total_tokens": 177882
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-document-pilot-open",
+          "at": "2026-09-25T09:31:24.561Z",
+          "usage": {
+            "input_tokens": 177945,
+            "cached_input_tokens": 177024,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 199,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 178144
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-document-pilot-run",
+          "at": "2026-09-25T09:31:31.315Z",
+          "usage": {
+            "input_tokens": 178318,
+            "cached_input_tokens": 177792,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 108,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 178426
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-document-pilot-finish",
+          "at": "2026-09-25T09:31:45.706Z",
+          "usage": {
+            "input_tokens": 178844,
+            "cached_input_tokens": 178176,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 146,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 178990
+          },
+          "model": "gpt-6-astra"
+        }
+      ],
+      "gptCalls": 4,
+      "gpt": {
+        "input_tokens": 712176,
+        "cached_input_tokens": 709760,
+        "output_tokens": 1266,
+        "reasoning_output_tokens": 619,
+        "total_tokens": 713442,
+        "uncached_input_tokens": 2416
+      },
+      "backgroundJev": {
+        "requests": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "events": []
+      }
+    },
+    {
+      "id": "cua-document-bare",
+      "startedAt": "2026-09-25T09:31:51.256Z",
+      "measurementValid": true,
+      "finalObservation": "\t\t\t\t5 HTML内容 Description: JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 Document preview, Value: 1\n\t\t\t\t\t\t\t8 文本 Document preview\n\t\t\t\t\t\t9 文本 Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview",
+      "elapsedMs": 61551.09725000011,
+      "passed": true,
+      "actions": 6,
+      "cells": [
+        {
+          "marker": "bench-cua-document-bare-start",
+          "at": "2026-09-25T09:31:51.251Z",
+          "usage": {
+            "input_tokens": 179037,
+            "cached_input_tokens": 178688,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 116,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 179153
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-document-bare-open",
+          "at": "2026-09-25T09:31:58.053Z",
+          "usage": {
+            "input_tokens": 179216,
+            "cached_input_tokens": 178944,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 150,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 179366
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-document-bare-step1",
+          "at": "2026-09-25T09:32:05.350Z",
+          "usage": {
+            "input_tokens": 179540,
+            "cached_input_tokens": 179072,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 101,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 179641
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-document-bare-step2",
+          "at": "2026-09-25T09:32:15.208Z",
+          "usage": {
+            "input_tokens": 179766,
+            "cached_input_tokens": 179456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 101,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 179867
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-document-bare-step3",
+          "at": "2026-09-25T09:32:20.883Z",
+          "usage": {
+            "input_tokens": 180006,
+            "cached_input_tokens": 179712,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 101,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 180107
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-document-bare-step4",
+          "at": "2026-09-25T09:32:27.180Z",
+          "usage": {
+            "input_tokens": 180242,
+            "cached_input_tokens": 179968,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 101,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 180343
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-document-bare-step5",
+          "at": "2026-09-25T09:32:32.653Z",
+          "usage": {
+            "input_tokens": 180493,
+            "cached_input_tokens": 180096,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 101,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 180594
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-document-bare-step6",
+          "at": "2026-09-25T09:32:44.623Z",
+          "usage": {
+            "input_tokens": 180735,
+            "cached_input_tokens": 180352,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 111,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 180846
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-cua-document-bare-finish",
+          "at": "2026-09-25T09:32:52.798Z",
+          "usage": {
+            "input_tokens": 180968,
+            "cached_input_tokens": 180608,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 138,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 181106
+          },
+          "model": "gpt-6-astra"
+        }
+      ],
+      "gptCalls": 9,
+      "gpt": {
+        "input_tokens": 1620003,
+        "cached_input_tokens": 1616896,
+        "output_tokens": 1020,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 1621023,
+        "uncached_input_tokens": 3107
+      },
+      "backgroundJev": {
+        "requests": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "events": []
+      }
+    },
+    {
+      "id": "chrome-document2-bare",
+      "startedAt": "2026-09-25T09:33:24.434Z",
+      "measurementValid": true,
+      "supplement": true,
+      "finalObservation": "Browser tab: 51514190, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\".\n0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\n\t1 container view\n\t\t2 heading Document preview, Value: 1\n\t\t\t3 text Document preview\n\t\t4 text Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview\n\nThe focused UI element is 0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a",
+      "elapsedMs": 45227.51087500015,
+      "passed": true,
+      "actions": 6,
+      "cells": [
+        {
+          "marker": "bench-chrome-document2-bare-start",
+          "at": "2026-09-25T09:33:24.426Z",
+          "usage": {
+            "input_tokens": 181991,
+            "cached_input_tokens": 181120,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 137,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 182128
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document2-bare-step1",
+          "at": "2026-09-25T09:33:30.126Z",
+          "usage": {
+            "input_tokens": 182387,
+            "cached_input_tokens": 181888,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 78,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 182465
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document2-bare-step2",
+          "at": "2026-09-25T09:33:34.628Z",
+          "usage": {
+            "input_tokens": 182667,
+            "cached_input_tokens": 182272,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 78,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 182745
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document2-bare-step3",
+          "at": "2026-09-25T09:33:44.575Z",
+          "usage": {
+            "input_tokens": 182959,
+            "cached_input_tokens": 182528,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 78,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 183037
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document2-bare-step4",
+          "at": "2026-09-25T09:33:51.284Z",
+          "usage": {
+            "input_tokens": 183247,
+            "cached_input_tokens": 182912,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 78,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 183325
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document2-bare-step5",
+          "at": "2026-09-25T09:33:56.097Z",
+          "usage": {
+            "input_tokens": 183550,
+            "cached_input_tokens": 183168,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 78,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 183628
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document2-bare-step6",
+          "at": "2026-09-25T09:34:01.045Z",
+          "usage": {
+            "input_tokens": 183846,
+            "cached_input_tokens": 183424,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 89,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 183935
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document2-bare-finish",
+          "at": "2026-09-25T09:34:09.655Z",
+          "usage": {
+            "input_tokens": 184138,
+            "cached_input_tokens": 183808,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 126,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 184264
+          },
+          "model": "gpt-6-astra"
+        }
+      ],
+      "gptCalls": 8,
+      "gpt": {
+        "input_tokens": 1464785,
+        "cached_input_tokens": 1461120,
+        "output_tokens": 742,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 1465527,
+        "uncached_input_tokens": 3665
+      },
+      "backgroundJev": {
+        "requests": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "events": []
+      }
+    },
+    {
+      "id": "chrome-document2-pilot",
+      "startedAt": "2026-09-25T09:34:18.915Z",
+      "measurementValid": true,
+      "supplement": true,
+      "receipt": {
+        "status": "codex_review_required",
+        "reason": "HOST_INSUFFICIENT_TASK_BUDGET",
+        "budget": {
+          "calls": 14,
+          "bytes": 356542,
+          "waitMs": 5403.772957000416,
+          "cooldown": false,
+          "windowEndsAt": 1790330400000
+        },
+        "admission": {
+          "expectedSteps": 6,
+          "samples": 20,
+          "estimatedStepMs": 946.5,
+          "requiredWaitMs": 5732.5
+        },
+        "metrics": {
+          "runs": 0,
+          "actions": 0,
+          "jevRequests": 0,
+          "inputTokens": 0,
+          "outputTokens": 0,
+          "unknownUsage": 0,
+          "apiMs": 0,
+          "elapsedMs": 0,
+          "handoffs": 0
+        },
+        "instruction": "Continue natively. No browser action or paid request was made. Do not change task identity or budget to retry."
+      },
+      "jev": {
+        "runs": 0,
+        "actions": 0,
+        "jevRequests": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "unknownUsage": 0,
+        "apiMs": 0,
+        "elapsedMs": 0,
+        "handoffs": 0
+      },
+      "finalObservation": "Browser tab: 51514194, Title: \"JevPilot workflow benchmark\", URL: \"http://127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\".\n0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a\n\t1 container view\n\t\t2 heading Document preview, Value: 1\n\t\t\t3 text Document preview\n\t\t4 text Reference DOC-VEGA-EN-2.4 | Vega operations runbook | English | v2.4 | Published | Read-only preview\n\nThe focused UI element is 0 AXWebArea JevPilot workflow benchmark, URL: 127.0.0.1:18749/browser-workflow-fixture.html?case=document&variant=a",
+      "fallback": "HOST_INSUFFICIENT_TASK_BUDGET",
+      "elapsedMs": 92967.58949999977,
+      "passed": true,
+      "actions": 6,
+      "nativeActions": 6,
+      "cells": [
+        {
+          "marker": "bench-chrome-document2-pilot-start",
+          "at": "2026-09-25T09:34:18.909Z",
+          "usage": {
+            "input_tokens": 184311,
+            "cached_input_tokens": 184064,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 182,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 184493
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document2-pilot-run",
+          "at": "2026-09-25T09:34:28.855Z",
+          "usage": {
+            "input_tokens": 184752,
+            "cached_input_tokens": 184192,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 109,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 184861
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document2-pilot-fallback",
+          "at": "2026-09-25T09:35:14.171Z",
+          "usage": {
+            "input_tokens": 185041,
+            "cached_input_tokens": 184704,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1086,
+            "reasoning_output_tokens": 993,
+            "total_tokens": 186127
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document2-pilot-step1",
+          "at": "2026-09-25T09:35:18.778Z",
+          "usage": {
+            "input_tokens": 186386,
+            "cached_input_tokens": 184960,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 78,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 186464
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document2-pilot-step2",
+          "at": "2026-09-25T09:35:23.337Z",
+          "usage": {
+            "input_tokens": 186666,
+            "cached_input_tokens": 186240,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 78,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 186744
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document2-pilot-step3",
+          "at": "2026-09-25T09:35:28.063Z",
+          "usage": {
+            "input_tokens": 186958,
+            "cached_input_tokens": 186624,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 78,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 187036
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document2-pilot-step4",
+          "at": "2026-09-25T09:35:35.171Z",
+          "usage": {
+            "input_tokens": 187246,
+            "cached_input_tokens": 186880,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 78,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 187324
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document2-pilot-step5",
+          "at": "2026-09-25T09:35:39.862Z",
+          "usage": {
+            "input_tokens": 187549,
+            "cached_input_tokens": 187136,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 78,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 187627
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document2-pilot-step6",
+          "at": "2026-09-25T09:35:45.232Z",
+          "usage": {
+            "input_tokens": 187845,
+            "cached_input_tokens": 187392,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 89,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 187934
+          },
+          "model": "gpt-6-astra"
+        },
+        {
+          "marker": "bench-chrome-document2-pilot-finish",
+          "at": "2026-09-25T09:35:51.877Z",
+          "usage": {
+            "input_tokens": 188137,
+            "cached_input_tokens": 187776,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 144,
+            "reasoning_output_tokens": 0,
+            "total_tokens": 188281
+          },
+          "model": "gpt-6-astra"
+        }
+      ],
+      "gptCalls": 10,
+      "gpt": {
+        "input_tokens": 1864891,
+        "cached_input_tokens": 1859968,
+        "output_tokens": 2000,
+        "reasoning_output_tokens": 993,
+        "total_tokens": 1866891,
+        "uncached_input_tokens": 4923
+      },
+      "backgroundJev": {
+        "requests": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "events": []
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "platform": "chrome",
+      "task": "document",
+      "bothPassed": true,
+      "measurementValid": false,
+      "timePercent": null,
+      "gptTotalPercent": null,
+      "gptUncachedPercent": null
+    },
+    {
+      "platform": "chrome",
+      "task": "report",
+      "bothPassed": true,
+      "measurementValid": true,
+      "timePercent": -2.4589684385379673,
+      "gptTotalPercent": -26.157323920478447,
+      "gptUncachedPercent": 1.0458320516764097
+    },
+    {
+      "platform": "chrome",
+      "task": "document2",
+      "bothPassed": true,
+      "measurementValid": true,
+      "timePercent": 105.55539692852807,
+      "gptTotalPercent": 27.387008222980548,
+      "gptUncachedPercent": 34.324693042291955
+    },
+    {
+      "platform": "cua",
+      "task": "document",
+      "bothPassed": true,
+      "measurementValid": true,
+      "timePercent": -51.105962953406234,
+      "gptTotalPercent": -55.988163030382665,
+      "gptUncachedPercent": -22.240102993241074
+    },
+    {
+      "platform": "cua",
+      "task": "report",
+      "bothPassed": true,
+      "measurementValid": true,
+      "timePercent": -14.62010696469852,
+      "gptTotalPercent": -21.20202000806467,
+      "gptUncachedPercent": -9.609261939218527
+    }
+  ]
+}

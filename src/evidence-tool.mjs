@@ -1,10 +1,11 @@
 // Closed-world evidence processing only: no execution, configuration, memory,
 // browser actions or external retrieval. Workspace retrieval remains bounded and read-only.
+import {isAbsolute} from 'node:path';
 export const evidenceTool={
   name:'jev_evidence',
   description:'Read-only evidence; no skill/status prerequisite. prepare {goal,path} filters a large text file; prepare {goal,value,source} handles an existing result in the same exec cell: retain raw data, emit returned value. investigate {goal,queries,paths?} finds literal windows, not exhaustive semantic coverage. select {goal,items} filters candidates. recall {artifactId,ids?} or {artifactId,query} recovers saved originals; follow nextOffset. Use native tools for small/exact reads, code/JSON, media and unfinished output. On failure use original/native tools. No execution authority.',
   annotations:{readOnlyHint:true,destructiveHint:false,openWorldHint:false},
-  inputSchema:{type:'object',properties:{workspace:{type:'string'},operation:{type:'string',enum:['prepare','select','recall','investigate']},input:{type:'object',properties:{
+  inputSchema:{type:'object',properties:{workspace:{type:'string',description:"Absolute task working directory (use the task's cwd; never '.')."},operation:{type:'string',enum:['prepare','select','recall','investigate']},input:{type:'object',properties:{
     goal:{type:'string',description:'Evidence needed for this task.'},
     queries:{type:'array',items:{type:'string'},minItems:1,maxItems:6,description:'Investigate: literal terms, case-insensitive OR.'},
     paths:{type:'array',items:{type:'string'},maxItems:20,description:'Investigate: paths, default ["."], rg visibility.'},
@@ -27,5 +28,6 @@ export const evidenceTool={
 };
 export function evidenceArguments(args){
   if(!args||!Object.hasOwn({prepare:1,select:1,recall:1,investigate:1},args.operation))throw Object.assign(new Error('READ_ONLY_OPERATION_REQUIRED'),{code:'READ_ONLY_OPERATION_REQUIRED'});
+  if(typeof args.workspace!=='string'||!isAbsolute(args.workspace))throw Object.assign(new Error('WORKSPACE_ABSOLUTE_REQUIRED'),{code:'WORKSPACE_ABSOLUTE_REQUIRED'});
   return{workspace:args.workspace,operation:({prepare:'prepare_output',recall:'recall_output'})[args.operation]??args.operation,input:args.input};
 }

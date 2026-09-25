@@ -1,0 +1,11 @@
+{
+  "at": "2026-09-25T09:33:18.411091+00:00",
+  "reason": "First Chrome document native episode completed UI but result-saving helper captured an undefined REPL variable. Keep that original and recovery; exclude only its pair from performance aggregates.",
+  "order": [
+    "chrome-document2-bare",
+    "chrome-document2-pilot"
+  ],
+  "fixture": "same document variant a",
+  "source": "same frozen 20260925164800 candidate",
+  "policy": "No product change. Inline recording replaces faulty helper. Original sample remains public; no selective model retries. Shared real task budget unchanged; additional planned Jev calls at most 6, total planned browser calls 30."
+}

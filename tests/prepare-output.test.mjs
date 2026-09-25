@@ -52,8 +52,9 @@ test('same candidate judgment is cached; repeated raw recall never repeats execu
 test('read-only evidence dispatch rejects execution and configuration operations',()=>{
   assert.equal(evidenceTool.annotations.readOnlyHint,true);
   for(const operation of ['configure','browser_consume','memory','run_checks','__proto__','constructor'])assert.throws(()=>evidenceArguments({operation}),{code:'READ_ONLY_OPERATION_REQUIRED'});
-  assert.equal(evidenceArguments({operation:'prepare',input:{}}).operation,'prepare_output');
-  assert.equal(evidenceArguments({operation:'select',input:{}}).operation,'select');
+  for(const workspace of [undefined,'','.','relative/project'])assert.throws(()=>evidenceArguments({workspace,operation:'prepare',input:{}}),{code:'WORKSPACE_ABSOLUTE_REQUIRED'});
+  assert.equal(evidenceArguments({workspace:tmpdir(),operation:'prepare',input:{}}).operation,'prepare_output');
+  assert.equal(evidenceArguments({workspace:tmpdir(),operation:'select',input:{}}).operation,'select');
 });
 test('nested native command hook adds no second judgment; direct hooks remain functional',async t=>{
   const f=fixture(t),auto=createAutomation({store:f.store,key:'fixture',send:f.send});

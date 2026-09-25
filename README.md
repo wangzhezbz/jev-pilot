@@ -14,6 +14,8 @@
 
 Runnable development preview. All 14 modules share one MCP entry point, one implicit skill and a desktop adapter. Codex plans, implements and verifies; Jev handles bounded decisions.
 
+Latest [comprehensive benchmark (Chinese)](docs/reports/comprehensive-20260925/README.zh-CN.md): 36 native model tasks and 10 real UI runs, with all final task checks passing. Results differ by model and workflow; Astra regressions, browser handoffs and budget fallback are retained alongside positive results. CSV, native usage and reproducible protocols are included.
+
 ## Capabilities
 
 | # | Feature | Description |
@@ -45,7 +47,7 @@ Portable tests pass on macOS, Windows and Linux. Native macOS engine routing and
 
 Recoverable context handoff does not replace native conversation history or reclaim existing tokens. No universal speed, token or quota savings are claimed. See the [acceptance report](docs/reports/ACCEPTANCE.md), [feature boundaries](docs/FEATURES.md) and [roadmap](docs/ROADMAP.md).
 
-The main model remains the one selected by the user; automatic substitution with a smaller model is not enabled. See the [model-preservation policy](docs/MODEL-PRESERVATION.md). The latest [matched-entry effort comparison](docs/reports/matched-routing-20260924/README.zh-CN.md) attempted 4 tasks: 3 passed and 1 reached its deadline; routing gains remain unproven. The [fixed-model delegation comparison](docs/reports/delegation-ab-20260924/README.zh-CN.md) passed 4/4: known GPT + Jev tokens −9.74%, time +12.60%, uncached GPT input +43.77%. These component results do not establish desktop speedups or quota savings. New reports are in Chinese; the [earlier 12-run comparison](docs/reports/factorial-20260924/README.md) is retained.
+The main model remains the one selected by the user; automatic substitution with a smaller model is not enabled. See the [model-preservation policy](docs/MODEL-PRESERVATION.md). The earlier [matched-entry effort comparison](docs/reports/matched-routing-20260924/README.zh-CN.md) attempted 4 tasks: 3 passed and 1 reached its deadline; routing gains remain unproven. The [fixed-model delegation comparison](docs/reports/delegation-ab-20260924/README.zh-CN.md) passed 4/4: known GPT + Jev tokens −9.74%, time +12.60%, uncached GPT input +43.77%. These component results do not establish desktop speedups or quota savings. New reports are in Chinese; the [earlier 12-run comparison](docs/reports/factorial-20260924/README.md) is retained.
 
 New [evidence handoff optimization report](docs/reports/evidence-handoff-20260924/README.md): all four component runs passed, with mean selection latency −50.17% and equal Jev token usage. This is not an end-to-end Codex speedup. Coverage-aware text, targeted recall and compact output are implemented.
 

@@ -1,0 +1,46 @@
+[
+  {
+    "model": "gpt-6-sol",
+    "task": "repository",
+    "repeat": 0,
+    "arm": "combined",
+    "totalTokenDelta": 37783,
+    "extraGenerationBase": 14780,
+    "repeatedFirstInputDifference": 7098,
+    "historyGrowthDifference": 16177,
+    "outputDifference": -272
+  },
+  {
+    "model": "gpt-6-sol",
+    "task": "semantic",
+    "repeat": 0,
+    "arm": "combined",
+    "totalTokenDelta": -28062,
+    "extraGenerationBase": -44103,
+    "repeatedFirstInputDifference": 7301,
+    "historyGrowthDifference": 9779,
+    "outputDifference": -1039
+  },
+  {
+    "model": "gpt-6-sol",
+    "task": "repository",
+    "repeat": 1,
+    "arm": "combined",
+    "totalTokenDelta": 67149,
+    "extraGenerationBase": 59100,
+    "repeatedFirstInputDifference": 12168,
+    "historyGrowthDifference": -3749,
+    "outputDifference": -370
+  },
+  {
+    "model": "gpt-6-sol",
+    "task": "semantic",
+    "repeat": 1,
+    "arm": "combined",
+    "totalTokenDelta": -30884,
+    "extraGenerationBase": -29416,
+    "repeatedFirstInputDifference": 5120,
+    "historyGrowthDifference": -5059,
+    "outputDifference": -1529
+  }
+]
