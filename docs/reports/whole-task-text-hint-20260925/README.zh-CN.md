@@ -58,6 +58,8 @@
 
 首次 CI：macOS/Linux 通过，Windows 的自动检查点用例缺失文件哈希。旧实现吞掉了 Git 查询失败原因，因此不能确认超时是唯一根因。已将 Windows 后台 Git 查询时限从 500 ms 调整为 2 s，保留其他平台 500 ms；工作仍在任务完成后异步执行，不增加模型生成前的等待。增加 timeout/output-limit/unavailable 诊断与两项回归，最终本机 351/351 通过。此改动晚于上述付费对照，不冒充它已经经过新的 Windows 桌面性能测量。
 
+修正提交 `28420a0` 的 [Windows、macOS、Linux CI](https://github.com/wangzhezbz/jev-pilot/actions/runs/36098480601) 已全部通过；保留首次失败记录，见 [ci.json](ci.json) 和 [deployment.json](deployment.json)。这证明构建/回归检查通过，不等价于 Windows/Linux 桌面交互验收。
+
 ## 数据与复现
 
 [逐次 CSV](runs.csv) · [逐生成用量](generations.csv) · [费用与 unknown](costs.json) · [完整脱敏轨迹](runs.json) · [协议与哈希](protocol.json) · [汇总](summary.json) · [文件校验](manifest.json)

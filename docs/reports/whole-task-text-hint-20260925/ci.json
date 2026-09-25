@@ -1,0 +1,22 @@
+{
+  "implementationCommit": "28420a0842cb4129b52e2035502091c6de75daa2",
+  "runId": 36098480601,
+  "url": "https://github.com/wangzhezbz/jev-pilot/actions/runs/36098480601",
+  "jobs": [
+    {
+      "name": "verify (ubuntu-latest)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "verify (windows-latest)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "verify (macos-latest)",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

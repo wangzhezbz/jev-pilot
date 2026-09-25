@@ -76,5 +76,27 @@
     "windowsTest": "automatic checkpoint records observed progress and changed files without asserting completion",
     "observedFailure": "Missing file.txt source hash; previous implementation swallowed Git error details.",
     "rootCauseCertainty": "500 ms Git timeout suspected, not proven by the old diagnostic-free failure."
+  },
+  "finalCi": {
+    "implementationCommit": "28420a0842cb4129b52e2035502091c6de75daa2",
+    "runId": 36098480601,
+    "url": "https://github.com/wangzhezbz/jev-pilot/actions/runs/36098480601",
+    "jobs": [
+      {
+        "name": "verify (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (windows-latest)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "verify (macos-latest)",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ]
   }
 }

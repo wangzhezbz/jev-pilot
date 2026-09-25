@@ -3,10 +3,11 @@
   "complete": true,
   "reportFiles": {
     "README.md": "ea2731ad3979a53e79c496afe825798365365e55924895618b0790d052d5b75f",
-    "README.zh-CN.md": "3236b5dfb9015869c42fc8239494337b73f789e4ae12e2fa4dd1dc71b57d2885",
+    "README.zh-CN.md": "ee8fd127395945122f2be67f28a6120d5c9674ee5b869ed5cff2b9f17fc246c1",
     "accounting.json": "25b5d391c990a2bd18007a3d79ee6f3a15b8a8fa804d5952336ddd4660556307",
+    "ci.json": "a7f7141aa944910afa728c8d8ffb020204a40aa8ea146a13e3330be823f99106",
     "costs.json": "da6d36e1ec007d83869e562a4afc0f0cfd04da99bc7ef3f0e9812948084d9ec4",
-    "deployment.json": "5365d77b603fcf2d493d8d8deaf95104ee50070ad90d2935f4660042e5ea248a",
+    "deployment.json": "4d0f8fe93a74cce831b2cc5e00e7d60d15d4d57cdedb2e447a6b0ca468c20a9e",
     "generations.csv": "947f3ca5780206bb2f30cb56449a660a2cf27b49a01859fb1eaff18ee47f96b8",
     "protocol.json": "3bc573b184b49207628f1e81c64e3f68b3b99a5772271658e222bdd1f9e9278d",
     "runs.csv": "47a422cc2f17071dbe55ba47556a0dadf91cb362c9f8d4d70090dbc3cba60c4b",
