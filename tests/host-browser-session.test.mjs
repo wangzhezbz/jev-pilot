@@ -175,3 +175,13 @@ test('literal-contract invariant still takes precedence over proof in a real ses
   const result = await f.session.run(task);
   assert.equal(result.reason, 'HOST_INVARIANT_FAILED'); assert.equal(f.requests.length, 0);
 });
+
+test('localized changed observations discard the stale ticket and retry once within existing budgets',async t=>{
+ const f=fixture(t,{snapshot:(s,n)=>`${n===1?'English':'中文'} screen ${s}`});f.driver.reobserveOnChange=true;
+ const r=await f.session.run(f.task);assert.equal(r.status,'needs_verification');assert.equal(f.clicks(),2);assert.equal(f.requests.length,3);
+ assert.equal(f.store.list(f.store.project(f.workspace),'browser_ticket').filter(x=>x.consumed).length,3);
+});
+test('persistent translation churn stops after one refresh and never clicks a stale target',async t=>{
+ const f=fixture(t,{snapshot:(s,n)=>'changed '+n});f.driver.reobserveOnChange=true;
+ const r=await f.session.run(f.task);assert.equal(r.reason,'STALE_OBSERVATION');assert.equal(f.clicks(),0);assert.equal(f.requests.length,2);assert.equal(r.snapshot,'changed 3');
+});

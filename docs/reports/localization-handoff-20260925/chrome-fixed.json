@@ -1,0 +1,86 @@
+{
+  "receipt": {
+    "status": "needs_verification",
+    "reason": null,
+    "stageIndex": 1,
+    "evidence": "Larch | US East | r18 | Mira | replica lag | not executed",
+    "stateMayHaveChanged": false,
+    "metrics": {
+      "runs": 1,
+      "actions": 5,
+      "jevRequests": 5,
+      "inputTokens": 4542,
+      "outputTokens": 265,
+      "unknownUsage": 0,
+      "apiMs": 1690.260958000028,
+      "elapsedMs": 2644.29595900001,
+      "handoffs": 0
+    },
+    "sessionMetrics": {
+      "runs": 1,
+      "actions": 5,
+      "jevRequests": 5,
+      "inputTokens": 4542,
+      "outputTokens": 265,
+      "unknownUsage": 0,
+      "apiMs": 1690.260958000028,
+      "elapsedMs": 2644.29595900001,
+      "handoffs": 0
+    },
+    "instruction": "Codex must inspect this fresh finalObservation against the user request before claiming completion. If inadequate, observe natively again.",
+    "fullResultRetainedInHost": true,
+    "truncatedFields": [],
+    "finalObservation": {
+      "snapshot": "Browser tab: 51514258, Title: \"JevPilot Holdout Lab\", URL: \"http://127.0.0.1:8876/holdout-browser.html\".\n1 AXWebArea JevPilot Holdout Lab, URL: 127.0.0.1:8876/holdout-browser.html\n\t2 container app\n\t\t3 heading JevPilot Holdout Lab, Value: 1\n\t\t\t4 text JevPilot Holdout Lab\n\t\t5 heading VERIFIED READ-ONLY RECORD, Value: 2\n\t\t\t6 text VERIFIED READ-ONLY RECORD\n\t\t7 text Readiness reports | Service: Larch | Region: US East | Revision: r18 — approved | Readiness: conditional; Blocker: replica lag; Owner: Mira; Production rollout: not executed\n\t\t8 text Synthetic read-only fixture — no production action\n\nThe focused UI element is 1 AXWebArea JevPilot Holdout Lab, URL: 127.0.0.1:8876/holdout-browser.html",
+      "observedAt": 1790343838187,
+      "truncated": false
+    },
+    "finalObservationMs": 14.063624999951571,
+    "nextDelegation": {
+      "maxAffordableSteps": 9,
+      "windowEndsAt": 1790344800000,
+      "advisoryOnly": true,
+      "instruction": "Use native tools when the next goal exceeds this estimate. No status/diagnostic call or retry is needed for ordinary budget refusal. Capacity is not reserved; admission is rechecked on run."
+    },
+    "admission": {
+      "expectedSteps": 5,
+      "samples": 15,
+      "estimatedStepMs": 1014,
+      "requiredWaitMs": 5056
+    }
+  },
+  "history": [
+    {
+      "action": "Readiness reports",
+      "stage": "stage_0",
+      "progress": true,
+      "probability": 0.99
+    },
+    {
+      "action": "Larch",
+      "stage": "stage_1",
+      "progress": true,
+      "probability": 0.91
+    },
+    {
+      "action": "US East",
+      "stage": "stage_1",
+      "progress": true,
+      "probability": 0.98
+    },
+    {
+      "action": "r18 — approved",
+      "stage": "stage_1",
+      "progress": true,
+      "probability": 0.99
+    },
+    {
+      "action": "Open verified record",
+      "stage": "stage_1",
+      "progress": true,
+      "probability": 0.97
+    }
+  ],
+  "finalVerified": true,
+  "scope": "Known regression after fixes; no GPT time/token AB measured"
+}

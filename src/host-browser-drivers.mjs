@@ -13,6 +13,21 @@ const match = (name, pattern) => {
   if (pattern instanceof RegExp) { pattern.lastIndex = 0; return pattern.test(name); }
   return false;
 };
+// Agent-supplied, reviewed equivalents for this surface only. Never infer
+// authorization from a page's own translation dictionary or model response.
+export function createLocalizedPolicy({ actions, denyNames = [] }) {
+  requireValue(Array.isArray(actions) && actions.length > 0 && actions.length <= 40, 'INVALID_HOST_LOCALIZATION');
+  const seen = new Set();
+  const groups = actions.map(names => {
+    requireValue(Array.isArray(names) && names.length > 0 && names.length <= 5, 'INVALID_HOST_LOCALIZATION');
+    return names.map(name => {
+      requireValue(typeof name === 'string' && name.trim() === name && name.length > 0 && name.length <= 300 && !seen.has(name), 'INVALID_HOST_LOCALIZATION');
+      seen.add(name); return name;
+    });
+  });
+  const policy = { allowNames: groups.flat(), denyNames: [...denyNames], equivalentNames: groups };
+  checkPolicy(policy); return policy;
+}
 // Bind to an identity observed through the official host. Select an exact
 // subtree, not a footer string: AX may merge text or localize role names.
 export function createWebScope({title, url}) {
@@ -48,16 +63,23 @@ function observation(raw, policy, scope) {
   const entries = snapshot.split('\n').filter(line => !/\((?:disabled|unavailable)\)/i.test(line)).map(line => line.replace(/\r$/,'').match(control)).filter(Boolean)
     .map(m => ({ id: 'ax_' + m[1], text: accessibleName(m[3]), description: m[3].trim(), role: m[2], target: Number(m[1]), op: 'click' }));
   const counts = new Map(); for (const entry of entries) counts.set(entry.text, (counts.get(entry.text) || 0) + 1);
+  const groups = policy.equivalentNames || [];
+  const ambiguous = new Set(groups.filter(names => entries.filter(c => names.includes(c.text)).length > 1).flat());
   const candidates = entries.filter(c => counts.get(c.text) === 1 && !/\b(disabled|unavailable)\b|已停用|不可用/i.test(c.text))
-    .filter(c => policy.allowNames.some(p => match(c.text, p)) && !(policy.denyNames || []).some(p => match(c.text, p) || match(c.description, p)))
+    .filter(c => !ambiguous.has(c.text))
+    .filter(c => policy.allowNames.some(p => match(c.text, p)) && !(policy.denyNames || []).some(p => match(c.text, p) || match(c.description, p) || groups.some(names => names.includes(c.text) && names.some(name => match(name,p)))))
     // Consequential labels always hand back, even if included in the host's allow list.
-    .map(c => ({ ...c, requiresApproval: reserved.test(c.description) && !(readOnlyPreview.test(c.text) && !reserved.test(c.description.slice(c.text.length))) }));
+    .map(c => ({ ...c, requiresApproval: (reserved.test(c.description) && !(readOnlyPreview.test(c.text) && !reserved.test(c.description.slice(c.text.length)))) ||
+      groups.some(names => names.includes(c.text) && names.some(name => reserved.test(name) && !readOnlyPreview.test(name))) }));
   requireValue(candidates.length <= 40, 'HOST_CANDIDATES_TOO_LARGE');
   return { snapshot, observedAt: Date.now(), candidates, semanticHash: hash(semanticState(snapshot)) };
 }
 function checkPolicy(policy) {
   requireValue(policy && Array.isArray(policy.allowNames) && policy.allowNames.length > 0 && policy.allowNames.length <= 100, 'HOST_ALLOWLIST_REQUIRED');
   requireValue([...policy.allowNames, ...(policy.denyNames || [])].every(p => typeof p === 'string' || p instanceof RegExp), 'INVALID_HOST_POLICY');
+  if (policy.equivalentNames !== undefined) requireValue(Array.isArray(policy.equivalentNames) && policy.equivalentNames.length <= 40 &&
+    policy.equivalentNames.every(g => Array.isArray(g) && g.length > 0 && g.length <= 5 && g.every(n => typeof n === 'string' && policy.allowNames.includes(n))) &&
+    new Set(policy.equivalentNames.flat()).size === policy.equivalentNames.flat().length, 'INVALID_HOST_LOCALIZATION');
 }
 export function createChromeDriver({ tab, allowedOrigins, policy, scope }) {
   checkPolicy(policy);
@@ -65,6 +87,7 @@ export function createChromeDriver({ tab, allowedOrigins, policy, scope }) {
   requireValue(Array.isArray(allowedOrigins) && allowedOrigins.length > 0 && allowedOrigins.every(x => { try { return new URL(x).origin === x; } catch { return false; } }), 'ALLOWED_ORIGINS_REQUIRED');
   return {
     kind: 'chrome',
+    reobserveOnChange: Boolean(policy.equivalentNames?.length),
     async observe() {
       const raw = await tab.ax.get('state', { disableDiffing: true });
       const url = raw.match(/^Browser tab:.* URL: "([^"]+)"\./m)?.[1];
@@ -80,6 +103,7 @@ export function createComputerUseDriver({ sky, app, policy, scope }) {
   requireValue(typeof scope === 'function', 'HOST_APP_SCOPE_REQUIRED');
   return {
     kind: 'computer-use',
+    reobserveOnChange: Boolean(policy.equivalentNames?.length),
     async observe() { const state = await sky.get_app_state({ app, disableDiff: true }); return observation(state.text, policy, scope); },
     async execute(action) { requireValue(action.op === 'click' && Number.isInteger(action.target), 'UNSUPPORTED_HOST_ACTION'); await sky.click({ app, element_index: action.target }); },
   };

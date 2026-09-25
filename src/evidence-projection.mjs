@@ -1,8 +1,8 @@
 // Reversible presentation of repeated prose lines. Original items are untouched.
 // Every source occurrence remains in place; this is not semantic deduplication.
 const marker=/\[=S\d+\]/;
-const header=x=>`[${x.id} ${x.source}:${x.startLine}-${x.endLine}]\n`;
-export function projectEvidence(items,{fragments=false}={}){
+const defaultHeader=x=>`[${x.id} ${x.source}:${x.startLine}-${x.endLine}]\n`;
+export function projectEvidence(items,{fragments=false,header=defaultHeader}={}){
   const original=items.map(x=>header(x)+x.text+'\n').join('');
   const plain=()=>({context:original,kind:'original',rawBytes:Buffer.byteLength(original),displayBytes:Buffer.byteLength(original),dictionary:{},projected:items.map(x=>({...x}))});
   if(items.some(x=>marker.test(x.text)))return plain();

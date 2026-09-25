@@ -1,0 +1,10 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>JevPilot Localized Lab</title>
+<style>body{font:20px system-ui;background:#f5f7fa;color:#17263b;margin:60px;max-width:1000px}button{padding:18px;margin:10px;font-size:18px}small{display:block;margin:30px 0}</style>
+<main id="app"></main><script>
+// Synthetic read-only navigation fixture; no account, network or persistence.
+// Both arms start from the same state. Controls vary order across stages.
+const root=document.querySelector('#app'); let area='',service='',region='',revision='';
+function show(heading, choices, next){root.replaceChildren();const h=document.createElement('h1');h.textContent='JevPilot Localized Lab';root.append(h);const p=document.createElement('h2');p.textContent=heading;root.append(p);for(const label of choices){const b=document.createElement('button');b.textContent=label;b.onclick=()=>next(label);root.append(b)}const f=document.createElement('small');f.textContent='Synthetic read-only fixture — no production action';root.append(f)}
+function home(){show('Operations library',['维护运行手册','准备情况报告','服务目录'],x=>{area=x;show(x,['雪松','枫树','落叶松'],s=>{service=s;show(area+' / '+service,['美国东部','欧盟西部','亚太南部'],r=>{region=r;show(area+' / '+service+' / '+region,['r17 — 已归档','r19 — 草案','r18 — 已批准'],v=>{revision=v;show(area+' / '+service+' / '+region+' / '+revision,['阅读概述','打开已验证记录','查看修订历史记录'],end)})})})})}
+function end(choice){if(choice!=='打开已验证记录'){show(choice+' — use the verified record for final status',['Back to record choices'],()=>show(area+' / '+service+' / '+region+' / '+revision,['打开已验证记录','阅读概述'],end));return}const isReport=area==='准备情况报告';show('VERIFIED READ-ONLY RECORD',[],()=>{});const p=document.createElement('p');p.textContent=area+' | Service: '+service+' | Region: '+region+' | Revision: '+revision+' | '+(isReport?'Readiness: conditional; Blocker: replica lag; Owner: Mira; Production rollout: not executed':'Maintenance: diagnostic only; Precondition: backup verified; Owner: Pavel; Production changes: none');root.insertBefore(p,root.lastChild)}home();
+</script></html>

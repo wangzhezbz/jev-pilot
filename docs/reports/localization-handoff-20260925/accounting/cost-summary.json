@@ -1,0 +1,115 @@
+{
+  "planned": 4,
+  "attempted": 4,
+  "prices": {
+    "date": "2026-09-24",
+    "currency": "USD",
+    "unit": "per million tokens",
+    "sources": [
+      "https://developers.openai.com/api/docs/pricing",
+      "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "https://docs.typesafe.ai/models"
+    ],
+    "models": {
+      "gpt-6-astra": {
+        "input": 10,
+        "cached": 1,
+        "write": 12.5,
+        "output": 50
+      },
+      "gpt-6-sol": {
+        "input": 2,
+        "cached": 0.2,
+        "write": 2.5,
+        "output": 10
+      },
+      "gpt-6-luna": {
+        "input": 0.1,
+        "cached": 0.01,
+        "write": 0.125,
+        "output": 0.5
+      },
+      "gpt-5.6-sol": {
+        "input": 4,
+        "cached": 0.4,
+        "write": 5,
+        "output": 20
+      }
+    },
+    "jev": {
+      "jev-1.13.0": {
+        "input": 0.042,
+        "output": 0
+      }
+    }
+  },
+  "serviceTier": "Not observed; standard and fast are separate API-equivalent scenarios, never subscription debits.",
+  "arms": {
+    "bare": {
+      "runs": 2,
+      "passed": 2,
+      "complete": true,
+      "wallMs": 148068,
+      "totalMs": 148205,
+      "totalTokens": 172098,
+      "cachedInputTokens": 138240,
+      "outputTokens": 3811,
+      "gptStandardUsd": 0.6292599999999999,
+      "jevKnownUsd": 0,
+      "totalStandardKnownUsd": 0.6292599999999999,
+      "totalFastKnownUsd": 1.2585199999999999,
+      "unknownCalls": 0,
+      "jevCalls": 0,
+      "jevInputTokens": 0,
+      "changes": 0,
+      "inputTokens": 168287,
+      "uncachedInputUsd": 0.30047,
+      "cachedInputUsd": 0.13824,
+      "cacheWriteUsd": 0,
+      "outputUsd": 0.19055,
+      "cacheResets": 0
+    },
+    "combined": {
+      "runs": 2,
+      "passed": 2,
+      "complete": true,
+      "wallMs": 145335,
+      "totalMs": 145751,
+      "totalTokens": 157658,
+      "cachedInputTokens": 117120,
+      "outputTokens": 3316,
+      "gptStandardUsd": 0.6551400000000001,
+      "jevKnownUsd": 0.00041962200000000003,
+      "totalStandardKnownUsd": 0.655559622,
+      "totalFastKnownUsd": 1.310699622,
+      "unknownCalls": 0,
+      "jevCalls": 7,
+      "jevInputTokens": 9991,
+      "changes": 0,
+      "inputTokens": 154342,
+      "uncachedInputUsd": 0.37222,
+      "cachedInputUsd": 0.11712,
+      "cacheWriteUsd": 0,
+      "outputUsd": 0.1658,
+      "cacheResets": 0
+    }
+  },
+  "pairs": [
+    {
+      "task": "fresh_lru",
+      "repeat": 0,
+      "bothPassed": true,
+      "costComplete": true,
+      "timeIncreasePercent": -13.41309220483151,
+      "knownCostIncreasePercent": 4.611858279103398
+    },
+    {
+      "task": "fresh_protocol",
+      "repeat": 0,
+      "bothPassed": true,
+      "costComplete": true,
+      "timeIncreasePercent": 25.807190290817505,
+      "knownCostIncreasePercent": 3.623181401973752
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "live": true,
+  "scope": "Component presentation and exact recall only; bytes are not GPT tokens; no native GPT AB or subscription savings",
+  "rows": [
+    {
+      "case": 0,
+      "passed": true,
+      "elapsedMs": 625.817834,
+      "presentation": "lossless_shared_prose",
+      "inputBytes": 3854,
+      "outputBytes": 1124,
+      "wirePlainBytes": 5439,
+      "wireCandidateBytes": 2713,
+      "semanticOmissions": [],
+      "degraded": false,
+      "nativeHistoryChanged": false
+    }
+  ],
+  "passed": true,
+  "contextCalls": [
+    {
+      "at": "2026-09-25T13:46:47.243Z",
+      "kind": "jev_call",
+      "purpose": "context",
+      "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+      "requestId": "a57047d9-c1a9-4b4a-831f-4a56695bef0e",
+      "model": "jev-1.13.0",
+      "inputTokens": 2288,
+      "outputTokens": 219,
+      "elapsedMs": 621,
+      "questions": 6,
+      "status": "success"
+    }
+  ]
+}

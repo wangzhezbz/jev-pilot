@@ -2,7 +2,7 @@ import { Store, loadConfig, requireValue } from './core.mjs';
 import { RequestGuard } from './request-guard.mjs';
 import { createSession, defineTask, summarizeHostResult } from './host-browser-session.mjs';
 import { hostTransport } from './host-browser-transport.mjs';
-export { createChromeDriver, createComputerUseDriver, createWebScope } from './host-browser-drivers.mjs';
+export { createChromeDriver, createComputerUseDriver, createWebScope, createLocalizedPolicy } from './host-browser-drivers.mjs';
 
 // Bind once per authorized surface. Task definitions and full results stay in
 // this object instead of requiring mutable cross-cell REPL variables.

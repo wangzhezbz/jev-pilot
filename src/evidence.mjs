@@ -5,6 +5,7 @@ import { relative, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { records, array, text, requireValue, readSource, byteBudget, hash, now, classificationPlan } from './core.mjs';
 import { protectedEvidence, exclusionDecision, EVIDENCE_POLICY } from './policy.mjs';
+import { projectEvidence } from './evidence-projection.mjs';
 const exec = promisify(execFile);
 const relevant = {
   keep: 'Matches the task inclusion conditions, or contains necessary supporting context, a competing explanation, contradictory observation, or unresolved uncertainty needed to answer the task.',
@@ -175,10 +176,22 @@ export async function compactContext(ctx, { goal, blocks, session = 'default', p
   const proposed = eligible.filter(([id]) => exclusionDecision(previous.decisions[id], ctx.config).proposed).map(([id]) => id);
   const remove = new Set(failed || ctx.config?.evidenceMode === 'shadow' ? [] : proposed);
   const retained = blocks.filter(b => !remove.has(b.callId)); ctx.store.put(ctx.project, 'compaction', previous, cacheId);
+  const plainContext = retained.map(b => `[${b.role} ${b.id}]\n${b.content}`).join('\n\n');
+  const eligibleIds = new Set(eligible.map(([id]) => id));
+  const projection = projectEvidence(retained.map(b => ({ id:b.id, role:b.role, text:b.content,
+    source: b.role === 'tool_result' && eligibleIds.has(b.callId) ? 'handoff.txt' : 'protected.raw' })),
+    { fragments:true, header:b => `[${b.role} ${b.id}]\n` });
+  // Retain all original blocks internally. Only the handoff presentation changes;
+  // include metadata/decoder overhead in the benefit gate and never force it.
+  const useProjection = ctx.config.enabled && ctx.config.evidenceMode !== 'shadow' && !ctx.judge.signal?.aborted &&
+    projection.kind !== 'original' && byteBudget(projection.context) + 512 < byteBudget(plainContext) * .85;
+  const context = useProjection ? projection.context : plainContext;
   ctx.store.event(ctx.project, 'context_compaction', { candidates: eligible.length, judged: pending.length, proposedExclusions: proposed.length, appliedExclusions: remove.size, degraded: failed, mode: ctx.config.evidenceMode, policy: EVIDENCE_POLICY });
   return { mode: 'recoverable_handoff', originalId, blocks: retained, omittedCallIds: [...remove], proposedOmittedCallIds: proposed, degraded: failed, policy: EVIDENCE_POLICY, reusedJudgments: eligible.length - pending.length,
     inputBytes: byteBudget(JSON.stringify(blocks)), outputBytes: byteBudget(JSON.stringify(retained)), nativeHistoryChanged: false,
-    context: retained.map(b => `[${b.role} ${b.id}]\n${b.content}`).join('\n\n'), recovery: { operation: 'recall', artifactId: originalId } };
+    context, presentation: useProjection ? 'lossless_shared_prose' : 'original',
+    presentationInputBytes: byteBudget(plainContext), presentationOutputBytes: byteBudget(context),
+    recovery: { operation: 'recall', artifactId: originalId } };
 }
 
 export async function runChecks(ctx, { checks, files = [] }) {

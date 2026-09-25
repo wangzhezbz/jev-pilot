@@ -1,0 +1,120 @@
+{
+  "first": {
+    "status": "codex_review_required",
+    "reason": "HOST_AMBIGUOUS_CHOICE",
+    "stageIndex": 1,
+    "evidence": null,
+    "stateMayHaveChanged": false,
+    "metrics": {
+      "runs": 1,
+      "actions": 0,
+      "jevRequests": 1,
+      "inputTokens": 881,
+      "outputTokens": 53,
+      "unknownUsage": 0,
+      "apiMs": 1287.3507499999978,
+      "elapsedMs": 1326.5700840000063,
+      "handoffs": 1
+    },
+    "sessionMetrics": {
+      "runs": 1,
+      "actions": 0,
+      "jevRequests": 1,
+      "inputTokens": 881,
+      "outputTokens": 53,
+      "unknownUsage": 0,
+      "apiMs": 1287.3507499999978,
+      "elapsedMs": 1326.5700840000063,
+      "handoffs": 1
+    },
+    "instruction": "Continue with native Codex; observe freshly before any further action, preserve the task and completed work.",
+    "fullResultRetainedInHost": true,
+    "snapshot": "Browser tab: 51514258, Title: \"JevPilot Holdout Lab\", URL: \"http://127.0.0.1:8876/holdout-browser.html\".\n0 AXWebArea JevPilot Holdout Lab, URL: 127.0.0.1:8876/holdout-browser.html\n\t1 container app\n\t\t2 heading JevPilot Holdout Lab, Value: 1\n\t\t\t9 text JevPilot Holdout Lab\n\t\t4 heading 操作库, Value: 2\n\t\t\t10 text 操作库\n\t\t6 button 维护运行手册\n\t\t7 button 准备情况报告\n\t\t8 button 服务目录\n\t\t11 text 合成只读装置——无生产活动\n\nThe focused UI element is 0 AXWebArea JevPilot Holdout Lab, URL: 127.0.0.1:8876/holdout-browser.html",
+    "lastDecision": {
+      "stage": "stage_1",
+      "action": "服务目录",
+      "reason": null,
+      "choice": "action_2",
+      "probability": 0.56
+    },
+    "recentActions": [],
+    "truncatedFields": [],
+    "nextDelegation": {
+      "maxAffordableSteps": 12,
+      "windowEndsAt": 1790344800000,
+      "advisoryOnly": true,
+      "instruction": "Use native tools when the next goal exceeds this estimate. No status/diagnostic call or retry is needed for ordinary budget refusal. Capacity is not reserved; admission is rechecked on run."
+    },
+    "admission": {
+      "expectedSteps": 5,
+      "samples": 10,
+      "estimatedStepMs": 423,
+      "requiredWaitMs": 2692
+    }
+  },
+  "resume": {
+    "status": "codex_review_required",
+    "reason": "STALE_OBSERVATION",
+    "stageIndex": 1,
+    "evidence": null,
+    "stateMayHaveChanged": false,
+    "metrics": {
+      "runs": 1,
+      "actions": 3,
+      "jevRequests": 4,
+      "inputTokens": 3583,
+      "outputTokens": 212,
+      "unknownUsage": 0,
+      "apiMs": 1896.807832999999,
+      "elapsedMs": 2499.2916250000126,
+      "handoffs": 1
+    },
+    "sessionMetrics": {
+      "runs": 2,
+      "actions": 3,
+      "jevRequests": 5,
+      "inputTokens": 4464,
+      "outputTokens": 265,
+      "unknownUsage": 0,
+      "apiMs": 3184.1585829999967,
+      "elapsedMs": 3825.861709000019,
+      "handoffs": 2
+    },
+    "instruction": "Continue with native Codex; observe freshly before any further action, preserve the task and completed work.",
+    "fullResultRetainedInHost": true,
+    "snapshot": "Browser tab: 51514258, Title: \"JevPilot Holdout Lab\", URL: \"http://127.0.0.1:8876/holdout-browser.html\".\n0 AXWebArea JevPilot Holdout Lab, URL: 127.0.0.1:8876/holdout-browser.html\n\t1 container app\n\t\t2 heading JevPilot Holdout Lab, Value: 1\n\t\t\t3 text JevPilot Holdout Lab\n\t\t4 heading Readiness reports / Larch / US East / r18 — approved, Value: 2\n\t\t\t5 text Readiness reports / Larch / US East / r18 — approved\n\t\t6 button Read overview\n\t\t7 button Open verified record\n\t\t8 button Read revision history\n\t\t9 text Synthetic read-only fixture — no production action\n\nThe focused UI element is 0 AXWebArea JevPilot Holdout Lab, URL: 127.0.0.1:8876/holdout-browser.html",
+    "lastDecision": {
+      "stage": "stage_1",
+      "action": "Open verified record",
+      "reason": null,
+      "choice": "action_1",
+      "probability": 0.97
+    },
+    "recentActions": [
+      {
+        "action": "Larch",
+        "stage": "stage_1",
+        "progress": true
+      },
+      {
+        "action": "US East",
+        "stage": "stage_1",
+        "progress": true
+      },
+      {
+        "action": "r18 — approved",
+        "stage": "stage_1",
+        "progress": true
+      }
+    ],
+    "truncatedFields": [],
+    "nextDelegation": {
+      "maxAffordableSteps": 10,
+      "windowEndsAt": 1790344800000,
+      "advisoryOnly": true,
+      "instruction": "Use native tools when the next goal exceeds this estimate. No status/diagnostic call or retry is needed for ordinary budget refusal. Capacity is not reserved; admission is rechecked on run."
+    }
+  },
+  "final": "Browser tab: 51514258, Title: \"JevPilot Holdout Lab\", URL: \"http://127.0.0.1:8876/holdout-browser.html\".\n0 AXWebArea JevPilot Holdout Lab, URL: 127.0.0.1:8876/holdout-browser.html\n\t1 container app\n\t\t2 heading JevPilot Holdout Lab, Value: 1\n\t\t\t3 text JevPilot Holdout Lab\n\t\t4 heading VERIFIED READ-ONLY RECORD, Value: 2\n\t\t\t5 text VERIFIED READ-ONLY RECORD\n\t\t6 text Readiness reports | Service: Larch | Region: US East | Revision: r18 — approved | Readiness: conditional; Blocker: replica lag; Owner: Mira; Production rollout: not executed\n\t\t7 text Synthetic read-only fixture — no production action\n\nThe focused UI element is 0 AXWebArea JevPilot Holdout Lab, URL: 127.0.0.1:8876/holdout-browser.html",
+  "scope": "Live Chrome probe; native first and last clicks; not autonomous completion or speed benchmark"
+}

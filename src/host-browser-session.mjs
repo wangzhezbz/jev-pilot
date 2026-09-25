@@ -11,8 +11,10 @@ export function defineTask({ goal, stages, proof, reject = [] }) {
   text(goal, 10000); requireValue(goal.trim().length > 0, 'INVALID_HOST_TASK');
   const literals = (values, min) => {
     requireValue(Array.isArray(values) && values.length >= min && values.length <= 20 &&
-      values.every(v => typeof v === 'string' && v.trim().length > 0 && v.length <= 2000), 'INVALID_HOST_LITERAL_PROOF');
-    return [...values];
+      values.every(v => typeof v === 'string' ? v.trim().length > 0 && v.length <= 2000 :
+        v && Object.keys(v).length === 1 && Array.isArray(v.anyOf) && v.anyOf.length >= 1 && v.anyOf.length <= 5 &&
+        v.anyOf.every(s => typeof s === 'string' && s.trim().length > 0 && s.length <= 2000)), 'INVALID_HOST_LITERAL_PROOF');
+    return values.map(v => typeof v === 'string' ? [v] : [...v.anyOf]);
   };
   const required = literals(proof, 1), forbidden = literals(reject, 0);
   requireValue(Array.isArray(stages) && stages.length > 0 && stages.length <= 10, 'INVALID_HOST_TASK');
@@ -20,11 +22,11 @@ export function defineTask({ goal, stages, proof, reject = [] }) {
     text(stage.goal, 2000); requireValue(stage.goal.trim().length > 0, 'INVALID_HOST_STAGE');
     const until = stage.until === undefined ? null : literals(stage.until, 1);
     return { id: 'stage_' + i, goal: stage.goal,
-      complete: o => until !== null && until.every(value => o.snapshot.includes(value)) };
+      complete: o => until !== null && until.every(variants => variants.some(value => o.snapshot.includes(value))) };
   });
   return { goal, stages: steps,
-    invariant: o => ({ ok: !forbidden.some(value => o.snapshot.includes(value)), evidence: forbidden.filter(value => o.snapshot.includes(value)).join(' | ') || null }),
-    verify: o => { const passed = required.every(value => o.snapshot.includes(value)); return { passed, evidence: passed ? required.join(' | ') : null }; },
+    invariant: o => { const found = forbidden.flat().filter(value => o.snapshot.includes(value)); return { ok: !found.length, evidence: found.join(' | ') || null }; },
+    verify: o => { const found = required.map(variants => variants.find(value => o.snapshot.includes(value))); const passed = found.every(Boolean); return { passed, evidence: passed ? found.join(' | ') : null }; },
   };
 }
 
@@ -104,6 +106,7 @@ export function createSession({ workspace, taskId, driver, store, send = hostTra
         current = await timed('observe', () => driver.observe());
         requireValue(!blockedHash || current.semanticHash !== blockedHash, 'HOST_HANDOFF_STATE_UNCHANGED');
         blockedHash = null;
+        let stateRefreshes = 0;
         for (let step = 0; step <= maxSteps; step++) {
           if (expired()) { reason = task.signal?.aborted ? 'CANCELLED' : 'HOST_TIME_BUDGET'; break; }
           // Check identity/invariants before accepting any completion claim.
@@ -127,6 +130,16 @@ export function createSession({ workspace, taskId, driver, store, send = hostTra
           if (expired()) { reason = 'HOST_TIME_BUDGET'; break; }
           const fresh = await timed('revalidate', () => driver.observe());
           if (expired()) { reason = 'HOST_TIME_BUDGET'; current = fresh; break; }
+          if (fresh.snapshot !== current.snapshot && driver.reobserveOnChange === true) {
+            // Translation can arrive during judgment. Never execute the old
+            // ticket: discard it and re-evaluate the fresh bounded state once.
+            // This consumes the existing step, wait and call budgets.
+            const discarded = store.get(project, 'browser_ticket', next.ticket);
+            if (discarded) { discarded.consumed = true; store.put(project, 'browser_ticket', discarded, next.ticket); }
+            current = fresh;
+            if (stateRefreshes++ === 0) continue;
+            reason = 'STALE_OBSERVATION'; break;
+          }
           const permitted = consumeBrowserTicket(ctx, { driver: driver.kind, ticket: next.ticket, snapshot: fresh.snapshot });
           const action = fresh.candidates.find(c => c.id === permitted.action.id && c.text === permitted.action.text && c.target === permitted.action.target && c.op === permitted.action.op);
           requireValue(action && !action.requiresApproval && !action.destructive, 'HOST_ACTION_CHANGED');

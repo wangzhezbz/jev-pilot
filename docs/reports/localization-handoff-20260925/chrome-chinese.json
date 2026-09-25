@@ -1,0 +1,86 @@
+{
+  "receipt": {
+    "status": "needs_verification",
+    "reason": null,
+    "stageIndex": 1,
+    "evidence": "雪松 | 亚太南部 | r18 | Pavel | diagnostic only | backup verified | Production changes: none",
+    "stateMayHaveChanged": false,
+    "metrics": {
+      "runs": 1,
+      "actions": 5,
+      "jevRequests": 5,
+      "inputTokens": 4751,
+      "outputTokens": 265,
+      "unknownUsage": 0,
+      "apiMs": 1753.6352490000427,
+      "elapsedMs": 2703.8386670000036,
+      "handoffs": 0
+    },
+    "sessionMetrics": {
+      "runs": 1,
+      "actions": 5,
+      "jevRequests": 5,
+      "inputTokens": 4751,
+      "outputTokens": 265,
+      "unknownUsage": 0,
+      "apiMs": 1753.6352490000427,
+      "elapsedMs": 2703.8386670000036,
+      "handoffs": 0
+    },
+    "instruction": "Codex must inspect this fresh finalObservation against the user request before claiming completion. If inadequate, observe natively again.",
+    "fullResultRetainedInHost": true,
+    "truncatedFields": [],
+    "finalObservation": {
+      "snapshot": "Browser tab: 51514262, Title: \"JevPilot Localized Lab\", URL: \"http://127.0.0.1:8876/localized-browser.html\".\n0 AXWebArea JevPilot Localized Lab, URL: 127.0.0.1:8876/localized-browser.html\n\t1 container app\n\t\t2 heading JevPilot Localized Lab, Value: 1\n\t\t\t3 text JevPilot Localized Lab\n\t\t4 heading VERIFIED READ-ONLY RECORD, Value: 2\n\t\t\t5 text VERIFIED READ-ONLY RECORD\n\t\t6 text 维护运行手册 | Service: 雪松 | Region: 亚太南部 | Revision: r18 — 已批准 | Maintenance: diagnostic only; Precondition: backup verified; Owner: Pavel; Production changes: none\n\t\t7 text Synthetic read-only fixture — no production action\n\nThe focused UI element is 0 AXWebArea JevPilot Localized Lab, URL: 127.0.0.1:8876/localized-browser.html",
+      "observedAt": 1790343909384,
+      "truncated": false
+    },
+    "finalObservationMs": 12.830000000016298,
+    "nextDelegation": {
+      "maxAffordableSteps": 7,
+      "windowEndsAt": 1790344800000,
+      "advisoryOnly": true,
+      "instruction": "Use native tools when the next goal exceeds this estimate. No status/diagnostic call or retry is needed for ordinary budget refusal. Capacity is not reserved; admission is rechecked on run."
+    },
+    "admission": {
+      "expectedSteps": 5,
+      "samples": 20,
+      "estimatedStepMs": 978,
+      "requiredWaitMs": 4912
+    }
+  },
+  "history": [
+    {
+      "action": "维护运行手册",
+      "stage": "stage_0",
+      "progress": true,
+      "probability": 0.97
+    },
+    {
+      "action": "雪松",
+      "stage": "stage_1",
+      "progress": true,
+      "probability": 0.88
+    },
+    {
+      "action": "亚太南部",
+      "stage": "stage_1",
+      "progress": true,
+      "probability": 0.92
+    },
+    {
+      "action": "r18 — 已批准",
+      "stage": "stage_1",
+      "progress": true,
+      "probability": 0.97
+    },
+    {
+      "action": "打开已验证记录",
+      "stage": "stage_1",
+      "progress": true,
+      "probability": 0.98
+    }
+  ],
+  "finalVerified": true,
+  "scope": "New record and Chinese-label fixture; not automatic translation timing coverage or GPT AB"
+}

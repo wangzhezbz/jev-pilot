@@ -1,0 +1,135 @@
+{
+  "at": "2026-09-25T13:51:16.813Z",
+  "jobs": [
+    {
+      "model": "gpt-6-astra",
+      "task": "fresh_lru",
+      "repeat": 0,
+      "arms": [
+        "bare",
+        "combined"
+      ]
+    },
+    {
+      "model": "gpt-6-astra",
+      "task": "fresh_protocol",
+      "repeat": 0,
+      "arms": [
+        "combined",
+        "bare"
+      ]
+    }
+  ],
+  "runs": 4,
+  "models": [
+    "gpt-6-astra"
+  ],
+  "initialEffort": "high",
+  "concurrency": 1,
+  "hashes": {
+    "src/core.mjs": "130e1d67b841e99771dc18885e50e5afd66a7a003d77403b0412eb2d4cde3938",
+    "src/request-guard.mjs": "6b18ae893c5c0fea7634abff127942f1a55bb8552937db779bd3d2b919b09d24",
+    "src/automation.mjs": "217a7f6340e3cd129fcd3eb5b275c56b0abf55292f8003ac8ef3f2418d1bd948",
+    "src/evidence.mjs": "05ac77a22e2cf1ef7383a0bc713fe5615b9ea155c6daed2b6e25ebd8cf1edf5c",
+    "src/policy.mjs": "4f29ab06c3f91509aa260247165d12a2e48e37b507b2c5f726f95e5b291582de",
+    "runtime/desktop/router.mjs": "43b586c880684655a9a293dc569d5c1f7e283ee4be35141e2deeb179a129ebd1",
+    "runtime/desktop/bridge.mjs": "8a4d74f01a3939cb7178924416f8f17e7e5bfaf4dd02d0dae87f56fc9a80997f",
+    "skills/jev-pilot/SKILL.md": "e7c8ea763f42dbe53d152cd4eb2b30ee7e68e0be0a02bb6c924570b46bed41e4",
+    "skills/jev-pilot/references/operations.md": "f12c1128b016309659575dd68dab0840d0ece6b525f953caaa81ded25f1b5341",
+    "scripts/benchmark/tasks.mjs": "a205373e2b1f6bd9b7ced8eb8ed85093802d9f4f1babf0902ae2d1fbe6a60d29",
+    "scripts/acceptance/tasks.mjs": "ad1c528e00822d3d501ca001998d55493b854c56cc9167f480c4aa6faa6c1f52",
+    "scripts/acceptance/factorial-run.mjs": "1d8fd85964fa8e9c8fdf79522a7c3ffb6c9c5e4b51913ef8269bc35db58abddd",
+    "scripts/acceptance/factorial-tasks.mjs": "80c710fc9a4cf2514990e817973a0cad7462422a22d680a99294787677d6d9ed",
+    "src/prepare-output.mjs": "49e61b434c5011e8b08b7734ae9ce5633488f4ac8103594f3c2a28c5d240ab93",
+    "src/log-projection.mjs": "38783edcbde1fa811f326ff9657f030b065c55ab12db4e7562c62cdb7aeecbf7",
+    "src/evidence-tool.mjs": "9e61bf75b61dc830db06029a1574719219f620fb28f2de12d43da476a4e87b9d",
+    "src/server.mjs": "84d8de4baff3c3ac4e824a206ce0a123bddf56c8f5fa4033395dd4d49a728a5d",
+    "src/runtime-compatibility.mjs": "18505824a2d33fe0b4bc5ca6f0171959d116d12ec700fc8ef00de0b863b04436",
+    "skills/jev-pilot/references/evidence.md": "5e809befc89e87f3c61b1cb71bce8417fb19ba3b8ce40c5b094eaa58a21ef7c1",
+    "scripts/acceptance/timeline.mjs": "f8794e32a0bc3044ee2e8ce07ee0324be42118106301c146a831c1c810e1c49b",
+    "scripts/acceptance/terminal-state.mjs": "431a65f5c59a2ed68f9415b8601cf69790e7eb220a612731a89bee2d03934489",
+    "src/distribution.mjs": "b3853d0ae877b5e360011c378c6fd22ab28c3c0b3f12f9ec7fc7e77d218a9b43",
+    "src/investigation-hint.mjs": "9978cea073d9f0edfac6244a279aff69749cf86a690d4593fa90d33b45d2dd2a",
+    "scripts/acceptance/semantic-task.mjs": "a167b7cdd94cea2bf0bc13be01d30ad28a9364b657aedf73c989ad03fe258efa"
+  },
+  "config": {
+    "features.apps": false,
+    "features.multi_agent": false,
+    "web_search": "disabled",
+    "hooks.Stop": []
+  },
+  "quality": "Frozen independent oracle after inference; protected fixtures unchanged; failed attempts retained.",
+  "stopRule": "Stop after infrastructure failure, timeout, interruption or provider limit; retain all prior and failed runs. No reruns or mid-test product changes.",
+  "timeLimitMs": 240000,
+  "nativeVersion": "codex-cli 0.155.0-alpha.16.4",
+  "revision": "aff9a00c45ee4eb33095d990c7acdb9077fda676",
+  "expectedPluginVersion": "0.2.0+codex.20260925205500",
+  "scope": "Fresh generalization probe: two unseen synthetic tasks, one pair each, 4 sequential native tasks, AB/BA. Frozen candidate, no reruns or product changes. Exploratory only; not stable savings or feature-specific attribution.",
+  "tasks": [
+    {
+      "id": "fresh_lru",
+      "prompt": "Repair cache.mjs to meet SPEC.md. Add meaningful tests and run them, including recency, zero capacity and unusual keys. Do not add dependencies or change SPEC.md.",
+      "files": {
+        "SPEC.md": "fef324fb9acf82ad634d9c601f14847500db095de6aa35005a2b9d06cc0c50e9",
+        "cache.mjs": "778efa0d0faebc3e6b9b8ed4930753bd6c9d04fea59291d6bbbff975e3d7b4ab"
+      }
+    },
+    {
+      "id": "fresh_protocol",
+      "prompt": "Resolve the currently approved Quartz calibration protocol. Write findings.data with {samples,temperatureC,deviationLimit,comparison,consecutiveReadings,reviewer,observedOutcome,evidencePaths}. comparison must be greater or greater_or_equal. No measurements means observedOutcome unknown. Write findings.md explaining authority and citing sources. Preserve all original files.",
+      "files": {
+        "instructions.md": "5c548fc59b6b08ca6e838aee452855bd549cfd573af026b381ae65fe54fe5b8c",
+        "archive/note-0.md": "bbaac8adca2915140648e9bad1524d0ffeaf47def610222a0b1006b996e4fc50",
+        "archive/note-1.md": "526d831aaf3834f1031a4dd881780c366c1a180eee3d66cb5ab783a8c990a012",
+        "archive/note-2.md": "8c7526c946514f11910d55fbd3dc033f97e01ea42b356108021398c111815e51",
+        "archive/note-3.md": "6f7821476dcd6755dbac023c16ee4e7ff679367fe0e723689d6d5655a3cbe469",
+        "archive/note-4.md": "8bb1ae12eeff69b0e3118e28f686a16d56607fb99c54a13cf70c9a13d38ef469",
+        "archive/note-5.md": "14418ed5feeb825c3f1ffac114673532fe8faeca659a1f50b334d20b472b3797",
+        "archive/note-6.md": "d996f969098e1e7de7330a68c1ffe9b29e375a5831921b82374c4d9b73833f57",
+        "archive/note-7.md": "91d469b1f9a092bb10a0e526be4b29022508de91a1f41ceffb07d5ef2aebe97a",
+        "archive/note-8.md": "f67cc8386007b87af090c477efa5b786db19ba452c7c47aaa2bc93e5a8156d24",
+        "archive/note-9.md": "65e3a47a8316ed22026f69d59903809b11b9df42515b6aba46284f0d74e2f7ce",
+        "archive/note-10.md": "f0f21851cdd868aab5066476a30eda093d35bbbc50ee1a74d5b83e3f3122a100",
+        "archive/note-11.md": "086b605b7889fe1c2e06ca86af1b7a8c7d3de6d1b846426a1915c60e795822b9",
+        "archive/note-12.md": "8f669d51bc486a0e521f54e6f58bec228705312beb1b1bfd3d487fdb3a4f0474",
+        "archive/note-13.md": "cb0db65777a905e064f4db3ac1a73c1ad55ed44088c7e90438f2a02893d39b94",
+        "archive/note-14.md": "029ccde4ef9d2e7629e72f5b966f6911c3e2aebbb1288cd7d8851fbb010be467",
+        "archive/note-15.md": "cba4bec923faf9144c974fbbce014b61876d4a8888271150b1bca9648758e54f",
+        "archive/note-16.md": "81300d02f5b582f168c9716282febedb3fd38cf73530089e27d5d8adef3d8871",
+        "archive/note-17.md": "15cafe86ba633b50e0838bafcebd116d596298650188a6ede8364b7777ecc164",
+        "archive/note-18.md": "fae4c445301987dec547aee2e622ba6769abbec1209a9658313522d4ac387287",
+        "archive/note-19.md": "b4dc5ecd52738ac4fc5e86cece680e5776a0067bcde06bc0b9df9689179c2e98",
+        "archive/note-20.md": "925f47863bb6d1b4aae838a7e7c054f9cabf8dcba84b6abed9466f73fe16cdc4",
+        "archive/note-21.md": "c3dc862616dd8b4c86fcbf915d7f938db1231f73e1642cb33feb68386b5a9c07",
+        "archive/note-22.md": "5150ebd72f11f0af6c3a72fee83a1cb6d1f90f7978d2abccb8178fc93cebef7c",
+        "archive/note-23.md": "972e640a14bb776071f93a829ffbc9c3d549ea521dc3750e7369bafd5bb78669",
+        "archive/note-24.md": "de730ad748a71af50fc9c2020b4fec8c2eeae8b51db3bf468791ab390c52bd04",
+        "archive/note-25.md": "41a655f23e934d1f9745e59985c75bd050e8233a6d975f0dcefbb34febed27db",
+        "archive/note-26.md": "b548de15f78a1cbd6341f4d522ace0b010f8eb30932aae376062a82b309d6e99",
+        "archive/note-27.md": "d24e21c6672097676e502d7a40b3304778808c7a5512f695df2c6b5d6f8c8c75",
+        "archive/note-28.md": "3407f7f3633300bb81c870f95b55980f9e18478d8e85677db7e49e31e9fdffea",
+        "archive/note-29.md": "c2945520486520750b70454d13d32d8578b574f89fa939da35b66119d613f25c",
+        "archive/note-30.md": "88bb1af1279d58cba1794a7e4ce8844dac0577b092970add3628f2b07895ca95",
+        "archive/note-31.md": "e0467699daa5cdf97a09c2d3d1fc59aff4b4b1ca88389d03fe019c912d365eca",
+        "archive/note-32.md": "9f0285172e8da590461f11f98a62371130ae74572dfc9b7622b5bbc8f5b2ff5f",
+        "archive/note-33.md": "fc185dc7b4f9512ca61123c34ab769843d791ae480ce5999dca10528aea92369",
+        "archive/note-34.md": "0d35645a02c5742b66cd9a0d8b454a5b0fc92746a605683d96410daccebda5e1",
+        "archive/note-35.md": "95e2f42fe7893882173dd80a02edcf20652a4305f8fad472e05d52786a15c1d5",
+        "archive/note-36.md": "a082aa0ded0ad608569420384f9b6a9cdfec620b7ec4f84e90653637ffb861fe",
+        "archive/note-37.md": "75a9e75a6f0ff04c8d9fcaad45902fd3cbefe4ae43cf87fb5088cdb4dd1f3c51",
+        "archive/note-38.md": "72a5fef4fd79a67be486edf50fc248f2360a448a97a12d5055e1a1108c560a82",
+        "archive/note-39.md": "e30514ac1c964a9c4947902351f930c30bce1fcf92791cae12820f8fc391ea97",
+        "archive/note-40.md": "39e2acd40fbeb660984cf211bae873ed8b2ac45dc1aa68aa0a134cef5a55c737",
+        "archive/note-41.md": "5dc095f6d116c2e1a7161593ec102d9e600ba25b0ce41e26da4ece4716461cdd",
+        "archive/note-42.md": "a6bb57273ca2fe0e7d0b9c5514ac2b773394d3e21ed495d281fbb48f0381e713",
+        "archive/note-43.md": "f5fe28038244643b316969d4654b359b395d3607a86128d5c8b3cd33a9ee9b3f",
+        "policy/signed.md": "81ec2b5a6299de02ed20f9d72dd3e978d0fa920c9a036ef0b714ce9d79d11c96",
+        "policy/amendment.md": "75538146152fd29b4bbada6daebb4565a6a9739152f3d3bc0e20bb26b3c51711",
+        "policy/proposal.md": "bd56b7dd5869679de39d65008c98e9f3f74a8fed1c6d2008cef3badc2791234b"
+      }
+    }
+  ],
+  "sourceMode": "isolated staged candidate plugin plus matching workspace bridge",
+  "candidateRoot": "<HOME>/.agents/plugins/releases/jev-pilot-localization-candidate-202609252150",
+  "policyVersion": "effort-v19-baseline-spacing"
+}
