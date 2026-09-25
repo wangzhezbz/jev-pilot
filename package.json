@@ -33,6 +33,7 @@
     "mcp.json",
     "bin",
     "launcher",
-    "docs"
+    "docs",
+    "!docs/reports/**"
   ]
 }

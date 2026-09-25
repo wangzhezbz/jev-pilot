@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "tools": [
+    "jev_evidence",
+    "jev_pilot"
+  ],
+  "paidGptCalls": 0,
+  "paidJevCalls": 0,
+  "measuredV19CoreUnchanged": true
+}

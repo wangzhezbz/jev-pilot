@@ -1,0 +1,18 @@
+{
+  "before": {
+    "size": 8920832,
+    "unpackedSize": 32490192,
+    "entryCount": 714
+  },
+  "after": {
+    "size": 6585595,
+    "unpackedSize": 15510278,
+    "entryCount": 173
+  },
+  "compressedReductionPercent": 26.177345341779777,
+  "unpackedReductionPercent": 52.261660996032276,
+  "excludedHistoricalReportFiles": 542,
+  "afterHistoricalReportFiles": 0,
+  "gptCalls": 0,
+  "jevCalls": 0
+}

@@ -1,4 +1,4 @@
-import { mkdtempSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, writeFileSync, mkdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { execFileSync, spawn } from 'node:child_process';
@@ -26,4 +26,5 @@ try{
 }catch(e){report.error=e.message;report.passed=false;}
 finally{lines.close();child.kill();for(const p of pending.values())clearTimeout(p.timer);}
 if(!report.passed)console.error(redact(diagnostic.slice(-6000)));
+mkdirSync(join(packageRoot,'docs/reports'),{recursive:true});
 writeFileSync(join(packageRoot,'docs/reports/plugin-host.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));if(!report.passed)process.exitCode=1;
