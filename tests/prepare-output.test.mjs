@@ -86,3 +86,11 @@ test('an explicit lower request budget is respected without partial paid filteri
  const source=Array.from({length:90},(_,i)=>`## Record ${i}\n${i?'notice':'NEEDLE'} ${'detail '.repeat(30)}\n`).join('\n');
  const r=await f.prepare({value:source});assert.equal(r.value,source);assert.equal(f.calls(),0);
 });
+test('large numeric logs retain every line and exact recall without any paid judgment',async t=>{
+ const f=fixture(t),source=Array.from({length:400},(_,i)=>i===231?'L00231 WARNING settlement=unknown requests=80 failures=12':`L${String(i).padStart(5,'0')} worker routine sample zone=${i%3} batch=${i} queue=0 heartbeat=normal product=catalog trace=background-${i%7}-${i}`).join('\r\n')+'\r\n';
+ const r=await f.prepare({value:source,source:'service.log'});
+ assert.equal(r.selection.projection,'log_templates');assert.equal(r.selection.lossless,true);assert.equal(r.selection.excludedItems,0);assert.equal(f.calls(),0);
+ assert(r.value.includes('WARNING settlement=unknown'));assert(r.selection.returnedBytes<r.selection.originalBytes*.6);
+ assert.equal((await f.call('recall_output',{artifactId:r.selection.artifactId})).value,source);
+ const hit=await f.call('recall_output',{artifactId:r.selection.artifactId,query:'L00231'});assert(JSON.stringify(hit).includes('settlement=unknown'));assert.equal(f.calls(),0);
+});

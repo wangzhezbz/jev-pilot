@@ -3,6 +3,7 @@ import {filterOutput,recall,chunks} from './evidence.mjs';
 import {outputAdapter} from './output-adapters.mjs';
 import {evidenceHandoff} from './evidence-handoff.mjs';
 import {projectEvidence} from './evidence-projection.mjs';
+import {projectLogTemplates} from './log-projection.mjs';
 
 export const exactEvidenceRequest=goal=>/\b(json|csv|verbatim|exact output)\b|原样|完整输出|不.*删减/i.test(goal);
 const codeSource=source=>/\.(?:[cm]?[jt]sx?|py|rs|go|java|c|cpp|h|sh|ps1|sql|toml|ya?ml|json|csv)(?:$|:)/i.test(source);
@@ -49,11 +50,12 @@ export async function prepareOutput(ctx,input){
   // Reuse exact prose locally before paying for semantic selection. Every
   // occurrence survives, including exclusions, contradictions and uncertainty.
   // The full original remains the recall authority; no model classifies it.
-  const items=chunks({text:body,path:source,hash:hash(body)}),projection=projectEvidence(items,{fragments:true});
-  if(projection.kind==='shared_fragments'){
-    const artifactId=hash({goal:input.goal,source,body,mechanism:'lossless-prose-v1'});
+  const items=chunks({text:body,path:source,hash:hash(body)}),prose=projectEvidence(items,{fragments:true});
+  const projection=prose.kind==='shared_fragments'?prose:projectLogTemplates(items);
+  if(['shared_fragments','log_templates'].includes(projection.kind)){
+    const artifactId=hash({goal:input.goal,source,body,mechanism:projection.kind==='log_templates'?'lossless-log-v1':'lossless-prose-v1'});
     const display=`JevPilot lossless source projection: all ${items.length} records retained; zero relevance exclusions. No semantic judgment performed. Original recall artifactId=${artifactId}.\n`+projection.context;
-    const prepared=adapter.wrap(display),selection={status:'prepared',reason:'lossless_projection',artifactId,sourceHash:hash(body),originalBytes:Buffer.byteLength(JSON.stringify(value)),returnedBytes:Buffer.byteLength(JSON.stringify(prepared)),completeCoverage:true,excludedItems:0,lossless:true,modelReceipt:'unconfirmed',nativeTokenSavings:null};
+    const prepared=adapter.wrap(display),selection={status:'prepared',reason:'lossless_projection',projection:projection.kind,artifactId,sourceHash:hash(body),originalBytes:Buffer.byteLength(JSON.stringify(value)),returnedBytes:Buffer.byteLength(JSON.stringify(prepared)),completeCoverage:true,excludedItems:0,lossless:true,modelReceipt:'unconfirmed',nativeTokenSavings:null};
     if(Buffer.byteLength(JSON.stringify({value:prepared,selection}))<selection.originalBytes*.8){
       ctx.store.put(ctx.project,'artifact',{goal:input.goal,items,originalValue:value,createdAt:new Date().toISOString()},artifactId);
       return emit(prepared,selection);

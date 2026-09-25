@@ -29,10 +29,12 @@ test('navigator retains task and evidence, returns a fresh final read without cl
   assert.match(receipt.instruction, /Codex must inspect/); assert.equal(f.nav.result.history.length, 2);
   assert.notEqual(receipt.finalObservation, f.nav.result.finalObservation);
 });
-test('insufficient task capacity skips the entire delegation without UI reads or paid requests', async t => {
+test('insufficient capacity returns one native observation without actions, payment or quota changes', async t => {
   const f = setup(t, { config: { taskMaxCalls: 1 } }), before = f.store.list(f.project, 'task_budget');
   const result = await f.nav.run(f.spec);
-  assert.equal(result.reason, 'HOST_INSUFFICIENT_TASK_BUDGET'); assert.equal(f.reads(), 0); assert.equal(f.requests(), 0);
+  assert.equal(result.reason, 'HOST_INSUFFICIENT_TASK_BUDGET'); assert.equal(f.reads(), 1); assert.equal(f.requests(), 0);
+  assert.equal(result.nativeObservation.snapshot,'screen 0');assert.equal(f.screen(),0);
+  assert.equal(result.nextDelegation.maxAffordableSteps,1);assert.match(result.instruction,/Do not run diagnostics/);
   assert.deepEqual(f.store.list(f.project, 'task_budget'), before);
   await assert.rejects(f.nav.resume(), /HOST_NO_RESUMABLE_TASK/);
 });
@@ -80,9 +82,21 @@ test('slow recent browser calls deny delegation early; unrelated and old models 
   assert.equal((await g.nav.run(g.spec)).status, 'needs_verification');
 });
 
+test('cancelled refused goals do not observe; failed scoped reads do not leak state or retry', async t => {
+  const f=setup(t,{config:{taskMaxCalls:1}}),controller=new AbortController();controller.abort();
+  const cancelled=await f.nav.run({...f.spec,signal:controller.signal});
+  assert.equal(f.reads(),0);assert.equal(cancelled.nativeObservation,undefined);assert.equal(f.requests(),0);
+  const nav=createNavigator({workspace:f.store.home,taskId:'scoped-refusal',store:f.store,
+    driver:{kind:'chrome',observe:async()=>{throw Error('private wrong origin');}}});
+  t.after(()=>nav.close());f.store.put(f.store.project(f.store.home),'config',{taskMaxCalls:1},'settings');
+  const r=await nav.run(f.spec);assert.equal(r.nativeObservation,undefined);assert.equal(r.nativeObservationError,'HOST_NATIVE_OBSERVATION_FAILED');
+  assert(!JSON.stringify(r).includes('private wrong origin'));
+});
+
 test('new navigation calls share the real task quota and cannot restart a full budget', async t => {
   const f = setup(t, { config: { taskMaxCalls: 3 } });
   assert.equal((await f.nav.run(f.spec)).status, 'needs_verification');
+  assert.equal(f.nav.result.nextDelegation.maxAffordableSteps,1);
   assert.equal((await f.nav.run(f.spec)).reason, 'HOST_INSUFFICIENT_TASK_BUDGET');
   assert.equal(f.requests(), 2);
 });

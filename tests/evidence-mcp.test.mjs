@@ -23,12 +23,17 @@ test('real MCP server returns coverage text and serves targeted/full recall with
   const failure=JSON.parse(relative.result.content[0].text);
   assert.equal(failure.error,'WORKSPACE_ABSOLUTE_REQUIRED');assert.match(failure.fallback,/absolute task cwd/);
   const items=[{id:'a',text:'Battery observation',pin:true},{id:'b',text:'Radio observation',status:'pending'}];
-  const call=async(name,operation,input)=>{const response=await rpc('tools/call',{name,arguments:{workspace:home,operation,input}});assert.equal(response.result.isError,undefined);assert.deepEqual(JSON.parse(response.result.content[0].text),response.result.structuredContent);return response.result.structuredContent;};
+  const call=async(name,operation,input)=>{const response=await rpc('tools/call',{name,arguments:{workspace:home,operation,input}});assert.equal(response.result.isError,undefined);const data=JSON.parse(response.result.content[0].text);if(name==='jev_evidence')assert.equal(response.result.structuredContent,undefined);else assert.deepEqual(data,response.result.structuredContent);return data;};
   const selected=await call('jev_evidence','select',{goal:'Review both observations',items});
   assert.match(selected.context,/2\/2 records retained/);assert(selected.context.includes(selected.artifactId));
   const targeted=await call('jev_evidence','recall',{artifactId:selected.artifactId,query:'battery'});
   assert.deepEqual(targeted.items,[items[0]]);assert.equal(targeted.nextOffset,null);
   const full=await call('jev_evidence','recall',{artifactId:selected.artifactId});assert.deepEqual(full.items,items);
+  const numericLog=Array.from({length:300},(_,i)=>`L${String(i).padStart(5,'0')} worker routine sample zone=${i%3} batch=${i} queue=0 heartbeat=normal product=catalog trace=background-${i%7}-${i}`).join('\n');
+  writeFileSync(join(home,'service.log'),numericLog);
+  const prepared=await call('jev_evidence','prepare',{goal:'Review the full service log',path:'service.log'});
+  assert.equal(prepared.selection.projection,'log_templates');assert.equal(prepared.selection.excludedItems,0);
+  assert.equal((await call('jev_evidence','recall',{artifactId:prepared.selection.artifactId})).value,numericLog);
   writeFileSync(join(home,'fixture.md'),'Quota checkpoint\nExact surrounding evidence');
   const investigation=await call('jev_evidence','investigate',{goal:'Find quota policy',queries:['Quota'],paths:['fixture.md']});
   assert.equal(investigation.selection.method,'local');assert(investigation.context.includes('Exact surrounding evidence'));

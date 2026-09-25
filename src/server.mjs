@@ -29,7 +29,11 @@ async function handle(msg) {
         }
         const data = modelResult(msg.params.arguments.operation, await pilot.call(msg.params.arguments, { signal: controller.signal }),{compactEvidence});
         if (['status', 'browser_step'].includes(msg.params.arguments?.operation)) data.browserNetwork = browserNetworkRepair;
-        result = { content: [{ type: 'text', text: JSON.stringify(data) }], structuredContent: data };
+        // Evidence has no outputSchema: use one portable JSON text block. The
+        // native Codex result envelope retains both fields if we supply the same
+        // body as structuredContent too, doubling large evidence in model input.
+        // Advanced operation consumers keep their established structured result.
+        result = { content: [{ type: 'text', text: JSON.stringify(data) }], ...(compactEvidence ? {} : { structuredContent: data }) };
       }
       catch (e) { result = { isError: true, content: [{ type: 'text', text: JSON.stringify({ error: typeof e.code === 'string' ? e.code : 'OPERATION_FAILED', fallback: e.code === 'WORKSPACE_ABSOLUTE_REQUIRED' ? "Retry once with the absolute task cwd as workspace and input.path relative to it. Do not use the plugin directory. If unavailable, continue natively." : 'Continue using native Codex tools; do not claim Jev success.' }) }] }; }
     } else { output({ jsonrpc: '2.0', id: msg.id, error: { code: -32601, message: 'Method not found' } }); return; }
