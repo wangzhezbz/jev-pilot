@@ -1,0 +1,46 @@
+{
+  "kind": "current_installed_plugin_evidence_acceptance",
+  "records": 12,
+  "retained": [
+    "r0",
+    "r2",
+    "r3",
+    "r7",
+    "r8",
+    "r11"
+  ],
+  "ambiguousRetained": [
+    "r2",
+    "r8"
+  ],
+  "passed": true,
+  "exactOriginalRecoverable": true,
+  "pluginRoundTripMs": 727,
+  "calls": [
+    {
+      "at": "2026-09-25T04:30:36.340Z",
+      "model": "jev-1.13.0",
+      "status": "success",
+      "elapsedMs": 672,
+      "inputTokens": 7862,
+      "outputTokens": 437,
+      "questions": 12,
+      "taskId": null
+    }
+  ],
+  "attribution": "single explicit evidence call in this project/time window; old plugin lacked task-tagged call records",
+  "sourceBytes": 17732,
+  "selection": {
+    "status": "prepared",
+    "reason": "reduced",
+    "artifactId": "e0fac3c8-8885-4fd0-8379-94dc2b06e1ec",
+    "sourceHash": "f30a8ebfdd3086371ed079c7b0676277b7043d93df95a8ccb131b382567f4aaf",
+    "originalBytes": 17876,
+    "returnedBytes": 9766,
+    "completeCoverage": true,
+    "excludedItems": 6,
+    "modelReceipt": "unconfirmed",
+    "nativeTokenSavings": null
+  },
+  "fullTaskSavings": null
+}

@@ -1,0 +1,53 @@
+{
+  "scope": "one_task_in_one_project",
+  "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+  "since": "2026-09-25T04:16:25.079Z",
+  "tier": "standard",
+  "priceDate": "2026-09-24",
+  "jev": {
+    "calls": 6,
+    "duplicateReceipts": 0,
+    "failures": 0,
+    "cancellations": 0,
+    "inputTokens": 12639,
+    "outputTokens": 636,
+    "unknownInputUsage": 0,
+    "unknownOutputUsage": 0,
+    "knownUsd": 0.0005308380000000001,
+    "unknownCostCalls": 0,
+    "byPurpose": {
+      "effort": {
+        "calls": 6,
+        "failed": 0,
+        "knownInputTokens": 12639,
+        "requestElapsedMs": 2861
+      }
+    }
+  },
+  "gpt": {
+    "generations": 12,
+    "inputTokens": 2157288,
+    "cachedInputTokens": 1973248,
+    "outputTokens": 13758,
+    "knownUsd": 4.501548,
+    "unknownCostGenerations": 0
+  },
+  "cost": {
+    "knownUsd": 4.502078838,
+    "basis": "observed_public_api_equivalent_not_account_debit",
+    "accountingComplete": false,
+    "observedRecordsPriced": false,
+    "reasons": [
+      "unfinished_or_incomplete_observed_turn"
+    ],
+    "unattributedProjectCalls": 0
+  },
+  "elapsed": {
+    "observedTurnWallMs": 0,
+    "jevRequestMs": 2861,
+    "note": "Request times may overlap and are not additive task wall time; turn sums exclude user pauses and setup."
+  },
+  "savings": null,
+  "note": "Observed subtotal only. Missing, legacy and in-flight usage is not zero; no matched baseline or account debit is inferred.",
+  "tierAssumed": true
+}

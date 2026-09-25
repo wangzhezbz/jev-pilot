@@ -154,7 +154,7 @@ export function classificationPlan(model,items,instructions,criteria,context={},
 }
 export class Judge {
   constructor({ store, project, config, key = loadKey(store.home), send = transport, signal, taskId, priority='routine', concurrency=1 }) {
-    Object.assign(this, { store, project, config, key, send, signal, priority }); this.calls = 0; this.inflight = new Map();
+    Object.assign(this, { store, project, config, key, send, signal, priority, taskId }); this.calls = 0; this.inflight = new Map();
     this.concurrency=concurrency===2?2:1;
     this.guard = new RequestGuard({ store, project, taskId, config });
   }
@@ -181,7 +181,7 @@ export class Judge {
     const started = performance.now();
     const task = Promise.resolve().then(async () => {
       let received;
-      const usage = () => ({ model: typeof received?.model === 'string' ? received.model : payload.model,
+      const usage = () => ({ taskId:this.taskId??null,requestId:reservation.token, model: typeof received?.model === 'string' ? received.model : payload.model,
         ...Object.fromEntries([['inputTokens','input_tokens'],['outputTokens','output_tokens']].map(([key,wire]) =>
           [key, Number.isSafeInteger(received?.usage?.[wire]) && received.usage[wire] >= 0 ? received.usage[wire] : null])) });
       try {

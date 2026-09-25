@@ -11,6 +11,7 @@ import {activity} from './activity.mjs';
 import { diagnostics } from './diagnostics.mjs';
 import {prepareOutput,recallOutput} from './prepare-output.mjs';
 import {investigate} from './investigate.mjs';
+import {taskMetrics} from './task-metrics.mjs';
 
 export const operations = {
   installation_plan:()=>installationPlan(),compatibility_probe:()=>compatibilityProbe(),activity, diagnostics, evaluate_policy: evaluatePolicy,
@@ -21,7 +22,7 @@ export const operations = {
   prepare_output: prepareOutput, recall_output: recallOutput,
   recover: workflow.recoverFailure, quality: workflow.quality, run_checks: evidence.runChecks,
   verify_completion: evidence.verifyCompletion, browser_step: browserStep, browser_consume: consumeBrowserTicket,
-  memory: workflow.memory, metrics: workflow.metrics, compact: evidence.compactContext,
+  memory: workflow.memory, metrics: (ctx,input)=>input.taskId?taskMetrics(ctx,input):workflow.metrics(ctx), compact: evidence.compactContext,
   review: workflow.reviewChanges, checkpoint: workflow.checkpoint, extract: workflow.extract,
   status: ctx => ({ version: '0.2.0', configured: Boolean(ctx.judge.key), config: ctx.config, operations: Object.keys(operations), effortIntegration: 'Separate version-checked desktop bridge; use doctor for runtime status.' }),
   configure: (ctx, input) => {

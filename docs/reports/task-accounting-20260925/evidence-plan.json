@@ -1,0 +1,26 @@
+{
+  "kind": "synthetic_current_plugin_evidence_acceptance",
+  "goal": "Find requests requiring creation or editing of application records on a disconnected device and later synchronization to the application server. Retain ambiguous requests for review. Exclude requests explicitly lacking those behaviors.",
+  "mustRetain": [
+    "r0",
+    "r2",
+    "r3",
+    "r7",
+    "r8",
+    "r11"
+  ],
+  "mayExclude": [
+    "r1",
+    "r4",
+    "r5",
+    "r6",
+    "r9",
+    "r10"
+  ],
+  "sourceSha256": "f30a8ebfdd3086371ed079c7b0676277b7043d93df95a8ccb131b382567f4aaf",
+  "sourceBytes": 17732,
+  "maxExplicitPluginCalls": 1,
+  "gptAbTasks": 0,
+  "taskId": "01a0bd6e-1907-7392-bb0b-b33ab83a639b",
+  "note": "A single known synthetic fixture, not a new full-task A/B or percentage saving."
+}

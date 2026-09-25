@@ -1,0 +1,47 @@
+{
+  "version": "0.2.0+codex.20260925123757",
+  "files": [
+    {
+      "file": "src/core.mjs",
+      "hashes": {
+        "repo": "130e1d67b841e99771dc18885e50e5afd66a7a003d77403b0412eb2d4cde3938",
+        "release": "130e1d67b841e99771dc18885e50e5afd66a7a003d77403b0412eb2d4cde3938",
+        "cache": "130e1d67b841e99771dc18885e50e5afd66a7a003d77403b0412eb2d4cde3938"
+      }
+    },
+    {
+      "file": "src/task-metrics.mjs",
+      "hashes": {
+        "repo": "c0f4b1f9c2f8f6b019dfee110345e647457b51837a6ea95cfa2478e07352e65b",
+        "release": "c0f4b1f9c2f8f6b019dfee110345e647457b51837a6ea95cfa2478e07352e65b",
+        "cache": "c0f4b1f9c2f8f6b019dfee110345e647457b51837a6ea95cfa2478e07352e65b"
+      }
+    },
+    {
+      "file": "src/pilot.mjs",
+      "hashes": {
+        "repo": "99140fa113af10c7db518f490849938f48c73ab00cb3bde895327e0ec5a8cee1",
+        "release": "99140fa113af10c7db518f490849938f48c73ab00cb3bde895327e0ec5a8cee1",
+        "cache": "99140fa113af10c7db518f490849938f48c73ab00cb3bde895327e0ec5a8cee1"
+      }
+    }
+  ],
+  "installedCliProbe": {
+    "scope": "one_task_across_local_projects",
+    "savings": null,
+    "accountingComplete": false
+  },
+  "desktop": {
+    "runtimeVersion": "codex-cli 0.155.0-alpha.16.4",
+    "compatible": true,
+    "bridgeProcessAlive": true,
+    "loadedRevisionMatches": true
+  },
+  "policy": "effort-v18-baseline-spacing",
+  "runtimeReinstalled": false,
+  "tests": {
+    "passed": 346,
+    "failed": 0
+  },
+  "staticScan": "passed"
+}
