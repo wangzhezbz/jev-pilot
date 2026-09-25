@@ -1,0 +1,17 @@
+{
+  "frozenAt": "2026-09-25T12:28:35.679694+00:00",
+  "fixtureSha256": "fd57de377222e0833c4d410fad20ad1cdb1b0e97c11de0a19ad956937ff7826f",
+  "order": [
+    "chrome-bare",
+    "chrome-pilot",
+    "cua-pilot",
+    "cua-bare"
+  ],
+  "repeats": 1,
+  "actionsExpectedPerEpisode": 5,
+  "chromeGoal": "Read the verified readiness report for Maple, AP South, approved r18; report readiness, blocker, owner, and whether production rollout occurred.",
+  "cuaGoal": "Read the verified maintenance runbook for Cedar, EU West, approved r18; report scope, precondition, owner, and whether production changed.",
+  "timing": "Begin before first observed task state; end after GPT has inspected final fresh state. Include handoffs; bootstrap, report authoring, setup excluded.",
+  "usage": "Native usage records for all marked host cells; not subscription billing. Same long-lived root context; not independent sessions.",
+  "freeze": "Installed v19; no policy changes, quota resets, invented task IDs or forced Jev use."
+}

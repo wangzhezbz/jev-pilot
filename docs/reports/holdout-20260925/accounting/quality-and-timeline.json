@@ -1,0 +1,2483 @@
+[
+  {
+    "id": "gpt-6-astra-holdout_sort-0-bare",
+    "timeline": [
+      {
+        "method": "turn/start:sent",
+        "elapsedMs": 0
+      },
+      {
+        "method": "turn/start:acknowledged",
+        "elapsedMs": 2.631292000000002
+      },
+      {
+        "elapsedMs": 2.66,
+        "method": "turn/started",
+        "status": "inProgress"
+      },
+      {
+        "elapsedMs": 2107.709,
+        "method": "item/started",
+        "itemId": "01a0d883-103d-7601-84b5-8290795e8baa",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 2107.765,
+        "method": "item/completed",
+        "itemId": "01a0d883-103d-7601-84b5-8290795e8baa",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 5369.142,
+        "method": "item/started",
+        "itemId": "msg_06253a8172b7548a016ab66732622c87d0bc318554829c556e",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 6498.566,
+        "method": "item/completed",
+        "itemId": "msg_06253a8172b7548a016ab66732622c87d0bc318554829c556e",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 9651.247,
+        "method": "item/started",
+        "itemId": "exec-be2422ff-2cc3-41d2-9165-6574410a4cc8",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 9651.268,
+        "method": "item/completed",
+        "itemId": "exec-be2422ff-2cc3-41d2-9165-6574410a4cc8",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 9651.325,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 15244
+      },
+      {
+        "elapsedMs": 13334.611,
+        "method": "item/started",
+        "itemId": "exec-a88b8004-69e2-4166-8fa8-fb0cb7a072cd",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 13334.66,
+        "method": "item/completed",
+        "itemId": "exec-a88b8004-69e2-4166-8fa8-fb0cb7a072cd",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 13334.961,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 30643
+      },
+      {
+        "elapsedMs": 15064.686,
+        "method": "item/started",
+        "itemId": "rs_06253a8172b7548a016ab6673c0ff887d09566e64d1e4b739f",
+        "itemType": "reasoning"
+      },
+      {
+        "elapsedMs": 20628.369,
+        "method": "item/completed",
+        "itemId": "rs_06253a8172b7548a016ab6673c0ff887d09566e64d1e4b739f",
+        "itemType": "reasoning"
+      },
+      {
+        "elapsedMs": 21141.989,
+        "method": "item/started",
+        "itemId": "exec-632590ad-9964-4a07-afe4-5a59a645c4dc",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 21142.082,
+        "method": "item/completed",
+        "itemId": "exec-632590ad-9964-4a07-afe4-5a59a645c4dc",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 21142.43,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 46559
+      },
+      {
+        "elapsedMs": 83035.522,
+        "method": "item/started",
+        "itemId": "exec-3ee40654-1d65-4f18-8adf-4a7c8fc5556f",
+        "itemType": "fileChange"
+      },
+      {
+        "elapsedMs": 83148.92,
+        "method": "item/completed",
+        "itemId": "exec-3ee40654-1d65-4f18-8adf-4a7c8fc5556f",
+        "itemType": "fileChange"
+      },
+      {
+        "elapsedMs": 83281.903,
+        "method": "item/started",
+        "itemId": "exec-fe8a676e-0497-4fa5-88f7-017495bd690a",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 83281.951,
+        "method": "item/completed",
+        "itemId": "exec-fe8a676e-0497-4fa5-88f7-017495bd690a",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 83282.64,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 64557
+      },
+      {
+        "elapsedMs": 86251.473,
+        "method": "item/started",
+        "itemId": "msg_06253a8172b7548a016ab667833d9087d0957880c85dae4e9a",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 88382.721,
+        "method": "item/completed",
+        "itemId": "msg_06253a8172b7548a016ab667833d9087d0957880c85dae4e9a",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 88405.969,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 82934
+      },
+      {
+        "elapsedMs": 88406.115,
+        "method": "turn/completed",
+        "status": "completed"
+      }
+    ],
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "protected:SPEC.md",
+          "pass": true
+        },
+        {
+          "name": "independent_oracle",
+          "pass": true
+        }
+      ],
+      "oracleOutput": "oracle passed\n"
+    },
+    "artifacts": {
+      "rank.mjs": "const priorities = new Map([\n  ['critical', 0],\n  ['high', 1],\n  ['normal', 2],\n  ['low', 3],\n]);\n\nexport function rankTickets(items) {\n  return items\n    .map((item, index) => ({\n      item,\n      index,\n      closed: item.status === 'closed' ? 1 : 0,\n      priority: priorities.get(item.priority) ?? priorities.size,\n      due: Number.isFinite(item.due) ? item.due : Infinity,\n    }))\n    .sort((a, b) =>\n      a.closed - b.closed ||\n      a.priority - b.priority ||\n      (a.due < b.due ? -1 : a.due > b.due ? 1 : 0) ||\n      a.index - b.index\n    )\n    .map(({ item }) => item);\n}\n",
+      "rank.test.mjs": "import assert from 'node:assert/strict';\nimport test from 'node:test';\nimport { rankTickets } from './rank.mjs';\n\nconst ids = (items) => rankTickets(items).map(({ id }) => id);\n\ntest('status, priority, and due are applied in that order', () => {\n  const items = [\n    { id: 'closed-critical', status: 'closed', priority: 'critical', due: -100 },\n    { id: 'open-unknown', status: 'open', priority: 'urgent', due: -100 },\n    { id: 'open-low', status: 'open', priority: 'low', due: -100 },\n    { id: 'open-normal', status: 'open', priority: 'normal', due: -100 },\n    { id: 'high-late', status: 'open', priority: 'high', due: 10 },\n    { id: 'critical-missing', status: 'open', priority: 'critical' },\n    { id: 'high-early', status: 'open', priority: 'high', due: 0 },\n    { id: 'closed-low', status: 'closed', priority: 'low', due: -200 },\n    { id: 'critical-valid', status: 'open', priority: 'critical', due: 100 },\n  ];\n  assert.deepEqual(ids(items), [\n    'critical-valid', 'critical-missing', 'high-early', 'high-late',\n    'open-normal', 'open-low', 'open-unknown', 'closed-critical', 'closed-low',\n  ]);\n});\n\ntest('only the exact string closed counts as closed', () => {\n  const statuses = ['open', 'Closed', 'CLOSED', 'closed ', '', undefined,\n    null, false, 0, {}, new String('closed')];\n  const open = statuses.map((status, id) => ({ id, status }));\n  assert.deepEqual(ids([{ id: 'closed', status: 'closed' }, ...open]),\n    [...open.map(({ id }) => id), 'closed']);\n});\n\ntest('all unknown priorities follow known priorities and tie with each other', () => {\n  const unknown = ['urgent', 'HIGH', 'constructor', 'toString', '__proto__',\n    '', undefined, null, 0, {}, Symbol('critical'), new String('high')]\n    .map((priority, id) => ({ id, priority, due: 0 }));\n  const known = ['low', 'normal', 'high', 'critical']\n    .map((priority) => ({ id: priority, priority, due: 100 }));\n  assert.deepEqual(ids([...unknown, ...known]),\n    ['critical', 'high', 'normal', 'low', ...unknown.map(({ id }) => id)]);\n  assert.deepEqual(ids([\n    { id: 'later', priority: 'urgent', due: 2 },\n    { id: 'earlier', priority: 'other', due: 1 },\n  ]), ['earlier', 'later']);\n});\n\ntest('finite numeric due dates sort ascending, including zero and negatives', () => {\n  const values = [Number.MAX_VALUE, 0, 1.5, -2, -Number.MAX_VALUE, 0.25];\n  assert.deepEqual(rankTickets(values.map((due) => ({ due }))).map(x => x.due),\n    [-Number.MAX_VALUE, -2, 0, 0.25, 1.5, Number.MAX_VALUE]);\n});\n\ntest('invalid and missing due dates come last without coercion, in original order', () => {\n  const coercible = { valueOf() { throw new Error('must not coerce due'); } };\n  const invalid = [NaN, Infinity, -Infinity, '0', '-100', '', null, undefined,\n    false, true, [], [0], {}, new Number(0), new Date(0), 0n, Symbol('due'), coercible]\n    .map((due, id) => ({ id, due }));\n  invalid.splice(3, 0, { id: 'missing' });\n  const items = [...invalid.slice(0, 5), { id: 'valid-positive', due: 10 },\n    ...invalid.slice(5), { id: 'valid-zero', due: 0 }];\n  assert.deepEqual(ids(items),\n    ['valid-zero', 'valid-positive', ...invalid.map(({ id }) => id)]);\n});\n\ntest('equal sort keys preserve original order across interleaved groups', () => {\n  const items = [\n    { id: 'closed-a', status: 'closed', priority: 'high', due: 0 },\n    { id: 'open-a', status: 'pending', priority: 'normal', due: -0 },\n    { id: 'critical', priority: 'critical' },\n    { id: 'open-b', status: 'open', priority: 'normal', due: 0 },\n    { id: 'closed-b', status: 'closed', priority: 'high', due: -0 },\n    { id: 'open-c', priority: 'normal', due: 0 },\n  ];\n  assert.deepEqual(ids(items),\n    ['critical', 'open-a', 'open-b', 'open-c', 'closed-a', 'closed-b']);\n});\n\ntest('returns a new array without changing the input or ticket objects', () => {\n  const later = Object.freeze({ id: 'later', priority: 'low', due: 2 });\n  const earlier = Object.freeze({ id: 'earlier', priority: 'high', due: 1 });\n  const items = Object.freeze([later, earlier, later]);\n  const result = rankTickets(items);\n  assert.notStrictEqual(result, items);\n  assert.deepEqual(items, [later, earlier, later]);\n  assert.strictEqual(result[0], earlier);\n  assert.strictEqual(result[1], later);\n  assert.strictEqual(result[2], later);\n});\n\ntest('empty and single-item inputs return distinct arrays', () => {\n  const empty = Object.freeze([]);\n  const result = rankTickets(empty);\n  assert.deepEqual(result, []);\n  assert.notStrictEqual(result, empty);\n  const ticket = Object.freeze({});\n  const single = Object.freeze([ticket]);\n  const ranked = rankTickets(single);\n  assert.notStrictEqual(ranked, single);\n  assert.strictEqual(ranked[0], ticket);\n});\n"
+    },
+    "tools": [
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc \"pwd; rg --files -g '\"'!node_modules'\"' -g '\"'!package-lock.json'\"' -g '\"'!yarn.lock'\"' -g '\"'!pnpm-lock.yaml'\"' -g '\"'!.git'\"' -g 'AGENTS.md' -g 'SPEC.md' -g '*rank*' -g '*test*' -g 'package.json' -g 'tsconfig.json' -g 'README*'\"",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc \"ls -la; cat SPEC.md rank.mjs; rg --files --hidden -g '\"'!.git'\"' -g '\"'!node_modules'\"'\"",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc 'git status --short; node --version'",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc 'node --test rank.test.mjs; git diff --check; git diff --stat; git status --short'",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      }
+    ]
+  },
+  {
+    "id": "gpt-6-astra-holdout_sort-0-combined",
+    "timeline": [
+      {
+        "method": "turn/start:sent",
+        "elapsedMs": 0
+      },
+      {
+        "method": "turn/start:acknowledged",
+        "elapsedMs": 831.7326250000042
+      },
+      {
+        "elapsedMs": 831.879,
+        "method": "turn/started",
+        "status": "inProgress"
+      },
+      {
+        "elapsedMs": 2732.636,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 2764.868,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 2764.929,
+        "method": "item/started",
+        "itemId": "01a0d884-6d9f-7e80-a228-384ae86e606b",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 2764.955,
+        "method": "item/completed",
+        "itemId": "01a0d884-6d9f-7e80-a228-384ae86e606b",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 6637.191,
+        "method": "item/started",
+        "itemId": "msg_01e87a9c180f1b99016ab6678c704c87d0896710498004f7e8",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 7732.43,
+        "method": "item/completed",
+        "itemId": "msg_01e87a9c180f1b99016ab6678c704c87d0896710498004f7e8",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 9350.607,
+        "method": "item/started",
+        "itemId": "exec-87114b2d-3de2-456f-af4f-91ae4c7c9dd8",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 9351.252,
+        "method": "item/completed",
+        "itemId": "exec-87114b2d-3de2-456f-af4f-91ae4c7c9dd8",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 9351.298,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 9696.268,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 9696.923,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 16113
+      },
+      {
+        "elapsedMs": 14361.959,
+        "method": "item/started",
+        "itemId": "exec-ab74bab2-0307-4919-831f-8c0362002566",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 14362.587,
+        "method": "item/completed",
+        "itemId": "exec-ab74bab2-0307-4919-831f-8c0362002566",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 14365.231,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 14713.662,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 14714.185,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 32362
+      },
+      {
+        "elapsedMs": 60796.915,
+        "method": "item/started",
+        "itemId": "exec-f13cfc25-06f2-486c-9f4e-0841d6605e7d",
+        "itemType": "fileChange"
+      },
+      {
+        "elapsedMs": 60912.29,
+        "method": "item/completed",
+        "itemId": "exec-f13cfc25-06f2-486c-9f4e-0841d6605e7d",
+        "itemType": "fileChange"
+      },
+      {
+        "elapsedMs": 60912.357,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 61631.064,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 61761.401,
+        "method": "item/started",
+        "itemId": "exec-60d88e64-8ba7-4ebb-9a77-b86405f0c240",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 61762.083,
+        "method": "item/completed",
+        "itemId": "exec-60d88e64-8ba7-4ebb-9a77-b86405f0c240",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 61765.373,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 61794.664,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 61795.164,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 50375
+      },
+      {
+        "elapsedMs": 63521.915,
+        "method": "item/started",
+        "itemId": "msg_01e87a9c180f1b99016ab667c54d7c87d0bd38c5f4f59478d4",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 65696.437,
+        "method": "item/completed",
+        "itemId": "msg_01e87a9c180f1b99016ab667c54d7c87d0bd38c5f4f59478d4",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 65733.413,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 68728
+      },
+      {
+        "elapsedMs": 65733.92,
+        "method": "turn/completed",
+        "status": "completed"
+      }
+    ],
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "protected:SPEC.md",
+          "pass": true
+        },
+        {
+          "name": "independent_oracle",
+          "pass": true
+        }
+      ],
+      "oracleOutput": "oracle passed\n"
+    },
+    "artifacts": {
+      "rank.mjs": "const priorities = new Map([\n  ['critical', 0],\n  ['high', 1],\n  ['normal', 2],\n  ['low', 3],\n]);\n\nexport function rankTickets(items) {\n  return items\n    .map((item, index) => ({\n      item,\n      index,\n      closed: item.status === 'closed' ? 1 : 0,\n      priority: priorities.get(item.priority) ?? 4,\n      due: Number.isFinite(item.due) ? item.due : Infinity,\n    }))\n    .sort((a, b) =>\n      a.closed - b.closed ||\n      a.priority - b.priority ||\n      (a.due < b.due ? -1 : a.due > b.due ? 1 : 0) ||\n      a.index - b.index\n    )\n    .map(({ item }) => item);\n}\n",
+      "rank.test.mjs": "import test from 'node:test';\nimport assert from 'node:assert/strict';\nimport { rankTickets } from './rank.mjs';\n\ntest('status, priority, and due are applied in that order', () => {\n  const tickets = [\n    { id: 'closed-critical', status: 'closed', priority: 'critical', due: -100 },\n    { id: 'unknown', priority: 'urgent', due: -100 },\n    { id: 'low', priority: 'low', due: -100 },\n    { id: 'normal', priority: 'normal', due: -100 },\n    { id: 'high-late', priority: 'high', due: 20 },\n    { id: 'high-early', priority: 'high', due: 10 },\n    { id: 'critical', priority: 'critical', due: 100 },\n    { id: 'closed-low', status: 'closed', priority: 'low', due: -200 },\n  ];\n  assert.deepEqual(rankTickets(tickets).map(t => t.id), [\n    'critical', 'high-early', 'high-late', 'normal', 'low', 'unknown',\n    'closed-critical', 'closed-low',\n  ]);\n});\n\ntest('only the exact status closed is closed; other statuses tie stably', () => {\n  const tickets = ['closed', 'Closed', undefined, null, '', false, 'open']\n    .map(status => ({ status }));\n  assert.deepEqual(rankTickets(tickets), [...tickets.slice(1), tickets[0]]);\n});\n\ntest('unknown priorities sort last without coercion and retain original order', () => {\n  const unknown = [undefined, null, 'HIGH', 'toString', '__proto__', 0, {}, Symbol('high')]\n    .map(priority => ({ priority }));\n  const known = ['low', 'normal', 'high', 'critical'].map(priority => ({ priority }));\n  assert.deepEqual(rankTickets([...unknown, ...known]), [...known.reverse(), ...unknown]);\n});\n\ntest('finite numeric due dates include zero and negatives; invalid dates stay last stably', () => {\n  const invalid = [undefined, null, NaN, Infinity, -Infinity, '', '1', false, true,\n    new Number(1), {}, [], 1n, Symbol('due')].map(due => ({ due }));\n  const finite = [Number.MAX_VALUE, 0, -5, 2.5, -Number.MAX_VALUE].map(due => ({ due }));\n  assert.deepEqual(rankTickets([...invalid, ...finite]), [\n    finite[4], finite[2], finite[1], finite[3], finite[0], ...invalid,\n  ]);\n});\n\ntest('equal keys preserve original order, including missing and invalid due dates', () => {\n  const a = { priority: 'high', due: 0 };\n  const b = { priority: 'high', due: -0 };\n  const c = { priority: 'low' };\n  const d = { priority: 'low', due: NaN };\n  assert.deepEqual(rankTickets([c, a, d, b, a]), [a, b, a, c, d]);\n});\n\ntest('returns a new array without mutating frozen input or replacing ticket objects', () => {\n  const late = Object.freeze({ due: 10, details: Object.freeze({ label: 'late' }) });\n  const early = Object.freeze({ due: 0 });\n  const input = Object.freeze([late, early]);\n  const result = rankTickets(input);\n  assert.notStrictEqual(result, input);\n  assert.strictEqual(result[0], early);\n  assert.strictEqual(result[1], late);\n  assert.deepEqual(input, [late, early]);\n});\n\ntest('empty and singleton inputs return new arrays', () => {\n  const empty = Object.freeze([]);\n  assert.deepEqual(rankTickets(empty), []);\n  assert.notStrictEqual(rankTickets(empty), empty);\n  const single = Object.freeze([Object.freeze({})]);\n  assert.deepEqual(rankTickets(single), single);\n  assert.notStrictEqual(rankTickets(single), single);\n});\n"
+    },
+    "tools": [
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc \"pwd && rg --files -g '\"'!node_modules'\"' -g '\"'!package-lock.json'\"' -g '\"'!yarn.lock'\"'\"",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc 'ls -la && cat SPEC.md rank.mjs'",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc 'node --test rank.test.mjs && git diff --check && git status --short'",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      }
+    ]
+  },
+  {
+    "id": "gpt-6-astra-holdout_ranges-0-combined",
+    "timeline": [
+      {
+        "method": "turn/start:sent",
+        "elapsedMs": 0
+      },
+      {
+        "method": "turn/start:acknowledged",
+        "elapsedMs": 268.84391600001254
+      },
+      {
+        "elapsedMs": 269.04,
+        "method": "turn/started",
+        "status": "inProgress"
+      },
+      {
+        "elapsedMs": 2392.891,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 2424.522,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 2424.563,
+        "method": "item/started",
+        "itemId": "01a0d885-6e87-7143-846f-2a73df1bdd7f",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 2424.572,
+        "method": "item/completed",
+        "itemId": "01a0d885-6e87-7143-846f-2a73df1bdd7f",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 6562.519,
+        "method": "item/started",
+        "itemId": "msg_065b6bce23344c72016ab667ce77a087d08a6c3fbf91d82b17",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 7445.059,
+        "method": "item/completed",
+        "itemId": "msg_065b6bce23344c72016ab667ce77a087d08a6c3fbf91d82b17",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 8820.208,
+        "method": "item/started",
+        "itemId": "exec-74115840-d43c-45ed-af92-eff6b7a86b56",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 8820.841,
+        "method": "item/completed",
+        "itemId": "exec-74115840-d43c-45ed-af92-eff6b7a86b56",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 8820.858,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 9181.229,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 9182.092,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 16116
+      },
+      {
+        "elapsedMs": 13438.51,
+        "method": "item/started",
+        "itemId": "exec-a4353e73-1ce7-43b5-a63a-a8b9f5466b47",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 13439.149,
+        "method": "item/completed",
+        "itemId": "exec-a4353e73-1ce7-43b5-a63a-a8b9f5466b47",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 13441.316,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 13786.978,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 13787.398,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 32370
+      },
+      {
+        "elapsedMs": 17462.749,
+        "method": "item/started",
+        "itemId": "rs_065b6bce23344c72016ab667d95b9c87d0913a41913c34cebf",
+        "itemType": "reasoning"
+      },
+      {
+        "elapsedMs": 18693.156,
+        "method": "item/completed",
+        "itemId": "rs_065b6bce23344c72016ab667d95b9c87d0913a41913c34cebf",
+        "itemType": "reasoning"
+      },
+      {
+        "elapsedMs": 82090.652,
+        "method": "item/started",
+        "itemId": "exec-c2275101-f859-42a1-af61-d9dd893973b5",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 82091.119,
+        "method": "item/completed",
+        "itemId": "exec-c2275101-f859-42a1-af61-d9dd893973b5",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 82094.81,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 82703.661,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 82728.503,
+        "method": "item/started",
+        "itemId": "exec-4e5863bf-623e-4c0f-a733-700bfab672b7",
+        "itemType": "fileChange"
+      },
+      {
+        "elapsedMs": 82843.867,
+        "method": "item/completed",
+        "itemId": "exec-4e5863bf-623e-4c0f-a733-700bfab672b7",
+        "itemType": "fileChange"
+      },
+      {
+        "elapsedMs": 82843.971,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 82874.952,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 82875.376,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 51098
+      },
+      {
+        "elapsedMs": 86264.433,
+        "method": "item/started",
+        "itemId": "rs_065b6bce23344c72016ab6681e27b487d0bf3c663bcaee262e",
+        "itemType": "reasoning"
+      },
+      {
+        "elapsedMs": 86530.406,
+        "method": "item/completed",
+        "itemId": "rs_065b6bce23344c72016ab6681e27b487d0bf3c663bcaee262e",
+        "itemType": "reasoning"
+      },
+      {
+        "elapsedMs": 86532.794,
+        "method": "item/started",
+        "itemId": "msg_065b6bce23344c72016ab6681e707087d0a141a23f65e0f3ef",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 88401.412,
+        "method": "item/completed",
+        "itemId": "msg_065b6bce23344c72016ab6681e707087d0a141a23f65e0f3ef",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 91323.687,
+        "method": "item/started",
+        "itemId": "exec-54a78714-c8ba-4213-980f-20cf6a66f1ab",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 91324.319,
+        "method": "item/completed",
+        "itemId": "exec-54a78714-c8ba-4213-980f-20cf6a66f1ab",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 91327.999,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 91328.187,
+        "method": "item/started",
+        "itemId": "exec-1f0b63c9-3e9b-420a-8238-942424bf37c3",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 91328.6,
+        "method": "item/completed",
+        "itemId": "exec-1f0b63c9-3e9b-420a-8238-942424bf37c3",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 91332.05,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 91704.613,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 91704.652,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 91705.078,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 70055
+      },
+      {
+        "elapsedMs": 93535.451,
+        "method": "item/started",
+        "itemId": "msg_065b6bce23344c72016ab6682571dc87d0aab750c1578e3286",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 95560.893,
+        "method": "item/completed",
+        "itemId": "msg_065b6bce23344c72016ab6682571dc87d0aab750c1578e3286",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 95589.449,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 89506
+      },
+      {
+        "elapsedMs": 95589.964,
+        "method": "turn/completed",
+        "status": "completed"
+      }
+    ],
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "protected:SPEC.md",
+          "pass": true
+        },
+        {
+          "name": "independent_oracle",
+          "pass": true
+        }
+      ],
+      "oracleOutput": "oracle passed\n"
+    },
+    "artifacts": {
+      "ranges.mjs": "function normalize(intervals) {\n  const sorted = [];\n  for (const [start, end] of intervals) {\n    if (!Number.isInteger(start) || !Number.isInteger(end) || start > end) {\n      throw new RangeError('Interval endpoints must be finite integers with start <= end');\n    }\n    if (start < end) sorted.push([start, end]);\n  }\n  sorted.sort((a, b) => a[0] - b[0]);\n\n  const union = [];\n  for (const interval of sorted) {\n    const last = union[union.length - 1];\n    if (last && interval[0] <= last[1]) {\n      last[1] = Math.max(last[1], interval[1]);\n    } else {\n      union.push(interval);\n    }\n  }\n  return union;\n}\n\nexport function subtractIntervals(base, removed) {\n  const bases = normalize(base);\n  const removals = normalize(removed);\n  const result = [];\n  let index = 0;\n\n  for (const [start, end] of bases) {\n    let cursor = start;\n    while (index < removals.length && removals[index][1] <= cursor) index++;\n    while (index < removals.length && removals[index][0] < end) {\n      const [cutStart, cutEnd] = removals[index];\n      if (cutStart > cursor) result.push([cursor, cutStart]);\n      cursor = Math.max(cursor, cutEnd);\n      // Keep a removal that may also overlap the next base interval.\n      if (cursor >= end) break;\n      index++;\n    }\n    if (cursor < end) result.push([cursor, end]);\n  }\n  return result;\n}\n",
+      "ranges.test.mjs": "import test from 'node:test';\nimport assert from 'node:assert/strict';\nimport { subtractIntervals } from './ranges.mjs';\n\nconst cases = [\n  ['empty sets', [], [], []],\n  ['empty base', [], [[1, 5]], []],\n  ['no removals', [[1, 5]], [], [[1, 5]]],\n  ['interior split', [[0, 10]], [[3, 7]], [[0, 3], [7, 10]]],\n  ['left overlap', [[0, 10]], [[-2, 4]], [[4, 10]]],\n  ['right overlap', [[0, 10]], [[6, 12]], [[0, 6]]],\n  ['full coverage', [[0, 10]], [[-1, 11]], []],\n  ['equal intervals', [[0, 10]], [[0, 10]], []],\n  ['touching boundaries', [[0, 10]], [[-3, 0], [10, 12]], [[0, 10]]],\n  ['matching left boundary', [[0, 10]], [[0, 4]], [[4, 10]]],\n  ['matching right boundary', [[0, 10]], [[6, 10]], [[0, 6]]],\n  ['multiple cuts', [[0, 10]], [[7, 9], [1, 3]], [[0, 1], [3, 7], [9, 10]]],\n  ['spanning removal', [[0, 2], [4, 6], [8, 10]], [[1, 9]], [[0, 1], [9, 10]]],\n  ['removals in gaps', [[0, 2], [8, 10]], [[3, 7]], [[0, 2], [8, 10]]],\n  ['normalize base', [[6, 8], [2, 5], [0, 3], [5, 6], [2, 5]], [], [[0, 8]]],\n  ['normalize removed', [[0, 12]], [[6, 8], [2, 5], [4, 6], [2, 5]], [[0, 2], [8, 12]]],\n  ['nested intervals', [[0, 10], [2, 3]], [[2, 8], [3, 4]], [[0, 2], [8, 10]]],\n  ['zero lengths', [[2, 2], [0, 5]], [[3, 3], [9, 9]], [[0, 5]]],\n  ['only zero lengths', [[2, 2]], [[3, 3]], []],\n  ['negative endpoints', [[-10, -2]], [[-8, -5]], [[-10, -8], [-5, -2]]],\n];\n\nfor (const [name, base, removed, expected] of cases) {\n  test(name, () => {\n    const before = structuredClone([base, removed]);\n    base.forEach(Object.freeze);\n    removed.forEach(Object.freeze);\n    Object.freeze(base);\n    Object.freeze(removed);\n    const actual = subtractIntervals(base, removed);\n    assert.deepEqual(actual, expected);\n    assert.deepEqual([base, removed], before);\n    if (actual.length) actual[0][0] = 999;\n    assert.deepEqual([base, removed], before, 'output must not alias inputs');\n  });\n}\n\ntest('invalid endpoints and inverted intervals in either input throw RangeError', () => {\n  const invalid = [\n    [2, 1], [0.5, 1], [0, 1.5], [NaN, 2], [0, NaN],\n    [-Infinity, 2], [0, Infinity], [Infinity, Infinity],\n    [-Infinity, -Infinity], [0.5, 0.5], ['0', 2], [0, '2'],\n    [null, 2], [0, undefined],\n  ];\n  for (const interval of invalid) {\n    for (const valid of [[], [[0, 10]]]) {\n      assert.throws(() => subtractIntervals([interval], valid), RangeError);\n      assert.throws(() => subtractIntervals(valid, [interval]), RangeError);\n    }\n  }\n  assert.throws(() => subtractIntervals([[0, 10], [3, 2]], []), RangeError);\n  assert.throws(() => subtractIntervals([], [[0, 10], [3, 2]]), RangeError);\n});\n\ntest('deterministic generated cases agree with an integer-cell oracle', () => {\n  let seed = 12345;\n  const random = n => {\n    seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;\n    return seed % n;\n  };\n  const generate = () => Array.from({ length: random(9) }, () => {\n    const a = random(21) - 10;\n    const b = random(21) - 10;\n    return [Math.min(a, b), Math.max(a, b)];\n  });\n  const contains = (intervals, x) => intervals.some(([a, b]) => a <= x && x < b);\n  for (let trial = 0; trial < 1000; trial++) {\n    const base = generate();\n    const removed = generate();\n    const expected = [];\n    for (let x = -10; x < 10; x++) {\n      if (contains(base, x) && !contains(removed, x)) {\n        const last = expected.at(-1);\n        if (last && last[1] === x) last[1] = x + 1;\n        else expected.push([x, x + 1]);\n      }\n    }\n    assert.deepEqual(subtractIntervals(base, removed), expected, `trial ${trial}`);\n  }\n});\n"
+    },
+    "tools": [
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc \"pwd; rg --files -g '\"'!node_modules'\"' -g '\"'!package-lock.json'\"' -g '\"'!'\"\\\\.git'\"",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc 'ls -la; cat SPEC.md ranges.mjs'",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc 'git status --short; git ls-files; node --version'",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc 'git diff --check; git diff --exit-code -- SPEC.md; node --check ranges.mjs; node --check ranges.test.mjs; git status --short'",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc 'node --test ranges.test.mjs'",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      }
+    ]
+  },
+  {
+    "id": "gpt-6-astra-holdout_ranges-0-bare",
+    "timeline": [
+      {
+        "method": "turn/start:sent",
+        "elapsedMs": 0
+      },
+      {
+        "method": "turn/start:acknowledged",
+        "elapsedMs": 2.506916000013007
+      },
+      {
+        "elapsedMs": 2.556,
+        "method": "turn/started",
+        "status": "inProgress"
+      },
+      {
+        "elapsedMs": 1904.619,
+        "method": "item/started",
+        "itemId": "01a0d886-e295-7bb2-ac2e-f8e34f4c8d36",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 1904.781,
+        "method": "item/completed",
+        "itemId": "01a0d886-e295-7bb2-ac2e-f8e34f4c8d36",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 3646.404,
+        "method": "item/started",
+        "itemId": "msg_00eebc0bfc194252016ab6682b495487d0a77e4f8e700ab2b2",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 5037.137,
+        "method": "item/completed",
+        "itemId": "msg_00eebc0bfc194252016ab6682b495487d0a77e4f8e700ab2b2",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 6408.486,
+        "method": "item/started",
+        "itemId": "exec-3e9abad1-f949-4af1-a12b-56a4d5fdf0e3",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 6408.497,
+        "method": "item/completed",
+        "itemId": "exec-3e9abad1-f949-4af1-a12b-56a4d5fdf0e3",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 6408.53,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 15197
+      },
+      {
+        "elapsedMs": 12795.073,
+        "method": "item/started",
+        "itemId": "exec-3ebd72bb-cb16-4c98-b90f-c58ba1088c18",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 12795.109,
+        "method": "item/completed",
+        "itemId": "exec-3ebd72bb-cb16-4c98-b90f-c58ba1088c18",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 12798.766,
+        "method": "item/started",
+        "itemId": "exec-a31ea1b6-dab7-47fa-bfeb-48a340de0f07",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 12798.801,
+        "method": "item/completed",
+        "itemId": "exec-a31ea1b6-dab7-47fa-bfeb-48a340de0f07",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 12799.108,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 30598
+      },
+      {
+        "elapsedMs": 14326.099,
+        "method": "item/started",
+        "itemId": "rs_00eebc0bfc194252016ab66835fd7487d0b3730a3dda3a87be",
+        "itemType": "reasoning"
+      },
+      {
+        "elapsedMs": 19115.121,
+        "method": "item/completed",
+        "itemId": "rs_00eebc0bfc194252016ab66835fd7487d0b3730a3dda3a87be",
+        "itemType": "reasoning"
+      },
+      {
+        "elapsedMs": 20219.096,
+        "method": "item/started",
+        "itemId": "exec-5d93bcd5-ff1f-4c9e-85a2-ff1e85a40f52",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 20219.132,
+        "method": "item/completed",
+        "itemId": "exec-5d93bcd5-ff1f-4c9e-85a2-ff1e85a40f52",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 20219.381,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 46408
+      },
+      {
+        "elapsedMs": 94555.965,
+        "method": "item/started",
+        "itemId": "exec-448a272e-39af-4199-8f28-e6569081c4e6",
+        "itemType": "fileChange"
+      },
+      {
+        "elapsedMs": 94673.114,
+        "method": "item/completed",
+        "itemId": "exec-448a272e-39af-4199-8f28-e6569081c4e6",
+        "itemType": "fileChange"
+      },
+      {
+        "elapsedMs": 94673.402,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 64742
+      },
+      {
+        "elapsedMs": 96264.982,
+        "method": "item/started",
+        "itemId": "rs_00eebc0bfc194252016ab66887ec8087d0baadc16c923bd25a",
+        "itemType": "reasoning"
+      },
+      {
+        "elapsedMs": 96714.286,
+        "method": "item/completed",
+        "itemId": "rs_00eebc0bfc194252016ab66887ec8087d0baadc16c923bd25a",
+        "itemType": "reasoning"
+      },
+      {
+        "elapsedMs": 96714.319,
+        "method": "item/started",
+        "itemId": "msg_00eebc0bfc194252016ab66888646887d0b432ca517b73780e",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 98832.893,
+        "method": "item/completed",
+        "itemId": "msg_00eebc0bfc194252016ab66888646887d0b432ca517b73780e",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 101543.399,
+        "method": "item/started",
+        "itemId": "exec-7c6bf517-07c7-472a-8b7b-28cdfe74ad2f",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 101543.432,
+        "method": "item/completed",
+        "itemId": "exec-7c6bf517-07c7-472a-8b7b-28cdfe74ad2f",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 101550.407,
+        "method": "item/started",
+        "itemId": "exec-8bd4c220-909e-4ac7-a742-7e63d299311a",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 101550.447,
+        "method": "item/completed",
+        "itemId": "exec-8bd4c220-909e-4ac7-a742-7e63d299311a",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 101550.78,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 83275
+      },
+      {
+        "elapsedMs": 104204.865,
+        "method": "item/started",
+        "itemId": "msg_00eebc0bfc194252016ab6688fe30487d099552dda05596e7f",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 111412.385,
+        "method": "item/completed",
+        "itemId": "msg_00eebc0bfc194252016ab6688fe30487d099552dda05596e7f",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 111412.405,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 102382
+      },
+      {
+        "elapsedMs": 111412.655,
+        "method": "turn/completed",
+        "status": "completed"
+      }
+    ],
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "protected:SPEC.md",
+          "pass": true
+        },
+        {
+          "name": "independent_oracle",
+          "pass": true
+        }
+      ],
+      "oracleOutput": "oracle passed\n"
+    },
+    "artifacts": {
+      "ranges.mjs": "function normalize(intervals) {\n  const sorted = [];\n  for (const [start, end] of intervals) {\n    if (!Number.isInteger(start) || !Number.isInteger(end) || start > end) {\n      throw new RangeError('Interval endpoints must be finite integers with start <= end');\n    }\n    if (start < end) sorted.push([start, end]);\n  }\n  sorted.sort((a, b) => a[0] - b[0]);\n\n  const union = [];\n  for (const interval of sorted) {\n    const previous = union[union.length - 1];\n    if (previous && interval[0] <= previous[1]) {\n      previous[1] = Math.max(previous[1], interval[1]);\n    } else {\n      union.push(interval);\n    }\n  }\n  return union;\n}\n\nexport function subtractIntervals(base, removed) {\n  // Normalize both inputs before subtracting so even unused intervals are validated.\n  const sources = normalize(base);\n  const cuts = normalize(removed);\n  const result = [];\n  let cutIndex = 0;\n\n  for (const [start, end] of sources) {\n    let cursor = start;\n    while (cutIndex < cuts.length && cuts[cutIndex][1] <= cursor) cutIndex++;\n\n    while (cutIndex < cuts.length && cuts[cutIndex][0] < end) {\n      const [cutStart, cutEnd] = cuts[cutIndex];\n      if (cutStart > cursor) result.push([cursor, cutStart]);\n      cursor = Math.max(cursor, cutEnd);\n      // Keep this cut available if it also covers subsequent base intervals.\n      if (cursor >= end) break;\n      cutIndex++;\n    }\n    if (cursor < end) result.push([cursor, end]);\n  }\n  return result;\n}\n",
+      "ranges.test.mjs": "import test from 'node:test';\nimport assert from 'node:assert/strict';\nimport { subtractIntervals } from './ranges.mjs';\n\nconst cases = [\n  ['empty sets', [], [], []],\n  ['empty base', [], [[1, 5]], []],\n  ['empty removals', [[1, 5]], [], [[1, 5]]],\n  ['interior split', [[0, 10]], [[3, 7]], [[0, 3], [7, 10]]],\n  ['left overlap', [[0, 10]], [[-3, 4]], [[4, 10]]],\n  ['right overlap', [[0, 10]], [[6, 14]], [[0, 6]]],\n  ['exact removal', [[0, 10]], [[0, 10]], []],\n  ['containing removal', [[0, 10]], [[-1, 11]], []],\n  ['touching boundaries', [[0, 10]], [[-5, 0], [10, 15]], [[0, 10]]],\n  ['disjoint removals', [[0, 10]], [[-5, -1], [11, 15]], [[0, 10]]],\n  ['multiple splits', [[0, 10]], [[6, 8], [2, 4]], [[0, 2], [4, 6], [8, 10]]],\n  ['base union', [[8, 10], [2, 6], [0, 3], [6, 8], [2, 6], [1, 2]], [], [[0, 10]]],\n  ['removed union', [[0, 12]], [[6, 9], [2, 5], [4, 6], [3, 4], [2, 5]], [[0, 2], [9, 12]]],\n  ['both unions', [[5, 10], [0, 6]], [[7, 9], [2, 4], [4, 7]], [[0, 2], [9, 10]]],\n  ['one cut spanning bases', [[0, 3], [5, 7], [9, 12]], [[2, 10]], [[0, 2], [10, 12]]],\n  ['cut ends at later base start', [[0, 3], [5, 7]], [[2, 5]], [[0, 2], [5, 7]]],\n  ['cut in base gap', [[0, 2], [5, 7]], [[3, 4]], [[0, 2], [5, 7]]],\n  ['zero lengths ignored', [[1, 1], [0, 5], [8, 8]], [[2, 2], [0, 0], [5, 5]], [[0, 5]]],\n  ['only zero lengths', [[-1, -1]], [[0, 0]], []],\n  ['negative endpoints', [[-10, -2], [-4, 3]], [[-6, -3], [0, 2]], [[-10, -6], [-3, 0], [2, 3]]],\n  ['large finite integers', [[-Number.MAX_VALUE, Number.MAX_VALUE]], [[-1, 1]],\n    [[-Number.MAX_VALUE, -1], [1, Number.MAX_VALUE]]],\n];\n\nfor (const [name, base, removed, expected] of cases) {\n  test(name, () => assert.deepEqual(subtractIntervals(base, removed), expected));\n}\n\ntest('rejects invalid endpoints in either set, including when the other set is empty', () => {\n  const invalidEndpoints = [NaN, Infinity, -Infinity, 0.5, -0.5, '1', null, undefined, true, 1n];\n  const invalidIntervals = [[2, 1]];\n  for (const endpoint of invalidEndpoints) {\n    invalidIntervals.push([endpoint, 2], [-2, endpoint], [endpoint, endpoint]);\n  }\n  for (const invalid of invalidIntervals) {\n    assert.throws(() => subtractIntervals([invalid], []), RangeError);\n    assert.throws(() => subtractIntervals([], [invalid]), RangeError);\n    assert.throws(() => subtractIntervals([[0, 10], invalid], [[-20, 20]]), RangeError);\n    assert.throws(() => subtractIntervals([[0, 10]], [[-20, 20], invalid]), RangeError);\n  }\n});\n\ntest('does not mutate inputs or return aliases to their intervals', () => {\n  const base = Object.freeze([Object.freeze([5, 10]), Object.freeze([0, 6])]);\n  const removed = Object.freeze([Object.freeze([8, 9]), Object.freeze([2, 3])]);\n  const result = subtractIntervals(base, removed);\n  assert.deepEqual(result, [[0, 2], [3, 8], [9, 10]]);\n  result[0][0] = -100;\n  assert.deepEqual(base, [[5, 10], [0, 6]]);\n  assert.deepEqual(removed, [[8, 9], [2, 3]]);\n\n  const untouched = subtractIntervals(base, []);\n  untouched[0][1] = 100;\n  assert.deepEqual(base, [[5, 10], [0, 6]]);\n});\n\n// Independent oracle: represent small integer intervals as occupied unit cells.\nfunction unitCells(intervals) {\n  const cells = new Set();\n  for (const [start, end] of intervals) {\n    for (let i = start; i < end; i++) cells.add(i);\n  }\n  return cells;\n}\n\ntest('matches a unit-cell oracle across 1,000 deterministic input pairs', () => {\n  let seed = 123456789;\n  const random = (limit) => {\n    seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;\n    return seed % limit;\n  };\n  const intervals = () => Array.from({ length: random(9) }, () => {\n    const a = random(21) - 10;\n    const b = random(21) - 10;\n    return [Math.min(a, b), Math.max(a, b)];\n  });\n\n  for (let trial = 0; trial < 1000; trial++) {\n    const base = intervals();\n    const removed = intervals();\n    const snapshot = structuredClone([base, removed]);\n    const expected = unitCells(base);\n    for (const cell of unitCells(removed)) expected.delete(cell);\n    const actual = subtractIntervals(base, removed);\n    assert.deepEqual(unitCells(actual), expected, `trial ${trial}`);\n    assert.deepEqual([base, removed], snapshot);\n    for (let i = 0; i < actual.length; i++) {\n      const [start, end] = actual[i];\n      assert.ok(Number.isInteger(start) && Number.isInteger(end) && start < end);\n      if (i > 0) assert.ok(actual[i - 1][1] < start, 'output must be sorted and fully merged');\n    }\n  }\n});\n"
+    },
+    "tools": [
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc \"pwd && rg --files -g '\"'!node_modules'\"' -g '\"'!package-lock.json'\"' -g '\"'!yarn.lock'\"' -g '\"'!.git'\"'\"",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc 'cat SPEC.md && cat ranges.mjs'",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc \"rg --files --hidden -g '\"'!.git'\"' -g '\"'!node_modules'\"' -g 'AGENTS.md' -g '*test*' -g 'package.json' && git status --short\"",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc 'git status --short; node --version; shasum -a 256 SPEC.md'",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc 'node --check ranges.mjs && node --check ranges.test.mjs && git diff --check && shasum -a 256 SPEC.md && git status --short'",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc 'node --test ranges.test.mjs'",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      }
+    ]
+  },
+  {
+    "id": "gpt-6-astra-holdout_eligibility-0-bare",
+    "timeline": [
+      {
+        "method": "turn/start:sent",
+        "elapsedMs": 0
+      },
+      {
+        "method": "turn/start:acknowledged",
+        "elapsedMs": 1.9108340000384487
+      },
+      {
+        "elapsedMs": 2.162,
+        "method": "turn/started",
+        "status": "inProgress"
+      },
+      {
+        "elapsedMs": 2023.948,
+        "method": "item/started",
+        "itemId": "01a0d888-96f2-7d02-8b79-c8e2c02fcdad",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 2023.956,
+        "method": "item/completed",
+        "itemId": "01a0d888-96f2-7d02-8b79-c8e2c02fcdad",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 3598.083,
+        "method": "item/started",
+        "itemId": "msg_046e55cb463a8a7b016ab6689acf6c87d093108dc09e6de293",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 4721.079,
+        "method": "item/completed",
+        "itemId": "msg_046e55cb463a8a7b016ab6689acf6c87d093108dc09e6de293",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 5914.99,
+        "method": "item/started",
+        "itemId": "exec-bdaedf1a-5641-48d6-a17b-0bf0d5fc6661",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 5915.028,
+        "method": "item/completed",
+        "itemId": "exec-bdaedf1a-5641-48d6-a17b-0bf0d5fc6661",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 5915.033,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 15227
+      },
+      {
+        "elapsedMs": 8577.505,
+        "method": "item/started",
+        "itemId": "exec-69d766af-6f6f-45d1-a73b-13f0faf7c928",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 8577.568,
+        "method": "item/completed",
+        "itemId": "exec-69d766af-6f6f-45d1-a73b-13f0faf7c928",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 8578.054,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 30583
+      },
+      {
+        "elapsedMs": 13146.595,
+        "method": "item/started",
+        "itemId": "rs_046e55cb463a8a7b016ab668a464a887d0b6b99b16648cf223",
+        "itemType": "reasoning"
+      },
+      {
+        "elapsedMs": 14005.082,
+        "method": "item/completed",
+        "itemId": "rs_046e55cb463a8a7b016ab668a464a887d0b6b99b16648cf223",
+        "itemType": "reasoning"
+      },
+      {
+        "elapsedMs": 44617.828,
+        "method": "item/started",
+        "itemId": "exec-44f91144-970c-49a7-9e63-bc608b374254",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 44617.92,
+        "method": "item/completed",
+        "itemId": "exec-44f91144-970c-49a7-9e63-bc608b374254",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 44618.446,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 52032
+      },
+      {
+        "elapsedMs": 46094.59,
+        "method": "item/started",
+        "itemId": "msg_046e55cb463a8a7b016ab668c55b5087d0829a918fe1310984",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 47847.143,
+        "method": "item/completed",
+        "itemId": "msg_046e55cb463a8a7b016ab668c55b5087d0829a918fe1310984",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 47871.587,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 73738
+      },
+      {
+        "elapsedMs": 47871.739,
+        "method": "turn/completed",
+        "status": "completed"
+      }
+    ],
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "protected:requests.md",
+          "pass": true
+        },
+        {
+          "name": "parse",
+          "pass": true
+        },
+        {
+          "name": "exact_eligible_ids",
+          "pass": true
+        },
+        {
+          "name": "report",
+          "pass": true
+        }
+      ]
+    },
+    "artifacts": {
+      "findings.data": "{\n  \"eligibleIds\": [\n    \"CASE-009\",\n    \"CASE-041\",\n    \"CASE-073\"\n  ]\n}\n",
+      "findings.md": "# Erasure request findings\n\nReviewed all 90 source records in requests.md. Three requests qualify; 87 are excluded. Eligibility requires an authenticated request to erase all personal profile fields, expired retention obligations, no active dispute or legal hold preventing execution, and deletion not yet executed.\n\nEligible source IDs: [CASE-009](requests.md#case-009), [CASE-041](requests.md#case-041), [CASE-073](requests.md#case-073).\n\nEach eligible record explicitly requests erasure of all personal profile fields, confirms authentication and expired retention obligations, states that there is no active dispute, and confirms deletion has not yet been executed. None of these records reports an active legal hold.\n\nExclusions, grouped by the decisive source evidence:\n\n- **Account closure only; personal profile records must be preserved for reactivation. This is not a full-erasure request** (18 records): [CASE-000](requests.md#case-000), [CASE-005](requests.md#case-005), [CASE-010](requests.md#case-010), [CASE-015](requests.md#case-015), [CASE-020](requests.md#case-020), [CASE-025](requests.md#case-025), [CASE-030](requests.md#case-030), [CASE-035](requests.md#case-035), [CASE-040](requests.md#case-040), [CASE-045](requests.md#case-045), [CASE-050](requests.md#case-050), [CASE-055](requests.md#case-055), [CASE-060](requests.md#case-060), [CASE-065](requests.md#case-065), [CASE-070](requests.md#case-070), [CASE-075](requests.md#case-075), [CASE-080](requests.md#case-080), [CASE-085](requests.md#case-085).\n- **An active legal hold requires preserving personal profile fields, despite authentication** (17 records): [CASE-001](requests.md#case-001), [CASE-006](requests.md#case-006), [CASE-011](requests.md#case-011), [CASE-016](requests.md#case-016), [CASE-021](requests.md#case-021), [CASE-026](requests.md#case-026), [CASE-031](requests.md#case-031), [CASE-036](requests.md#case-036), [CASE-046](requests.md#case-046), [CASE-051](requests.md#case-051), [CASE-056](requests.md#case-056), [CASE-061](requests.md#case-061), [CASE-066](requests.md#case-066), [CASE-071](requests.md#case-071), [CASE-076](requests.md#case-076), [CASE-081](requests.md#case-081), [CASE-086](requests.md#case-086).\n- **Erasure already completed; no personal profile fields remain. Historical eligibility does not make these pending requests** (18 records): [CASE-002](requests.md#case-002), [CASE-007](requests.md#case-007), [CASE-012](requests.md#case-012), [CASE-017](requests.md#case-017), [CASE-022](requests.md#case-022), [CASE-027](requests.md#case-027), [CASE-032](requests.md#case-032), [CASE-037](requests.md#case-037), [CASE-042](requests.md#case-042), [CASE-047](requests.md#case-047), [CASE-052](requests.md#case-052), [CASE-057](requests.md#case-057), [CASE-062](requests.md#case-062), [CASE-067](requests.md#case-067), [CASE-072](requests.md#case-072), [CASE-077](requests.md#case-077), [CASE-082](requests.md#case-082), [CASE-087](requests.md#case-087).\n- **Authentication is incomplete and eligibility remains unresolved** (17 records): [CASE-003](requests.md#case-003), [CASE-008](requests.md#case-008), [CASE-013](requests.md#case-013), [CASE-018](requests.md#case-018), [CASE-023](requests.md#case-023), [CASE-028](requests.md#case-028), [CASE-033](requests.md#case-033), [CASE-038](requests.md#case-038), [CASE-043](requests.md#case-043), [CASE-048](requests.md#case-048), [CASE-053](requests.md#case-053), [CASE-058](requests.md#case-058), [CASE-063](requests.md#case-063), [CASE-068](requests.md#case-068), [CASE-078](requests.md#case-078), [CASE-083](requests.md#case-083), [CASE-088](requests.md#case-088).\n- **Marketing subscription removal only; the account and profile must remain active. This is not a full-erasure request** (17 records): [CASE-004](requests.md#case-004), [CASE-014](requests.md#case-014), [CASE-019](requests.md#case-019), [CASE-024](requests.md#case-024), [CASE-029](requests.md#case-029), [CASE-034](requests.md#case-034), [CASE-039](requests.md#case-039), [CASE-044](requests.md#case-044), [CASE-049](requests.md#case-049), [CASE-054](requests.md#case-054), [CASE-059](requests.md#case-059), [CASE-064](requests.md#case-064), [CASE-069](requests.md#case-069), [CASE-074](requests.md#case-074), [CASE-079](requests.md#case-079), [CASE-084](requests.md#case-084), [CASE-089](requests.md#case-089).\n"
+    },
+    "tools": [
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc \"pwd; rg --files -g '\"'!node_modules'\"' -g '\"'!.git'\"' -g '\"'!vendor'\"'\"",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc 'ls -la; cat requests.md'",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc \"python3 - <<'PY'\nfrom pathlib import Path\nimport re, json, hashlib\nsource = Path('requests.md')\nbefore = hashlib.sha256(source.read_bytes()).hexdigest()\ntext = source.read_text()\nrecords = re.findall(r'\"'^## (CASE-'\"\\\\d+)\\\\n(.*?)(?=\"'^## |'\"\\\\Z)', text, re.M | re.S)\nprefix = 'This entry is a historical service record. Read its scope, decision and current status together. A matching product name alone does not establish eligibility. '\nrules = {\n'eligible': 'Tenant requested erasure of all personal profile fields. The request has been authenticated. Retention obligations have expired and there is no active dispute. The deletion has not yet been executed.',\n'closure': 'Tenant requested account closure only. They explicitly asked to preserve personal profile records for later reactivation.',\n'hold': 'Authenticated erasure request exists, but an active legal hold requires preserving the personal profile fields.',\n'executed': 'The erasure request is authenticated and eligible. Execution completed yesterday; no remaining personal profile fields are held.',\n'unauthenticated': 'A request for complete profile erasure arrived but authentication has not completed. Eligibility remains unresolved.',\n'marketing': 'Customer requested removing a marketing subscription, while their account and profile must remain active.'\n}\ngroups = {key: [] for key in rules}\nfor case_id, body in records:\n    matches = [key for key, statement in rules.items() if body.strip() == prefix + statement]\n    assert len(matches) == 1, (case_id, body)\n    groups[matches[0]].append(case_id)\nfor ids in groups.values():\n    ids.sort()\nassert len(records) == 90\nassert len({case_id for case_id, _ in records}) == 90\nassert groups['eligible'] == ['CASE-009', 'CASE-041', 'CASE-073']\nPath('findings.data').write_text(json.dumps({'eligibleIds': groups['eligible']}, indent=2) + '\\\\n')\ndef cite(ids):\n    return ', '.join(f'[{case_id}](requests.md#{case_id.lower()})' for case_id in ids)\nparagraphs = [\n'# Erasure request findings',\n'Reviewed all 90 source records in requests.md. Three requests qualify; 87 are excluded. Eligibility requires an authenticated request to erase all personal profile fields, expired retention obligations, no active dispute or legal hold preventing execution, and deletion not yet executed.',\n'Eligible source IDs: ' + cite(groups['eligible']) + '.',\n'Each eligible record explicitly requests erasure of all personal profile fields, confirms authentication and expired retention obligations, states that there is no active dispute, and confirms deletion has not yet been executed. None of these records reports an active legal hold.',\n'Exclusions, grouped by the decisive source evidence:'\n]\nreasons = {\n'closure': 'Account closure only; personal profile records must be preserved for reactivation. This is not a full-erasure request',\n'hold': 'An active legal hold requires preserving personal profile fields, despite authentication',\n'executed': 'Erasure already completed; no personal profile fields remain. Historical eligibility does not make these pending requests',\n'unauthenticated': 'Authentication is incomplete and eligibility remains unresolved',\n'marketing': 'Marketing subscription removal only; the account and profile must remain active. This is not a full-erasure request'\n}\nparagraphs.append('\\\\n'.join(f'- **{reasons[key]}** ({len(groups[key])} records): {cite(groups[key])}.' for key in reasons))\nPath('findings.md').write_text('\\\\n\\\\n'.join(paragraphs) + '\\\\n')\nresult = json.loads(Path('findings.data').read_text())\nassert set(result) == {'eligibleIds'}\nassert result['eligibleIds'] == sorted(set(result['eligibleIds']))\nassert set(re.findall(r'\\\\[(CASE-\\\\d+)\\\\]', Path('findings.md').read_text())) == {case_id for case_id, _ in records}\nassert hashlib.sha256(source.read_bytes()).hexdigest() == before\nprint(json.dumps({'reviewed': len(records), 'counts': {key: len(ids) for key, ids in groups.items()}, 'eligibleIds': result['eligibleIds'], 'checks': 'JSON schema, sorted unique IDs, all source IDs cited, complete classification, source SHA-256 unchanged: passed'}, indent=2))\nPY\n git status --short\n git diff --exit-code -- requests.md\"",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      }
+    ]
+  },
+  {
+    "id": "gpt-6-astra-holdout_eligibility-0-combined",
+    "timeline": [
+      {
+        "method": "turn/start:sent",
+        "elapsedMs": 0
+      },
+      {
+        "method": "turn/start:acknowledged",
+        "elapsedMs": 519.7240829999791
+      },
+      {
+        "elapsedMs": 519.888,
+        "method": "turn/started",
+        "status": "inProgress"
+      },
+      {
+        "elapsedMs": 1732.107,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 1834.338,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 1834.382,
+        "method": "item/started",
+        "itemId": "01a0d889-529c-7180-8944-b066d455ca9d",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 1834.394,
+        "method": "item/completed",
+        "itemId": "01a0d889-529c-7180-8944-b066d455ca9d",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 5142.426,
+        "method": "item/started",
+        "itemId": "msg_03fb36226ca1884c016ab668cca5e487d0a46b61fa109ef648",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 58800.995,
+        "method": "item/completed",
+        "itemId": "msg_03fb36226ca1884c016ab668cca5e487d0a46b61fa109ef648",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 58913.043,
+        "method": "item/started",
+        "itemId": "exec-8e8201bd-72a2-42b7-b925-62b50463a506",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 58913.745,
+        "method": "item/completed",
+        "itemId": "exec-8e8201bd-72a2-42b7-b925-62b50463a506",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 58913.775,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 59538.46,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 59538.934,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 16292
+      },
+      {
+        "elapsedMs": 67703.137,
+        "method": "item/started",
+        "itemId": "exec-90ed0dbd-4a91-4f47-b6ea-718d7e8c681a",
+        "itemType": "mcpToolCall"
+      },
+      {
+        "elapsedMs": 67711.972,
+        "method": "item/completed",
+        "itemId": "exec-90ed0dbd-4a91-4f47-b6ea-718d7e8c681a",
+        "itemType": "mcpToolCall"
+      },
+      {
+        "elapsedMs": 67711.997,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 68067.508,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 68068.057,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 33465
+      },
+      {
+        "elapsedMs": 71573.545,
+        "method": "item/started",
+        "itemId": "rs_03fb36226ca1884c016ab6690f10d487d0bb0c83011f320f75",
+        "itemType": "reasoning"
+      },
+      {
+        "elapsedMs": 72718.078,
+        "method": "item/completed",
+        "itemId": "rs_03fb36226ca1884c016ab6690f10d487d0bb0c83011f320f75",
+        "itemType": "reasoning"
+      },
+      {
+        "elapsedMs": 96847.878,
+        "method": "item/started",
+        "itemId": "exec-f3337814-e10f-497a-af3d-18213abd6964",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 96848.348,
+        "method": "item/completed",
+        "itemId": "exec-f3337814-e10f-497a-af3d-18213abd6964",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 96850.302,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 96880.744,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 96881.187,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 56556
+      },
+      {
+        "elapsedMs": 98290.319,
+        "method": "item/started",
+        "itemId": "msg_03fb36226ca1884c016ab66929cc3487d0b44b0a8e81afce78",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 100283.471,
+        "method": "item/completed",
+        "itemId": "msg_03fb36226ca1884c016ab66929cc3487d0b44b0a8e81afce78",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 100307.284,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 79800
+      },
+      {
+        "elapsedMs": 100307.715,
+        "method": "turn/completed",
+        "status": "completed"
+      }
+    ],
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "protected:requests.md",
+          "pass": true
+        },
+        {
+          "name": "parse",
+          "pass": true
+        },
+        {
+          "name": "exact_eligible_ids",
+          "pass": true
+        },
+        {
+          "name": "report",
+          "pass": true
+        }
+      ]
+    },
+    "artifacts": {
+      "findings.data": "{\n  \"eligibleIds\": [\n    \"CASE-009\",\n    \"CASE-041\",\n    \"CASE-073\"\n  ]\n}\n",
+      "findings.md": "# Erasure request findings\n\nReviewed all 90 records in requests.md (CASE-000 through CASE-089). Three requests qualify; 87 are excluded. Eligibility requires authenticated full personal-profile erasure, execution still pending, expired retention obligations, and no active dispute or legal hold preventing execution.\n\n## Eligible requests\n\n| Source ID | Evidence in requests.md |\n| --- | --- |\n| CASE-009 | Requests erasure of all personal profile fields; request authenticated; retention obligations expired; explicitly no active dispute; deletion not yet executed. No active legal hold is recorded. |\n| CASE-041 | Requests erasure of all personal profile fields; request authenticated; retention obligations expired; explicitly no active dispute; deletion not yet executed. No active legal hold is recorded. |\n| CASE-073 | Requests erasure of all personal profile fields; request authenticated; retention obligations expired; explicitly no active dispute; deletion not yet executed. No active legal hold is recorded. |\n\nThe eligible records explicitly state expired retention and absence of an active dispute; they do not separately state “no legal hold.” No hold is identified in these records. These findings reflect the supplied source.\n\n## Exclusions\n\n### Account closure only (18)\n\nThese customers requested account closure and explicitly asked to preserve personal profile records for later reactivation. Closure does not authorize full profile erasure.\n\nSource IDs: CASE-000, CASE-005, CASE-010, CASE-015, CASE-020, CASE-025, CASE-030, CASE-035, CASE-040, CASE-045, CASE-050, CASE-055, CASE-060, CASE-065, CASE-070, CASE-075, CASE-080, CASE-085.\n\n### Active legal hold (17)\n\nAlthough the erasure requests are authenticated, an active legal hold requires preserving the personal profile fields.\n\nSource IDs: CASE-001, CASE-006, CASE-011, CASE-016, CASE-021, CASE-026, CASE-031, CASE-036, CASE-046, CASE-051, CASE-056, CASE-061, CASE-066, CASE-071, CASE-076, CASE-081, CASE-086.\n\n### Already executed (18)\n\nErasure completed yesterday and no personal profile fields remain. The historical statement that the request was authenticated and eligible does not make it a pending request.\n\nSource IDs: CASE-002, CASE-007, CASE-012, CASE-017, CASE-022, CASE-027, CASE-032, CASE-037, CASE-042, CASE-047, CASE-052, CASE-057, CASE-062, CASE-067, CASE-072, CASE-077, CASE-082, CASE-087.\n\n### Authentication incomplete (17)\n\nComplete profile erasure was requested, but authentication has not completed and eligibility remains unresolved.\n\nSource IDs: CASE-003, CASE-008, CASE-013, CASE-018, CASE-023, CASE-028, CASE-033, CASE-038, CASE-043, CASE-048, CASE-053, CASE-058, CASE-063, CASE-068, CASE-078, CASE-083, CASE-088.\n\n### Marketing opt-out only (17)\n\nThese customers requested removal of a marketing subscription while their account and profile must remain active. This is not full profile erasure.\n\nSource IDs: CASE-004, CASE-014, CASE-019, CASE-024, CASE-029, CASE-034, CASE-039, CASE-044, CASE-049, CASE-054, CASE-059, CASE-064, CASE-069, CASE-074, CASE-079, CASE-084, CASE-089.\n"
+    },
+    "tools": [
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc \"pwd; rg --files -g 'AGENTS.md' -g 'requests.md' -g '*test*' -g 'README*'\"",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "mcpToolCall",
+        "command": null,
+        "tool": "jev_evidence",
+        "arguments": {
+          "operation": "prepare",
+          "workspace": "<TMP>/jev-current-ab-Xyv5Wc",
+          "input": {
+            "path": "requests.md",
+            "goal": "Review every source record to identify ONLY authenticated, not-yet-executed requests to erase ALL personal profile fields, with expired retention obligations and no active dispute or legal hold. Account closure and marketing opt-out are NOT full erasure. Need lossless coverage of every source ID: summarize requested scope, authentication, execution, retention and dispute/hold status for EACH record including exclusions and ambiguity. Preserve qualifying IDs exactly and evidence explaining exclusions.",
+            "budget": 28000
+          }
+        },
+        "durationMs": 5
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc \"python3 - <<'PY'\nfrom pathlib import Path\nimport json, hashlib, re\neligible = ['CASE-009', 'CASE-041', 'CASE-073']\ndef ids(offset):\n    return [f'CASE-{i:03d}' for i in range(offset,90,5) if f'CASE-{i:03d}' not in eligible]\ngroups = [\n    ('Account closure only', ids(0), 'These customers requested account closure and explicitly asked to preserve personal profile records for later reactivation. Closure does not authorize full profile erasure.'),\n    ('Active legal hold', ids(1), 'Although the erasure requests are authenticated, an active legal hold requires preserving the personal profile fields.'),\n    ('Already executed', ids(2), 'Erasure completed yesterday and no personal profile fields remain. The historical statement that the request was authenticated and eligible does not make it a pending request.'),\n    ('Authentication incomplete', ids(3), 'Complete profile erasure was requested, but authentication has not completed and eligibility remains unresolved.'),\n    ('Marketing opt-out only', ids(4), 'These customers requested removal of a marketing subscription while their account and profile must remain active. This is not full profile erasure.')\n]\nPath('findings.data').write_text(json.dumps({'eligibleIds': eligible}, indent=2)+'\\\\n')\nlines = ['# Erasure request findings', '', 'Reviewed all 90 records in requests.md (CASE-000 through CASE-089). Three requests qualify; 87 are excluded. Eligibility requires authenticated full personal-profile erasure, execution still pending, expired retention obligations, and no active dispute or legal hold preventing execution.', '', '## Eligible requests', '', '| Source ID | Evidence in requests.md |', '| --- | --- |']\nfor case in eligible:\n    lines.append(f'| {case} | Requests erasure of all personal profile fields; request authenticated; retention obligations expired; explicitly no active dispute; deletion not yet executed. No active legal hold is recorded. |')\nlines += ['', 'The eligible records explicitly state expired retention and absence of an active dispute; they do not separately state “no legal hold.” No hold is identified in these records. These findings reflect the supplied source.', '', '## Exclusions', '']\nfor title, cases, reason in groups:\n    lines += [f'### {title} ({len(cases)})', '', reason, '', 'Source IDs: '+', '.join(cases)+'.', '']\nPath('findings.md').write_text('\\\\n'.join(lines))\n# Verify output structure, ordering, unique and complete classification, and source integrity.\ndata=json.loads(Path('findings.data').read_text())\nassert set(data)=={'eligibleIds'}\nassert data['eligibleIds']==sorted(set(eligible))\nclassified=eligible+[c for _, cases, _ in groups for c in cases]\nassert len(classified)==90 and len(set(classified))==90\nassert set(classified)=={f'CASE-{i:03d}' for i in range(90)}\nassert set(re.findall(r'CASE-\\\\d{3}', Path('findings.md').read_text()))==set(classified)\nassert hashlib.sha256(Path('requests.md').read_bytes()).hexdigest()=='8afaa68ecf60cc64da90576b30647b7af5419035c4513988f5e11bea0a9e3655'\nprint('PASS: valid JSON; 3 sorted eligible IDs; all 90 IDs covered exactly once in classification; 87 exclusions; source hash unchanged.')\nPY\"",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      }
+    ]
+  },
+  {
+    "id": "gpt-6-astra-holdout_policy-0-combined",
+    "timeline": [
+      {
+        "method": "turn/start:sent",
+        "elapsedMs": 0
+      },
+      {
+        "method": "turn/start:acknowledged",
+        "elapsedMs": 524.373499999987
+      },
+      {
+        "elapsedMs": 524.492,
+        "method": "turn/started",
+        "status": "inProgress"
+      },
+      {
+        "elapsedMs": 2804.823,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 2846.654,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 2846.7,
+        "method": "item/started",
+        "itemId": "01a0d88a-dffc-74c0-a975-62b2ba4f3337",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 2846.71,
+        "method": "item/completed",
+        "itemId": "01a0d88a-dffc-74c0-a975-62b2ba4f3337",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 5243.019,
+        "method": "item/started",
+        "itemId": "msg_0d023a887a23a02b016ab66931587c87d08f3e5517f9e14564",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 6243.135,
+        "method": "item/completed",
+        "itemId": "msg_0d023a887a23a02b016ab66931587c87d08f3e5517f9e14564",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 7444.805,
+        "method": "item/started",
+        "itemId": "exec-8803129e-6ded-4a43-add1-6dd46d1f16f5",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 7445.403,
+        "method": "item/completed",
+        "itemId": "exec-8803129e-6ded-4a43-add1-6dd46d1f16f5",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 7445.42,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 7783.811,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 7784.589,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 16159
+      },
+      {
+        "elapsedMs": 13395.516,
+        "method": "item/started",
+        "itemId": "exec-9ea942bb-e81b-4040-af5d-26baf7e38db4",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 13400.212,
+        "method": "item/completed",
+        "itemId": "exec-9ea942bb-e81b-4040-af5d-26baf7e38db4",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 13400.268,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 13750.673,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 13751.571,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 33092
+      },
+      {
+        "elapsedMs": 21165.429,
+        "method": "item/started",
+        "itemId": "exec-cdab0229-e106-4699-855c-57b0c28e20c3",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 21165.872,
+        "method": "item/completed",
+        "itemId": "exec-cdab0229-e106-4699-855c-57b0c28e20c3",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 21169.799,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 21200.511,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 21200.956,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 57739
+      },
+      {
+        "elapsedMs": 42281.158,
+        "method": "item/started",
+        "itemId": "exec-40e4638d-152f-4c76-a056-848b3ab694c7",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 42281.722,
+        "method": "item/completed",
+        "itemId": "exec-40e4638d-152f-4c76-a056-848b3ab694c7",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 42285.426,
+        "method": "hook/started"
+      },
+      {
+        "elapsedMs": 42318.002,
+        "method": "hook/completed"
+      },
+      {
+        "elapsedMs": 42318.459,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 83140
+      },
+      {
+        "elapsedMs": 44693.789,
+        "method": "item/started",
+        "itemId": "msg_0d023a887a23a02b016ab66958e81087d0a3c6b24c2b1a95f1",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 47585.416,
+        "method": "item/completed",
+        "itemId": "msg_0d023a887a23a02b016ab66958e81087d0a3c6b24c2b1a95f1",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 47615.846,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 108708
+      },
+      {
+        "elapsedMs": 47616.315,
+        "method": "turn/completed",
+        "status": "completed"
+      }
+    ],
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "protected:README.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-000.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-001.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-002.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-003.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-004.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-005.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-006.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-007.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-008.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-009.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-010.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-011.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-012.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-013.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-014.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-015.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-016.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-017.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-018.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-019.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-020.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-021.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-022.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-023.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-024.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-025.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-026.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-027.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-028.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-029.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-030.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-031.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-032.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-033.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-034.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-035.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-036.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-037.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-038.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-039.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-040.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-041.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-042.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-043.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-044.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-045.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-046.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-047.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-048.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-049.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-050.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-051.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-052.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-053.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-054.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-055.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-056.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-057.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-058.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-059.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-060.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-061.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-062.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-063.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-064.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-065.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-066.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-067.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-068.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-069.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/current-policy.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/decision-20260922.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/proposal-20260924.md",
+          "pass": true
+        },
+        {
+          "name": "parse",
+          "pass": true
+        },
+        {
+          "name": "trafficPercent",
+          "pass": true
+        },
+        {
+          "name": "region",
+          "pass": true
+        },
+        {
+          "name": "observationMinutes",
+          "pass": true
+        },
+        {
+          "name": "errorThresholdPercent",
+          "pass": true
+        },
+        {
+          "name": "thresholdComparison",
+          "pass": true
+        },
+        {
+          "name": "consecutiveWindows",
+          "pass": true
+        },
+        {
+          "name": "reviewer",
+          "pass": true
+        },
+        {
+          "name": "observedProductionOutcome",
+          "pass": true
+        },
+        {
+          "name": "evidence",
+          "pass": true
+        },
+        {
+          "name": "report",
+          "pass": true
+        }
+      ]
+    },
+    "artifacts": {
+      "findings.data": "{\n  \"trafficPercent\": 10,\n  \"region\": \"eu-west\",\n  \"observationMinutes\": 90,\n  \"errorThresholdPercent\": 2,\n  \"thresholdComparison\": \"greater\",\n  \"consecutiveWindows\": 2,\n  \"reviewer\": \"Ivo\",\n  \"observedProductionOutcome\": \"unknown\",\n  \"evidencePaths\": [\n    \"docs/current-policy.md\",\n    \"docs/decision-20260922.md\",\n    \"docs/proposal-20260924.md\",\n    \"docs/note-000.md\",\n    \"README.md\"\n  ]\n}\n",
+      "findings.md": "# Larch production rollout findings\n\nThe authorized rollout is limited to **10% traffic in eu-west**, with **90 minutes** of observation and **Ivo** as delegated reviewer. The [signed policy dated September 20](docs/current-policy.md) establishes the traffic and region; the [signed September 22 amendment](docs/decision-20260922.md) replaces only the original 45-minute observation period and reviewer Mira, leaving the other conditions unchanged.\n\nRollback is required when the error rate is **strictly greater than 2% for two consecutive windows**. Exactly 2% does not trigger rollback, so `thresholdComparison` is `greater`. [Source: signed policy](docs/current-policy.md).\n\nHistorical Larch notes describing a 5% canary and manual fallback are explicitly not current signed policy ([example](docs/note-000.md)). The [September 24 proposal](docs/proposal-20260924.md) for 40% traffic and reviewer Noel is explicitly unapproved and does not amend the authorization.\n\n**Observed production outcome: unknown.** The [repository README](README.md) states that no production measurements are supplied; authorization alone does not establish production success.\n"
+    },
+    "tools": [
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc \"pwd; rg --files -g '\"'!node_modules'\"' -g '\"'!vendor'\"'\"",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc \"ls -la; rg --files --hidden -g AGENTS.md -g '\"'!'\"\\\\.git'; cat README.md docs/current-policy.md docs/decision-20260922.md docs/proposal-20260924.md; rg -n 'Larch|signed|amend|production|measurement|reviewer' docs\"",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc \"python3 - <<'PY'\nfrom pathlib import Path\nfrom collections import Counter\nnotes=list(Path('docs').glob('note-*.md'))\nboiler='This entry is a historical service record. Read its scope, decision and current status together. A matching product name alone does not establish eligibility. '\nprint('Historical note bodies:',Counter(p.read_text().split('\\\\n',1)[1].replace(boiler,'').strip() for p in notes))\nPY\n git status --short\"",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc \"python3 - <<'PY'\nimport json\nfrom pathlib import Path\nimport hashlib\nexisting={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path('README.md'),*Path('docs').glob('*')] if p.is_file()}\ndata={\n 'trafficPercent':10,\n 'region':'eu-west',\n 'observationMinutes':90,\n 'errorThresholdPercent':2,\n 'thresholdComparison':'greater',\n 'consecutiveWindows':2,\n 'reviewer':'Ivo',\n 'observedProductionOutcome':'unknown',\n 'evidencePaths':['docs/current-policy.md','docs/decision-20260922.md','docs/proposal-20260924.md','docs/note-000.md','README.md']\n}\nmd='''# Larch production rollout findings\n\nThe authorized rollout is limited to **10% traffic in eu-west**, with **90 minutes** of observation and **Ivo** as delegated reviewer. The [signed policy dated September 20](docs/current-policy.md) establishes the traffic and region; the [signed September 22 amendment](docs/decision-20260922.md) replaces only the original 45-minute observation period and reviewer Mira, leaving the other conditions unchanged.\n\nRollback is required when the error rate is **strictly greater than 2% for two consecutive windows**. Exactly 2% does not trigger rollback, so \"'`thresholdComparison` is `greater`. [Source: signed policy](docs/current-policy.md).\n\nHistorical Larch notes describing a 5% canary and manual fallback are explicitly not current signed policy ([example](docs/note-000.md)). The [September 24 proposal](docs/proposal-20260924.md) for 40% traffic and reviewer Noel is explicitly unapproved and does not amend the authorization.\n\n**Observed production outcome: unknown.** The [repository README](README.md) states that no production measurements are supplied; authorization alone does not establish production success.\n'\"'''\nfor name,content in [('findings.data',json.dumps(data,indent=2)+'\\\\n'),('findings.md',md)]:\n with Path(name).open('x') as f:f.write(content)\nloaded=json.loads(Path('findings.data').read_text())\nassert loaded==data\nassert all(Path(p).is_file() for p in loaded['evidencePaths'])\nassert all(hashlib.sha256(Path(p).read_bytes()).hexdigest()==h for p,h in existing.items())\nprint('PASS: JSON fields and values, evidence paths, and preservation of all 74 existing source files.' if len(existing)==74 else f'PASS: JSON fields and values, evidence paths, preservation of {len(existing)} source files.')\nPY\n git diff --check\n git status --short\"",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      }
+    ]
+  },
+  {
+    "id": "gpt-6-astra-holdout_policy-0-bare",
+    "timeline": [
+      {
+        "method": "turn/start:sent",
+        "elapsedMs": 0
+      },
+      {
+        "method": "turn/start:acknowledged",
+        "elapsedMs": 1.9701249999925494
+      },
+      {
+        "elapsedMs": 2.152,
+        "method": "turn/started",
+        "status": "inProgress"
+      },
+      {
+        "elapsedMs": 2046.03,
+        "method": "item/started",
+        "itemId": "01a0d88b-97af-7602-8d61-d5f84d7b0f24",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 2046.039,
+        "method": "item/completed",
+        "itemId": "01a0d88b-97af-7602-8d61-d5f84d7b0f24",
+        "itemType": "userMessage"
+      },
+      {
+        "elapsedMs": 4238.761,
+        "method": "item/started",
+        "itemId": "msg_0be522892139b045016ab669603de887d097a77fda857ed84f",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 5293.214,
+        "method": "item/completed",
+        "itemId": "msg_0be522892139b045016ab669603de887d097a77fda857ed84f",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 6951.418,
+        "method": "item/started",
+        "itemId": "exec-f74b5982-1d43-4ffc-843c-d835ec23f855",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 6951.429,
+        "method": "item/completed",
+        "itemId": "exec-f74b5982-1d43-4ffc-843c-d835ec23f855",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 6951.466,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 15261
+      },
+      {
+        "elapsedMs": 13744.245,
+        "method": "item/started",
+        "itemId": "exec-3e5a9cea-b54e-424c-827b-cdcdcc85ea73",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 13744.279,
+        "method": "item/completed",
+        "itemId": "exec-3e5a9cea-b54e-424c-827b-cdcdcc85ea73",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 13746.846,
+        "method": "item/started",
+        "itemId": "exec-9e1f0c2d-069b-4a63-ba02-ec00d46bffc9",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 13747.193,
+        "method": "item/completed",
+        "itemId": "exec-9e1f0c2d-069b-4a63-ba02-ec00d46bffc9",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 13747.831,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 31331
+      },
+      {
+        "elapsedMs": 17919.718,
+        "method": "item/started",
+        "itemId": "exec-32d8bc95-c91d-421b-951c-5b32a647f1a2",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 17919.729,
+        "method": "item/completed",
+        "itemId": "exec-32d8bc95-c91d-421b-951c-5b32a647f1a2",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 17920.118,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 55014
+      },
+      {
+        "elapsedMs": 20998.709,
+        "method": "item/started",
+        "itemId": "rs_0be522892139b045016ab66971091887d0b794ce5f6e782f6a",
+        "itemType": "reasoning"
+      },
+      {
+        "elapsedMs": 22455.628,
+        "method": "item/completed",
+        "itemId": "rs_0be522892139b045016ab66971091887d0b794ce5f6e782f6a",
+        "itemType": "reasoning"
+      },
+      {
+        "elapsedMs": 22455.666,
+        "method": "item/started",
+        "itemId": "msg_0be522892139b045016ab669727cb487d08133b263ce623345",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 24792.542,
+        "method": "item/completed",
+        "itemId": "msg_0be522892139b045016ab669727cb487d08133b263ce623345",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 53146.641,
+        "method": "item/started",
+        "itemId": "exec-46e6aa40-c118-4024-94c7-8e75be91efbd",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 53146.692,
+        "method": "item/completed",
+        "itemId": "exec-46e6aa40-c118-4024-94c7-8e75be91efbd",
+        "itemType": "commandExecution"
+      },
+      {
+        "elapsedMs": 53147.083,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 80586
+      },
+      {
+        "elapsedMs": 54686.296,
+        "method": "item/started",
+        "itemId": "msg_0be522892139b045016ab66992bb3887d0ad44056c5eaf5064",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 57034.601,
+        "method": "item/completed",
+        "itemId": "msg_0be522892139b045016ab66992bb3887d0ad44056c5eaf5064",
+        "itemType": "agentMessage"
+      },
+      {
+        "elapsedMs": 57058.942,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 106317
+      },
+      {
+        "elapsedMs": 57059.094,
+        "method": "turn/completed",
+        "status": "completed"
+      }
+    ],
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "protected:README.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-000.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-001.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-002.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-003.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-004.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-005.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-006.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-007.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-008.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-009.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-010.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-011.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-012.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-013.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-014.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-015.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-016.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-017.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-018.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-019.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-020.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-021.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-022.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-023.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-024.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-025.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-026.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-027.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-028.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-029.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-030.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-031.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-032.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-033.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-034.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-035.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-036.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-037.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-038.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-039.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-040.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-041.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-042.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-043.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-044.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-045.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-046.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-047.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-048.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-049.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-050.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-051.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-052.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-053.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-054.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-055.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-056.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-057.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-058.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-059.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-060.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-061.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-062.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-063.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-064.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-065.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-066.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-067.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-068.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/note-069.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/current-policy.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/decision-20260922.md",
+          "pass": true
+        },
+        {
+          "name": "protected:docs/proposal-20260924.md",
+          "pass": true
+        },
+        {
+          "name": "parse",
+          "pass": true
+        },
+        {
+          "name": "trafficPercent",
+          "pass": true
+        },
+        {
+          "name": "region",
+          "pass": true
+        },
+        {
+          "name": "observationMinutes",
+          "pass": true
+        },
+        {
+          "name": "errorThresholdPercent",
+          "pass": true
+        },
+        {
+          "name": "thresholdComparison",
+          "pass": true
+        },
+        {
+          "name": "consecutiveWindows",
+          "pass": true
+        },
+        {
+          "name": "reviewer",
+          "pass": true
+        },
+        {
+          "name": "observedProductionOutcome",
+          "pass": true
+        },
+        {
+          "name": "evidence",
+          "pass": true
+        },
+        {
+          "name": "report",
+          "pass": true
+        }
+      ]
+    },
+    "artifacts": {
+      "findings.data": "{\n  \"trafficPercent\": 10,\n  \"region\": \"eu-west\",\n  \"observationMinutes\": 90,\n  \"errorThresholdPercent\": 2,\n  \"thresholdComparison\": \"greater\",\n  \"consecutiveWindows\": 2,\n  \"reviewer\": \"Ivo\",\n  \"observedProductionOutcome\": \"unknown\",\n  \"evidencePaths\": [\n    \"docs/current-policy.md\",\n    \"docs/decision-20260922.md\",\n    \"docs/proposal-20260924.md\",\n    \"docs/note-000.md\",\n    \"README.md\"\n  ]\n}\n",
+      "findings.md": "# Larch production rollout findings\n\nThe currently authorized rollout is limited to **10% traffic in eu-west**, with **90 minutes of observation** and **Ivo** as delegated reviewer. The [signed policy dated 2026-09-20](docs/current-policy.md#L2) establishes the traffic and region limits; the [signed amendment dated 2026-09-22](docs/decision-20260922.md#L2) replaces the original 45-minute observation and reviewer Mira, leaving all other signed conditions unchanged.\n\nRollback is required when the error rate is **strictly greater than 2% for two consecutive windows** (`thresholdComparison: greater`). Exactly 2% does not trigger rollback. [Source: signed policy](docs/current-policy.md#L2).\n\nHistorical 5% canary notes explicitly lack current policy authority. The later proposal for 40% traffic and reviewer Noel is explicitly unsigned and unapproved, so it does not amend the authorization. [Historical note](docs/note-000.md#L2); [2026-09-24 proposal](docs/proposal-20260924.md#L2).\n\n**Observed production outcome: unknown.** No production measurements are supplied; authorization alone does not establish deployment or success. [Repository guidance](README.md#L1).\n"
+    },
+    "tools": [
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc \"pwd && rg --files -g '\"'!node_modules'\"' -g '\"'!vendor'\"' -g '\"'!'\"\\\\.git' -g '\"'!*lock*'\"'\"",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc \"rg --files --hidden -g '\"'!'\"\\\\.git/**' -g 'AGENTS.md' -g '*jev*' -g '*test*' -g 'findings*' && cat README.md\"",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc \"rg -n 'Larch|signed|amend|authoriz|approved|production|threshold|reviewer|supersed' docs\"",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc \"cat README.md docs/current-policy.md docs/decision-20260922.md docs/proposal-20260924.md\nrg --files --hidden -g '\"'!.git/**'\"'\nrg -n -v 'This entry is a historical service record|\"'^#'\"' docs/note-*.md\"",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      },
+      {
+        "type": "commandExecution",
+        "command": "/bin/zsh -lc \"python3 - <<'PY'\nfrom pathlib import Path\nimport hashlib\nimport json\nimport re\n\nroot = Path.cwd()\ndef snapshot():\n    return {str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest()\n            for p in root.rglob('*') if p.is_file() and '.git' not in p.relative_to(root).parts}\nbefore = snapshot()\nassert not Path('findings.data').exists() and not Path('findings.md').exists(), 'Preserve existing deliverables'\n\ndata = {\n    'trafficPercent': 10,\n    'region': 'eu-west',\n    'observationMinutes': 90,\n    'errorThresholdPercent': 2,\n    'thresholdComparison': 'greater',\n    'consecutiveWindows': 2,\n    'reviewer': 'Ivo',\n    'observedProductionOutcome': 'unknown',\n    'evidencePaths': [\n        'docs/current-policy.md',\n        'docs/decision-20260922.md',\n        'docs/proposal-20260924.md',\n        'docs/note-000.md',\n        'README.md'\n    ]\n}\nreport = '''# Larch production rollout findings\n\nThe currently authorized rollout is limited to **10% traffic in eu-west**, with **90 minutes of observation** and **Ivo** as delegated reviewer. The [signed policy dated 2026-09-20](docs/current-policy.md#L2) establishes the traffic and region limits; the [signed amendment dated 2026-09-22](docs/decision-20260922.md#L2) replaces the original 45-minute observation and reviewer Mira, leaving all other signed conditions unchanged.\n\nRollback is required when the error rate is **strictly greater than 2% for two consecutive windows** (\"'`thresholdComparison: greater`). Exactly 2% does not trigger rollback. [Source: signed policy](docs/current-policy.md#L2).\n\nHistorical 5% canary notes explicitly lack current policy authority. The later proposal for 40% traffic and reviewer Noel is explicitly unsigned and unapproved, so it does not amend the authorization. [Historical note](docs/note-000.md#L2); [2026-09-24 proposal](docs/proposal-20260924.md#L2).\n\n**Observed production outcome: unknown.** No production measurements are supplied; authorization alone does not establish deployment or success. [Repository guidance](README.md#L1).\n'\"'''\nwith Path('findings.data').open('x') as f:\n    f.write(json.dumps(data, indent=2) + '\\\\n')\nwith Path('findings.md').open('x') as f:\n    f.write(report)\n\nloaded = json.loads(Path('findings.data').read_text())\nassert loaded == data\nassert len(loaded) == 9\nassert loaded['thresholdComparison'] in {'greater', 'greater_or_equal'}\nassert all(Path(p).is_file() for p in loaded['evidencePaths'])\nfor target, line in re.findall(r'\\\\]\\\\(([\"'^)#]+)#L('\"\\\\d+)\\\\)', report):\n    assert Path(target).is_file()\n    assert 1 <= int(line) <= len(Path(target).read_text().splitlines())\npolicy = Path('docs/current-policy.md').read_text()\namendment = Path('docs/decision-20260922.md').read_text()\nassert all(s in policy for s in ['ten percent traffic in eu-west', 'strictly greater than 2 percent', 'two consecutive windows', 'Exactly 2 percent does not trigger rollback'])\nassert all(s in amendment for s in ['90 minutes', 'reviewer to Ivo', 'Other signed policy conditions remain unchanged'])\nassert 'No production measurements are supplied' in Path('README.md').read_text()\nafter = snapshot()\nassert all(after.get(p) == digest for p, digest in before.items()), 'Existing file changed'\nassert set(after) - set(before) == {'findings.data', 'findings.md'}\nprint('PASS: JSON fields and source values, evidence paths, citation line references, and preservation of all existing files. Only findings.data and findings.md added.')\nPY\"",
+        "tool": null,
+        "arguments": null,
+        "durationMs": 0
+      }
+    ]
+  }
+]

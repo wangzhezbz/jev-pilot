@@ -1,0 +1,212 @@
+[
+  {
+    "id": "chrome-bare",
+    "elapsedMs": 38306,
+    "passed": true,
+    "answer": {
+      "service": "Maple",
+      "region": "AP South",
+      "revision": "r18 approved",
+      "readiness": "conditional",
+      "blocker": "replica lag",
+      "owner": "Mira",
+      "production": "not executed"
+    },
+    "finalObservation": "Browser tab: 51514242, Title: \"JevPilot Holdout Lab\", URL: \"http://127.0.0.1:8876/holdout-browser.html\".\n0 AXWebArea JevPilot Holdout Lab, URL: 127.0.0.1:8876/holdout-browser.html\n\t1 container app\n\t\t2 heading JevPilot Holdout Lab, Value: 1\n\t\t\t3 text JevPilot Holdout Lab\n\t\t4 heading VERIFIED READ-ONLY RECORD, Value: 2\n\t\t\t5 text VERIFIED READ-ONLY RECORD\n\t\t6 text Readiness reports | Service: Maple | Region: AP South | Revision: r18 — approved | Readiness: conditional; Blocker: replica lag; Owner: Mira; Production rollout: not executed\n\t\t7 text Synthetic read-only fixture — no production action\n\nThe focused UI element is 0 AXWebArea JevPilot Holdout Lab, URL: 127.0.0.1:8876/holdout-browser.html",
+    "actions": 5
+  },
+  {
+    "id": "chrome-pilot",
+    "elapsedMs": 22590,
+    "passed": true,
+    "answer": {
+      "service": "Maple",
+      "region": "AP South",
+      "revision": "r18 approved",
+      "readiness": "conditional",
+      "blocker": "replica lag",
+      "owner": "Mira",
+      "production": "not executed"
+    },
+    "jev": {
+      "runs": 1,
+      "actions": 5,
+      "jevRequests": 5,
+      "inputTokens": 4509,
+      "outputTokens": 265,
+      "unknownUsage": 0,
+      "apiMs": 1775.914749999938,
+      "elapsedMs": 2725.692083000031,
+      "handoffs": 0
+    },
+    "receipt": {
+      "status": "needs_verification",
+      "reason": null,
+      "stageIndex": 2,
+      "evidence": "VERIFIED READ-ONLY RECORD | Service: Maple | Region: AP South | Revision: r18 — approved",
+      "stateMayHaveChanged": false,
+      "metrics": {
+        "runs": 1,
+        "actions": 5,
+        "jevRequests": 5,
+        "inputTokens": 4509,
+        "outputTokens": 265,
+        "unknownUsage": 0,
+        "apiMs": 1775.914749999938,
+        "elapsedMs": 2725.692083000031,
+        "handoffs": 0
+      },
+      "sessionMetrics": {
+        "runs": 1,
+        "actions": 5,
+        "jevRequests": 5,
+        "inputTokens": 4509,
+        "outputTokens": 265,
+        "unknownUsage": 0,
+        "apiMs": 1775.914749999938,
+        "elapsedMs": 2725.692083000031,
+        "handoffs": 0
+      },
+      "instruction": "Codex must inspect this fresh finalObservation against the user request before claiming completion. If inadequate, observe natively again.",
+      "fullResultRetainedInHost": true,
+      "truncatedFields": [],
+      "finalObservation": {
+        "snapshot": "Browser tab: 51514242, Title: \"JevPilot Holdout Lab\", URL: \"http://127.0.0.1:8876/holdout-browser.html\".\n1 AXWebArea JevPilot Holdout Lab, URL: 127.0.0.1:8876/holdout-browser.html\n\t2 container app\n\t\t3 heading JevPilot Holdout Lab, Value: 1\n\t\t\t4 text JevPilot Holdout Lab\n\t\t5 heading VERIFIED READ-ONLY RECORD, Value: 2\n\t\t\t6 text VERIFIED READ-ONLY RECORD\n\t\t7 text Readiness reports | Service: Maple | Region: AP South | Revision: r18 — approved | Readiness: conditional; Blocker: replica lag; Owner: Mira; Production rollout: not executed\n\t\t8 text Synthetic read-only fixture — no production action\n\nThe focused UI element is 1 AXWebArea JevPilot Holdout Lab, URL: 127.0.0.1:8876/holdout-browser.html",
+        "observedAt": 1790339569247,
+        "truncated": false
+      },
+      "finalObservationMs": 14.716958000033628,
+      "nextDelegation": {
+        "maxAffordableSteps": 12,
+        "windowEndsAt": 1790341200000,
+        "advisoryOnly": true,
+        "instruction": "Use native tools when the next goal exceeds this estimate. No status/diagnostic call or retry is needed for ordinary budget refusal. Capacity is not reserved; admission is rechecked on run."
+      },
+      "admission": {
+        "expectedSteps": 5,
+        "samples": 0,
+        "estimatedStepMs": 1000,
+        "requiredWaitMs": 5000
+      }
+    },
+    "actions": 5
+  },
+  {
+    "id": "cua-pilot",
+    "elapsedMs": 37250,
+    "passed": true,
+    "answer": {
+      "service": "Cedar",
+      "region": "EU West",
+      "revision": "r18 approved",
+      "maintenance": "diagnostic only",
+      "precondition": "backup verified",
+      "owner": "Pavel",
+      "production": "none"
+    },
+    "jev": {
+      "runs": 1,
+      "actions": 5,
+      "jevRequests": 5,
+      "inputTokens": 4233,
+      "outputTokens": 265,
+      "unknownUsage": 0,
+      "apiMs": 2183.8705829999526,
+      "elapsedMs": 6991.968374999997,
+      "handoffs": 1
+    },
+    "receipt": {
+      "status": "codex_review_required",
+      "reason": "HOST_DRIVER_ERROR",
+      "stageIndex": 2,
+      "evidence": null,
+      "stateMayHaveChanged": true,
+      "metrics": {
+        "runs": 1,
+        "actions": 5,
+        "jevRequests": 5,
+        "inputTokens": 4233,
+        "outputTokens": 265,
+        "unknownUsage": 0,
+        "apiMs": 2183.8705829999526,
+        "elapsedMs": 6991.968374999997,
+        "handoffs": 1
+      },
+      "sessionMetrics": {
+        "runs": 1,
+        "actions": 5,
+        "jevRequests": 5,
+        "inputTokens": 4233,
+        "outputTokens": 265,
+        "unknownUsage": 0,
+        "apiMs": 2183.8705829999526,
+        "elapsedMs": 6991.968374999997,
+        "handoffs": 1
+      },
+      "instruction": "Continue with native Codex; observe freshly before any further action, preserve the task and completed work.",
+      "fullResultRetainedInHost": true,
+      "snapshot": "\t\t\t\t5 HTML内容 Description: JevPilot Holdout Lab, URL: 127.0.0.1:8876/holdout-browser.html\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 JevPilot Holdout Lab, Value: 1\n\t\t\t\t\t\t\t8 文本 JevPilot Holdout Lab\n\t\t\t\t\t\t9 标题 Maintenance runbooks / Cedar / EU West / r18 — approved, Value: 2\n\t\t\t\t\t\t\t10 文本 Maintenance runbooks / Cedar / EU West / r18 — approved\n\t\t\t\t\t\t11 按钮 Read overview\n\t\t\t\t\t\t12 按钮 Open verified record\n\t\t\t\t\t\t13 按钮 Read revision history\n\t\t\t\t\t\t14 文本 Synthetic read-only fixture — no production action",
+      "lastDecision": {
+        "stage": "stage_2",
+        "action": "Open verified record",
+        "reason": null,
+        "choice": "action_1",
+        "probability": 0.98
+      },
+      "recentActions": [
+        {
+          "action": "Maintenance runbooks",
+          "stage": "stage_0",
+          "progress": true
+        },
+        {
+          "action": "Cedar",
+          "stage": "stage_1",
+          "progress": true
+        },
+        {
+          "action": "EU West",
+          "stage": "stage_1",
+          "progress": true
+        },
+        {
+          "action": "r18 — approved",
+          "stage": "stage_1",
+          "progress": true
+        }
+      ],
+      "truncatedFields": [],
+      "nextDelegation": {
+        "maxAffordableSteps": 12,
+        "windowEndsAt": 1790341200000,
+        "advisoryOnly": true,
+        "instruction": "Use native tools when the next goal exceeds this estimate. No status/diagnostic call or retry is needed for ordinary budget refusal. Capacity is not reserved; admission is rechecked on run."
+      },
+      "admission": {
+        "expectedSteps": 5,
+        "samples": 5,
+        "estimatedStepMs": 442.5,
+        "requiredWaitMs": 2770
+      }
+    },
+    "fallback": "Native final read after scope callback rejected merged text; no repeated click",
+    "finalObservation": "\t\t\t\t5 HTML内容 Description: JevPilot Holdout Lab, URL: 127.0.0.1:8876/holdout-browser.html\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 JevPilot Holdout Lab, Value: 1\n\t\t\t\t\t\t\t8 文本 JevPilot Holdout Lab\n\t\t\t\t\t\t9 标题 VERIFIED READ-ONLY RECORD, Value: 2\n\t\t\t\t\t\t\t10 文本 VERIFIED READ-ONLY RECORD\n\t\t\t\t\t\t11 text Maintenance runbooks | Service: Cedar | Region: EU West | Revision: r18 — approved | Maintenance: diagnostic only; Precondition: backup verified; Owner: Pavel; Production changes: none Synthetic read-only fixture — no production action",
+    "actions": 5
+  },
+  {
+    "id": "cua-bare",
+    "elapsedMs": 38940,
+    "passed": true,
+    "answer": {
+      "service": "Cedar",
+      "region": "EU West",
+      "revision": "r18 approved",
+      "maintenance": "diagnostic only",
+      "precondition": "backup verified",
+      "owner": "Pavel",
+      "production": "none"
+    },
+    "finalObservation": "\t\t\t\t5 HTML内容 Description: JevPilot Holdout Lab, URL: 127.0.0.1:8876/holdout-browser.html\n\t\t\t\t\t6 container\n\t\t\t\t\t\t7 标题 JevPilot Holdout Lab, Value: 1\n\t\t\t\t\t\t\t8 文本 JevPilot Holdout Lab\n\t\t\t\t\t\t9 标题 VERIFIED READ-ONLY RECORD, Value: 2\n\t\t\t\t\t\t\t10 文本 VERIFIED READ-ONLY RECORD\n\t\t\t\t\t\t11 text Maintenance runbooks | Service: Cedar | Region: EU West | Revision: r18 — approved | Maintenance: diagnostic only; Precondition: backup verified; Owner: Pavel; Production changes: none Synthetic read-only fixture — no production action",
+    "actions": 5
+  }
+]

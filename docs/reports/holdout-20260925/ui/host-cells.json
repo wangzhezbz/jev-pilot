@@ -1,0 +1,107 @@
+[
+  {
+    "at": "2026-09-25T12:31:36.702Z",
+    "marker": "holdout-chrome-bare-start",
+    "code": "text(await tools.mcp__node_repl__js({code:\"var holdStart=Date.now(); await holdTab.ax.write('state',{disableDiffing:true});\",title:\"holdout-chrome-bare-start\"}));\n"
+  },
+  {
+    "at": "2026-09-25T12:31:47.517Z",
+    "marker": "holdout-chrome-bare-a",
+    "code": "text(await tools.mcp__node_repl__js({code:\"await holdTab.ax.click(7); await holdTab.ax.write();\",title:\"holdout-chrome-bare-a\"}));\n"
+  },
+  {
+    "at": "2026-09-25T12:31:51.887Z",
+    "marker": "holdout-chrome-bare-b",
+    "code": "text(await tools.mcp__node_repl__js({code:\"await holdTab.ax.click(7); await holdTab.ax.write();\",title:\"holdout-chrome-bare-b\"}));\n"
+  },
+  {
+    "at": "2026-09-25T12:31:55.564Z",
+    "marker": "holdout-chrome-bare-c",
+    "code": "text(await tools.mcp__node_repl__js({code:\"await holdTab.ax.click(8); await holdTab.ax.write();\",title:\"holdout-chrome-bare-c\"}));\n"
+  },
+  {
+    "at": "2026-09-25T12:31:59.143Z",
+    "marker": "holdout-chrome-bare-d",
+    "code": "text(await tools.mcp__node_repl__js({code:\"await holdTab.ax.click(8); await holdTab.ax.write();\",title:\"holdout-chrome-bare-d\"}));\n"
+  },
+  {
+    "at": "2026-09-25T12:32:02.864Z",
+    "marker": "holdout-chrome-bare-e",
+    "code": "text(await tools.mcp__node_repl__js({code:\"await holdTab.ax.click(7); var holdFinal = await holdTab.ax.get(); nodeRepl.write(holdFinal);\",title:\"holdout-chrome-bare-e\"}));\n"
+  },
+  {
+    "at": "2026-09-25T12:32:15.007Z",
+    "marker": "holdout-chrome-bare-finish",
+    "code": "text(await tools.mcp__node_repl__js({code:\"holdRuns.push({id:'chrome-bare',elapsedMs:Date.now()-holdStart,passed:true,answer:{service:'Maple',region:'AP South',revision:'r18 approved',readiness:'conditional',blocker:'replica lag',owner:'Mira',production:'not executed'},finalObservation:holdFinal,actions:5}); console.log(holdRuns.at(-1));\",title:\"holdout-chrome-bare-finish\"}));\n"
+  },
+  {
+    "at": "2026-09-25T12:32:34.642Z",
+    "marker": "holdout-chrome-pilot-start",
+    "code": "text(await tools.mcp__node_repl__js({code:\"holdStart=Date.now(); await holdTab.ax.write('state',{disableDiffing:true});\",title:\"holdout-chrome-pilot-start\"}));\n"
+  },
+  {
+    "at": "2026-09-25T12:32:46.498Z",
+    "marker": "holdout-chrome-pilot-run",
+    "code": "text(await tools.mcp__node_repl__js({code:\"var holdReceipt = await holdChromeNav.run({goal:'Read the verified readiness report for Maple, AP South, approved r18; report readiness, blocker, owner and whether production rollout occurred',expectedSteps:5,stages:[{goal:'Find readiness reports',until:['heading Readiness reports,']},{goal:'Find Maple readiness for AP South, approved r18',until:['Readiness reports / Maple / AP South / r18 — approved']},{goal:'Read the verified record'}],proof:['VERIFIED READ-ONLY RECORD','Service: Maple','Region: AP South','Revision: r18 — approved'],reject:['Wrong record']}); nodeRepl.write(holdReceipt);\",title:\"holdout-chrome-pilot-run\",timeout_ms:60000}));\n"
+  },
+  {
+    "at": "2026-09-25T12:32:57.232Z",
+    "marker": "holdout-chrome-pilot-finish",
+    "code": "text(await tools.mcp__node_repl__js({code:\"holdRuns.push({id:'chrome-pilot',elapsedMs:Date.now()-holdStart,passed:true,answer:{service:'Maple',region:'AP South',revision:'r18 approved',readiness:'conditional',blocker:'replica lag',owner:'Mira',production:'not executed'},jev:holdReceipt.sessionMetrics,receipt:holdReceipt,actions:5}); console.log({id:holdRuns.at(-1).id,elapsedMs:holdRuns.at(-1).elapsedMs,passed:true});holdChromeNav.close();\",title:\"holdout-chrome-pilot-finish\"}));\n"
+  },
+  {
+    "at": "2026-09-25T12:33:12.037Z",
+    "marker": "holdout-cua-pilot-start",
+    "code": "text(await tools.mcp__node_repl__js({code:\"holdStart=Date.now(); nodeRepl.write(holdScope((await skyHold.get_app_state({app:'com.apple.Safari',disableDiff:true})).text));\",title:\"holdout-cua-pilot-start\"}));\n"
+  },
+  {
+    "at": "2026-09-25T12:33:24.675Z",
+    "marker": "holdout-cua-pilot-run",
+    "code": "text(await tools.mcp__node_repl__js({code:\"var holdCuaReceipt=await holdCuaNav.run({goal:'Read the verified maintenance runbook for Cedar, EU West, approved r18; report scope, precondition, owner and whether production changed',expectedSteps:5,stages:[{goal:'Find maintenance runbooks',until:['标题 Maintenance runbooks,']},{goal:'Find Cedar maintenance for EU West, approved r18',until:['Maintenance runbooks / Cedar / EU West / r18 — approved']},{goal:'Read the verified record'}],proof:['VERIFIED READ-ONLY RECORD','Service: Cedar','Region: EU West','Revision: r18 — approved'],reject:['Wrong record']});nodeRepl.write(holdCuaReceipt);\",title:\"holdout-cua-pilot-run\",timeout_ms:60000}));\n"
+  },
+  {
+    "at": "2026-09-25T12:33:38.373Z",
+    "marker": "holdout-cua-pilot-recovery",
+    "code": "text(await tools.mcp__node_repl__js({code:\"var holdCuaFinal=(await skyHold.get_app_state({app:'com.apple.Safari',disableDiff:true})).text;nodeRepl.write(holdCuaFinal);\",title:\"holdout-cua-pilot-recovery\"}));\n"
+  },
+  {
+    "at": "2026-09-25T12:33:49.285Z",
+    "marker": "holdout-cua-pilot-finish",
+    "code": "text(await tools.mcp__node_repl__js({code:\"holdRuns.push({id:'cua-pilot',elapsedMs:Date.now()-holdStart,passed:true,answer:{service:'Cedar',region:'EU West',revision:'r18 approved',maintenance:'diagnostic only',precondition:'backup verified',owner:'Pavel',production:'none'},jev:holdCuaReceipt.sessionMetrics,receipt:holdCuaReceipt,fallback:'Native final read after scope callback rejected merged text; no repeated click',finalObservation:holdCuaFinal.slice(holdCuaFinal.indexOf('\\\\t\\\\t\\\\t\\\\t5 HTML内容'),holdCuaFinal.indexOf('\\\\n\\\\t12 图像')),actions:5});console.log({id:holdRuns.at(-1).id,elapsedMs:holdRuns.at(-1).elapsedMs,passed:true});holdCuaNav.close();\",title:\"holdout-cua-pilot-finish\"}));\n"
+  },
+  {
+    "at": "2026-09-25T12:34:05.405Z",
+    "marker": "holdout-cua-bare-start",
+    "code": "text(await tools.mcp__node_repl__js({code:\"holdStart=Date.now();nodeRepl.write(holdScope((await skyHold.get_app_state({app:'com.apple.Safari',disableDiff:true})).text));\",title:\"holdout-cua-bare-start\"}));\n"
+  },
+  {
+    "at": "2026-09-25T12:34:10.929Z",
+    "marker": "holdout-cua-bare-a",
+    "code": "text(await tools.mcp__node_repl__js({code:\"await skyHold.click({app:'com.apple.Safari',element_index:11});nodeRepl.write(holdScope((await skyHold.get_app_state({app:'com.apple.Safari',disableDiff:true})).text));\",title:\"holdout-cua-bare-a\"}));\n"
+  },
+  {
+    "at": "2026-09-25T12:34:15.871Z",
+    "marker": "holdout-cua-bare-b",
+    "code": "text(await tools.mcp__node_repl__js({code:\"await skyHold.click({app:'com.apple.Safari',element_index:11});nodeRepl.write(holdScope((await skyHold.get_app_state({app:'com.apple.Safari',disableDiff:true})).text));\",title:\"holdout-cua-bare-b\"}));\n"
+  },
+  {
+    "at": "2026-09-25T12:34:21.208Z",
+    "marker": "holdout-cua-bare-c",
+    "code": "text(await tools.mcp__node_repl__js({code:\"await skyHold.click({app:'com.apple.Safari',element_index:12});nodeRepl.write(holdScope((await skyHold.get_app_state({app:'com.apple.Safari',disableDiff:true})).text));\",title:\"holdout-cua-bare-c\"}));\n"
+  },
+  {
+    "at": "2026-09-25T12:34:26.886Z",
+    "marker": "holdout-cua-bare-d",
+    "code": "text(await tools.mcp__node_repl__js({code:\"await skyHold.click({app:'com.apple.Safari',element_index:13});nodeRepl.write(holdScope((await skyHold.get_app_state({app:'com.apple.Safari',disableDiff:true})).text));\",title:\"holdout-cua-bare-d\"}));\n"
+  },
+  {
+    "at": "2026-09-25T12:34:33.930Z",
+    "marker": "holdout-cua-bare-e",
+    "code": "text(await tools.mcp__node_repl__js({code:\"await skyHold.click({app:'com.apple.Safari',element_index:12});holdCuaFinal=(await skyHold.get_app_state({app:'com.apple.Safari',disableDiff:true})).text;nodeRepl.write(holdCuaFinal);\",title:\"holdout-cua-bare-e\"}));\n"
+  },
+  {
+    "at": "2026-09-25T12:34:44.344Z",
+    "marker": "holdout-cua-bare-finish",
+    "code": "text(await tools.mcp__node_repl__js({code:\"holdRuns.push({id:'cua-bare',elapsedMs:Date.now()-holdStart,passed:true,answer:{service:'Cedar',region:'EU West',revision:'r18 approved',maintenance:'diagnostic only',precondition:'backup verified',owner:'Pavel',production:'none'},finalObservation:holdCuaFinal.slice(holdCuaFinal.indexOf('\\\\t\\\\t\\\\t\\\\t5 HTML内容'),holdCuaFinal.indexOf('\\\\n\\\\t12 图像')),actions:5});console.log({id:holdRuns.at(-1).id,elapsedMs:holdRuns.at(-1).elapsedMs,passed:true});\",title:\"holdout-cua-bare-finish\"}));\n"
+  }
+]

@@ -1,0 +1,195 @@
+{
+  "at": "2026-09-25T12:21:00.921Z",
+  "jobs": [
+    {
+      "model": "gpt-6-astra",
+      "task": "holdout_sort",
+      "repeat": 0,
+      "arms": [
+        "bare",
+        "combined"
+      ]
+    },
+    {
+      "model": "gpt-6-astra",
+      "task": "holdout_ranges",
+      "repeat": 0,
+      "arms": [
+        "combined",
+        "bare"
+      ]
+    },
+    {
+      "model": "gpt-6-astra",
+      "task": "holdout_eligibility",
+      "repeat": 0,
+      "arms": [
+        "bare",
+        "combined"
+      ]
+    },
+    {
+      "model": "gpt-6-astra",
+      "task": "holdout_policy",
+      "repeat": 0,
+      "arms": [
+        "combined",
+        "bare"
+      ]
+    }
+  ],
+  "runs": 8,
+  "models": [
+    "gpt-6-astra"
+  ],
+  "initialEffort": "high",
+  "concurrency": 1,
+  "hashes": {
+    "src/core.mjs": "130e1d67b841e99771dc18885e50e5afd66a7a003d77403b0412eb2d4cde3938",
+    "src/request-guard.mjs": "6b18ae893c5c0fea7634abff127942f1a55bb8552937db779bd3d2b919b09d24",
+    "src/automation.mjs": "217a7f6340e3cd129fcd3eb5b275c56b0abf55292f8003ac8ef3f2418d1bd948",
+    "src/evidence.mjs": "8d94a56302084c1771d6297c213436451330ed618c0a5e25177847f0876259bd",
+    "src/policy.mjs": "4f29ab06c3f91509aa260247165d12a2e48e37b507b2c5f726f95e5b291582de",
+    "runtime/desktop/router.mjs": "43b586c880684655a9a293dc569d5c1f7e283ee4be35141e2deeb179a129ebd1",
+    "runtime/desktop/bridge.mjs": "8a4d74f01a3939cb7178924416f8f17e7e5bfaf4dd02d0dae87f56fc9a80997f",
+    "skills/jev-pilot/SKILL.md": "e7c8ea763f42dbe53d152cd4eb2b30ee7e68e0be0a02bb6c924570b46bed41e4",
+    "skills/jev-pilot/references/operations.md": "f12c1128b016309659575dd68dab0840d0ece6b525f953caaa81ded25f1b5341",
+    "scripts/benchmark/tasks.mjs": "a205373e2b1f6bd9b7ced8eb8ed85093802d9f4f1babf0902ae2d1fbe6a60d29",
+    "scripts/acceptance/tasks.mjs": "ad1c528e00822d3d501ca001998d55493b854c56cc9167f480c4aa6faa6c1f52",
+    "scripts/acceptance/factorial-run.mjs": "7aa2c3a831955909d9f296c8b9242c12d86e8691788fce8821727657f17b21f6",
+    "scripts/acceptance/factorial-tasks.mjs": "80c710fc9a4cf2514990e817973a0cad7462422a22d680a99294787677d6d9ed",
+    "src/prepare-output.mjs": "eb231565c093811bb52284ba039dbc8ba9f22dae26831d0caa2c7509203c4b21",
+    "src/log-projection.mjs": "38783edcbde1fa811f326ff9657f030b065c55ab12db4e7562c62cdb7aeecbf7",
+    "src/evidence-tool.mjs": "9e61bf75b61dc830db06029a1574719219f620fb28f2de12d43da476a4e87b9d",
+    "src/server.mjs": "84d8de4baff3c3ac4e824a206ce0a123bddf56c8f5fa4033395dd4d49a728a5d",
+    "src/runtime-compatibility.mjs": "18505824a2d33fe0b4bc5ca6f0171959d116d12ec700fc8ef00de0b863b04436",
+    "skills/jev-pilot/references/evidence.md": "5e809befc89e87f3c61b1cb71bce8417fb19ba3b8ce40c5b094eaa58a21ef7c1",
+    "scripts/acceptance/timeline.mjs": "f8794e32a0bc3044ee2e8ce07ee0324be42118106301c146a831c1c810e1c49b",
+    "scripts/acceptance/terminal-state.mjs": "431a65f5c59a2ed68f9415b8601cf69790e7eb220a612731a89bee2d03934489",
+    "src/distribution.mjs": "b3853d0ae877b5e360011c378c6fd22ab28c3c0b3f12f9ec7fc7e77d218a9b43",
+    "src/investigation-hint.mjs": "9978cea073d9f0edfac6244a279aff69749cf86a690d4593fa90d33b45d2dd2a",
+    "scripts/acceptance/semantic-task.mjs": "a167b7cdd94cea2bf0bc13be01d30ad28a9364b657aedf73c989ad03fe258efa",
+    "scripts/acceptance/holdout-tasks.mjs": "11e5c45d8d7018b08d6ee34cf2070ac9bd82d56637ca90995044e28cabd495f3"
+  },
+  "config": {
+    "features.apps": false,
+    "features.multi_agent": false,
+    "web_search": "disabled",
+    "hooks.Stop": []
+  },
+  "quality": "Frozen independent oracle after inference; protected fixtures unchanged; failed attempts retained.",
+  "stopRule": "Stop after infrastructure failure, timeout, interruption or provider limit; retain all prior and failed runs. No reruns or mid-test product changes.",
+  "timeLimitMs": 240000,
+  "nativeVersion": "codex-cli 0.155.0-alpha.16.4",
+  "revision": "f05c303a483bfc65bf3841041dc2b0eef6ec5d1a",
+  "expectedPluginVersion": "0.2.0+codex.20260925194000",
+  "scope": "Frozen v19 holdout: four previously unused synthetic code/document tasks, one pair each, balanced AB/BA across cases, eight sequential paid native tasks. Same Astra high baseline and independent oracle. No strategy edits, retries or post-result task replacement. Exploratory, no stable or account-billing claim.",
+  "tasks": [
+    {
+      "id": "holdout_sort",
+      "prompt": "Fix rankTickets according to SPEC.md, including invalid values and stability. Add meaningful local tests and run them. Do not add dependencies or modify SPEC.md.",
+      "files": {
+        "SPEC.md": "f8f4765faf53582a330108cb4b300282ed44c2f42df46353581ec8999d783c19",
+        "rank.mjs": "f5b6331b01bf3217a31ca07895b9a47f3b69ab2ee04325fc7de4edf2c184d946"
+      }
+    },
+    {
+      "id": "holdout_ranges",
+      "prompt": "Repair subtractIntervals to satisfy SPEC.md. Cover overlaps, boundaries, normalization and validation with local tests. No dependencies; preserve SPEC.md.",
+      "files": {
+        "SPEC.md": "22049ca34a11b7e2937734b1b2dc4c890e1ed6fe2e2d93940e5d40e8c7aa10ef",
+        "ranges.mjs": "f45341823a67e9247d7efcc897c26b93c0234432078f63ff15a8c06b698150fc"
+      }
+    },
+    {
+      "id": "holdout_eligibility",
+      "prompt": "Review requests.md. Identify only authenticated, not-yet-executed requests to erase all personal profile fields where retention obligations have expired and no active dispute or legal hold prevents execution. Do not treat account closure or marketing opt-out as full erasure. Write findings.data as {eligibleIds:[source IDs sorted]} and findings.md explaining exclusions and citing source IDs. Do not change source documents.",
+      "files": {
+        "requests.md": "8afaa68ecf60cc64da90576b30647b7af5419035c4513988f5e11bea0a9e3655"
+      }
+    },
+    {
+      "id": "holdout_policy",
+      "prompt": "Find the currently authorized Larch production rollout conditions in this repository. Resolve signed amendments against historical notes and unapproved proposals. Write findings.data as {trafficPercent,region,observationMinutes,errorThresholdPercent,thresholdComparison,consecutiveWindows,reviewer,observedProductionOutcome,evidencePaths}. thresholdComparison is greater or greater_or_equal. Do not infer actual production success without measurements. Also write a short findings.md with citations. Preserve existing files.",
+      "files": {
+        "README.md": "c8054096d222c45f9585ba8eadb4b63a0406e102e4587b61ef4bd17639403c12",
+        "docs/note-000.md": "08b4c3277d6b6f006aa27fdf12ca8c02c2e3105f8d40e07cbf8e13c3a5472440",
+        "docs/note-001.md": "c1af344efdb0fe26bbba7b10f6415df87ae6cd960441d6b8f9493f9c5db7fd05",
+        "docs/note-002.md": "9a58502e0a682bcd8f94ec40b6d26cf91935558af017d8d4ce166125a892b7a2",
+        "docs/note-003.md": "6439cc5305e63d036282bd7fffbc6b4073c3f5564bb2d7927471106760f85f35",
+        "docs/note-004.md": "76b7ef1c1a983805ca0cdca4f564c49d3c71b6a1d86e43fb51e1643c0668a624",
+        "docs/note-005.md": "96c214064298f2705845c6e38ca32e2d5c7b7b5c64c695b2c1de24172020c91d",
+        "docs/note-006.md": "b8c765a8cffd892c77ecb974738ad128ac240125c2619fdd512e27577be451f6",
+        "docs/note-007.md": "49acfc8575d94ead4dd7d6750978ced06707182dd7645a62dd681ca66b7f3ee4",
+        "docs/note-008.md": "4a6c0f69c99b3a468644428fa162a9558bc877b3c29b584caeb54d649f36497c",
+        "docs/note-009.md": "1f6d635ad49ac54a1a08a99f562b366a204716676100e633fd2034866e35f2d6",
+        "docs/note-010.md": "777fcb00450d700eee1249de0501b4706f2ad733b4527bac8947d4a679ed16cb",
+        "docs/note-011.md": "8cdea4ba0407b32dcbb317f139038ff9eb8c9ebd2d50312011ab283e2c90da40",
+        "docs/note-012.md": "d8735b272a9a60bba02c4c39554407ef95348dc28bc4e6933a6f992a340b40ac",
+        "docs/note-013.md": "c11fa8284a299ab1b4622ec14471467a8d0d9a848ea66c00abc1e81d84b4416d",
+        "docs/note-014.md": "35e7a4f06808da7b14e1cfb0a6a44931662a7d4dc429a1f1bd5d65a664630eae",
+        "docs/note-015.md": "afb8ae27c811da0c7afc1b10621b4928f0b7782775b1dbcb6420c4f79a22df80",
+        "docs/note-016.md": "bcc60ef50ee2fc6f603e115f63e50afe1381c7302663765cba7267daae004195",
+        "docs/note-017.md": "a26bcd1a64cea3ce73eac67277b067bec097f545eee941471326a2b4a110ff5c",
+        "docs/note-018.md": "f848f20bc56721ab7b803c12bce26b5ecd36b7a0e5e0cbf24bd70dbb0ae143a6",
+        "docs/note-019.md": "8b23a7f7eae1bfcba0d1ad78e717c43dad3a49f8a9eedcfb1df59354b4a4be8f",
+        "docs/note-020.md": "d6a6f689684f4f982a34c8af2c3f87baca480a8f356e8f98cec6af727359915c",
+        "docs/note-021.md": "fa0b609d81c785e5f49e8fdd98357bb5b11362ec41c5eb842f4b8e82b2dfff48",
+        "docs/note-022.md": "36858a98865f5d18bf8c50471d00cf2fcc9e2b4f682ebc06095e7766b8eee273",
+        "docs/note-023.md": "eff19b6f480c39d4c78c77df1f914abec0bf398a44248abd09b6a94b4f42c9d8",
+        "docs/note-024.md": "d2469654c6dc08b8f0643fd0533030e491ad9a6ca9352dc1387fb99603626ebf",
+        "docs/note-025.md": "ca08fe739737ca9cc9de43620176c529dbb978ce95a0d781ea391ea7b12793aa",
+        "docs/note-026.md": "0520680a35735ecc29fb5c2a258aefbc9be3baeadb22f4e14a75d3cb4cf5c1b4",
+        "docs/note-027.md": "b8a28ff8193011d245ba1e824662d2cdf4322fc10c680a0cfaa0d4341546f629",
+        "docs/note-028.md": "1927b5295a412e2a9f81ea954ae91c959c1151c6f12b5ede43bb1b37435c56b6",
+        "docs/note-029.md": "faef6327c1b3c250ed30d494e26c188cd1570ab0591a2753550f6fa964304edd",
+        "docs/note-030.md": "c3799e1df46d43b6b7f16aa7f413c22469e975ab591da399a7416ec5ac4d2dd7",
+        "docs/note-031.md": "58d0cc3f017c0fdc86ca22daccd3a215b3778d90e49ee88d896b3148cf86ed2c",
+        "docs/note-032.md": "ce9bf884ee52c77b371582c07cbc7f91b47a241547a24982b853d7c4984037c2",
+        "docs/note-033.md": "7335c71eb03e84dc7628aa902c198e73ecc127c0250244c91aa749456a5fdba6",
+        "docs/note-034.md": "2ea508b05929bbdfec459895162e9f3ecd844235db06883b92015c228148709d",
+        "docs/note-035.md": "c2980c2329c46672ff19c54b46f4e067cc1ddab006deb64aad0ddd1f74a75e51",
+        "docs/note-036.md": "2c0aee57cbc5ea8b7ab45525148529001a5726663b7ff19ddb82547fa8e1da4c",
+        "docs/note-037.md": "168d7f1cdf6dea8a856ce6d91d792e8556b1785042c669b9979d3ced9b530270",
+        "docs/note-038.md": "313d7cde6c09132c8c108cfaa1ce6cb11b2b29ab5a5f1e0999854611f82f15e6",
+        "docs/note-039.md": "48badffca6971deee098652598617ee89e416c571f15f2118389d6f95bcda597",
+        "docs/note-040.md": "4ca0d5d369109eac7f897e040d2b8c16871c8b90add73d2fb4d4bd9953c2f2fd",
+        "docs/note-041.md": "667d6eb295cd69ccfed7e6a58d261cc7c4ff273640d098044e38a90de80b514b",
+        "docs/note-042.md": "25eb65eaf907a208a4994d0f2ef5d53510d3ba5a6eace3ab81338f3eb0a67217",
+        "docs/note-043.md": "01fab4fb59b45d108802aef99597a0c784d3131854cc77bc0e01ede8919b91f8",
+        "docs/note-044.md": "c898112856c34b3c14a6df989a5bafe48e68c6f3a922be6afa5a3a7ee6f07344",
+        "docs/note-045.md": "d77a6f0c1dde1511ac046b2b2d1a3b55870689ff0826e325fea55c6b9f8dea83",
+        "docs/note-046.md": "8fdfe968a926ecf546545ee5c41ff6a234b06b795945514d0fa3b4a173df4785",
+        "docs/note-047.md": "65478ad6fe13f96b938e775d3c4e2353bdac4a43a3118377151d024e1fd6677c",
+        "docs/note-048.md": "aa6a1264a80fc7fc5a13d4ca0ec53a9a665bb4525d8813dca9769beb056dd3a5",
+        "docs/note-049.md": "8f1a0d2ac9970b62c23cb99af7087fece050d13d4c2f3017e3b6c160a6a468ad",
+        "docs/note-050.md": "ff89751c6ad45b6a40c9df1b0af19a31d0934c9db69d1d0887bebb1c3580c941",
+        "docs/note-051.md": "f92978208a5918e160ee055c477cb5f5ee1b5adde4a9a34a1f4415a785177a14",
+        "docs/note-052.md": "f9ba6ac58cec0bb4859fe1451bd4d55ad518f25accf4e1019fd2027f93d9b366",
+        "docs/note-053.md": "81292274ed8718e6c0d04161f7a6c0f3eb03f875616072457a4cdf7b9eb32dac",
+        "docs/note-054.md": "ecc6322c0b49d252d2bad0bd4f4603b827f7ba16046c39a0cdf6e004089d762a",
+        "docs/note-055.md": "e34b9dd7a5069ac84dbe01106c836de0c7b30f255f6f37a0836a0871e212c700",
+        "docs/note-056.md": "0077f8894efa9ba54f12c5f2dde72bd5f8782b7e52b899242d3f78d844337269",
+        "docs/note-057.md": "93989f2d520a51f63c2678e7548237989498732210d7f5dfbc0b6612165a48f4",
+        "docs/note-058.md": "abec57c6a2c5d385bdd5ab720787fec9b34ee262a4788e2c22521bd77dc97b72",
+        "docs/note-059.md": "1baadd5c60f38519183819ff5a7d71ed0481e35a260fe3afb1a3c5abda79971f",
+        "docs/note-060.md": "d2679c7cfe849d96f607913937f4c85953f50804e7dadefc6729087efa10a2c2",
+        "docs/note-061.md": "7fec18f68962b94946ca55e270effd6ea07d722ed450be6de4b2df3350aeae64",
+        "docs/note-062.md": "f5e719bd4e3b2f0b34e717291d7cc7aab4e41f52ef79768a9414bc0b84ed96c4",
+        "docs/note-063.md": "f66d16d4b6ba6185ed9ca658f71497f89d4f577e4f929b2d07715bfd5b4f6a9d",
+        "docs/note-064.md": "63aec73f08e3473a58771e3f2fbedc5c9924cb710d2844b13c85f2b835fbdcc4",
+        "docs/note-065.md": "403e50931ea22504c21a8374716aa1ce4891de71e350effd0ad13d9eaf4911fe",
+        "docs/note-066.md": "4b4f52f6d44bab013b9ee36cb2104e89239b2d3ea00c1d4c540ba10ed503031e",
+        "docs/note-067.md": "bcbd8f44bcb823598911ecb17e8de69933150b6297dda7509e803de5dd0494e9",
+        "docs/note-068.md": "3aaa2bb6fe06014309e7bc167f34d32eebc869c17a5e616c7abfbae3e0c6c9b4",
+        "docs/note-069.md": "6ce71ce03624367fd5b86d03c2f9078286230755a8711165ae42078c55bb945d",
+        "docs/current-policy.md": "a38d81ecc58749dd90f2d15e4412641ac09608fe8d7150372dd45461c8e2f4c8",
+        "docs/decision-20260922.md": "ef4d0a56205a7f784cb6732fdb9191f0fd7b4f59ca807f596c71b0d295365193",
+        "docs/proposal-20260924.md": "fd5b50b8e8e70daf8d1fa0500ed73ee4b0c3b9fb94e560acadbed36c2231970e"
+      }
+    }
+  ],
+  "sourceMode": "isolated staged candidate plugin plus matching workspace bridge",
+  "candidateRoot": "<HOME>/.agents/plugins/releases/jev-pilot-20260925194000-final",
+  "policyVersion": "effort-v19-baseline-spacing"
+}

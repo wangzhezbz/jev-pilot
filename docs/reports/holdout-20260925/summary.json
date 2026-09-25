@@ -1,0 +1,163 @@
+{
+  "prices": {
+    "date": "2026-09-24",
+    "currency": "USD",
+    "unit": "per million tokens",
+    "sources": [
+      "https://developers.openai.com/api/docs/pricing",
+      "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "https://docs.typesafe.ai/models"
+    ],
+    "models": {
+      "gpt-6-astra": {
+        "input": 10,
+        "cached": 1,
+        "write": 12.5,
+        "output": 50
+      },
+      "gpt-6-sol": {
+        "input": 2,
+        "cached": 0.2,
+        "write": 2.5,
+        "output": 10
+      },
+      "gpt-6-luna": {
+        "input": 0.1,
+        "cached": 0.01,
+        "write": 0.125,
+        "output": 0.5
+      },
+      "gpt-5.6-sol": {
+        "input": 4,
+        "cached": 0.4,
+        "write": 5,
+        "output": 20
+      }
+    },
+    "jev": {
+      "jev-1.13.0": {
+        "input": 0.042,
+        "output": 0
+      }
+    }
+  },
+  "scope": "Native independent task pairs and shared-task UI episodes are separate populations. Do not pool them into a marketing savings number.",
+  "nativePairs": [
+    {
+      "task": "holdout_sort",
+      "passed": true,
+      "seconds": [
+        88.406,
+        65.735
+      ],
+      "gptTokens": [
+        82934,
+        68728
+      ],
+      "usd": [
+        0.33562000000000003,
+        0.31800420599999996
+      ],
+      "timePercent": -25.644187046128085,
+      "gptPercent": -17.129283526659755,
+      "costPercent": -5.248731899171699
+    },
+    {
+      "task": "holdout_ranges",
+      "passed": true,
+      "seconds": [
+        111.413,
+        95.591
+      ],
+      "gptTokens": [
+        102382,
+        89506
+      ],
+      "usd": [
+        0.571084,
+        0.39174469799999995
+      ],
+      "timePercent": -14.20121529803524,
+      "gptPercent": -12.576429450489346,
+      "costPercent": -31.40331404837118
+    },
+    {
+      "task": "holdout_eligibility",
+      "passed": true,
+      "seconds": [
+        47.872,
+        100.309
+      ],
+      "gptTokens": [
+        73738,
+        79800
+      ],
+      "usd": [
+        0.25391600000000003,
+        0.549702236
+      ],
+      "timePercent": 109.53584558823528,
+      "gptPercent": 8.220998670970193,
+      "costPercent": 116.48979820097982
+    },
+    {
+      "task": "holdout_policy",
+      "passed": true,
+      "seconds": [
+        57.059,
+        47.617
+      ],
+      "gptTokens": [
+        106317,
+        108708
+      ],
+      "usd": [
+        0.474418,
+        0.393433014
+      ],
+      "timePercent": -16.54778387283339,
+      "gptPercent": 2.2489347893563494,
+      "costPercent": -17.070386452453313
+    }
+  ],
+  "uiPairs": [
+    {
+      "platform": "chrome",
+      "passed": true,
+      "seconds": [
+        38.306,
+        22.59
+      ],
+      "gptTokens": [
+        638048,
+        281313
+      ],
+      "usd": [
+        0.7030959999999999,
+        0.31731937800000004
+      ],
+      "timePercent": -41.02751527175899,
+      "gptPercent": -55.91037037965796,
+      "costPercent": -54.868271473596764
+    },
+    {
+      "platform": "cua",
+      "passed": true,
+      "seconds": [
+        38.94,
+        37.25
+      ],
+      "gptTokens": [
+        694474,
+        384590
+      ],
+      "usd": [
+        0.7607079999999999,
+        0.446229786
+      ],
+      "timePercent": -4.340010272213657,
+      "gptPercent": -44.62139691334737,
+      "costPercent": -41.34020070776171
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "note": "Replay only inside the official host. Replace HOME and the real current task ID; never copy an old task ID to bypass quotas. Setup is outside measured windows.",
+  "cells": [
+    {
+      "at": "2026-09-25T12:27:05.510Z",
+      "code": "var { setupBrowserRuntime } = await import('<HOME>/.codex/plugins/cache/openai-bundled/browser/26.917.71314/scripts/browser-client.mjs'); var agent = await setupBrowserRuntime(); var chrome = await agent.browsers.get('chrome'); nodeRepl.write(await chrome.documentation());"
+    },
+    {
+      "at": "2026-09-25T12:28:10.155Z",
+      "code": "var holdTab = await chrome.tabs.new(); await holdTab.goto('http://127.0.0.1:8876/holdout-browser.html'); await holdTab.ax.write(); var skyHold = (await import('@oai/sky')).sky; nodeRepl.write((await skyHold.get_app_state({app:'com.apple.Safari'})).text);"
+    },
+    {
+      "at": "2026-09-25T12:28:31.878Z",
+      "code": "await skyHold.press_key({app:'com.apple.Safari',key:'super+t'}); await skyHold.type_text({app:'com.apple.Safari',text:'http://127.0.0.1:8876/holdout-browser.html'}); await skyHold.press_key({app:'com.apple.Safari',key:'Return'}); nodeRepl.write((await skyHold.get_app_state({app:'com.apple.Safari'})).text);"
+    },
+    {
+      "at": "2026-09-25T12:29:03.433Z",
+      "code": "var holdHost = await import('<HOME>/.agents/plugins/releases/jev-pilot-20260925194000-final/src/host-browser-navigator.mjs'); var holdRuns=[]; var holdScope = raw => { const m=raw.match(/^\\s*\\d+ HTML内容 Description: JevPilot Holdout Lab, URL: 127\\.0\\.0\\.1:8876\\/holdout-browser\\.html[\\s\\S]*?^\\s*\\d+ 文本 Synthetic read-only fixture — no production action/m); if(!m)throw Error('Holdout surface changed');return m[0]; }; var holdPolicy={allowNames:[/^(Maintenance runbooks|Readiness reports|Service directory|Cedar|Maple|Larch|US East|EU West|AP South|r\\d+ — (archived|draft|approved)|Read overview|Open verified record|Read revision history|Back to record choices)$/]}; console.log('Host ready; no Jev call made');"
+    },
+    {
+      "at": "2026-09-25T12:32:23.611Z",
+      "code": "await holdTab.reload(); var holdChromeNav = holdHost.createNavigator({workspace:'<HOME>/codex/jev-pilot',taskId:'01a0bd6e-1907-7392-bb0b-b33ab83a639b',driver:holdHost.createChromeDriver({tab:holdTab,allowedOrigins:['http://127.0.0.1:8876'],policy:holdPolicy})}); console.log('Next arm ready');"
+    },
+    {
+      "at": "2026-09-25T12:33:04.133Z",
+      "code": "var holdCuaNav=holdHost.createNavigator({workspace:'<HOME>/codex/jev-pilot',taskId:'01a0bd6e-1907-7392-bb0b-b33ab83a639b',driver:holdHost.createComputerUseDriver({sky:skyHold,app:'com.apple.Safari',policy:holdPolicy,scope:holdScope})}); console.log('Computer Use driver bound');"
+    },
+    {
+      "at": "2026-09-25T12:34:01.329Z",
+      "code": "await skyHold.press_key({app:'com.apple.Safari',key:'super+r'});console.log('Native arm reset to original page');"
+    }
+  ]
+}

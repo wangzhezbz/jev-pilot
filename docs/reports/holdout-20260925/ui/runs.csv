@@ -1,0 +1,5 @@
+id,seconds,passed,gpt_calls,gpt_input,gpt_cached,gpt_uncached,gpt_output,gpt_total,jev_requests,jev_input,jev_output,jev_unknown,fallback
+chrome-bare,38.306,True,7,637365,633856,3509,683,638048,0,0,0,0,
+chrome-pilot,22.59,True,3,280929,279040,1889,384,281313,5,4509,265,0,
+cua-pilot,37.25,True,4,383935,380672,3263,655,384590,5,4233,265,0,Native final read after scope callback rejected merged text; no repeated click
+cua-bare,38.94,True,7,693814,690048,3766,660,694474,0,0,0,0,
