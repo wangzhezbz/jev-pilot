@@ -1,0 +1,15 @@
+{
+  "source-verification.json": "72d587a43de809f8ca6a754f0639a516b237454206e47b869b272d46e1abd5b7",
+  "installation.json": "76906a8ecbce975739928211681d8fd763fec1ad61bac83cc7816b92a020f1b6",
+  "timing.json": "156915c9cc5de0741734d4880218df2b4a8a85330895fc1bd22b6db4470542b6",
+  "source-hash.json": "1e95e6dab588a0b5e5c8863ab31846c411844154b49956ce3c360998025c8099",
+  "native.json": "d9a6aa54145e785df671d3bdcb06bd90f1522a9e83d77c21fb1295804386c40a",
+  "regression.txt": "3afb54c2439c1b8c6be24d5b5b38a00668c6bfc0ddba7708d3dff58a701f52f3",
+  "cost-receipts.json": "bab0ac58002add7a45056eae225005ce5c43867aece02f80861b3d136cef0a84",
+  "cost-runs.json": "afe9dcb6c74129f1835424ac86c172d64b3b8c62e915d9cadb5241f40e0ee5ec",
+  "README.zh-CN.md": "7bbf39d4d4b03cad89dea9896b8eb9d0014ebb33a6b2ab26ec06d02eccf0b7fa",
+  "protocol.json": "7fcf9783f4e78b9f037dedc1ebdb99f6504d60bdc0a2b98679037beee7d6095a",
+  "cost-summary.json": "80d6f1acf42a6708990a928b0cae56d29c052ba08008d1bc2b73f8f1febc258f",
+  "cache-audit.json": "b24c4b6709032f7d1065137d02c0dd64cc75257e30c83873809df06d6e7be872",
+  "cost-runs.csv": "033aee3f9245f43a3483593bb77783faee391a95c930c0a371e9109ac4116ef6"
+}

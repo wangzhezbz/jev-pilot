@@ -1,0 +1,83 @@
+{
+  "at": "2026-09-25T11:34:02.555Z",
+  "jobs": [
+    {
+      "model": "gpt-6-astra",
+      "task": "incident",
+      "repeat": 0,
+      "arms": [
+        "bare",
+        "combined"
+      ]
+    },
+    {
+      "model": "gpt-6-astra",
+      "task": "incident",
+      "repeat": 1,
+      "arms": [
+        "combined",
+        "bare"
+      ]
+    }
+  ],
+  "runs": 4,
+  "models": [
+    "gpt-6-astra"
+  ],
+  "initialEffort": "high",
+  "concurrency": 1,
+  "hashes": {
+    "src/core.mjs": "130e1d67b841e99771dc18885e50e5afd66a7a003d77403b0412eb2d4cde3938",
+    "src/request-guard.mjs": "6b18ae893c5c0fea7634abff127942f1a55bb8552937db779bd3d2b919b09d24",
+    "src/automation.mjs": "217a7f6340e3cd129fcd3eb5b275c56b0abf55292f8003ac8ef3f2418d1bd948",
+    "src/evidence.mjs": "8d94a56302084c1771d6297c213436451330ed618c0a5e25177847f0876259bd",
+    "src/policy.mjs": "4f29ab06c3f91509aa260247165d12a2e48e37b507b2c5f726f95e5b291582de",
+    "runtime/desktop/router.mjs": "43b586c880684655a9a293dc569d5c1f7e283ee4be35141e2deeb179a129ebd1",
+    "runtime/desktop/bridge.mjs": "8a4d74f01a3939cb7178924416f8f17e7e5bfaf4dd02d0dae87f56fc9a80997f",
+    "skills/jev-pilot/SKILL.md": "e7c8ea763f42dbe53d152cd4eb2b30ee7e68e0be0a02bb6c924570b46bed41e4",
+    "skills/jev-pilot/references/operations.md": "f12c1128b016309659575dd68dab0840d0ece6b525f953caaa81ded25f1b5341",
+    "scripts/benchmark/tasks.mjs": "a205373e2b1f6bd9b7ced8eb8ed85093802d9f4f1babf0902ae2d1fbe6a60d29",
+    "scripts/acceptance/tasks.mjs": "ad1c528e00822d3d501ca001998d55493b854c56cc9167f480c4aa6faa6c1f52",
+    "scripts/acceptance/factorial-run.mjs": "57f2becd1ea59690833f21f5522ce5cd788b91cfa94505eefc89c3560588b774",
+    "scripts/acceptance/factorial-tasks.mjs": "80c710fc9a4cf2514990e817973a0cad7462422a22d680a99294787677d6d9ed",
+    "src/prepare-output.mjs": "eb231565c093811bb52284ba039dbc8ba9f22dae26831d0caa2c7509203c4b21",
+    "src/log-projection.mjs": "38783edcbde1fa811f326ff9657f030b065c55ab12db4e7562c62cdb7aeecbf7",
+    "src/evidence-tool.mjs": "9e61bf75b61dc830db06029a1574719219f620fb28f2de12d43da476a4e87b9d",
+    "src/server.mjs": "84d8de4baff3c3ac4e824a206ce0a123bddf56c8f5fa4033395dd4d49a728a5d",
+    "src/runtime-compatibility.mjs": "18505824a2d33fe0b4bc5ca6f0171959d116d12ec700fc8ef00de0b863b04436",
+    "skills/jev-pilot/references/evidence.md": "5e809befc89e87f3c61b1cb71bce8417fb19ba3b8ce40c5b094eaa58a21ef7c1",
+    "scripts/acceptance/timeline.mjs": "f8794e32a0bc3044ee2e8ce07ee0324be42118106301c146a831c1c810e1c49b",
+    "scripts/acceptance/terminal-state.mjs": "431a65f5c59a2ed68f9415b8601cf69790e7eb220a612731a89bee2d03934489",
+    "src/distribution.mjs": "1ceba37ba94ea6ca1f036e7195f24e996c08ae4004c0fa67f7bea55a87cdc5a3",
+    "src/investigation-hint.mjs": "9978cea073d9f0edfac6244a279aff69749cf86a690d4593fa90d33b45d2dd2a",
+    "scripts/acceptance/semantic-task.mjs": "a167b7cdd94cea2bf0bc13be01d30ad28a9364b657aedf73c989ad03fe258efa"
+  },
+  "config": {
+    "features.apps": false,
+    "features.multi_agent": false,
+    "web_search": "disabled",
+    "hooks.Stop": []
+  },
+  "quality": "Frozen independent oracle after inference; protected fixtures unchanged; failed attempts retained.",
+  "stopRule": "Stop after infrastructure failure, timeout, interruption or provider limit; retain all prior and failed runs. No reruns or mid-test product changes.",
+  "timeLimitMs": 240000,
+  "nativeVersion": "codex-cli 0.155.0-alpha.16.4",
+  "revision": "fae23be288dd638107bc492bc7a9df35a84427ab",
+  "expectedPluginVersion": "0.2.0+codex.20260925184500",
+  "scope": "Frozen candidate entry follow-up: 1 tasks x 2 repeats x bare/combined = 4 real tasks. GPT-6 astra high, sequential balanced AB/BA; same frozen task inputs and oracle. No forced Jev or full reads. Original v17 campaign remains separate. Backend time and model usage, not UI latency or billed quotas.",
+  "tasks": [
+    {
+      "id": "incident",
+      "prompt": "Analyze incident.log and write incident.md explaining the checkout incident. Evidence is spread throughout the log. Identify the supported root cause, the rejected hypothesis and why it is rejected, the observed impact, mitigation and verification, and what remains unknown. Cite the original L-prefixed evidence IDs. Do not turn guesses into facts. Also write findings.data as a machine-readable object with these keys: rootCause (one of pool_limit_regression, dns_failure, unknown), failedRequests (integer), totalRequests (integer), failureRate (number 0..1), mitigationPoolLimit (integer), postMitigationFailures (integer), settlementImpact (one of unknown, confirmed_safe, confirmed_loss), rejectedHypothesis (one of dns_failure, pool_limit_regression, none), evidenceIds (all L-prefixed IDs supporting the report). Do not change incident.log. The requirement is substantive incident analysis; concise factual output is enough.",
+      "files": {
+        "incident.log": "6a932f3daa50ac58d2a81f515744b30cd1808f25660d7dc46225a4dec6ff6b6e"
+      }
+    }
+  ],
+  "sourceMode": "isolated staged candidate plugin plus matching workspace bridge",
+  "caseIds": [
+    "incident"
+  ],
+  "candidateRoot": "<HOME>/.agents/plugins/releases/jev-pilot-v19-candidate-20260925",
+  "policyVersion": "effort-v19-baseline-spacing"
+}

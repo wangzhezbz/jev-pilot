@@ -50,10 +50,19 @@ export async function prepareOutput(ctx,input){
   // Reuse exact prose locally before paying for semantic selection. Every
   // occurrence survives, including exclusions, contradictions and uncertainty.
   // The full original remains the recall authority; no model classifies it.
-  const items=chunks({text:body,path:source,hash:hash(body)}),prose=projectEvidence(items,{fragments:true});
+  let items=chunks({text:body,path:source,hash:hash(body)});
+  const prose=projectEvidence(items,{fragments:true});
+  // Semantic classification uses small event groups; a reversible log view
+  // uses larger source spans so exact regular sequences need only one block.
+  if(prose.kind!=='shared_fragments'&&/\.log$/i.test(source)){
+    const lines=body.split('\n');items=[];
+    for(let start=0;start<lines.length;start+=120){const end=Math.min(start+120,lines.length);
+      items.push({id:'s'+start,text:lines.slice(start,end).join('\n'),source,startLine:start+1,endLine:end,sourceHash:hash(body)});
+    }
+  }
   const projection=prose.kind==='shared_fragments'?prose:projectLogTemplates(items);
   if(['shared_fragments','log_templates'].includes(projection.kind)){
-    const artifactId=hash({goal:input.goal,source,body,mechanism:projection.kind==='log_templates'?'lossless-log-v1':'lossless-prose-v1'});
+    const artifactId=hash({goal:input.goal,source,body,mechanism:projection.kind==='log_templates'?'lossless-log-v2':'lossless-prose-v1'});
     const display=`JevPilot lossless source projection: all ${items.length} records retained; zero relevance exclusions. No semantic judgment performed. Original recall artifactId=${artifactId}.\n`+projection.context;
     const prepared=adapter.wrap(display),selection={status:'prepared',reason:'lossless_projection',projection:projection.kind,artifactId,sourceHash:hash(body),originalBytes:Buffer.byteLength(JSON.stringify(value)),returnedBytes:Buffer.byteLength(JSON.stringify(prepared)),completeCoverage:true,excludedItems:0,lossless:true,modelReceipt:'unconfirmed',nativeTokenSavings:null};
     if(Buffer.byteLength(JSON.stringify({value:prepared,selection}))<selection.originalBytes*.8){

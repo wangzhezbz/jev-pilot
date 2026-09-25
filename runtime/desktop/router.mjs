@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { parseEnv } from 'node:util';
 import { postTypeSafe } from './transport.mjs';
 
-export const POLICY_VERSION = 'effort-v18-baseline-spacing';
+export const POLICY_VERSION = 'effort-v19-baseline-spacing';
 const effortOrder=['none','minimal','low','medium','high','xhigh','max','ultra'];
 export const LEASE_UNIT = 'observed_tool_batch_or_boundary';
 export const SUPPORTED_MODELS = ['gpt-6-astra','gpt-6-sol','gpt-6-luna','gpt-5.6-sol','gpt-5.6-terra','gpt-5.6-luna'];
@@ -189,16 +189,11 @@ export class Router {
       && effortOrder.indexOf(t.current)>=effortOrder.indexOf(t.baseline) && effortOrder.includes(t.baseline);
     t.horizonReason=!applied?'not_applied':requested===null?'invalid_horizon':validEffort?'jev_selected':baselineKeep?'keep_at_baseline':'uncertain_effort';
     t.horizon=applied?(validEffort?(requested??this.leaseSteps):baselineKeep&&requested!==null?Math.min(requested,2):1):1;
-    // Save routine budget while retaining the user's chosen baseline. This
-    // never extends an automatic downgrade or overrides urgent invalidation.
-    if(applied && validEffort && requested===1 && t.current===t.baseline && t.noBenefitHits>=2){
-      t.horizon=2;t.horizonReason='baseline_budget_spacing';
-    }
-    // Three repeated baseline judgments in the same phase warrant a bounded
-    // five-boundary spacing. Do not extend a downgrade, an invalid horizon,
-    // or carry the streak across changed progress, failures or user controls.
+    // Two independent unchanged judgments at the user baseline permit a
+    // bounded five-boundary lease. Never extend an automatic downgrade;
+    // failure, public phase change, input, manual controls and expiry interrupt.
     if(applied && (validEffort||baselineKeep) && requested!==null && requested<=2
-      && t.current===t.baseline && t.noBenefitHits>=3){
+      && t.current===t.baseline && t.noBenefitHits>=2){
       t.horizon=5;t.horizonReason='stable_baseline_spacing';
     }
     t.reusedBatch=null;t.lease=t.horizon-1;t.leaseUntil=Date.now()+this.leaseMs;

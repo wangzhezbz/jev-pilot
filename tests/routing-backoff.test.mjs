@@ -10,9 +10,10 @@ test('an observed failure after two no-change decisions is reassessed within the
 test('a transient outage following an unchanged decision still has one bounded recovery',async()=>{const f=fixture();const t=await start(f);f.fail(true);await hook(f,'offline');assert.notEqual(t.retryAt,null);const before=f.calls;await hook(f,'too-soon');assert.equal(f.calls,before);f.advance(15000);f.fail(false);f.select('low');await hook(f,'service-restored');assert.equal(f.calls,before+1);assert.equal(t.current,'low');assert.equal(t.recoveryAttempts,1);});
 test('restoring reevaluation keeps the hard call cap and never leaves an expired downgrade',async()=>{const f=fixture();await start(f);await hook(f,'read');f.select('low');await hook(f,'phase');for(let i=0;i<15;i++)await hook(f,'f'+i,{exit_code:1});assert(f.calls<=6);assert.equal(f.r.turns.get('t').current,'medium');});
 
-test('unchanged baseline spaces just one routine boundary and leaves a later downgrade eligible',async()=>{
- const f=fixture(),t=await start(f);await hook(f,'first');assert.equal(t.horizonReason,'baseline_budget_spacing');
- f.select('low');await hook(f,'spaced');assert.equal(f.calls,2);assert.equal(t.current,'medium');
+test('two unchanged baseline judgments reuse four boundaries then reassess',async()=>{
+ const f=fixture(),t=await start(f);await hook(f,'first');assert.equal(t.horizonReason,'stable_baseline_spacing');
+ f.select('low');for(let i=0;i<4;i++)await hook(f,'spaced'+i);
+ assert.equal(f.calls,2);assert.equal(t.current,'medium');
  await hook(f,'eligible');assert.equal(f.calls,3);assert.equal(t.current,'low');assert.equal(t.horizon,1);
 });
 test('baseline spacing never hides elapsed leases or new user input',async()=>{
@@ -21,13 +22,13 @@ test('baseline spacing never hides elapsed leases or new user input',async()=>{
  f.select('low');await hook(f,'urgent');assert.equal(f.calls,3);assert.equal(t.current,'low');}
 });
 
-async function stableBaseline(f){const t=await start(f);await hook(f,'a');await hook(f,'b');await hook(f,'c');assert.equal(f.calls,3);return t;}
+async function stableBaseline(f){const t=await start(f);await hook(f,'a');assert.equal(f.calls,2);return t;}
 test('stable baseline reduces short-run calls and preserves a later useful downgrade',async()=>{
  const f=fixture(),t=await stableBaseline(f);assert.equal(t.horizon,5);assert.equal(t.horizonReason,'stable_baseline_spacing');
  for(let i=0;i<4;i++)await hook(f,'stable'+i);
- assert.equal(f.calls,3);assert.equal(t.current,'medium');
- f.select('low');await hook(f,'later-easy-step');assert.equal(f.calls,4);assert.equal(t.current,'low');assert.equal(t.horizon,1);
- await hook(f,'expired-downgrade');assert.equal(t.current,'medium');
+ assert.equal(f.calls,2);assert.equal(t.current,'medium');
+ f.select('low');await hook(f,'later-easy-step');assert.equal(f.calls,3);assert.equal(t.current,'low');assert.equal(t.horizon,1);
+ f.fail(true);await hook(f,'expired-downgrade');assert.equal(t.current,'medium');
 });
 test('stable baseline spacing is interrupted by failure, new phase, input or expiry',async()=>{
  for(const kind of ['failure','phase','input','expiry']){
@@ -36,7 +37,7 @@ test('stable baseline spacing is interrupted by failure, new phase, input or exp
   if(kind==='input')f.r.invalidate('t',[{type:'text',text:'Inspect a different requirement'}]);
   if(kind==='expiry')t.leaseUntil=Date.now()-1;
   await hook(f,'changed',kind==='failure'?{exit_code:1}:'observed result');
-  assert.equal(f.calls,4,kind);
+  assert.equal(f.calls,3,kind);
   if(kind!=='expiry')assert.equal(t.noBenefitHits,1,kind);
  }
 });

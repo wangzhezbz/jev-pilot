@@ -1,0 +1,9 @@
+{
+  "sourceBytes": 64072,
+  "previousProjectionBytes": 16352,
+  "candidateProjectionBytes": 15285,
+  "reductionPercent": 6.5251956947162455,
+  "losslessRoundTrip": "verified",
+  "noRecordsRemoved": true,
+  "paidJevCallsForProjection": 0
+}

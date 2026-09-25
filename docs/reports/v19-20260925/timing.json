@@ -1,0 +1,125 @@
+[
+  {
+    "id": "gpt-6-astra-incident-0-bare",
+    "wallMs": 58060,
+    "routingElapsedMs": 0,
+    "generationUsageBoundaries": [
+      {
+        "elapsedMs": 7014.956,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 15373
+      },
+      {
+        "elapsedMs": 10407.523,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 30878
+      },
+      {
+        "elapsedMs": 14909.156,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 56923
+      },
+      {
+        "elapsedMs": 51449.139,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 84442
+      },
+      {
+        "elapsedMs": 58059.389,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 112134
+      }
+    ]
+  },
+  {
+    "id": "gpt-6-astra-incident-0-combined",
+    "wallMs": 52282,
+    "routingElapsedMs": 1260,
+    "generationUsageBoundaries": [
+      {
+        "elapsedMs": 7177.212,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 16384
+      },
+      {
+        "elapsedMs": 15662.675,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 33643
+      },
+      {
+        "elapsedMs": 48241.477,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 56045
+      },
+      {
+        "elapsedMs": 52280.188,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 78609
+      }
+    ]
+  },
+  {
+    "id": "gpt-6-astra-incident-1-combined",
+    "wallMs": 52325,
+    "routingElapsedMs": 1679,
+    "generationUsageBoundaries": [
+      {
+        "elapsedMs": 9034.366,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 16393
+      },
+      {
+        "elapsedMs": 17263.679,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 33652
+      },
+      {
+        "elapsedMs": 48741.504,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 56008
+      },
+      {
+        "elapsedMs": 52323.409,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 78512
+      }
+    ]
+  },
+  {
+    "id": "gpt-6-astra-incident-1-bare",
+    "wallMs": 57077,
+    "routingElapsedMs": 0,
+    "generationUsageBoundaries": [
+      {
+        "elapsedMs": 7515.645,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 15361
+      },
+      {
+        "elapsedMs": 10723.523,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 30849
+      },
+      {
+        "elapsedMs": 15947.659,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 56844
+      },
+      {
+        "elapsedMs": 39723.023,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 83872
+      },
+      {
+        "elapsedMs": 52484.877,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 111295
+      },
+      {
+        "elapsedMs": 57076.511,
+        "method": "thread/tokenUsage/updated",
+        "totalTokens": 138885
+      }
+    ]
+  }
+]

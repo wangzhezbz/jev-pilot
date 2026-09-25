@@ -1,0 +1,11 @@
+{
+  "files": {
+    "src/log-projection.mjs": "38783edcbde1fa811f326ff9657f030b065c55ab12db4e7562c62cdb7aeecbf7",
+    "src/prepare-output.mjs": "eb231565c093811bb52284ba039dbc8ba9f22dae26831d0caa2c7509203c4b21",
+    "runtime/desktop/router.mjs": "43b586c880684655a9a293dc569d5c1f7e283ee4be35141e2deeb179a129ebd1"
+  },
+  "candidateMatchesWorkspace": true,
+  "releaseVersion": "0.2.0+codex.20260925194000",
+  "candidateVersion": "0.2.0+codex.20260925184500",
+  "note": "Candidate used prior manifest version in isolated home. Release changes manifest identity and adds projection modules to installer fingerprints; measured production modules are identical."
+}

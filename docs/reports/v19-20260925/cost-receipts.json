@@ -1,0 +1,1117 @@
+[
+  {
+    "id": "gpt-6-astra-incident-0-bare",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "unchanged:incident.log",
+          "pass": true
+        },
+        {
+          "name": "rootCause",
+          "pass": true
+        },
+        {
+          "name": "failedRequests",
+          "pass": true
+        },
+        {
+          "name": "totalRequests",
+          "pass": true
+        },
+        {
+          "name": "failureRate",
+          "pass": true
+        },
+        {
+          "name": "mitigationPoolLimit",
+          "pass": true
+        },
+        {
+          "name": "postMitigationFailures",
+          "pass": true
+        },
+        {
+          "name": "settlementImpact",
+          "pass": true
+        },
+        {
+          "name": "rejectedHypothesis",
+          "pass": true
+        },
+        {
+          "name": "evidence_coverage",
+          "pass": true
+        },
+        {
+          "name": "no_invented_ids",
+          "pass": true
+        },
+        {
+          "name": "written_report_with_citations",
+          "pass": true
+        }
+      ]
+    },
+    "errors": [],
+    "status": "completed",
+    "usage": [
+      {
+        "total": {
+          "totalTokens": 15373,
+          "inputTokens": 15261,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 112,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 15373,
+          "inputTokens": 15261,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 112,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 30878,
+          "inputTokens": 30733,
+          "cachedInputTokens": 15104,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 145,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 15505,
+          "inputTokens": 15472,
+          "cachedInputTokens": 15104,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 33,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 56923,
+          "inputTokens": 56684,
+          "cachedInputTokens": 30336,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 239,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 26045,
+          "inputTokens": 25951,
+          "cachedInputTokens": 15232,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 94,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 84442,
+          "inputTokens": 83052,
+          "cachedInputTokens": 56064,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1390,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 27519,
+          "inputTokens": 26368,
+          "cachedInputTokens": 25728,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1151,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 112134,
+          "inputTokens": 110661,
+          "cachedInputTokens": 82304,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1473,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 27692,
+          "inputTokens": 27609,
+          "cachedInputTokens": 26240,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 83,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      }
+    ],
+    "jevCalls": [],
+    "routing": [],
+    "preparations": []
+  },
+  {
+    "id": "gpt-6-astra-incident-0-combined",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "unchanged:incident.log",
+          "pass": true
+        },
+        {
+          "name": "rootCause",
+          "pass": true
+        },
+        {
+          "name": "failedRequests",
+          "pass": true
+        },
+        {
+          "name": "totalRequests",
+          "pass": true
+        },
+        {
+          "name": "failureRate",
+          "pass": true
+        },
+        {
+          "name": "mitigationPoolLimit",
+          "pass": true
+        },
+        {
+          "name": "postMitigationFailures",
+          "pass": true
+        },
+        {
+          "name": "settlementImpact",
+          "pass": true
+        },
+        {
+          "name": "rejectedHypothesis",
+          "pass": true
+        },
+        {
+          "name": "evidence_coverage",
+          "pass": true
+        },
+        {
+          "name": "no_invented_ids",
+          "pass": true
+        },
+        {
+          "name": "written_report_with_citations",
+          "pass": true
+        }
+      ]
+    },
+    "errors": [],
+    "status": "completed",
+    "pluginVersion": "0.2.0+codex.20260925184500",
+    "usage": [
+      {
+        "total": {
+          "totalTokens": 16384,
+          "inputTokens": 16280,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 104,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 16384,
+          "inputTokens": 16280,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 104,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 33643,
+          "inputTokens": 33371,
+          "cachedInputTokens": 16128,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 272,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 17259,
+          "inputTokens": 17091,
+          "cachedInputTokens": 16128,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 168,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 56045,
+          "inputTokens": 54760,
+          "cachedInputTokens": 33024,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1285,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 22402,
+          "inputTokens": 21389,
+          "cachedInputTokens": 16896,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1013,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 78609,
+          "inputTokens": 77241,
+          "cachedInputTokens": 33024,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1368,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 22564,
+          "inputTokens": 22481,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 83,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      }
+    ],
+    "jevCalls": [
+      {
+        "at": "2026-09-25T11:35:16.683Z",
+        "kind": "jev_call",
+        "purpose": "effort",
+        "taskId": "01a0d858-eaad-7ef1-8b6b-80401a3154cc",
+        "requestId": "704c1b2c-90f4-4407-b58d-7cb08c6bff6d",
+        "model": "jev-1.13.0",
+        "inputTokens": 2020,
+        "outputTokens": 106,
+        "elapsedMs": 302,
+        "questions": 2,
+        "status": "success"
+      },
+      {
+        "at": "2026-09-25T11:35:08.289Z",
+        "kind": "jev_call",
+        "purpose": "effort",
+        "taskId": "01a0d858-eaad-7ef1-8b6b-80401a3154cc",
+        "requestId": "d2199472-348d-4ad9-b394-6becf326b17c",
+        "model": "jev-1.13.0",
+        "inputTokens": 1261,
+        "outputTokens": 106,
+        "elapsedMs": 289,
+        "questions": 2,
+        "status": "success"
+      },
+      {
+        "at": "2026-09-25T11:35:01.680Z",
+        "kind": "jev_call",
+        "purpose": "effort",
+        "taskId": "01a0d858-eaad-7ef1-8b6b-80401a3154cc",
+        "requestId": "6fcd268c-48a0-45ac-9eac-54ed9589fdc7",
+        "model": "jev-1.13.0",
+        "inputTokens": 1128,
+        "outputTokens": 106,
+        "elapsedMs": 563,
+        "questions": 2,
+        "status": "success"
+      }
+    ],
+    "routing": [
+      {
+        "at": "2026-09-25T11:35:01.684Z",
+        "bridgeId": "jev:80b8251f-ebe6-4e50-8a08-4d0905cfe439:",
+        "pid": 70547,
+        "projectId": "c49a7e7b166211fa581bc5b8a1d5e170db9a345efbe2932c0ef7fa6ccba62d37",
+        "measurementSource": "runtime",
+        "kind": "decision",
+        "policyVersion": "effort-v19-baseline-spacing",
+        "threadId": "01a0d858-eaad-7ef1-8b6b-80401a3154cc",
+        "turnId": "01a0d858-ed31-7380-bf30-70e68a17b1a6",
+        "event": "BeforeTurnStart",
+        "targetModel": "gpt-6-astra",
+        "from": "high",
+        "baselineEffort": "high",
+        "ceilingApplied": false,
+        "recommended": "high",
+        "confidence": 0.76,
+        "probability": 0.81,
+        "published": "high",
+        "status": "unchanged",
+        "model": "jev-1.13.0",
+        "inputTokens": 1128,
+        "outputTokens": 106,
+        "horizon": 1,
+        "leaseUnit": "observed_tool_batch_or_boundary",
+        "recommendedHorizon": 1,
+        "horizonReason": "jev_selected",
+        "confirmation": null,
+        "estimatedJevUsd": 0.000047376,
+        "elapsedMs": 565
+      },
+      {
+        "at": "2026-09-25T11:35:08.289Z",
+        "bridgeId": "jev:80b8251f-ebe6-4e50-8a08-4d0905cfe439:",
+        "pid": 70547,
+        "projectId": "c49a7e7b166211fa581bc5b8a1d5e170db9a345efbe2932c0ef7fa6ccba62d37",
+        "measurementSource": "runtime",
+        "kind": "decision",
+        "policyVersion": "effort-v19-baseline-spacing",
+        "threadId": "01a0d858-eaad-7ef1-8b6b-80401a3154cc",
+        "turnId": "01a0d858-ed31-7380-bf30-70e68a17b1a6",
+        "event": "PostToolUse",
+        "targetModel": "gpt-6-astra",
+        "from": "high",
+        "baselineEffort": "high",
+        "ceilingApplied": false,
+        "recommended": "high",
+        "confidence": 0.82,
+        "probability": 0.85,
+        "published": "high",
+        "status": "unchanged",
+        "model": "jev-1.13.0",
+        "inputTokens": 1261,
+        "outputTokens": 106,
+        "horizon": 1,
+        "leaseUnit": "observed_tool_batch_or_boundary",
+        "recommendedHorizon": 1,
+        "horizonReason": "jev_selected",
+        "confirmation": null,
+        "estimatedJevUsd": 0.000052962000000000006,
+        "elapsedMs": 341
+      },
+      {
+        "at": "2026-09-25T11:35:08.292Z",
+        "bridgeId": "jev:80b8251f-ebe6-4e50-8a08-4d0905cfe439:",
+        "pid": 70547,
+        "projectId": "c49a7e7b166211fa581bc5b8a1d5e170db9a345efbe2932c0ef7fa6ccba62d37",
+        "measurementSource": "runtime",
+        "kind": "generation_usage",
+        "threadId": "01a0d858-eaad-7ef1-8b6b-80401a3154cc",
+        "turnId": "01a0d858-ed31-7380-bf30-70e68a17b1a6",
+        "configuredModel": "gpt-6-astra",
+        "effort": "high",
+        "generation": 1,
+        "observedElapsedMs": 7177,
+        "usage": {
+          "inputTokens": 16280,
+          "cachedInputTokens": 0,
+          "outputTokens": 104,
+          "reasoningOutputTokens": 0,
+          "totalTokens": 16384,
+          "cacheWriteInputTokens": 0
+        },
+        "accounting": "host_observed_request_usage_not_provider_timing_or_account_debit"
+      },
+      {
+        "at": "2026-09-25T11:35:16.683Z",
+        "bridgeId": "jev:80b8251f-ebe6-4e50-8a08-4d0905cfe439:",
+        "pid": 70547,
+        "projectId": "c49a7e7b166211fa581bc5b8a1d5e170db9a345efbe2932c0ef7fa6ccba62d37",
+        "measurementSource": "runtime",
+        "kind": "decision",
+        "policyVersion": "effort-v19-baseline-spacing",
+        "threadId": "01a0d858-eaad-7ef1-8b6b-80401a3154cc",
+        "turnId": "01a0d858-ed31-7380-bf30-70e68a17b1a6",
+        "event": "PostToolUse",
+        "targetModel": "gpt-6-astra",
+        "from": "high",
+        "baselineEffort": "high",
+        "ceilingApplied": false,
+        "recommended": "high",
+        "confidence": 0.72,
+        "probability": 0.76,
+        "published": "high",
+        "status": "unchanged",
+        "model": "jev-1.13.0",
+        "inputTokens": 2020,
+        "outputTokens": 106,
+        "horizon": 5,
+        "leaseUnit": "observed_tool_batch_or_boundary",
+        "recommendedHorizon": 1,
+        "horizonReason": "stable_baseline_spacing",
+        "confirmation": null,
+        "estimatedJevUsd": 0.00008484000000000001,
+        "elapsedMs": 354
+      },
+      {
+        "at": "2026-09-25T11:35:16.778Z",
+        "bridgeId": "jev:80b8251f-ebe6-4e50-8a08-4d0905cfe439:",
+        "pid": 70547,
+        "projectId": "c49a7e7b166211fa581bc5b8a1d5e170db9a345efbe2932c0ef7fa6ccba62d37",
+        "measurementSource": "runtime",
+        "kind": "generation_usage",
+        "threadId": "01a0d858-eaad-7ef1-8b6b-80401a3154cc",
+        "turnId": "01a0d858-ed31-7380-bf30-70e68a17b1a6",
+        "configuredModel": "gpt-6-astra",
+        "effort": "high",
+        "generation": 2,
+        "observedElapsedMs": 15662,
+        "usage": {
+          "inputTokens": 17091,
+          "cachedInputTokens": 16128,
+          "outputTokens": 168,
+          "reasoningOutputTokens": 0,
+          "totalTokens": 17259,
+          "cacheWriteInputTokens": 0
+        },
+        "accounting": "host_observed_request_usage_not_provider_timing_or_account_debit"
+      },
+      {
+        "at": "2026-09-25T11:35:49.357Z",
+        "bridgeId": "jev:80b8251f-ebe6-4e50-8a08-4d0905cfe439:",
+        "pid": 70547,
+        "projectId": "c49a7e7b166211fa581bc5b8a1d5e170db9a345efbe2932c0ef7fa6ccba62d37",
+        "measurementSource": "runtime",
+        "kind": "generation_usage",
+        "threadId": "01a0d858-eaad-7ef1-8b6b-80401a3154cc",
+        "turnId": "01a0d858-ed31-7380-bf30-70e68a17b1a6",
+        "configuredModel": "gpt-6-astra",
+        "effort": "high",
+        "generation": 3,
+        "observedElapsedMs": 48241,
+        "usage": {
+          "inputTokens": 21389,
+          "cachedInputTokens": 16896,
+          "outputTokens": 1013,
+          "reasoningOutputTokens": 0,
+          "totalTokens": 22402,
+          "cacheWriteInputTokens": 0
+        },
+        "accounting": "host_observed_request_usage_not_provider_timing_or_account_debit"
+      },
+      {
+        "at": "2026-09-25T11:35:53.396Z",
+        "bridgeId": "jev:80b8251f-ebe6-4e50-8a08-4d0905cfe439:",
+        "pid": 70547,
+        "projectId": "c49a7e7b166211fa581bc5b8a1d5e170db9a345efbe2932c0ef7fa6ccba62d37",
+        "measurementSource": "runtime",
+        "kind": "generation_usage",
+        "threadId": "01a0d858-eaad-7ef1-8b6b-80401a3154cc",
+        "turnId": "01a0d858-ed31-7380-bf30-70e68a17b1a6",
+        "configuredModel": "gpt-6-astra",
+        "effort": "high",
+        "generation": 4,
+        "observedElapsedMs": 52280,
+        "usage": {
+          "inputTokens": 22481,
+          "cachedInputTokens": 0,
+          "outputTokens": 83,
+          "reasoningOutputTokens": 0,
+          "totalTokens": 22564,
+          "cacheWriteInputTokens": 0
+        },
+        "accounting": "host_observed_request_usage_not_provider_timing_or_account_debit"
+      }
+    ],
+    "preparations": [
+      {
+        "at": "2026-09-25T11:35:16.296Z",
+        "kind": "operation",
+        "operation": "prepare_output",
+        "elapsedMs": 9,
+        "calls": 0
+      },
+      {
+        "at": "2026-09-25T11:35:16.295Z",
+        "kind": "prepared_output",
+        "status": "prepared",
+        "reason": "lossless_projection",
+        "projection": "log_templates",
+        "artifactId": "92abe38390a206bb8739bf82a8e1b8e3f780e63ee47644e303f0d0cd90c468d8",
+        "sourceHash": "6a932f3daa50ac58d2a81f515744b30cd1808f25660d7dc46225a4dec6ff6b6e",
+        "originalBytes": 64614,
+        "returnedBytes": 7659,
+        "completeCoverage": true,
+        "excludedItems": 0,
+        "lossless": true,
+        "modelReceipt": "unconfirmed",
+        "nativeTokenSavings": null
+      }
+    ]
+  },
+  {
+    "id": "gpt-6-astra-incident-1-combined",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "unchanged:incident.log",
+          "pass": true
+        },
+        {
+          "name": "rootCause",
+          "pass": true
+        },
+        {
+          "name": "failedRequests",
+          "pass": true
+        },
+        {
+          "name": "totalRequests",
+          "pass": true
+        },
+        {
+          "name": "failureRate",
+          "pass": true
+        },
+        {
+          "name": "mitigationPoolLimit",
+          "pass": true
+        },
+        {
+          "name": "postMitigationFailures",
+          "pass": true
+        },
+        {
+          "name": "settlementImpact",
+          "pass": true
+        },
+        {
+          "name": "rejectedHypothesis",
+          "pass": true
+        },
+        {
+          "name": "evidence_coverage",
+          "pass": true
+        },
+        {
+          "name": "no_invented_ids",
+          "pass": true
+        },
+        {
+          "name": "written_report_with_citations",
+          "pass": true
+        }
+      ]
+    },
+    "errors": [],
+    "status": "completed",
+    "pluginVersion": "0.2.0+codex.20260925184500",
+    "usage": [
+      {
+        "total": {
+          "totalTokens": 16393,
+          "inputTokens": 16289,
+          "cachedInputTokens": 9600,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 104,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 16393,
+          "inputTokens": 16289,
+          "cachedInputTokens": 9600,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 104,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 33652,
+          "inputTokens": 33391,
+          "cachedInputTokens": 25728,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 261,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 17259,
+          "inputTokens": 17102,
+          "cachedInputTokens": 16128,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 157,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 56008,
+          "inputTokens": 54781,
+          "cachedInputTokens": 42624,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1227,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 22356,
+          "inputTokens": 21390,
+          "cachedInputTokens": 16896,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 966,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 78512,
+          "inputTokens": 77217,
+          "cachedInputTokens": 63872,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1295,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 22504,
+          "inputTokens": 22436,
+          "cachedInputTokens": 21248,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 68,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      }
+    ],
+    "jevCalls": [
+      {
+        "at": "2026-09-25T11:36:10.919Z",
+        "kind": "jev_call",
+        "purpose": "effort",
+        "taskId": "01a0d859-b848-7300-a244-fd40770b3dda",
+        "requestId": "46e5536d-7de7-4bf1-b9b0-37601f77c865",
+        "model": "jev-1.13.0",
+        "inputTokens": 2024,
+        "outputTokens": 106,
+        "elapsedMs": 426,
+        "questions": 2,
+        "status": "success"
+      },
+      {
+        "at": "2026-09-25T11:36:02.780Z",
+        "kind": "jev_call",
+        "purpose": "effort",
+        "taskId": "01a0d859-b848-7300-a244-fd40770b3dda",
+        "requestId": "a165821f-462a-4211-94ac-fec65245e87f",
+        "model": "jev-1.13.0",
+        "inputTokens": 1262,
+        "outputTokens": 106,
+        "elapsedMs": 541,
+        "questions": 2,
+        "status": "success"
+      },
+      {
+        "at": "2026-09-25T11:35:54.359Z",
+        "kind": "jev_call",
+        "purpose": "effort",
+        "taskId": "01a0d859-b848-7300-a244-fd40770b3dda",
+        "requestId": "21f2336b-298e-41e3-8a61-63c72563ee48",
+        "model": "jev-1.13.0",
+        "inputTokens": 1128,
+        "outputTokens": 106,
+        "elapsedMs": 609,
+        "questions": 2,
+        "status": "success"
+      }
+    ],
+    "routing": [
+      {
+        "at": "2026-09-25T11:35:54.362Z",
+        "bridgeId": "jev:5776d735-d504-48d7-9ebd-e0b4f87a0bd2:",
+        "pid": 70547,
+        "projectId": "7fbfb9cf6350462cc6359dacef29dba73e19363e08d8ef51f2afc2193139690e",
+        "measurementSource": "runtime",
+        "kind": "decision",
+        "policyVersion": "effort-v19-baseline-spacing",
+        "threadId": "01a0d859-b848-7300-a244-fd40770b3dda",
+        "turnId": "01a0d859-baf8-70b2-a014-340bf5f4fe78",
+        "event": "BeforeTurnStart",
+        "targetModel": "gpt-6-astra",
+        "from": "high",
+        "baselineEffort": "high",
+        "ceilingApplied": false,
+        "recommended": "high",
+        "confidence": 0.74,
+        "probability": 0.79,
+        "published": "high",
+        "status": "unchanged",
+        "model": "jev-1.13.0",
+        "inputTokens": 1128,
+        "outputTokens": 106,
+        "horizon": 1,
+        "leaseUnit": "observed_tool_batch_or_boundary",
+        "recommendedHorizon": 1,
+        "horizonReason": "jev_selected",
+        "confirmation": null,
+        "estimatedJevUsd": 0.000047376,
+        "elapsedMs": 610
+      },
+      {
+        "at": "2026-09-25T11:36:02.780Z",
+        "bridgeId": "jev:5776d735-d504-48d7-9ebd-e0b4f87a0bd2:",
+        "pid": 70547,
+        "projectId": "7fbfb9cf6350462cc6359dacef29dba73e19363e08d8ef51f2afc2193139690e",
+        "measurementSource": "runtime",
+        "kind": "decision",
+        "policyVersion": "effort-v19-baseline-spacing",
+        "threadId": "01a0d859-b848-7300-a244-fd40770b3dda",
+        "turnId": "01a0d859-baf8-70b2-a014-340bf5f4fe78",
+        "event": "PostToolUse",
+        "targetModel": "gpt-6-astra",
+        "from": "high",
+        "baselineEffort": "high",
+        "ceilingApplied": false,
+        "recommended": "high",
+        "confidence": 0.83,
+        "probability": 0.87,
+        "published": "high",
+        "status": "unchanged",
+        "model": "jev-1.13.0",
+        "inputTokens": 1262,
+        "outputTokens": 106,
+        "horizon": 1,
+        "leaseUnit": "observed_tool_batch_or_boundary",
+        "recommendedHorizon": 1,
+        "horizonReason": "jev_selected",
+        "confirmation": null,
+        "estimatedJevUsd": 0.000053004,
+        "elapsedMs": 593
+      },
+      {
+        "at": "2026-09-25T11:36:02.783Z",
+        "bridgeId": "jev:5776d735-d504-48d7-9ebd-e0b4f87a0bd2:",
+        "pid": 70547,
+        "projectId": "7fbfb9cf6350462cc6359dacef29dba73e19363e08d8ef51f2afc2193139690e",
+        "measurementSource": "runtime",
+        "kind": "generation_usage",
+        "threadId": "01a0d859-b848-7300-a244-fd40770b3dda",
+        "turnId": "01a0d859-baf8-70b2-a014-340bf5f4fe78",
+        "configuredModel": "gpt-6-astra",
+        "effort": "high",
+        "generation": 1,
+        "observedElapsedMs": 9034,
+        "usage": {
+          "inputTokens": 16289,
+          "cachedInputTokens": 9600,
+          "outputTokens": 104,
+          "reasoningOutputTokens": 0,
+          "totalTokens": 16393,
+          "cacheWriteInputTokens": 0
+        },
+        "accounting": "host_observed_request_usage_not_provider_timing_or_account_debit"
+      },
+      {
+        "at": "2026-09-25T11:36:10.919Z",
+        "bridgeId": "jev:5776d735-d504-48d7-9ebd-e0b4f87a0bd2:",
+        "pid": 70547,
+        "projectId": "7fbfb9cf6350462cc6359dacef29dba73e19363e08d8ef51f2afc2193139690e",
+        "measurementSource": "runtime",
+        "kind": "decision",
+        "policyVersion": "effort-v19-baseline-spacing",
+        "threadId": "01a0d859-b848-7300-a244-fd40770b3dda",
+        "turnId": "01a0d859-baf8-70b2-a014-340bf5f4fe78",
+        "event": "PostToolUse",
+        "targetModel": "gpt-6-astra",
+        "from": "high",
+        "baselineEffort": "high",
+        "ceilingApplied": false,
+        "recommended": "high",
+        "confidence": 0.75,
+        "probability": 0.79,
+        "published": "high",
+        "status": "unchanged",
+        "model": "jev-1.13.0",
+        "inputTokens": 2024,
+        "outputTokens": 106,
+        "horizon": 5,
+        "leaseUnit": "observed_tool_batch_or_boundary",
+        "recommendedHorizon": 1,
+        "horizonReason": "stable_baseline_spacing",
+        "confirmation": null,
+        "estimatedJevUsd": 0.00008500800000000001,
+        "elapsedMs": 476
+      },
+      {
+        "at": "2026-09-25T11:36:11.013Z",
+        "bridgeId": "jev:5776d735-d504-48d7-9ebd-e0b4f87a0bd2:",
+        "pid": 70547,
+        "projectId": "7fbfb9cf6350462cc6359dacef29dba73e19363e08d8ef51f2afc2193139690e",
+        "measurementSource": "runtime",
+        "kind": "generation_usage",
+        "threadId": "01a0d859-b848-7300-a244-fd40770b3dda",
+        "turnId": "01a0d859-baf8-70b2-a014-340bf5f4fe78",
+        "configuredModel": "gpt-6-astra",
+        "effort": "high",
+        "generation": 2,
+        "observedElapsedMs": 17264,
+        "usage": {
+          "inputTokens": 17102,
+          "cachedInputTokens": 16128,
+          "outputTokens": 157,
+          "reasoningOutputTokens": 0,
+          "totalTokens": 17259,
+          "cacheWriteInputTokens": 0
+        },
+        "accounting": "host_observed_request_usage_not_provider_timing_or_account_debit"
+      },
+      {
+        "at": "2026-09-25T11:36:42.491Z",
+        "bridgeId": "jev:5776d735-d504-48d7-9ebd-e0b4f87a0bd2:",
+        "pid": 70547,
+        "projectId": "7fbfb9cf6350462cc6359dacef29dba73e19363e08d8ef51f2afc2193139690e",
+        "measurementSource": "runtime",
+        "kind": "generation_usage",
+        "threadId": "01a0d859-b848-7300-a244-fd40770b3dda",
+        "turnId": "01a0d859-baf8-70b2-a014-340bf5f4fe78",
+        "configuredModel": "gpt-6-astra",
+        "effort": "high",
+        "generation": 3,
+        "observedElapsedMs": 48741,
+        "usage": {
+          "inputTokens": 21390,
+          "cachedInputTokens": 16896,
+          "outputTokens": 966,
+          "reasoningOutputTokens": 0,
+          "totalTokens": 22356,
+          "cacheWriteInputTokens": 0
+        },
+        "accounting": "host_observed_request_usage_not_provider_timing_or_account_debit"
+      },
+      {
+        "at": "2026-09-25T11:36:46.073Z",
+        "bridgeId": "jev:5776d735-d504-48d7-9ebd-e0b4f87a0bd2:",
+        "pid": 70547,
+        "projectId": "7fbfb9cf6350462cc6359dacef29dba73e19363e08d8ef51f2afc2193139690e",
+        "measurementSource": "runtime",
+        "kind": "generation_usage",
+        "threadId": "01a0d859-b848-7300-a244-fd40770b3dda",
+        "turnId": "01a0d859-baf8-70b2-a014-340bf5f4fe78",
+        "configuredModel": "gpt-6-astra",
+        "effort": "high",
+        "generation": 4,
+        "observedElapsedMs": 52323,
+        "usage": {
+          "inputTokens": 22436,
+          "cachedInputTokens": 21248,
+          "outputTokens": 68,
+          "reasoningOutputTokens": 0,
+          "totalTokens": 22504,
+          "cacheWriteInputTokens": 0
+        },
+        "accounting": "host_observed_request_usage_not_provider_timing_or_account_debit"
+      }
+    ],
+    "preparations": [
+      {
+        "at": "2026-09-25T11:36:10.411Z",
+        "kind": "operation",
+        "operation": "prepare_output",
+        "elapsedMs": 8,
+        "calls": 0
+      },
+      {
+        "at": "2026-09-25T11:36:10.411Z",
+        "kind": "prepared_output",
+        "status": "prepared",
+        "reason": "lossless_projection",
+        "projection": "log_templates",
+        "artifactId": "6d1e4f272e61fd0f458f2040717466c4ee7a56e5550c69120a90753f2e693824",
+        "sourceHash": "6a932f3daa50ac58d2a81f515744b30cd1808f25660d7dc46225a4dec6ff6b6e",
+        "originalBytes": 64614,
+        "returnedBytes": 7659,
+        "completeCoverage": true,
+        "excludedItems": 0,
+        "lossless": true,
+        "modelReceipt": "unconfirmed",
+        "nativeTokenSavings": null
+      }
+    ]
+  },
+  {
+    "id": "gpt-6-astra-incident-1-bare",
+    "quality": {
+      "pass": true,
+      "checks": [
+        {
+          "name": "unchanged:incident.log",
+          "pass": true
+        },
+        {
+          "name": "rootCause",
+          "pass": true
+        },
+        {
+          "name": "failedRequests",
+          "pass": true
+        },
+        {
+          "name": "totalRequests",
+          "pass": true
+        },
+        {
+          "name": "failureRate",
+          "pass": true
+        },
+        {
+          "name": "mitigationPoolLimit",
+          "pass": true
+        },
+        {
+          "name": "postMitigationFailures",
+          "pass": true
+        },
+        {
+          "name": "settlementImpact",
+          "pass": true
+        },
+        {
+          "name": "rejectedHypothesis",
+          "pass": true
+        },
+        {
+          "name": "evidence_coverage",
+          "pass": true
+        },
+        {
+          "name": "no_invented_ids",
+          "pass": true
+        },
+        {
+          "name": "written_report_with_citations",
+          "pass": true
+        }
+      ]
+    },
+    "errors": [],
+    "status": "completed",
+    "usage": [
+      {
+        "total": {
+          "totalTokens": 15361,
+          "inputTokens": 15260,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 101,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 15361,
+          "inputTokens": 15260,
+          "cachedInputTokens": 0,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 101,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 30849,
+          "inputTokens": 30719,
+          "cachedInputTokens": 15104,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 130,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 15488,
+          "inputTokens": 15459,
+          "cachedInputTokens": 15104,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 29,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 56844,
+          "inputTokens": 56610,
+          "cachedInputTokens": 30336,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 234,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 25995,
+          "inputTokens": 25891,
+          "cachedInputTokens": 15232,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 104,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 83872,
+          "inputTokens": 82961,
+          "cachedInputTokens": 56064,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 911,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 27028,
+          "inputTokens": 26351,
+          "cachedInputTokens": 25728,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 677,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 111295,
+          "inputTokens": 110013,
+          "cachedInputTokens": 82176,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1282,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 27423,
+          "inputTokens": 27052,
+          "cachedInputTokens": 26112,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 371,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      },
+      {
+        "total": {
+          "totalTokens": 138885,
+          "inputTokens": 137515,
+          "cachedInputTokens": 109056,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 1370,
+          "reasoningOutputTokens": 0
+        },
+        "last": {
+          "totalTokens": 27590,
+          "inputTokens": 27502,
+          "cachedInputTokens": 26880,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 88,
+          "reasoningOutputTokens": 0
+        },
+        "modelContextWindow": 258400
+      }
+    ],
+    "jevCalls": [],
+    "routing": [],
+    "preparations": []
+  }
+]

@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "scope": "native runtime with synthetic provider; not real provider cache hit proof",
+  "cacheContext": {
+    "measurement": "serialized_initial_input_prefix_not_cache_hit_rate",
+    "cachePreservingEffort": true,
+    "topLevelEffortStable": true,
+    "toolsStable": null,
+    "instructionsStable": null,
+    "promptCacheKeyStable": true,
+    "appendOnly": true,
+    "initialItems": 8,
+    "perRequest": [
+      {
+        "request": 1,
+        "initialPrefixPreserved": true
+      },
+      {
+        "request": 2,
+        "initialPrefixPreserved": true
+      },
+      {
+        "request": 3,
+        "initialPrefixPreserved": true
+      },
+      {
+        "request": 4,
+        "initialPrefixPreserved": true
+      }
+    ]
+  }
+}
