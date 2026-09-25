@@ -1,0 +1,452 @@
+{
+  "basis": "API-equivalent estimate, not subscription debit; standard tier assumed, fast sensitivity retained; completed usage only, failures not zero",
+  "priceSnapshot": {
+    "date": "2026-09-24",
+    "currency": "USD",
+    "unit": "per million tokens",
+    "sources": [
+      "https://developers.openai.com/api/docs/pricing",
+      "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "https://docs.typesafe.ai/models"
+    ],
+    "models": {
+      "gpt-6-astra": {
+        "input": 10,
+        "cached": 1,
+        "write": 12.5,
+        "output": 50
+      },
+      "gpt-6-sol": {
+        "input": 2,
+        "cached": 0.2,
+        "write": 2.5,
+        "output": 10
+      },
+      "gpt-6-luna": {
+        "input": 0.1,
+        "cached": 0.01,
+        "write": 0.125,
+        "output": 0.5
+      },
+      "gpt-5.6-sol": {
+        "input": 4,
+        "cached": 0.4,
+        "write": 5,
+        "output": 20
+      }
+    },
+    "jev": {
+      "jev-1.13.0": {
+        "input": 0.042,
+        "output": 0
+      }
+    }
+  },
+  "priceVerifiedAt": "2026-09-25",
+  "runs": [
+    {
+      "id": "gpt-6-sol-cross_file-0-bare",
+      "task": "cross_file",
+      "repeat": 0,
+      "arm": "bare",
+      "status": "completed",
+      "passed": true,
+      "wallMs": 112723,
+      "startupMs": 71,
+      "cost": {
+        "knownUsd": 0.1030708,
+        "gptKnownUsd": 0.1030708,
+        "jevKnownUsd": 0,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 7,
+        "tier": "standard",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "fastCost": {
+        "knownUsd": 0.2061416,
+        "gptKnownUsd": 0.2061416,
+        "jevKnownUsd": 0,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 7,
+        "tier": "fast",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "tokens": {
+        "totalTokens": 128029,
+        "inputTokens": 122730,
+        "cachedInputTokens": 108544,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 5299,
+        "reasoningOutputTokens": 1834
+      },
+      "jevCalls": 0
+    },
+    {
+      "id": "gpt-6-sol-cross_file-0-combined",
+      "task": "cross_file",
+      "repeat": 0,
+      "arm": "combined",
+      "status": "completed",
+      "passed": true,
+      "wallMs": 83754,
+      "startupMs": 252,
+      "cost": {
+        "knownUsd": 0.146869154,
+        "gptKnownUsd": 0.1464392,
+        "jevKnownUsd": 0.000429954,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 9,
+        "tier": "standard",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "fastCost": {
+        "knownUsd": 0.293308354,
+        "gptKnownUsd": 0.2928784,
+        "jevKnownUsd": 0.000429954,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 9,
+        "tier": "fast",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "tokens": {
+        "totalTokens": 169302,
+        "inputTokens": 165617,
+        "cachedInputTokens": 123136,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 3685,
+        "reasoningOutputTokens": 753
+      },
+      "jevCalls": 6
+    },
+    {
+      "id": "gpt-6-sol-incident-0-combined",
+      "task": "incident",
+      "repeat": 0,
+      "arm": "combined",
+      "status": "completed",
+      "passed": true,
+      "wallMs": 46606,
+      "startupMs": 244,
+      "cost": {
+        "knownUsd": 0.10050815399999999,
+        "gptKnownUsd": 0.1002252,
+        "jevKnownUsd": 0.000282954,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 7,
+        "tier": "standard",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "fastCost": {
+        "knownUsd": 0.20073335400000003,
+        "gptKnownUsd": 0.2004504,
+        "jevKnownUsd": 0.000282954,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 7,
+        "tier": "fast",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "tokens": {
+        "totalTokens": 160047,
+        "inputTokens": 158385,
+        "cachedInputTokens": 129536,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 1662,
+        "reasoningOutputTokens": 96
+      },
+      "jevCalls": 4
+    },
+    {
+      "id": "gpt-6-sol-incident-0-bare",
+      "task": "incident",
+      "repeat": 0,
+      "arm": "bare",
+      "status": "completed",
+      "passed": true,
+      "wallMs": 46600,
+      "startupMs": 70,
+      "cost": {
+        "knownUsd": 0.07577320000000001,
+        "gptKnownUsd": 0.07577320000000001,
+        "jevKnownUsd": 0,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 6,
+        "tier": "standard",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "fastCost": {
+        "knownUsd": 0.15154640000000003,
+        "gptKnownUsd": 0.15154640000000003,
+        "jevKnownUsd": 0,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 6,
+        "tier": "fast",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "tokens": {
+        "totalTokens": 126945,
+        "inputTokens": 124960,
+        "cachedInputTokens": 107776,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 1985,
+        "reasoningOutputTokens": 301
+      },
+      "jevCalls": 0
+    },
+    {
+      "id": "gpt-6-sol-cross_file-1-combined",
+      "task": "cross_file",
+      "repeat": 1,
+      "arm": "combined",
+      "status": "completed",
+      "passed": true,
+      "wallMs": 103729,
+      "startupMs": 244,
+      "cost": {
+        "knownUsd": 0.11205608,
+        "gptKnownUsd": 0.11166800000000002,
+        "jevKnownUsd": 0.00038808,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 10,
+        "tier": "standard",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "fastCost": {
+        "knownUsd": 0.22372408000000005,
+        "gptKnownUsd": 0.22333600000000003,
+        "jevKnownUsd": 0.00038808,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 10,
+        "tier": "fast",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "tokens": {
+        "totalTokens": 189314,
+        "inputTokens": 185820,
+        "cachedInputTokens": 163840,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 3494,
+        "reasoningOutputTokens": 663
+      },
+      "jevCalls": 6
+    },
+    {
+      "id": "gpt-6-sol-cross_file-1-bare",
+      "task": "cross_file",
+      "repeat": 1,
+      "arm": "bare",
+      "status": "completed",
+      "passed": true,
+      "wallMs": 115145,
+      "startupMs": 70,
+      "cost": {
+        "knownUsd": 0.164544,
+        "gptKnownUsd": 0.164544,
+        "jevKnownUsd": 0,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 11,
+        "tier": "standard",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "fastCost": {
+        "knownUsd": 0.329088,
+        "gptKnownUsd": 0.329088,
+        "jevKnownUsd": 0,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 11,
+        "tier": "fast",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "tokens": {
+        "totalTokens": 207228,
+        "inputTokens": 202467,
+        "cachedInputTokens": 160000,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 4761,
+        "reasoningOutputTokens": 1534
+      },
+      "jevCalls": 0
+    },
+    {
+      "id": "gpt-6-sol-incident-1-bare",
+      "task": "incident",
+      "repeat": 1,
+      "arm": "bare",
+      "status": "completed",
+      "passed": true,
+      "wallMs": 39977,
+      "startupMs": 70,
+      "cost": {
+        "knownUsd": 0.0682768,
+        "gptKnownUsd": 0.0682768,
+        "jevKnownUsd": 0,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 5,
+        "tier": "standard",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "fastCost": {
+        "knownUsd": 0.1365536,
+        "gptKnownUsd": 0.1365536,
+        "jevKnownUsd": 0,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 5,
+        "tier": "fast",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "tokens": {
+        "totalTokens": 109860,
+        "inputTokens": 108256,
+        "cachedInputTokens": 91264,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 1604,
+        "reasoningOutputTokens": 286
+      },
+      "jevCalls": 0
+    },
+    {
+      "id": "gpt-6-sol-incident-1-combined",
+      "task": "incident",
+      "repeat": 1,
+      "arm": "combined",
+      "status": "completed",
+      "passed": true,
+      "wallMs": 41160,
+      "startupMs": 249,
+      "cost": {
+        "knownUsd": 0.111218236,
+        "gptKnownUsd": 0.1109344,
+        "jevKnownUsd": 0.00028383600000000004,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 7,
+        "tier": "standard",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "fastCost": {
+        "knownUsd": 0.22215263600000001,
+        "gptKnownUsd": 0.2218688,
+        "jevKnownUsd": 0.00028383600000000004,
+        "unknownCalls": 0,
+        "complete": true,
+        "generations": 7,
+        "tier": "fast",
+        "basis": "public_api_equivalent_not_account_debit",
+        "priceDate": "2026-09-24"
+      },
+      "tokens": {
+        "totalTokens": 159108,
+        "inputTokens": 157687,
+        "cachedInputTokens": 121472,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 1421,
+        "reasoningOutputTokens": 109
+      },
+      "jevCalls": 4
+    }
+  ],
+  "arms": {
+    "bare": {
+      "runs": 4,
+      "passed": 4,
+      "wallMs": 314445,
+      "startupMs": 281,
+      "knownUsd": 0.41166480000000005,
+      "gptKnownUsd": 0.41166480000000005,
+      "jevKnownUsd": 0,
+      "complete": true,
+      "totalTokens": 572062
+    },
+    "combined": {
+      "runs": 4,
+      "passed": 4,
+      "wallMs": 275249,
+      "startupMs": 989,
+      "knownUsd": 0.47065162400000005,
+      "gptKnownUsd": 0.4692668,
+      "jevKnownUsd": 0.001384824,
+      "complete": true,
+      "totalTokens": 677771
+    }
+  },
+  "pairs": [
+    {
+      "task": "cross_file",
+      "repeat": 0,
+      "bareId": "gpt-6-sol-cross_file-0-bare",
+      "combinedId": "gpt-6-sol-cross_file-0-combined",
+      "bothPassed": true,
+      "timePercent": -25.69928053724617,
+      "knownCostPercent": 42.49346468640973,
+      "costPercent": 42.49346468640973,
+      "complete": true
+    },
+    {
+      "task": "incident",
+      "repeat": 0,
+      "bareId": "gpt-6-sol-incident-0-bare",
+      "combinedId": "gpt-6-sol-incident-0-combined",
+      "bothPassed": true,
+      "timePercent": 0.01287553648068318,
+      "knownCostPercent": 32.64340690376013,
+      "costPercent": 32.64340690376013,
+      "complete": true
+    },
+    {
+      "task": "cross_file",
+      "repeat": 1,
+      "bareId": "gpt-6-sol-cross_file-1-bare",
+      "combinedId": "gpt-6-sol-cross_file-1-combined",
+      "bothPassed": true,
+      "timePercent": -9.914455686308566,
+      "knownCostPercent": -31.899017891870862,
+      "costPercent": -31.899017891870862,
+      "complete": true
+    },
+    {
+      "task": "incident",
+      "repeat": 1,
+      "bareId": "gpt-6-sol-incident-1-bare",
+      "combinedId": "gpt-6-sol-incident-1-combined",
+      "bothPassed": true,
+      "timePercent": 2.959201540886003,
+      "knownCostPercent": 62.89315843741945,
+      "costPercent": 62.89315843741945,
+      "complete": true
+    }
+  ],
+  "comparison": {
+    "timePercent": -12.46513698739048,
+    "knownCostPercent": 14.328848130809323,
+    "costPercent": 14.328848130809323,
+    "gptTokensPercent": 18.47859148134292
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "sourceSha256": "1859e176344065fd51fc84b4326d9a8f5d7bc115aedc5a9e0ead36a77dca8279",
+  "complete": true,
+  "reportFiles": {
+    "README.md": "edcc10671104b3d0a9977edfeaffebcf3dcef9aff0e021418759b10bb460c4c0",
+    "README.zh-CN.md": "78c2f62c6d81796c9c94d1f16b27f67b9c25f47f1f46742cd32f03714fa3cb74",
+    "accounting.json": "8750a760caf58f4c988cc338741639635ca55b52e12b90d9fb90c34123687149",
+    "costs.json": "97a9e659d461ea50185b03eeb904e4adfb43dc28cf660a91ba758e2371c0ad1a",
+    "generations.csv": "720c54101cfaa82ea81901e580cabfaa0be7f79336da7ebd2c5ec09b9f252121",
+    "protocol.json": "6d4a2f35d51bd8b328c2b4702c6ccccb85447d798d70923374d8337fd8b1576b",
+    "runs.csv": "d914f1b29f77b0ef93219dcdf67e5dd900120009c39307cc5ba03579a6a3d6aa",
+    "runs.json": "a31341cb21956bfb5526c1d7b4cdee995186e8c535259b67e9ddf86e44236ba2",
+    "summary.json": "e03964494762baae35a4c2ac32792f23f636508c683ce31f2ddfb0a298d443b2",
+    "token-decomposition.csv": "ee1511ed568fad01c0dfa70c7ca6ad8233bd4386b71bdc7415a8a5a82171aaff"
+  }
+}

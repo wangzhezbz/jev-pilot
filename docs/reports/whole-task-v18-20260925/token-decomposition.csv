@@ -1,0 +1,5 @@
+model,task,repeat,arm,totalTokenDelta,extraGenerationBase,repeatedFirstInputDifference,historyGrowthDifference,outputDifference
+gpt-6-sol,cross_file,0,combined,41273,29396,8370,5121,-1614
+gpt-6-sol,incident,0,combined,33102,14811,6503,12111,-323
+gpt-6-sol,cross_file,1,combined,-17914,-14691,9330,-11286,-1267
+gpt-6-sol,incident,1,combined,49248,29624,6447,13360,-183

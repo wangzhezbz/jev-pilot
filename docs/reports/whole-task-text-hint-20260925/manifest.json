@@ -1,0 +1,17 @@
+{
+  "sourceSha256": "87e1ead5f648c8073464e9a5731801d80b896d13c0cf48441ab9833eeb2d94c9",
+  "complete": true,
+  "reportFiles": {
+    "README.md": "ea2731ad3979a53e79c496afe825798365365e55924895618b0790d052d5b75f",
+    "README.zh-CN.md": "a1f042f820d5127aa3325ff1ec8c9e9aacf4fee505ed90532cb68e39084d642b",
+    "accounting.json": "25b5d391c990a2bd18007a3d79ee6f3a15b8a8fa804d5952336ddd4660556307",
+    "costs.json": "da6d36e1ec007d83869e562a4afc0f0cfd04da99bc7ef3f0e9812948084d9ec4",
+    "deployment.json": "82e40dc3de5f82ca361bed70b4b550d35cd07670097ddac68b477cb6e137597d",
+    "generations.csv": "947f3ca5780206bb2f30cb56449a660a2cf27b49a01859fb1eaff18ee47f96b8",
+    "protocol.json": "3bc573b184b49207628f1e81c64e3f68b3b99a5772271658e222bdd1f9e9278d",
+    "runs.csv": "47a422cc2f17071dbe55ba47556a0dadf91cb362c9f8d4d70090dbc3cba60c4b",
+    "runs.json": "7194f62673456018c77985b8d0f76bf1e4febae26549a45f542c8f51d613cf31",
+    "summary.json": "e77332aec1e0bb566deb0953a5042f829f61b0021425fb1a68454199efc1c4df",
+    "token-decomposition.csv": "ae77fea8f067f2eba27cb331e697b62ae2d89639c32435add3fc3544914b7fea"
+  }
+}

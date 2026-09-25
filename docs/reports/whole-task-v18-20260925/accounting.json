@@ -1,0 +1,46 @@
+[
+  {
+    "model": "gpt-6-sol",
+    "task": "cross_file",
+    "repeat": 0,
+    "arm": "combined",
+    "totalTokenDelta": 41273,
+    "extraGenerationBase": 29396,
+    "repeatedFirstInputDifference": 8370,
+    "historyGrowthDifference": 5121,
+    "outputDifference": -1614
+  },
+  {
+    "model": "gpt-6-sol",
+    "task": "incident",
+    "repeat": 0,
+    "arm": "combined",
+    "totalTokenDelta": 33102,
+    "extraGenerationBase": 14811,
+    "repeatedFirstInputDifference": 6503,
+    "historyGrowthDifference": 12111,
+    "outputDifference": -323
+  },
+  {
+    "model": "gpt-6-sol",
+    "task": "cross_file",
+    "repeat": 1,
+    "arm": "combined",
+    "totalTokenDelta": -17914,
+    "extraGenerationBase": -14691,
+    "repeatedFirstInputDifference": 9330,
+    "historyGrowthDifference": -11286,
+    "outputDifference": -1267
+  },
+  {
+    "model": "gpt-6-sol",
+    "task": "incident",
+    "repeat": 1,
+    "arm": "combined",
+    "totalTokenDelta": 49248,
+    "extraGenerationBase": 29624,
+    "repeatedFirstInputDifference": 6447,
+    "historyGrowthDifference": 13360,
+    "outputDifference": -183
+  }
+]

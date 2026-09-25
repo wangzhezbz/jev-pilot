@@ -1,0 +1,60 @@
+{
+  "version": "0.2.0+codex.20260925131617",
+  "measuredCandidateVersion": "0.2.0+codex.20260925130941",
+  "taskBehaviorHashesUnchangedAfterBenchmark": true,
+  "postBenchmarkChange": "Installer now fingerprints src/investigation-hint.mjs; package version and reports updated.",
+  "files": [
+    {
+      "file": "src/investigation-hint.mjs",
+      "hashes": {
+        "repo": "2c7ba31c5dc40d277d28ef3ae2696668f8ae4054a7850fb72a03d8b69b1b8689",
+        "release": "2c7ba31c5dc40d277d28ef3ae2696668f8ae4054a7850fb72a03d8b69b1b8689",
+        "cache": "2c7ba31c5dc40d277d28ef3ae2696668f8ae4054a7850fb72a03d8b69b1b8689",
+        "runtime": "2c7ba31c5dc40d277d28ef3ae2696668f8ae4054a7850fb72a03d8b69b1b8689"
+      }
+    },
+    {
+      "file": "src/setup.mjs",
+      "hashes": {
+        "repo": "981c25d9d750a5606012d203c1d20da1261633036d40c156f921a3a438fa410a",
+        "release": "981c25d9d750a5606012d203c1d20da1261633036d40c156f921a3a438fa410a",
+        "cache": "981c25d9d750a5606012d203c1d20da1261633036d40c156f921a3a438fa410a",
+        "runtime": "981c25d9d750a5606012d203c1d20da1261633036d40c156f921a3a438fa410a"
+      }
+    },
+    {
+      "file": "src/automation.mjs",
+      "hashes": {
+        "repo": "217a7f6340e3cd129fcd3eb5b275c56b0abf55292f8003ac8ef3f2418d1bd948",
+        "release": "217a7f6340e3cd129fcd3eb5b275c56b0abf55292f8003ac8ef3f2418d1bd948",
+        "cache": "217a7f6340e3cd129fcd3eb5b275c56b0abf55292f8003ac8ef3f2418d1bd948",
+        "runtime": "217a7f6340e3cd129fcd3eb5b275c56b0abf55292f8003ac8ef3f2418d1bd948"
+      }
+    },
+    {
+      "file": "runtime/desktop/router.mjs",
+      "hashes": {
+        "repo": "5b793462d36a0ef3b6283122a91109387bc8fc525b178040e35d911bacad5e70",
+        "release": "5b793462d36a0ef3b6283122a91109387bc8fc525b178040e35d911bacad5e70",
+        "cache": "5b793462d36a0ef3b6283122a91109387bc8fc525b178040e35d911bacad5e70",
+        "runtime": "5b793462d36a0ef3b6283122a91109387bc8fc525b178040e35d911bacad5e70"
+      }
+    }
+  ],
+  "desktop": {
+    "runtimeVersion": "codex-cli 0.155.0-alpha.16.4",
+    "compatible": true,
+    "bridgeProcessAlive": true,
+    "loadedRevisionMatches": false,
+    "installedFingerprint": "97d2e8e4cca74c9304478b127e69f3e6ed37120116aee04d65121017202fdbb1"
+  },
+  "liveFingerprint": "81f9f84d6c5d1f7ad3e9971fe20827591b1cf1adc3bd7a967a0bf2f36f822be2",
+  "restartRequired": true,
+  "currentTaskChanged": false,
+  "tests": {
+    "fullSuitePassed": 349,
+    "fullSuiteFailed": 0,
+    "postInstallerChangeTargetedPassed": 79,
+    "postInstallerChangeTargetedFailed": 0
+  }
+}
