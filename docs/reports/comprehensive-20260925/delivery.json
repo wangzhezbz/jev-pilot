@@ -1,0 +1,17 @@
+{
+  "sourceCommit": "0b3d061fdf7f0cbf9d6c0a0526dc0e4ae82ed1ff",
+  "ci": {
+    "url": "https://github.com/wangzhezbz/jev-pilot/actions/runs/36121683809",
+    "ubuntu-latest": "success",
+    "macos-latest": "success",
+    "windows-latest": "success",
+    "scope": "Build, regression and packaging; not real desktop host acceptance"
+  },
+  "pluginVersion": "0.2.0+codex.20260925175000",
+  "installedFingerprint": "f7aef38d0cabaed8b33718d1038d1714bbaf1cd2ffb800f129c2bbc48bc9399c",
+  "cacheModulesMatch": true,
+  "configuredForNextLaunch": true,
+  "restartRequired": true,
+  "currentTaskChanged": false,
+  "loadedRevisionMatches": false
+}

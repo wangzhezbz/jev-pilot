@@ -1,7 +1,7 @@
 {
   "files": {
     "METHOD.md": "430528a1f27d9153a12228f17fd63df00dd4597444e1e907d681b486ba7906c8",
-    "README.zh-CN.md": "04bb198f42ba53993d58d5e5f10800f12c8da588e3e780dcde535959eab2b2b1",
+    "README.zh-CN.md": "a79f8905b19c9f2525c64a11649e9321f7c1b69374fd99a7896ac36ea478b967",
     "astra/accounting.json": "daf0cebcea7698c93d08d3021f630ba51992384c11e52ed37aefd71c7bb3e3dc",
     "astra/costs.json": "e3cdd4f94e8e6287c6d5a2f433dea7b27a8ecd43df2429e8007677fcf2b8b0fd",
     "astra/generations.csv": "fa879a9d142623da361b493f4b16c30683764e5ebcd237de3e50356737065a0a",
@@ -51,7 +51,8 @@
     "sol/summary.json": "7052e9422a975d55aeab40128bbce5a92da659390a7374ac6da0a5fed2c020f6",
     "sol/token-decomposition.csv": "a93e5288e1b1bd42c5058fea92cd83191db3ad3cbb07ac30f73f637106c0b348",
     "summary.json": "e18dcf1556fea083e7f9374de792c26082ec9791ff396331dcfdb4426026ae47",
-    "ui-supplement-protocol.json": "6bed1bec43cae9952244db07bf734f096ca2e7937d567740ec418433fc576f48"
+    "ui-supplement-protocol.json": "6bed1bec43cae9952244db07bf734f096ca2e7937d567740ec418433fc576f48",
+    "delivery.json": "c7d17ae128e69dcf04086f3701c70d79a60952dd3ce1525a3db132177f31b193"
   },
   "checks": {
     "nativeTasksPassed": 36,
