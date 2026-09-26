@@ -4,7 +4,7 @@
 <a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-macos-arm64.zip"><img src="assets/macos.ko.svg?v=preview20260926" width="32%" alt="macos arm64 — 프리뷰 다운로드" /></a>
 <a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-linux-x64.zip"><img src="assets/linux.ko.svg?v=preview20260926" width="32%" alt="linux x64 — 프리뷰 다운로드" /></a></p>
 
-<p align="center">[English](README.md) · [简体中文](README.zh-CN.md) · [Русский](README.ru.md) · [日本語](README.ja.md) · [한국어](README.ko.md)</p>
+<p align="center"><a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a></p>
 
 # JevPilot
 
@@ -25,7 +25,7 @@ macOS 실기기 검증 완료. Windows/Linux는 빌드와 CI 검증 완료, 데�
 | 문서 선별 | −40.03% | −23.88% | −33.69% |
 | Computer Use 연속 탐색 | −47.64% | −57.14% | −56.52% |
 
-선별한 실측 사례이며 macOS에서 시나리오당 2쌍을 비교했습니다. UI는 긴 대화의 조작 구간, 비용은 2026-09-24 API 가격 기준 추정치입니다. 모든 작업의 절감을 보장하지 않습니다. [Data & methodology](docs/reports/targeted-20260925/README.zh-CN.md) · [All reports](https://github.com/wangzhezbz/jev-pilot/tree/main/docs/reports)
+선별한 실측 사례이며 macOS에서 시나리오당 2쌍을 비교했습니다. UI는 긴 대화의 조작 구간, 비용은 2026-09-24 API 가격 기준 추정치입니다. 모든 작업의 절감을 보장하지 않습니다. [데이터 및 측정 방법](docs/reports/targeted-20260925/README.zh-CN.md) · [전체 보고서](https://github.com/wangzhezbz/jev-pilot/tree/main/docs/reports)
 
 ## 14가지 기능
 

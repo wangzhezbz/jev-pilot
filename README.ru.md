@@ -4,7 +4,7 @@
 <a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-macos-arm64.zip"><img src="assets/macos.ru.svg?v=preview20260926" width="32%" alt="macos arm64 — Скачать превью" /></a>
 <a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-linux-x64.zip"><img src="assets/linux.ru.svg?v=preview20260926" width="32%" alt="linux x64 — Скачать превью" /></a></p>
 
-<p align="center">[English](README.md) · [简体中文](README.zh-CN.md) · [Русский](README.ru.md) · [日本語](README.ja.md) · [한국어](README.ko.md)</p>
+<p align="center"><a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a></p>
 
 # JevPilot
 
@@ -25,7 +25,7 @@ macOS проверена на компьютере. Windows/Linux: сборки 
 | Отбор документов | −40.03% | −23.88% | −33.69% |
 | Навигация Computer Use | −47.64% | −57.14% | −56.52% |
 
-Выбранные примеры: по две пары на macOS. UI измерен в окне операций длинного диалога; цены API — снимок от 24.09.2026. Это не гарантия экономии в каждой задаче. [Data & methodology](docs/reports/targeted-20260925/README.zh-CN.md) · [All reports](https://github.com/wangzhezbz/jev-pilot/tree/main/docs/reports)
+Выбранные примеры: по две пары на macOS. UI измерен в окне операций длинного диалога; цены API — снимок от 24.09.2026. Это не гарантия экономии в каждой задаче. [Данные и методика](docs/reports/targeted-20260925/README.zh-CN.md) · [Все отчёты](https://github.com/wangzhezbz/jev-pilot/tree/main/docs/reports)
 
 ## 14 возможностей
 

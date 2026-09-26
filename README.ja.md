@@ -4,7 +4,7 @@
 <a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-macos-arm64.zip"><img src="assets/macos.ja.svg?v=preview20260926" width="32%" alt="macos arm64 — プレビューをダウンロード" /></a>
 <a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-linux-x64.zip"><img src="assets/linux.ja.svg?v=preview20260926" width="32%" alt="linux x64 — プレビューをダウンロード" /></a></p>
 
-<p align="center">[English](README.md) · [简体中文](README.zh-CN.md) · [Русский](README.ru.md) · [日本語](README.ja.md) · [한국어](README.ko.md)</p>
+<p align="center"><a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a></p>
 
 # JevPilot
 
@@ -25,7 +25,7 @@ macOS は実機検証済み。Windows/Linux はビルドと CI を確認済み�
 | 文書の選別 | −40.03% | −23.88% | −33.69% |
 | Computer Use の連続操作 | −47.64% | −57.14% | −56.52% |
 
-選定した実測例。macOS で各 2 組の比較。UI は長い会話の操作区間を計測、費用は 2026-09-24 の API 価格に基づく推定です。すべての作業で同じ効果を保証するものではありません。 [Data & methodology](docs/reports/targeted-20260925/README.zh-CN.md) · [All reports](https://github.com/wangzhezbz/jev-pilot/tree/main/docs/reports)
+選定した実測例。macOS で各 2 組の比較。UI は長い会話の操作区間を計測、費用は 2026-09-24 の API 価格に基づく推定です。すべての作業で同じ効果を保証するものではありません。 [データと測定方法](docs/reports/targeted-20260925/README.zh-CN.md) · [すべてのレポート](https://github.com/wangzhezbz/jev-pilot/tree/main/docs/reports)
 
 ## 14 の機能
 

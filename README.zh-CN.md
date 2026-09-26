@@ -4,7 +4,7 @@
 <a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-macos-arm64.zip"><img src="assets/macos.zh-CN.svg?v=preview20260926" width="32%" alt="macos arm64 — 下载预览版" /></a>
 <a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-linux-x64.zip"><img src="assets/linux.zh-CN.svg?v=preview20260926" width="32%" alt="linux x64 — 下载预览版" /></a></p>
 
-<p align="center">[English](README.md) · [简体中文](README.zh-CN.md) · [Русский](README.ru.md) · [日本語](README.ja.md) · [한국어](README.ko.md)</p>
+<p align="center"><a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a></p>
 
 # JevPilot
 
@@ -25,7 +25,7 @@ macOS 已做桌面实测 · Windows/Linux 为预览版：构建与 CI 已验证�
 | 文档筛选 | 减少 40.03% | 减少 23.88% | 减少 33.69% |
 | Computer Use 多步导航 | 减少 47.64% | 减少 57.14% | 减少 56.52% |
 
-以上为精选场景实测，每项两组配对，运行于 macOS。界面数据计量长会话中的操作窗口；费用采用 2026-09-24 API 等价价格快照。结果仅适用于这些样例，不是所有任务的固定收益保证。 [Data & methodology](docs/reports/targeted-20260925/README.zh-CN.md) · [All reports](https://github.com/wangzhezbz/jev-pilot/tree/main/docs/reports)
+以上为精选场景实测，每项两组配对，运行于 macOS。界面数据计量长会话中的操作窗口；费用采用 2026-09-24 API 等价价格快照。结果仅适用于这些样例，不是所有任务的固定收益保证。 [数据与测试方法](docs/reports/targeted-20260925/README.zh-CN.md) · [全部报告](https://github.com/wangzhezbz/jev-pilot/tree/main/docs/reports)
 
 ## 14 项核心功能
 
