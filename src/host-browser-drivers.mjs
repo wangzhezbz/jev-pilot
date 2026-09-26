@@ -6,7 +6,7 @@ const control = new RegExp(`^\\s*(\\d+) (${roles})(?: \\([^)]*\\))? (?:Descripti
 const reserved = /\b(delete|remove|send|submit|publish|pay|purchase|buy|install|upload|reset|restart|rollback|permissions?|authorize|grant|password)\b|删除|发送|提交|发布|支付|购买|安装|上传|重置|重启|回滚|权限|授权|密码/i;
 // Host AX metadata is not part of a control's accessible name. Keep it for
 // denial/risk checks and exact snapshot revalidation, never for broad matching.
-const accessibleName = label => label.split(/, (?:Value|ID|Help|URL): /, 1)[0].trim();
+const accessibleName = label => label.split(/(?:, |\s+)(?:Value|ID|Help|URL): /, 1)[0].trim();
 const readOnlyPreview = /^Preview rollback (?:readiness|plan|details)$|^预览回滚(?:准备情况|计划|详情)$/i;
 const match = (name, pattern) => {
   if (typeof pattern === 'string') return name === pattern;
@@ -97,8 +97,48 @@ export function createChromeDriver({ tab, allowedOrigins, policy, scope }) {
     async execute(action) { requireValue(action.op === 'click' && Number.isInteger(action.target), 'UNSUPPORTED_HOST_ACTION'); await tab.ax.click(action.target); },
   };
 }
-export function createComputerUseDriver({ sky, app, policy, scope }) {
+export function createComputerUseDriver({ sky, app, window, policy, scope, calculatorKeys }) {
   checkPolicy(policy);
+  requireValue(calculatorKeys === undefined || window !== undefined, 'HOST_CALCULATOR_KEYS_UNSUPPORTED');
+  if (window !== undefined) {
+    requireValue(app === undefined && sky?.target === 'windows' && typeof sky.get_window_state === 'function' && typeof sky.click === 'function', 'UNSUPPORTED_COMPUTER_USE_HOST');
+    requireValue(window && Number.isSafeInteger(window.id) && window.id > 0 && typeof window.app === 'string' && window.app.length > 0, 'HOST_WINDOW_IDENTITY_REQUIRED');
+    requireValue(typeof scope === 'function', 'HOST_APP_SCOPE_REQUIRED');
+    // Bind the selected window, not a mutable caller object or foreground app.
+    const bound = Object.freeze({ id: window.id, app: window.app });
+    let keys = null;
+    if (calculatorKeys !== undefined) {
+      // Explicit, reviewed one-key alternatives for a calculator only. Never
+      // switch to keyboard input automatically after an uncertain click.
+      requireValue(/(?:^|[\\/])(?:win32calc|CalculatorApp)\.exe$/i.test(bound.app) && typeof sky.press_key === 'function', 'HOST_CALCULATOR_KEYS_UNSUPPORTED');
+      requireValue(calculatorKeys && typeof calculatorKeys === 'object' && !Array.isArray(calculatorKeys), 'INVALID_HOST_KEY_BINDINGS');
+      keys = Object.freeze({ ...calculatorKeys });
+      requireValue(Object.keys(keys).length > 0 && Object.keys(keys).length <= 20 && Object.entries(keys).every(([name,key]) => policy.allowNames.includes(name) && typeof key === 'string' && /^(?:[0-9]|plus|minus|asterisk|slash|period|Return)$/.test(key)), 'INVALID_HOST_KEY_BINDINGS');
+    }
+    let fresh = null;
+    return {
+      kind: 'computer-use',
+      reobserveOnChange: Boolean(policy.equivalentNames?.length),
+      async observe() {
+        fresh = null;
+        const state = await sky.get_window_state({ window: { ...bound }, include_screenshot: !keys, include_text: true });
+        requireValue(state?.window?.id === bound.id && state.window.app === bound.app, 'HOST_WINDOW_IDENTITY_CHANGED');
+        // AX-only selection requires indexed tree evidence, never document text
+        // or coordinates derived from an unavailable screenshot.
+        const observed = observation(state.accessibility?.tree, policy, scope);
+        if (keys) observed.candidates = observed.candidates.filter(c => Object.hasOwn(keys,c.text));
+        fresh = observed.candidates.map(c => ({ ...c }));
+        return observed;
+      },
+      async execute(action) {
+        const candidates = fresh; fresh = null;
+        requireValue(action?.op === 'click' && Number.isSafeInteger(action.target) && action.target >= 0, 'UNSUPPORTED_HOST_ACTION');
+        requireValue(candidates?.some(c => c.target === action.target && c.id === action.id && c.text === action.text && !c.requiresApproval), 'HOST_FRESH_ALLOWED_ACTION_REQUIRED');
+        if (keys) await sky.press_key({ window: { ...bound }, key: keys[action.text] });
+        else await sky.click({ window: { ...bound }, element_index: action.target });
+      },
+    };
+  }
   requireValue(typeof app === 'string' && app.length > 0 && sky?.get_app_state && sky?.click, 'UNSUPPORTED_COMPUTER_USE_HOST');
   requireValue(typeof scope === 'function', 'HOST_APP_SCOPE_REQUIRED');
   return {

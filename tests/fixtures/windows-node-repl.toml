@@ -1,0 +1,24 @@
+[mcp_servers.node_repl]
+args = []
+command = 'C:\Test Apps\OpenAI.Codex_26.917.9434.0_x64_Green\OpenAI.Codex_26.917.9434.0_x64_Green\app\resources\cua_node\bin\node_repl.exe'
+env_vars = ["CODEX_WINDOWS_REGISTERED_CORE"]
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = 'C:\Test Apps\OpenAI.Codex_26.917.9434.0_x64_Green\OpenAI.Codex_26.917.9434.0_x64_Green\app\resources\cua_node\bin\node_modules'
+NODE_REPL_NODE_PATH = 'C:\Test Apps\OpenAI.Codex_26.917.9434.0_x64_Green\OpenAI.Codex_26.917.9434.0_x64_Green\app\resources\cua_node\bin\node.exe'
+NODE_REPL_TRUSTED_CODE_PATHS = 'C:\Users\<USER>\.codex;C:\Test Apps\OpenAI.Codex_26.917.9434.0_x64_Green\OpenAI.Codex_26.917.9434.0_x64_Green\app\resources\cua_node\bin\node_modules'
+CODEX_HOME = 'C:\Users\<USER>\.codex'
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+BROWSER_USE_TINYSKY_ENABLED = "1"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.917.71314"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"C:/Users/<USER>/.codex/plugins/cache/openai-bundled/browser/26.917.71314/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+SKY_CUA_NATIVE_PIPE = "1"
+SKY_CUA_NATIVE_PIPE_DIRECTORY = '\\.\pipe\codex-computer-use-<PIPE_ID>'
+CODEX_CLI_PATH = 'C:\Users\<USER>\.codex\jev-pilot\jev-pilot.exe'
+NODE_REPL_UNTRUSTED_ENV_ALLOWLIST = "CODEX_WINDOWS_REGISTERED_CORE"
+

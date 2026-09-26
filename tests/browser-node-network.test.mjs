@@ -53,3 +53,45 @@ test('older node and symlinks are preserved', () => {
   const f=fixture();assert.equal(nodeBrowserNetwork({...f,repair:true,nodeVersion:()=> 'v22.0.0'}).reason,'UNSUPPORTED_NODE_VERSION');assert.equal(readFileSync(f.file,'utf8'),original);
   if(process.platform!=='win32') { const codexHome=mkdtempSync(join(tmpdir(),'jev-node-network-link-'));symlinkSync(f.file,join(codexHome,'config.toml'));assert.equal(nodeBrowserNetwork({...f,codexHome,repair:true}).reason,'UNSAFE_PATH');assert.equal(readFileSync(f.file,'utf8'),original); }
 });
+test('TOML literal paths, mixed quote arrays and comments are preserved', () => {
+  const input = original.replace(/"(\/Applications\/[^"\n]+)"/g, "'$1'")
+    .replace('["KEEP_ME"]', "['KEEP_ME', 'HASH#VALUE',] # keep this comment");
+  const plan = planNodeProxy(input, names);
+  assert.equal(plan.nodePath, '/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node');
+  assert.match(plan.after, /# keep this comment/);
+  assert.match(plan.after, /HASH#VALUE/);
+  assert.equal(planNodeProxy(plan.after, names).after, plan.after);
+});
+test('Windows literal path parses then fails runtime verification without executing it', () => {
+  const input = original.replace(/command = .*\n/, "command = 'C:\\Program Files\\Codex\\resources\\node_repl.exe'\n");
+  assert.throws(() => planNodeProxy(input, names), /^Error: UNSUPPORTED_RUNTIME$/);
+  const f = fixture(); writeFileSync(f.file, input); let probes = 0;
+  const result = nodeBrowserNetwork({ ...f, repair:true, nodeVersion:()=>{ probes++; return 'v24.21.0'; } });
+  assert.equal(result.reason, 'UNSUPPORTED_RUNTIME'); assert.equal(probes,0);
+  assert.equal(readFileSync(f.file,'utf8'),input);
+});
+test('unsupported TOML is explicit, never a generic config failure or partial rewrite', () => {
+  for (const value of ['"unterminated', '["x", 7]', "['x'] trailing", 'false', '"bad\\q"']) {
+    const f=fixture(); const input=original.replace('env_vars = ["KEEP_ME"]', 'env_vars = '+value);
+    writeFileSync(f.file,input);
+    assert.equal(nodeBrowserNetwork({...f,repair:true}).reason,'UNSUPPORTED_CONFIG');
+    assert.equal(readFileSync(f.file,'utf8'),input);
+  }
+});
+const windowsConfig=readFileSync(new URL('./fixtures/windows-node-repl.toml',import.meta.url),'utf8');
+test('reported Windows configuration is repaired without changing paths, trust or pipe settings',()=>{
+  const plan=planNodeProxy(windowsConfig,names);
+  const restored=plan.after.replace('NODE_USE_ENV_PROXY = "1"\n','').replace(/env_vars = .*\n/,'env_vars = ["CODEX_WINDOWS_REGISTERED_CORE"]\n');
+  assert.equal(restored,windowsConfig);
+  assert.equal(planNodeProxy(plan.after,names).after,plan.after);
+  assert.equal(plan.missing.length,8);
+  const f=fixture();writeFileSync(f.file,windowsConfig);let probed;
+  const result=nodeBrowserNetwork({...f,repair:true,nodeVersion:path=>{probed=path;return 'v24.21.0';}});
+  assert.equal(result.changed,true);assert.equal(result.existingProcessesUpdated,false);
+  assert.equal(probed,plan.nodePath);assert.equal(readFileSync(f.file,'utf8'),plan.after);
+});
+test('Windows runtime validation rejects traversal, mismatched Node and unknown layouts',()=>{
+  for(const value of [windowsConfig.replaceAll('\\app\\resources','\\app\\..\\resources'),windowsConfig.replace('\\bin\\node.exe','\\bin\\other.exe'),windowsConfig.replaceAll('OpenAI.Codex_','Unknown.App_')])assert.throws(()=>planNodeProxy(value,names),/UNSUPPORTED_RUNTIME/);
+  const disabled=windowsConfig.replace('[mcp_servers.node_repl.env]','[mcp_servers.node_repl.env]\nNODE_USE_ENV_PROXY = \'0\'');
+  assert.throws(()=>planNodeProxy(disabled,names),/EXPLICIT_PROXY_SETTING/);
+});
