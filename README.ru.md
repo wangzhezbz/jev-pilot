@@ -1,8 +1,8 @@
 <p align="center"><img src="assets/hero.ru.48e57830a937.svg" width="100%" alt="JevPilot" /></p>
 
-<p align="center"><a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-windows-x64.zip"><img src="assets/windows.ru.svg?v=preview20260926" width="32%" alt="windows x64 — Скачать превью" /></a>
-<a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-macos-arm64.zip"><img src="assets/macos.ru.svg?v=preview20260926" width="32%" alt="macos arm64 — Скачать превью" /></a>
-<a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-linux-x64.zip"><img src="assets/linux.ru.svg?v=preview20260926" width="32%" alt="linux x64 — Скачать превью" /></a></p>
+<p align="center"><a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-windows-x64.zip"><img src="assets/windows.ru.svg?v=download20260926" width="32%" alt="windows x64 — Скачать" /></a>
+<a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-macos-arm64.zip"><img src="assets/macos.ru.svg?v=download20260926" width="32%" alt="macos arm64 — Скачать" /></a>
+<a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-linux-x64.zip"><img src="assets/linux.ru.svg?v=download20260926" width="32%" alt="linux x64 — Скачать" /></a></p>
 
 <p align="center"><a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a></p>
 
@@ -10,22 +10,37 @@
 
 **Один плагин для привычной работы в Codex. Jev помогает с небольшими решениями, Codex планирует, реализует и проверяет.**
 
-[Другие архитектуры и контрольные суммы](https://github.com/wangzhezbz/jev-pilot/releases/tag/preview-20260926) · [macOS Intel](https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-macos-x64.zip) · [Windows ARM64](https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-windows-arm64.zip) · [Linux ARM64](https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-linux-arm64.zip)
-
-macOS проверена на компьютере. Windows/Linux: сборки и CI проверены, настольная проверка ещё впереди. ZIP без подписи; нужны Node 24+, curl и ripgrep.
-
 ## Как это работает
 
 Ставьте задачи как обычно. JevPilot помогает с решениями, материалами и интерфейсом. Не нужны отдельные наборы Skill или специальные фразы.
 
 ## Примеры измерений
 
-| Сценарий | Время | Токены GPT | Оценка стоимости с Jev |
-|---|---:|---:|---:|
-| Отбор документов | −40.03% | −23.88% | −33.69% |
-| Навигация Computer Use | −47.64% | −57.14% | −56.52% |
+### Выбранные сравнения задач
 
-Выбранные примеры: по две пары на macOS. UI измерен в окне операций длинного диалога; цены API — снимок от 24.09.2026. Это не гарантия экономии в каждой задаче. [Данные и методика](docs/reports/targeted-20260925/README.zh-CN.md) · [Все отчёты](https://github.com/wangzhezbz/jev-pilot/tree/main/docs/reports)
+| Сценарий | Время | Токены GPT | Оценка стоимости с Jev |
+| --- | --- | --- | --- |
+| [Отбор документов](docs/reports/targeted-20260925/README.zh-CN.md) | −40.03% | −23.88% | −33.69% |
+| [Исправление стабильной сортировки заявок](docs/reports/holdout-20260925/README.zh-CN.md) | −25.64% | −17.13% | −5.25% |
+| [Исправление разности интервалов](docs/reports/holdout-20260925/README.zh-CN.md) | −14.20% | −12.58% | −31.40% |
+
+### Окна операций браузера и рабочего стола
+
+| Сценарий | Время | Токены GPT | Оценка стоимости с Jev |
+| --- | --- | --- | --- |
+| [Поиск записи в Chrome](docs/reports/holdout-20260925/README.zh-CN.md) | −41.03% | −55.91% | −54.87% |
+| [Навигация Computer Use](docs/reports/targeted-20260925/README.zh-CN.md) | −47.64% | −57.14% | −56.52% |
+
+### Измерения компонентов
+
+| Компонент | Результат |
+| --- | --- |
+| [Выбор обязательных инструментов](docs/reports/workflow-efficiency-20260925/README.zh-CN.md) | Сохранены все 12 инструментов; лишние токены Jev: 2 090 → 0 |
+| [Обзор изменений и выбор тестов](docs/reports/workflow-efficiency-20260925/README.zh-CN.md) | По сравнению со старой версией: время −22,69%, токены Jev −53,93%; сохранены все 9 обязательных тестов |
+| [Повторные решения при передаче контекста](docs/reports/workflow-efficiency-20260925/README.zh-CN.md) | За 5 передач: запросы 5 → 1, токены Jev −80,25%; исходный текст сохранён |
+| [Передача контекста без потерь](docs/reports/localization-handoff-20260925/README.zh-CN.md) | Полное представление: 5 439 → 2 713 байт (−50,12%); все 6 обменов восстановимы |
+
+Результаты получены при фактическом выполнении тестовых сценариев. [Сценарии и полные результаты](https://github.com/wangzhezbz/jev-pilot/tree/main/docs/reports)
 
 ## 14 возможностей
 
@@ -46,21 +61,10 @@ macOS проверена на компьютере. Windows/Linux: сборки 
 | 13 | **Контрольные точки** | Сохранение прогресса и проверка файлов перед продолжением. |
 | 14 | **Точное извлечение** | Исходные фрагменты и явные отметки неопределённости. |
 
-## Установите один раз
+## Установка из GitHub
 
-1. Скачайте ZIP для своей ОС и архитектуры и распакуйте.
-2. Отправьте Codex запрос ниже и путь к папке.
-3. Введите свой TypeSafe Key на локальной странице и перезапустите Codex.
-4. Работайте как обычно. Для браузера и компьютера используются существующие официальные плагины.
-
-> Установи JevPilot из этой распакованной папки как персональный плагин Codex. Проверь зависимости и совместимость. Открой локальную страницу для приватного ввода моего TypeSafe Key, настрой адаптер и проверь работу после перезапуска. Сохрани выбранную модель и другие плагины.
-
-### Установка из GitHub
+Отправьте Codex этот запрос:
 
 > Установи JevPilot из https://github.com/wangzhezbz/jev-pilot как персональный плагин Codex. Проверь зависимости, помоги приватно настроить TypeSafe Key и проверь активацию после перезапуска.
 
 [Подробная установка](docs/INSTALL.md) · [TypeSafe](https://typesafe.ai/)
-
-## Статус проекта
-
-Превью · MIT · 5 языков. Память проекта включается по согласию; передача контекста не меняет историю Codex. Независимый проект сообщества, не официальный продукт OpenAI или TypeSafe.

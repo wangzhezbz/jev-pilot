@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="400" height="112" viewBox="0 0 400 112" role="img" aria-labelledby="title" lang="ru">
-  <title>macos — Скачать превью</title>
+  <title>macos — Скачать</title>
   <rect x="1" y="1" width="398" height="110" rx="16" fill="#f2f4f7" stroke="#c9d0da" />
   <g fill="none" stroke="#1c2633" stroke-width="2.4" stroke-linejoin="round">
     <rect x="27" y="32" width="42" height="33" rx="4" />
     <path d="M24 75h48l-3-10H27zM44 70h8" />
   </g>
   <text x="90" y="48" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" fill="#1c2633">macOS</text>
-  <text x="90" y="76" font-family="Arial,Helvetica,sans-serif" font-size="13.5" fill="#526176">Скачать превью</text>
+  <text x="90" y="76" font-family="Arial,Helvetica,sans-serif" font-size="13.5" fill="#526176">Скачать</text>
   <path d="M359 43v24m-8-8 8 8 8-8" fill="none" stroke="#1c2633" stroke-width="2"/></svg>

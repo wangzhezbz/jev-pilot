@@ -1,8 +1,8 @@
 <p align="center"><img src="assets/hero.en.2f6ccfcbe0bf.svg" width="100%" alt="JevPilot" /></p>
 
-<p align="center"><a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-windows-x64.zip"><img src="assets/windows.svg?v=preview20260926" width="32%" alt="windows x64 — Download preview" /></a>
-<a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-macos-arm64.zip"><img src="assets/macos.svg?v=preview20260926" width="32%" alt="macos arm64 — Download preview" /></a>
-<a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-linux-x64.zip"><img src="assets/linux.svg?v=preview20260926" width="32%" alt="linux x64 — Download preview" /></a></p>
+<p align="center"><a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-windows-x64.zip"><img src="assets/windows.svg?v=download20260926" width="32%" alt="windows x64 — Download" /></a>
+<a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-macos-arm64.zip"><img src="assets/macos.svg?v=download20260926" width="32%" alt="macos arm64 — Download" /></a>
+<a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-linux-x64.zip"><img src="assets/linux.svg?v=download20260926" width="32%" alt="linux x64 — Download" /></a></p>
 
 <p align="center"><a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a></p>
 
@@ -10,22 +10,37 @@
 
 **One plugin. Your usual Codex workflow. Let Jev handle bounded decisions while Codex plans, builds and verifies.**
 
-[Other architectures and checksums](https://github.com/wangzhezbz/jev-pilot/releases/tag/preview-20260926) · [macOS Intel](https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-macos-x64.zip) · [Windows ARM64](https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-windows-arm64.zip) · [Linux ARM64](https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-linux-arm64.zip)
-
-macOS desktop tested · Windows/Linux preview: builds and CI verified, desktop validation pending. Unsigned ZIPs; Node 24+, curl and ripgrep required.
-
 ## How it works
 
 Describe the task as usual. JevPilot assists with suitable decisions, evidence and UI steps; Codex remains responsible for complex reasoning and final verification. No extra component skills, separate task runner or repeated trigger phrase.
 
 ## Measured examples
 
-| Scenario | Time | GPT tokens | Estimated cost including Jev |
-|---|---:|---:|---:|
-| Document review | −40.03% | −23.88% | −33.69% |
-| Computer Use navigation | −47.64% | −57.14% | −56.52% |
+### Selected task comparisons
 
-Selected measured examples, two pairs per scenario on macOS. UI figures cover the operation window in a long conversation; costs use the 2026-09-24 API-equivalent price snapshot. These are scenario-specific observations, not guaranteed savings. [Data & methodology](docs/reports/targeted-20260925/README.zh-CN.md) · [All reports](https://github.com/wangzhezbz/jev-pilot/tree/main/docs/reports)
+| Scenario | Time | GPT tokens | Estimated cost including Jev |
+| --- | --- | --- | --- |
+| [Document review](docs/reports/targeted-20260925/README.zh-CN.md) | −40.03% | −23.88% | −33.69% |
+| [Ticket stable-sort fix](docs/reports/holdout-20260925/README.zh-CN.md) | −25.64% | −17.13% | −5.25% |
+| [Interval-difference fix](docs/reports/holdout-20260925/README.zh-CN.md) | −14.20% | −12.58% | −31.40% |
+
+### Browser and desktop operation windows
+
+| Scenario | Time | GPT tokens | Estimated cost including Jev |
+| --- | --- | --- | --- |
+| [Chrome record lookup](docs/reports/holdout-20260925/README.zh-CN.md) | −41.03% | −55.91% | −54.87% |
+| [Computer Use navigation](docs/reports/targeted-20260925/README.zh-CN.md) | −47.64% | −57.14% | −56.52% |
+
+### Component measurements
+
+| Component | Measured result |
+| --- | --- |
+| [Required-tool selection](docs/reports/workflow-efficiency-20260925/README.zh-CN.md) | All 12 tools retained; unnecessary Jev tokens: 2,090 → 0 |
+| [Review and test selection](docs/reports/workflow-efficiency-20260925/README.zh-CN.md) | Versus the old version: time −22.69%, Jev tokens −53.93%; all 9 required tests retained |
+| [Repeated handoff judgments](docs/reports/workflow-efficiency-20260925/README.zh-CN.md) | Across 5 handoffs, requests 5 → 1; Jev tokens −80.25%, original text retained |
+| [Lossless context handoff](docs/reports/localization-handoff-20260925/README.zh-CN.md) | Serialized representation 5,439 → 2,713 bytes (−50.12%); all 6 exchanges recoverable |
+
+These figures come from actual scenario tests. [Scenarios and full results](https://github.com/wangzhezbz/jev-pilot/tree/main/docs/reports)
 
 ## 14 capabilities
 
@@ -46,21 +61,10 @@ Selected measured examples, two pairs per scenario on macOS. UI figures cover th
 | 13 | **Checkpoints and resume** | Save progress and revalidate changed files before continuing. |
 | 14 | **Exact-source extraction** | Return original spans; mark missing or ambiguous fields. |
 
-## Install once, then work normally
+## Install from GitHub
 
-1. Download and extract the ZIP for your OS and CPU.
-2. Open Codex and send the installation request below. Codex checks dependencies and installs the plugin.
-3. Enter your own TypeSafe key privately on the local setup page, then restart Codex normally.
-4. Continue asking for work as usual. Chrome/Computer Use features use their existing official plugins.
-
-> Install JevPilot from this extracted folder as a personal Codex plugin. Check dependencies and runtime compatibility, open the local page for me to enter my TypeSafe key privately, configure the desktop adapter, and verify it after restart. Preserve my selected model and other plugins.
-
-### Install from GitHub
+Send this to Codex:
 
 > Install JevPilot from https://github.com/wangzhezbz/jev-pilot as one personal Codex plugin. Check dependencies and compatibility, guide private TypeSafe key setup, and verify activation after restart.
 
 [Installation details](docs/INSTALL.md) · [TypeSafe](https://typesafe.ai/)
-
-## Project status
-
-Development preview · MIT · English / 简体中文 / Русский / 日本語 / 한국어. Project memory is opt-in. Context handoffs do not rewrite native conversation history. Independent community project; not an official OpenAI or TypeSafe product.

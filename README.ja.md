@@ -1,8 +1,8 @@
 <p align="center"><img src="assets/hero.ja.31dd4496d610.svg" width="100%" alt="JevPilot" /></p>
 
-<p align="center"><a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-windows-x64.zip"><img src="assets/windows.ja.svg?v=preview20260926" width="32%" alt="windows x64 — プレビューをダウンロード" /></a>
-<a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-macos-arm64.zip"><img src="assets/macos.ja.svg?v=preview20260926" width="32%" alt="macos arm64 — プレビューをダウンロード" /></a>
-<a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-linux-x64.zip"><img src="assets/linux.ja.svg?v=preview20260926" width="32%" alt="linux x64 — プレビューをダウンロード" /></a></p>
+<p align="center"><a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-windows-x64.zip"><img src="assets/windows.ja.svg?v=download20260926" width="32%" alt="windows x64 — ダウンロード" /></a>
+<a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-macos-arm64.zip"><img src="assets/macos.ja.svg?v=download20260926" width="32%" alt="macos arm64 — ダウンロード" /></a>
+<a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-linux-x64.zip"><img src="assets/linux.ja.svg?v=download20260926" width="32%" alt="linux x64 — ダウンロード" /></a></p>
 
 <p align="center"><a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a></p>
 
@@ -10,22 +10,37 @@
 
 **ひとつのプラグインで、いつもの Codex を。小さな判断は Jev が支援し、計画・実装・最終確認は Codex が担当します。**
 
-[他のアーキテクチャとチェックサム](https://github.com/wangzhezbz/jev-pilot/releases/tag/preview-20260926) · [macOS Intel](https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-macos-x64.zip) · [Windows ARM64](https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-windows-arm64.zip) · [Linux ARM64](https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-linux-arm64.zip)
-
-macOS は実機検証済み。Windows/Linux はビルドと CI を確認済み、デスクトップ実機検証は未完了。未署名 ZIP。Node 24+、curl、ripgrep が必要です。
-
 ## いつもの作業をそのまま
 
 通常どおり依頼するだけ。JevPilot が判断、資料の選別、画面操作を支援します。多数の Skill や専用の起動フレーズは不要です。
 
 ## 実測例
 
-| シナリオ | 所要時間 | GPT トークン | Jev 込みの推定費用 |
-|---|---:|---:|---:|
-| 文書の選別 | −40.03% | −23.88% | −33.69% |
-| Computer Use の連続操作 | −47.64% | −57.14% | −56.52% |
+### タスクの比較例
 
-選定した実測例。macOS で各 2 組の比較。UI は長い会話の操作区間を計測、費用は 2026-09-24 の API 価格に基づく推定です。すべての作業で同じ効果を保証するものではありません。 [データと測定方法](docs/reports/targeted-20260925/README.zh-CN.md) · [すべてのレポート](https://github.com/wangzhezbz/jev-pilot/tree/main/docs/reports)
+| シナリオ | 所要時間 | GPT トークン | Jev 込みの推定費用 |
+| --- | --- | --- | --- |
+| [文書の選別](docs/reports/targeted-20260925/README.zh-CN.md) | −40.03% | −23.88% | −33.69% |
+| [チケットの安定ソート修正](docs/reports/holdout-20260925/README.zh-CN.md) | −25.64% | −17.13% | −5.25% |
+| [区間差分の修正](docs/reports/holdout-20260925/README.zh-CN.md) | −14.20% | −12.58% | −31.40% |
+
+### ブラウザー・デスクトップの操作区間
+
+| シナリオ | 所要時間 | GPT トークン | Jev 込みの推定費用 |
+| --- | --- | --- | --- |
+| [Chrome での記録検索](docs/reports/holdout-20260925/README.zh-CN.md) | −41.03% | −55.91% | −54.87% |
+| [Computer Use の連続操作](docs/reports/targeted-20260925/README.zh-CN.md) | −47.64% | −57.14% | −56.52% |
+
+### コンポーネントの実測
+
+| コンポーネント | 実測結果 |
+| --- | --- |
+| [必須ツールの選択](docs/reports/workflow-efficiency-20260925/README.zh-CN.md) | 必須ツール 12 件をすべて保持。不要な Jev トークン：2,090 → 0 |
+| [レビューとテスト選択](docs/reports/workflow-efficiency-20260925/README.zh-CN.md) | 旧版比：時間 −22.69%、Jev トークン −53.93%。必須テスト 9 件をすべて保持 |
+| [引き継ぎ判断の再利用](docs/reports/workflow-efficiency-20260925/README.zh-CN.md) | 5 回の引き継ぎでリクエスト 5 → 1、Jev トークン −80.25%。原文をすべて保持 |
+| [可逆なコンテキスト引き継ぎ](docs/reports/localization-handoff-20260925/README.zh-CN.md) | 完全な表現：5,439 → 2,713 バイト（−50.12%）。6 組すべて復元可能 |
+
+以上はシナリオを実際に実行した測定結果です。 [テストシナリオと全データ](https://github.com/wangzhezbz/jev-pilot/tree/main/docs/reports)
 
 ## 14 の機能
 
@@ -46,21 +61,10 @@ macOS は実機検証済み。Windows/Linux はビルドと CI を確認済み�
 | 13 | **チェックポイントと再開** | 進捗を保存し、ファイルの変更を確認して再開。 |
 | 14 | **原文の正確な抽出** | 原文の位置を返し、欠落や曖昧さを明示。 |
 
-## 一度設定して、いつもどおり使う
+## GitHub から直接インストール
 
-1. OS と CPU に合う ZIP をダウンロードして展開。
-2. 下の依頼文と展開先を Codex に送信。
-3. ローカル設定画面で自分の TypeSafe Key を入力し、Codex を再起動。
-4. あとは通常どおり依頼。画面操作には既存の公式 Chrome / Computer Use プラグインを使用。
-
-> この展開フォルダーの JevPilot を個人用 Codex プラグインとしてインストールしてください。依存関係と互換性を確認し、TypeSafe Key を私が非公開で入力できるローカル設定画面を開いてください。アダプターを設定し、再起動後に有効化を確認してください。選択したモデルと他のプラグインは維持してください。
-
-### GitHub から直接インストール
+次の依頼文を Codex に送信してください：
 
 > https://github.com/wangzhezbz/jev-pilot から JevPilot を個人用 Codex プラグインとしてインストールし、依存関係と互換性を確認してください。TypeSafe Key の非公開設定と再起動後の確認も案内してください。
 
 [詳しいインストール手順](docs/INSTALL.md) · [TypeSafe](https://typesafe.ai/)
-
-## プロジェクトの状態
-
-開発プレビュー · MIT · 5 言語。プロジェクトメモリは同意が必要です。引き継ぎは元の会話履歴を書き換えません。OpenAI や TypeSafe の公式製品ではありません。
