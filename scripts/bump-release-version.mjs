@@ -1,0 +1,11 @@
+import {readFileSync,writeFileSync} from 'node:fs';
+import {nextReleaseVersion,assertReleaseVersion,newestReleaseVersion} from '../src/release-version.mjs';
+const read=p=>JSON.parse(readFileSync(p,'utf8'));
+const paths=['plugin.json','.codex-plugin/plugin.json'],manifests=paths.map(read),pkg=read('package.json'),state=read('release-state.json');
+const base=process.argv.find(x=>x.startsWith('--base='))?.slice(7)||pkg.version;
+const floor=newestReleaseVersion([state.lastPackagedVersion,...manifests.map(m=>m.version)]);
+const version=nextReleaseVersion({base,previousVersion:floor});
+assertReleaseVersion({portable:version,codex:version,packageVersion:base,previousVersion:state.lastPackagedVersion});
+for(let i=0;i<paths.length;i++)writeFileSync(paths[i],JSON.stringify({...manifests[i],version},null,2)+'\n');
+writeFileSync('package.json',JSON.stringify({...pkg,version:base},null,2)+'\n');
+console.log(JSON.stringify({version,previousVersion:state.lastPackagedVersion}));

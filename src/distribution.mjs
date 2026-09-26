@@ -2,7 +2,7 @@ import {readFileSync,readdirSync,lstatSync,mkdirSync,copyFileSync,chmodSync,exis
 import {resolve,join,relative,dirname,isAbsolute} from 'node:path';
 import {createHash} from 'node:crypto';
 import {requireValue} from './core.mjs';
-const roots=['.codex-plugin','.mcp.json','skills','src','runtime','vendor','adapters','scripts','web','locales','LICENSE','plugin.json','mcp.json','package.json','bin','launcher','docs'];
+const roots=['.codex-plugin','.mcp.json','skills','src','runtime','vendor','adapters','scripts','web','locales','LICENSE','plugin.json','mcp.json','package.json','release-state.json','bin','launcher','docs'];
 const privateName=n=>/^(?:\.git|\.env(?:\..*)?|dist|node_modules|coverage|__pycache__|private|native-home|auth\.json|state\.sqlite(?:-.*)?|install\.json(?:\..*)?)$/.test(n)||/\.(?:local|sqlite|sqlite-wal|sqlite-shm|pyc|pem|key)$/.test(n);
 export function stagePlugin({source,destination,includeReports=false}){
  source=realpathSync(source);destination=resolve(destination);let ancestor=dirname(destination);while(!existsSync(ancestor))ancestor=dirname(ancestor);const canonicalDestination=resolve(realpathSync(ancestor),relative(ancestor,destination));const rel=relative(source,canonicalDestination);

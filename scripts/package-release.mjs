@@ -1,12 +1,19 @@
 // Build distributable previews with one matching launcher and no private state.
-import {mkdtempSync,mkdirSync,writeFileSync,readFileSync} from 'node:fs';
+import {mkdtempSync,mkdirSync,writeFileSync,readFileSync,existsSync} from 'node:fs';
 import {tmpdir} from 'node:os';import {join,resolve} from 'node:path';
 import {execFileSync} from 'node:child_process';import {createHash} from 'node:crypto';
 import {stagePlugin} from '../src/distribution.mjs';
+import {assertReleaseVersion} from '../src/release-version.mjs';
+const readJson=p=>JSON.parse(readFileSync(p,'utf8'));
+const ledger=readJson('release-state.json');
+const version=assertReleaseVersion({portable:readJson('plugin.json').version,codex:readJson('.codex-plugin/plugin.json').version,packageVersion:readJson('package.json').version,previousVersion:ledger.lastPackagedVersion});
+if(process.argv.includes('--check-version')){console.log(JSON.stringify({version,previousVersion:ledger.lastPackagedVersion,status:'passed'}));process.exit(0);}
+
 const out=resolve(process.argv.find(a=>a.startsWith('--out='))?.slice(6)||'dist/release-20260926');mkdirSync(out,{recursive:true});
 const stage=stagePlugin({source:resolve('.'),destination:join(mkdtempSync(join(tmpdir(),'jev-release-')),'jev-pilot')});
 const targets=[['darwin','arm64','macos'],['darwin','x64','macos'],['win32','x64','windows'],['win32','arm64','windows'],['linux','x64','linux'],['linux','arm64','linux']];
 const sums=[];
+for(const [,arch,label]of targets)if(existsSync(join(out,`jev-pilot-${label}-${arch}.zip`)))throw Error('RELEASE_OUTPUT_ALREADY_EXISTS');
 for(const[os,arch,label]of targets){
  const executable=`bin/${os}-${arch}/jev-pilot${os==='win32'?'.exe':''}`;
  if(!stage.manifest.some(x=>x.path===executable))throw Error('MISSING_LAUNCHER:'+executable);
@@ -22,4 +29,6 @@ with zipfile.ZipFile(sys.argv[2]) as z:
 `,stage.destination,file,JSON.stringify(files)]);
  sums.push(createHash('sha256').update(readFileSync(file)).digest('hex')+'  '+file.split('/').at(-1));
 }
-writeFileSync(join(out,'SHA256SUMS.txt'),sums.join('\n')+'\n');console.log(JSON.stringify({out,packages:targets.length,checksums:'SHA256SUMS.txt'}));
+writeFileSync(join(out,'SHA256SUMS.txt'),sums.join('\n')+'\n');
+writeFileSync('release-state.json',JSON.stringify({lastPackagedVersion:version},null,2)+'\n');
+console.log(JSON.stringify({out,version,packages:targets.length,checksums:'SHA256SUMS.txt',releaseStateUpdated:true}));
