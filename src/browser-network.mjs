@@ -12,7 +12,11 @@ const digest = text => createHash('sha256').update(text).digest('hex');
 export function browserNetwork({ repair = false, codexHome = process.env.CODEX_HOME || join(homedir(), '.codex'), home = process.env.JEV_PILOT_HOME || join(homedir(), '.codex', 'jev-pilot') } = {}) {
   const root = join(codexHome, 'plugins/cache/openai-bundled/unified-computer-use');
   const nodeRepl = nodeBrowserNetwork({ codexHome, home, repair, names: proxyNames });
-  const result = { manifests: [], nodeRepl, changed: nodeRepl.changed, existingProcessesUpdated: false };
+  const result = { manifests: [], nodeRepl, changed: nodeRepl.changed, existingProcessesUpdated: false,
+    // This function inspects/repairs configuration, not the official native fetch
+    // transport. A ready allowlist is not proof that Chrome is connected.
+    verificationScope: 'configuration_only', runtimeConnectivity: 'not_tested',
+    nativeFetchConnectivity: 'not_tested' };
   let versions;
   try { versions = readdirSync(root, { withFileTypes: true }).filter(e => e.isDirectory()).slice(0, 100); }
   catch (error) { return { ...result, status: error.code === 'ENOENT' ? nodeRepl.status === 'not_configured' ? 'plugin_not_installed' : nodeRepl.status : 'unavailable' }; }

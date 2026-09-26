@@ -49,3 +49,17 @@ test('thrown strings are retained locally without leaking messages',async()=>{
  const result=await probeChromeTabs({browser:{tabs:{list:async()=>{throw 'private timeout';}}},captureError:e=>{captured=e;}});
  assert.equal(captured,'private timeout');assert.equal(result.errorClass,'timeout');assert.doesNotMatch(JSON.stringify(result),/private/);
 });
+
+test('the observed native fetch failure remains actionable without guessing network root cause',async()=>{
+ const events=[];
+ const result=await probeChromeTabs({browser:{tabs:{list:async()=>{throw {message:'nodeRepl.fetch request failed'};}}},emit:e=>events.push(e)});
+ assert.equal(result.failureBoundary,'node_repl_fetch');assert.equal(result.rootCause,'unknown');
+ assert.equal(result.nextDiagnostic,'official_host_network_logs');assert.equal(result.retryWithoutChange,false);
+ assert.equal(result.causes[0].safeMessage,'nodeRepl.fetch request failed');assert.ok(Number.isFinite(Date.parse(events[0].startedAtUtc)));
+});
+test('native fetch classification traverses causes but does not expose similar private messages',async()=>{
+ const result=await probeChromeTabs({browser:{tabs:{list:async()=>{throw Error('private outer',{cause:{message:'nodeRepl.fetch request failed'}});}}}});
+ assert.equal(result.failureBoundary,'node_repl_fetch');assert.doesNotMatch(JSON.stringify(result),/private/);
+ const other=await probeChromeTabs({browser:{tabs:{list:async()=>{throw Error('nodeRepl.fetch request failed account=private');}}}});
+ assert.equal(other.failureBoundary,undefined);assert.equal(other.causes[0].safeMessage,null);assert.doesNotMatch(JSON.stringify(other),/private/);
+});

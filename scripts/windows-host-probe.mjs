@@ -18,6 +18,8 @@ function errorSummary(error){
     const rawCode=value('code'),status=value('status')??value('statusCode');
     causes.push({depth,code:safeCodes.has(rawCode)?rawCode:null,hasUnexportedCode:rawCode!=null&&!safeCodes.has(rawCode),
       httpStatus:Number.isInteger(status)&&status>=100&&status<=599?status:null,
+      failureBoundary:messageText==='nodeRepl.fetch request failed'?'node_repl_fetch':null,
+      safeMessage:messageText==='nodeRepl.fetch request failed'?'nodeRepl.fetch request failed':null,
       errorClass:/timeout|timed out/i.test(messageText)?'timeout':/disconnect|closed|not connected/i.test(messageText)?'disconnected':'other'});
     current=value('cause');
   }
@@ -32,7 +34,7 @@ export async function probeChromeTabs({browser, waitMs=45000, emit=()=>{},captur
   const started=performance.now();
   let timer;
   const event=(phase,extra={})=>({phase,elapsedMs:Math.round(performance.now()-started),...extra});
-  emit(event('tabs_list_started',{attempts:1,waitMs}));
+  emit(event('tabs_list_started',{attempts:1,waitMs,startedAtUtc:new Date().toISOString()}));
   const operation=Promise.resolve().then(()=>browser.tabs.list()).then(
     tabs=>Array.isArray(tabs)
       ? event('tabs_list_returned',{status:'success',tabCount:tabs.length})
@@ -41,8 +43,12 @@ export async function probeChromeTabs({browser, waitMs=45000, emit=()=>{},captur
       let captured=false;
       if(captureError){try{captureError(error);captured=true;}catch{/* A local capture failure must not hide the operation error. */}}
       const causes=errorSummary(error);
+      const nativeFetchFailed=causes.some(c=>c.failureBoundary==='node_repl_fetch');
       return event('tabs_list_returned',{status:'operation_error',tabCount:null,
-        errorClass:causes[0]?.errorClass??'other',causes,rawErrorCapturedLocally:captured});
+        errorClass:causes[0]?.errorClass??'other',causes,rawErrorCapturedLocally:captured,
+        ...(nativeFetchFailed?{failureBoundary:'node_repl_fetch',rootCause:'unknown',
+          nextDiagnostic:'official_host_network_logs',retryWithoutChange:false}:{}),
+      });
     },
   );
   try {

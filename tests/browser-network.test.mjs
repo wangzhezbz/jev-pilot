@@ -55,6 +55,12 @@ test('browser plugin absence is not an installation failure', () => {
   const root = mkdtempSync(join(tmpdir(), 'jev-no-browser-'));
   assert.equal(browserNetwork({ codexHome: root, home: root, repair: true }).status, 'plugin_not_installed');
 });
+test('ready configuration never claims native fetch or Chrome connectivity',()=>{
+ const f=fixture();browserNetwork({...f.options,repair:true});
+ const report=browserNetwork(f.options);
+ assert.equal(report.status,'ready');assert.equal(report.verificationScope,'configuration_only');
+ assert.equal(report.runtimeConnectivity,'not_tested');assert.equal(report.nativeFetchConnectivity,'not_tested');
+});
 test('symlinked version directory cannot redirect repair outside the plugin cache', { skip: process.platform === 'win32' }, () => {
   const f = fixture();
   const root = join(f.options.codexHome, 'plugins/cache/openai-bundled/unified-computer-use');
