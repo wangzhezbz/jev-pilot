@@ -49,6 +49,7 @@ export function summarizeHostResult(result) {
     instruction: result.instruction, fullResultRetainedInHost: true,
   };
   if (result.status !== 'needs_verification') {
+    if (result.requestDiagnostics?.length) receipt.requestDiagnostics = result.requestDiagnostics.slice(-2);
     receipt.snapshot = clip(result.snapshot, 4000, 'snapshot');
     receipt.lastDecision = result.lastDecision ? {
       stage: result.lastDecision.stage, action: clip(result.lastDecision.action, 180, 'action'),
@@ -84,7 +85,7 @@ export function createSession({ workspace, taskId, driver, store, send = hostTra
       requireValue(new Set(task.stages.map(s => s.id)).size === task.stages.length, 'DUPLICATE_HOST_STAGE');
       requireValue(!contract || contract === task, 'NEW_TASK_REQUIRES_SESSION'); contract = task;
       busy = true; totals.runs++;
-      const start = performance.now(), prior = metrics(), phases = [], session = id + '-' + totals.runs;
+      const start = performance.now(), prior = metrics(), phases = [], requestDiagnostics = [], session = id + '-' + totals.runs;
       let current, status = 'codex_review_required', reason = null, evidence = null, stateMayHaveChanged = false, lastDecision = null;
       const timed = async (phase, fn) => { const t = performance.now(); try { return await fn(); } finally { phases.push({ phase, ms: performance.now() - t }); } };
       const expired = () => performance.now() - start >= maxMs || task.signal?.aborted;
@@ -94,13 +95,20 @@ export function createSession({ workspace, taskId, driver, store, send = hostTra
         // Other Judge callers retain their existing admission policy.
         const config = { ...loadConfig(store, project), cacheMs: 0, maxCalls: maxSteps,
           minimumRequestAllowanceMs: send === hostTransport ? 1000 : 100 };
+        const configuredTimeoutMs = config.timeoutMs;
         const judge = new Judge({ store, project, taskId, config, ...(key !== undefined ? { key } : {}), signal: task.signal,
           send: async (...args) => {
             totals.jevRequests++; const t = performance.now();
-            try { const response = await send(...args); const u = response.usage;
+            const options=args[2], diagnostic={ ...options.diagnostics, configuredTimeoutMs, sessionRemainingMs:Math.max(0,Math.floor(maxMs-(performance.now()-start))), effectiveTimeoutMs:options.timeoutMs };
+            requestDiagnostics.push(diagnostic);
+            try { const response = await send(args[0],args[1],{...options,onTiming:timing=>{
+              for(const name of ['transport','status','httpStatus','phase','headersMs','bodyMs','responseBytes','totalMs']) if(timing[name]!==undefined)diagnostic[name]=timing[name];
+              options.onTiming?.(timing);
+            }}); const u = response.usage;
+              diagnostic.status='success';
               if (Number.isFinite(u?.input_tokens) && Number.isFinite(u?.output_tokens)) { totals.inputTokens += u.input_tokens; totals.outputTokens += u.output_tokens; } else totals.unknownUsage++;
               return response;
-            } catch (e) { totals.unknownUsage++; throw e; } finally { totals.apiMs += performance.now() - t; }
+            } catch (e) { diagnostic.status=/^[A-Z][A-Z0-9_]+$/.test(e.code||'')?e.code:'JEV_UNAVAILABLE'; totals.unknownUsage++; throw e; } finally { totals.apiMs += performance.now() - t; }
           } });
         const ctx = { store, project, config, judge };
         current = await timed('observe', () => driver.observe());
@@ -119,7 +127,7 @@ export function createSession({ workspace, taskId, driver, store, send = hostTra
           if (stageIndex === task.stages.length) { reason = 'HOST_FINAL_PROOF_MISSING'; break; }
           if (step === maxSteps) { reason = 'HOST_STEP_BUDGET'; break; }
           if (!current.candidates.some(c => !c.requiresApproval && !c.destructive)) { reason = 'HOST_NO_ALLOWED_ACTION'; break; }
-          judge.config.timeoutMs = Math.max(1, Math.min(config.timeoutMs, Math.floor(maxMs - (performance.now() - start))));
+          judge.config.timeoutMs = Math.max(1, Math.min(configuredTimeoutMs, Math.floor(maxMs - (performance.now() - start))));
           const stage = task.stages[stageIndex];
           const next = await timed('decision', () => browserStep(ctx, { ...current, driver: driver.kind, session, goal: task.goal, subgoal: stage.goal,
             history: history.slice(-8).map(({ action, stage, progress }) => ({ action, stage, progress })), maxSteps }));
@@ -158,7 +166,7 @@ export function createSession({ workspace, taskId, driver, store, send = hostTra
       runMetrics.runs = 1;
       if (['HOST_AMBIGUOUS_CHOICE', 'HOST_INVARIANT_FAILED', 'HOST_NO_OBSERVED_PROGRESS', 'no_safe_candidate'].includes(reason)) blockedHash = current?.semanticHash || null;
       store.event(project, 'browser_host_run', { driver: driver.kind, status, reason, stageIndex, ...runMetrics, nativeGptUsage: null });
-      return { status, reason, evidence, stageIndex, lastDecision, history: history.slice(-20), snapshot: current?.snapshot || null, stateMayHaveChanged, metrics: runMetrics, sessionMetrics: metrics(), phases,
+      return { status, reason, evidence, stageIndex, lastDecision, history: history.slice(-20), snapshot: current?.snapshot || null, stateMayHaveChanged, metrics: runMetrics, sessionMetrics: metrics(), phases, requestDiagnostics,
         instruction: status === 'needs_verification' ? 'Codex must independently verify the final observed outcome.' : 'Continue with native Codex; observe freshly before any further action, preserve the task and completed work.' };
     },
   };

@@ -57,7 +57,7 @@ export class RequestGuard {
       state.reservations[token] = { allowance, expiresAt };
       this.store.put(this.project, 'task_budget', state, id);
       if (circuit.failures >= cfg.failureThreshold) { circuit.probeToken = token; circuit.probeUntil = expiresAt; this.store.put(this.project, 'circuit', circuit, circuitId); }
-      return { id, circuitId, token, allowance, scope, startedAt: now, generation: circuit.generation || 0 };
+      return { id, circuitId, token, allowance, requestedTimeoutMs: timeoutMs, availableWaitMs: remaining-(priority==='urgent'?0:reserveWait), scope, startedAt: now, generation: circuit.generation || 0 };
     });
   }
   finish(reservation, { status, elapsedMs }) {

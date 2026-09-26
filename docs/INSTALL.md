@@ -28,7 +28,7 @@ The steps are agent-side setup, not commands the user must repeat per task. One-
 
 `node scripts/cli.mjs disable` restores the previous launcher override and preserves data. A normal app restart removes the adapter from future sessions. `enable` restores it. The local dashboard can disable assistance for one project; project memory is off by default and needs user authorization.
 
-Updates preserve installation metadata and keep backups. Unknown runtime versions, damaged adapter files and unavailable Jev retain ordinary Codex execution. See [acceptance](reports/ACCEPTANCE.md) before claiming platform support.
+Updates preserve installation metadata and keep backups. On Windows, an identical launcher is reused without rewriting the running executable. A changed launcher is installed alongside the old file using a content-hash filename; activation and re-enabling use the filename saved in installation metadata. Old launcher files are retained. Normal Codex restart is still needed to load updated adapter code. Unknown runtime versions, damaged adapter files and unavailable Jev retain ordinary Codex execution. See [acceptance](reports/ACCEPTANCE.md) before claiming platform support.
 
 Setup checks Node, curl and ripgrep before modifying the adapter. Once the updated bridge has loaded, adding or replacing a key in the private setup page is picked up at the next Jev routing decision without another restart. An explicitly supplied process environment key takes precedence over the private file.
 

@@ -185,3 +185,15 @@ test('persistent translation churn stops after one refresh and never clicks a st
  const f=fixture(t,{snapshot:(s,n)=>'changed '+n});f.driver.reobserveOnChange=true;
  const r=await f.session.run(f.task);assert.equal(r.reason,'STALE_OBSERVATION');assert.equal(f.clicks(),0);assert.equal(f.requests.length,2);assert.equal(r.snapshot,'changed 3');
 });
+
+test('failed host requests include bounded budget diagnostics without raw secrets',async t=>{
+ const f=fixture(t,{session:{send:async(payload,key,options)=>{
+  options.onTiming({transport:'host_fetch',status:'JEV_TIMEOUT',phase:'waiting_headers',headersMs:null,totalMs:12,privateData:'never expose'});
+  throw Object.assign(Error('secret raw endpoint'),{code:'JEV_TIMEOUT'});
+ }}});
+ const r=await f.session.run(f.task),receipt=summarizeHostResult(r),d=receipt.requestDiagnostics[0];
+ assert.equal(r.reason,'JEV_TIMEOUT');assert.equal(r.metrics.jevRequests,1);assert.equal(r.metrics.unknownUsage,1);assert.equal(f.clicks(),0);
+ assert.equal(d.phase,'waiting_headers');assert.equal(d.taskId,'real-test-task');assert.ok(d.requestId);
+ assert.ok(d.effectiveTimeoutMs<=d.requestedTimeoutMs);assert.ok(d.effectiveTimeoutMs<=d.availableWaitMs);assert.ok(d.configuredTimeoutMs>0);
+ assert.equal(JSON.stringify(receipt).includes('never expose'),false);assert.equal(JSON.stringify(receipt).includes('secret raw endpoint'),false);
+});

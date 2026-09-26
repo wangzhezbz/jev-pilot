@@ -179,18 +179,19 @@ export class Judge {
     catch (error) { this.store.event(this.project, 'judgment_skipped', { purpose, reason: error.code, items: ids.length }); throw error; }
     this.calls++;
     const started = performance.now();
+    const requestDiagnostics = { taskId:this.taskId??null, requestId:reservation.token, requestedTimeoutMs:reservation.requestedTimeoutMs, availableWaitMs:reservation.availableWaitMs, effectiveTimeoutMs:reservation.allowance };
     const task = Promise.resolve().then(async () => {
       let received;
       const usage = () => ({ taskId:this.taskId??null,requestId:reservation.token, model: typeof received?.model === 'string' ? received.model : payload.model,
         ...Object.fromEntries([['inputTokens','input_tokens'],['outputTokens','output_tokens']].map(([key,wire]) =>
           [key, Number.isSafeInteger(received?.usage?.[wire]) && received.usage[wire] >= 0 ? received.usage[wire] : null])) });
       try {
-        received = await this.send(payload, this.key, { timeoutMs: reservation.allowance, signal: this.signal, onTiming: timing=>this.store.event(this.project,'transport_timing',{purpose,...timing}) });
+        received = await this.send(payload, this.key, { timeoutMs: reservation.allowance, signal: this.signal, diagnostics:requestDiagnostics, onTiming: timing=>this.store.event(this.project,'transport_timing',{purpose,...timing,...requestDiagnostics}) });
         const result = validateAnswers(questions, received);
         this.guard.finish(reservation, { status: 'success', elapsedMs: performance.now() - started });
-        this.store.event(this.project, 'jev_call', { purpose, ...usage(), elapsedMs: Math.round(performance.now() - started), questions: ids.length, status: 'success' });
+        this.store.event(this.project, 'jev_call', { purpose, ...usage(), ...requestDiagnostics, elapsedMs: Math.round(performance.now() - started), questions: ids.length, status: 'success' });
         if (this.config.cacheMs > 0) this.store.cachePut(key, result, this.config.cacheMs); return result;
-      } catch (e) { const status=e.code === 'CANCELLED' ? 'cancelled' : 'failed';this.guard.finish(reservation, { status, elapsedMs: performance.now() - started }); this.store.event(this.project, 'jev_call', { purpose, ...usage(), questions: ids.length, elapsedMs: Math.round(performance.now() - started), status, code: e.code || 'UNAVAILABLE' }); throw e; }
+      } catch (e) { const status=e.code === 'CANCELLED' ? 'cancelled' : 'failed';this.guard.finish(reservation, { status, elapsedMs: performance.now() - started }); this.store.event(this.project, 'jev_call', { purpose, ...usage(), ...requestDiagnostics, questions: ids.length, elapsedMs: Math.round(performance.now() - started), status, code: e.code || 'UNAVAILABLE' }); throw e; }
       finally { this.inflight.delete(key); }
     }); this.inflight.set(key, task); return task;
   }

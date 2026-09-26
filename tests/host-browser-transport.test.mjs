@@ -31,3 +31,17 @@ test('host fetch observes its network deadline and reports timing', async () => 
   }) }), /JEV_TIMEOUT/);
   assert.equal(timings.length, 1); assert.equal(timings[0].status, 'JEV_TIMEOUT');
 });
+
+test('timeout diagnostics distinguish waiting for headers from reading a response body',async()=>{
+ const timings=[];
+ await assert.rejects(hostTransport({},'fixture',{timeoutMs:15,onTiming:x=>timings.push(x),fetchImpl:async(url,{signal})=>{
+  return new Response(new ReadableStream({start(controller){
+   const alive=setTimeout(()=>controller.close(),1000);
+   signal.addEventListener('abort',()=>{clearTimeout(alive);controller.error(signal.reason);},{once:true});
+   controller.enqueue(new TextEncoder().encode('{'));
+  }}));
+ }}),/JEV_TIMEOUT/);
+ assert.equal(timings[0].phase,'reading_body');assert.equal(timings[0].effectiveTimeoutMs,15);
+ assert.equal(timings[0].responseBytes,1);assert.ok(timings[0].headersMs>=0);
+ assert.equal(JSON.stringify(timings).includes('fixture'),false);
+});

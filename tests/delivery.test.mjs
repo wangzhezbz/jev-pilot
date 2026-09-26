@@ -175,3 +175,16 @@ test('separate callers share byte and in-flight wait reserves without borrowing 
  assert.equal(d.reserve({bytes:1,timeoutMs:800,model:'fixture',priority:'urgent'}).allowance,200);
  assert.throws(()=>c.reserve({bytes:1,timeoutMs:100,model:'fixture',priority:'urgent'}),{code:'TASK_WAIT_BUDGET'});
 });
+
+test('shared wait-budget clipping is correlated with the exact Jev call',async t=>{
+ const f=fixture(t,async()=>{}),config={...f.config,cacheMs:0,timeoutMs:5000,taskMaxWaitMs:800,taskReservedWaitMs:0};
+ const judge=new Judge({store:f.store,project:f.project,taskId:'correlated-timeout',config,key:'fixture',send:async(p,k,o)=>{
+  assert.equal(o.timeoutMs,800);o.onTiming({transport:'host_fetch',status:'JEV_TIMEOUT',phase:'waiting_headers'});
+  throw Object.assign(Error('JEV_TIMEOUT'),{code:'JEV_TIMEOUT'});
+ }});
+ await assert.rejects(judge.ask({value:'test'},{pick:{type:'choice',instructions:'pick',criteria:{yes:'yes',no:'no'}}}),/JEV_TIMEOUT/);
+ const events=f.store.events(f.project),timing=events.find(e=>e.kind==='transport_timing'),call=events.find(e=>e.kind==='jev_call');
+ assert.equal(timing.requestId,call.requestId);assert.equal(timing.taskId,'correlated-timeout');
+ assert.equal(timing.requestedTimeoutMs,5000);assert.equal(timing.effectiveTimeoutMs,800);assert.equal(timing.availableWaitMs,800);
+ assert.equal(call.inputTokens,null);assert.equal(call.outputTokens,null);
+});
