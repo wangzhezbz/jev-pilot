@@ -1,5 +1,7 @@
 # Windows 官方宿主基线：计算器与 Chrome
 
+本轮已完成，结果见 [基线分析](reports/windows-host-baseline-20260927.md)。后续使用 [定向隔离说明](WINDOWS-HOST-ISOLATION.md)，不要重复本文件的四键测试。
+
 把本文交给 Windows 上的 Codex 执行。本轮承接 WINDOWS_PROGRESS_RESULTS.md，不安装新包、不改插件缓存版本、不重新配置密钥、不主动重启 Codex 或 Chrome。保留当前 JevPilot、模型、推理强度、代理和其他插件配置。本轮不调用 Jev，不做性能 A/B。
 
 ## 为什么要做
