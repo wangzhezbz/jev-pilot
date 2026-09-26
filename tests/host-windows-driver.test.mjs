@@ -56,3 +56,11 @@ test('key bindings cannot target arbitrary apps or system shortcuts',()=>{
   f.options.window.app='win32calc.exe';
   for(const calculatorKeys of [{Seven:'Control_L+r'},{Seven:'7+Return'},{Unapproved:'7'},{}])assert.throws(()=>createComputerUseDriver({...f.options,calculatorKeys}),/INVALID_HOST_KEY_BINDINGS/);
 });
+
+test('only explicit calculator keys retain bounded full-window progress evidence',async()=>{
+ const f=fixture();f.options.window.app='win32calc.exe';f.options.sky.press_key=async()=>{};
+ f.set({...f.get(),window:{id:42,app:'win32calc.exe'},accessibility:{tree:'0 窗口 计算器\n表达式 7 +\n  9 按钮 7 ID: 137'}});
+ const d=createComputerUseDriver({...f.options,scope:raw=>raw.split('\n').at(-1),policy:{allowNames:['7']},calculatorKeys:{'7':'7'}});
+ const o=await d.observe();assert.equal(d.progressRecheck,'calculator_keys');assert.match(o.progressSource.rawSnapshot,/表达式 7 \+/);assert(!o.snapshot.includes('表达式'));assert.ok(o.progressSource.rawChars>o.progressSource.scopedChars);
+ const normal=createComputerUseDriver({...f.options,policy:{allowNames:['7']}});assert.equal(normal.progressRecheck,null);assert.equal((await normal.observe()).progressSource,undefined);
+});

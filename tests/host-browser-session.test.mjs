@@ -197,3 +197,25 @@ test('failed host requests include bounded budget diagnostics without raw secret
  assert.ok(d.effectiveTimeoutMs<=d.requestedTimeoutMs);assert.ok(d.effectiveTimeoutMs<=d.availableWaitMs);assert.ok(d.configuredTimeoutMs>0);
  assert.equal(JSON.stringify(receipt).includes('never expose'),false);assert.equal(JSON.stringify(receipt).includes('secret raw endpoint'),false);
 });
+
+test('calculator delayed AX progress gets one fresh read, not a second key or judgment',async t=>{
+ const f=fixture(t,{session:{maxSteps:1}});f.driver.kind='computer-use';f.driver.progressRecheck='calculator_keys';
+ let reads=0;f.driver.observe=async()=>{reads++;const snapshot=reads>=4?'expression 7 +':'result 7';return{snapshot,semanticHash:hash(snapshot),observedAt:Date.now(),candidates:[{id:'next',text:'Open next view',target:1,op:'click'}]};};
+ const r=await f.session.run(f.task);assert.equal(f.clicks(),1);assert.equal(f.requests.length,1);assert.equal(reads,4);assert.equal(r.progressDiagnostics.rechecked,true);assert.equal(r.history[0].progress,true);
+});
+test('calculator changes outside scope are diagnostic only and never authorize another key',async t=>{
+ const f=fixture(t,{noEffect:true});f.driver.kind='computer-use';f.driver.progressRecheck='calculator_keys';
+ let reads=0;f.driver.observe=async()=>{reads++;const raw=reads>=3?'result 7\nexpression 7 +':'result 7\nexpression empty';return{snapshot:'result 7',semanticHash:hash('result 7'),observedAt:Date.now(),progressSource:{rawSemanticHash:hash(raw),rawChars:raw.length,rawSnapshot:raw},candidates:[{id:'next',text:'Open next view',target:1,op:'click'}]};};
+ const r=await f.session.run(f.task);assert.equal(r.reason,'HOST_NO_OBSERVED_PROGRESS');assert.equal(f.clicks(),1);assert.equal(f.requests.length,1);assert.equal(reads,4);assert.equal(r.progressDiagnostics.scopeMayHideChange,true);
+ const receipt=summarizeHostResult(r);assert(!Object.hasOwn(receipt,'progressObservation'));assert.equal(r.progressObservation.afterRaw,'result 7\nexpression 7 +');
+});
+test('calculator still unchanged stops after one recheck and unchanged resumption costs nothing',async t=>{
+ const f=fixture(t,{noEffect:true});f.driver.kind='computer-use';f.driver.progressRecheck='calculator_keys';
+ const r=await f.session.run(f.task);assert.equal(r.reason,'HOST_NO_OBSERVED_PROGRESS');assert.equal(r.progressDiagnostics.rechecked,true);assert.equal(f.reads(),4);
+ const resumed=await f.session.run(f.task);assert.equal(resumed.reason,'HOST_HANDOFF_STATE_UNCHANGED');assert.equal(f.clicks(),1);assert.equal(f.requests.length,1);
+});
+test('cancel during settling prevents the extra read and any further action',async t=>{
+ const f=fixture(t,{noEffect:true});f.driver.kind='computer-use';f.driver.progressRecheck='calculator_keys';const ac=new AbortController();f.task.signal=ac.signal;
+ const original=f.driver.observe;let reads=0;f.driver.observe=async()=>{const r=await original();if(++reads===3)setTimeout(()=>ac.abort(),10);return r;};
+ const r=await f.session.run(f.task);assert.equal(r.reason,'CANCELLED');assert.equal(reads,3);assert.equal(f.clicks(),1);assert.equal(f.requests.length,1);
+});

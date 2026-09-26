@@ -50,6 +50,7 @@ export function summarizeHostResult(result) {
   };
   if (result.status !== 'needs_verification') {
     if (result.requestDiagnostics?.length) receipt.requestDiagnostics = result.requestDiagnostics.slice(-2);
+    if(result.progressDiagnostics) receipt.progressDiagnostics={...result.progressDiagnostics};
     receipt.snapshot = clip(result.snapshot, 4000, 'snapshot');
     receipt.lastDecision = result.lastDecision ? {
       stage: result.lastDecision.stage, action: clip(result.lastDecision.action, 180, 'action'),
@@ -86,6 +87,7 @@ export function createSession({ workspace, taskId, driver, store, send = hostTra
       requireValue(!contract || contract === task, 'NEW_TASK_REQUIRES_SESSION'); contract = task;
       busy = true; totals.runs++;
       const start = performance.now(), prior = metrics(), phases = [], requestDiagnostics = [], session = id + '-' + totals.runs;
+      let progressDiagnostics=null, progressObservation=null;
       let current, status = 'codex_review_required', reason = null, evidence = null, stateMayHaveChanged = false, lastDecision = null;
       const timed = async (phase, fn) => { const t = performance.now(); try { return await fn(); } finally { phases.push({ phase, ms: performance.now() - t }); } };
       const expired = () => performance.now() - start >= maxMs || task.signal?.aborted;
@@ -153,12 +155,31 @@ export function createSession({ workspace, taskId, driver, store, send = hostTra
           requireValue(action && !action.requiresApproval && !action.destructive, 'HOST_ACTION_CHANGED');
           stateMayHaveChanged = true;
           await timed('execute', () => driver.execute(action)); totals.actions++;
-          const after = await timed('observe', () => driver.observe());
+          let after = await timed('observe', () => driver.observe());
           stateMayHaveChanged = false;
-          const progress = current.semanticHash !== after.semanticHash;
+          let progress = current.semanticHash !== after.semanticHash;
+          let rechecked=false;
+          // Only the explicit Windows calculator key path gets one read-only
+          // settling observation. Never repeat the action or pay for a judgment.
+          if(!progress && driver.kind==='computer-use' && driver.progressRecheck==='calculator_keys' && !expired() && maxMs-(performance.now()-start)>150){
+            await timed('settle',()=>new Promise(resolve=>setTimeout(resolve,150)));
+            if(!expired()){
+              rechecked=true;stateMayHaveChanged=true;
+              after=await timed('reobserve',()=>driver.observe());stateMayHaveChanged=false;
+              progress=current.semanticHash!==after.semanticHash;
+            }
+          }
+          if(driver.progressRecheck==='calculator_keys'){
+            const rawBefore=current.progressSource?.rawSemanticHash,rawAfter=after.progressSource?.rawSemanticHash;
+            progressDiagnostics={rechecked,scopedChanged:progress,rawChanged:rawBefore&&rawAfter?rawBefore!==rawAfter:null,
+              beforeRawChars:current.progressSource?.rawChars??null,afterRawChars:after.progressSource?.rawChars??null,
+              beforeScopedChars:current.snapshot.length,afterScopedChars:after.snapshot.length,
+              scopeMayHideChange:!progress&&Boolean(rawBefore&&rawAfter&&rawBefore!==rawAfter)};
+            if(!progress)progressObservation={beforeScoped:current.snapshot,afterScoped:after.snapshot,beforeRaw:current.progressSource?.rawSnapshot??null,afterRaw:after.progressSource?.rawSnapshot??null};
+          }
           history.push({ action: action.text.slice(0, 1000), stage: stage.id, progress, probability });
           current = after;
-          if (!progress) { reason = 'HOST_NO_OBSERVED_PROGRESS'; break; }
+          if (!progress) { reason = expired() ? (task.signal?.aborted?'CANCELLED':'HOST_TIME_BUDGET') : 'HOST_NO_OBSERVED_PROGRESS'; break; }
         }
       } catch (e) { reason = /^[A-Z][A-Z0-9_]+$/.test(e.code || e.message || '') ? e.code || e.message : 'HOST_DRIVER_ERROR'; }
       finally { totals.elapsedMs += performance.now() - start; if (status !== 'needs_verification') totals.handoffs++; busy = false; }
@@ -166,7 +187,7 @@ export function createSession({ workspace, taskId, driver, store, send = hostTra
       runMetrics.runs = 1;
       if (['HOST_AMBIGUOUS_CHOICE', 'HOST_INVARIANT_FAILED', 'HOST_NO_OBSERVED_PROGRESS', 'no_safe_candidate'].includes(reason)) blockedHash = current?.semanticHash || null;
       store.event(project, 'browser_host_run', { driver: driver.kind, status, reason, stageIndex, ...runMetrics, nativeGptUsage: null });
-      return { status, reason, evidence, stageIndex, lastDecision, history: history.slice(-20), snapshot: current?.snapshot || null, stateMayHaveChanged, metrics: runMetrics, sessionMetrics: metrics(), phases, requestDiagnostics,
+      return { status, reason, evidence, stageIndex, lastDecision, history: history.slice(-20), snapshot: current?.snapshot || null, stateMayHaveChanged, metrics: runMetrics, sessionMetrics: metrics(), phases, requestDiagnostics, progressDiagnostics, progressObservation,
         instruction: status === 'needs_verification' ? 'Codex must independently verify the final observed outcome.' : 'Continue with native Codex; observe freshly before any further action, preserve the task and completed work.' };
     },
   };

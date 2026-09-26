@@ -118,6 +118,7 @@ export function createComputerUseDriver({ sky, app, window, policy, scope, calcu
     let fresh = null;
     return {
       kind: 'computer-use',
+      progressRecheck: keys ? 'calculator_keys' : null,
       reobserveOnChange: Boolean(policy.equivalentNames?.length),
       async observe() {
         fresh = null;
@@ -126,7 +127,11 @@ export function createComputerUseDriver({ sky, app, window, policy, scope, calcu
         // AX-only selection requires indexed tree evidence, never document text
         // or coordinates derived from an unavailable screenshot.
         const observed = observation(state.accessibility?.tree, policy, scope);
-        if (keys) observed.candidates = observed.candidates.filter(c => Object.hasOwn(keys,c.text));
+        if (keys) {
+          observed.candidates = observed.candidates.filter(c => Object.hasOwn(keys,c.text));
+          const raw=state.accessibility.tree;
+          observed.progressSource={rawSemanticHash:hash(semanticState(raw)),rawChars:raw.length,scopedChars:observed.snapshot.length,rawSnapshot:raw.length<=50000?raw:null};
+        }
         fresh = observed.candidates.map(c => ({ ...c }));
         return observed;
       },
