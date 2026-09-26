@@ -29,3 +29,23 @@ test('invalid handles and budgets fail before calling the browser',async()=>{
  await assert.rejects(probeChromeTabs(),/HANDLE/);
  for(const waitMs of [0,45001,NaN,1.5])await assert.rejects(probeChromeTabs({waitMs,browser:{tabs:{list(){throw Error('must not execute');}}}}),/WAIT/);
 });
+
+test('retains original error locally and exports bounded safe cause metadata only',async()=>{
+ const cause=Object.assign(Error('socket failed at https://private.test'),{code:'ECONNRESET'});
+ const original=Object.assign(Error('account secret in C:\\Users\\private\\file',{cause}),{code:'PRIVATE_ACCOUNT_VALUE',status:503});
+ let captured;const events=[];
+ const result=await probeChromeTabs({browser:{tabs:{list:async()=>{throw original;}}},captureError:e=>{captured=e;},emit:e=>events.push(e)});
+ assert.equal(captured,original);assert.equal(captured.cause,cause);assert.equal(result.rawErrorCapturedLocally,true);
+ assert.equal(result.causes[0].code,null);assert.equal(result.causes[0].hasUnexportedCode,true);assert.equal(result.causes[0].httpStatus,503);
+ assert.equal(result.causes[1].code,'ECONNRESET');assert.doesNotMatch(JSON.stringify({result,events}),/private|secret|ACCOUNT|Users/);
+});
+test('cause cycles and throwing local capture do not mask the original failure',async()=>{
+ const error=Error('timeout');error.cause=error;
+ const result=await probeChromeTabs({browser:{tabs:{list:async()=>{throw error;}}},captureError:()=>{throw Error('capture failed');}});
+ assert.equal(result.status,'operation_error');assert.equal(result.rawErrorCapturedLocally,false);assert.equal(result.causes.length,1);assert.equal(result.errorClass,'timeout');
+});
+test('thrown strings are retained locally without leaking messages',async()=>{
+ let captured;
+ const result=await probeChromeTabs({browser:{tabs:{list:async()=>{throw 'private timeout';}}},captureError:e=>{captured=e;}});
+ assert.equal(captured,'private timeout');assert.equal(result.errorClass,'timeout');assert.doesNotMatch(JSON.stringify(result),/private/);
+});

@@ -113,7 +113,9 @@ export function createComputerUseDriver({ sky, app, window, policy, scope, calcu
       requireValue(/(?:^|[\\/])(?:win32calc|CalculatorApp)\.exe$/i.test(bound.app) && typeof sky.press_key === 'function', 'HOST_CALCULATOR_KEYS_UNSUPPORTED');
       requireValue(calculatorKeys && typeof calculatorKeys === 'object' && !Array.isArray(calculatorKeys), 'INVALID_HOST_KEY_BINDINGS');
       keys = Object.freeze({ ...calculatorKeys });
-      requireValue(Object.keys(keys).length > 0 && Object.keys(keys).length <= 20 && Object.entries(keys).every(([name,key]) => policy.allowNames.includes(name) && typeof key === 'string' && /^(?:[0-9]|plus|minus|asterisk|slash|period|Return)$/.test(key)), 'INVALID_HOST_KEY_BINDINGS');
+      // Explicit keypad aliases are distinct host keys, not inferred synonyms.
+      // KP_Multiply has Windows evidence; KP_Add still requires host validation.
+      requireValue(Object.keys(keys).length > 0 && Object.keys(keys).length <= 20 && Object.entries(keys).every(([name,key]) => policy.allowNames.includes(name) && typeof key === 'string' && /^(?:[0-9]|plus|minus|asterisk|slash|period|Return|KP_Multiply|KP_Add)$/.test(key)), 'INVALID_HOST_KEY_BINDINGS');
     }
     let fresh = null;
     return {

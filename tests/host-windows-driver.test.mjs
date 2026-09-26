@@ -54,7 +54,20 @@ test('key bindings cannot target arbitrary apps or system shortcuts',()=>{
   const f=fixture();f.options.sky.press_key=async()=>{};
   assert.throws(()=>createComputerUseDriver({...f.options,calculatorKeys:{Seven:'7'}}),/HOST_CALCULATOR_KEYS_UNSUPPORTED/);
   f.options.window.app='win32calc.exe';
-  for(const calculatorKeys of [{Seven:'Control_L+r'},{Seven:'7+Return'},{Unapproved:'7'},{}])assert.throws(()=>createComputerUseDriver({...f.options,calculatorKeys}),/INVALID_HOST_KEY_BINDINGS/);
+  for(const calculatorKeys of [{Seven:'Control_L+r'},{Seven:'7+Return'},{Seven:'KP_Add+Return'},{Seven:'KP_Delete'},{Unapproved:'7'},{}])assert.throws(()=>createComputerUseDriver({...f.options,calculatorKeys}),/INVALID_HOST_KEY_BINDINGS/);
+});
+
+test('explicit keypad operators survive unchanged and retain fresh-action protection',async()=>{
+ for(const key of ['KP_Multiply','KP_Add']){
+  const f=fixture(),pressed=[];f.options.window.app='win32calc.exe';
+  f.set({...f.get(),window:{id:42,app:'win32calc.exe'},accessibility:{tree:'0 窗口 计算器\n  27 按钮 运算 ID: 92'}});
+  f.options.sky.press_key=async x=>pressed.push(x);
+  const d=createComputerUseDriver({...f.options,policy:{allowNames:['运算']},calculatorKeys:{'运算':key}});
+  const o=await d.observe();await d.execute(o.candidates[0]);
+  assert.deepEqual(pressed,[{window:{id:42,app:'win32calc.exe'},key}]);
+  await assert.rejects(d.execute(o.candidates[0]),/HOST_FRESH_ALLOWED_ACTION_REQUIRED/);
+  assert.equal(d.progressRecheck,'calculator_keys');assert(!f.calls.some(c=>c[0]==='click'));
+ }
 });
 
 test('only explicit calculator keys retain bounded full-window progress evidence',async()=>{
