@@ -1,60 +1,66 @@
 <p align="center"><img src="assets/hero.en.2f6ccfcbe0bf.svg" width="100%" alt="JevPilot" /></p>
 
-<p align="center">
-  <a href="#availability"><img src="assets/windows.svg" width="32%" alt="Windows — Preview · See status" /></a>
-  <a href="#availability"><img src="assets/macos.svg" width="32%" alt="macOS — Preview · See status" /></a>
-  <a href="#availability"><img src="assets/linux.svg" width="32%" alt="Linux — Preview · See status" /></a>
-</p>
+<p align="center"><a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-windows-x64.zip"><img src="assets/windows.svg?v=preview20260926" width="32%" alt="windows x64 — Download preview" /></a>
+<a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-macos-arm64.zip"><img src="assets/macos.svg?v=preview20260926" width="32%" alt="macos arm64 — Download preview" /></a>
+<a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-linux-x64.zip"><img src="assets/linux.svg?v=preview20260926" width="32%" alt="linux x64 — Download preview" /></a></p>
 
-<p align="center"><strong>English</strong> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a></p>
+<p align="center">[English](README.md) · [简体中文](README.zh-CN.md) · [Русский](README.ru.md) · [日本語](README.ja.md) · [한국어](README.ko.md)</p>
 
 # JevPilot
 
-**One plugin for your usual Codex workflow.**
+**One plugin. Your usual Codex workflow. Let Jev handle bounded decisions while Codex plans, builds and verifies.**
 
-Runnable development preview. All 14 modules share one MCP entry point, one implicit skill and a desktop adapter. Codex plans, implements and verifies; Jev handles bounded decisions.
+[Other architectures and checksums](https://github.com/wangzhezbz/jev-pilot/releases/tag/preview-20260926) · [macOS Intel](https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-macos-x64.zip) · [Windows ARM64](https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-windows-arm64.zip) · [Linux ARM64](https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-linux-arm64.zip)
 
-Latest [comprehensive benchmark (Chinese)](docs/reports/comprehensive-20260925/README.zh-CN.md): 36 native model tasks and 10 real UI runs, with all final task checks passing. Results differ by model and workflow; Astra regressions, browser handoffs and budget fallback are retained alongside positive results. CSV, native usage and reproducible protocols are included.
+macOS desktop tested · Windows/Linux preview: builds and CI verified, desktop validation pending. Unsigned ZIPs; Node 24+, curl and ripgrep required.
 
-## Capabilities
+## How it works
 
-| # | Feature | Description |
-| :--- | :--- | :--- |
-| 1 | **Automatic judgments** | Batch bounded choices, cache repeated decisions and fall back to Codex. |
-| 2 | **Actual effort routing** | Change real request effort, retain the selected model and record native receipts. |
-| 3 | **Search and file screening** | Rank source-linked candidates and show omitted evidence. |
-| 4 | **Recoverable output filtering** | Retain useful passages; saved originals remain available. |
-| 5 | **Tool and skill selection** | Shortlist relevant tools while preserving required and uncertain candidates. |
-| 6 | **Failure recovery** | Classify observed failures and stop repeated ineffective actions. |
-| 7 | **Evidence and quality checks** | Check real execution receipts, current sources, content rules and translations. |
-| 8 | **Chrome and Computer Use** | Coordinate existing drivers with fresh observations, one-use tickets and independent verification. |
-| 9 | **Project memory** | Opt-in, source-backed memory with expiry, conflict handling and revocation. |
-| 10 | **Real metrics** | Separate Jev overhead, native usage and actual effort changes. |
-| 11 | **Context handoff** | Create recoverable compact handoffs; preserve constraints and unfinished work. |
-| 12 | **Change review and tests** | Triage changes and prioritize tests without dropping mandatory checks. |
-| 13 | **Checkpoints and resume** | Save milestones and revalidate files before continuing. |
-| 14 | **Exact-source extraction** | Extract original spans; report missing and ambiguous fields. |
+Describe the task as usual. JevPilot assists with suitable decisions, evidence and UI steps; Codex remains responsible for complex reasoning and final verification. No extra component skills, separate task runner or repeated trigger phrase.
 
-<a id="availability"></a>
+## Measured examples
 
-## Availability and use
+| Scenario | Time | GPT tokens | Estimated cost including Jev |
+|---|---:|---:|---:|
+| Document review | −40.03% | −23.88% | −33.69% |
+| Computer Use navigation | −47.64% | −57.14% | −56.52% |
 
-Node 24+, curl and rg are required for this preview. Install the plugin once, configure your own TypeSafe key locally, and let Codex handle setup. Ordinary tasks need no extra trigger or separate runner. See the [setup guide](docs/FEATURES.md).
+Selected measured examples, two pairs per scenario on macOS. UI figures cover the operation window in a long conversation; costs use the 2026-09-24 API-equivalent price snapshot. These are scenario-specific observations, not guaranteed savings. [Data & methodology](docs/reports/targeted-20260925/README.zh-CN.md) · [All reports](https://github.com/wangzhezbz/jev-pilot/tree/main/docs/reports)
 
-Portable tests pass on macOS, Windows and Linux. Native macOS engine routing and Computer Use were exercised. Windows/Linux desktop sessions still need device acceptance. The real Chrome extension now passes Jev selection, a single click and independent page verification with TUN off. Plugin proxy inheritance is repaired without modifying Codex binaries. Public signed installers are not released.
+## 14 capabilities
 
-## Evidence and limits
+| # | Capability | What it does |
+|---:|---|---|
+| 1 | **Automatic judgments** | Batch classification, choices and reusable decisions. |
+| 2 | **Adaptive reasoning effort** | Adjust actual request effort while keeping your model. |
+| 3 | **Search and file screening** | Find relevant candidates with source locations. |
+| 4 | **Recoverable output filtering** | Read useful evidence first and recall the original. |
+| 5 | **Tool and skill selection** | Keep required tools and select relevant options. |
+| 6 | **Failure recognition and recovery** | Bound retries and hand uncertain work back to Codex. |
+| 7 | **Evidence and quality checks** | Check execution receipts, rules and translations. |
+| 8 | **Chrome and Computer Use** | Delegate scoped multi-step clicks through existing host plugins. |
+| 9 | **Project memory** | Opt-in memory with sources, expiry and revocation. |
+| 10 | **Usage and effects** | Track GPT/Jev usage, cost estimates and actual effort changes. |
+| 11 | **Context handoffs** | Prepare recoverable, lossless shared-text handoffs. |
+| 12 | **Change review and test selection** | Prioritize changes while retaining mandatory tests. |
+| 13 | **Checkpoints and resume** | Save progress and revalidate changed files before continuing. |
+| 14 | **Exact-source extraction** | Return original spans; mark missing or ambiguous fields. |
 
-Recoverable context handoff does not replace native conversation history or reclaim existing tokens. No universal speed, token or quota savings are claimed. See the [acceptance report](docs/reports/ACCEPTANCE.md), [feature boundaries](docs/FEATURES.md) and [roadmap](docs/ROADMAP.md).
+## Install once, then work normally
 
-The main model remains the one selected by the user; automatic substitution with a smaller model is not enabled. See the [model-preservation policy](docs/MODEL-PRESERVATION.md). The earlier [matched-entry effort comparison](docs/reports/matched-routing-20260924/README.zh-CN.md) attempted 4 tasks: 3 passed and 1 reached its deadline; routing gains remain unproven. The [fixed-model delegation comparison](docs/reports/delegation-ab-20260924/README.zh-CN.md) passed 4/4: known GPT + Jev tokens −9.74%, time +12.60%, uncached GPT input +43.77%. These component results do not establish desktop speedups or quota savings. New reports are in Chinese; the [earlier 12-run comparison](docs/reports/factorial-20260924/README.md) is retained.
+1. Download and extract the ZIP for your OS and CPU.
+2. Open Codex and send the installation request below. Codex checks dependencies and installs the plugin.
+3. Enter your own TypeSafe key privately on the local setup page, then restart Codex normally.
+4. Continue asking for work as usual. Chrome/Computer Use features use their existing official plugins.
 
-New [evidence handoff optimization report](docs/reports/evidence-handoff-20260924/README.md): all four component runs passed, with mean selection latency −50.17% and equal Jev token usage. This is not an end-to-end Codex speedup. Coverage-aware text, targeted recall and compact output are implemented.
+> Install JevPilot from this extracted folder as a personal Codex plugin. Check dependencies and runtime compatibility, open the local page for me to enter my TypeSafe key privately, configure the desktop adapter, and verify it after restart. Preserve my selected model and other plugins.
 
-JevPilot is licensed under [MIT](LICENSE). Independent community project, not an official OpenAI or TypeSafe product.
+### Install from GitHub
 
-Cost regression follow-up: [v11 investigation and real-model pilot (Chinese)](docs/reports/cost-fix-20260923/README.zh-CN.md). Automatic effort is capped at the user setting, and automatic filtering cannot defer relevant evidence to meet a size budget. Stable efficiency gains remain unproven.
+> Install JevPilot from https://github.com/wangzhezbz/jev-pilot as one personal Codex plugin. Check dependencies and compatibility, guide private TypeSafe key setup, and verify activation after restart.
 
-Further investigation: [deep cost audit and bounded fixes (Chinese)](docs/reports/deep-audit-20260923/README.zh-CN.md), covering duplicate evidence bodies, ineffective reassessment, input limits, and desktop benchmark gaps.
+[Installation details](docs/INSTALL.md) · [TypeSafe](https://typesafe.ai/)
 
-Functional audit: [v15 regression fixes and exact token accounting (Chinese)](docs/reports/functional-audit-20260923/README.zh-CN.md). Removes routing pauses that missed task changes and failures; preserves bounded budgets. Whole-task savings remain unproven.
+## Project status
+
+Development preview · MIT · English / 简体中文 / Русский / 日本語 / 한국어. Project memory is opt-in. Context handoffs do not rewrite native conversation history. Independent community project; not an official OpenAI or TypeSafe product.

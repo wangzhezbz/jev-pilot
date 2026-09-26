@@ -6,7 +6,7 @@ This is one Codex plugin. It bundles its own skill, MCP server and removable des
 
 Open a normal Codex task and ask:
 
-> Install JevPilot from https://github.com/wangzhezbz/jev-pilot, branch codex/jev-pilot-integration, as one personal plugin. Check prerequisites, configure the removable desktop adapter, and verify the installation. Keep my existing model and normal conversation workflow. Open the local setup page so I can enter my own TypeSafe key privately.
+> Install JevPilot from https://github.com/wangzhezbz/jev-pilot, latest preview release, as one personal plugin. Check prerequisites, configure the removable desktop adapter, and verify the installation. Keep my existing model and normal conversation workflow. Open the local setup page so I can enter my own TypeSafe key privately.
 
 The agent performs the one-time work below. After setup and a normal desktop restart, keep giving normal tasks. Semantic assistance is dispatched by the implicit skill; effort routing and eligible tool-output filtering run in the desktop bridge. The tool registry in an already-open task may need a new task to discover newly installed MCP tools.
 
@@ -14,7 +14,7 @@ Never paste a key into a public issue, repository or shell argument. The local d
 
 ## Agent / developer procedure
 
-1. Check Node 24+, `curl`, `rg` and the installed Codex runtime. The currently verified wire version is `codex-cli 0.155.0-alpha.9.2`. Preserve ordinary Codex behavior on other versions.
+1. Check Node 24+, `curl`, `rg` and the installed Codex runtime. Verified wire versions are `codex-cli 0.155.0-alpha.9.2`, `0.155.0-alpha.16.3` and `0.155.0-alpha.16.4`. Preserve ordinary Codex behavior on other versions.
 2. Obtain the repository at a fixed revision. If building from source, Go is also needed to build the native launcher. CI development archives include a launcher for their build platform and do not require consumer-side Go.
 3. Use Codex's bundled **plugin-creator** skill to register this folder as `jev-pilot` in the user's personal marketplace. Follow that skill's helper-based registration and validation flow; do not replace the user's marketplace or other plugins. The repository has both portable and Codex compatibility manifests.
 4. Install `jev-pilot@personal` with Codex's plugin command. Check actual native MCP discovery: the `jev_pilot` tool must be present, not merely a manifest on disk.

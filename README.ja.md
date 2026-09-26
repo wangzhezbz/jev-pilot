@@ -1,56 +1,66 @@
 <p align="center"><img src="assets/hero.ja.31dd4496d610.svg" width="100%" alt="JevPilot" /></p>
 
-<p align="center">
-  <a href="#availability"><img src="assets/windows.ja.svg" width="32%" alt="Windows — 開発プレビュー · 状況" /></a>
-  <a href="#availability"><img src="assets/macos.ja.svg" width="32%" alt="macOS — 開発プレビュー · 状況" /></a>
-  <a href="#availability"><img src="assets/linux.ja.svg" width="32%" alt="Linux — 開発プレビュー · 状況" /></a>
-</p>
+<p align="center"><a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-windows-x64.zip"><img src="assets/windows.ja.svg?v=preview20260926" width="32%" alt="windows x64 — プレビューをダウンロード" /></a>
+<a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-macos-arm64.zip"><img src="assets/macos.ja.svg?v=preview20260926" width="32%" alt="macos arm64 — プレビューをダウンロード" /></a>
+<a href="https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-linux-x64.zip"><img src="assets/linux.ja.svg?v=preview20260926" width="32%" alt="linux x64 — プレビューをダウンロード" /></a></p>
 
-<p align="center"><a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.ru.md">Русский</a> · <strong>日本語</strong> · <a href="README.ko.md">한국어</a></p>
+<p align="center">[English](README.md) · [简体中文](README.zh-CN.md) · [Русский](README.ru.md) · [日本語](README.ja.md) · [한국어](README.ko.md)</p>
 
 # JevPilot
 
-**いつもの Codex に、ひとつのプラグイン。**
+**ひとつのプラグインで、いつもの Codex を。小さな判断は Jev が支援し、計画・実装・最終確認は Codex が担当します。**
 
-実行可能な開発プレビューです。14 モジュールをひとつの MCP、ひとつの自動呼び出し Skill、デスクトップアダプターに統合しました。計画・実装・検証は Codex が、範囲の限られた判断は Jev が担当します。
+[他のアーキテクチャとチェックサム](https://github.com/wangzhezbz/jev-pilot/releases/tag/preview-20260926) · [macOS Intel](https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-macos-x64.zip) · [Windows ARM64](https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-windows-arm64.zip) · [Linux ARM64](https://github.com/wangzhezbz/jev-pilot/releases/download/preview-20260926/jev-pilot-linux-arm64.zip)
 
-最新の[総合検証レポート（中国語）](docs/reports/comprehensive-20260925/README.zh-CN.md)：実モデルのタスク36回と実際のUI操作10回を検証。効果はモデルと用途によって異なり、遅くなった結果やフォールバックも公開しています。CSVと実測の使用量を収録しています。
+macOS は実機検証済み。Windows/Linux はビルドと CI を確認済み、デスクトップ実機検証は未完了。未署名 ZIP。Node 24+、curl、ripgrep が必要です。
 
-## 全 14 機能
+## いつもの作業をそのまま
 
-| # | 機能 | 役割 |
-| :--- | :--- | :--- |
-| 1 | **自動判断** | 候補が明確な判断をまとめて処理し、キャッシュと Codex へのフォールバックに対応。 |
-| 2 | **推論強度の自動調整** | 選択モデルを維持し、実際のリクエストの強度を変更して適用結果を記録。 |
-| 3 | **検索・ファイル選別** | 出典付きの候補を関連度で選び、省略範囲も表示。 |
-| 4 | **復元可能な出力フィルター** | 長い出力の要点を残し、原文を保存して再読可能に。 |
-| 5 | **ツール・Skill 選択** | 適切な候補を絞り、必須・不確実な候補を維持。 |
-| 6 | **失敗分析と復旧** | 観測したエラーを分類し、効果のない再試行を防止。 |
-| 7 | **完了証拠と品質確認** | 実行結果、出典の鮮度、内容ルール、翻訳の整合性を確認。 |
-| 8 | **Chrome・Computer Use 連携** | 既存プラグインと連携し、最新の画面状態と一度限りの操作票で実行後も検証。 |
-| 9 | **プロジェクト記憶** | 同意に基づき、出典・期限・矛盾・撤回を管理。 |
-| 10 | **実測統計** | Jev の負荷、実行環境の使用量、実際の強度変更を別々に記録。 |
-| 11 | **コンテキストの圧縮と引き継ぎ** | 制約と未完了作業を保持し、復元可能な引き継ぎを作成。 |
-| 12 | **変更レビューとテスト選択** | 必須テストを省略せず、確認すべき変更を優先。 |
-| 13 | **チェックポイントと再開** | 進捗を保存し、再開前にファイル変更を検証。 |
-| 14 | **原文からの正確な抽出** | 原文の範囲と位置を返し、不明・曖昧な項目を明示。 |
+通常どおり依頼するだけ。JevPilot が判断、資料の選別、画面操作を支援します。多数の Skill や専用の起動フレーズは不要です。
 
-<a id="availability"></a>
+## 実測例
 
-## 対応状況と使い方
+| シナリオ | 所要時間 | GPT トークン | Jev 込みの推定費用 |
+|---|---:|---:|---:|
+| 文書の選別 | −40.03% | −23.88% | −33.69% |
+| Computer Use の連続操作 | −47.64% | −57.14% | −56.52% |
 
-このプレビューには Node 24+、curl、rg が必要です。プラグインを一度導入し、自分の TypeSafe Key をローカルで設定して、セットアップを Codex に任せます。普段の作業に専用の起動や合言葉は不要です。[利用ガイド](docs/FEATURES.md)を参照してください。
+選定した実測例。macOS で各 2 組の比較。UI は長い会話の操作区間を計測、費用は 2026-09-24 の API 価格に基づく推定です。すべての作業で同じ効果を保証するものではありません。 [Data & methodology](docs/reports/targeted-20260925/README.zh-CN.md) · [All reports](https://github.com/wangzhezbz/jev-pilot/tree/main/docs/reports)
 
-共通テストは macOS・Windows・Linux で成功しました。macOS の実際の Codex エンジンと Computer Use を検証済みです。Windows/Linux のデスクトップは実機検証が残っています。実際の Chrome 拡張で、TUN を無効にした状態で Jev の判断、1 回の操作、ページの確認に成功しました。プロキシ継承はプラグイン設定のみで修復し、Codex 本体は変更しません。署名済みの公開インストーラーは未公開です。
+## 14 の機能
 
-## 検証と制約
+| # | 機能 | できること |
+|---:|---|---|
+| 1 | **自動判断** | 分類や候補選択をまとめて処理し、判断を再利用。 |
+| 2 | **推論強度の自動調整** | 選択したモデルを保ち、実際のリクエスト強度を調整。 |
+| 3 | **検索とファイル選別** | 出典の位置を保ちながら関連資料を選別。 |
+| 4 | **復元可能な出力フィルター** | 重要な証拠を先に読み、原文を必要時に取得。 |
+| 5 | **ツールと Skill の選択** | 必須ツールを保持し、適切な候補を選択。 |
+| 6 | **失敗の認識と復旧** | 再試行を制限し、不確実な場合は Codex に引き継ぐ。 |
+| 7 | **証拠と品質の確認** | 実行結果、内容ルール、翻訳の整合性を確認。 |
+| 8 | **Chrome と Computer Use** | 既存の公式プラグインで範囲を限定した連続クリック。 |
+| 9 | **プロジェクトメモリ** | 同意に基づく保存。出典、有効期限、取り消しに対応。 |
+| 10 | **使用量と効果の計測** | GPT/Jev の使用量、推定費用、実際の強度変更を記録。 |
+| 11 | **コンテキストの引き継ぎ** | 繰り返しを可逆表現にまとめ、原文を保持。 |
+| 12 | **変更レビューとテスト選択** | 必須テストを保持し、関連する変更を優先。 |
+| 13 | **チェックポイントと再開** | 進捗を保存し、ファイルの変更を確認して再開。 |
+| 14 | **原文の正確な抽出** | 原文の位置を返し、欠落や曖昧さを明示。 |
 
-コンテキストの引き継ぎはネイティブ履歴を書き換えず、消費済みトークンを回収しません。速度・トークン・利用枠の一律の節約率は約束しません。[検証報告](docs/reports/ACCEPTANCE.md)、[機能の境界](docs/FEATURES.md)、[今後の計画](docs/ROADMAP.md)をご覧ください。
+## 一度設定して、いつもどおり使う
 
-主モデルはユーザーが選んだモデルを維持し、小さいモデルへの自動置換は有効にしていません。[モデル維持方針](docs/MODEL-PRESERVATION.md)をご覧ください。最新の[同一条件での推論強度比較](docs/reports/matched-routing-20260924/README.zh-CN.md)は4回試行し、3回合格、1回は制限時間に到達。ルーティングの利益は未確認です。[固定モデルでの委譲比較](docs/reports/delegation-ab-20260924/README.zh-CN.md)は4/4合格。Jevを含む既知の総トークンは −9.74%、時間は +12.60%、GPTの非キャッシュ入力は +43.77%でした。コンポーネント試験のため、デスクトップの高速化や利用枠の節約を示すものではありません。新しいレポートは中国語です。[以前の比較](docs/reports/factorial-20260924/README.md)も残しています。
+1. OS と CPU に合う ZIP をダウンロードして展開。
+2. 下の依頼文と展開先を Codex に送信。
+3. ローカル設定画面で自分の TypeSafe Key を入力し、Codex を再起動。
+4. あとは通常どおり依頼。画面操作には既存の公式 Chrome / Computer Use プラグインを使用。
 
-追加の[証拠の選別・引き渡し最適化レポート（英語）](docs/reports/evidence-handoff-20260924/README.md)：コンポーネント試験4回すべて合格、平均選別時間 −50.17%、Jevトークン数は同じでした。Codexタスク全体の高速化を示すものではありません。網羅範囲の説明、原文の部分的な再取得、出力の簡素化を実装しました。
+> この展開フォルダーの JevPilot を個人用 Codex プラグインとしてインストールしてください。依存関係と互換性を確認し、TypeSafe Key を私が非公開で入力できるローカル設定画面を開いてください。アダプターを設定し、再起動後に有効化を確認してください。選択したモデルと他のプラグインは維持してください。
 
-JevPilot は [MIT ライセンス](LICENSE)で公開しています。OpenAI や TypeSafe の公式製品ではない独立したコミュニティプロジェクトです。
+### GitHub から直接インストール
 
-機能再検証：[v15 の修正とトークン内訳（中国語）](docs/reports/functional-audit-20260923/README.zh-CN.md)。新しいタスクやエラーの再評価を妨げる休止を撤回し、呼び出し上限を維持しました。全体の高速化・削減は未確認です。
+> https://github.com/wangzhezbz/jev-pilot から JevPilot を個人用 Codex プラグインとしてインストールし、依存関係と互換性を確認してください。TypeSafe Key の非公開設定と再起動後の確認も案内してください。
+
+[詳しいインストール手順](docs/INSTALL.md) · [TypeSafe](https://typesafe.ai/)
+
+## プロジェクトの状態
+
+開発プレビュー · MIT · 5 言語。プロジェクトメモリは同意が必要です。引き継ぎは元の会話履歴を書き換えません。OpenAI や TypeSafe の公式製品ではありません。

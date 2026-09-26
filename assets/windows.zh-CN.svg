@@ -1,9 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="400" height="112" viewBox="0 0 400 112" role="img" aria-labelledby="title" lang="zh-CN">
-  <title id="title">Windows — 开发预览 · 查看状态</title>
+  <title>windows — 下载预览版</title>
   <rect x="1" y="1" width="398" height="110" rx="16" fill="#f2f4f7" stroke="#c9d0da" />
   <path d="M29 35h17v17H29zm21 0h17v17H50zM29 56h17v17H29zm21 0h17v17H50z" fill="#1c2633" />
   <text x="90" y="48" font-family="Arial,&quot;PingFang SC&quot;,&quot;Microsoft YaHei&quot;,sans-serif" font-size="24" font-weight="700" fill="#1c2633">Windows</text>
-  <text x="90" y="76" font-family="Arial,&quot;PingFang SC&quot;,&quot;Microsoft YaHei&quot;,sans-serif" font-size="15" fill="#526176">开发预览 · 查看状态</text>
-  <circle cx="359" cy="55" r="10" fill="none" stroke="#718094" stroke-width="1.5" />
-  <path d="M359 49v7h5" fill="none" stroke="#718094" stroke-width="1.5" />
-</svg>
+  <text x="90" y="76" font-family="Arial,&quot;PingFang SC&quot;,&quot;Microsoft YaHei&quot;,sans-serif" font-size="15" fill="#526176">下载预览版</text>
+  <path d="M359 43v24m-8-8 8 8 8-8" fill="none" stroke="#1c2633" stroke-width="2"/></svg>
