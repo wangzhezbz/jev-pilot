@@ -2,9 +2,17 @@
 
 ## Prepare before presentation
 
-`jev_evidence` is a separate read-only tool. It accepts `investigate`, `prepare`, `select` and `recall`, with the usual `{workspace,operation,input}` envelope. Preparation accepts `{goal,value,source?,exact?,taskId?}` or `{goal,path,exact?,taskId?}` and returns `{value,selection}`. The `value` preserves the input envelope, exit code and metadata; only a supported text field may be shortened. Failed/unfinished commands, structured data, images, exact text, code files, small inputs, insufficient reduction, disabled Jev or judgment failure return the original. File permissions and private-path checks still apply. Jev receives eligible evidence under the existing credential and request budget.
+`jev_evidence` is a separate read-only tool. It accepts `read`, `investigate`, `prepare`, `select` and `recall`, with the usual `{workspace,operation,input}` envelope. Preparation accepts `{goal,value,source?,exact?,taskId?}` or `{goal,path,exact?,taskId?}` and returns `{value,selection}`. The `value` preserves the input envelope, exit code and metadata; only a supported text field may be shortened. Failed/unfinished commands, structured data, images, exact text, code files, small inputs, insufficient reduction, disabled Jev or judgment failure return the original. File permissions and private-path checks still apply. Jev receives eligible evidence under the existing credential and request budget.
 
 The evidence MCP envelope carries one JSON text block, not a second copy in `structuredContent`; the parsing example below supports both old and new versions. Advanced `jev_pilot` envelopes keep their existing shape. Repeated numeric key=value `.log` lines may use lossless `[=N# digits|digits|...]` templates: every line, original numeric string (including leading zeros), source position and exception remains. Code verifies exact expansion before returning this representation, and full recall restores the original bytes. This local path makes no Jev judgment. For broad review, choose preparation first; don't routinely search, prepare and reread the same source. Inspect literal templates and exceptions together; original recall remains available when an exact detail is needed.
+
+## Exact bounded reading
+
+`read {path,startLine?:1,maxLines?:80,budget?:12000}` reads a workspace UTF-8 file (at most 1 MB) without Jev. It returns verbatim lines, path/hash, `artifactId`, `nextLine` and `completeFile`. The budget includes the JSON result and metadata, up to 100000 bytes. It does not classify or discard errors: anything outside the displayed range is explicitly unread. Follow `read {artifactId,startLine:nextLine}` for a stable snapshot even if the live file changes. Use `path` to obtain a new snapshot before edits or final verification. Paths use the same workspace/private-file checks as other evidence operations.
+
+A single line exceeding the budget yields `line_exceeds_budget` with no text; choose a targeted native character lookup or a larger budget. Do not keep retrying that page. Missing files, out-of-workspace paths, invalid encoding, binary data and invalid ranges fail explicitly. Source text appears once. Paging every line is not inherently cheaper than reading a whole file: use the range needed for the current decision and inspect additional context when required.
+
+For ordinary source inspection, search discriminating literal terms then read their windows. For test/diagnostic commands, retain full output locally and show status, totals and failures; do not hide failed checks. Each result in a batch needs its own output limit. Browser/Computer Use media and structured contracts retain their official handling and independent outcome verification.
 
 ## Investigate in one call
 

@@ -3,19 +3,21 @@
 import {isAbsolute} from 'node:path';
 export const evidenceTool={
   name:'jev_evidence',
-  description:'Read-only evidence; no skill/status prerequisite. prepare {goal,path} filters a large text file; prepare {goal,value,source} handles an existing result in the same exec cell: retain raw data, emit returned value. investigate {goal,queries,paths?} finds literal windows, not exhaustive semantic coverage. select {goal,items} filters candidates. recall {artifactId,ids?} or {artifactId,query} recovers saved originals; follow nextOffset. Use native tools for small/exact reads, code/JSON, media and unfinished output. On failure use original/native tools. No execution authority.',
+  description:'Read-only evidence; no skill/status prerequisite. read {path,startLine?,maxLines?,budget?} returns exact bounded code/text, no Jev cost; follow nextLine with artifactId for the same snapshot. Prefer focused windows over whole-file dumps. prepare {goal,path} filters a large text file; prepare {goal,value,source} handles an existing result in the same exec cell: retain raw data, emit returned value. investigate {goal,queries,paths?} finds literal windows, not exhaustive semantic coverage. select {goal,items} filters candidates. recall {artifactId,ids?} or {artifactId,query} recovers saved originals; follow nextOffset. Use native tools for small/exact reads, code/JSON, media and unfinished output. On failure use original/native tools. No execution authority.',
   annotations:{readOnlyHint:true,destructiveHint:false,openWorldHint:false},
-  inputSchema:{type:'object',properties:{workspace:{type:'string',description:"Absolute task working directory (use the task's cwd; never '.')."},operation:{type:'string',enum:['prepare','select','recall','investigate']},input:{type:'object',properties:{
+  inputSchema:{type:'object',properties:{workspace:{type:'string',description:"Absolute task working directory (use the task's cwd; never '.')."},operation:{type:'string',enum:['prepare','select','recall','investigate','read']},input:{type:'object',properties:{
     goal:{type:'string',description:'Evidence needed for this task.'},
     queries:{type:'array',items:{type:'string'},minItems:1,maxItems:6,description:'Investigate: literal terms, case-insensitive OR.'},
     paths:{type:'array',items:{type:'string'},maxItems:20,description:'Investigate: paths, default ["."], rg visibility.'},
     contextLines:{type:'integer',minimum:0,maximum:40,description:'Investigate: surrounding lines, default 8.'},
     maxMatches:{type:'integer',minimum:1,maximum:400,description:'Investigate: matching-line limit, default 200.'},
     selection:{type:'string',enum:['auto','local'],description:'Investigate: auto (default) or local only.'},
-    path:{type:'string',description:'Prepare: workspace text file; path OR value.'},
+    path:{type:'string',description:'Read/prepare: workspace text file. Read path OR artifactId; prepare path OR value.'},
+    startLine:{type:'integer',minimum:1,description:'Read: first line, default 1; continue using nextLine.'},
+    maxLines:{type:'integer',minimum:1,maximum:400,description:'Read: maximum lines, default 80; UTF-8 JSON budget also applies.'},
     value:{description:'Prepare: completed original result; retain raw value.'},
     items:{type:'array',items:{type:'object',properties:{id:{type:'string'},text:{type:'string'}},required:['id','text'],additionalProperties:true},description:'Select: candidates with source/status metadata.'},
-    budget:{type:'integer',minimum:128,maximum:500000,description:'UTF-8 output bytes; investigate maximum 100000.'},
+    budget:{type:'integer',minimum:128,maximum:500000,description:'UTF-8 output bytes; read 1024–100000, default 12000 including metadata; investigate maximum 100000.'},
     source:{type:'string',description:'Source path/tool for value.'},
     taskId:{type:'string',description:'Real host task ID, if available.'},
     artifactId:{type:'string',description:'Saved artifact ID.'},
@@ -27,7 +29,7 @@ export const evidenceTool={
   },additionalProperties:true}},required:['workspace','operation','input'],additionalProperties:false},
 };
 export function evidenceArguments(args){
-  if(!args||!Object.hasOwn({prepare:1,select:1,recall:1,investigate:1},args.operation))throw Object.assign(new Error('READ_ONLY_OPERATION_REQUIRED'),{code:'READ_ONLY_OPERATION_REQUIRED'});
+  if(!args||!Object.hasOwn({prepare:1,select:1,recall:1,investigate:1,read:1},args.operation))throw Object.assign(new Error('READ_ONLY_OPERATION_REQUIRED'),{code:'READ_ONLY_OPERATION_REQUIRED'});
   if(typeof args.workspace!=='string'||!isAbsolute(args.workspace))throw Object.assign(new Error('WORKSPACE_ABSOLUTE_REQUIRED'),{code:'WORKSPACE_ABSOLUTE_REQUIRED'});
   return{workspace:args.workspace,operation:({prepare:'prepare_output',recall:'recall_output'})[args.operation]??args.operation,input:args.input};
 }

@@ -11,13 +11,14 @@ import {activity} from './activity.mjs';
 import { diagnostics } from './diagnostics.mjs';
 import {prepareOutput,recallOutput} from './prepare-output.mjs';
 import {investigate} from './investigate.mjs';
+import {readWindow} from './read-window.mjs';
 import {taskMetrics} from './task-metrics.mjs';
 
 export const operations = {
   installation_plan:()=>installationPlan(),compatibility_probe:()=>compatibilityProbe(),activity, diagnostics, evaluate_policy: evaluatePolicy,
   desktop_status: desktopStatus, desktop_metrics: desktopMetrics,
   browser_network: (ctx, input) => browserNetwork({ repair: input.repair === true }),
-  decide: workflow.decide, select: evidence.selectEvidence, search: evidence.search, investigate,
+  decide: workflow.decide, select: evidence.selectEvidence, search: evidence.search, investigate, read:readWindow,
   filter_output: evidence.filterOutput, recall: evidence.recall, select_tools: workflow.selectTools,
   prepare_output: prepareOutput, recall_output: recallOutput,
   recover: workflow.recoverFailure, quality: workflow.quality, run_checks: evidence.runChecks,
