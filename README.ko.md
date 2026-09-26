@@ -14,27 +14,43 @@
 
 평소처럼 요청하면 JevPilot이 판단, 자료 선별, 화면 조작을 돕습니다. 여러 Skill이나 별도 실행기, 매번 입력하는 호출 문구가 필요하지 않습니다.
 
+## GitHub에서 직접 설치
+
+아래 요청을 Codex에 보내세요:
+
+> https://github.com/wangzhezbz/jev-pilot 에서 JevPilot을 개인 Codex 플러그인으로 설치해 주세요. 의존성과 호환성을 확인하고 TypeSafe Key 비공개 설정과 재시작 후 확인을 안내해 주세요.
+
+[자세한 설치 방법](docs/INSTALL.md) · [TypeSafe](https://typesafe.ai/)
+
 ## 실측 사례
 
-### 선별한 작업 비교
+### 추론 강도 자동 조정 실측
+
+| 시나리오 | 시간 | GPT 토큰 | Jev 포함 추정 비용 | 실제 강도 변경 |
+| --- | --- | --- | --- | --- |
+| [티켓 안정 정렬 수정](docs/reports/holdout-20260925/README.zh-CN.md) | −25.64% | −17.13% | −5.25% | high → medium |
+| [구간 차집합 수정](docs/reports/holdout-20260925/README.zh-CN.md) | −14.20% | −12.58% | −31.40% | high → low |
+
+두 작업 모두 독립 검증을 통과하고 네이티브 applied 기록을 확인했습니다. 수치는 전체 작업 비교입니다.
+
+### 문서 선별 및 복원 가능한 출력
 
 | 시나리오 | 시간 | GPT 토큰 | Jev 포함 추정 비용 |
 | --- | --- | --- | --- |
 | [문서 선별](docs/reports/targeted-20260925/README.zh-CN.md) | −40.03% | −23.88% | −33.69% |
-| [티켓 안정 정렬 수정](docs/reports/holdout-20260925/README.zh-CN.md) | −25.64% | −17.13% | −5.25% |
-| [구간 차집합 수정](docs/reports/holdout-20260925/README.zh-CN.md) | −14.20% | −12.58% | −31.40% |
 
-### 브라우저 및 데스크톱 조작 구간
+### 자동 판단 실측: Chrome 및 Computer Use
 
-| 시나리오 | 시간 | GPT 토큰 | Jev 포함 추정 비용 |
-| --- | --- | --- | --- |
-| [Chrome 기록 조회](docs/reports/holdout-20260925/README.zh-CN.md) | −41.03% | −55.91% | −54.87% |
-| [Computer Use 연속 탐색](docs/reports/targeted-20260925/README.zh-CN.md) | −47.64% | −57.14% | −56.52% |
+| 시나리오 | 시간 | GPT 토큰 | Jev 포함 추정 비용 | 실제 Jev 판단 |
+| --- | --- | --- | --- | --- |
+| [Chrome 기록 조회](docs/reports/holdout-20260925/README.zh-CN.md) | −41.03% | −55.91% | −54.87% | 판단 5회 / 조작 5회 / 중간 인계 0회 |
+| [Computer Use 연속 탐색](docs/reports/targeted-20260925/README.zh-CN.md) | −47.64% | −57.14% | −56.52% | 2회 실행에서 각각: 판단 5회 / 조작 5회 / 중간 인계 0회 |
 
 ### 컴포넌트 실측
 
 | 컴포넌트 | 실측 결과 |
 | --- | --- |
+| [자동 판단: 자료 일괄 선별](docs/reports/cache-budget-20260924/README.zh-CN.md) | 180개 기록, Jev 호출 6회에 4.119초. 116개 제외, 대상 증거 8개 모두 유지. 반환 본문 크기 −62.96%(바이트) |
 | [필수 도구 선택](docs/reports/workflow-efficiency-20260925/README.zh-CN.md) | 필수 도구 12개 모두 유지, 불필요한 Jev 토큰 2,090 → 0 |
 | [검토 및 테스트 선택](docs/reports/workflow-efficiency-20260925/README.zh-CN.md) | 이전 버전 대비 시간 −22.69%, Jev 토큰 −53.93%, 필수 테스트 9개 모두 유지 |
 | [반복 인계 판단 재사용](docs/reports/workflow-efficiency-20260925/README.zh-CN.md) | 5회 인계에서 요청 5 → 1, Jev 토큰 −80.25%, 원문 모두 유지 |
@@ -60,11 +76,3 @@
 | 12 | **변경 검토와 테스트 선택** | 필수 테스트를 유지하고 관련 변경을 우선 확인합니다. |
 | 13 | **체크포인트와 재개** | 진행 상황을 저장하고 파일 변경을 확인한 뒤 재개합니다. |
 | 14 | **원문 정확 추출** | 원문 위치를 반환하고 누락이나 모호함을 표시합니다. |
-
-## GitHub에서 직접 설치
-
-아래 요청을 Codex에 보내세요:
-
-> https://github.com/wangzhezbz/jev-pilot 에서 JevPilot을 개인 Codex 플러그인으로 설치해 주세요. 의존성과 호환성을 확인하고 TypeSafe Key 비공개 설정과 재시작 후 확인을 안내해 주세요.
-
-[자세한 설치 방법](docs/INSTALL.md) · [TypeSafe](https://typesafe.ai/)

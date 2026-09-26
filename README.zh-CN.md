@@ -14,27 +14,43 @@
 
 你像平时一样提需求。JevPilot 在适合的步骤协助判断、筛选材料和操作界面，Codex 继续负责复杂推理与最终结果。不用下载一堆组件 Skill，不用另开任务运行器，也不用每次输入专门的触发词。
 
+## 从 GitHub 安装
+
+把下面这句话发给 Codex：
+
+> 请从 https://github.com/wangzhezbz/jev-pilot 安装 JevPilot，作为一个个人 Codex 插件。检查依赖和兼容性，引导我在本地页面填写 TypeSafe Key，配置后在重启时核验生效。
+
+[详细安装、停用与恢复](docs/INSTALL.md) · [TypeSafe](https://typesafe.ai/)
+
 ## 实测亮点
 
-### 精选任务对照
+### 自动调整推理强度实测
+
+| 实测场景 | 耗时 | GPT token | 含 Jev 的估算费用 | 实际切档 |
+| --- | --- | --- | --- | --- |
+| [工单稳定排序修复](docs/reports/holdout-20260925/README.zh-CN.md) | −25.64% | −17.13% | −5.25% | high → medium |
+| [区间差集修复](docs/reports/holdout-20260925/README.zh-CN.md) | −14.20% | −12.58% | −31.40% | high → low |
+
+两项均通过独立验收，并收到原生 applied 生效回执；表中为整任务对照结果。
+
+### 文档筛选与可恢复输出
 
 | 实测场景 | 耗时 | GPT token | 含 Jev 的估算费用 |
 | --- | --- | --- | --- |
 | [文档筛选](docs/reports/targeted-20260925/README.zh-CN.md) | −40.03% | −23.88% | −33.69% |
-| [工单稳定排序修复](docs/reports/holdout-20260925/README.zh-CN.md) | −25.64% | −17.13% | −5.25% |
-| [区间差集修复](docs/reports/holdout-20260925/README.zh-CN.md) | −14.20% | −12.58% | −31.40% |
 
-### 浏览器与桌面操作窗口
+### 自动判断实测：Chrome 与 Computer Use
 
-| 实测场景 | 耗时 | GPT token | 含 Jev 的估算费用 |
-| --- | --- | --- | --- |
-| [Chrome 记录查询](docs/reports/holdout-20260925/README.zh-CN.md) | −41.03% | −55.91% | −54.87% |
-| [Computer Use 多步导航](docs/reports/targeted-20260925/README.zh-CN.md) | −47.64% | −57.14% | −56.52% |
+| 实测场景 | 耗时 | GPT token | 含 Jev 的估算费用 | 真实 Jev 判断 |
+| --- | --- | --- | --- | --- |
+| [Chrome 记录查询](docs/reports/holdout-20260925/README.zh-CN.md) | −41.03% | −55.91% | −54.87% | 5 次判断、5 次操作、0 次接手 |
+| [Computer Use 多步导航](docs/reports/targeted-20260925/README.zh-CN.md) | −47.64% | −57.14% | −56.52% | 两轮各：5 次判断、5 次操作、0 次接手 |
 
 ### 组件实测
 
 | 组件 | 实测效果 |
 | --- | --- |
+| [自动判断：批量材料筛选](docs/reports/cache-budget-20260924/README.zh-CN.md) | 180 条记录，6 次 Jev 调用共 4.119 秒；排除 116 条，8 条目标证据全部保留，返回正文体积减少 62.96%（字节） |
 | [必用工具选择](docs/reports/workflow-efficiency-20260925/README.zh-CN.md) | 保留全部 12 项必用工具，不必要的 Jev token 从 2,090 降至 0 |
 | [审查与测试选择](docs/reports/workflow-efficiency-20260925/README.zh-CN.md) | 相比旧版，耗时减少 22.69%，Jev token 减少 53.93%，9 个必测项全部保留 |
 | [重复交接判断复用](docs/reports/workflow-efficiency-20260925/README.zh-CN.md) | 连续 5 次交接，请求从 5 次降至 1 次，Jev token 减少 80.25%，原文全部保留 |
@@ -60,11 +76,3 @@
 | 12 | **改动审查与测试选择** | 优先检查相关改动，保留必测项与不确定项。 |
 | 13 | **检查点与任务续接** | 保存阶段进度，续接前核对文件变化。 |
 | 14 | **原文精确提取** | 返回原文片段和位置，对缺失或含糊字段明确标记。 |
-
-## 从 GitHub 安装
-
-把下面这句话发给 Codex：
-
-> 请从 https://github.com/wangzhezbz/jev-pilot 安装 JevPilot，作为一个个人 Codex 插件。检查依赖和兼容性，引导我在本地页面填写 TypeSafe Key，配置后在重启时核验生效。
-
-[详细安装、停用与恢复](docs/INSTALL.md) · [TypeSafe](https://typesafe.ai/)

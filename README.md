@@ -14,27 +14,43 @@
 
 Describe the task as usual. JevPilot assists with suitable decisions, evidence and UI steps; Codex remains responsible for complex reasoning and final verification. No extra component skills, separate task runner or repeated trigger phrase.
 
+## Install from GitHub
+
+Send this to Codex:
+
+> Install JevPilot from https://github.com/wangzhezbz/jev-pilot as one personal Codex plugin. Check dependencies and compatibility, guide private TypeSafe key setup, and verify activation after restart.
+
+[Installation details](docs/INSTALL.md) · [TypeSafe](https://typesafe.ai/)
+
 ## Measured examples
 
-### Selected task comparisons
+### Adaptive reasoning effort: verified switches
+
+| Scenario | Time | GPT tokens | Estimated cost including Jev | Actual switch |
+| --- | --- | --- | --- | --- |
+| [Ticket stable-sort fix](docs/reports/holdout-20260925/README.zh-CN.md) | −25.64% | −17.13% | −5.25% | high → medium |
+| [Interval-difference fix](docs/reports/holdout-20260925/README.zh-CN.md) | −14.20% | −12.58% | −31.40% | high → low |
+
+Both tasks passed independent checks and received native applied receipts; figures compare whole tasks.
+
+### Document screening and recoverable output
 
 | Scenario | Time | GPT tokens | Estimated cost including Jev |
 | --- | --- | --- | --- |
 | [Document review](docs/reports/targeted-20260925/README.zh-CN.md) | −40.03% | −23.88% | −33.69% |
-| [Ticket stable-sort fix](docs/reports/holdout-20260925/README.zh-CN.md) | −25.64% | −17.13% | −5.25% |
-| [Interval-difference fix](docs/reports/holdout-20260925/README.zh-CN.md) | −14.20% | −12.58% | −31.40% |
 
-### Browser and desktop operation windows
+### Automatic judgments: Chrome and Computer Use
 
-| Scenario | Time | GPT tokens | Estimated cost including Jev |
-| --- | --- | --- | --- |
-| [Chrome record lookup](docs/reports/holdout-20260925/README.zh-CN.md) | −41.03% | −55.91% | −54.87% |
-| [Computer Use navigation](docs/reports/targeted-20260925/README.zh-CN.md) | −47.64% | −57.14% | −56.52% |
+| Scenario | Time | GPT tokens | Estimated cost including Jev | Actual Jev decisions |
+| --- | --- | --- | --- | --- |
+| [Chrome record lookup](docs/reports/holdout-20260925/README.zh-CN.md) | −41.03% | −55.91% | −54.87% | 5 decisions / 5 actions / no handoff |
+| [Computer Use navigation](docs/reports/targeted-20260925/README.zh-CN.md) | −47.64% | −57.14% | −56.52% | 2 runs, each: 5 decisions / 5 actions / no handoff |
 
 ### Component measurements
 
 | Component | Measured result |
 | --- | --- |
+| [Automatic judgments: batch screening](docs/reports/cache-budget-20260924/README.zh-CN.md) | 180 records, 6 Jev calls in 4.119 s; 116 excluded, all 8 target evidence items retained; returned text bytes −62.96% |
 | [Required-tool selection](docs/reports/workflow-efficiency-20260925/README.zh-CN.md) | All 12 tools retained; unnecessary Jev tokens: 2,090 → 0 |
 | [Review and test selection](docs/reports/workflow-efficiency-20260925/README.zh-CN.md) | Versus the old version: time −22.69%, Jev tokens −53.93%; all 9 required tests retained |
 | [Repeated handoff judgments](docs/reports/workflow-efficiency-20260925/README.zh-CN.md) | Across 5 handoffs, requests 5 → 1; Jev tokens −80.25%, original text retained |
@@ -60,11 +76,3 @@ These figures come from actual scenario tests. [Scenarios and full results](http
 | 12 | **Change review and test selection** | Prioritize changes while retaining mandatory tests. |
 | 13 | **Checkpoints and resume** | Save progress and revalidate changed files before continuing. |
 | 14 | **Exact-source extraction** | Return original spans; mark missing or ambiguous fields. |
-
-## Install from GitHub
-
-Send this to Codex:
-
-> Install JevPilot from https://github.com/wangzhezbz/jev-pilot as one personal Codex plugin. Check dependencies and compatibility, guide private TypeSafe key setup, and verify activation after restart.
-
-[Installation details](docs/INSTALL.md) · [TypeSafe](https://typesafe.ai/)
