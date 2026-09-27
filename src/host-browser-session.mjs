@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { Store, Judge, loadConfig, requireValue, text } from './core.mjs';
 import { hostTransport } from './host-browser-transport.mjs';
 import { browserStep, consumeBrowserTicket } from './browser.mjs';
+import { waitForHostObservation } from './host-observation-wait.mjs';
 export { createChromeDriver, createComputerUseDriver } from './host-browser-drivers.mjs';
 
 // Literal visible-text contracts avoid regenerating callback boilerplate.
@@ -158,23 +159,23 @@ export function createSession({ workspace, taskId, driver, store, send = hostTra
           let after = await timed('observe', () => driver.observe());
           stateMayHaveChanged = false;
           let progress = current.semanticHash !== after.semanticHash;
-          let rechecked=false;
-          // Only the explicit Windows calculator key path gets one read-only
-          // settling observation. Never repeat the action or pay for a judgment.
-          if(!progress && driver.kind==='computer-use' && driver.progressRecheck==='calculator_keys' && !expired() && maxMs-(performance.now()-start)>150){
-            await timed('settle',()=>new Promise(resolve=>setTimeout(resolve,150)));
-            if(!expired()){
-              rechecked=true;stateMayHaveChanged=true;
-              after=await timed('reobserve',()=>driver.observe());stateMayHaveChanged=false;
-              progress=current.semanticHash!==after.semanticHash;
-            }
+          let rechecked=false,recheckCount=0,settleMs=0;
+          // Only the explicit calculator path waits on unchanged AX. At most
+          // four read-only probes share the existing session time budget.
+          if(!progress && driver.kind==='computer-use' && driver.progressRecheck==='calculator_keys' && !expired()){
+            const settled=await timed('settle',()=>waitForHostObservation({initial:after,
+              observe:async()=>{stateMayHaveChanged=true;const o=await driver.observe();stateMayHaveChanged=false;return o;},
+              accept:o=>current.semanticHash!==o.semanticHash,signal:task.signal,
+              remainingMs:()=>maxMs-(performance.now()-start)}));
+            after=settled.observation;recheckCount=settled.reads;rechecked=recheckCount>0;settleMs=settled.elapsedMs;
+            progress=settled.status==='matched';
           }
           if(driver.progressRecheck==='calculator_keys'){
             const rawBefore=current.progressSource?.rawSemanticHash,rawAfter=after.progressSource?.rawSemanticHash;
-            progressDiagnostics={rechecked,scopedChanged:progress,rawChanged:rawBefore&&rawAfter?rawBefore!==rawAfter:null,
+            progressDiagnostics={rechecked,recheckCount,settleMs,scopedChanged:current.semanticHash!==after.semanticHash,rawChanged:rawBefore&&rawAfter?rawBefore!==rawAfter:null,
               beforeRawChars:current.progressSource?.rawChars??null,afterRawChars:after.progressSource?.rawChars??null,
               beforeScopedChars:current.snapshot.length,afterScopedChars:after.snapshot.length,
-              scopeMayHideChange:!progress&&Boolean(rawBefore&&rawAfter&&rawBefore!==rawAfter)};
+              scopeMayHideChange:current.semanticHash===after.semanticHash&&Boolean(rawBefore&&rawAfter&&rawBefore!==rawAfter)};
             if(!progress)progressObservation={beforeScoped:current.snapshot,afterScoped:after.snapshot,beforeRaw:current.progressSource?.rawSnapshot??null,afterRaw:after.progressSource?.rawSnapshot??null};
           }
           history.push({ action: action.text.slice(0, 1000), stage: stage.id, progress, probability });

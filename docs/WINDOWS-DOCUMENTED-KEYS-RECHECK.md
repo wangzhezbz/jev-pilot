@@ -1,5 +1,7 @@
 # Windows：直接验证文档化按键，定位官方 fetch 故障
 
+本轮已完成。原始 AX 已显示 7 +；后续使用 [状态与时序复验](WINDOWS-OBSERVATION-RECHECK.md)，不重复本轮四键流程。
+
 这次修复依据 WINDOWS_KEYPAD_ERROR_RESULTS.md：官方文档明确支持 `Numpad_Add` 和 `Numpad_Multiply`，而前轮说明误将未列出的 `KP_Add` 作为硬门槛。本候选支持两个文档化名称，并已同步 Skill 示例。不要再以缺少 KP_Add 定义阻止执行，也不把 Numpad_Add 改写成 plus 或 KP_Add。
 
 解压本候选到独立目录即可，不安装、不重启、不改密钥/模型/代理/当前插件。不主动调用 Jev；主任务后台路由若有消耗，另列。候选文件只在官方宿主内按真实路径导入。用户无需手工运行脚本。

@@ -1,5 +1,6 @@
 // Adapters receive existing official host handles. They never launch or connect a browser.
 import { requireValue, hash } from './core.mjs';
+import { calculatorObservation } from './calculator-observation.mjs';
 
 const roles = 'radio button|toggle button|menu item|check box|checkbox|checkBox|radioButton|menuItem|button|link|tab|switch|按钮|链接|复选框|单选按钮|标签页';
 const control = new RegExp(`^\\s*(\\d+) (${roles})(?: \\([^)]*\\))? (?:Description: )?(.+)$`);
@@ -131,6 +132,7 @@ export function createComputerUseDriver({ sky, app, window, policy, scope, calcu
         // or coordinates derived from an unavailable screenshot.
         const observed = observation(state.accessibility?.tree, policy, scope);
         if (keys) {
+          observed.calculatorState=calculatorObservation(observed.snapshot);
           observed.candidates = observed.candidates.filter(c => Object.hasOwn(keys,c.text));
           const raw=state.accessibility.tree;
           observed.progressSource={rawSemanticHash:hash(semanticState(raw)),rawChars:raw.length,scopedChars:observed.snapshot.length,rawSnapshot:raw.length<=50000?raw:null};

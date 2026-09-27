@@ -206,12 +206,12 @@ test('calculator delayed AX progress gets one fresh read, not a second key or ju
 test('calculator changes outside scope are diagnostic only and never authorize another key',async t=>{
  const f=fixture(t,{noEffect:true});f.driver.kind='computer-use';f.driver.progressRecheck='calculator_keys';
  let reads=0;f.driver.observe=async()=>{reads++;const raw=reads>=3?'result 7\nexpression 7 +':'result 7\nexpression empty';return{snapshot:'result 7',semanticHash:hash('result 7'),observedAt:Date.now(),progressSource:{rawSemanticHash:hash(raw),rawChars:raw.length,rawSnapshot:raw},candidates:[{id:'next',text:'Open next view',target:1,op:'click'}]};};
- const r=await f.session.run(f.task);assert.equal(r.reason,'HOST_NO_OBSERVED_PROGRESS');assert.equal(f.clicks(),1);assert.equal(f.requests.length,1);assert.equal(reads,4);assert.equal(r.progressDiagnostics.scopeMayHideChange,true);
+ const r=await f.session.run(f.task);assert.equal(r.reason,'HOST_NO_OBSERVED_PROGRESS');assert.equal(f.clicks(),1);assert.equal(f.requests.length,1);assert.ok(reads>=4&&reads<=7);assert.equal(r.progressDiagnostics.scopeMayHideChange,true);
  const receipt=summarizeHostResult(r);assert(!Object.hasOwn(receipt,'progressObservation'));assert.equal(r.progressObservation.afterRaw,'result 7\nexpression 7 +');
 });
-test('calculator still unchanged stops after one recheck and unchanged resumption costs nothing',async t=>{
+test('calculator still unchanged stops after bounded rechecks and unchanged resumption costs nothing',async t=>{
  const f=fixture(t,{noEffect:true});f.driver.kind='computer-use';f.driver.progressRecheck='calculator_keys';
- const r=await f.session.run(f.task);assert.equal(r.reason,'HOST_NO_OBSERVED_PROGRESS');assert.equal(r.progressDiagnostics.rechecked,true);assert.equal(f.reads(),4);
+ const r=await f.session.run(f.task);assert.equal(r.reason,'HOST_NO_OBSERVED_PROGRESS');assert.equal(r.progressDiagnostics.rechecked,true);assert.ok(f.reads()>=4&&f.reads()<=7);assert.equal(r.progressDiagnostics.recheckCount,f.reads()-3);
  const resumed=await f.session.run(f.task);assert.equal(resumed.reason,'HOST_HANDOFF_STATE_UNCHANGED');assert.equal(f.clicks(),1);assert.equal(f.requests.length,1);
 });
 test('cancel during settling prevents the extra read and any further action',async t=>{
